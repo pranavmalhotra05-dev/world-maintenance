@@ -1,0 +1,946 @@
+{
+ "cities": {
+  "columbus": {
+   "deposit": {
+    "value": "No statutory cap. Itemized return within 30 days after move-out and delivery of possession. If held 6+ months, 5% yearly interest on the part above the greater of $50 or one month's rent.",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/section-5321.16",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "R.C. 5321.16(A)-(B): interest on excess over $50 or one month's rent at 5%; itemized notice within 30 days; no cap stated.",
+    "changed": true
+   },
+   "notice": {
+    "value": "30 days before the periodic rent date for month-to-month; 7 days for week-to-week (R.C. 5321.17).",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/section-5321.17",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "R.C. 5321.17(A)-(B) termination notice periods.",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "ORC 5312 (planned communities) / 5311 (condos): enforcement charges only after written notice and a hearing if requested; owners may inspect records. Solar devices allowed unless the declaration specifically bans them (5312.16/5311.192), with reasonable HOA limits. Condo flag display protected (5311.191).",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/chapter-5312",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "R.C. 5312.11(C)-(D) notice/hearing; 5312.07 records; 5312.16 solar; 5311.191 condo flag display.",
+    "changed": true
+   },
+   "permit": {
+    "value": "Yes: annual STR permit from the Building & Zoning Services License Section for dwellings with 5 or fewer guestrooms rented under 30 days; notarized application and fingerprint BCI checks for applicant, host, 24-hour contact and manager; one permit per dwelling.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT5BURELICO_CH598HOMOSHRMREOP",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 598.02(A)(2), 598.03(B)(10),(C), 598.04(A).",
+    "changed": true
+   },
+   "primary_residence": {
+    "value": "No. Host must be the owner or a 'permanent occupant' (lives there 51%+ of the year); non-resident owners can hold permits. Tenants need written landlord consent to STR use.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT5BURELICO_CH598HOMOSHRMREOP",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 598.01(R),(W); 598.03(B)(1),(4); 598.04(B).",
+    "changed": true
+   },
+   "zones": {
+    "value": "Ch. 598 has no zone list; a permit does not authorize STR use where other law prohibits it, and the city tells applicants to confirm zoning first.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT5BURELICO_CH598HOMOSHRMREOP",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 598.04(I); city STR page zoning note. Zoning use tables not read.",
+    "changed": true
+   },
+   "caps": {
+    "value": "No numeric cap on permits or nights in Ch. 598; permits can be denied or revoked after 3+ calls for service in 12 months or a nuisance history.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT5BURELICO_CH598HOMOSHRMREOP",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Full read of Ch. 598; 598.05(B)(9) calls-for-service ground.",
+    "changed": true
+   },
+   "max_occupancy": {
+    "value": "No STR-specific guest cap in Ch. 598; an STR is limited to dwellings with 5 or fewer guestrooms; housing-code space limits apply.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT5BURELICO_CH598HOMOSHRMREOP",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 598.01(X) five-guestroom limit; no occupancy section in chapter.",
+    "changed": true
+   },
+   "hostel_shared": {
+    "value": "Renting part of a dwelling is allowed under the STR permit (whole or in part); more than 5 guestrooms makes it a hotel/motel. STR permits and rooming-house licences are mutually exclusive.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT5BURELICO_CH598HOMOSHRMREOP",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 598.01(L),(X); 598.03(J).",
+    "changed": true
+   },
+   "taxes": {
+    "value": "City hotel/motel/STR excise tax totals 5.1% (Ch. 371) on stays under 30 days; county and other lodging taxes not checked.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT3FITACO_CH371HOMOSHRMRETA",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 371.02 levies 3% plus 2.1% (combined 5.1%); 598.04(E).",
+    "changed": true
+   },
+   "listing_id": {
+    "value": "Yes: permit number must appear on every platform listing; platforms may not book without it; permit displayed in the unit; host and platform keep records 4 years.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT5BURELICO_CH598HOMOSHRMREOP",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 598.03(H); 598.04(F)-(H); 598.15(B).",
+    "changed": true
+   },
+   "pending": {
+    "value": "Zone In: the new 2024 Zoning Code (Title 34) was adopted July 2024 and applies in phases to rezoned parcels; parcels not yet rezoned stay under Title 33.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT33ZOCO_CH3304APTI332024ZOCO",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 3304.01, Ord. 2111-2024.",
+    "changed": true
+   },
+   "registration": {
+    "value": "Yes: city Registry of Residential Rental Properties (Ch. 4515, Ord. 0923-2026, Apr 2026): annual registration naming a local operator within 100 miles, fees and education inspections; STRs and rooming houses exempt. County auditor filing (R.C. 5323) also applies.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT45HOCO_CH4515REREREPR",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 4515.01-4515.05, 4515.11.",
+    "changed": true
+   },
+   "family": {
+    "value": "No 'family' definition with an unrelated-person cap in Title 33. Six or more unrelated people sharing a unit is a 'shared living facility' (licensed like a rooming house); renting sleeping rooms to 3+ persons is a rooming house.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT33ZOCO_CH3303DE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 3303 definitions: shared living facility; rooming house; no family entry.",
+    "changed": true
+   },
+   "rooming": {
+    "value": "Rooming house = residential building renting sleeping accommodations to 3+ persons; licensed under Housing Code Ch. 4561; cannot also hold an STR permit.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT33ZOCO_CH3303DE",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 3303 rooming house; 598.03(J); Ch. 4561 exists (not read). District rules not read.",
+    "changed": true
+   },
+   "coliving": {
+    "value": "6+ unrelated people living as one housekeeping unit = 'shared living facility', regulated as a rooming house for licensing.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT33ZOCO_CH3303DE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 3303 'Shared living facility' definition.",
+    "changed": true
+   },
+   "per_bedroom": {
+    "value": "Sleeping room: at least 70 sq ft for one person, 50 sq ft per person when shared; a dwelling-wide occupancy-area table also applies.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT45HOCO_CH4541MISPUSRE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 4541.01 sleeping area; 4541.015 overcrowding table.",
+    "changed": true
+   },
+   "adu": {
+    "value": "Title 33 defines ADUs (separate entrance, subordinate to main dwelling) but Ch. 3332 residential districts do not list them as a use. Zone In (Title 34) districts may allow them; not checked.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT33ZOCO_CH3303DE",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. 3303 ADU definition; Ch. 3332 use lists searched, no ADU entry.",
+    "changed": true
+   },
+   "worship_zoning": {
+    "value": "Religious facilities are a permitted use in the Title 33 residential districts (rural, SR, R-1 to R-4, R-2F). Housing on church land follows normal zoning.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT33ZOCO_CH3332REDI",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "C.C.C. Ch. 3332 district permitted-use lists include religious facility.",
+    "changed": true
+   },
+   "yigby": {
+    "value": "No state YIGBY law found.",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/chapter-5312",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding; no statute located in this pass.",
+    "changed": false
+   },
+   "shed": {
+    "value": "Not a legal dwelling: permanent living in a shed or accessory structure is not allowed.",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "tent": {
+    "value": "Not allowed as housing on a private lot (narrow event/disaster exceptions only).",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "rv": {
+    "value": "Living in an RV on a residential lot is not allowed; short guest stays may be tolerated.",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "thow": {
+    "value": "Not a dwelling unit under zoning/building codes; only in RV parks or sanctioned sites where they exist.",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   }
+  },
+  "cincinnati": {
+   "deposit": {
+    "value": "No statutory cap. Itemized return within 30 days after move-out and delivery of possession. If held 6+ months, 5% yearly interest on the part above the greater of $50 or one month's rent.",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/section-5321.16",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "R.C. 5321.16(A)-(B): interest on excess over $50 or one month's rent at 5%; itemized notice within 30 days; no cap stated.",
+    "changed": true
+   },
+   "notice": {
+    "value": "30 days before the periodic rent date for month-to-month; 7 days for week-to-week (R.C. 5321.17).",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/section-5321.17",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "R.C. 5321.17(A)-(B) termination notice periods.",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "ORC 5312 (planned communities) / 5311 (condos): enforcement charges only after written notice and a hearing if requested; owners may inspect records. Solar devices allowed unless the declaration specifically bans them (5312.16/5311.192), with reasonable HOA limits. Condo flag display protected (5311.191).",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/chapter-5312",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "R.C. 5312.11(C)-(D) notice/hearing; 5312.07 records; 5312.16 solar; 5311.191 condo flag display.",
+    "changed": true
+   },
+   "permit": {
+    "value": "Yes: register before operating; registration valid 3 years; renew 60-180 days before expiry; liability insurance required.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TITVIIIBURE_CH856SHTERE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "CMC 856-5, 856-7(e), 856-9(g), 856-11.",
+    "changed": false
+   },
+   "primary_residence": {
+    "value": "No. Operator must certify being the legal owner or tenant with authority to rent; a responsible person must live or work within 50 miles.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TITVIIIBURE_CH856SHTERE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "CMC 856-1-R, 856-7(b)(3).",
+    "changed": true
+   },
+   "caps": {
+    "value": "Per-building cap: buildings with 4 or fewer units unlimited; 5+ units allow 4 STRs plus 1 per 4 units over 4 (pre-2019 STRs grandfathered). Units receiving affordable-housing subsidies cannot be STRs.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TITVIIIBURE_CH856SHTERE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "CMC 856-17(a)-(c).",
+    "changed": true
+   },
+   "max_occupancy": {
+    "value": "No STR-specific cap; building, housing and fire-code occupancy limits apply, and exceeding them counts toward nuisance revocation.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TITVIIIBURE_CH856SHTERE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "CMC 856-15(c), 856-17(d).",
+    "changed": true
+   },
+   "listing_id": {
+    "value": "Yes: registration number in every listing; registration and city advisory displayed inside the entrance.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TITVIIIBURE_CH856SHTERE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "CMC 856-9(b)-(d).",
+    "changed": false
+   },
+   "taxes": {
+    "value": "7% STR excise tax on gross revenue (Ch. 315); Airbnb collects under a voluntary agreement since Oct 2019; operators on other platforms file themselves.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TITIIIFIPEPRREPRPR_CH315SHTEREEXTA",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "CMC 315-3(a); city STR finance page.",
+    "changed": false
+   },
+   "zones": {
+    "value": "Ch. 856 has no zone list; operator certifies zoning compliance. Rooming houses, hotels and congregate housing are regulated elsewhere.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TITVIIIBURE_CH856SHTERE",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "CMC 856-3(b), 856-7(b)(4)(ii).",
+    "changed": true
+   },
+   "family": {
+    "value": "Family = one housekeeping unit; in SF districts up to 4 unrelated persons (or up to 8 in a state-approved foster home).",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TIXIZOCOCI_CH1401DE_S1401-01-F2FA",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "CMC 1401-01-F2 Family.",
+    "changed": true
+   },
+   "rooming": {
+    "value": "Rooming house = building with 3+ rooming units; not permitted in single-family districts.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TIXIZOCOCI_CH1401DE_S1401-01-R14ROHO",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "CMC 1401-01-R14; Ch. 1403 use table lists rooming houses as not allowed in SF districts.",
+    "changed": true
+   },
+   "adu": {
+    "value": "ADUs allowed as a limited accessory use in all single-family districts, subject to 1421-06 standards. Connected Communities (2024) changes not separately confirmed.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TIXIZOCOCI_CH1403SIMIDI",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "CMC 1403 use table: ADU 'L13', see 1421-06.",
+    "changed": true
+   },
+   "worship_zoning": {
+    "value": "Religious assembly is a conditional use in single-family districts.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TIXIZOCOCI_CH1403SIMIDI",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "CMC 1403 use table: religious assembly 'C' in all SF districts.",
+    "changed": true
+   },
+   "yigby": {
+    "value": "No state YIGBY law found.",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/chapter-5312",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding; no statute located in this pass.",
+    "changed": false
+   },
+   "shed": {
+    "value": "Not a legal dwelling: permanent living in a shed or accessory structure is not allowed.",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "tent": {
+    "value": "Not allowed as housing on a private lot (narrow event/disaster exceptions only).",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "rv": {
+    "value": "Living in an RV on a residential lot is not allowed; short guest stays may be tolerated.",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "thow": {
+    "value": "Not a dwelling unit under zoning/building codes; only in RV parks or sanctioned sites where they exist.",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "coliving": {
+    "value": "Treated as a rooming house or group living, not a household, unless it fits the family/household definition.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "per_bedroom": {
+    "value": "City building/housing codes listed on its relevant-codes page.",
+    "source_url": "https://www.cincinnati-oh.gov/buildings/building-plan-examination/relevant-codes/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "hostel_shared": {
+    "value": "Not confirmed.",
+    "source_url": "https://www.cincinnati-oh.gov/finance/short-term-rental/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "pending": {
+    "value": "None found in this pass.",
+    "source_url": "https://www.cincinnati-oh.gov/finance/short-term-rental/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "registration": {
+    "value": "State law: county auditor rental registration (R.C. 5323); city program not confirmed.",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/chapter-5323",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   }
+  },
+  "huntsville": {
+   "deposit": {
+    "value": "Capped at one month's rent, except extra for pets, alterations or added liability risk. Refund or itemized list within 60 days after move-out; missing the deadline costs double the deposit.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-9A-201",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Ala. Code 35-9A-201(a)-(c),(f).",
+    "changed": true
+   },
+   "notice": {
+    "value": "Month-to-month: written notice 30 days before the periodic rent date; week-to-week: 7 days (Ala. Code 35-9A-441).",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-9A-441",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Ala. Code 35-9A-441(a)-(b).",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "Homeowners' Association Act (Ala. Code 35-20) applies to HOA declarations recorded on/after Jan 1 2016, or older HOAs that opt in by majority; not condos (35-8/8A). Solar/flag protections not confirmed.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-20-3",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Ala. Code 35-20-3 applicability; 35-20-2 definitions. Solar/flag not checked.",
+    "changed": false
+   },
+   "permit": {
+    "value": "Yes: zoning approval, then a city business licence, for stays of 179 days or less.",
+    "source_url": "https://www.huntsvilleal.gov/business/licensing-permits/short-term-rentals/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR page steps 1-3.",
+    "changed": false
+   },
+   "zones": {
+    "value": "Treated as motels. Allowed by right in Residence 2-B, C-3, C-4, C-5, light/heavy industry, airport industrial park and research park commercial; by special exception in C-2, C-6, research park application districts, RP-2 and airport commercial. Most residential zones bar them.",
+    "source_url": "https://www.huntsvilleal.gov/business/licensing-permits/short-term-rentals/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR page zoning list.",
+    "changed": true
+   },
+   "taxes": {
+    "value": "City lodging tax 9% plus $2 per room-night, filed via Alabama ONE SPOT; state lodging tax 5% in Madison County (Ala. Code 40-26-1). Stays of 180+ days exempt.",
+    "source_url": "https://www.huntsvilleal.gov/business/licensing-permits/short-term-rentals/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR page; Ala. Code 40-26-1(a)-(b).",
+    "changed": true
+   },
+   "family": {
+    "value": "Family: one person, relatives (to first cousins), or a committed couple and relatives, or up to 4 unrelated persons, as a single housekeeping unit.",
+    "source_url": "https://www.huntsvilleal.gov/wp-content/uploads/2026/04/ZonOrd_as_of_01April2026.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Zoning Ordinance definitions, 'Family' (Ord. 25-267).",
+    "changed": true
+   },
+   "rooming": {
+    "value": "Rooming/boarding house (rooms for up to 10 people) is a separate use in some districts. In a home with at most 2 adult residents, a resident may take up to 3 non-transient roomers as an accessory use.",
+    "source_url": "https://www.huntsvilleal.gov/wp-content/uploads/2026/04/ZonOrd_as_of_01April2026.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Zoning Ord. definitions; Sec. 73.1.1(1)(c),(2)(b).",
+    "changed": true
+   },
+   "adu": {
+    "value": "Effectively not allowed: no kitchen in a detached accessory building on a single-family lot; an internal second kitchen is only for family or unpaid guests in an owner-occupied home.",
+    "source_url": "https://www.huntsvilleal.gov/wp-content/uploads/2026/04/ZonOrd_as_of_01April2026.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Zoning Ord. Sec. 10.6.1-10.6.8 Second Kitchens.",
+    "changed": true
+   },
+   "worship_zoning": {
+    "value": "Churches and similar places of worship are a permitted use in Residence 1 and other residential districts.",
+    "source_url": "https://www.huntsvilleal.gov/wp-content/uploads/2026/04/ZonOrd_as_of_01April2026.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Zoning Ord. Sec. 10.1 permitted uses list.",
+    "changed": true
+   },
+   "coliving": {
+    "value": "More than 4 unrelated people is not a 'family'; paid rooms for more than 3 roomers fall under rooming/boarding house rules.",
+    "source_url": "https://www.huntsvilleal.gov/wp-content/uploads/2026/04/ZonOrd_as_of_01April2026.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Zoning Ord. 'Family' (4) and Sec. 73.1.1.",
+    "changed": true
+   },
+   "yigby": {
+    "value": "No state YIGBY law found.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-20-3",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding.",
+    "changed": false
+   },
+   "shed": {
+    "value": "Not a legal dwelling: permanent living in a shed or accessory structure is not allowed.",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "tent": {
+    "value": "Not allowed as housing on a private lot (narrow event/disaster exceptions only).",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "rv": {
+    "value": "Living in an RV on a residential lot is not allowed; short guest stays may be tolerated.",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "thow": {
+    "value": "Not a dwelling unit under zoning/building codes; only in RV parks or sanctioned sites where they exist.",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "per_bedroom": {
+    "value": "Adopted property maintenance code sets floor area per sleeper (model IPMC: 70 sq ft for one, 50 sq ft per extra person; local edition not checked). Every sleeping room needs an egress window.",
+    "source_url": "https://codes.iccsafe.org/content/IPMC2021P1/chapter-4-light-ventilation-and-occupancy-limitations",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "max_occupancy": {
+    "value": "Not confirmed.",
+    "source_url": "https://www.huntsvilleal.gov/business/licensing-permits/short-term-rentals/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "hostel_shared": {
+    "value": "Only where motel-type uses are allowed (commercial-type zones).",
+    "source_url": "https://www.huntsvilleal.gov/business/licensing-permits/short-term-rentals/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "listing_id": {
+    "value": "Not confirmed.",
+    "source_url": "https://www.huntsvilleal.gov/business/licensing-permits/short-term-rentals/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "pending": {
+    "value": "None found in this pass.",
+    "source_url": "https://www.huntsvilleal.gov/business/licensing-permits/short-term-rentals/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "registration": {
+    "value": "No city rental registration found.",
+    "source_url": "https://www.huntsvilleal.gov/development/building-construction/planning/zoning/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "hoa_data": {
+    "value": "No public HOA layer found for Madison County / Huntsville.",
+    "source_url": "https://www.arcgis.com/home/search.html?q=HOA",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   }
+  },
+  "birmingham": {
+   "deposit": {
+    "value": "Capped at one month's rent, except extra for pets, alterations or added liability risk. Refund or itemized list within 60 days after move-out; missing the deadline costs double the deposit.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-9A-201",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Ala. Code 35-9A-201(a)-(c),(f).",
+    "changed": true
+   },
+   "notice": {
+    "value": "Month-to-month: written notice 30 days before the periodic rent date; week-to-week: 7 days (Ala. Code 35-9A-441).",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-9A-441",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Ala. Code 35-9A-441(a)-(b).",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "Homeowners' Association Act (Ala. Code 35-20) applies to HOA declarations recorded on/after Jan 1 2016, or older HOAs that opt in by majority; not condos (35-8/8A). Solar/flag protections not confirmed.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-20-3",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Ala. Code 35-20-3 applicability; 35-20-2 definitions. Solar/flag not checked.",
+    "changed": false
+   },
+   "permit": {
+    "value": "None in force. A new Title 12 Ch. 23 STR ordinance had its first reading at the Nov 24 2026 council meeting; the draft adds a business licence, STR permit, insurance and a 30-minute responder.",
+    "source_url": "https://birminghamwatch.org/2026/11/23/monday-morning-watch-week-of-nov-23-2026/",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "BirminghamWatch agenda rundown, item 3; city code Title 12 (municode) has no STR chapter.",
+    "changed": true
+   },
+   "pending": {
+    "value": "Committee advanced draft 4-1 (Sept 30 2026); not adopted on Oct 27. First reading at full council Nov 24 2026 (new Title 12 Ch. 23). A Dec 8 2026 hearing on rewriting zoning Titles 2-3 was also reported (unconfirmed).",
+    "source_url": "https://birminghamwatch.org/2026/11/23/monday-morning-watch-week-of-nov-23-2026/",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "BirminghamWatch Nov 23 2026 rundown; WBHM Oct 1 2026; official agenda PDF unreadable.",
+    "changed": true
+   },
+   "taxes": {
+    "value": "City lodging tax 6.5% (Title 3A Ch. 6, code version 2021) plus state 4% in Jefferson County (Ala. Code 40-26-1). Newer local changes not checked.",
+    "source_url": "https://library.municode.com/al/birmingham/codes/code_of_ordinances?nodeId=PT1THCOGEOR_TIT3ARETA_CH6LOHOTA",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Birmingham Code Title 3A Ch. 6 levy at 6.5%; Ala. Code 40-26-1(a).",
+    "changed": true
+   },
+   "yigby": {
+    "value": "No state YIGBY law found.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-20-3",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding.",
+    "changed": false
+   },
+   "worship_zoning": {
+    "value": "Religious assembly is usually permitted or conditional in residential and commercial districts; housing on church land needs ordinary zoning approval. Not checked against this city's use table.",
+    "source_url": "https://library.municode.com/al/birmingham/codes/code_of_ordinances",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "shed": {
+    "value": "Not a legal dwelling: permanent living in a shed or accessory structure is not allowed.",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "tent": {
+    "value": "Not allowed as housing on a private lot (narrow event/disaster exceptions only).",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "rv": {
+    "value": "Living in an RV on a residential lot is not allowed; short guest stays may be tolerated.",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "thow": {
+    "value": "Not a dwelling unit under zoning/building codes; only in RV parks or sanctioned sites where they exist.",
+    "source_url": "https://library.municode.com/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "rooming": {
+    "value": "A separate use from a household or STR, limited to certain zones and often licensed. Renting rooms past the household cap in single-family zones is generally a violation.",
+    "source_url": "https://library.municode.com/al/birmingham/codes/code_of_ordinances",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "coliving": {
+    "value": "Treated as a rooming house or group living, not a household, unless it fits the family/household definition.",
+    "source_url": "https://library.municode.com/al/birmingham/codes/code_of_ordinances",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "per_bedroom": {
+    "value": "Adopted property maintenance code sets floor area per sleeper (model IPMC: 70 sq ft for one, 50 sq ft per extra person; local edition not checked). Every sleeping room needs an egress window.",
+    "source_url": "https://codes.iccsafe.org/content/IPMC2021P1/chapter-4-light-ventilation-and-occupancy-limitations",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "primary_residence": {
+    "value": "Not confirmed (draft).",
+    "source_url": "https://www.wbhm.org/local-news/2026-10-01/birmingham-moves-closer-to-regulating-short-term-rentals",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "zones": {
+    "value": "Draft only.",
+    "source_url": "https://www.wbhm.org/local-news/2026-10-01/birmingham-moves-closer-to-regulating-short-term-rentals",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "caps": {
+    "value": "Draft only.",
+    "source_url": "https://www.wbhm.org/local-news/2026-10-01/birmingham-moves-closer-to-regulating-short-term-rentals",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "max_occupancy": {
+    "value": "Draft only.",
+    "source_url": "https://www.wbhm.org/local-news/2026-10-01/birmingham-moves-closer-to-regulating-short-term-rentals",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "hostel_shared": {
+    "value": "Not confirmed.",
+    "source_url": "https://www.wbhm.org/local-news/2026-10-01/birmingham-moves-closer-to-regulating-short-term-rentals",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "listing_id": {
+    "value": "Draft only.",
+    "source_url": "https://www.wbhm.org/local-news/2026-10-01/birmingham-moves-closer-to-regulating-short-term-rentals",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "registration": {
+    "value": "No city rental registration found.",
+    "source_url": "https://www.birminghamal.gov/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "family": {
+    "value": "Family definition not confirmed.",
+    "source_url": "https://www.birminghamal.gov/",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "adu": {
+    "value": "Limited; not confirmed.",
+    "source_url": "https://library.municode.com/al/birmingham/codes/code_of_ordinances",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   },
+   "hoa_data": {
+    "value": "No public HOA layer found for Jefferson County / Birmingham.",
+    "source_url": "https://www.arcgis.com/home/search.html?q=HOA",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reached in this pass; value unchanged.",
+    "changed": false
+   }
+  }
+ },
+ "states": {
+  "OH": {
+   "str_preemption": {
+    "value": "No statewide STR preemption enacted. HB 563 (134th GA, 2022) was reported from committee but never passed; later bills not checked.",
+    "source_url": "https://www.legislature.ohio.gov/legislation/134/hb563/status",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "HB 563 status page: introduced, referred, reported May 2022; no further action.",
+    "changed": false
+   },
+   "rent_control": {
+    "value": "Expressly preempted: R.C. 5321.19 bars local rent control or rent stabilization on private rentals (exceptions for city-owned housing and voluntary incentive agreements).",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/section-5321.19",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "R.C. 5321.19(A) prohibits political subdivisions from imposing rent control or stabilization.",
+    "changed": true
+   },
+   "ltr_registration": {
+    "value": "Owners of residential rental property must file owner/agent contact and parcel info with the county auditor and update within 60 days of changes (R.C. 5323.02).",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/section-5323.02",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "R.C. 5323.02(A),(C) filing with county auditor; updates within 60 days.",
+    "changed": true
+   },
+   "source_of_income": {
+    "value": "No statewide protection. Ohio fair-housing law covers race, color, religion, sex, military status, familial status, ancestry, disability, national origin; not source of income.",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/section-4112.02",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "R.C. 4112.02(H) protected-class list omits source of income.",
+    "changed": false
+   },
+   "occupancy_law": {
+    "value": "No statewide family-definition or occupancy cap found; left to local zoning/housing codes.",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/chapter-5323",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding; no specific statute located.",
+    "changed": false
+   },
+   "hoa_registry": {
+    "value": "No statewide HOA registry found in ORC 5312.",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/chapter-5312",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Chapter 5312 section list has no registration provision.",
+    "changed": false
+   },
+   "yigby": {
+    "value": "No state YIGBY law found.",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/chapter-5312",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding; no statute located in this pass.",
+    "changed": false
+   },
+   "deposit": {
+    "value": "No statutory cap. Itemized return within 30 days after move-out and delivery of possession. If held 6+ months, 5% yearly interest on the part above the greater of $50 or one month's rent.",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/section-5321.16",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "R.C. 5321.16(A)-(B): interest on excess over $50 or one month's rent at 5%; itemized notice within 30 days; no cap stated.",
+    "changed": true
+   },
+   "notice": {
+    "value": "30 days before the periodic rent date for month-to-month; 7 days for week-to-week (R.C. 5321.17).",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/section-5321.17",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "R.C. 5321.17(A)-(B) termination notice periods.",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "ORC 5312 (planned communities) / 5311 (condos): enforcement charges only after written notice and a hearing if requested; owners may inspect records. Solar devices allowed unless the declaration specifically bans them (5312.16/5311.192), with reasonable HOA limits. Condo flag display protected (5311.191).",
+    "source_url": "https://codes.ohio.gov/ohio-revised-code/chapter-5312",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "R.C. 5312.11(C)-(D) notice/hearing; 5312.07 records; 5312.16 solar; 5311.191 condo flag display.",
+    "changed": true
+   }
+  },
+  "AL": {
+   "str_preemption": {
+    "value": "No STR preemption found; cities regulate via zoning and business licences. State lodging tax (Ala. Code 40-26-1) covers stays under 180 days: 5% in Madison and other mountain-lakes counties, 4% elsewhere. Platform collection not confirmed.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=40-26-1",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Ala. Code 40-26-1(a)-(b) rates and 180-day exclusion; no preemption statute located.",
+    "changed": true
+   },
+   "rent_control": {
+    "value": "Preempted: local governments may not enact or enforce rules controlling rent on private property (Ala. Code 11-80-8.1).",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=11-80-8.1",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Ala. Code 11-80-8.1(b), Act 93-421.",
+    "changed": true
+   },
+   "ltr_registration": {
+    "value": "None found.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-9A-201",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding.",
+    "changed": false
+   },
+   "source_of_income": {
+    "value": "None. Alabama Fair Housing Law covers race, color, religion, sex, familial status, national origin (and handicap); not source of income.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=24-8-4",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Ala. Code 24-8-4 protected classes.",
+    "changed": false
+   },
+   "occupancy_law": {
+    "value": "No statewide rule found.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-9A-201",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding.",
+    "changed": false
+   },
+   "hoa_registry": {
+    "value": "No statewide HOA registry found.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-20-3",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding; Act 35-20 sections read contain no registry.",
+    "changed": false
+   },
+   "yigby": {
+    "value": "No state YIGBY law found.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-20-3",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding.",
+    "changed": false
+   },
+   "deposit": {
+    "value": "Capped at one month's rent, except extra for pets, alterations or added liability risk. Refund or itemized list within 60 days after move-out; missing the deadline costs double the deposit.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-9A-201",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Ala. Code 35-9A-201(a)-(c),(f).",
+    "changed": true
+   },
+   "notice": {
+    "value": "Month-to-month: written notice 30 days before the periodic rent date; week-to-week: 7 days (Ala. Code 35-9A-441).",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-9A-441",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Ala. Code 35-9A-441(a)-(b).",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "Homeowners' Association Act (Ala. Code 35-20) applies to HOA declarations recorded on/after Jan 1 2016, or older HOAs that opt in by majority; not condos (35-8/8A). Solar/flag protections not confirmed.",
+    "source_url": "https://alison.legislature.state.al.us/code-of-alabama?section=35-20-3",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Ala. Code 35-20-3 applicability; 35-20-2 definitions. Solar/flag not checked.",
+    "changed": false
+   }
+  }
+ }
+}

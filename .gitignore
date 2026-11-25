@@ -36,3 +36,4 @@ web/usa/metros/*/
 web/lidar/boundaries/
 *.tmp
 *.lock
+usa/cache/

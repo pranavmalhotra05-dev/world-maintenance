@@ -1,0 +1,2282 @@
+{
+ "generated": "2026-11-24",
+ "lane": "B - national / federal / private / global sources (state & city sources are lane A)",
+ "rule": "STRICT clear-green only: terms must EXPLICITLY allow commercial use and redistribution (US federal work / public domain, CC0, CC BY, CC BY-SA, ODbL, CDLA-Permissive, ODC-BY/PDDL, MIT/BSD/OFL for code+fonts, open-government licences, Copernicus free-full-open). Disclaimer-only, terms-unstated, 'verify', non-commercial, notify/permission-required, fee-for-commercial, or platform-wrapped (e.g. Esri MLA) = grey/red -> remove or replace.",
+ "method": "Grepped every URL in usa/*.py and mpls/*.py; ArcGIS items checked via sharing/rest item licenseInfo; licence pages read with Python requests and the built-in browser (no Firecrawl, no terms accepted).",
+ "counts": {
+  "sources": 87,
+  "green": 73,
+  "grey": 13,
+  "red": 1,
+  "keep": 73,
+  "replace": 11,
+  "remove": 3
+ },
+ "removal_list": [
+  {
+   "id": "overpass_public",
+   "action": "replace",
+   "alternative": "Self-hosted Overpass (or osmium/DuckDB) on a Geofabrik US state extract or the OSM planet file (same ODbL data)."
+  },
+  {
+   "id": "qlever_osm",
+   "action": "replace",
+   "alternative": "Query a local OSM planet/Geofabrik extract (osmium tags-filter / DuckDB) or a self-hosted QLever."
+  },
+  {
+   "id": "bts_noise_esri",
+   "action": "replace",
+   "alternative": "BTS National Transportation Noise Map rasters downloaded from BTS directly (https://www.bts.gov/geospatial/national-transportation-noise-map), US federal work."
+  },
+  {
+   "id": "esri_fed_power_plants",
+   "action": "replace",
+   "alternative": "EIA U.S. Energy Atlas 'Power Plants' layer served by EIA itself (atlas.eia.gov), US federal work."
+  },
+  {
+   "id": "esri_fed_transmission",
+   "action": "replace",
+   "alternative": "OpenStreetMap power=line / power=minor_line with voltage (ODbL) from a local OSM extract."
+  },
+  {
+   "id": "esri_fed_pipelines",
+   "action": "replace",
+   "alternative": "EIA U.S. Energy Atlas 'Petroleum Product Pipelines' layer (atlas.eia.gov), US federal work."
+  },
+  {
+   "id": "zillow_zhvi",
+   "action": "replace",
+   "alternative": "FHFA HPI annual ZIP5/tract (already fetched as fhfa_hpi) for the index; ACS B25077 for levels. For mpls/money.py use FHFA ZIP5 HPI 2025->latest instead of ZHVI-since-Jan-2026."
+  },
+  {
+   "id": "realtor_com_inventory",
+   "action": "remove",
+   "alternative": "No clean equivalent for live listings; drop realtor_zip. Optional context: ACS B25004 for-sale vacancy and Census BPS permits (public domain)."
+  },
+  {
+   "id": "freddie_mac_pmms",
+   "action": "replace",
+   "alternative": "FFIEC Average Prime Offer Rates (APOR) weekly tables published by the FFIEC/CFPB (ffiec.cfpb.gov rate-spread tool, US federal work) for 30-yr and 15-yr fixed; label as APOR, not PMMS."
+  },
+  {
+   "id": "usbr_recreation_areas",
+   "action": "replace",
+   "alternative": "USGS PAD-US (Protected Areas Database, public domain) filtered to Mang_Name = BOR for Reclamation recreation lands."
+  },
+  {
+   "id": "d3_celestial_stars",
+   "action": "replace",
+   "alternative": "Run usa/sky_catalog.py --strict (all star rows from the IAU Catalog of Star Names, CC BY) or source magnitudes from a US-government catalogue with stated public-domain status."
+  },
+  {
+   "id": "metro_transit_gtfs",
+   "action": "replace",
+   "alternative": "BTS NTAD National Transit Map Stops (CC BY 3.0 US, includes Metro Transit stops) for stop locations; drop live departures."
+  },
+  {
+   "id": "msptrees_2023",
+   "action": "remove",
+   "alternative": "Keep LiDAR-derived trees only (USGS 3DEP, public domain), or the City of Minneapolis public tree inventory if its portal states an open licence (lane A)."
+  },
+  {
+   "id": "mndot_iris_incidents",
+   "action": "remove",
+   "alternative": null
+  }
+ ],
+ "not_in_scope_here": [
+  "State/city sources (Hennepin, Ramsey, MnGeo, TxGIO, Colorado DRAPP, MnDOT AADT, CDOT, NY parks, Texas/Austin/Denver SODA, city adapters) -> lane A",
+  "Satellite research JSONs list many missions (JAXA, EUMETSAT, ISRO, Planet...) that no code fetches; only the imagery.py LIC entries are audited here"
+ ],
+ "sources": [
+  {
+   "id": "census_geocoder",
+   "name": "Census Geocoder (address -> lon/lat, state/county/tract/block)",
+   "provider": "US Census Bureau",
+   "used_in": [
+    {
+     "script": "usa/build_block.py",
+     "outputs": [
+      "web/usa/blocks/<slug>/meta.json (origin, state/county/tract/block)"
+     ]
+    },
+    {
+     "script": "usa/common.py",
+     "outputs": [
+      "geocode()/census_point() used by all block scripts"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "US federal work (Census Bureau).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "census_tiger",
+   "name": "TIGER/Line ADDRFEAT, tracts, cartographic boundaries, gazetteer, ZCTA/UA relationship files",
+   "provider": "US Census Bureau",
+   "used_in": [
+    {
+     "script": "usa/build_block.py",
+     "outputs": [
+      "houses[].address (interpolated fallback)"
+     ]
+    },
+    {
+     "script": "usa/national.py",
+     "outputs": [
+      "counties.geojson, states.geojson"
+     ]
+    },
+    {
+     "script": "usa/opportunity_zones.py",
+     "outputs": [
+      "oz_tracts.geojson"
+     ]
+    },
+    {
+     "script": "usa/oz_enrich.py",
+     "outputs": [
+      "houses[].oz / meta oz fields"
+     ]
+    },
+    {
+     "script": "usa/cleaning_market.py",
+     "outputs": [
+      "cleaning_market_tracts.json (ZCTA-tract relationship)"
+     ]
+    },
+    {
+     "script": "usa/tourism_events.py",
+     "outputs": [
+      "tourism_events.json (UA-county, mean centres)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "US federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "census_acs",
+   "name": "American Community Survey 5-year (API + table-based summary file)",
+   "provider": "US Census Bureau",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json acs_tract",
+      "houses[].money.est_value_now (tract median base)",
+      "market.json tract_median_value"
+     ]
+    },
+    {
+     "script": "usa/national.py",
+     "outputs": [
+      "counties.json (B25077 median value, B25035 year built)"
+     ]
+    },
+    {
+     "script": "usa/cleaning_market.py",
+     "outputs": [
+      "cleaning_market.json, cleaning_market_tracts.json, meta.affluence"
+     ]
+    }
+   ],
+   "licence_url": "https://www.census.gov/about/policies/open-gov/open-data.html",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"; Census open-data policy: data are \"a catalyst for entrepreneurship, innovation, scientific discovery, and commercial activity\"",
+   "verdict": "green",
+   "reason": "US federal statistical product, public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "census_lodes",
+   "name": "LEHD LODES 8 (WAC + OD + crosswalk)",
+   "provider": "US Census Bureau",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json jobs_lodes"
+     ]
+    },
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "web/mpls/data/extras.json jobs_lodes"
+     ]
+    },
+    {
+     "script": "usa/jobs_flow.py",
+     "outputs": [
+      "jobs_flow.json"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "US federal work; LEHD public-use files.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "census_econ_pop",
+   "name": "County Business Patterns 2023, Nonemployer Statistics 2024, Population Estimates V2025, Building Permits Survey",
+   "provider": "US Census Bureau",
+   "used_in": [
+    {
+     "script": "usa/cleaning_market.py",
+     "outputs": [
+      "cleaning_market.json"
+     ]
+    },
+    {
+     "script": "usa/tourism_econ.py",
+     "outputs": [
+      "tourism_econ.json"
+     ]
+    },
+    {
+     "script": "usa/tourism_events.py",
+     "outputs": [
+      "tourism_events.json"
+     ]
+    },
+    {
+     "script": "usa/jobs_flow.py",
+     "outputs": [
+      "jobs_flow.json"
+     ]
+    },
+    {
+     "script": "usa/federal_flags.py",
+     "outputs": [
+      "meta.permits_bps"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "US federal statistical products.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "usgs_3dep_lidar",
+   "name": "USGS 3DEP LiDAR (Entwine Point Tiles, AWS usgs-lidar-public)",
+   "provider": "USGS",
+   "used_in": [
+    {
+     "script": "usa/build_block.py",
+     "outputs": [
+      "points_0..N.txt, mesh.txt, houses.json (heights, roofs)"
+     ]
+    },
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "trees, stories, sun, orientation (derived)"
+     ]
+    },
+    {
+     "script": "mpls/house3d.py",
+     "outputs": [
+      "web/mpls/data points/mesh"
+     ]
+    },
+    {
+     "script": "mpls/osint.py",
+     "outputs": [
+      "web/mpls/data"
+     ]
+    }
+   ],
+   "licence_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+   "licence_quote": "\"USGS-authored or produced data and information are considered to be in the U.S. Public Domain.\"",
+   "verdict": "green",
+   "reason": "USGS-produced data, US public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "usgs_national_map_imagery",
+   "name": "USGS National Map USGSImageryOnly (orthoimagery export)",
+   "provider": "USGS",
+   "used_in": [
+    {
+     "script": "usa/build_block.py",
+     "outputs": [
+      "web/usa/blocks/<slug>/aerial.jpg"
+     ]
+    },
+    {
+     "script": "mpls/house3d.py",
+     "outputs": [
+      "web/mpls/data/aerial.jpg"
+     ]
+    }
+   ],
+   "licence_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+   "licence_quote": "\"USGS-authored or produced data and information are considered to be in the U.S. Public Domain.\"",
+   "verdict": "green",
+   "reason": "USGS National Map service (NAIP/HRO public-domain imagery).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "usgs_structures",
+   "name": "USGS National Map Structures (hospitals, fire/EMS, police, post offices)",
+   "provider": "USGS",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json infra -> infra.json, houses[].nearby"
+     ]
+    },
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "web/mpls/data infra"
+     ]
+    }
+   ],
+   "licence_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+   "licence_quote": "\"USGS-authored or produced data and information are considered to be in the U.S. Public Domain.\"",
+   "verdict": "green",
+   "reason": "USGS public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "usgs_earthquakes",
+   "name": "USGS Earthquake Hazards feed (M2.5+, 30 days)",
+   "provider": "USGS",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "feeds.json 'Earthquakes, last 30 days'"
+     ]
+    },
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "web/mpls/data/feeds.json"
+     ]
+    }
+   ],
+   "licence_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+   "licence_quote": "\"USGS-authored or produced data and information are considered to be in the U.S. Public Domain.\"",
+   "verdict": "green",
+   "reason": "USGS public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "usgs_nwis",
+   "name": "USGS Water Services instantaneous values (site 05289800)",
+   "provider": "USGS",
+   "used_in": [
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "feeds.json 'Creek flow and level'"
+     ]
+    }
+   ],
+   "licence_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+   "licence_quote": "\"USGS-authored or produced data and information are considered to be in the U.S. Public Domain.\"",
+   "verdict": "green",
+   "reason": "USGS public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "usgs_landsat",
+   "name": "Landsat 8-9 Collection 2 (via Microsoft Planetary Computer)",
+   "provider": "USGS / NASA",
+   "used_in": [
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "feeds.json 'Summer land surface temperature'"
+     ]
+    },
+    {
+     "script": "usa/imagery.py",
+     "outputs": [
+      "imagery index (blocks/<slug>/imagery.json entries)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.usgs.gov/faqs/are-there-any-restrictions-use-or-redistribution-landsat-data",
+   "licence_quote": "\"There are no restrictions on Landsat data downloaded from the USGS; it can be used or redistributed as desired.\"",
+   "verdict": "green",
+   "reason": "US public domain. Fetched through Planetary Computer: see planetary_computer for the platform terms.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "usda_naip",
+   "name": "USDA FSA NAIP aerial imagery (via Microsoft Planetary Computer STAC 'naip')",
+   "provider": "USDA Farm Service Agency",
+   "used_in": [
+    {
+     "script": "usa/build_block.py",
+     "outputs": [
+      "img/<year>.jpg, meta.img_years"
+     ]
+    },
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json naip_lawn, houses[] lawn NDVI / roof colour series"
+     ]
+    },
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "extras.json naip_lawn"
+     ]
+    },
+    {
+     "script": "usa/pools.py",
+     "outputs": [
+      "houses[].pool, meta.pools"
+     ]
+    },
+    {
+     "script": "usa/imagery.py",
+     "outputs": [
+      "imagery index"
+     ]
+    }
+   ],
+   "licence_url": "https://registry.opendata.aws/naip/",
+   "licence_quote": "AWS Open Data registry licence field: \"Public Domain with Attribution\"",
+   "verdict": "green",
+   "reason": "USDA federal work; attribution to USDA FSA.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "planetary_computer",
+   "name": "Microsoft Planetary Computer STAC API + blob storage (access platform, not a data licence)",
+   "provider": "Microsoft",
+   "used_in": [
+    {
+     "script": "usa/build_block.py",
+     "outputs": [
+      "NAIP years"
+     ]
+    },
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "naip_lawn"
+     ]
+    },
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "naip_lawn"
+     ]
+    },
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "Landsat LST"
+     ]
+    },
+    {
+     "script": "usa/pools.py",
+     "outputs": [
+      "NAIP + Sentinel-2 snapshots"
+     ]
+    },
+    {
+     "script": "usa/imagery.py",
+     "outputs": [
+      "Sentinel-2, Landsat, HLS, Sentinel-1 RTC"
+     ]
+    }
+   ],
+   "licence_url": "https://planetarycomputer.microsoft.com/terms",
+   "licence_quote": "Supplemental Terms: Previews \"are not meant for production use (though such use is not prohibited)\"; each dataset keeps its own licence (STAC 'license' field).",
+   "verdict": "green",
+   "reason": "Platform terms do not restrict commercial use of the hosted data; the data licence of each collection governs (NAIP PD, Landsat PD, Sentinel Copernicus, S1-RTC CC BY 4.0, HLS CC0). Keep, but note the preview/production caveat and token rate limits.",
+   "alternative": "If the platform terms ever tighten: NAIP from AWS registry naip (USGS/Esri), Landsat from USGS AWS (usgs-landsat), Sentinel-2 from Element 84 Earth Search (sentinel-2-l2a-cogs).",
+   "action": "keep",
+   "platform": true
+  },
+  {
+   "id": "copernicus_sentinel2",
+   "name": "Copernicus Sentinel-2 L2A (Planetary Computer + Element 84 Earth Search on AWS)",
+   "provider": "ESA / European Commission",
+   "used_in": [
+    {
+     "script": "usa/pools.py",
+     "outputs": [
+      "meta.pools neighbourhood signal"
+     ]
+    },
+    {
+     "script": "usa/imagery.py",
+     "outputs": [
+      "imagery index (S2 entries, licence_quote)"
+     ]
+    },
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "feeds.json 'Latest clear Sentinel-2 image', web/mpls/data/sentinel2.jpg"
+     ]
+    },
+    {
+     "script": "mpls/derive.py",
+     "outputs": [
+      "Earth Search S2 (derived layers)"
+     ]
+    }
+   ],
+   "licence_url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+   "licence_quote": "\"users shall have a free, full and open access to Copernicus Sentinel Data\"; reproduction, distribution and adaptation allowed; credit \"Contains modified Copernicus Sentinel data <year>\" (EU Reg. 1159/2013)",
+   "verdict": "green",
+   "reason": "Copernicus free-full-open policy (explicitly allowed by the owner rule).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "sentinel1_rtc",
+   "name": "Sentinel-1 RTC (Planetary Computer derived product)",
+   "provider": "Microsoft / Catalyst, from Copernicus Sentinel-1",
+   "used_in": [
+    {
+     "script": "usa/imagery.py",
+     "outputs": [
+      "imagery index (s1rtc entries)"
+     ]
+    }
+   ],
+   "licence_url": "https://planetarycomputer.microsoft.com/dataset/sentinel-1-rtc",
+   "licence_quote": "STAC collection license: CC-BY-4.0 (contains modified Copernicus Sentinel data)",
+   "verdict": "green",
+   "reason": "CC BY 4.0.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "nasa_hls",
+   "name": "NASA Harmonized Landsat Sentinel-2 (HLS)",
+   "provider": "NASA LP DAAC",
+   "used_in": [
+    {
+     "script": "usa/imagery.py",
+     "outputs": [
+      "imagery index (hls entries)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+   "licence_quote": "\"Unless the content is marked with a use restriction or license, data provided from a NASA-led mission are licensed as Creative Commons Zero (CC0).\"",
+   "verdict": "green",
+   "reason": "NASA-led mission data, CC0.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "noaa_eri",
+   "name": "NOAA NGS Emergency Response Imagery (storms.ngs.noaa.gov)",
+   "provider": "NOAA NGS",
+   "used_in": [
+    {
+     "script": "usa/imagery.py",
+     "outputs": [
+      "imagery index (noaa entries, storm tiles)"
+     ]
+    }
+   ],
+   "licence_url": "https://registry.opendata.aws/noaa-eri/",
+   "licence_quote": "\"NOAA data disseminated through NODD are open to the public and can be used as desired.\" (NOAA requests attribution)",
+   "verdict": "green",
+   "reason": "NOAA open data, public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "openaerialmap",
+   "name": "OpenAerialMap imagery (per-image licence filter)",
+   "provider": "Humanitarian OpenStreetMap Team / uploaders",
+   "used_in": [
+    {
+     "script": "usa/imagery.py",
+     "outputs": [
+      "imagery index (oam entries)"
+     ]
+    },
+    {
+     "script": "usa/pools.py",
+     "outputs": [
+      "pool snapshots"
+     ]
+    }
+   ],
+   "licence_url": "https://docs.openaerialmap.org/",
+   "licence_quote": "Per image; code keeps only images whose licence field is CC BY 4.0 / CC BY-SA / CC0 (images with other or missing licences are dropped).",
+   "verdict": "green",
+   "reason": "Green only because of the per-image filter; every kept snapshot records its own licence.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "overture_buildings",
+   "name": "Overture Maps buildings theme",
+   "provider": "Overture Maps Foundation",
+   "used_in": [
+    {
+     "script": "usa/build_block.py",
+     "outputs": [
+      "houses.json footprints, houses[].overture (num_floors, height)",
+      "sources.json"
+     ]
+    },
+    {
+     "script": "mpls/house3d.py",
+     "outputs": [
+      "web/mpls/data/houses.json footprints"
+     ]
+    },
+    {
+     "script": "usa/assistance_flags.py",
+     "outputs": [
+      "reads houses[].overture.num_floors"
+     ]
+    }
+   ],
+   "licence_url": "https://docs.overturemaps.org/attribution/",
+   "licence_quote": "Buildings: \"License for theme: ODbL\" (OSM ODbL; Microsoft ML footprints ODbL; Google Open Buildings CC BY 4.0; Esri Community Maps CC BY 4.0)",
+   "verdict": "green",
+   "reason": "ODbL / CC BY. Share-alike: keep the footprint database separable, attribute OSM + Overture.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "overture_addresses",
+   "name": "Overture Maps addresses theme (US = USDOT National Address Database)",
+   "provider": "Overture Maps Foundation / USDOT",
+   "used_in": [
+    {
+     "script": "usa/build_block.py",
+     "outputs": [
+      "houses[].address, houses[].address_src, sources.json 'Overture Maps addresses'"
+     ]
+    }
+   ],
+   "licence_url": "https://www.transportation.gov/mission/open/gis/national-address-database/national-address-database-nad-disclaimer",
+   "licence_quote": "NAD: \"The NAD is a work of the federal government and as such is not subject to copyright protection in accordance with 17 U.S.C. 105. It is available for re-use without limitation or restriction.\" BUT: \"it is not intended for use as a mailing list and is subject to individual state statutes that prohibit it's use as a mailing list.\"",
+   "verdict": "green",
+   "reason": "Public domain (code also filters non-US sources by OK_LICENCE). CONDITION: do not sell/export address lists as mailing lists; state anti-mailing-list statutes apply.",
+   "alternative": null,
+   "action": "keep",
+   "conditions": [
+    "no mailing-list use of NAD addresses"
+   ]
+  },
+  {
+   "id": "overture_places",
+   "name": "Overture Maps places theme",
+   "provider": "Overture Maps Foundation",
+   "used_in": [
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "feeds.json 'Places within 1 km'"
+     ]
+    }
+   ],
+   "licence_url": "https://docs.overturemaps.org/attribution/",
+   "licence_quote": "Places: Meta, Microsoft and others \"Available under CDLA Permissive 2.0\"; Foursquare \"Available under Apache 2.0\"; AllThePlaces \"Available under CC0 1.0\"",
+   "verdict": "green",
+   "reason": "CDLA-Permissive-2.0 / Apache-2.0 / CC0.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "osm_data",
+   "name": "OpenStreetMap data",
+   "provider": "OpenStreetMap contributors (OSMF)",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json osm, layers.json pavement/alleys/street furniture, orientation"
+     ]
+    },
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "extras.json osm"
+     ]
+    },
+    {
+     "script": "usa/build_block.py",
+     "outputs": [
+      "addr:* fallback addresses"
+     ]
+    },
+    {
+     "script": "usa/tourism_events.py",
+     "outputs": [
+      "tourism_events.json venues"
+     ]
+    }
+   ],
+   "licence_url": "https://www.openstreetmap.org/copyright",
+   "licence_quote": "\"You are free to copy, distribute, transmit and adapt our data, as long as you credit OpenStreetMap and its contributors. If you alter or build upon our data, you may distribute the result only under the same license.\"",
+   "verdict": "green",
+   "reason": "ODbL 1.0 (share-alike database; keep separate, credit OSM).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "overpass_public",
+   "name": "Public Overpass API instances (overpass-api.de FOSSGIS, overpass.kumi.systems, overpass.private.coffee)",
+   "provider": "FOSSGIS / volunteers",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "osm"
+     ]
+    },
+    {
+     "script": "usa/build_block.py",
+     "outputs": [
+      "addr fallback"
+     ]
+    },
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "osm"
+     ]
+    },
+    {
+     "script": "usa/tourism_events.py",
+     "outputs": [
+      "fallback endpoint"
+     ]
+    }
+   ],
+   "licence_url": "https://wiki.openstreetmap.org/wiki/Overpass_API",
+   "licence_quote": "Usage policy of the main instance: \"Commercial use should use self-hosted or paid Overpass servers.\"; max 10,000 queries / 1 GB per day.",
+   "verdict": "grey",
+   "reason": "The DATA is ODbL (green) but the free public endpoints ask commercial users not to use them; kumi/private.coffee publish no terms.",
+   "alternative": "Self-hosted Overpass (or osmium/DuckDB) on a Geofabrik US state extract or the OSM planet file (same ODbL data).",
+   "action": "replace",
+   "endpoint_only": true
+  },
+  {
+   "id": "qlever_osm",
+   "name": "QLever OSM-planet SPARQL endpoint (University of Freiburg)",
+   "provider": "Uni Freiburg (Chair of Algorithms and Data Structures)",
+   "used_in": [
+    {
+     "script": "usa/tourism_events.py",
+     "outputs": [
+      "tourism_events.json venues (OSM)"
+     ]
+    }
+   ],
+   "licence_url": "https://qlever.cs.uni-freiburg.de/",
+   "licence_quote": "No terms of service or usage policy stated on the service page (data underneath is OSM, ODbL).",
+   "verdict": "grey",
+   "reason": "Terms-unstated academic service used commercially; data itself is ODbL.",
+   "alternative": "Query a local OSM planet/Geofabrik extract (osmium tags-filter / DuckDB) or a self-hosted QLever.",
+   "action": "replace",
+   "endpoint_only": true
+  },
+  {
+   "id": "nws_api",
+   "name": "NWS API (points, forecast, alerts, KMSP observations, gridpoints)",
+   "provider": "NOAA National Weather Service",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "feeds.json 'Weather forecast + active alerts'"
+     ]
+    },
+    {
+     "script": "usa/build_block.py",
+     "outputs": [
+      "meta.json timezone"
+     ]
+    },
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "feeds.json forecast, KMSP station weather, UV/wind gridpoints"
+     ]
+    }
+   ],
+   "licence_url": "https://www.weather.gov/disclaimer",
+   "licence_quote": "\"The information on National Weather Service (NWS) Web pages are in the public domain, unless specifically noted otherwise, and may be used without charge for any lawful purpose\"",
+   "verdict": "green",
+   "reason": "Public domain; do not use the NWS name/logo to imply endorsement.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "noaa_spc",
+   "name": "NOAA Storm Prediction Center storm reports (daily + yearly hail)",
+   "provider": "NOAA SPC",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json spc_hail, houses[] hail"
+     ]
+    },
+    {
+     "script": "usa/national.py",
+     "outputs": [
+      "counties.json hail columns"
+     ]
+    }
+   ],
+   "licence_url": "https://www.weather.gov/disclaimer",
+   "licence_quote": "\"The information on National Weather Service (NWS) Web pages are in the public domain, unless specifically noted otherwise, and may be used without charge for any lawful purpose\"",
+   "verdict": "green",
+   "reason": "NOAA public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "noaa_mrms",
+   "name": "NOAA MRMS MESH (AWS NODD noaa-mrms-pds)",
+   "provider": "NOAA",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json mrms_hail (--hail)"
+     ]
+    }
+   ],
+   "licence_url": "https://registry.opendata.aws/noaa-mrms-pds/",
+   "licence_quote": "\"NOAA data disseminated through NODD are open to the public and can be used as desired.\" (NOAA requests attribution)",
+   "verdict": "green",
+   "reason": "Open NOAA data. (The University of Oklahoma licenses the MRMS SOFTWARE commercially; the data products are open.)",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "noaa_ncei",
+   "name": "NOAA NCEI Storm Events Database + GHCN-Daily",
+   "provider": "NOAA NCEI",
+   "used_in": [
+    {
+     "script": "usa/weather_triggers.py",
+     "outputs": [
+      "weather_triggers outputs (county dust/wind/hail/rain triggers)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.weather.gov/disclaimer",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"; \"The information on National Weather Service (NWS) Web pages are in the public domain, unless specifically noted otherwise, and may be used without charge for any lawful purpose\"",
+   "verdict": "green",
+   "reason": "NOAA public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "iem_vtec",
+   "name": "NWS VTEC warning archive via Iowa Environmental Mesonet",
+   "provider": "Iowa State University (IEM) / NWS",
+   "used_in": [
+    {
+     "script": "usa/weather_triggers.py",
+     "outputs": [
+      "weather_triggers outputs (warning counts, UGC polygons)"
+     ]
+    }
+   ],
+   "licence_url": "https://mesonet.agron.iastate.edu/disclaimer.php",
+   "licence_quote": "\"The materials found on this website are in the public domain and may be used freely by anyone for any lawful purpose.\"",
+   "verdict": "green",
+   "reason": "Explicit public-domain dedication by IEM; underlying NWS products public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "noaa_goes_gibs",
+   "name": "NOAA GOES-19 GeoColor via NASA GIBS WMS",
+   "provider": "NOAA / NASA ESDIS",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json goes, goes.jpg"
+     ]
+    },
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "extras.json goes, goes.jpg"
+     ]
+    },
+    {
+     "script": "mpls/live.py",
+     "outputs": [
+      "extras.json goes, goes.jpg"
+     ]
+    }
+   ],
+   "licence_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+   "licence_quote": "\"Unless the content is marked with a use restriction or license, data provided from a NASA-led mission are licensed as Creative Commons Zero (CC0).\" NOAA GOES imagery is a US Government work.",
+   "verdict": "green",
+   "reason": "NASA ESDIS CC0 + NOAA public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "nasa_firms",
+   "name": "NASA FIRMS VIIRS NOAA-20 active fires, 24 h",
+   "provider": "NASA LANCE / ESDIS",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json fires"
+     ]
+    },
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "extras.json fires"
+     ]
+    },
+    {
+     "script": "mpls/live.py",
+     "outputs": [
+      "extras.json fires"
+     ]
+    }
+   ],
+   "licence_url": "https://www.earthdata.nasa.gov/data/tools/firms/faq",
+   "licence_quote": "FAQ 'Are there any restrictions...?': \"NASA promotes full and open sharing of data\" (cite as \"NASA FIRMS\"); ESDIS default CC0.",
+   "verdict": "green",
+   "reason": "NASA open data, CC0 default.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "nasa_power",
+   "name": "NASA POWER daily point API",
+   "provider": "NASA Langley",
+   "used_in": [
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "feeds.json 'Daily climate at the block'"
+     ]
+    }
+   ],
+   "licence_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+   "licence_quote": "\"Unless the content is marked with a use restriction or license, data provided from a NASA-led mission are licensed as Creative Commons Zero (CC0).\" POWER referencing page: the Project \"requests notification if POWER data is transmitted to other researchers\" (a request, not a condition).",
+   "verdict": "green",
+   "reason": "NASA CC0; the notification is a voluntary courtesy request, not a precondition for commercial use (unlike JAXA).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "fema_nfhl",
+   "name": "FEMA National Flood Hazard Layer (NFHL MapServer)",
+   "provider": "FEMA",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json flood, houses[] flood zone"
+     ]
+    },
+    {
+     "script": "mpls/osint.py",
+     "outputs": [
+      "web/mpls/data flood"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "FEMA federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "fema_nri",
+   "name": "FEMA National Risk Index (tracts + counties, FEMA AGOL)",
+   "provider": "FEMA",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "feeds.json 'National Risk Index for this census tract'"
+     ]
+    },
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "feeds.json NRI"
+     ]
+    },
+    {
+     "script": "usa/national.py",
+     "outputs": [
+      "counties.json NRI columns"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=9da4eeb936544335a6db0cd7a8448a51",
+   "licence_quote": "NRI Terms: \"Data accessed through the National Risk Index dataset API or downloadable datasets do not include controls over its end use.\" Must state: \"This product uses the Federal Emergency Management Agency's National Risk Index dataset API or downloadable datasets but is not endorsed by FEMA...\"; no reverse engineering; FEMA \"may rescind your use of the data if FEMA believes that it does not serve the public interest\".",
+   "verdict": "green",
+   "reason": "Federal work with no end-use restriction; extra conditions recorded (disclaimer sentence, cite version + access date, no FEMA/DHS logos, no reverse engineering, revocable on request).",
+   "alternative": null,
+   "action": "keep",
+   "conditions": [
+    "display FEMA NRI not-endorsed disclaimer",
+    "cite dataset version + access date",
+    "no FEMA/DHS seals",
+    "no reverse engineering",
+    "cease and destroy copies if FEMA requests"
+   ]
+  },
+  {
+   "id": "openfema",
+   "name": "OpenFEMA API (Disaster Declarations Summaries v2, NFIP redacted claims)",
+   "provider": "FEMA",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "feeds.json 'Disaster declarations for <county>'"
+     ]
+    },
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "feeds.json 'Flood insurance claims in ZIP' + 'Disaster declarations'"
+     ]
+    }
+   ],
+   "licence_url": "https://www.fema.gov/about/openfema/terms-conditions",
+   "licence_quote": "\"Data accessed through FEMA's API does not include controls over its end use.\" Users must state: \"This product uses the Federal Emergency Management Agency's OpenFEMA API, but is not endorsed by FEMA...\"; \"FEMA may rescind your use of the data if FEMA believes that it does not serve the public interest. You agree you will cease using the data and destroy any copy you may have if requested by FEMA.\"",
+   "verdict": "green",
+   "reason": "Federal work, no end-use restriction; EXTRA CONDITIONS recorded: not-endorsed disclaimer, cite endpoint+version+date, do not re-identify individuals, do not present modified data as FEMA's, revocable on request.",
+   "alternative": null,
+   "action": "keep",
+   "conditions": [
+    "display OpenFEMA not-endorsed disclaimer",
+    "cite endpoint, version, access date/time",
+    "no re-identification of individuals",
+    "do not claim modified data is FEMA's",
+    "cease and destroy copies if FEMA requests"
+   ]
+  },
+  {
+   "id": "usda_ssurgo",
+   "name": "USDA NRCS Soil Data Access (SSURGO)",
+   "provider": "USDA NRCS",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "feeds.json 'Soil under the block'"
+     ]
+    },
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "feeds.json soil"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "USDA federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "usda_rd_eligibility",
+   "name": "USDA Rural Development property eligibility (ineligible areas MapServer)",
+   "provider": "USDA RD",
+   "used_in": [
+    {
+     "script": "usa/federal_flags.py",
+     "outputs": [
+      "houses[].incentives.usda_rural_eligible"
+     ]
+    }
+   ],
+   "licence_url": "https://www.usa.gov/government-copyright",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "USDA federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "cfpb_hmda",
+   "name": "HMDA Data Browser API aggregations (FFIEC / CFPB)",
+   "provider": "CFPB / FFIEC",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json hmda"
+     ]
+    },
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "extras.json hmda"
+     ]
+    }
+   ],
+   "licence_url": "https://www.consumerfinance.gov/privacy/website-privacy-policy/",
+   "licence_quote": "\"Information created by the CFPB is in the public domain and you may reproduce, publish, or otherwise use it without the Bureau's permission.\"",
+   "verdict": "green",
+   "reason": "Federal public domain; aggregates only.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "epa_sld_walkability",
+   "name": "EPA Smart Location Database v3 + National Walkability Index",
+   "provider": "US EPA",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json walkability"
+     ]
+    },
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "extras.json walkability"
+     ]
+    },
+    {
+     "script": "usa/tourism_events.py",
+     "outputs": [
+      "tourism_events.json walkability"
+     ]
+    }
+   ],
+   "licence_url": "https://edg.epa.gov/EPA_Data_License.html",
+   "licence_quote": "\"Unless otherwise specified, all data produced by the U.S EPA is by default in the public domain and is not subject to domestic copyright protection under 17 U.S.C. 105.\"",
+   "verdict": "green",
+   "reason": "EPA standard open data licence = public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "epa_frs_wastewater",
+   "name": "EPA FRS ICIS wastewater treatment plants",
+   "provider": "US EPA",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "infra.json, houses[].nearby"
+     ]
+    },
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "web/mpls/data infra"
+     ]
+    }
+   ],
+   "licence_url": "https://edg.epa.gov/EPA_Data_License.html",
+   "licence_quote": "\"Unless otherwise specified, all data produced by the U.S EPA is by default in the public domain and is not subject to domestic copyright protection under 17 U.S.C. 105.\" (same text in the ArcGIS item licenseInfo)",
+   "verdict": "green",
+   "reason": "EPA public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "epa_water_systems",
+   "name": "EPA Community Water Service Area Boundaries",
+   "provider": "US EPA",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "meta/extras utility.water_system, pwsid"
+     ]
+    },
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "utility"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=80c6912ef14f46e480f5afd807767b4b",
+   "licence_quote": "Item licenseInfo: \"MIT License Copyright (c) 2025 US EPA Permission is hereby granted, free of charge ... to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies\"",
+   "verdict": "green",
+   "reason": "MIT (permissive, commercial OK).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "epa_aqs",
+   "name": "EPA AQS AirData daily PM10 files",
+   "provider": "US EPA",
+   "used_in": [
+    {
+     "script": "usa/weather_triggers.py",
+     "outputs": [
+      "weather_triggers outputs (dust/PM10 triggers)"
+     ]
+    }
+   ],
+   "licence_url": "https://edg.epa.gov/EPA_Data_License.html",
+   "licence_quote": "\"Unless otherwise specified, all data produced by the U.S EPA is by default in the public domain and is not subject to domestic copyright protection under 17 U.S.C. 105.\"",
+   "verdict": "green",
+   "reason": "EPA public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "meta_canopy_height",
+   "name": "Meta & WRI 1 m global canopy height (dataforgood-fb-data)",
+   "provider": "Meta / World Resources Institute",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json canopy_height"
+     ]
+    },
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "extras.json canopy_height"
+     ]
+    }
+   ],
+   "licence_url": "https://registry.opendata.aws/dataforgood-fb-forests/",
+   "licence_quote": "AWS registry licence field: https://creativecommons.org/licenses/by/4.0/ (CC BY 4.0)",
+   "verdict": "green",
+   "reason": "CC BY 4.0, attribution to Meta & WRI.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "nrel_resstock",
+   "name": "NREL ResStock 2024.2 end-use load profiles (OEDI S3)",
+   "provider": "NREL / US DOE",
+   "used_in": [
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "extras.json energy_resstock"
+     ]
+    }
+   ],
+   "licence_url": "https://data.openei.org/submissions/4520",
+   "licence_quote": "OEDI: \"Content is available under Creative Commons Attribution 4.0 unless otherwise noted.\"",
+   "verdict": "green",
+   "reason": "CC BY 4.0.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "bts_ntad",
+   "name": "BTS NTAD layers: rail crossings, National Bridge & Tunnel Inventory, aviation facilities, rail network, Amtrak stations, IPCD",
+   "provider": "USDOT BTS / FHWA / FRA",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "infra.json (crossings, bridges, tunnels, airports, rail)"
+     ]
+    },
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra"
+     ]
+    },
+    {
+     "script": "usa/tourism_events.py",
+     "outputs": [
+      "tourism_events.json (Amtrak, intercity bus)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=bd1b6ee967134ea68fac351cef461b5e",
+   "licence_quote": "\"This NTAD dataset is a work of the United States government as defined in 17 U.S.C. 101 and as such are not protected by any U.S. copyrights. This work is available for unrestricted public use.\" (ArcGIS item licenseInfo)",
+   "verdict": "green",
+   "reason": "US federal work, unrestricted public use.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "bts_ntm_stops",
+   "name": "BTS NTAD National Transit Map Stops",
+   "provider": "USDOT BTS + contributing agencies",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "infra.json transit_stops"
+     ]
+    },
+    {
+     "script": "usa/tourism_events.py",
+     "outputs": [
+      "tourism_events.json transit"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=959b4adc3ff94bc6a46f2c1d515d09aa",
+   "licence_quote": "Item licenseInfo: \"Creative Commons Attribution 3.0 United States (CC-BY-3.0)\"",
+   "verdict": "green",
+   "reason": "CC BY 3.0 US; acknowledge USDOT BTS and contributing agencies.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "bts_aviation_stats",
+   "name": "BTS TranStats T-100 Segment, DB1B, On-Time Performance, Master Coordinate",
+   "provider": "USDOT BTS",
+   "used_in": [
+    {
+     "script": "usa/tourism_air.py",
+     "outputs": [
+      "tourism_air.json"
+     ]
+    }
+   ],
+   "licence_url": "https://data.bts.gov/d/bu82-4pwz",
+   "licence_quote": "data.bts.gov licence label: \"Public Domain U.S. Government\"",
+   "verdict": "green",
+   "reason": "US federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "bts_border_cruise",
+   "name": "BTS Border Crossing Entry Data (CBP) + MARAD cruise ports",
+   "provider": "USDOT BTS / MARAD / CBP",
+   "used_in": [
+    {
+     "script": "usa/visitors.py",
+     "outputs": [
+      "visitors.json"
+     ]
+    }
+   ],
+   "licence_url": "https://data.bts.gov/d/keg4-3bc2",
+   "licence_quote": "data.bts.gov dataset licence field: \"Public Domain\"",
+   "verdict": "green",
+   "reason": "US federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "fta_ntd",
+   "name": "FTA National Transit Database (data.transportation.gov)",
+   "provider": "USDOT FTA",
+   "used_in": [
+    {
+     "script": "usa/tourism_events.py",
+     "outputs": [
+      "tourism_events.json transit service"
+     ]
+    }
+   ],
+   "licence_url": "https://data.transportation.gov/d/6y83-7vuw",
+   "licence_quote": "Dataset licence field: \"Public Domain U.S. Government\"",
+   "verdict": "green",
+   "reason": "US federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "fhwa_hpms_tmas_tvt",
+   "name": "FHWA HPMS public sections, TMAS stations/volumes, Traffic Volume Trends",
+   "provider": "USDOT FHWA",
+   "used_in": [
+    {
+     "script": "usa/road_traffic.py",
+     "outputs": [
+      "road traffic outputs (blocks meta/houses road AADT, state VMT trend)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.fhwa.dot.gov/policyinformation/hpms.cfm",
+   "licence_quote": "\"This NTAD dataset is a work of the United States government as defined in 17 U.S.C. 101 and as such are not protected by any U.S. copyrights. This work is available for unrestricted public use.\" (ArcGIS item licenseInfo) (TMAS item); HPMS/TVT are FHWA federal works.",
+   "verdict": "green",
+   "reason": "US federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "bts_noise_esri",
+   "name": "USA Transportation Noise - Rail, Road, and Aviation 2020 (Esri Living Atlas ImageServer, owner esri_environment)",
+   "provider": "Esri (data from USDOT BTS)",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json noise"
+     ]
+    },
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "extras.json noise"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=29d9fc21fce543c7a841664945263e00",
+   "licence_quote": "\"This work is licensed under the Esri Master License Agreement.\" (ArcGIS item licenseInfo)",
+   "verdict": "grey",
+   "reason": "The underlying BTS noise map is public domain, but the service actually queried is Esri's Living Atlas copy, licensed under the Esri Master License Agreement (a platform licence, not an open licence).",
+   "alternative": "BTS National Transportation Noise Map rasters downloaded from BTS directly (https://www.bts.gov/geospatial/national-transportation-noise-map), US federal work.",
+   "action": "replace"
+  },
+  {
+   "id": "esri_fed_power_plants",
+   "name": "Power Plants in the U.S. (Esri U.S. Federal Datasets, owner Federal_User_Community)",
+   "provider": "Esri (data from EIA)",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "infra.json power_plants, houses[].nearby"
+     ]
+    },
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=b063316fac7345dba4bae96eaa813b2f",
+   "licence_quote": "\"This work is licensed under the Esri Master License Agreement.\" (ArcGIS item licenseInfo)",
+   "verdict": "grey",
+   "reason": "EIA data is public domain, but this copy is an Esri-hosted layer under the Esri MLA.",
+   "alternative": "EIA U.S. Energy Atlas 'Power Plants' layer served by EIA itself (atlas.eia.gov), US federal work.",
+   "action": "replace"
+  },
+  {
+   "id": "esri_fed_transmission",
+   "name": "U.S. Electric Power Transmission Lines (Archive) (Esri U.S. Federal Datasets)",
+   "provider": "Esri (HIFLD-derived)",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "infra.json transmission, utility.transmission distance (houses[].nearby)"
+     ]
+    },
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=d4090758322c4d32a4cd002ffaa0aa12",
+   "licence_quote": "\"This work is licensed under the Esri Master License Agreement.\" (ArcGIS item licenseInfo)",
+   "verdict": "grey",
+   "reason": "Esri MLA wrapper of an archived HIFLD layer; HIFLD Open has been retired, so no agency-hosted open copy is used.",
+   "alternative": "OpenStreetMap power=line / power=minor_line with voltage (ODbL) from a local OSM extract.",
+   "action": "replace"
+  },
+  {
+   "id": "esri_fed_pipelines",
+   "name": "Petroleum Products Pipelines (Esri U.S. Federal Datasets)",
+   "provider": "Esri (data from EIA)",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "infra.json product_pipelines"
+     ]
+    },
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=c745d9f4b81e42f3a54aee7aaa396975",
+   "licence_quote": "\"This work is licensed under the Esri Master License Agreement.\" (ArcGIS item licenseInfo)",
+   "verdict": "grey",
+   "reason": "EIA data, but served as an Esri MLA layer.",
+   "alternative": "EIA U.S. Energy Atlas 'Petroleum Product Pipelines' layer (atlas.eia.gov), US federal work.",
+   "action": "replace"
+  },
+  {
+   "id": "usace_nid",
+   "name": "USACE National Inventory of Dams public service",
+   "provider": "US Army Corps of Engineers",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "infra.json dams"
+     ]
+    },
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "USACE federal work (no licence text on the service; statutory public domain).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "nces_edge",
+   "name": "NCES EDGE public + private school locations; IPEDS HD/DRVEF; ED EADA",
+   "provider": "US Dept of Education",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "infra.json schools"
+     ]
+    },
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra"
+     ]
+    },
+    {
+     "script": "mpls/civic.py",
+     "outputs": [
+      "civic schools"
+     ]
+    },
+    {
+     "script": "usa/tourism_events.py",
+     "outputs": [
+      "tourism_events.json colleges/athletics"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "Federal works.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "hifld_places_worship",
+   "name": "All Places Of Worship (HIFLD Open, hosted by FEMA)",
+   "provider": "FEMA / DHS HIFLD",
+   "used_in": [
+    {
+     "script": "mpls/civic.py",
+     "outputs": [
+      "web/mpls/data civic places of worship"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=495cc33ef490462ab2d8933247a66a87",
+   "licence_quote": "Item licenseInfo: \"Dataset was obtained from open public sources and has no use limitations.\" Credits: \"Data obtained from the IRS and geocoded with HERE geocoders.\"",
+   "verdict": "green",
+   "reason": "Explicit 'no use limitations' from the federal publisher. Caveat: coordinates came from a HERE geocoder; if HERE terms are ever asserted, fall back to OSM amenity=place_of_worship.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "fhfa_hpi",
+   "name": "FHFA House Price Index (annual ZIP5 + tract)",
+   "provider": "Federal Housing Finance Agency",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json fhfa_hpi (licence string 'public domain (FHFA) - verify' -> change to public domain)",
+      "houses[].money.index_adj",
+      "market.json index_adj/index_basis"
+     ]
+    },
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "extras.json fhfa_hpi"
+     ]
+    },
+    {
+     "script": "usa/federal_flags.py",
+     "outputs": [
+      "meta.fhfa_hpi"
+     ]
+    }
+   ],
+   "licence_url": "https://www.fhfa.gov/about/fhfa-policies/website-privacy-policy",
+   "licence_quote": "Copyright and Trademark Notice: \"Generally, information and materials produced by Federal agencies, including FHFA, are in the public domain and may be copied and distributed without permission.\"",
+   "verdict": "green",
+   "reason": "Federal agency work; 'verify' resolved. Note 'FHFA House Price Index' is a registered mark (cite, do not brand).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "zillow_zhvi",
+   "name": "Zillow Home Value Index (ZIP, files.zillowstatic.com)",
+   "provider": "Zillow Group",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "extras.json zhvi",
+      "feeds.json 'Home values in ZIP ...' entry",
+      "market.json zhvi_zip_verify"
+     ]
+    },
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "web/mpls/data/feeds.json 'Home values in ZIP 55407'"
+     ]
+    },
+    {
+     "script": "mpls/money.py",
+     "outputs": [
+      "houses[].money.est_value_now + index_adj (ZHVI change since Jan 2026)",
+      "market.json zip_index_since_jan_2026"
+     ]
+    }
+   ],
+   "licence_url": "https://www.zillow.com/research/data/",
+   "licence_quote": "Data page: data offered \"for use in your own analyses\"; footer \"(c) 2026 Zillow Group, Inc. and its subsidiaries. All rights reserved.\" No open licence or commercial-redistribution grant on the page; governed by Zillow Terms of Use.",
+   "verdict": "grey",
+   "reason": "No explicit commercial-use or redistribution permission; proprietary 'all rights reserved' data.",
+   "alternative": "FHFA HPI annual ZIP5/tract (already fetched as fhfa_hpi) for the index; ACS B25077 for levels. For mpls/money.py use FHFA ZIP5 HPI 2025->latest instead of ZHVI-since-Jan-2026.",
+   "action": "replace"
+  },
+  {
+   "id": "realtor_com_inventory",
+   "name": "Realtor.com Residential Data Library: Core Metrics by ZIP (econdata S3)",
+   "provider": "Move, Inc. (Realtor.com)",
+   "used_in": [
+    {
+     "script": "mpls/money.py",
+     "outputs": [
+      "market.json realtor_zip (median listing price, active listings, days on market)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.realtor.com/research/data/",
+   "licence_quote": "Data page states no licence or terms for the files (built from \"proprietary metrics\" on MLS listings); no commercial-use or redistribution grant found.",
+   "verdict": "grey",
+   "reason": "Terms unstated / proprietary MLS-derived data.",
+   "alternative": "No clean equivalent for live listings; drop realtor_zip. Optional context: ACS B25004 for-sale vacancy and Census BPS permits (public domain).",
+   "action": "remove"
+  },
+  {
+   "id": "freddie_mac_pmms",
+   "name": "Freddie Mac Primary Mortgage Market Survey history CSV",
+   "provider": "Freddie Mac (GSE, not a federal agency)",
+   "used_in": [
+    {
+     "script": "usa/enrich_national.py",
+     "outputs": [
+      "houses[].money.payments_20pct_down.rates, market.json rates, sources.json PMMS"
+     ]
+    },
+    {
+     "script": "mpls/money.py",
+     "outputs": [
+      "houses[].money.payments_20pct_down, market.json rates"
+     ]
+    }
+   ],
+   "licence_url": "https://www.freddiemac.com/pmms",
+   "licence_quote": "PMMS page footer: \"Information from this document may be used with proper attribution. Alteration of this document or its content is strictly prohibited.\"",
+   "verdict": "grey",
+   "reason": "Permission is only 'may be used with attribution'; commercial use and redistribution are not explicitly granted, and alteration is prohibited. Freddie Mac works are not US-government works.",
+   "alternative": "FFIEC Average Prime Offer Rates (APOR) weekly tables published by the FFIEC/CFPB (ffiec.cfpb.gov rate-spread tool, US federal work) for 30-yr and 15-yr fixed; label as APOR, not PMMS.",
+   "action": "replace"
+  },
+  {
+   "id": "hud_egis",
+   "name": "HUD eGIS layers: QCT, DDA, NMTC, LIHTC, FMR/SAFMR, PHA service areas + inventory, HCV by tract, CoC areas, Multifamily Assisted",
+   "provider": "US HUD",
+   "used_in": [
+    {
+     "script": "usa/federal_flags.py",
+     "outputs": [
+      "houses[].incentives (qct, dda, nmtc, lihtc_within_400m...)",
+      "meta.rent"
+     ]
+    },
+    {
+     "script": "usa/assistance_flags.py",
+     "outputs": [
+      "houses[].assistance, meta.assistance"
+     ]
+    }
+   ],
+   "licence_url": "https://www.usa.gov/government-copyright",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\" (HUD federal work; see usa/research/federal_realestate.json)",
+   "verdict": "green",
+   "reason": "Federal works.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "hud_mf_sec8_contracts",
+   "name": "HUD Multifamily Assistance & Section 8 Contracts database (xlsx)",
+   "provider": "US HUD Office of Multifamily Housing",
+   "used_in": [
+    {
+     "script": "usa/assistance_flags.py",
+     "outputs": [
+      "houses[].assistance (nearby assisted contracts), meta.assistance"
+     ]
+    }
+   ],
+   "licence_url": "https://www.hud.gov/hud-partners/multifamily-assist-section8-database",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"; page: data 'furnished for the convenience of interested parties' (no-warranty only)",
+   "verdict": "green",
+   "reason": "Federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "hud_picture_subsidized",
+   "name": "HUD PD&R Picture of Subsidized Households 2025 (tract files)",
+   "provider": "US HUD PD&R",
+   "used_in": [
+    {
+     "script": "usa/assistance_flags.py",
+     "outputs": [
+      "meta.assistance (tract subsidized-household context)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.huduser.gov/portal/datasets/assthsg.html",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"; if the HUD User API is used: show \"This product uses the HUD User Data API but is not endorsed or certified by HUD User.\"",
+   "verdict": "green",
+   "reason": "Federal work (flat files; the API attribution notice applies only to API use).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "dod_bah",
+   "name": "DoD DTMO Basic Allowance for Housing ASCII rate files",
+   "provider": "US Department of Defense (DTMO)",
+   "used_in": [
+    {
+     "script": "usa/assistance_flags.py",
+     "outputs": [
+      "meta.assistance.bah (ZIP -> MHA -> monthly BAH)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.usa.gov/government-copyright",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "Federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "cdfi_oz",
+   "name": "CDFI Fund Qualified Opportunity Zone designations (2018 + 2027 rounds)",
+   "provider": "US Treasury CDFI Fund / IRS",
+   "used_in": [
+    {
+     "script": "usa/opportunity_zones.py",
+     "outputs": [
+      "oz_tracts.geojson, oz_counties.json"
+     ]
+    },
+    {
+     "script": "usa/oz_enrich.py",
+     "outputs": [
+      "block OZ flags"
+     ]
+    }
+   ],
+   "licence_url": "https://www.usa.gov/government-copyright",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "Federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "federal_regulations",
+   "name": "eCFR / Federal Register / HUD notices / FEMA program pages (rule text cited in flags)",
+   "provider": "US federal agencies",
+   "used_in": [
+    {
+     "script": "usa/assistance_flags.py",
+     "outputs": [
+      "meta.assistance rule references"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "Federal works (regulatory text).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "ita_ntto",
+   "name": "ITA/NTTO I-94 arrivals, SIAT profiles, overseas visitor state impact",
+   "provider": "US Dept of Commerce ITA/NTTO",
+   "used_in": [
+    {
+     "script": "usa/tourism_air.py",
+     "outputs": [
+      "tourism_air.json"
+     ]
+    },
+    {
+     "script": "usa/visitors.py",
+     "outputs": [
+      "visitors.json"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "Federal statistical products.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "bea_satellite_accounts",
+   "name": "BEA Outdoor Recreation + Travel & Tourism Satellite Accounts",
+   "provider": "US BEA",
+   "used_in": [
+    {
+     "script": "usa/visitors.py",
+     "outputs": [
+      "visitors.json"
+     ]
+    }
+   ],
+   "licence_url": "https://www.bea.gov/help/guidelines-for-citing-bea",
+   "licence_quote": "BEA: \"BEA data are in the public domain and may be used without restriction\" (quote recorded in usa/visitors.py SOURCES)",
+   "verdict": "green",
+   "reason": "Federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "nps_stats_boundaries",
+   "name": "NPS IRMA visitor use statistics + NPS unit boundaries",
+   "provider": "National Park Service",
+   "used_in": [
+    {
+     "script": "usa/tourism_air.py",
+     "outputs": [
+      "tourism_air.json"
+     ]
+    }
+   ],
+   "licence_url": "https://www.nps.gov/aboutus/disclaimer.htm",
+   "licence_quote": "\"material created by the National Park Service ... is generally considered in the public domain. However, when such information is published or republished commercially ... the copyright notice must include a reference to the original U.S. Government works.\"",
+   "verdict": "green",
+   "reason": "Public domain; CONDITION for commercial republication: notice referencing U.S. Government works.",
+   "alternative": null,
+   "action": "keep",
+   "conditions": [
+    "commercial republication notice referencing US Government works"
+   ]
+  },
+  {
+   "id": "federal_lands_boundaries",
+   "name": "USFS EDW forest boundaries, BLM admin units + NLCS, FWS refuge boundaries, USACE recreation areas, FICOR visitation report",
+   "provider": "USDA FS / DOI BLM / DOI FWS / USACE / FICOR",
+   "used_in": [
+    {
+     "script": "usa/visitors.py",
+     "outputs": [
+      "visitors.json"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\" (USACE CRREL layer and FWS layer carry no licence text; statutory public domain applies to agency-produced data)",
+   "verdict": "green",
+   "reason": "Federal works.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "usbr_recreation_areas",
+   "name": "Reclamation Recreation Management Areas (owner Reclamation_Public)",
+   "provider": "US Bureau of Reclamation",
+   "used_in": [
+    {
+     "script": "usa/visitors.py",
+     "outputs": [
+      "visitors.json (federal recreation lands: Reclamation)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=61136937a4ac44db99927eecccf37b18",
+   "licence_quote": "Item licenseInfo: \"Reclamation does not authorize downloading or republishing, deriving new data products, or the dissemination of Reclamation's data into other systems or by others.\"",
+   "verdict": "red",
+   "reason": "Explicitly prohibits republishing and derived products, which is exactly how visitors.json uses it.",
+   "alternative": "USGS PAD-US (Protected Areas Database, public domain) filtered to Mang_Name = BOR for Reclamation recreation lands.",
+   "action": "replace"
+  },
+  {
+   "id": "bls_qcew_laus",
+   "name": "BLS QCEW open-data slices + LAUS time series",
+   "provider": "US Bureau of Labor Statistics",
+   "used_in": [
+    {
+     "script": "usa/cleaning_market.py",
+     "outputs": [
+      "cleaning_market.json"
+     ]
+    },
+    {
+     "script": "usa/tourism_econ.py",
+     "outputs": [
+      "tourism_econ.json"
+     ]
+    },
+    {
+     "script": "usa/jobs_flow.py",
+     "outputs": [
+      "jobs_flow.json"
+     ]
+    }
+   ],
+   "licence_url": "https://www.bls.gov/opub/copyright-information.htm",
+   "licence_quote": "\"everything that we publish, both in hard copy and electronically, is in the public domain ... You are free to use our public domain material without specific permission\"",
+   "verdict": "green",
+   "reason": "BLS public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "irs_soi",
+   "name": "IRS SOI ZIP income statistics (TY2023) + county migration",
+   "provider": "US Internal Revenue Service",
+   "used_in": [
+    {
+     "script": "usa/cleaning_market.py",
+     "outputs": [
+      "cleaning_market.json, meta.affluence"
+     ]
+    },
+    {
+     "script": "usa/jobs_flow.py",
+     "outputs": [
+      "jobs_flow.json"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "Federal statistical product.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "eia_recs",
+   "name": "EIA RECS 2020 public-use microdata (SWIMPOOL)",
+   "provider": "US Energy Information Administration",
+   "used_in": [
+    {
+     "script": "usa/cleaning_market.py",
+     "outputs": [
+      "cleaning_market.json pool share"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "Federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "opm_holidays",
+   "name": "OPM federal holidays",
+   "provider": "US Office of Personnel Management",
+   "used_in": [
+    {
+     "script": "usa/tourism_events.py",
+     "outputs": [
+      "tourism_events.json"
+     ]
+    }
+   ],
+   "licence_url": "https://www.copyright.gov/title17/92chap1.html#105",
+   "licence_quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\"",
+   "verdict": "green",
+   "reason": "Federal work.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "wikidata",
+   "name": "Wikidata SPARQL (county seats, venue capacity)",
+   "provider": "Wikimedia Foundation / Wikidata community",
+   "used_in": [
+    {
+     "script": "usa/tourism_econ.py",
+     "outputs": [
+      "tourism_econ.json"
+     ]
+    },
+    {
+     "script": "usa/tourism_events.py",
+     "outputs": [
+      "tourism_events.json"
+     ]
+    }
+   ],
+   "licence_url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+   "licence_quote": "\"All structured data (i.e. the main, Property, Lexeme, and EntitySchema namespaces) is released into the public domain under Creative Commons Zero.\"",
+   "verdict": "green",
+   "reason": "CC0.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "wikimedia_pageviews",
+   "name": "Wikimedia Pageviews REST API (per-article monthly)",
+   "provider": "Wikimedia Foundation",
+   "used_in": [
+    {
+     "script": "usa/tourism_econ.py",
+     "outputs": [
+      "tourism_econ.json wiki_views_12m"
+     ]
+    }
+   ],
+   "licence_url": "https://dumps.wikimedia.org/other/pageview_complete/readme.html",
+   "licence_quote": "\"All Analytics datasets are available under the Creative Commons CC0 dedication.\"",
+   "verdict": "green",
+   "reason": "CC0.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "wikipedia_events",
+   "name": "English Wikipedia event articles (dates, venues)",
+   "provider": "Wikipedia contributors",
+   "used_in": [
+    {
+     "script": "usa/tourism_events.py",
+     "outputs": [
+      "tourism_events.json events"
+     ]
+    }
+   ],
+   "licence_url": "https://dumps.wikimedia.org/legal.html",
+   "licence_quote": "\"all original textual content is licensed under the GNU Free Documentation License (GFDL) and the Creative Commons Attribution-Share-Alike 4.0 License\"",
+   "verdict": "green",
+   "reason": "CC BY-SA 4.0 (only facts extracted; attribute and keep share-alike if any text is reused).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "d3_celestial_lines",
+   "name": "d3-celestial constellations.lines.json / constellations.json",
+   "provider": "Olaf Frohn (after IAU + Sky & Telescope charts)",
+   "used_in": [
+    {
+     "script": "usa/sky_catalog.py",
+     "outputs": [
+      "web/usa/data/constellations.json, sky_licences.json"
+     ]
+    }
+   ],
+   "licence_url": "https://github.com/ofrohn/d3-celestial/blob/master/LICENSE",
+   "licence_quote": "BSD-3-Clause: \"Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met\" + IAU charts \"released under the Creative Commons Attribution 4.0 International license\"",
+   "verdict": "green",
+   "reason": "BSD-3 + CC BY 4.0.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "d3_celestial_stars",
+   "name": "d3-celestial stars.8.json (star positions/magnitudes, from XHIP/Hipparcos)",
+   "provider": "Olaf Frohn; upstream ESA Hipparcos via XHIP",
+   "used_in": [
+    {
+     "script": "usa/sky_catalog.py",
+     "outputs": [
+      "web/usa/data/stars.json (default mode)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.cosmos.esa.int/web/hipparcos/catalogues",
+   "licence_quote": "Repo is BSD-3, but the values derive from the ESA Hipparcos catalogue, which ESA distributes under CC BY-NC 3.0 IGO (commercial use needs ESA authorisation).",
+   "verdict": "grey",
+   "reason": "Upstream non-commercial licence ('verify upstream' in code). Star positions are arguably facts, but strict rule treats 'verify' as grey.",
+   "alternative": "Run usa/sky_catalog.py --strict (all star rows from the IAU Catalog of Star Names, CC BY) or source magnitudes from a US-government catalogue with stated public-domain status.",
+   "action": "replace"
+  },
+  {
+   "id": "iau_csn",
+   "name": "IAU Catalog of Star Names (WGSN)",
+   "provider": "International Astronomical Union",
+   "used_in": [
+    {
+     "script": "usa/sky_catalog.py",
+     "outputs": [
+      "stars.json name field; --strict star rows"
+     ]
+    }
+   ],
+   "licence_url": "https://www.pas.rochester.edu/~emamajek/WGSN/IAU-CSN.txt",
+   "licence_quote": "\"All IAU-produced products (Images, Videos, Texts) are released under Creative Commons Attribution\"",
+   "verdict": "green",
+   "reason": "CC BY.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "metro_transit_gtfs",
+   "name": "Metro Transit GTFS static + NexTrip live departures",
+   "provider": "Metro Transit / Metropolitan Council",
+   "used_in": [
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "web/mpls/data/feeds.json 'Bus and rail stops within 600 m + live next departures'"
+     ]
+    }
+   ],
+   "licence_url": "https://svc.metrotransit.org/",
+   "licence_quote": "Feed page publishes URLs and update cadence only; no licence or terms of use stated.",
+   "verdict": "grey",
+   "reason": "Terms unstated.",
+   "alternative": "BTS NTAD National Transit Map Stops (CC BY 3.0 US, includes Metro Transit stops) for stop locations; drop live departures.",
+   "action": "replace"
+  },
+  {
+   "id": "msptrees_2023",
+   "name": "MSPtrees_2023 tree inventory (ArcGIS Online item dc4e43ade1364fe9a294889c7c457d07)",
+   "provider": "Personal ArcGIS account 'OscarLasalle22' (described as UMN LTER inventory)",
+   "used_in": [
+    {
+     "script": "mpls/derive.py",
+     "outputs": [
+      "web/mpls/data/trees.json species/genus, houses[] tree fields"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=dc4e43ade1364fe9a294889c7c457d07",
+   "licence_quote": "Item licenseInfo and accessInformation are empty (no licence, no credits).",
+   "verdict": "grey",
+   "reason": "Re-upload on a personal account with no licence; provenance unverified.",
+   "alternative": "Keep LiDAR-derived trees only (USGS 3DEP, public domain), or the City of Minneapolis public tree inventory if its portal states an open licence (lane A).",
+   "action": "remove"
+  },
+  {
+   "id": "mndot_iris_incidents",
+   "name": "MnDOT IRIS live traffic incidents XML",
+   "provider": "Minnesota DOT",
+   "used_in": [
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "extras.json traffic_incidents"
+     ]
+    },
+    {
+     "script": "mpls/live.py",
+     "outputs": [
+      "extras.json traffic_incidents"
+     ]
+    }
+   ],
+   "licence_url": "https://data.dot.state.mn.us/",
+   "licence_quote": "No licence or terms stated at the feed host (the separate MnDOT AADT item says use limitations 'None', but that covers AADT, not IRIS).",
+   "verdict": "grey",
+   "reason": "Terms unstated.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "deckgl_unpkg",
+   "name": "deck.gl 9.1.14 via unpkg CDN",
+   "provider": "vis.gl (OpenJS Foundation) / unpkg",
+   "used_in": [
+    {
+     "script": "web/*.html",
+     "outputs": [
+      "web/index.html, web/usa/index.html, web/usa/view.html, web/usa/build.html, web/mpls/index.html (script tag)"
+     ]
+    }
+   ],
+   "licence_url": "https://github.com/visgl/deck.gl/blob/master/LICENSE",
+   "licence_quote": "MIT: \"Permission is hereby granted, free of charge, to any person obtaining a copy of this software ... to deal in the Software without restriction\"",
+   "verdict": "green",
+   "reason": "MIT software (code, not data).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "google_fonts",
+   "name": "Google Fonts CSS API (IBM Plex Sans/Mono, Archivo, Chakra Petch)",
+   "provider": "Google / font authors",
+   "used_in": [
+    {
+     "script": "web/*.html",
+     "outputs": [
+      "all viewer pages (stylesheet link)"
+     ]
+    }
+   ],
+   "licence_url": "https://developers.google.com/fonts/faq",
+   "licence_quote": "\"Yes, you can use them commercially, and even include them within a product that is sold commercially.\" IBM Plex: \"licensed under the SIL Open Font License, Version 1.1\"",
+   "verdict": "green",
+   "reason": "SIL OFL 1.1 fonts.",
+   "alternative": null,
+   "action": "keep"
+  }
+ ]
+}

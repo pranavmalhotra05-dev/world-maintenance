@@ -1,0 +1,576 @@
+{
+ "cities": {
+  "dallas": {
+   "deposit": {
+    "value": "No statutory cap on amount; landlord must refund on or before the 30th day after the tenant surrenders the premises (Prop. Code 92.103).",
+    "source_url": "https://statutes.capitol.texas.gov/Docs/PR/htm/PR.92.htm#92.103",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Prop. Code 92.103(a): refund due by 30th day after surrender; no amount limit in Subch. C.",
+    "changed": false
+   },
+   "notice": {
+    "value": "Month-to-month: tenancy ends the later of the date in the notice or one month after notice; shorter rent periods use that period. A signed lease may set a different notice (Prop. Code 91.001).",
+    "source_url": "https://statutes.capitol.texas.gov/Docs/PR/htm/PR.91.htm#91.001",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Prop. Code 91.001(a)-(e): one-month rule for monthly tenancies; lease can override.",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "Prop. Code ch. 209: certified-mail notice and cure before fines or suits (209.006), records access (209.005), open board meetings (209.0051), management certificate filed with county and TREC (209.004). Ch. 202 protects solar (202.010), rain barrels and drought landscaping (202.007), wind/hail-resistant shingles (202.011), flags (202.012), religious items (202.018), generators (202.019). Tarr (Tex. 2018) sided with owner on STR.",
+    "source_url": "https://statutes.capitol.texas.gov/Docs/PR/htm/PR.202.htm",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Read 202.007, 202.011, ch.202/209 headings, 209.004(b-1), 209.006; Tarr docket 16-1005: 5/25/2018 reversed for owner (opinion not read).",
+    "changed": true
+   },
+   "worship_zoning": {
+    "value": "Church use is permitted by right in all residential and nonresidential districts except P(A) (Dev. Code 51A-4.204(4)). Housing on church land still needs a residential use allowed in that district.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-80423",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "51A-4.204(4) Church: by right in all districts except P(A).",
+    "changed": true
+   },
+   "shed": {
+    "value": "No dwelling in an accessory building unless approved as an additional or accessory dwelling unit by Board of Adjustment special exception (51A-4.209(b)(6)(E)). An explicit shed-occupancy ban was not read.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-80662",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "51A-4.209(b)(6)(E)(i)-(iii): extra dwelling units only by BOA special exception.",
+    "changed": false
+   },
+   "tent": {
+    "value": "Campgrounds (RVs, tents, manufactured homes for temporary camping) are allowed by right only in the MH(A) district; tent living elsewhere is not a listed residential use.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-80662",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "51A-4.209(b)(4): manufactured home park/campground by right only in MH(A).",
+    "changed": true
+   },
+   "rv": {
+    "value": "RV occupancy is tied to campgrounds and transient stands, allowed only in MH(A); not a residential use on a single-family lot. No guest-stay allowance found in the code read.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-80662",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "51A-4.209(b)(4) campground definition, MH(A) only; 51A-2.102 transient stand definition.",
+    "changed": true
+   },
+   "thow": {
+    "value": "Not a listed dwelling type; RV-style units belong in campgrounds or manufactured home parks, allowed only in MH(A).",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-80662",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "51A-4.209(b)(4) MH(A)-only campground/manufactured home park.",
+    "changed": true
+   },
+   "rooming": {
+    "value": "'Lodging or boarding house' (1-5 separately rented guest rooms, no in-room kitchens) is by right only in MF-2(A), MF-2(SAH), MF-3(A), MF-4(A), RR, CS, LI, IR and central area; SUP in CR and IM. Not allowed in single-family districts.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-80423",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "51A-4.205(2) Lodging or boarding house: definition and districts permitted.",
+    "changed": true
+   },
+   "coliving": {
+    "value": "Groups that are not a 'family' fall under 'group residential facility': by right in CH, multifamily, central area and mixed-use districts if 1,000 ft from others, otherwise SUP; not in single-family districts. SB 840 adds by-right multifamily on many commercial sites.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-80662",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "51A-4.209(b)(3) group residential facility; SB 840 not re-read.",
+    "changed": true
+   },
+   "per_bedroom": {
+    "value": "Sec. 27-11 minimum property standards set owner duties but no per-occupant floor-area figure was found there; Ch. 27 Art. IV covers reducing occupancy load. Space-per-occupant rule not confirmed.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-145681",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Sec. 27-11 text searched: no square-feet-per-occupant standard.",
+    "changed": true
+   },
+   "permit": {
+    "value": "2023 STR registration (Ch. 42B) and zoning ordinances are under a temporary injunction entered Dec 6, 2023; the city says it cannot enforce them meanwhile.",
+    "source_url": "https://dallascityhall.com/departments/codecompliance/short-term-rentals/Pages/default.aspx",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Code Compliance STR page: injunction of 12/6/2023 bars enforcing both STR ordinances.",
+    "changed": false
+   },
+   "primary_residence": {
+    "value": "No owner-occupancy rule in force (2023 ordinances enjoined).",
+    "source_url": "https://dallascityhall.com/departments/codecompliance/short-term-rentals/Pages/default.aspx",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Injunction statement on city page; Ch. 42B text not read.",
+    "changed": false
+   },
+   "zones": {
+    "value": "2023 zoning amendment allows 'short-term rental lodging' by right only in MO(A), GO(A), multifamily, central area, mixed use, multiple commercial and urban corridor districts (no single-family), but enforcement is enjoined.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-80423",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "51A-4.205(3) Short-term rental lodging districts; city page confirms injunction.",
+    "changed": true
+   },
+   "caps": {
+    "value": "Zoning text limits one STR per rentable unit; no other cap in force while the injunction stands.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-80423",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "51A-4.205(3)(E)(ii) one STR per rentable unit.",
+    "changed": true
+   },
+   "taxes": {
+    "value": "Owner must collect the 9% city hotel occupancy tax and remit monthly; the city has no platform collection agreement. State HOT of 6% (Tax Code 156.052) also applies.",
+    "source_url": "https://dallascityhall.com/departments/controllersoffice/Pages/short-term-rentals-hotel-occupancy-tax.aspx",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Controller STR HOT page: 9% of net room receipts, no Airbnb/VRBO agreement; Tax Code 156.052 six percent.",
+    "changed": true
+   },
+   "pending": {
+    "value": "City of Dallas v. Dallas Short-Term Rental Alliance, No. 25-0748: petition granted Oct 23, 2026; oral argument reset to Jan 14, 2027. Court of appeals (05-23-01309-CV, Jul 18, 2025) affirmed in part, reversed in part.",
+    "source_url": "https://search.txcourts.gov/Case.aspx?cn=25-0748&coa=cossup",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Docket: petition granted 10/23/2026; 11/20/2026 submission reset to 1/14/2027.",
+    "changed": true
+   },
+   "registration": {
+    "value": "Annual rental registration required for multitenant and single-dwelling-unit rental properties and condo associations (Ch. 27 Art. VII); single-unit fee $74 from Oct 1, 2025.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-146176",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Secs. 27-30 and 27-31: offense to lease unregistered; annual registration and fees.",
+    "changed": true
+   },
+   "family": {
+    "value": "'Family' means people living as one housekeeping unit with no more than four unrelated to the head of household (Dev. Code 51A-2.102).",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-74838",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "51A-2.102 FAMILY definition: not more than four unrelated individuals.",
+    "changed": true
+   },
+   "adu": {
+    "value": "Board of Adjustment special exception needed: a non-rental 'additional dwelling unit' (deed-restricted against rental) or a rentable 'accessory dwelling unit' (owner-occupancy deed restriction plus annual rental registration). An ADU overlay (51A-4.510) also exists.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-80662",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "51A-4.209(b)(6)(E)(i)-(iii) single family additional provisions.",
+    "changed": true
+   },
+   "max_occupancy": {
+    "value": "Not confirmed; Ch. 42B (enjoined) not read.",
+    "source_url": "https://dallascityhall.com/departments/codecompliance/short-term-rentals/Pages/default.aspx",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Ch. 42B text not reached.",
+    "changed": false
+   },
+   "listing_id": {
+    "value": "Not confirmed; Ch. 42B registration is enjoined.",
+    "source_url": "https://dallascityhall.com/departments/codecompliance/short-term-rentals/Pages/default.aspx",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Ch. 42B text not reached.",
+    "changed": false
+   }
+  },
+  "austin": {
+   "deposit": {
+    "value": "No statutory cap on amount; landlord must refund on or before the 30th day after the tenant surrenders the premises (Prop. Code 92.103).",
+    "source_url": "https://statutes.capitol.texas.gov/Docs/PR/htm/PR.92.htm#92.103",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Prop. Code 92.103(a): refund due by 30th day after surrender; no amount limit in Subch. C.",
+    "changed": false
+   },
+   "notice": {
+    "value": "Month-to-month: tenancy ends the later of the date in the notice or one month after notice; shorter rent periods use that period. A signed lease may set a different notice (Prop. Code 91.001).",
+    "source_url": "https://statutes.capitol.texas.gov/Docs/PR/htm/PR.91.htm#91.001",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Prop. Code 91.001(a)-(e): one-month rule for monthly tenancies; lease can override.",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "Prop. Code ch. 209: certified-mail notice and cure before fines or suits (209.006), records access (209.005), open board meetings (209.0051), management certificate filed with county and TREC (209.004). Ch. 202 protects solar (202.010), rain barrels and drought landscaping (202.007), wind/hail-resistant shingles (202.011), flags (202.012), religious items (202.018), generators (202.019). Tarr (Tex. 2018) sided with owner on STR.",
+    "source_url": "https://statutes.capitol.texas.gov/Docs/PR/htm/PR.202.htm",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Read 202.007, 202.011, ch.202/209 headings, 209.004(b-1), 209.006; Tarr docket 16-1005: 5/25/2018 reversed for owner (opinion not read).",
+    "changed": true
+   },
+   "per_bedroom": {
+    "value": "No STR bedroom-based cap in current code: LDC 25-2-788 to 25-2-799 (old STR rules) were repealed and Ch. 4-23 has no occupancy limit. General property maintenance code applies (edition not checked).",
+    "source_url": "https://library.municode.com/tx/austin/codes/land_development_code?nodeId=TIT25LADE_CH25-2ZO_SUBCHAPTER_CUSDERE_ART4ADRECEUS_DIV1REUS",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Editor's note: 25-2-788 to 25-2-799 STR sections repealed; Ch. 4-23 has no adult/bedroom limit.",
+    "changed": true
+   },
+   "max_occupancy": {
+    "value": "No STR occupancy cap in current Ch. 4-23 or LDC 25-2-904; the old 25-2-795 limit was repealed.",
+    "source_url": "https://library.municode.com/tx/austin/codes/code_of_ordinances?nodeId=TIT4BUREPERE_CH4-23SHRMRE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Ch. 4-23 full text has no occupancy cap; LDC 25-2-904 sets accessory use only.",
+    "changed": true
+   },
+   "hostel_shared": {
+    "value": "Partial-unit STRs allowed: the guest must get exclusive use of a bedroom and shared use of a full bathroom (4-23-34(C)).",
+    "source_url": "https://library.municode.com/tx/austin/codes/code_of_ordinances?nodeId=TIT4BUREPERE_CH4-23SHRMRE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Sec. 4-23-34(C) operational requirements.",
+    "changed": true
+   },
+   "zones": {
+    "value": "Accessory to any residential use in all base, special purpose, combining and overlay districts; cannot be prohibited (LDC 25-2-904).",
+    "source_url": "https://library.municode.com/tx/austin/codes/land_development_code?nodeId=TIT25LADE_CH25-2ZO_SUBCHAPTER_CUSDERE_ART5ACUS_S25-2-904SHRMREUS",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "25-2-904(A)-(B), Ord. 20250227-039.",
+    "changed": false
+   },
+   "caps": {
+    "value": "Up to 2 STRs per site of 3 or fewer units; other sites 1,000 ft apart; greater of 1 unit or 10% (4+ units, no commercial) or 25% (with commercial).",
+    "source_url": "https://library.municode.com/tx/austin/codes/code_of_ordinances?nodeId=TIT4BUREPERE_CH4-23SHRMRE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Sec. 4-23-31(B)-(D).",
+    "changed": false
+   },
+   "listing_id": {
+    "value": "Yes: operator must show licence number on ads; platforms must require it (from July 1, 2026).",
+    "source_url": "https://library.municode.com/tx/austin/codes/code_of_ordinances?nodeId=TIT4BUREPERE_CH4-23SHRMRE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Secs. 4-23-22 and 4-23-32(D).",
+    "changed": false
+   },
+   "permit": {
+    "value": "Yes: operator licence (Ch. 4-23), valid two years.",
+    "source_url": "https://www.austintexas.gov/development-services/short-term-rentals",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR page: two-year licences since Oct 2025.",
+    "changed": false
+   },
+   "pending": {
+    "value": "No pending rule change found; the city moves licensing to a new system Dec 4, 2026 (applications, renewals and HOT payments paused Nov 16 to Dec 3).",
+    "source_url": "https://www.austintexas.gov/development-services/short-term-rentals",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "City STR page important notice.",
+    "changed": true
+   },
+   "registration": {
+    "value": "Rental registration only for problem properties (Repeat Offender Program): triggered by repeat code violation notices or citations within 24 months; owner-occupied units exempt (City Code 4-14-3).",
+    "source_url": "https://library.municode.com/tx/austin/codes/code_of_ordinances?nodeId=TIT4BUREPERE_CH4-14REPR",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Sec. 4-14-3 registration required; exceptions.",
+    "changed": true
+   },
+   "family": {
+    "value": "No zoning cap on unrelated occupants: the dwelling-unit occupancy limit (LDC 25-2-511) was repealed effective Dec 18, 2023 (Ord. 20231207-001).",
+    "source_url": "https://library.municode.com/tx/austin/codes/land_development_code?nodeId=TIT25LADE_CH25-2ZO_SUBCHAPTER_CUSDERE_ART2PRUSDERE_DIV2REALDI_S25-2-511RE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "25-2-511 Reserved; editor's note on repeal of occupancy limit.",
+    "changed": true
+   },
+   "coliving": {
+    "value": "No unrelated-adult cap since Dec 2023, so shared houses are ordinary residential use; SB 840 adds by-right multifamily on many commercial sites.",
+    "source_url": "https://library.municode.com/tx/austin/codes/land_development_code?nodeId=TIT25LADE_CH25-2ZO_SUBCHAPTER_CUSDERE_ART2PRUSDERE_DIV2REALDI_S25-2-511RE",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "25-2-511 repeal note; SB 840 not re-read.",
+    "changed": true
+   },
+   "adu": {
+    "value": "Yes: LDC 25-2-773 regulates duplex, two-unit and three-unit residential uses (HOME), e.g. 5,750 sq ft minimum lot and 40% building coverage for these. District table not read.",
+    "source_url": "https://library.municode.com/tx/austin/codes/land_development_code?nodeId=TIT25LADE_CH25-2ZO_SUBCHAPTER_CUSDERE_ART4ADRECEUS_SPARESPUS_S25-2-773DUTITTHITREUS",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "25-2-773(B) site standards for two-unit and three-unit residential.",
+    "changed": true
+   },
+   "thow": {
+    "value": "Mobile homes may only be placed or occupied in licensed mobile home parks or subdivisions; RVs used as living quarters belong in RV parks. Tiny-home communities not confirmed.",
+    "source_url": "https://library.municode.com/tx/austin/codes/land_development_code?nodeId=TIT25LADE_CH25-2ZO_SUBCHAPTER_CUSDERE_ART14MOHOTOTRCA",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "25-2-1207(A) mobile home location; 25-2-1261 RV park definition.",
+    "changed": true
+   },
+   "rv": {
+    "value": "RV living quarters are framed as RV-park use (25-2-1261); an explicit ban on living in an RV on a residential lot was not found in the text read.",
+    "source_url": "https://library.municode.com/tx/austin/codes/land_development_code?nodeId=TIT25LADE_CH25-2ZO_SUBCHAPTER_CUSDERE_ART14MOHOTOTRCA",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "25-2-1261 RV park definition; 25-2-1207 mobile homes.",
+    "changed": false
+   }
+  },
+  "tulsa": {
+   "deposit": {
+    "value": "No statutory cap; deposit kept in an Oklahoma escrow account; balance returned within 45 days after tenancy ends, possession is delivered and the tenant makes written demand; unclaimed after 6 months it reverts to the landlord (41 O.S. 115).",
+    "source_url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=71764",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "41 O.S. 115(A)-(B): escrow, 45-day return after written demand, 6-month reversion.",
+    "changed": true
+   },
+   "notice": {
+    "value": "Month-to-month or at-will: 30 days' written notice; tenancy shorter than month-to-month: 7 days (41 O.S. 111).",
+    "source_url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=71758",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "41 O.S. 111(A)-(B).",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "Condos: Unit Ownership Estate Act (60 O.S. 501+). Real Estate Development Act (60 O.S. 851-858) covers owners associations and covenant copies; 60 O.S. 858 bars associations from blocking a US flag up to 20 ft. No solar protection found.",
+    "source_url": "https://www.oscn.net/applications/oscn/index.asp?ftdb=STOKST60&level=1",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Title 60 index ch. 11 and ch. 17; 60 O.S. 858 text read.",
+    "changed": true
+   },
+   "worship_zoning": {
+    "value": "Religious assembly needs a Board of Adjustment special exception in every residential district (RE through RMH); see Sec. 40.320.",
+    "source_url": "https://library.municode.com/ok/tulsa/codes/code_of_ordinances?nodeId=COOR_TIT42ZOCO_CH5REDI_S5.020USRE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Zoning Code Table 5-2: Religious Assembly 'S' in all R districts.",
+    "changed": true
+   },
+   "family": {
+    "value": "'Household': related people plus up to 2 unrelated, or up to 8 people in a voluntary communal housekeeping unit; includes licensed group homes of 8 or fewer. STR cap is 8 occupants.",
+    "source_url": "https://library.municode.com/ok/tulsa/codes/code_of_ordinances?nodeId=COOR_TIT42ZOCO_CH95DE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Sec. 95.110 Household definition.",
+    "changed": true
+   },
+   "rooming": {
+    "value": "Rooming/boarding house use is allowed only in RM-0 to RM-3 districts. Rooming units accessory to a household are allowed if total unrelated residents stay within the household limit (45.170).",
+    "source_url": "https://library.municode.com/ok/tulsa/codes/code_of_ordinances?nodeId=COOR_TIT42ZOCO_CH45ACUSST",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Sec. 45.170; Table 5-2 rooming/boarding house P only in RM districts.",
+    "changed": true
+   },
+   "coliving": {
+    "value": "A communal group of up to 8 counts as a household; larger groups need group living or rooming/boarding house approval (rooming only in RM districts).",
+    "source_url": "https://library.municode.com/ok/tulsa/codes/code_of_ordinances?nodeId=COOR_TIT42ZOCO_CH95DE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Sec. 95.110 Household; Table 5-2 Group Living and rooming rows.",
+    "changed": true
+   },
+   "adu": {
+    "value": "One ADU per lot in an accessory building: special exception in RE, RS, AG and AG-R; by right in other districts when accessory to household living (45.031D).",
+    "source_url": "https://library.municode.com/ok/tulsa/codes/code_of_ordinances?nodeId=COOR_TIT42ZOCO_CH45ACUSST",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Sec. 45.031D.1-2 where allowed and number.",
+    "changed": true
+   },
+   "rv": {
+    "value": "RVs parked in R and AG-R districts may not be used as dwellings or permanently hooked to sewer, water or power (45.150B). No guest-stay exception in the text.",
+    "source_url": "https://library.municode.com/ok/tulsa/codes/code_of_ordinances?nodeId=COOR_TIT42ZOCO_CH45ACUSST",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Sec. 45.150B.1-2.",
+    "changed": true
+   },
+   "thow": {
+    "value": "A THOW on a trailer falls in the zoning 'recreational vehicle' definition (travel trailer etc.), so it cannot be used as a dwelling on a residential lot.",
+    "source_url": "https://library.municode.com/ok/tulsa/codes/code_of_ordinances?nodeId=COOR_TIT42ZOCO_CH45ACUSST",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Sec. 95.210 RV definition; 45.150B no dwelling use.",
+    "changed": true
+   },
+   "shed": {
+    "value": "Living space in an accessory building is only lawful as an ADU under 45.031 (special exception in RS districts).",
+    "source_url": "https://library.municode.com/ok/tulsa/codes/code_of_ordinances?nodeId=COOR_TIT42ZOCO_CH45ACUSST",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Secs. 45.030 and 45.031.",
+    "changed": true
+   },
+   "registration": {
+    "value": "No rental-registration title in the Tulsa code (only a vacant-buildings registry, Title 24-A).",
+    "source_url": "https://library.municode.com/ok/tulsa/codes/code_of_ordinances",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Code title list reviewed; Title 24-A vacant buildings registry.",
+    "changed": true
+   },
+   "max_occupancy": {
+    "value": "8 occupants max regardless of size; Title 55 s.404 floor-area rules may lower it.",
+    "source_url": "https://www.cityoftulsa.org/government/departments/finance/business-licensing/short-term-rental/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR FAQ: guests allowed.",
+    "changed": false
+   },
+   "taxes": {
+    "value": "5% city lodging tax, filed monthly, for units with 5+ rooms.",
+    "source_url": "https://www.cityoftulsa.org/government/departments/finance/business-licensing/short-term-rental/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR FAQ: lodging tax.",
+    "changed": false
+   },
+   "listing_id": {
+    "value": "Yes: licence number on all ads and licence posted near the main entry.",
+    "source_url": "https://www.cityoftulsa.org/government/departments/finance/business-licensing/short-term-rental/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR FAQ.",
+    "changed": false
+   },
+   "zones": {
+    "value": "Allowed in all zoning districts with a licence.",
+    "source_url": "https://www.cityoftulsa.org/government/departments/finance/business-licensing/short-term-rental/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR FAQ; Table 5-2 STR 'P' in all R districts.",
+    "changed": false
+   },
+   "hostel_shared": {
+    "value": "Events and gatherings banned at STRs; a bed & breakfast is a separate use needing a special exception in residential and office districts.",
+    "source_url": "https://www.cityoftulsa.org/government/departments/finance/business-licensing/short-term-rental/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR FAQ: B&B vs STR.",
+    "changed": false
+   }
+  }
+ },
+ "states": {
+  "TX": {
+   "str_preemption": {
+    "value": "No state STR preemption statute found. Zaatari v. City of Austin (Tex. App.-Austin, Nov 27, 2019, No. 03-17-00812-CV) partly struck Austin's STR rules; review denied Jun 11, 2021. Dallas STR zoning ban is before the Texas Supreme Court (No. 25-0748).",
+    "source_url": "https://search.txcourts.gov/Case.aspx?cn=03-17-00812-CV&coa=coa03",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Zaatari docket: 11/27/2019 affirmed in part, reversed/rendered in part; petition denied 6/11/2021.",
+    "changed": true
+   },
+   "rent_control": {
+    "value": "Cities may adopt rent control only after finding a disaster-caused housing emergency and with the governor's approval; it ends like a disaster declaration (Local Gov't Code 214.902).",
+    "source_url": "https://statutes.capitol.texas.gov/Docs/LG/htm/LG.214.htm#214.902",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "LGC 214.902(a)-(b).",
+    "changed": true
+   },
+   "source_of_income": {
+    "value": "Cities and counties may not ban refusing tenants whose rent includes federal housing assistance (LGC 250.007); veteran protections and voluntary voucher incentives remain allowed.",
+    "source_url": "https://statutes.capitol.texas.gov/Docs/LG/htm/LG.250.htm#250.007",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "LGC 250.007(a)-(c).",
+    "changed": true
+   },
+   "ltr_registration": {
+    "value": "No state rental registry found. Dallas requires annual rental registration (Code 27-30, 27-31); Austin registers only repeat-offender properties (Code 4-14-3).",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-146176",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "City code sections read; absence of state registry not proven.",
+    "changed": true
+   },
+   "deposit": {
+    "value": "No statutory cap on amount; landlord must refund on or before the 30th day after the tenant surrenders the premises (Prop. Code 92.103).",
+    "source_url": "https://statutes.capitol.texas.gov/Docs/PR/htm/PR.92.htm#92.103",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Prop. Code 92.103(a): refund due by 30th day after surrender; no amount limit in Subch. C.",
+    "changed": false
+   },
+   "notice": {
+    "value": "Month-to-month: tenancy ends the later of the date in the notice or one month after notice; shorter rent periods use that period. A signed lease may set a different notice (Prop. Code 91.001).",
+    "source_url": "https://statutes.capitol.texas.gov/Docs/PR/htm/PR.91.htm#91.001",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Prop. Code 91.001(a)-(e): one-month rule for monthly tenancies; lease can override.",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "Prop. Code ch. 209: certified-mail notice and cure before fines or suits (209.006), records access (209.005), open board meetings (209.0051), management certificate filed with county and TREC (209.004). Ch. 202 protects solar (202.010), rain barrels and drought landscaping (202.007), wind/hail-resistant shingles (202.011), flags (202.012), religious items (202.018), generators (202.019). Tarr (Tex. 2018) sided with owner on STR.",
+    "source_url": "https://statutes.capitol.texas.gov/Docs/PR/htm/PR.202.htm",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Read 202.007, 202.011, ch.202/209 headings, 209.004(b-1), 209.006; Tarr docket 16-1005: 5/25/2018 reversed for owner (opinion not read).",
+    "changed": true
+   }
+  },
+  "OK": {
+   "rent_control": {
+    "value": "Preempted: no city may enact or enforce rent limits on private residential or commercial rentals; exceptions for city-owned, subsidized-by-agreement and CDBG-assisted property (11 O.S. 14-101.1).",
+    "source_url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=75896",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "11 O.S. 14-101.1(A)-(B), Laws 1988.",
+    "changed": true
+   },
+   "source_of_income": {
+    "value": "No standalone protection. State housing law only bars refusing public assistance, alimony or child support as income when done because of a protected class (25 O.S. 1452(A)(8)).",
+    "source_url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=73456",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "25 O.S. 1452(A)(8).",
+    "changed": true
+   },
+   "str_preemption": {
+    "value": "None found: the Title 11 (municipal) index has no STR section; cities such as Tulsa license STRs directly.",
+    "source_url": "https://www.oscn.net/applications/oscn/index.asp?ftdb=STOKST11&level=1",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Title 11 index searched; absence not proven.",
+    "changed": false
+   },
+   "hoa_registry": {
+    "value": "No statewide HOA registry found; Real Estate Development Act (60 O.S. 851-858) shows no registration duty in its section list.",
+    "source_url": "https://www.oscn.net/applications/oscn/index.asp?ftdb=STOKST60&level=1",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Title 60 ch. 17 section list.",
+    "changed": false
+   },
+   "deposit": {
+    "value": "No statutory cap; deposit kept in an Oklahoma escrow account; balance returned within 45 days after tenancy ends, possession is delivered and the tenant makes written demand; unclaimed after 6 months it reverts to the landlord (41 O.S. 115).",
+    "source_url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=71764",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "41 O.S. 115(A)-(B): escrow, 45-day return after written demand, 6-month reversion.",
+    "changed": true
+   },
+   "notice": {
+    "value": "Month-to-month or at-will: 30 days' written notice; tenancy shorter than month-to-month: 7 days (41 O.S. 111).",
+    "source_url": "https://www.oscn.net/applications/oscn/DeliverDocument.asp?CiteID=71758",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "41 O.S. 111(A)-(B).",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "Condos: Unit Ownership Estate Act (60 O.S. 501+). Real Estate Development Act (60 O.S. 851-858) covers owners associations and covenant copies; 60 O.S. 858 bars associations from blocking a US flag up to 20 ft. No solar protection found.",
+    "source_url": "https://www.oscn.net/applications/oscn/index.asp?ftdb=STOKST60&level=1",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Title 60 index ch. 11 and ch. 17; 60 O.S. 858 text read.",
+    "changed": true
+   }
+  }
+ }
+}

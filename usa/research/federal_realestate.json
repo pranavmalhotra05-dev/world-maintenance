@@ -1,0 +1,2683 @@
+{
+ "generated": "2026-11-24",
+ "scope": "US federal (plus GSE/Fed-bank contrast) real-estate datasets; licence + access tested by script/browser",
+ "licence_basis_default": "Works of the US federal government are not subject to US copyright (17 U.S.C. 105). Agency-specific terms recorded where they add conditions.",
+ "count": 117,
+ "sources": [
+  {
+   "id": "hud_oz",
+   "name": "Opportunity Zones (designated tracts)",
+   "agency": "Treasury / IRS (CDFI Fund list; HUD eGIS layer)",
+   "what": "Census tracts designated as Qualified Opportunity Zones (capital-gains deferral). ALREADY BEING INTEGRATED by another lane - reference only.",
+   "geography": "tract",
+   "update_frequency": "static (2018 designations; OZ 2.0 round per 2025 law)",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Opportunity_Zones/FeatureServer/13/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "developer",
+    "lender"
+   ],
+   "integration": "tract polygon flag",
+   "priority": 1,
+   "tested": true,
+   "notes": "Reference only - integrated elsewhere."
+  },
+  {
+   "id": "hud_nmtc",
+   "name": "New Markets Tax Credit eligible low-income community tracts",
+   "agency": "Treasury CDFI Fund (HUD eGIS mirror NMTC20)",
+   "what": "Tracts qualifying as NMTC Low-Income Communities (poverty >=20% or MFI <=80%), plus severe-distress flags.",
+   "geography": "tract",
+   "update_frequency": "per ACS release (~5 yr)",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/NMTC20/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json ; source xlsx: https://www.cdfifund.gov/research-data",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "developer",
+    "commercial RE",
+    "lender"
+   ],
+   "integration": "tract polygon flag + severity class",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "hud_cdfi",
+   "name": "CDFI locations (certified CDFIs)",
+   "agency": "Treasury CDFI Fund (HUD eGIS layer)",
+   "what": "Point locations of certified Community Development Financial Institutions - alternative lenders.",
+   "geography": "point",
+   "update_frequency": "periodic",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/CDFI/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "investor",
+    "lender"
+   ],
+   "integration": "nearest-CDFI list per county",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "cdfi_cims",
+   "name": "CDFI Fund CIMS investment areas / distressed tracts",
+   "agency": "Treasury CDFI Fund",
+   "what": "CDFI Information Mapping System: CDFI Investment Areas, persistent-poverty counties, NMTC eligibility lookups; downloadable eligibility files on research-data page.",
+   "geography": "tract/county",
+   "update_frequency": "per ACS release",
+   "access": "https://www.cdfifund.gov/mapping-system ; https://www.cdfifund.gov/research-data",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "lender",
+    "developer"
+   ],
+   "integration": "tract polygon flag (Investment Area)",
+   "priority": 2,
+   "tested": true,
+   "notes": "Landing pages tested; eligibility xlsx linked from research-data page."
+  },
+  {
+   "id": "hud_persist_pov",
+   "name": "Persistent poverty census tracts (2020)",
+   "agency": "HUD eGIS (Commerce/Treasury definition)",
+   "what": "Tracts with >=20% poverty for ~30 years - used for federal grant targeting.",
+   "geography": "tract",
+   "update_frequency": "static",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/2020_Persistent_Poverty_Census_Tracts/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "nonprofit developer"
+   ],
+   "integration": "tract polygon flag",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "irs_soi_zip",
+   "name": "IRS SOI ZIP-code individual income statistics",
+   "agency": "IRS Statistics of Income",
+   "what": "Returns, AGI, wages, mortgage-interest and real-estate-tax deductions, by ZIP and AGI bracket.",
+   "geography": "ZIP",
+   "update_frequency": "annual (~2 yr lag)",
+   "access": "https://www.irs.gov/pub/irs-soi/22zpallnoagi.csv (yy = tax year)",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "roofer (target affluent ZIPs)",
+    "STR host",
+    "lender"
+   ],
+   "integration": "ZIP value -> join to house via ZIP",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "irs_migration",
+   "name": "IRS SOI county-to-county migration",
+   "agency": "IRS Statistics of Income",
+   "what": "In/out migration flows (returns, persons, AGI) between counties - demand signal.",
+   "geography": "county",
+   "update_frequency": "annual",
+   "access": "https://www.irs.gov/pub/irs-soi/countyinflow2122.csv",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "developer",
+    "agent"
+   ],
+   "integration": "county value (net inflow, AGI inflow)",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "hud_fmr",
+   "name": "Fair Market Rents (FMR)",
+   "agency": "HUD PD&R",
+   "what": "40th-percentile gross rents by bedroom count (0-4BR) for metro/non-metro areas; voucher payment basis.",
+   "geography": "county / HUD metro FMR area",
+   "update_frequency": "annual (Oct 1 fiscal year)",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Fair_Market_Rents/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json ; API https://www.huduser.gov/hudapi/public/fmr (token) ; files https://www.huduser.gov/portal/datasets/fmr.html",
+   "key_required": "ArcGIS layer: no. HUD User API: yes, free token",
+   "licence": {
+    "phrase": "HUD User API ToS: use to \"search, display, analyze\"; attribution notice required; 60 calls/min",
+    "url": "https://www.huduser.gov/portal/dataset/api-terms-of-service.html"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "landlord",
+    "buyer",
+    "STR host (LTR comparison)"
+   ],
+   "integration": "county value (rent by BR) -> house rent estimate baseline",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "hud_safmr",
+   "name": "Small Area Fair Market Rents (SAFMR)",
+   "agency": "HUD PD&R",
+   "what": "ZIP-level FMRs by bedroom count (mandatory in 40+ metros, available nationally).",
+   "geography": "ZIP",
+   "update_frequency": "annual",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/HUD_PDR_Small_Area_Fair_Market_Rents/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json ; xlsx https://www.huduser.gov/portal/datasets/fmr/smallarea/index.html",
+   "key_required": "no (files); API needs free token",
+   "licence": {
+    "phrase": "HUD User API ToS: use to \"search, display, analyze\"; attribution notice required; 60 calls/min",
+    "url": "https://www.huduser.gov/portal/dataset/api-terms-of-service.html"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "landlord",
+    "Section-8 investor"
+   ],
+   "integration": "ZIP value -> per-house rent-by-bedroom estimate",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "hud_il",
+   "name": "Income Limits (Section 8 / MTSP)",
+   "agency": "HUD PD&R",
+   "what": "Very-low / extremely-low / low-income limits by household size and Area Median Family Income.",
+   "geography": "county / FMR area",
+   "update_frequency": "annual (April)",
+   "access": "https://www.huduser.gov/portal/datasets/il.html (xlsx/pdf); API https://www.huduser.gov/hudapi/public/il (token)",
+   "key_required": "files no; API free token",
+   "licence": {
+    "phrase": "HUD User API ToS: use to \"search, display, analyze\"; attribution notice required; 60 calls/min",
+    "url": "https://www.huduser.gov/portal/dataset/api-terms-of-service.html"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor (LIHTC/workforce)",
+    "buyer (DPA eligibility)",
+    "lender"
+   ],
+   "integration": "county value (AMI, 80% limit)",
+   "priority": 1,
+   "tested": true,
+   "notes": "Page loads in browser (bot challenge to scripts)."
+  },
+  {
+   "id": "hud_api",
+   "name": "HUD User Data API (FMR, IL, CHAS, USPS crosswalk)",
+   "agency": "HUD PD&R",
+   "what": "REST API for FMR, Income Limits, CHAS and USPS ZIP crosswalk.",
+   "geography": "county/ZIP/tract",
+   "update_frequency": "annual/quarterly",
+   "access": "https://www.huduser.gov/hudapi/public/fmr/listStates (Bearer token)",
+   "key_required": "yes, free token (account signup)",
+   "licence": {
+    "phrase": "HUD User API ToS: use to \"search, display, analyze\"; attribution notice required; 60 calls/min",
+    "url": "https://www.huduser.gov/portal/dataset/api-terms-of-service.html"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "all"
+   ],
+   "integration": "programmatic feed for county/ZIP values",
+   "priority": 2,
+   "tested": false,
+   "notes": "Returned 401 without token as expected."
+  },
+  {
+   "id": "hud_qct",
+   "name": "Qualified Census Tracts (QCT) 2026",
+   "agency": "HUD PD&R",
+   "what": "LIHTC QCTs (50%+ households under 60% AMGI or poverty >=25%); 30% basis boost.",
+   "geography": "tract",
+   "update_frequency": "annual",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/QUALIFIED_CENSUS_TRACTS_2026/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json ; https://www.huduser.gov/portal/datasets/qct.html",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "developer",
+    "investor",
+    "lender"
+   ],
+   "integration": "tract polygon flag",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "hud_dda",
+   "name": "Difficult Development Areas (DDA) 2026",
+   "agency": "HUD PD&R",
+   "what": "Metro/non-metro and Small-DDA ZIP areas with high costs vs AMGI (LIHTC basis boost).",
+   "geography": "ZCTA (metro) / county (non-metro)",
+   "update_frequency": "annual",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Difficult_Development_Areas_2026/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "developer",
+    "investor"
+   ],
+   "integration": "ZIP/county polygon flag",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "hud_lihtc",
+   "name": "LIHTC properties database",
+   "agency": "HUD PD&R",
+   "what": "Every LIHTC-financed project since 1987: address, units, low-income units, placed-in-service year, credit type.",
+   "geography": "point (property)",
+   "update_frequency": "annual",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/LIHTC/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json ; https://lihtc.huduser.gov/",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor (comps, supply)",
+    "buyer (neighbour context)",
+    "developer"
+   ],
+   "integration": "points on county map; nearby-count per house",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "hud_phd",
+   "name": "Public Housing Developments",
+   "agency": "HUD PIH",
+   "what": "Public housing developments with unit counts, occupancy, PHA, tenant characteristics.",
+   "geography": "point",
+   "update_frequency": "quarterly-annual",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Public_Housing_Developments/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "buyer"
+   ],
+   "integration": "points; distance/nearby units per house",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "hud_phb",
+   "name": "Public Housing Buildings",
+   "agency": "HUD PIH",
+   "what": "Building-level public housing locations.",
+   "geography": "point",
+   "update_frequency": "periodic",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Public_Housing_Buildings/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "buyer"
+   ],
+   "integration": "points (building level)",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "hud_hcv",
+   "name": "Housing Choice Vouchers by tract",
+   "agency": "HUD PIH",
+   "what": "Count and share of renter units occupied by voucher holders per tract.",
+   "geography": "tract",
+   "update_frequency": "annual",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Housing_Choice_Vouchers_by_Tract/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "Section-8 investor",
+    "landlord"
+   ],
+   "integration": "tract value (% renter units with HCV)",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "hud_mfa",
+   "name": "Multifamily Properties - Assisted",
+   "agency": "HUD Housing (Multifamily)",
+   "what": "Section 8 project-based, 202/811 and other assisted multifamily properties with units, contracts, expiration, REAC scores.",
+   "geography": "point",
+   "update_frequency": "monthly-quarterly",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor (expiring contracts)",
+    "MF buyer",
+    "lender"
+   ],
+   "integration": "points; county counts",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "hud_mfi",
+   "name": "HUD-Insured Multifamily Properties",
+   "agency": "HUD Housing (FHA Multifamily)",
+   "what": "FHA-insured multifamily mortgages: property, units, original loan amount, endorsement date, lender.",
+   "geography": "point",
+   "update_frequency": "monthly",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/HUD_Insured_Multifamily_Properties/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json ; https://www.hud.gov/program_offices/housing/comp/rpts/mfh/mf_f47",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "MF investor",
+    "lender",
+    "broker"
+   ],
+   "integration": "points; county insured-loan volume",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "hud_fha_tract",
+   "name": "FHA Insurance in Force by Tract",
+   "agency": "HUD Housing (FHA)",
+   "what": "Count of active FHA single-family insured loans per tract.",
+   "geography": "tract",
+   "update_frequency": "periodic",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/FHA_Insurance_in_Force_by_Tract/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "lender",
+    "agent",
+    "buyer"
+   ],
+   "integration": "tract value (FHA share proxy)",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "hud_sfreo",
+   "name": "HUD Single-Family REO (HUD homes) layer",
+   "agency": "HUD Housing (FHA)",
+   "what": "Point layer of HUD-owned (foreclosed FHA) single-family homes; live listings on HUDHomestore.",
+   "geography": "point (property)",
+   "update_frequency": "frequent",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/SF_REO/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json ; https://www.hudhomestore.gov/",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "owner-occupant buyer",
+    "roofer (repair leads)"
+   ],
+   "integration": "per-house flag if HUD-owned; county REO count",
+   "priority": 1,
+   "tested": true,
+   "notes": "Layer freshness should be checked before use; HUDHomestore is contractor-run (scraping terms not checked)."
+  },
+  {
+   "id": "hud_chas",
+   "name": "CHAS (Comprehensive Housing Affordability Strategy)",
+   "agency": "HUD PD&R",
+   "what": "Custom ACS tabulations: cost burden, overcrowding, households by % HAMFI, owner/renter.",
+   "geography": "tract/place/county/state",
+   "update_frequency": "annual (ACS 5-yr)",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/ACS_5YR_ESTIMATES_CHAS_TRACT/FeatureServer/1/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json ; https://www.huduser.gov/portal/datasets/cp.html",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "developer",
+    "nonprofit"
+   ],
+   "integration": "tract value (% cost-burdened renters)",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "hud_pz",
+   "name": "Promise Zones",
+   "agency": "HUD",
+   "what": "Federally designated Promise Zone boundaries (preference points in grants).",
+   "geography": "polygon (tract-based)",
+   "update_frequency": "static",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Promise_Zones/FeatureServer/14/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "developer",
+    "nonprofit"
+   ],
+   "integration": "polygon flag",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "hud_lmi",
+   "name": "Low-to-Moderate Income population by tract / block group (LMISD)",
+   "agency": "HUD CPD",
+   "what": "Share of LMI persons - CDBG eligibility areas.",
+   "geography": "tract / block group",
+   "update_frequency": "periodic (ACS based)",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Low_to_Moderate_Income_Population_by_Tract/FeatureServer/4/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "developer",
+    "roofer (CDBG repair programs)",
+    "nonprofit"
+   ],
+   "integration": "tract value + flag (>=51% LMI)",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "hud_racap",
+   "name": "R/ECAP and AFFH opportunity indices (AFFH data)",
+   "agency": "HUD FHEO",
+   "what": "Racially/ethnically concentrated areas of poverty plus AFFH indices (school proficiency, jobs proximity, low transport cost, environmental health).",
+   "geography": "tract",
+   "update_frequency": "static (2020)",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Racially_or_Ethnically_Concentrated_Areas_of_Poverty_2020/FeatureServer/16/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json ; also School_Proficiency_Index, Jobs_Proximity_Index_2020, Environmental_Health_Hazard_Index services",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "nonprofit",
+    "developer"
+   ],
+   "integration": "tract values",
+   "priority": 3,
+   "tested": true,
+   "notes": "Fair-housing rules: do not use race-based layers for marketing/steering; use only the neutral indices."
+  },
+  {
+   "id": "hud_lai",
+   "name": "Location Affordability Index v3",
+   "agency": "HUD / DOT",
+   "what": "Modeled housing + transportation costs as % of income for household archetypes.",
+   "geography": "block group/tract",
+   "update_frequency": "static",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Location_Affordability_Index_v3/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "renter",
+    "agent"
+   ],
+   "integration": "tract value (H+T %)",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "hud_permits",
+   "name": "Residential Construction Permits by County (HUD SOCDS mirror)",
+   "agency": "HUD / Census",
+   "what": "Annual residential units permitted by county by structure type.",
+   "geography": "county",
+   "update_frequency": "annual",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Residential_Construction_Permits_by_County/FeatureServer/24/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "developer",
+    "builder"
+   ],
+   "integration": "county value",
+   "priority": 3,
+   "tested": true,
+   "notes": "Prefer Census BPS for freshness."
+  },
+  {
+   "id": "hud_paint",
+   "name": "Deteriorated Paint Index (lead hazard)",
+   "agency": "HUD OLHCHH",
+   "what": "Index of likely deteriorated lead paint from housing age and poverty.",
+   "geography": "tract",
+   "update_frequency": "static",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Deteriorated_Paint_Index_Tract/FeatureServer/2/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "renovator",
+    "landlord"
+   ],
+   "integration": "tract value",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "hud_picture",
+   "name": "Picture of Subsidized Households",
+   "agency": "HUD PD&R",
+   "what": "Counts and characteristics of all HUD-assisted households by program.",
+   "geography": "tract/county",
+   "update_frequency": "annual",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Snapshot_HUD_Picture_Subsidized_Households/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "Section-8 landlord"
+   ],
+   "integration": "tract value (% subsidized)",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "hud_radon",
+   "name": "County radon zones (EPA zones, HUD eGIS layer)",
+   "agency": "EPA (HUD eGIS mirror)",
+   "what": "EPA Map of Radon Zones (1 high, 2 moderate, 3 low) by county.",
+   "geography": "county",
+   "update_frequency": "static (1993)",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/County_Radon_Range/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "inspector",
+    "agent"
+   ],
+   "integration": "county value (zone 1-3)",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "hud_cll",
+   "name": "FHA mortgage limits (HUD) + FHFA conforming limits layer",
+   "agency": "HUD FHA / FHFA",
+   "what": "FHA forward-mortgage limits by county (HUD lookup) and FHFA conforming limits as GIS layer.",
+   "geography": "county",
+   "update_frequency": "annual (Dec/Jan)",
+   "access": "https://entp.hud.gov/idapp/html/hicostlook.cfm ; https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/FHFA_Conforming_Loan_Limits/FeatureServer/4/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "lender",
+    "agent"
+   ],
+   "integration": "county value",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "hud_usda_rh",
+   "name": "USDA Rural Housing assets (Section 515/514 MF) - HUD eGIS",
+   "agency": "USDA RD (HUD eGIS mirror)",
+   "what": "USDA-financed rural rental properties.",
+   "geography": "point",
+   "update_frequency": "periodic",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/USDA_Rural_Housing_Assets/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "MF investor",
+    "developer"
+   ],
+   "integration": "points; county count",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "hud_usps",
+   "name": "HUD Aggregated USPS Vacancy data",
+   "agency": "HUD PD&R / USPS",
+   "what": "Quarterly counts of vacant and no-stat residential/business addresses by tract.",
+   "geography": "tract",
+   "update_frequency": "quarterly",
+   "access": "https://www.huduser.gov/portal/datasets/usps.html (login)",
+   "key_required": "yes - registration; only government and non-profit entities approved",
+   "licence": {
+    "phrase": "\"accessible only to governmental entities and non-profit organizations registered as users\"; use limited to the sublicense \"stated purpose\"",
+    "url": "https://www.huduser.gov/portal/datasets/usps.html"
+   },
+   "commercial_ok": "no",
+   "real_estate_uses": [
+    "(not usable by a for-profit)"
+   ],
+   "integration": "would be tract vacancy rate - NOT AVAILABLE to us",
+   "priority": 3,
+   "tested": true,
+   "notes": "Excluded: commercial users cannot register."
+  },
+  {
+   "id": "hud_crosswalk",
+   "name": "HUD-USPS ZIP Code Crosswalk files",
+   "agency": "HUD PD&R",
+   "what": "ZIP <-> tract/county/CBSA/CD allocation ratios (residential, business, total).",
+   "geography": "ZIP/tract/county",
+   "update_frequency": "quarterly",
+   "access": "https://www.huduser.gov/portal/datasets/usps_crosswalk.html (files) ; API https://www.huduser.gov/portal/dataset/uspszip-api.html",
+   "key_required": "files: download page; API: free token",
+   "licence": {
+    "phrase": "HUD User API ToS: use to \"search, display, analyze\"; attribution notice required; 60 calls/min",
+    "url": "https://www.huduser.gov/portal/dataset/api-terms-of-service.html"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "all (geo plumbing)"
+   ],
+   "integration": "join key: ZIP data -> tract/county",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "hud_fha_sf_snapshot",
+   "name": "FHA Single Family Portfolio Snapshot",
+   "agency": "HUD Housing (FHA)",
+   "what": "Monthly loan-level-ish FHA endorsements (ZIP/county, amount, rate, purpose).",
+   "geography": "ZIP / county",
+   "update_frequency": "monthly",
+   "access": "https://www.hud.gov/program_offices/housing/rmra/oe/rpts/sfsnap/sfsnap",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "lender",
+    "agent",
+    "investor"
+   ],
+   "integration": "ZIP value (FHA purchase volume, median loan)",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "fhfa_hpi_master",
+   "name": "FHFA House Price Index - master (US/division/state/metro)",
+   "agency": "FHFA",
+   "what": "Repeat-sales HPI (purchase-only, all-transactions, expanded-data).",
+   "geography": "national/state/metro",
+   "update_frequency": "monthly / quarterly",
+   "access": "https://www.fhfa.gov/hpi/download/monthly/hpi_master.csv",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "buyer",
+    "lender",
+    "appraiser"
+   ],
+   "integration": "state/metro value (YoY appreciation)",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "fhfa_hpi_county",
+   "name": "FHFA HPI - county annual",
+   "agency": "FHFA",
+   "what": "Developmental annual all-transactions HPI by county.",
+   "geography": "county",
+   "update_frequency": "annual",
+   "access": "https://www.fhfa.gov/hpi/download/annual/hpi_at_county.csv (served as xlsx)",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "buyer"
+   ],
+   "integration": "county value (1/5/10-yr appreciation) - choropleth",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "fhfa_hpi_tract",
+   "name": "FHFA HPI - census tract annual",
+   "agency": "FHFA",
+   "what": "Annual HPI by census tract (developmental).",
+   "geography": "tract",
+   "update_frequency": "annual",
+   "access": "https://www.fhfa.gov/hpi/download/annual/hpi_at_tract.csv",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "buyer",
+    "appraiser"
+   ],
+   "integration": "tract value -> per-house appreciation estimate",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "fhfa_hpi_zip5",
+   "name": "FHFA HPI - 5-digit ZIP annual",
+   "agency": "FHFA",
+   "what": "Annual HPI by ZIP5 (and ZIP3).",
+   "geography": "ZIP",
+   "update_frequency": "annual",
+   "access": "https://www.fhfa.gov/hpi/download/annual/hpi_at_zip5.xlsx",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "buyer"
+   ],
+   "integration": "ZIP value",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "fhfa_cll",
+   "name": "FHFA Conforming Loan Limits (county list)",
+   "agency": "FHFA",
+   "what": "Fannie/Freddie conforming limits 1-4 units by county.",
+   "geography": "county",
+   "update_frequency": "annual (late Nov)",
+   "access": "https://www.fhfa.gov/document/d/cll/fullcountyloanlimitlist2026_hera-based_final_flat.csv",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "lender"
+   ],
+   "integration": "county value",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "fhfa_uad",
+   "name": "UAD Aggregate Statistics (appraisals)",
+   "agency": "FHFA",
+   "what": "Aggregated appraisal stats from GSE + FHA appraisals: values, GLA, age, condition/quality ratings, by tract/county/CBSA.",
+   "geography": "tract/county/CBSA/state",
+   "update_frequency": "annual-ish",
+   "access": "https://www.fhfa.gov/sites/default/files/2024-12/UADAggs_ent_sf_tract_v3_3.zip (145 MB) ; page https://www.fhfa.gov/data/uniform-appraisal-dataset-aggregate-statistics",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "appraiser",
+    "investor",
+    "roofer (condition ratings, home age)",
+    "lender"
+   ],
+   "integration": "tract values (median appraised value, % C4+ condition, median age) -> per-house context",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "fhfa_nmdb",
+   "name": "National Mortgage Database aggregate statistics",
+   "agency": "FHFA / CFPB",
+   "what": "Outstanding/new mortgage stats and performance (delinquency, LTV, credit score, rate) by state/metro.",
+   "geography": "national/state/metro",
+   "update_frequency": "quarterly",
+   "access": "https://www.fhfa.gov/document/d/nmdb/nmdb-outstanding-mortgage-statistics-states-quarterly.zip",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "lender",
+    "investor (distress)",
+    "refi marketer"
+   ],
+   "integration": "state/metro value (delinquency, avg rate)",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "fhfa_pudb",
+   "name": "GSE Public Use Database (PUDB)",
+   "agency": "FHFA",
+   "what": "Loan-level (anonymized) single- and multifamily Fannie/Freddie acquisitions incl. tract-level files.",
+   "geography": "tract (census-tract file)",
+   "update_frequency": "annual",
+   "access": "https://www.fhfa.gov/data/public-use-database",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "lender",
+    "investor"
+   ],
+   "integration": "tract aggregates (GSE purchase volume)",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "census_acs",
+   "name": "ACS 5-year housing tables (B25 series)",
+   "agency": "Census Bureau",
+   "what": "Home value, rent, tenure, vacancy, year built, units in structure, heating fuel, mortgage status, etc.",
+   "geography": "block group/tract/ZIP(ZCTA)/county",
+   "update_frequency": "annual (Dec)",
+   "access": "https://api.census.gov/data/2023/acs/acs5?get=NAME,B25077_001E,B25064_001E&for=county:001&in=state:06&key=KEY ; keyless bulk: https://www2.census.gov/programs-surveys/acs/summary_file/2023/table-based-SF/data/5YRData/",
+   "key_required": "API: yes - free key (keyless calls now return \"Missing Key\"); bulk summary files: no",
+   "licence": {
+    "phrase": "Census data are public; API key free (\"anyone can use\")",
+    "url": "https://www.census.gov/data/developers/guidance/api-user-guide.html"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "buyer",
+    "roofer (year built, owner-occ)",
+    "STR host",
+    "lender"
+   ],
+   "integration": "tract/county values (median value, rent, % pre-1980, owner-occ %)",
+   "priority": 1,
+   "tested": true,
+   "notes": "API keyless test returned Missing Key page; bulk table-based summary file directory tested OK without key."
+  },
+  {
+   "id": "census_bps",
+   "name": "Building Permits Survey (county & place)",
+   "agency": "Census Bureau",
+   "what": "New privately-owned residential units authorized by structure type (1, 2, 3-4, 5+).",
+   "geography": "county/place/metro",
+   "update_frequency": "monthly (place: monthly for sample; annual all)",
+   "access": "https://www2.census.gov/econ/bps/County/co2024a.txt ; https://www2.census.gov/econ/bps/Place/",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "builder",
+    "investor",
+    "roofer (new construction)",
+    "developer"
+   ],
+   "integration": "county value (units permitted, growth)",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "census_nrc",
+   "name": "New Residential Construction (starts/completions)",
+   "agency": "Census Bureau",
+   "what": "Housing starts, completions, under construction - national/region.",
+   "geography": "national/region",
+   "update_frequency": "monthly",
+   "access": "https://www.census.gov/construction/nrc/xls/newresconst.xlsx",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "builder",
+    "investor"
+   ],
+   "integration": "national/regional context panel",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "census_hvs",
+   "name": "Housing Vacancies and Homeownership (CPS/HVS)",
+   "agency": "Census Bureau",
+   "what": "Rental and homeowner vacancy rates, homeownership rate.",
+   "geography": "national/region/state/75 metros",
+   "update_frequency": "quarterly",
+   "access": "https://www.census.gov/housing/hvs/data/histtabs.html",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "landlord"
+   ],
+   "integration": "state/metro value (rental vacancy)",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "census_ahs",
+   "name": "American Housing Survey (AHS) PUF",
+   "agency": "Census Bureau / HUD",
+   "what": "Detailed housing condition, costs, roof/structural problems, remodeling spend.",
+   "geography": "national/metro (selected)",
+   "update_frequency": "biennial",
+   "access": "https://www2.census.gov/programs-surveys/ahs/",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer (roof problem rates)",
+    "renovator",
+    "investor"
+   ],
+   "integration": "metro value / priors for modeling",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "census_rhfs",
+   "name": "Rental Housing Finance Survey",
+   "agency": "Census Bureau / HUD",
+   "what": "Financing, ownership and operating costs of rental properties.",
+   "geography": "national",
+   "update_frequency": "triennial",
+   "access": "https://www.census.gov/programs-surveys/rhfs.html",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "lender"
+   ],
+   "integration": "national context only",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "census_geocoder",
+   "name": "Census Geocoder API",
+   "agency": "Census Bureau",
+   "what": "Address -> lat/lon and FIPS state/county/tract/block (batch 10k).",
+   "geography": "address/point",
+   "update_frequency": "continuous",
+   "access": "https://geocoding.geo.census.gov/geocoder/geographies/onelineaddress?...",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "all (plumbing)"
+   ],
+   "integration": "per-house join key to tract/county",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "census_tiger",
+   "name": "TIGER/Line & TIGERweb boundaries",
+   "agency": "Census Bureau",
+   "what": "County, tract, block group, place, ZCTA polygons.",
+   "geography": "all levels",
+   "update_frequency": "annual",
+   "access": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_Current/MapServer",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "all (plumbing)"
+   ],
+   "integration": "base polygons for all tract/county joins",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "census_lodes",
+   "name": "LEHD LODES (jobs by workplace/residence)",
+   "agency": "Census Bureau",
+   "what": "Jobs by block for workplace and residence; origin-destination flows.",
+   "geography": "block",
+   "update_frequency": "annual",
+   "access": "https://lehd.ces.census.gov/data/lodes/LODES8/",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "STR host (business travel)",
+    "developer"
+   ],
+   "integration": "tract value (jobs within X mi)",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "census_cbp",
+   "name": "County Business Patterns (NAICS 531 etc.)",
+   "agency": "Census Bureau",
+   "what": "Establishments/employment by industry incl. real estate, roofing contractors (238160).",
+   "geography": "county/ZIP",
+   "update_frequency": "annual",
+   "access": "https://api.census.gov/data/2022/cbp?get=NAME,ESTAB&for=county:001&in=state:06&NAICS2017=238160&key=KEY",
+   "key_required": "yes - free key",
+   "licence": {
+    "phrase": "Census data are public; API key free (\"anyone can use\")",
+    "url": "https://www.census.gov/data/developers/guidance/api-user-guide.html"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer (competitor density)",
+    "investor"
+   ],
+   "integration": "county value (roofing contractors per 1k homes)",
+   "priority": 2,
+   "tested": false
+  },
+  {
+   "id": "census_pdb",
+   "name": "Planning Database (tract)",
+   "agency": "Census Bureau",
+   "what": "Tract-level ACS + decennial summary variables incl. housing units, vacancy, renters.",
+   "geography": "tract/block group",
+   "update_frequency": "annual",
+   "access": "https://api.census.gov/data/2024/pdb/tract?...&key=KEY",
+   "key_required": "yes - free key",
+   "licence": {
+    "phrase": "Census data are public; API key free (\"anyone can use\")",
+    "url": "https://www.census.gov/data/developers/guidance/api-user-guide.html"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "marketer"
+   ],
+   "integration": "tract values",
+   "priority": 3,
+   "tested": false
+  },
+  {
+   "id": "census_popest",
+   "name": "Population & housing unit estimates",
+   "agency": "Census Bureau",
+   "what": "Annual county population and housing-unit estimates.",
+   "geography": "county/place",
+   "update_frequency": "annual",
+   "access": "https://api.census.gov/data/2023/pep/charv?...&key=KEY ; https://www2.census.gov/programs-surveys/popest/datasets/",
+   "key_required": "yes - free key (API) / no (files)",
+   "licence": {
+    "phrase": "Census data are public; API key free (\"anyone can use\")",
+    "url": "https://www.census.gov/data/developers/guidance/api-user-guide.html"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "developer"
+   ],
+   "integration": "county value (pop growth)",
+   "priority": 2,
+   "tested": false
+  },
+  {
+   "id": "bls_api",
+   "name": "CPI shelter & rent of primary residence",
+   "agency": "BLS",
+   "what": "CPI-U Rent of primary residence (CUUR0000SEHA), owners equivalent rent, shelter; national + ~23 metros.",
+   "geography": "national/metro",
+   "update_frequency": "monthly",
+   "access": "https://api.bls.gov/publicAPI/v2/timeseries/data/CUUR0000SEHA",
+   "key_required": "no (v1); free key for v2 higher limits",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "landlord",
+    "investor"
+   ],
+   "integration": "metro value (rent inflation)",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "bls_laus",
+   "name": "Local Area Unemployment Statistics",
+   "agency": "BLS",
+   "what": "Unemployment rate and labor force by county.",
+   "geography": "county",
+   "update_frequency": "monthly",
+   "access": "https://api.bls.gov/publicAPI/v2/timeseries/data/LAUCN060010000000003",
+   "key_required": "no / free key",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "lender"
+   ],
+   "integration": "county value",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "bls_qcew",
+   "name": "QCEW employment & wages",
+   "agency": "BLS",
+   "what": "Establishments, employment, wages by county and industry.",
+   "geography": "county",
+   "update_frequency": "quarterly",
+   "access": "https://data.bls.gov/cew/data/api/2024/1/area/06001.csv",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "developer"
+   ],
+   "integration": "county value (job growth, avg wage)",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "usda_elig_svc",
+   "name": "USDA Rural Development property eligibility (ineligible areas)",
+   "agency": "USDA Rural Development",
+   "what": "Areas ineligible for USDA Single-Family (502) and Multifamily programs - i.e. where 0%-down USDA loans work.",
+   "geography": "polygon",
+   "update_frequency": "periodic (post-census updates)",
+   "access": "https://rdgdwe.sc.egov.usda.gov/arcgis/rest/services/Eligibility/Eligibility/MapServer ; lookup https://eligibility.sc.egov.usda.gov/",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "lender",
+    "agent"
+   ],
+   "integration": "per-house flag (USDA-eligible location) + county % eligible",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "hud_ineligible_rural",
+   "name": "Ineligible Rural Areas (HUD eGIS mirror of USDA)",
+   "agency": "USDA RD via HUD eGIS",
+   "what": "Polygon mirror of USDA ineligible areas.",
+   "geography": "polygon",
+   "update_frequency": "periodic",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Ineligible_Rural_Areas/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "lender"
+   ],
+   "integration": "polygon flag (backup source)",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "usda_reo",
+   "name": "USDA RD REO / foreclosure properties",
+   "agency": "USDA Rural Development",
+   "what": "Listings of USDA-owned single-family homes for sale.",
+   "geography": "point (property)",
+   "update_frequency": "frequent",
+   "access": "https://properties.sc.egov.usda.gov/resales/public/home",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "buyer",
+    "roofer"
+   ],
+   "integration": "per-house flag",
+   "priority": 2,
+   "tested": true,
+   "notes": "Web listing app; no bulk API - scrape politely or link out."
+  },
+  {
+   "id": "usfs_wrc",
+   "name": "Wildfire Risk to Communities",
+   "agency": "USDA Forest Service",
+   "what": "Risk to homes, burn probability, exposure, flame length rasters; community tables.",
+   "geography": "raster (30m) / community / county",
+   "update_frequency": "periodic (v2 2024)",
+   "access": "https://wildfirerisk.org/download/ (spreadsheet + Forest Service Research Data Archive GIS)",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "insurer",
+    "roofer (Class A roofing)",
+    "STR host"
+   ],
+   "integration": "county value + per-house raster sample (risk to homes)",
+   "priority": 1,
+   "tested": true,
+   "notes": "ArcGIS service host returned 403 to script; download page OK."
+  },
+  {
+   "id": "sba_hubzone",
+   "name": "HUBZones",
+   "agency": "SBA",
+   "what": "Historically Underutilized Business Zones (qualified tracts, non-metro counties, base closure areas).",
+   "geography": "tract/county",
+   "update_frequency": "annual + ad hoc",
+   "access": "https://maps.certify.sba.gov/hubzone/map",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "commercial RE",
+    "small-business tenant",
+    "contractor"
+   ],
+   "integration": "tract polygon flag",
+   "priority": 3,
+   "tested": true,
+   "notes": "Map app; bulk shapefile linked from map; download URL not pinned."
+  },
+  {
+   "id": "fema_nfhl",
+   "name": "National Flood Hazard Layer (NFHL) incl. LOMR/LOMA",
+   "agency": "FEMA",
+   "what": "Effective flood zones (A/AE/V/X), BFEs, LOMR polygons (layer 1), FIRM panels.",
+   "geography": "polygon (parcel-scale)",
+   "update_frequency": "continuous",
+   "access": "https://hazards.fema.gov/arcgis/rest/services/public/NFHL/MapServer (layer 28 = flood hazard zones; 1 = LOMRs)",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "lender",
+    "insurer",
+    "roofer",
+    "STR host"
+   ],
+   "integration": "per-house flag (SFHA yes/no, zone, BFE) + county % in SFHA",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "fema_nri_svc",
+   "name": "National Risk Index (NRI)",
+   "agency": "FEMA",
+   "what": "18 natural hazards: expected annual loss, social vulnerability, resilience; hail, wind, tornado, hurricane, wildfire, etc.",
+   "geography": "tract/county",
+   "update_frequency": "periodic (v1.20 2025)",
+   "access": "https://services.arcgis.com/XG15cJAlne2vxtgt/arcgis/rest/services/National_Risk_Index_Census_Tracts/FeatureServer ; downloads https://hazards.fema.gov/nri/data-resources",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer (hail/wind EAL)",
+    "buyer",
+    "insurer",
+    "investor"
+   ],
+   "integration": "tract values (hail EAL, wind EAL, overall risk) + county choropleth",
+   "priority": 1,
+   "tested": true,
+   "notes": "hazards.fema.gov download page blocks scripts (403); ArcGIS service OK."
+  },
+  {
+   "id": "fema_claims",
+   "name": "NFIP Redacted Claims (v3)",
+   "agency": "FEMA",
+   "what": "2M+ flood claims with date, amounts, building characteristics, tract/ZIP (no addresses).",
+   "geography": "tract/ZIP (point rounded to 1 decimal)",
+   "update_frequency": "monthly",
+   "access": "https://www.fema.gov/api/open/v3/NfipClaims",
+   "key_required": "no",
+   "licence": {
+    "phrase": "OpenFEMA T&C: cite endpoint + date, non-endorsement line; data \"used solely for statistical research or as a reporting record\"; no re-identification; not for determinations of individual rights/benefits",
+    "url": "https://www.fema.gov/about/openfema/terms-conditions"
+   },
+   "commercial_ok": "verify",
+   "real_estate_uses": [
+    "buyer",
+    "insurer",
+    "restoration contractor"
+   ],
+   "integration": "tract value (claims count / $ per 1k homes)",
+   "priority": 1,
+   "tested": true,
+   "notes": "Aggregate display fine; avoid individual-level determinations per terms."
+  },
+  {
+   "id": "fema_policies",
+   "name": "NFIP Redacted Policies (v3)",
+   "agency": "FEMA",
+   "what": "Flood policies in force: premium, coverage, zone, building type.",
+   "geography": "tract/ZIP",
+   "update_frequency": "monthly",
+   "access": "https://www.fema.gov/api/open/v3/NfipPolicies",
+   "key_required": "no",
+   "licence": {
+    "phrase": "OpenFEMA T&C: cite endpoint + date, non-endorsement line; data \"used solely for statistical research or as a reporting record\"; no re-identification; not for determinations of individual rights/benefits",
+    "url": "https://www.fema.gov/about/openfema/terms-conditions"
+   },
+   "commercial_ok": "verify",
+   "real_estate_uses": [
+    "buyer (premium estimate)",
+    "insurer",
+    "agent"
+   ],
+   "integration": "tract value (median premium, take-up)",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "fema_pen",
+   "name": "NFIP Residential Penetration Rates",
+   "agency": "FEMA",
+   "what": "Share of residential structures with flood insurance by county.",
+   "geography": "county",
+   "update_frequency": "periodic",
+   "access": "https://www.fema.gov/api/open/v1/NfipResidentialPenetrationRates",
+   "key_required": "no",
+   "licence": {
+    "phrase": "OpenFEMA T&C: cite endpoint + date, non-endorsement line; data \"used solely for statistical research or as a reporting record\"; no re-identification; not for determinations of individual rights/benefits",
+    "url": "https://www.fema.gov/about/openfema/terms-conditions"
+   },
+   "commercial_ok": "verify",
+   "real_estate_uses": [
+    "insurer",
+    "agent"
+   ],
+   "integration": "county value",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "fema_mlp",
+   "name": "NFIP Multiple Loss Properties (aggregated)",
+   "agency": "FEMA",
+   "what": "Repetitive-loss property counts by community/ZIP (no addresses).",
+   "geography": "ZIP/community",
+   "update_frequency": "periodic",
+   "access": "https://www.fema.gov/api/open/v1/NfipMultipleLossProperties",
+   "key_required": "no",
+   "licence": {
+    "phrase": "OpenFEMA T&C: cite endpoint + date, non-endorsement line; data \"used solely for statistical research or as a reporting record\"; no re-identification; not for determinations of individual rights/benefits",
+    "url": "https://www.fema.gov/about/openfema/terms-conditions"
+   },
+   "commercial_ok": "verify",
+   "real_estate_uses": [
+    "buyer",
+    "insurer"
+   ],
+   "integration": "ZIP value",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "fema_bcs",
+   "name": "NFIP Community Status Book (CRS class)",
+   "agency": "FEMA",
+   "what": "NFIP participation and CRS class (flood premium discount) by community.",
+   "geography": "community/place",
+   "update_frequency": "monthly",
+   "access": "https://www.fema.gov/api/open/v1/NfipCommunityStatusBook",
+   "key_required": "no",
+   "licence": {
+    "phrase": "OpenFEMA T&C: cite endpoint + date, non-endorsement line; data \"used solely for statistical research or as a reporting record\"; no re-identification; not for determinations of individual rights/benefits",
+    "url": "https://www.fema.gov/about/openfema/terms-conditions"
+   },
+   "commercial_ok": "verify",
+   "real_estate_uses": [
+    "buyer",
+    "insurer"
+   ],
+   "integration": "place/county value (CRS discount %)",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "fema_dd",
+   "name": "Disaster Declarations Summaries",
+   "agency": "FEMA",
+   "what": "All federal disaster declarations by county with incident type and dates.",
+   "geography": "county",
+   "update_frequency": "continuous",
+   "access": "https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries",
+   "key_required": "no",
+   "licence": {
+    "phrase": "OpenFEMA T&C: cite endpoint + date, non-endorsement line; data \"used solely for statistical research or as a reporting record\"; no re-identification; not for determinations of individual rights/benefits",
+    "url": "https://www.fema.gov/about/openfema/terms-conditions"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer (storm-chasing leads)",
+    "restoration",
+    "investor",
+    "insurer"
+   ],
+   "integration": "county value (# declarations 10 yr, latest event) + map alert",
+   "priority": 1,
+   "tested": true,
+   "notes": "Public aggregate records; terms citation line required."
+  },
+  {
+   "id": "fema_ia_owners",
+   "name": "IA Housing Assistance - Owners/Renters",
+   "agency": "FEMA",
+   "what": "Inspected damage and repair/replacement assistance by ZIP/county per disaster.",
+   "geography": "ZIP/county",
+   "update_frequency": "continuous",
+   "access": "https://www.fema.gov/api/open/v2/HousingAssistanceOwners",
+   "key_required": "no",
+   "licence": {
+    "phrase": "OpenFEMA T&C: cite endpoint + date, non-endorsement line; data \"used solely for statistical research or as a reporting record\"; no re-identification; not for determinations of individual rights/benefits",
+    "url": "https://www.fema.gov/about/openfema/terms-conditions"
+   },
+   "commercial_ok": "verify",
+   "real_estate_uses": [
+    "roofer",
+    "restoration",
+    "investor"
+   ],
+   "integration": "ZIP value (damaged-home counts per disaster)",
+   "priority": 2,
+   "tested": false,
+   "notes": "Endpoint exists (listed in OpenFEMA DataSets) but timed out at 90s during test."
+  },
+  {
+   "id": "fema_hma",
+   "name": "Hazard Mitigation Assistance subapplications",
+   "agency": "FEMA",
+   "what": "HMA/BRIC/FMA project subapplications incl. elevations, acquisitions, roof retrofits.",
+   "geography": "county/community",
+   "update_frequency": "continuous",
+   "access": "https://www.fema.gov/api/open/v2/HmaSubapplications",
+   "key_required": "no",
+   "licence": {
+    "phrase": "OpenFEMA T&C: cite endpoint + date, non-endorsement line; data \"used solely for statistical research or as a reporting record\"; no re-identification; not for determinations of individual rights/benefits",
+    "url": "https://www.fema.gov/about/openfema/terms-conditions"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer (mitigation grants)",
+    "investor"
+   ],
+   "integration": "county value (mitigation $)",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "fema_usa_structures",
+   "name": "USA Structures (building footprints)",
+   "agency": "FEMA / ORNL / DHS",
+   "what": "Footprints of all US structures >450 sq ft with occupancy type, height, FIPS.",
+   "geography": "building polygon",
+   "update_frequency": "periodic",
+   "access": "https://fema.maps.arcgis.com/home/item.html?id=0ec8512ad21e4bb987d7e848d14e7e24 ; https://disasters.geoplatform.gov/USA_Structures/",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer",
+    "insurer",
+    "investor"
+   ],
+   "integration": "per-house footprint + occupancy class for 3D block",
+   "priority": 2,
+   "tested": true,
+   "notes": "Item page tested; bulk downloads per state."
+  },
+  {
+   "id": "epa_frs_acres",
+   "name": "Brownfields (ACRES) via Envirofacts FRS",
+   "agency": "EPA",
+   "what": "Brownfield properties assessed/cleaned with EPA grants (program ACRES) - address and lat/lon.",
+   "geography": "point",
+   "update_frequency": "weekly-monthly",
+   "access": "https://data.epa.gov/efservice/FRS_PROGRAM_FACILITY/PGM_SYS_ACRNM/ACRES/ROWS/0:1/JSON",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "developer",
+    "investor"
+   ],
+   "integration": "points; per-house distance to nearest brownfield",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "epa_npl",
+   "name": "Superfund NPL sites (with status)",
+   "agency": "EPA",
+   "what": "National Priorities List sites, boundaries/points with status.",
+   "geography": "point/polygon",
+   "update_frequency": "monthly",
+   "access": "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/Superfund_National_Priorities_List_(NPL)_Sites_with_Status_Information/FeatureServer/0",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "agent (disclosure)",
+    "investor"
+   ],
+   "integration": "points; per-house distance flag (<1 mi)",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "epa_ust",
+   "name": "UST Finder (underground storage tanks & LUST)",
+   "agency": "EPA",
+   "what": "National underground storage tanks and leaking UST releases.",
+   "geography": "point",
+   "update_frequency": "periodic",
+   "access": "https://services.arcgis.com/cJ9YHowT8TU7DUyn/arcgis/rest/services/UST_Finder_Feature_Layer_2/FeatureServer",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "commercial RE"
+   ],
+   "integration": "points; per-house nearest LUST",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "epa_sld",
+   "name": "Smart Location Database / National Walkability Index",
+   "agency": "EPA",
+   "what": "Walkability index and built-environment metrics by block group.",
+   "geography": "block group",
+   "update_frequency": "static (2021)",
+   "access": "https://geodata.epa.gov/arcgis/rest/services/OA/WalkabilityIndex/MapServer",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "STR host",
+    "investor"
+   ],
+   "integration": "block-group value -> per-house walkability",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "epa_ejscreen",
+   "name": "EJScreen",
+   "agency": "EPA",
+   "what": "Environmental justice screening indices (PM2.5, traffic proximity, lead paint, etc.).",
+   "geography": "block group",
+   "update_frequency": "DISCONTINUED by EPA (removed Feb 2025)",
+   "access": "https://www.epa.gov/ejscreen (404); archived copies exist from third parties",
+   "key_required": "n/a",
+   "licence": {
+    "phrase": "Original EPA data was public domain; EPA page now returns 404",
+    "url": "https://www.epa.gov/ejscreen"
+   },
+   "commercial_ok": "verify",
+   "real_estate_uses": [
+    "buyer"
+   ],
+   "integration": "block-group values if a trusted archived 2.3 copy is used",
+   "priority": 3,
+   "tested": false,
+   "notes": "Only use an archived copy of the EPA files themselves (public domain); third-party rebuilds may carry their own licences."
+  },
+  {
+   "id": "dot_noise",
+   "name": "National Transportation Noise Map",
+   "agency": "DOT BTS",
+   "what": "Modeled road, rail and aviation noise (dB LAeq 24h) rasters for CONUS.",
+   "geography": "raster (30m)",
+   "update_frequency": "periodic (2022 latest)",
+   "access": "https://www.bts.gov/geospatial/national-transportation-noise-map ; https://www.bts.gov/bts-net-storage/CONUS_rail_road_and_aviation_noise_2022.zip",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "STR host",
+    "investor",
+    "agent"
+   ],
+   "integration": "per-house raster sample (dB) + tract mean",
+   "priority": 1,
+   "tested": true,
+   "notes": "Page + zip links verified in browser; bts.gov returns 403 to scripts (use browser UA or BTS data portal)."
+  },
+  {
+   "id": "dot_hpms",
+   "name": "HPMS traffic volumes (AADT)",
+   "agency": "DOT FHWA",
+   "what": "Road segments with annual average daily traffic, functional class.",
+   "geography": "road segment",
+   "update_frequency": "annual",
+   "access": "https://geo.dot.gov/server/rest/services/Hosted/HPMS_Full_CA_2022/FeatureServer/0 (per-state services)",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "commercial RE",
+    "STR host"
+   ],
+   "integration": "per-house: AADT of nearest road / busy-road flag",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "dot_ntad",
+   "name": "National Transportation Atlas Database (NTAD) - BTS ArcGIS org",
+   "agency": "DOT BTS",
+   "what": "Airports, rail, transit stops, ports, EV charging, bridges.",
+   "geography": "point/line",
+   "update_frequency": "periodic",
+   "access": "https://services.arcgis.com/xOi1kZaI0eWDREZv/arcgis/rest/services",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "STR host",
+    "investor"
+   ],
+   "integration": "per-house distance to transit/airport",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "faa_airports",
+   "name": "FAA airports / airspace (ADDS)",
+   "agency": "FAA",
+   "what": "Airport locations, runways, airspace classes. NOTE: FAA does not publish national airport noise contours; use BTS noise map aviation layer.",
+   "geography": "point/polygon",
+   "update_frequency": "56-day cycle",
+   "access": "https://adds-faa.opendata.arcgis.com/",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "STR host"
+   ],
+   "integration": "per-house distance to runway",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "usgs_design",
+   "name": "USGS seismic design maps / NSHM",
+   "agency": "USGS",
+   "what": "Point seismic design values (ASCE 7-22) and National Seismic Hazard Model.",
+   "geography": "point / raster",
+   "update_frequency": "per NSHM update (2023)",
+   "access": "https://earthquake.usgs.gov/ws/designmaps/asce7-22.json?latitude=..&longitude=..&riskCategory=II&siteClass=C&title=x",
+   "key_required": "no",
+   "licence": {
+    "phrase": "USGS: \"information ... is in the public domain\"",
+    "url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "insurer",
+    "builder"
+   ],
+   "integration": "per-house value (SDS / PGA) + county class",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "usgs_eq",
+   "name": "USGS earthquake catalog (ComCat)",
+   "agency": "USGS",
+   "what": "Earthquake events with magnitude, location.",
+   "geography": "point",
+   "update_frequency": "real-time",
+   "access": "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson",
+   "key_required": "no",
+   "licence": {
+    "phrase": "USGS public domain",
+    "url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "insurer"
+   ],
+   "integration": "county count of M4+ events",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "usgs_landslide",
+   "name": "US Landslide Inventory & susceptibility",
+   "agency": "USGS",
+   "what": "Landslide inventory points/polygons and national susceptibility map.",
+   "geography": "point/polygon/raster",
+   "update_frequency": "periodic",
+   "access": "https://www.usgs.gov/programs/landslide-hazards (ScienceBase items)",
+   "key_required": "no",
+   "licence": {
+    "phrase": "USGS public domain",
+    "url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "insurer"
+   ],
+   "integration": "per-house susceptibility class",
+   "priority": 3,
+   "tested": false,
+   "notes": "Program page URL 404 and ScienceBase 502 during test - re-find current item."
+  },
+  {
+   "id": "usgs_3dep",
+   "name": "USGS 3DEP elevation (DEM service)",
+   "agency": "USGS",
+   "what": "Bare-earth DEM dynamic service (and lidar point clouds handled by lidar lane).",
+   "geography": "raster",
+   "update_frequency": "continuous",
+   "access": "https://elevation.nationalmap.gov/arcgis/rest/services/3DEPElevation/ImageServer",
+   "key_required": "no",
+   "licence": {
+    "phrase": "USGS public domain",
+    "url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer",
+    "buyer (flood elevation)"
+   ],
+   "integration": "per-house ground elevation (vs BFE)",
+   "priority": 2,
+   "tested": true,
+   "notes": "Lidar itself is handled by another lane; DEM useful for height-above-BFE."
+  },
+  {
+   "id": "noaa_slr_svc",
+   "name": "NOAA Sea Level Rise inundation (0-10 ft)",
+   "agency": "NOAA Office for Coastal Management",
+   "what": "Inundation extents per foot of SLR, plus depth rasters, for coastal US.",
+   "geography": "raster/polygon",
+   "update_frequency": "periodic",
+   "access": "https://coast.noaa.gov/arcgis/rest/services/dc_slr/slr_3ft/MapServer ; data https://coast.noaa.gov/slrdata/",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "investor (long hold)",
+    "insurer",
+    "STR host (coastal)"
+   ],
+   "integration": "per-house flag: inundated at 1/2/3 ft SLR",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "noaa_swdi",
+   "name": "NOAA SWDI radar hail signatures (NX3HAIL)",
+   "agency": "NOAA NCEI",
+   "what": "NEXRAD-derived hail detections with probability and max size, point-in-time.",
+   "geography": "point (radar cell)",
+   "update_frequency": "daily",
+   "access": "https://www.ncei.noaa.gov/swdiws/json/nx3hail/YYYYMMDD:YYYYMMDD?bbox=...",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer (hail leads)",
+    "insurer",
+    "buyer"
+   ],
+   "integration": "per-house: hail hits within 1 mi last N years; county hail-day count",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "noaa_spc",
+   "name": "SPC severe weather reports (hail/wind/tornado) 1950-present",
+   "agency": "NOAA NWS Storm Prediction Center",
+   "what": "Point reports of hail (size), damaging wind, tornado tracks.",
+   "geography": "point/track",
+   "update_frequency": "annual + daily",
+   "access": "https://www.spc.noaa.gov/wcm/ (CSV/shapefiles)",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer",
+    "insurer",
+    "buyer"
+   ],
+   "integration": "per-house nearby reports; county hail frequency",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "noaa_storm_events",
+   "name": "NCEI Storm Events Database",
+   "agency": "NOAA NCEI",
+   "what": "Storm events with property damage $, by county/zone.",
+   "geography": "county/zone + points",
+   "update_frequency": "monthly",
+   "access": "https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer",
+    "insurer",
+    "restoration"
+   ],
+   "integration": "county value (hail/wind events & damage $ per year)",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "noaa_normals",
+   "name": "NOAA Climate Normals 1991-2020",
+   "agency": "NOAA NCEI",
+   "what": "Station temperature/precip/snow normals; HDD/CDD.",
+   "geography": "station point",
+   "update_frequency": "decadal",
+   "access": "https://www.ncei.noaa.gov/data/normals-annualseasonal/1991-2020/access/",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "STR host",
+    "roofer (snow load/ice dam)"
+   ],
+   "integration": "county value via nearest station",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "nws_api",
+   "name": "NWS API (alerts, forecasts)",
+   "agency": "NOAA NWS",
+   "what": "Active alerts (severe thunderstorm, hail) and forecasts by point/zone.",
+   "geography": "point/zone",
+   "update_frequency": "real-time",
+   "access": "https://api.weather.gov/points/{lat},{lon} ; /alerts/active",
+   "key_required": "no (User-Agent required)",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer (storm alerts)",
+    "STR host"
+   ],
+   "integration": "live county alert overlay",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "nrel_pvwatts_nlr",
+   "name": "PVWatts / NSRDB solar resource API",
+   "agency": "DOE national lab (formerly NREL; API now at developer.nlr.gov)",
+   "what": "Solar irradiance and modeled PV production for any lat/lon, tilt, azimuth.",
+   "geography": "point (4 km)",
+   "update_frequency": "continuous",
+   "access": "https://developer.nlr.gov/api/pvwatts/v8.json?api_key=KEY&lat=..&lon=..",
+   "key_required": "yes - free key (DEMO_KEY works for tests)",
+   "licence": {
+    "phrase": "Developer network terms (lab-operated; not checked - developer.nrel.gov no longer resolves)",
+    "url": "https://developer.nlr.gov/docs/"
+   },
+   "commercial_ok": "verify",
+   "real_estate_uses": [
+    "roofer (solar upsell)",
+    "buyer",
+    "investor"
+   ],
+   "integration": "per-house: kWh/yr from roof plane tilt/azimuth (pairs with 3D block)",
+   "priority": 1,
+   "tested": true,
+   "notes": "Old host developer.nrel.gov failed DNS; developer.nlr.gov returned data. Confirm current API terms."
+  },
+  {
+   "id": "openei_urdb",
+   "name": "Utility Rate Database (URDB)",
+   "agency": "DOE / OpenEI",
+   "what": "Electric utility tariffs by utility and lat/lon.",
+   "geography": "utility territory / point",
+   "update_frequency": "continuous",
+   "access": "https://api.openei.org/utility_rates?version=8&format=json&api_key=KEY&lat=..&lon=..",
+   "key_required": "yes - free key",
+   "licence": {
+    "phrase": "OpenEI: \"Content is available under Creative Commons Zero unless otherwise noted\"",
+    "url": "https://openei.org/wiki/Utility_Rate_Database"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer (solar ROI)",
+    "buyer",
+    "STR host (utility cost)"
+   ],
+   "integration": "per-house utility + residential $/kWh",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "eia_api",
+   "name": "EIA electricity retail sales & prices",
+   "agency": "DOE EIA",
+   "what": "Residential electricity price/consumption by state; utility-level (Form 861).",
+   "geography": "state / utility",
+   "update_frequency": "monthly",
+   "access": "https://api.eia.gov/v2/electricity/retail-sales/data/?api_key=KEY",
+   "key_required": "yes - free key",
+   "licence": {
+    "phrase": "EIA: data are in the public domain and may be used freely (citation requested)",
+    "url": "https://www.eia.gov/about/copyrights_reuse.php"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer (solar)",
+    "buyer",
+    "landlord"
+   ],
+   "integration": "state value ($/kWh)",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "doe_lead",
+   "name": "LEAD Tool (Low-Income Energy Affordability Data)",
+   "agency": "DOE",
+   "what": "Energy burden by income, tenure, building type.",
+   "geography": "tract/county",
+   "update_frequency": "periodic",
+   "access": "https://www.energy.gov/scep/low-income-energy-affordability-data-lead-tool",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "roofer (efficiency programs)",
+    "landlord"
+   ],
+   "integration": "tract value (energy burden %)",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "fcc_bdc",
+   "name": "FCC National Broadband Map (BDC) public data",
+   "agency": "FCC",
+   "what": "Fixed and mobile broadband availability by provider, technology, speed (location/H3 hex, block, county summaries).",
+   "geography": "location/hex/block/county",
+   "update_frequency": "semi-annual",
+   "access": "https://broadbandmap.fcc.gov/data-download/nationwide-data ; BDC Public Data API (free account + token)",
+   "key_required": "bulk: no; API: free token",
+   "licence": {
+    "phrase": "Availability data published by FCC; Broadband Serviceable Location Fabric is licensed from a contractor (restricted) - not checked on page",
+    "url": "https://broadbandmap.fcc.gov/about"
+   },
+   "commercial_ok": "verify",
+   "real_estate_uses": [
+    "STR host",
+    "remote-worker buyer",
+    "agent"
+   ],
+   "integration": "county/tract value (% locations with 100/20 fiber); avoid fabric-level location IDs",
+   "priority": 2,
+   "tested": true,
+   "notes": "Page loaded in browser (403 to scripts); licence text not found on page."
+  },
+  {
+   "id": "gsa_frpp",
+   "name": "Federal Real Property Profile (FRPP) public data set",
+   "agency": "GSA",
+   "what": "Federal government-owned/leased buildings & land: location, size, use, status (incl. excess/disposal).",
+   "geography": "point (city/address)",
+   "update_frequency": "annual",
+   "access": "https://www.gsa.gov/policy-regulations/policy/real-property-policy/asset-management/federal-real-property-profile-frpp/federal-real-property-public-data-set",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "commercial RE",
+    "investor (disposals)"
+   ],
+   "integration": "points; county federal-footprint value",
+   "priority": 3,
+   "tested": true,
+   "notes": "Page tested; data file link not auto-extracted."
+  },
+  {
+   "id": "gsa_realestatesales",
+   "name": "GSA Real Estate Sales (federal property disposal auctions)",
+   "agency": "GSA",
+   "what": "Surplus federal real estate for sale/auction.",
+   "geography": "point (property)",
+   "update_frequency": "continuous",
+   "access": "https://realestatesales.gov/ ; GSA Auctions API https://api.gsa.gov/assets/gsaauctions/v2/auctions?api_key=KEY",
+   "key_required": "API: free api.data.gov key",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "developer"
+   ],
+   "integration": "property points / alerts",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "va_reo",
+   "name": "VA REO properties (Vendee)",
+   "agency": "Dept. of Veterans Affairs (contractor VRM)",
+   "what": "VA-acquired foreclosed homes for sale.",
+   "geography": "point (property)",
+   "update_frequency": "continuous",
+   "access": "https://listings.vrmco.com/",
+   "key_required": "no",
+   "licence": {
+    "phrase": "Contractor-run site; terms not checked",
+    "url": "https://listings.vrmco.com/"
+   },
+   "commercial_ok": "verify",
+   "real_estate_uses": [
+    "investor",
+    "buyer"
+   ],
+   "integration": "per-house flag",
+   "priority": 3,
+   "tested": false,
+   "notes": "SSL certificate error during script test."
+  },
+  {
+   "id": "cfpb_hmda",
+   "name": "HMDA mortgage applications (Data Browser API)",
+   "agency": "CFPB / FFIEC",
+   "what": "Every reportable mortgage application: amount, action, rate, property value, tract.",
+   "geography": "tract/county",
+   "update_frequency": "annual (spring)",
+   "access": "https://ffiec.cfpb.gov/v2/data-browser-api/view/aggregations?years=2023&counties=06001&actions_taken=1 ; CSV via /view/csv",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "lender",
+    "investor",
+    "agent",
+    "roofer (refi/home-improvement loan volume)"
+   ],
+   "integration": "tract values (purchase volume, median loan, home-improvement loans, denial rate)",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "ffiec_census",
+   "name": "FFIEC Census flat file (tract income level, MSA median)",
+   "agency": "FFIEC (interagency)",
+   "what": "Tract income level (low/mod/mid/upper), distressed/underserved flags for CRA.",
+   "geography": "tract",
+   "update_frequency": "annual",
+   "access": "https://www.ffiec.gov/data/census (flat files)",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "lender",
+    "investor"
+   ],
+   "integration": "tract flag (LMI tract for CRA)",
+   "priority": 2,
+   "tested": true,
+   "notes": "Browser OK; 403 to scripts."
+  },
+  {
+   "id": "fdic_api",
+   "name": "FDIC BankFind (institutions & branches)",
+   "agency": "FDIC",
+   "what": "Bank branches with location and deposits (SOD).",
+   "geography": "point",
+   "update_frequency": "quarterly/annual",
+   "access": "https://api.fdic.gov/banks/institutions ; /locations ; /sod",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "lender",
+    "commercial RE"
+   ],
+   "integration": "county value (bank branches)",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "fred_csv",
+   "name": "FRED (St. Louis Fed) series",
+   "agency": "Federal Reserve Bank of St. Louis",
+   "what": "Aggregator of 800k series incl. MORTGAGE30US (Freddie PMMS), Case-Shiller, etc.",
+   "geography": "national/state/county/metro",
+   "update_frequency": "varies",
+   "access": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=MORTGAGE30US",
+   "key_required": "API: free key",
+   "licence": {
+    "phrase": "FRED ToS FAQ: use for \"personal, non-commercial use\"; third-party series carry owner restrictions",
+    "url": "https://fred.stlouisfed.org/legal/"
+   },
+   "commercial_ok": "no",
+   "real_estate_uses": [
+    "(use primary sources instead)"
+   ],
+   "integration": "none - fetch underlying federal series from the source agency",
+   "priority": 3,
+   "tested": true,
+   "notes": "Do not use FRED as the commercial channel; pull BLS/Census/FHFA directly."
+  },
+  {
+   "id": "freddie_pmms",
+   "name": "Freddie Mac PMMS mortgage rates",
+   "agency": "Freddie Mac (GSE, not a federal agency)",
+   "what": "Weekly 30-yr and 15-yr fixed average rates.",
+   "geography": "national",
+   "update_frequency": "weekly",
+   "access": "https://www.freddiemac.com/pmms/docs/historicalweeklydata.xlsx",
+   "key_required": "no",
+   "licence": {
+    "phrase": "PMMS page: information \"may be used with proper attribution\"; alteration prohibited",
+    "url": "https://www.freddiemac.com/pmms"
+   },
+   "commercial_ok": "verify",
+   "real_estate_uses": [
+    "buyer",
+    "lender",
+    "investor"
+   ],
+   "integration": "national value (affordability calc)",
+   "priority": 2,
+   "tested": true,
+   "notes": "Attribution permits reuse; confirm site Terms of Use for commercial display."
+  },
+  {
+   "id": "freddie_sf",
+   "name": "Freddie Mac Single-Family Loan-Level Dataset",
+   "agency": "Freddie Mac (GSE)",
+   "what": "Loan-level origination + monthly performance 1999-present (3-digit ZIP).",
+   "geography": "ZIP3",
+   "update_frequency": "quarterly",
+   "access": "https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset (registration)",
+   "key_required": "yes - registration",
+   "licence": {
+    "phrase": "\"requires a licensing agreement for commercial redistribution\"; free for non-commercial/academic",
+    "url": "https://www.freddiemac.com/research/datasets/sf-loanlevel-dataset"
+   },
+   "commercial_ok": "no",
+   "real_estate_uses": [
+    "(internal modeling only)"
+   ],
+   "integration": "none for display; could train internal models only if terms allow",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "fannie_dd",
+   "name": "Fannie Mae Single-Family Loan Performance Data",
+   "agency": "Fannie Mae (GSE)",
+   "what": "Loan-level acquisition + performance (3-digit ZIP).",
+   "geography": "ZIP3",
+   "update_frequency": "quarterly",
+   "access": "https://capitalmarkets.fanniemae.com/credit-risk-transfer/single-family-credit-risk-transfer/fannie-mae-single-family-loan-performance-data (Data Dynamics registration)",
+   "key_required": "yes - registration",
+   "licence": {
+    "phrase": "Data Dynamics terms of use (not reviewed; registration-gated)",
+    "url": "https://capitalmarkets.fanniemae.com/"
+   },
+   "commercial_ok": "verify",
+   "real_estate_uses": [
+    "(internal modeling)"
+   ],
+   "integration": "none for display",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "nces_schools",
+   "name": "NCES EDGE public school locations",
+   "agency": "Dept. of Education NCES",
+   "what": "Geocoded public (and private) school points with NCES IDs; join to CCD enrollment.",
+   "geography": "point",
+   "update_frequency": "annual",
+   "access": "https://nces.ed.gov/opengis/rest/services/K12_School_Locations/EDGE_GEOCODE_PUBLICSCH_2324/MapServer/0",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "agent",
+    "STR host (family)"
+   ],
+   "integration": "per-house nearest schools",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "nces_districts",
+   "name": "NCES school district boundaries",
+   "agency": "Dept. of Education NCES",
+   "what": "Unified/elementary/secondary district polygons.",
+   "geography": "polygon",
+   "update_frequency": "annual",
+   "access": "https://nces.ed.gov/opengis/rest/services/School_District_Boundaries",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "agent"
+   ],
+   "integration": "per-house district assignment",
+   "priority": 1,
+   "tested": true
+  },
+  {
+   "id": "nces_sabs",
+   "name": "School Attendance Boundary Survey (SABS)",
+   "agency": "Dept. of Education NCES",
+   "what": "Attendance-zone polygons (2015-16 only - stale).",
+   "geography": "polygon",
+   "update_frequency": "static (2015-16)",
+   "access": "https://nces.ed.gov/programs/edge/SABS",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "agent"
+   ],
+   "integration": "per-house attendance zone (flag as historical)",
+   "priority": 3,
+   "tested": true,
+   "notes": "Data is dated; label clearly."
+  },
+  {
+   "id": "bea_api",
+   "name": "BEA Regional income (CAINC, personal income per capita)",
+   "agency": "Commerce BEA",
+   "what": "County personal income, per-capita income, GDP by county.",
+   "geography": "county",
+   "update_frequency": "annual",
+   "access": "https://apps.bea.gov/api/data?UserID=KEY&method=GetData&datasetname=Regional&TableName=CAINC1&LineCode=3&GeoFips=COUNTY&Year=LAST5",
+   "key_required": "yes - free UserID",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "developer"
+   ],
+   "integration": "county value (income growth)",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "cdc_svi_svc",
+   "name": "CDC/ATSDR Social Vulnerability Index",
+   "agency": "HHS CDC/ATSDR",
+   "what": "16 census variables -> vulnerability percentile.",
+   "geography": "tract/county",
+   "update_frequency": "biennial",
+   "access": "https://onemap.cdc.gov/OneMapServices/rest/services/SVI ; https://svi.cdc.gov/",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "nonprofit",
+    "insurer",
+    "investor"
+   ],
+   "integration": "tract value",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "cdc_places",
+   "name": "CDC PLACES (local health estimates)",
+   "agency": "HHS CDC",
+   "what": "Model-based health measures by tract (incl. housing insecurity in newer releases).",
+   "geography": "tract/ZCTA/county",
+   "update_frequency": "annual",
+   "access": "https://data.cdc.gov/resource/cwsq-ngmh.json",
+   "key_required": "no (Socrata app token optional)",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "investor",
+    "senior-housing"
+   ],
+   "integration": "tract values",
+   "priority": 3,
+   "tested": true
+  },
+  {
+   "id": "fbi_cde",
+   "name": "FBI Crime Data Explorer (UCR/NIBRS)",
+   "agency": "DOJ FBI",
+   "what": "Offenses by reporting agency (city/county police).",
+   "geography": "agency (city/county)",
+   "update_frequency": "annual",
+   "access": "https://cde.ucr.cjis.gov/ ; API via api.data.gov (free key)",
+   "key_required": "yes - free api.data.gov key",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "STR host",
+    "investor"
+   ],
+   "integration": "county/place value (violent & property crime rate)",
+   "priority": 2,
+   "tested": true,
+   "notes": "Agency coverage uneven; show coverage %."
+  },
+  {
+   "id": "nps_nrhp_svc",
+   "name": "National Register of Historic Places locations",
+   "agency": "Interior NPS",
+   "what": "Listed historic properties and districts.",
+   "geography": "point/polygon",
+   "update_frequency": "periodic",
+   "access": "https://mapservices.nps.gov/arcgis/rest/services/cultural_resources/nrhp_locations/MapServer",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer (renovation limits)",
+    "roofer (material rules)",
+    "investor (historic tax credit)"
+   ],
+   "integration": "per-house flag (in historic district)",
+   "priority": 2,
+   "tested": true
+  },
+  {
+   "id": "usace_nid",
+   "name": "National Inventory of Dams",
+   "agency": "USACE",
+   "what": "All ~92k dams with hazard potential classification, condition.",
+   "geography": "point",
+   "update_frequency": "continuous",
+   "access": "https://nid.sec.usace.army.mil/api/nation/csv",
+   "key_required": "no",
+   "licence": {
+    "phrase": "\"U.S. Government Works ... not subject to copyright\" (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "real_estate_uses": [
+    "buyer",
+    "insurer"
+   ],
+   "integration": "per-house: high-hazard dam within X mi",
+   "priority": 3,
+   "tested": true
+  }
+ ]
+}

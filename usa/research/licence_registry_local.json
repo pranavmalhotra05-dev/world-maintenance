@@ -1,0 +1,2835 @@
+{
+ "generated": "2026-11-24",
+ "lane": "A - city / county / state / local sources (national, federal, private and global sources are lane B: licence_registry_national.json)",
+ "rule": "STRICT clear-green only: terms must EXPLICITLY allow commercial use and redistribution (US federal work / public-domain dedication, CC0, CC BY, CC BY-SA, ODbL, ODC-BY/PDDL, an open-government licence, or a city/county open-data licence page that explicitly permits reuse). Disclaimer-only, terms-unstated, 'use limitations: None', 'verify', non-commercial, internal-use, do-not-share, all-rights-reserved, or special commercial-purpose regimes (A.R.S. 39-121.03, Texas appraisal districts) = grey/red -> remove or replace. Facts summarised in our own words with a link (PHA payment standards, program descriptions) need no licence.",
+ "method": "Listed every endpoint in usa/adapters/*.py, usa/local_sources.json, usa/local_flags.py, usa/assistance_flags.py local inputs, usa/road_traffic.py (state DOTs), usa/tourism_econ.py (state/city STR + HOT feeds), mpls/*.py and dallas/*.py. ArcGIS services resolved to serviceItemId and the ArcGIS Online item licenseInfo read via sharing/rest; Socrata licences via /api/views/<id>.json; CKAN via package_show; portal terms pages (Denver, KCMO, Boulder County, Dallas, Minneapolis, Saint Paul, Phoenix, Maricopa Assessor, DCAD, Metro Transit) read with Python requests and the built-in browser. No Firecrawl; no terms or login gates accepted (EDI login and the Phoenix bot check were not passed).",
+ "counts": {
+  "sources": 107,
+  "green": 58,
+  "grey": 44,
+  "red": 5,
+  "keep": 58,
+  "replace": 17,
+  "remove": 32
+ },
+ "removal_list": [
+  {
+   "id": "mpls_vbr",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "mpls_condemned",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "mpls_speed",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "OpenStreetMap maxspeed tags (ODbL)."
+  },
+  {
+   "id": "mpls_signals",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "OpenStreetMap highway=traffic_signals (ODbL; already pulled by mpls/extras.py)."
+  },
+  {
+   "id": "mpls_solar",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "Our own LiDAR sun model (houses[].sun from mpls/derive.py)."
+  },
+  {
+   "id": "mpls_sanitary_mains",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "mpls_storm_mains",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "mpls_msptrees",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "Keep LiDAR-detected trees (height/crown) and drop genus/ash fields; or read the EDI licence after the owner signs in; OSM natural=tree genus tags (ODbL)."
+  },
+  {
+   "id": "hennepin_parcels",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "Met Council 'Metropolitan 7-County Parcel Polygons - 2025' layer 3 'Hennepin County Parcels' (https://arcgis.metc.state.mn.us/data1/rest/services/parcels/Parcels_2025/FeatureServer/3, item 27d9f56cfec6454688110d08ae6826a0): 'None. This dataset is public domain under the Minnesota Government Data Practices Act (Minnesota Statutes Chapter 13).' Fields EMV_LAND/EMV_BLDG/EMV_TOTAL, TOTAL_TAX, YEAR_BUILT, SALE_DATE/SALE_VALUE, HOMESTEAD, FIN_SQ_FT, GARAGE, ZIP (never read OWNER_*/TAX_NAME/TAX_ADD_*)."
+  },
+  {
+   "id": "hennepin_imagery",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "USDA NAIP (public domain; via Planetary Computer, already used in mpls/extras.py) or USGS National Map orthoimagery (public domain) for img/<year>.jpg and the roof-colour series."
+  },
+  {
+   "id": "ramsey_parcels",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "Met Council Parcels_2025 layer 4 'Ramsey County Parcels' (https://arcgis.metc.state.mn.us/data1/rest/services/parcels/Parcels_2025/FeatureServer/4): 'None. This dataset is public domain under the Minnesota Government Data Practices Act (Minnesota Statutes Chapter 13).' (no exterior-wall field)."
+  },
+  {
+   "id": "metc_interceptors",
+   "verdict": "red",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "metc_sewershed",
+   "verdict": "red",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "metc_transitways_tpp2050",
+   "verdict": "red",
+   "action": "replace",
+   "alternative": "Met Council 'Transitway Stations and Alignments' (https://arcgis.metc.state.mn.us/data2/rest/services/transportation/Transitways/FeatureServer, item c920b202e0d44c62af7469757e761401): 'None. This dataset is public domain under the Minnesota Government Data Practices Act (Minnesota Statutes Chapter 13).'"
+  },
+  {
+   "id": "metro_transit_gtfs",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "Stops: Met Council 'Metro Transit Stops' (https://arcgis.metc.state.mn.us/data2/rest/services/transportation/Transit_Stops/FeatureServer/0, item ee70abbc572c46d189f7aa4a0966536c, public domain under MGDPA). Live departures: no green alternative - drop."
+  },
+  {
+   "id": "mndot_aadt",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "FHWA HPMS public sections (US federal work, already the base layer in usa/road_traffic.py) carry AADT for the same MN roads."
+  },
+  {
+   "id": "mndot_iris",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "stp_cofo",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "dcad",
+   "verdict": "red",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "dal_permits",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "dal_hoa",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "dal_roads",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "US Census TIGER/Line roads (public domain) or OpenStreetMap (ODbL)."
+  },
+  {
+   "id": "aus_landdb",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "aus_subdiv",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "boco_cama",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "Boulder County 'Assessor's Property Data' bulk CSVs (Buildings, All Sales, Property Values, Land; https://www.bouldercounty.org/property-and-land/assessor/data-download/), catalog item d39100d04be34354b97ad52874f5e7d4 licensed https://creativecommons.org/licenses/by/4.0/ ; parcel geometry from catalog item 90e3547382df4d498b779672d2685b0b 'Parcels (with address and ownership information)' (CC BY 4.0; do not read owner fields)."
+  },
+  {
+   "id": "bou_code_public",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "City of Boulder 'Code Enforcement Reports' (https://gis.bouldercolorado.gov/ags_svr1/rest/services/plan/CodeEnforcement/MapServer/0, item a703fa3a075e43b09de13e3abd61bef4): 'Creative Commons CC Zero license (CC0 1.0)'; responds, 27,451 rows."
+  },
+  {
+   "id": "bou_zoning",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "City of Boulder 'Zoning Districts' (https://gis.bouldercolorado.gov/ags_svr1/rest/services/plan/ZoningDistricts/MapServer/0, item e88004e26b9e42cfba32129fb8731f41): CC0 1.0; responds."
+  },
+  {
+   "id": "fra_sales",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "fra_parcels",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "fra_condo",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "cagis_parcels",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "City of Cincinnati Open Data lists 'Hamilton County Parcel Polygons' (https://data.cincinnati-oh.gov/d/g24g-2pi5) with licence 'Public Domain', access point CAGIS item 9ab9d942593d4b0fb06a8e99e7e0ff23 layer 0 - re-point the adapter there and cite the city listing (check it carries the value/class fields used)."
+  },
+  {
+   "id": "cagis_zoning",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "'Hamilton County Zoning Designation' (https://data.cincinnati-oh.gov/d/f25h-aupn, Public Domain) only if it covers the City of Cincinnati; otherwise drop zoning."
+  },
+  {
+   "id": "cagis_subdiv",
+   "verdict": "grey",
+   "action": "replace",
+   "alternative": "City of Cincinnati Open Data 'Hamilton County Subdivision Boundaries' (https://data.cincinnati-oh.gov/d/rynu-bywd, licence 'Public Domain', access point CAGIS c476f99bde094b9a8bff26b9ace21f17 layer 3)."
+  },
+  {
+   "id": "tul_parcels",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "tul_zoning",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "tul_cases",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "tul_subdiv",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "kc_parcels",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "kc_zoning",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "kc_landuse_codes",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "kc_permits",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "kc_str",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "kc_hoa",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "kc_vacant",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "hsv_parcels",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "hsv_permits",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "jcc_parcels",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "mca_parcels",
+   "verdict": "red",
+   "action": "remove",
+   "alternative": null
+  },
+  {
+   "id": "phx_permits",
+   "verdict": "grey",
+   "action": "remove",
+   "alternative": null
+  }
+ ],
+ "notes": [
+  "used_in[].outputs names the keys a filter must strip for that source. Adapter outputs (houses[].assessor, houses[].permits, layers.permits, ...) are per city: strip them only on blocks whose meta.city_data.adapter is that city.",
+  "When an assessor source is removed, re-run usa/city_enrich.py without it so houses[].money falls back to the ACS census-tract median (federal, green), instead of deleting houses[].money outright.",
+  "usa/local_sources.json commercial_ok is stale for mpls_rental (actually CC BY-SA 4.0) and for the Denver items (licence comes from the catalog terms, not the item text).",
+  "Borderline calls the owner may want to review: mndot_aadt (grey: 'Use limitations: None').",
+  "fra_parcels / fra_condo: moved to grey + removed (owner: no clear legal standing); Columbus blocks fall back to the ACS tract median, parcels: [] and City of Columbus CC0 plats only."
+ ],
+ "sources": [
+  {
+   "id": "mpls_assessor",
+   "name": "City of Minneapolis Assessing Department Parcel Data 2026",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Assessing_Department_Parcel_Data_2026/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/minneapolis.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money (assessor-derived est_value_now/value_level/value_basis/last_sale/tax_yr/payments_20pct_down)",
+      "houses[].value",
+      "houses[].year_built (when filled from assessor)",
+      "houses[].zoning (when filled from assessor)",
+      "houses[].address + houses[].address_source (when filled from assessor)",
+      "meta.city_data.licences.assessor",
+      "meta.city_data.counts.assessor_matched",
+      "meta.assessor_label"
+     ]
+    },
+    {
+     "script": "mpls/osint.py",
+     "outputs": [
+      "houses[].assessor"
+     ]
+    },
+    {
+     "script": "mpls/derive.py",
+     "outputs": [
+      "houses[].parking.garage_stalls",
+      "houses[].stories_check.assessor"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=f6748f040c6a4244bb2b314b26b44b48",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "Item licenseInfo is the City of Minneapolis CC0 waiver.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_permits",
+   "name": "City of Minneapolis CCS Permits",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/CCS_Permits/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/minneapolis.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit",
+      "layers.permits",
+      "meta.city_data.counts.permits"
+     ]
+    },
+    {
+     "script": "mpls/osint.py",
+     "outputs": [
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit",
+      "layers.json permits"
+     ]
+    },
+    {
+     "script": "mpls/live.py",
+     "outputs": [
+      "layers.json permits",
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=df4bfccbe60b42a6a93fb7bc1fd84cc0",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver on item.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_311",
+   "name": "City of Minneapolis Public_311_<year> (2015-2026)",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Public_311_<YYYY>/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/minneapolis.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].cases311",
+      "layers.cases311",
+      "meta.city_data.counts.cases311"
+     ]
+    },
+    {
+     "script": "mpls/osint.py",
+     "outputs": [
+      "houses[].cases311",
+      "layers.json cases311"
+     ]
+    },
+    {
+     "script": "mpls/live.py",
+     "outputs": [
+      "layers.json cases311",
+      "houses[].cases311"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=cb378a2e807f4cbfb626850b2767e234 (2025; 2015-2020 items also checked)",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver on every yearly item checked.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_sales",
+   "name": "City of Minneapolis Property Sales 2021-2025",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Property_Sales_2021_to_2025/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.sales",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=78d32371381a424a808a1d0852645a73",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver on item.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_rental",
+   "name": "City of Minneapolis Rental Licenses (Archive)",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Rental_Licenses/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.rental_license",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=2f318a2ae2454ec2973d73954cc1f7db",
+   "licence_quote": "This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License.",
+   "verdict": "green",
+   "reason": "CC BY-SA 4.0 (local_sources.json wrongly says 'no licence text'). Share-alike applies to derived data; attribute City of Minneapolis. The CC0 Active_Rental_Licenses item (c92b31d109ad4247bb113adbd1bce81a) still returns 'Invalid URL'.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_vbr",
+   "name": "City of Minneapolis County_Parcels_VBR (Vacant Building Registry)",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/County_Parcels_VBR/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.vacant_or_condemned",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=7b17fcc5ff8d4500ae4ca9907bbb4483",
+   "licence_quote": "(item licenseInfo empty; staff-owned item; opendata.minneapolismn.gov has no site-wide licence or terms page)",
+   "verdict": "grey",
+   "reason": "No licence text; Minneapolis CC0 is per item, not site-wide.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "mpls_condemned",
+   "name": "City of Minneapolis Condemned by Boarding",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Condemned_by_Boarding/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.vacant_or_condemned",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=a96eb4223d5340c4aa6072d67c7ce28a",
+   "licence_quote": "(item licenseInfo empty; staff-owned item)",
+   "verdict": "grey",
+   "reason": "No licence text.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "mpls_case_inspections",
+   "name": "City of Minneapolis CaseInspections",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/CaseInspections/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.code_cases_5y",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    },
+    {
+     "script": "mpls/civic.py",
+     "outputs": [
+      "houses[].inspections"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=8521a345d9024f84979f169d1171ade2",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_case_violations",
+   "name": "City of Minneapolis CaseViolations",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/CaseViolations/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/civic.py",
+     "outputs": [
+      "houses[].violations"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=96f3ea4697a64e0abaa2f33853048e0b",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_crime",
+   "name": "City of Minneapolis Crime_Data",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Crime_Data/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/civic.py",
+     "outputs": [
+      "civic.json crime"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=68c6de8cf6a047e888ceb6f507010851",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_zoning",
+   "name": "City of Minneapolis Planning_Primary_Zoning",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Planning_Primary_Zoning/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/civic.py",
+     "outputs": [
+      "houses[].zoning"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=5dd8138c953a4555b17caf44d777c5fb",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_snow",
+   "name": "City of Minneapolis Snow_Emergency_Routes",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Snow_Emergency_Routes/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/civic.py",
+     "outputs": [
+      "civic.json snow"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=9a1e00d0a52d4e8db2a0b85ad3495fd6",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_speed",
+   "name": "City of Minneapolis Speed Limits Jan 2022",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Speed_Limits_Jan_2022/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/civic.py",
+     "outputs": [
+      "civic.json speed"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=9d74598c0b354c91979c9e6503ca32d8",
+   "licence_quote": "(item licenseInfo empty; staff-owned item)",
+   "verdict": "grey",
+   "reason": "No licence text.",
+   "alternative": "OpenStreetMap maxspeed tags (ODbL).",
+   "action": "replace"
+  },
+  {
+   "id": "mpls_signals",
+   "name": "City of Minneapolis All Signalized Intersections",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/All_Signalized_Intersections/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/civic.py",
+     "outputs": [
+      "civic.json signals"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=08e6d166dc484c18a2cdebc358e08117",
+   "licence_quote": "(item licenseInfo empty; staff-owned item)",
+   "verdict": "grey",
+   "reason": "No licence text.",
+   "alternative": "OpenStreetMap highway=traffic_signals (ODbL; already pulled by mpls/extras.py).",
+   "action": "replace"
+  },
+  {
+   "id": "mpls_solar",
+   "name": "City of Minneapolis BuildingsSolarSuitability",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/BuildingsSolarSuitability/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/civic.py",
+     "outputs": [
+      "houses[].solar_city"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=4359c27294de417c810908dd008319a4",
+   "licence_quote": "(item licenseInfo empty; accessInformation 'City of Minneapolis')",
+   "verdict": "grey",
+   "reason": "No licence text.",
+   "alternative": "Our own LiDAR sun model (houses[].sun from mpls/derive.py).",
+   "action": "replace"
+  },
+  {
+   "id": "mpls_hydrants",
+   "name": "City of Minneapolis Hydrants",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Hydrants/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra.json layers.hydrants",
+      "houses[].nearby.hydrants"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=4d7fc1675df843c7bbf3b63f77bc19dc",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_catch_basins",
+   "name": "City of Minneapolis Stormwater_Catch_Basins",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Stormwater_Catch_Basins/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra.json layers.catch_basins",
+      "houses[].nearby.catch_basins"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=386fda92f6db45ddb48765259abe461c",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_parks",
+   "name": "City of Minneapolis Parks",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Parks/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra.json layers.parks",
+      "houses[].nearby.parks"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=a1847c4cc69940f99b46b16e2b4fe7e3",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_sanitary_mains",
+   "name": "City of Minneapolis Sanitary_Mains (2019)",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Sanitary_Mains/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra.json layers.sanitary_mains_2019"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=d92fa457ea1b43da8b2f98fd72efac4b",
+   "licence_quote": "(item licenseInfo empty; staff-owned item)",
+   "verdict": "grey",
+   "reason": "No licence text.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "mpls_storm_mains",
+   "name": "City of Minneapolis Storm_Mains (2019)",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Storm_Mains/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra.json layers.storm_mains_2019"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=4b7818f792ea4b70953b0337a3810eec",
+   "licence_quote": "(item licenseInfo empty; staff-owned item)",
+   "verdict": "grey",
+   "reason": "No licence text.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "mpls_pavement",
+   "name": "City of Minneapolis PWStreetPavementMgmt",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/PWStreetPavementMgmt/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/osint.py",
+     "outputs": [
+      "layers.json pavement"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=02bfab32c2ff40c1b5692f9ab816820f",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_alleys",
+   "name": "City of Minneapolis PW_Alleys",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/PW_Alleys/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/osint.py",
+     "outputs": [
+      "layers.json alleys"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=05d277839b8f49c68e3f8f7a411a505a",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_planimetric",
+   "name": "City of Minneapolis PW_Planimetric_Lines",
+   "jurisdiction": "Minneapolis, MN",
+   "endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/PW_Planimetric_Lines/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/osint.py",
+     "outputs": [
+      "layers.json planimetric"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=a35dcee707854e5194fa86056a0a665a",
+   "licence_quote": "To the extent possible under law, City of Minneapolis has waived all copyright and related or neighboring rights to Open Data.",
+   "verdict": "green",
+   "reason": "CC0 waiver.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mpls_msptrees",
+   "name": "MSPtrees_2023 urban tree inventory (UMN; CSV re-upload on ArcGIS Online)",
+   "jurisdiction": "Minneapolis-Saint Paul, MN",
+   "endpoint": "https://www.arcgis.com/sharing/rest/content/items/dc4e43ade1364fe9a294889c7c457d07/data",
+   "used_in": [
+    {
+     "script": "mpls/derive.py",
+     "outputs": [
+      "trees.json genus/species",
+      "houses[].trees_near[].genus",
+      "houses[].ash_nearby"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=dc4e43ade1364fe9a294889c7c457d07 ; original EDI package https://doi.org/10.6073/PASTA/83AA3443FE0ED247C3DA0B83FAAEA4A8",
+   "licence_quote": "(AGOL item owned by a private user, licenseInfo empty; the EDI landing page and PASTA metadata API now require sign-in, so intellectualRights could not be read)",
+   "verdict": "grey",
+   "reason": "Third-party re-upload without a licence; original licence unreadable without a login (not attempted).",
+   "alternative": "Keep LiDAR-detected trees (height/crown) and drop genus/ash fields; or read the EDI licence after the owner signs in; OSM natural=tree genus tags (ODbL).",
+   "action": "replace"
+  },
+  {
+   "id": "hennepin_parcels",
+   "name": "Hennepin County Parcels (HennepinData/LAND_PROPERTY layer 1)",
+   "jurisdiction": "Hennepin County, MN",
+   "endpoint": "https://gis.hennepin.us/arcgis/rest/services/HennepinData/LAND_PROPERTY/MapServer/1",
+   "used_in": [
+    {
+     "script": "mpls/house3d.py",
+     "outputs": [
+      "houses[].address",
+      "houses[].zip",
+      "houses[].year_built",
+      "houses[].homestead",
+      "houses[].type",
+      "houses[].value"
+     ]
+    },
+    {
+     "script": "mpls/money.py",
+     "outputs": [
+      "houses[].money (last_sale, county_value_2026, land_value, building_value, est_value_now, tax_yr, payments_20pct_down)",
+      "market.json"
+     ]
+    },
+    {
+     "script": "mpls/derive.py",
+     "outputs": [
+      "houses[].yard (lot polygon)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=7975aabf6e1e42998a40a4b085ffefdf",
+   "licence_quote": "This data (i) is furnished \"AS IS\" with no representation as to completeness or accuracy; (ii) is furnished with no warranty of any kind; and (iii) is not suitable for legal, engineering or surveying purposes.",
+   "verdict": "grey",
+   "reason": "Disclaimer only; no licence grant.",
+   "alternative": "Met Council 'Metropolitan 7-County Parcel Polygons - 2025' layer 3 'Hennepin County Parcels' (https://arcgis.metc.state.mn.us/data1/rest/services/parcels/Parcels_2025/FeatureServer/3, item 27d9f56cfec6454688110d08ae6826a0): 'None. This dataset is public domain under the Minnesota Government Data Practices Act (Minnesota Statutes Chapter 13).' Fields EMV_LAND/EMV_BLDG/EMV_TOTAL, TOTAL_TAX, YEAR_BUILT, SALE_DATE/SALE_VALUE, HOMESTEAD, FIN_SQ_FT, GARAGE, ZIP (never read OWNER_*/TAX_NAME/TAX_ADD_*).",
+   "action": "replace"
+  },
+  {
+   "id": "hennepin_imagery",
+   "name": "Hennepin County aerial imagery UTM_Aerial_<year> (2018-2026)",
+   "jurisdiction": "Hennepin County, MN",
+   "endpoint": "https://gis.hennepin.us/arcgis/rest/services/Imagery/UTM_Aerial_<YYYY>/MapServer/export",
+   "used_in": [
+    {
+     "script": "mpls/osint.py",
+     "outputs": [
+      "web/mpls/data/img/<year>.jpg",
+      "houses[].roof_color",
+      "houses[].roof_color_change",
+      "sources.json (Hennepin imagery entry)"
+     ]
+    }
+   ],
+   "licence_url": "https://gis.hennepin.us/arcgis/rest/services/Imagery (no item); Hennepin GIS hub items carry only the AS-IS disclaimer",
+   "licence_quote": "(no copyrightText and no licence on the imagery services)",
+   "verdict": "grey",
+   "reason": "No licence for imagery.",
+   "alternative": "USDA NAIP (public domain; via Planetary Computer, already used in mpls/extras.py) or USGS National Map orthoimagery (public domain) for img/<year>.jpg and the roof-colour series.",
+   "action": "replace"
+  },
+  {
+   "id": "ramsey_parcels",
+   "name": "Ramsey County Attributed Parcels (CAD_AttributedParcelPoly_ViewOnly)",
+   "jurisdiction": "Ramsey County, MN",
+   "endpoint": "https://gis.ramseycountymn.gov/server/rest/services/Cadastral/CAD_AttributedParcelPoly_ViewOnly/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/saint_paul.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money (assessor-derived est_value_now/value_level/value_basis/last_sale/tax_yr/payments_20pct_down)",
+      "houses[].value",
+      "houses[].year_built (when filled from assessor)",
+      "houses[].zoning (when filled from assessor)",
+      "houses[].address + houses[].address_source (when filled from assessor)",
+      "meta.city_data.licences.assessor",
+      "meta.city_data.counts.assessor_matched",
+      "meta.assessor_label"
+     ]
+    }
+   ],
+   "licence_url": "https://gis.ramseycountymn.gov/server/rest/services/Cadastral/CAD_AttributedParcelPoly_ViewOnly/FeatureServer/0?f=json (serviceItemId 568be953e8d94eefb523a290f87aa808 inaccessible)",
+   "licence_quote": "(no copyrightText/licence on service; earlier 'use constraints None, acknowledgment appreciated' is not a licence grant)",
+   "verdict": "grey",
+   "reason": "No explicit licence.",
+   "alternative": "Met Council Parcels_2025 layer 4 'Ramsey County Parcels' (https://arcgis.metc.state.mn.us/data1/rest/services/parcels/Parcels_2025/FeatureServer/4): 'None. This dataset is public domain under the Minnesota Government Data Practices Act (Minnesota Statutes Chapter 13).' (no exterior-wall field).",
+   "action": "replace"
+  },
+  {
+   "id": "metc_parcels_2025",
+   "name": "Met Council Metropolitan 7-County Parcel Polygons 2025 (regional parcels)",
+   "jurisdiction": "Twin Cities 7-county, MN",
+   "endpoint": "https://arcgis.metc.state.mn.us/data1/rest/services/parcels/Parcels_2025/FeatureServer/{3 Hennepin, 4 Ramsey}",
+   "used_in": [
+    {
+     "script": "(proposed replacement for hennepin_parcels and ramsey_parcels - not yet used)",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money",
+      "houses[].value",
+      "houses[].year_built",
+      "houses[].address"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=27d9f56cfec6454688110d08ae6826a0",
+   "licence_quote": "None. This dataset is public domain under the Minnesota Government Data Practices Act (Minnesota Statutes Chapter 13).",
+   "verdict": "green",
+   "reason": "Explicit public-domain statement on the Met Council / MN Geospatial Commons item.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "metc_interceptors",
+   "name": "Met Council Interceptors - Public Version",
+   "jurisdiction": "Met Council, MN",
+   "endpoint": "https://arcgis.metc.state.mn.us/data1/rest/services/utility/ES_Utility_Asset_Public/FeatureServer/4",
+   "used_in": [
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra.json layers.interceptors"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=29edded7482647ac9c2926cf56aa0164",
+   "licence_quote": "Although this dataset is considered public under the Minnesota Government Data Practices Act, do not transfer or share data ...",
+   "verdict": "red",
+   "reason": "Explicit no-redistribution clause.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "metc_sewershed",
+   "name": "Met Council Sewersheds - Public Version",
+   "jurisdiction": "Met Council, MN",
+   "endpoint": "https://arcgis.metc.state.mn.us/data1/rest/services/utility/ES_Utility_Area_Public/FeatureServer/2",
+   "used_in": [
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra.json sewershed",
+      "houses[].utility (sewershed part)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=4d457b28300b415d8cc9b04d039935ae",
+   "licence_quote": "Although this dataset is considered public under the Minnesota Government Data Practices Act, do not transfer or share data ...",
+   "verdict": "red",
+   "reason": "Explicit no-redistribution clause.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "metc_transitways_tpp2050",
+   "name": "Met Council TPP2050 Transitway Alignments",
+   "jurisdiction": "Met Council, MN",
+   "endpoint": "https://arcgis.metc.state.mn.us/server/rest/services/GISLibrary/TPP2050TransitwayAlignments/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "mpls/infra.py",
+     "outputs": [
+      "infra.json layers.transitways"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=fc5732c223b5417d9d6a424ea4cd2df0",
+   "licence_quote": "FOR INTERNAL USE ONLY Read Internal Metadata for more details on use constraints.",
+   "verdict": "red",
+   "reason": "Internal use only.",
+   "alternative": "Met Council 'Transitway Stations and Alignments' (https://arcgis.metc.state.mn.us/data2/rest/services/transportation/Transitways/FeatureServer, item c920b202e0d44c62af7469757e761401): 'None. This dataset is public domain under the Minnesota Government Data Practices Act (Minnesota Statutes Chapter 13).'",
+   "action": "replace"
+  },
+  {
+   "id": "metro_transit_gtfs",
+   "name": "Metro Transit GTFS static feed + NexTrip departures",
+   "jurisdiction": "Twin Cities, MN",
+   "endpoint": "https://svc.metrotransit.org/mtgtfs/gtfs.zip ; https://svc.metrotransit.org/nextrip/{stop}",
+   "used_in": [
+    {
+     "script": "mpls/feeds.py",
+     "outputs": [
+      "feeds.json feeds[] 'Bus and rail stops within 600 m + live next departures'"
+     ]
+    }
+   ],
+   "licence_url": "https://svc.metrotransit.org/",
+   "licence_quote": "(feed page lists URLs and update schedule only; no licence or terms stated)",
+   "verdict": "grey",
+   "reason": "Terms unstated.",
+   "alternative": "Stops: Met Council 'Metro Transit Stops' (https://arcgis.metc.state.mn.us/data2/rest/services/transportation/Transit_Stops/FeatureServer/0, item ee70abbc572c46d189f7aa4a0966536c, public domain under MGDPA). Live departures: no green alternative - drop.",
+   "action": "replace"
+  },
+  {
+   "id": "mndot_aadt",
+   "name": "MnDOT Annual Average Daily Traffic Segments Current",
+   "jurisdiction": "Minnesota (state DOT)",
+   "endpoint": "https://webgis.dot.state.mn.us/65agsf1/rest/services/sdw_incdt/AADT_SEGMENT_CURRENT/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/road_traffic.py",
+     "outputs": [
+      "meta.traffic.segments[] whose source contains 'mndot'",
+      "meta.traffic.sources.mndot",
+      "houses[].traffic (MN blocks)"
+     ]
+    },
+    {
+     "script": "mpls/civic.py",
+     "outputs": [
+      "civic.json aadt"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=42923bcddafe4909b4eed0a03dea893a",
+   "licence_quote": "None. Please check sources, scale, accuracy, currentness and other available information. ... Acknowledgement of the publisher would be appreciated.",
+   "verdict": "grey",
+   "reason": "'Use limitations: None' is an absence of stated restriction, not an explicit grant of commercial use/redistribution - grey under the strict rule (borderline; owner may override).",
+   "alternative": "FHWA HPMS public sections (US federal work, already the base layer in usa/road_traffic.py) carry AADT for the same MN roads.",
+   "action": "replace"
+  },
+  {
+   "id": "mndot_iris",
+   "name": "MnDOT IRIS live traffic incidents XML",
+   "jurisdiction": "Minnesota (state DOT)",
+   "endpoint": "https://data.dot.state.mn.us/iris_xml/incident.xml.gz",
+   "used_in": [
+    {
+     "script": "mpls/extras.py",
+     "outputs": [
+      "extras.json traffic_incidents"
+     ]
+    },
+    {
+     "script": "mpls/live.py",
+     "outputs": [
+      "extras.json traffic_incidents"
+     ]
+    }
+   ],
+   "licence_url": "https://data.dot.state.mn.us/",
+   "licence_quote": "(no licence or terms on data.dot.state.mn.us)",
+   "verdict": "grey",
+   "reason": "Terms unstated.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "cdot_counts",
+   "name": "CDOT Highways: Traffic Counts",
+   "jurisdiction": "Colorado (state DOT)",
+   "endpoint": "https://dtdapps.codot.gov/server/rest/services/Webapps/open_data_sde/FeatureServer/13",
+   "used_in": [
+    {
+     "script": "usa/road_traffic.py",
+     "outputs": [
+      "meta.traffic.segments[] whose source contains 'cdot'",
+      "meta.traffic.sources.cdot",
+      "houses[].traffic (CO blocks)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=723375d00be646b0bf87313d4c474a25",
+   "licence_quote": "This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 Generic License.",
+   "verdict": "green",
+   "reason": "CC BY-SA 4.0 (attribute CDOT; share-alike on derived segment data).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "stp_permits",
+   "name": "City of Saint Paul Building Permits",
+   "jurisdiction": "Saint Paul, MN",
+   "endpoint": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/Building_Permits_/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/saint_paul.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit",
+      "layers.permits",
+      "meta.city_data.counts.permits"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=cb618c6b5f8f46b696674e74a3fb5b2d",
+   "licence_quote": "Public Domain This data are provided to you \"as is\" and without any warranty ... If you transmit or provide the data (or any portion of it) to another user, the data must include this disclaimer.",
+   "verdict": "green",
+   "reason": "Item licence 'Public Domain' (the disclaimer must travel with redistributed data).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "stp_311",
+   "name": "City of Saint Paul Resident Service Requests",
+   "jurisdiction": "Saint Paul, MN",
+   "endpoint": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/Resident_Service_Requests/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/saint_paul.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].cases311",
+      "layers.cases311",
+      "meta.city_data.counts.cases311"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=d28558fd68a34c3898e1b6d96fc4a926",
+   "licence_quote": "Public Domain This data are provided to you \"as is\" and without any warranty ... If you transmit or provide the data (or any portion of it) to another user, the data must include this disclaimer.",
+   "verdict": "green",
+   "reason": "Item licence 'Public Domain' (the disclaimer must travel with redistributed data).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "stp_vacant",
+   "name": "City of Saint Paul Vacant Buildings",
+   "jurisdiction": "Saint Paul, MN",
+   "endpoint": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/VacantBuildings/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.vacant_or_condemned",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=0e3324acd6af499b82ff99c115e02e10",
+   "licence_quote": "Public Domain This data are provided to you \"as is\" and without any warranty ... If you transmit or provide the data (or any portion of it) to another user, the data must include this disclaimer.",
+   "verdict": "green",
+   "reason": "Item licence 'Public Domain' (the disclaimer must travel with redistributed data).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "stp_cofo",
+   "name": "City of Saint Paul Fire Certificate of Occupancy - Residential",
+   "jurisdiction": "Saint Paul, MN",
+   "endpoint": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/Certificate_of_Occupancy_-_Residential/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.rental_license",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=8908aa067a434a92b15cf7e61837ff2b",
+   "licence_quote": "(item licenseInfo empty; information.stpaul.gov 'Terms of Use' links to a generic hub page, not a Saint Paul licence)",
+   "verdict": "grey",
+   "reason": "No licence on item.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "dcad",
+   "name": "Dallas Central Appraisal District (DCAD) data files + parcel map",
+   "jurisdiction": "Dallas County, TX",
+   "endpoint": "https://www.dallascad.org/DataProducts.aspx (dcad2027.zip, hand-downloaded to data/dallas/raw/)",
+   "used_in": [
+    {
+     "script": "dallas/build_base.py",
+     "outputs": [
+      "data/dallas/homes.parquet"
+     ]
+    },
+    {
+     "script": "dallas/score.py",
+     "outputs": [
+      "lead scores (roof age, homestead, size)"
+     ]
+    },
+    {
+     "script": "dallas/export.py",
+     "outputs": [
+      "web/dallas/data/leads.json",
+      "web/dallas/data/zips.json",
+      "web/dallas/data/storms.json (homes affected)"
+     ]
+    },
+    {
+     "script": "dallas/scan3d.py",
+     "outputs": [
+      "lots.json"
+     ]
+    },
+    {
+     "script": "usa/adapters/dallas.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money (assessor-derived est_value_now/value_level/value_basis/last_sale/tax_yr/payments_20pct_down)",
+      "houses[].value",
+      "houses[].year_built (when filled from assessor)",
+      "houses[].zoning (when filled from assessor)",
+      "houses[].address + houses[].address_source (when filled from assessor)",
+      "meta.city_data.licences.assessor",
+      "meta.city_data.counts.assessor_matched",
+      "meta.assessor_label"
+     ]
+    }
+   ],
+   "licence_url": "https://www.dallascad.org/DataProducts.aspx",
+   "licence_quote": "(no licence; page footer) \"(c) 2026 Dallas Central Appraisal District. All Rights Reserved.\"",
+   "verdict": "red",
+   "reason": "All-rights-reserved notice and no licence; Texas appraisal-district data also carries Tax Code restrictions. The whole Dallas lead pipeline depends on it.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "dal_permits",
+   "name": "City of Dallas Building Permits",
+   "jurisdiction": "Dallas, TX",
+   "endpoint": "https://www.dallasopendata.com/resource/e7gq-4sah.json",
+   "used_in": [
+    {
+     "script": "dallas/permits.py",
+     "outputs": [
+      "data/dallas/permits.parquet",
+      "web/dallas/data/leads.json permit column"
+     ]
+    },
+    {
+     "script": "usa/adapters/dallas.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit",
+      "layers.permits",
+      "meta.city_data.counts.permits"
+     ]
+    }
+   ],
+   "licence_url": "https://www.dallasopendata.com/d/e7gq-4sah",
+   "licence_quote": "(Socrata metadata licenseId null / license null; dallasopendata.com has no terms-of-use or licence page)",
+   "verdict": "grey",
+   "reason": "No licence set.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "dal_311",
+   "name": "City of Dallas 311 Service Requests (Oct 2020-present)",
+   "jurisdiction": "Dallas, TX",
+   "endpoint": "https://www.dallasopendata.com/resource/d7e7-envw.json",
+   "used_in": [
+    {
+     "script": "usa/adapters/dallas.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].cases311",
+      "layers.cases311",
+      "meta.city_data.counts.cases311"
+     ]
+    }
+   ],
+   "licence_url": "http://opendatacommons.org/licenses/pddl/1.0/",
+   "licence_quote": "Open Data Commons Public Domain Dedication and License (Socrata dataset licence PDDL)",
+   "verdict": "green",
+   "reason": "ODC-PDDL.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "dal_hoa",
+   "name": "City of Dallas HOA / NA registered areas",
+   "jurisdiction": "Dallas, TX",
+   "endpoint": "https://services2.arcgis.com/rwnOSbfKSwyTBcwN/arcgis/rest/services/HOA_NA_Layers_HOA_NA_Public/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.hoa",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=4b42c73a6bc04230a32ed6db07b0d763",
+   "licence_quote": "The accuracy is not to be taken / used as data produced by a Registered Professional Land Surveyor ... (disclaimer only)",
+   "verdict": "grey",
+   "reason": "Disclaimer only.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "dal_roads",
+   "name": "City of Dallas GIS Dallas Area Roads (Combined Streets)",
+   "jurisdiction": "Dallas, TX",
+   "endpoint": "https://services2.arcgis.com/rwnOSbfKSwyTBcwN/arcgis/rest/services/DallasAreaRoads/FeatureServer/3",
+   "used_in": [
+    {
+     "script": "dallas/scan3d.py",
+     "outputs": [
+      "streets.json"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=277f8737ab9a4a60aa07bc4477c63220",
+   "licence_quote": "Disclaimer The accuracy is not to be taken / used as data produced by a Registered Professional Land Surveyor ... (disclaimer only)",
+   "verdict": "grey",
+   "reason": "Disclaimer only.",
+   "alternative": "US Census TIGER/Line roads (public domain) or OpenStreetMap (ODbL).",
+   "action": "replace"
+  },
+  {
+   "id": "aus_landdb",
+   "name": "City of Austin 2023 Land Database (appraisal-district derived)",
+   "jurisdiction": "Austin, TX",
+   "endpoint": "https://services.arcgis.com/0L95CJ0VTaxqcmED/arcgis/rest/services/2023_Land_Database_Dash_View/FeatureServer/93",
+   "used_in": [
+    {
+     "script": "usa/adapters/austin.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money (assessor-derived est_value_now/value_level/value_basis/last_sale/tax_yr/payments_20pct_down)",
+      "houses[].value",
+      "houses[].year_built (when filled from assessor)",
+      "houses[].zoning (when filled from assessor)",
+      "houses[].address + houses[].address_source (when filled from assessor)",
+      "meta.city_data.licences.assessor",
+      "meta.city_data.counts.assessor_matched",
+      "meta.assessor_label"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=27181bd83cc645149c5262514ead8a09",
+   "licence_quote": "(item licenseInfo empty; layer copyright 'Travis, Williamson, Hays and Bastrop Appraisal Districts, and City of Austin.'; description 'NOT AUTHORITATIVE')",
+   "verdict": "grey",
+   "reason": "No licence; values come from Texas appraisal districts.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "aus_permits",
+   "name": "City of Austin Issued Construction Permits",
+   "jurisdiction": "Austin, TX",
+   "endpoint": "https://data.austintexas.gov/resource/3syk-w9eu.json",
+   "used_in": [
+    {
+     "script": "usa/adapters/austin.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit",
+      "layers.permits",
+      "meta.city_data.counts.permits"
+     ]
+    }
+   ],
+   "licence_url": "https://data.austintexas.gov/d/3syk-w9eu",
+   "licence_quote": "Public Domain U.S. Government (Socrata licenseId USGOV_WORKS; terms https://www.usa.gov/government-works)",
+   "verdict": "green",
+   "reason": "Dataset licence public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "aus_311",
+   "name": "City of Austin 311 Public Data",
+   "jurisdiction": "Austin, TX",
+   "endpoint": "https://data.austintexas.gov/resource/xwdj-i9he.json",
+   "used_in": [
+    {
+     "script": "usa/adapters/austin.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].cases311",
+      "layers.cases311",
+      "meta.city_data.counts.cases311"
+     ]
+    }
+   ],
+   "licence_url": "https://data.austintexas.gov/d/xwdj-i9he",
+   "licence_quote": "Public Domain (Socrata licenseId PUBLIC_DOMAIN)",
+   "verdict": "green",
+   "reason": "Dataset licence public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "aus_rop",
+   "name": "City of Austin Repeat Offender Program registrations",
+   "jurisdiction": "Austin, TX",
+   "endpoint": "https://data.austintexas.gov/resource/86z9-i27i.json",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.rental_license",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://data.austintexas.gov/d/86z9-i27i",
+   "licence_quote": "Public Domain U.S. Government (Socrata licenseId USGOV_WORKS; terms https://www.usa.gov/government-works)",
+   "verdict": "green",
+   "reason": "Dataset licence public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "aus_str",
+   "name": "City of Austin Short Term Rental Locations",
+   "jurisdiction": "Austin, TX",
+   "endpoint": "https://data.austintexas.gov/resource/2fah-4p7e.json",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "meta.local_flags.counts.str_licences_on_block_hundred_blocks",
+      "meta.local_flags.by_ds.aus_str"
+     ]
+    },
+    {
+     "script": "usa/tourism_econ.py",
+     "outputs": [
+      "web/usa/data/tourism_econ.json str_registered / str_src (Travis County)"
+     ]
+    }
+   ],
+   "licence_url": "https://data.austintexas.gov/d/2fah-4p7e",
+   "licence_quote": "Public Domain U.S. Government (Socrata licenseId USGOV_WORKS; terms https://www.usa.gov/government-works)",
+   "verdict": "green",
+   "reason": "Dataset licence public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "aus_code",
+   "name": "City of Austin Code Complaint Cases",
+   "jurisdiction": "Austin, TX",
+   "endpoint": "https://data.austintexas.gov/resource/6wtj-zbtb.json",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.code_cases_5y",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://data.austintexas.gov/d/6wtj-zbtb",
+   "licence_quote": "Public Domain U.S. Government (Socrata licenseId USGOV_WORKS; terms https://www.usa.gov/government-works)",
+   "verdict": "green",
+   "reason": "Dataset licence public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "aus_subdiv",
+   "name": "City of Austin recorded subdivision boundaries",
+   "jurisdiction": "Austin, TX",
+   "endpoint": "https://services.arcgis.com/0L95CJ0VTaxqcmED/arcgis/rest/services/PLANNINGCADASTRE_subdivision_boundaries/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.hoa",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=9ed10f57cdb94ced8e23ffc897a78984",
+   "licence_quote": "This product is for informational purposes and may not have been prepared for or be suitable for legal, engineering, or surveying purposes. ... (plus 'Acknowledgment ... would be appreciated')",
+   "verdict": "grey",
+   "reason": "Disclaimer only.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "tx_hot_reporting",
+   "name": "Texas Comptroller Local Hotel Occupancy Tax Reporting 2025",
+   "jurisdiction": "Texas (state)",
+   "endpoint": "https://data.texas.gov/resource/er34-v24h.json",
+   "used_in": [
+    {
+     "script": "usa/tourism_econ.py",
+     "outputs": [
+      "web/usa/data/tourism_econ.json hot_receipts_12m"
+     ]
+    }
+   ],
+   "licence_url": "https://data.texas.gov/d/er34-v24h",
+   "licence_quote": "Public Domain (Socrata licenseId PUBLIC_DOMAIN; attribution Texas Comptroller of Public Accounts)",
+   "verdict": "green",
+   "reason": "Dataset licence public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "tx_hot_permits",
+   "name": "Texas Comptroller Hotel Tax Permits",
+   "jurisdiction": "Texas (state)",
+   "endpoint": "https://data.texas.gov/resource/hdzd-884n.json",
+   "used_in": [
+    {
+     "script": "usa/tourism_econ.py",
+     "outputs": [
+      "web/usa/data/tourism_econ.json Texas STR/hotel permit counts by county (str_registered for TX counties)"
+     ]
+    }
+   ],
+   "licence_url": "https://data.texas.gov/d/hdzd-884n",
+   "licence_quote": "Public Domain (Socrata licenseId PUBLIC_DOMAIN)",
+   "verdict": "green",
+   "reason": "Dataset licence public domain; only aggregate counts are output.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "den_parcels",
+   "name": "Denver Parcels (assessor values, sale)",
+   "jurisdiction": "Denver, CO",
+   "endpoint": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_PROP_PARCELS_A/FeatureServer/245",
+   "used_in": [
+    {
+     "script": "usa/adapters/denver.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money (assessor-derived est_value_now/value_level/value_basis/last_sale/tax_yr/payments_20pct_down)",
+      "houses[].value",
+      "houses[].year_built (when filled from assessor)",
+      "houses[].zoning (when filled from assessor)",
+      "houses[].address + houses[].address_source (when filled from assessor)",
+      "meta.city_data.licences.assessor",
+      "meta.city_data.counts.assessor_matched",
+      "meta.assessor_label"
+     ]
+    }
+   ],
+   "licence_url": "https://opendata-geospatialdenver.hub.arcgis.com/ (Terms of Use section; www.denvergov.org/opendata/termsofuse redirects here)",
+   "licence_quote": "The City and County of Denver Open Data Catalog provides open data licensed under the Creative Commons Attribution 3.0 license (CC BY 3.0).",
+   "verdict": "green",
+   "reason": "Denver Open Data Catalog terms: CC BY 3.0 (credit 'City of Denver Open Data Catalog'). The item licenseInfo is only a liability disclaimer; the catalog licence governs.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "den_reschar",
+   "name": "Denver Real Property Residential Characteristics",
+   "jurisdiction": "Denver, CO",
+   "endpoint": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_real_property_residential_characteristics/FeatureServer/50",
+   "used_in": [
+    {
+     "script": "usa/adapters/denver.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor (stories, bedrooms, baths, style)"
+     ]
+    }
+   ],
+   "licence_url": "https://opendata-geospatialdenver.hub.arcgis.com/ (Terms of Use section; www.denvergov.org/opendata/termsofuse redirects here)",
+   "licence_quote": "The City and County of Denver Open Data Catalog provides open data licensed under the Creative Commons Attribution 3.0 license (CC BY 3.0).",
+   "verdict": "green",
+   "reason": "Denver Open Data Catalog terms: CC BY 3.0 (credit 'City of Denver Open Data Catalog'). The item licenseInfo is only a liability disclaimer; the catalog licence governs.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "den_permits",
+   "name": "Denver Residential Construction Permits",
+   "jurisdiction": "Denver, CO",
+   "endpoint": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_DEV_RESIDENTIALCONSTPERMIT_P/FeatureServer/316",
+   "used_in": [
+    {
+     "script": "usa/adapters/denver.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit",
+      "layers.permits",
+      "meta.city_data.counts.permits"
+     ]
+    }
+   ],
+   "licence_url": "https://opendata-geospatialdenver.hub.arcgis.com/ (Terms of Use section; www.denvergov.org/opendata/termsofuse redirects here)",
+   "licence_quote": "The City and County of Denver Open Data Catalog provides open data licensed under the Creative Commons Attribution 3.0 license (CC BY 3.0).",
+   "verdict": "green",
+   "reason": "Denver Open Data Catalog terms: CC BY 3.0 (credit 'City of Denver Open Data Catalog'). The item licenseInfo is only a liability disclaimer; the catalog licence governs.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "den_311",
+   "name": "Denver 311 Service Requests",
+   "jurisdiction": "Denver, CO",
+   "endpoint": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_service_requests_311/FeatureServer/53",
+   "used_in": [
+    {
+     "script": "usa/adapters/denver.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].cases311",
+      "layers.cases311",
+      "meta.city_data.counts.cases311"
+     ]
+    }
+   ],
+   "licence_url": "https://opendata-geospatialdenver.hub.arcgis.com/ (Terms of Use section; www.denvergov.org/opendata/termsofuse redirects here)",
+   "licence_quote": "The City and County of Denver Open Data Catalog provides open data licensed under the Creative Commons Attribution 3.0 license (CC BY 3.0).",
+   "verdict": "green",
+   "reason": "Denver Open Data Catalog terms: CC BY 3.0 (credit 'City of Denver Open Data Catalog'). The item licenseInfo is only a liability disclaimer; the catalog licence governs.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "den_rental",
+   "name": "Denver Residential Rental Property Active Licenses",
+   "jurisdiction": "Denver, CO",
+   "endpoint": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_residential_rental_property_active_licenses/FeatureServer/52",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.rental_license",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://opendata-geospatialdenver.hub.arcgis.com/ (Terms of Use section; www.denvergov.org/opendata/termsofuse redirects here)",
+   "licence_quote": "The City and County of Denver Open Data Catalog provides open data licensed under the Creative Commons Attribution 3.0 license (CC BY 3.0).",
+   "verdict": "green",
+   "reason": "Denver Open Data Catalog terms: CC BY 3.0 (credit 'City of Denver Open Data Catalog'). The item licenseInfo is only a liability disclaimer; the catalog licence governs.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "den_str",
+   "name": "Denver Short Term Rental Licenses (active/pending)",
+   "jurisdiction": "Denver, CO",
+   "endpoint": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_short_term_rental_licenses_active_or_pending_renewal/FeatureServer/54",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.str_license",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://opendata-geospatialdenver.hub.arcgis.com/ (Terms of Use section; www.denvergov.org/opendata/termsofuse redirects here)",
+   "licence_quote": "The City and County of Denver Open Data Catalog provides open data licensed under the Creative Commons Attribution 3.0 license (CC BY 3.0).",
+   "verdict": "green",
+   "reason": "Denver Open Data Catalog terms: CC BY 3.0 (credit 'City of Denver Open Data Catalog'). The item licenseInfo is only a liability disclaimer; the catalog licence governs.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "co_denver_str",
+   "name": "City of Denver Short Term Rental Licenses (Colorado Information Marketplace)",
+   "jurisdiction": "Colorado (state portal)",
+   "endpoint": "https://data.colorado.gov/resource/f3vc-vat3.json",
+   "used_in": [
+    {
+     "script": "usa/tourism_econ.py",
+     "outputs": [
+      "web/usa/data/tourism_econ.json str_registered / str_src='denver_str_licences'"
+     ]
+    }
+   ],
+   "licence_url": "https://data.colorado.gov/d/f3vc-vat3",
+   "licence_quote": "Public Domain (Socrata licenseId PUBLIC_DOMAIN)",
+   "verdict": "green",
+   "reason": "Dataset licence public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "boco_cama",
+   "name": "Boulder County Assessor CamaView services (ParcelPropertyView, BLDG_ATTRIBUTES, BLDG_AREA, SALES, VALUES)",
+   "jurisdiction": "Boulder County, CO",
+   "endpoint": "https://maps.bouldercounty.org/arcgis/rest/services/CamaView/",
+   "used_in": [
+    {
+     "script": "usa/adapters/boulder.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money (assessor-derived est_value_now/value_level/value_basis/last_sale/tax_yr/payments_20pct_down)",
+      "houses[].value",
+      "houses[].year_built (when filled from assessor)",
+      "houses[].zoning (when filled from assessor)",
+      "houses[].address + houses[].address_source (when filled from assessor)",
+      "meta.city_data.licences.assessor",
+      "meta.city_data.counts.assessor_matched",
+      "meta.assessor_label"
+     ]
+    }
+   ],
+   "licence_url": "https://maps.bouldercounty.org/arcgis/rest/services/CamaView/ParcelPropertyView/MapServer/0?f=json",
+   "licence_quote": "(CamaView services carry no licence/copyright text and are not listed in the Boulder County open-data catalog)",
+   "verdict": "grey",
+   "reason": "The exact services used have no licence text.",
+   "alternative": "Boulder County 'Assessor's Property Data' bulk CSVs (Buildings, All Sales, Property Values, Land; https://www.bouldercounty.org/property-and-land/assessor/data-download/), catalog item d39100d04be34354b97ad52874f5e7d4 licensed https://creativecommons.org/licenses/by/4.0/ ; parcel geometry from catalog item 90e3547382df4d498b779672d2685b0b 'Parcels (with address and ownership information)' (CC BY 4.0; do not read owner fields).",
+   "action": "replace"
+  },
+  {
+   "id": "boco_platted",
+   "name": "Boulder County Subdivisions and Other Platted Areas",
+   "jurisdiction": "Boulder County, CO",
+   "endpoint": "https://maps.bouldercounty.org/arcgis/rest/services/PLANNING/LUC_PlattedAreas/MapServer/0",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.hoa",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=537483fcf5c9445a8f848ae426790f25",
+   "licence_quote": "https://creativecommons.org/licenses/by/4.0/ (item licence; site: 'The Boulder County Geospatial Open Data site provides open data licensed under the Creative Commons Attribution 4.0 International License')",
+   "verdict": "green",
+   "reason": "CC BY 4.0 on catalog item.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "bou_permits",
+   "name": "City of Boulder Construction Permits",
+   "jurisdiction": "Boulder, CO",
+   "endpoint": "https://services.arcgis.com/ePKBjXrBZ2vEEgWd/arcgis/rest/services/Construction_Permits/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/boulder.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit",
+      "layers.permits",
+      "meta.city_data.counts.permits"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=e3ff6248e4a547bcba31025d2c5c9fee",
+   "licence_quote": "Creative Commons CC Zero license (CC0 1.0)",
+   "verdict": "green",
+   "reason": "CC0.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "bou_code_public",
+   "name": "City of Boulder CodeEnforcementPublic",
+   "jurisdiction": "Boulder, CO",
+   "endpoint": "https://services.arcgis.com/ePKBjXrBZ2vEEgWd/arcgis/rest/services/CodeEnforcementPublic/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/boulder.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].cases311",
+      "layers.cases311",
+      "meta.city_data.counts.cases311"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=bc92bfd1d2134bc29ac2f5d4cc275582",
+   "licence_quote": "(item licenseInfo empty)",
+   "verdict": "grey",
+   "reason": "No licence on this item.",
+   "alternative": "City of Boulder 'Code Enforcement Reports' (https://gis.bouldercolorado.gov/ags_svr1/rest/services/plan/CodeEnforcement/MapServer/0, item a703fa3a075e43b09de13e3abd61bef4): 'Creative Commons CC Zero license (CC0 1.0)'; responds, 27,451 rows.",
+   "action": "replace"
+  },
+  {
+   "id": "bou_zoning",
+   "name": "City of Boulder BVCP 2025 Zoning (Zoning_2024)",
+   "jurisdiction": "Boulder, CO",
+   "endpoint": "https://services.arcgis.com/ePKBjXrBZ2vEEgWd/arcgis/rest/services/Zoning_2024/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/boulder.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor.zoning",
+      "houses[].zoning"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=a88e11beaaee4a6297b0a9d33f3c9346",
+   "licence_quote": "(item licenseInfo empty; accessInformation 'City of Boulder, Planning & Development Services')",
+   "verdict": "grey",
+   "reason": "No licence on this item.",
+   "alternative": "City of Boulder 'Zoning Districts' (https://gis.bouldercolorado.gov/ags_svr1/rest/services/plan/ZoningDistricts/MapServer/0, item e88004e26b9e42cfba32129fb8731f41): CC0 1.0; responds.",
+   "action": "replace"
+  },
+  {
+   "id": "bou_rental",
+   "name": "City of Boulder Rental Housing Licenses",
+   "jurisdiction": "Boulder, CO",
+   "endpoint": "https://gis.bouldercolorado.gov/ags_svr1/rest/services/plan/RentalHousingLicenses/MapServer/0",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.rental_license",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)",
+      "houses[].local.str_license (short-term rental licence types)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=92f70ea894ef47a582bb0d656aa4aa7d",
+   "licence_quote": "Creative Commons CC Zero license (CC0 1.0)",
+   "verdict": "green",
+   "reason": "CC0.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "fra_parcels",
+   "name": "Franklin County Auditor Tax Parcels (Parcel_Features layer 0)",
+   "jurisdiction": "Franklin County, OH",
+   "endpoint": "https://gis.franklincountyohio.gov/hosting/rest/services/ParcelFeatures/Parcel_Features/MapServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/columbus.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money (assessor-derived est_value_now/value_level/value_basis/last_sale/tax_yr/payments_20pct_down)",
+      "houses[].value",
+      "houses[].year_built (when filled from assessor)",
+      "houses[].zoning (when filled from assessor)",
+      "houses[].address + houses[].address_source (when filled from assessor)",
+      "meta.city_data.licences.assessor",
+      "meta.city_data.counts.assessor_matched",
+      "meta.assessor_label"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=10a612219343474e9a316fb29fbe8cad",
+   "licence_quote": "Franklin County Auditor item 'Franklin County Current Parcels Map' (10a612219343474e9a316fb29fbe8cad, whose layers include ParcelFeatures/Parcel_Features/MapServer) - licenseInfo: 'Public Domain'; the Auditor's parcel archive maps: 'Public Domain - All data is within the Public Domain with no use constraints.' (the feature-service item 3b1c75018fca40c8b24083fd48197e74 itself shows only an Auditor disclaimer)",
+   "verdict": "grey",
+   "reason": "owner: no clear legal standing - the 'Public Domain' statement is only on the Auditor's 'Current Parcels Map' item; the feature-service item itself shows only a disclaimer. Removed everywhere (Columbus assessor, parcels_hoa parcels/condo, local_flags hoa).",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "fra_condo",
+   "name": "Franklin County Auditor Subdivision & Condominium Boundaries (Parcel_Features layer 1)",
+   "jurisdiction": "Franklin County, OH",
+   "endpoint": "https://gis.franklincountyohio.gov/hosting/rest/services/ParcelFeatures/Parcel_Features/MapServer/1",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.hoa",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=10a612219343474e9a316fb29fbe8cad",
+   "licence_quote": "Franklin County Auditor item 'Franklin County Current Parcels Map' (10a612219343474e9a316fb29fbe8cad, whose layers include ParcelFeatures/Parcel_Features/MapServer) - licenseInfo: 'Public Domain'; the Auditor's parcel archive maps: 'Public Domain - All data is within the Public Domain with no use constraints.' (the feature-service item 3b1c75018fca40c8b24083fd48197e74 itself shows only an Auditor disclaimer)",
+   "verdict": "grey",
+   "reason": "owner: no clear legal standing - the 'Public Domain' statement is only on the Auditor's 'Current Parcels Map' item; the feature-service item itself shows only a disclaimer. Removed everywhere (Columbus assessor, parcels_hoa parcels/condo, local_flags hoa).",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "fra_sales",
+   "name": "Franklin County Auditor ParcelSalePoints",
+   "jurisdiction": "Franklin County, OH",
+   "endpoint": "https://services1.arcgis.com/7r2Wl09a1Apy459r/arcgis/rest/services/ParcelSalePoints/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.sales",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=e2b48f3aab944ea68696e5f3d5d1744d",
+   "licence_quote": "(item licenseInfo empty; accessInformation 'Franklin County Auditors Office'; not part of the Public Domain parcel map)",
+   "verdict": "grey",
+   "reason": "No licence on item.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "col_zoning",
+   "name": "City of Columbus Base Zoning Districts",
+   "jurisdiction": "Columbus, OH",
+   "endpoint": "https://maps2.columbus.gov/arcgis/rest/services/Schemas/BuildingZoning/MapServer/4",
+   "used_in": [
+    {
+     "script": "usa/adapters/columbus.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor.zoning",
+      "houses[].zoning"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=96f7642a62f84db997f9e1db4a776995",
+   "licence_quote": "This data is dedicated to the public domain under the Creative Commons Universal License (CC0).",
+   "verdict": "green",
+   "reason": "CC0 on item (maps2.columbus.gov returned HTTP 500 on 2026-11-24 - availability, not licence).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "col_permits",
+   "name": "City of Columbus Building Permits",
+   "jurisdiction": "Columbus, OH",
+   "endpoint": "https://services1.arcgis.com/9yy6msODkIBzkUXU/arcgis/rest/services/Building_Permits/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/columbus.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit",
+      "layers.permits",
+      "meta.city_data.counts.permits"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=f7a785b863454d96a0fe3f5aa5368e7d",
+   "licence_quote": "This data is dedicated to the public domain under the Creative Commons Universal License (CC0).",
+   "verdict": "green",
+   "reason": "CC0 on item (maps2.columbus.gov returned HTTP 500 on 2026-11-24 - availability, not licence).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "col_code",
+   "name": "City of Columbus Code Enforcement Cases",
+   "jurisdiction": "Columbus, OH",
+   "endpoint": "https://maps2.columbus.gov/arcgis/rest/services/Schemas/BuildingZoning/MapServer/23",
+   "used_in": [
+    {
+     "script": "usa/adapters/columbus.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].cases311",
+      "layers.cases311",
+      "meta.city_data.counts.cases311"
+     ]
+    },
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.code_cases_5y",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=1d61669223fa42ba87a4d73a46e5361a",
+   "licence_quote": "This data is dedicated to the public domain under the Creative Commons Universal License (CC0).",
+   "verdict": "green",
+   "reason": "CC0 on item (maps2.columbus.gov returned HTTP 500 on 2026-11-24 - availability, not licence).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "col_subdiv",
+   "name": "City of Columbus Subdivisions",
+   "jurisdiction": "Columbus, OH",
+   "endpoint": "https://maps2.columbus.gov/arcgis/rest/services/Schemas/PublicService/MapServer/10",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.hoa",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=e0890bf8626f402ba336a03391f7a750",
+   "licence_quote": "This data is dedicated to the public domain under the Creative Commons Universal License (CC0).",
+   "verdict": "green",
+   "reason": "CC0 on item (maps2.columbus.gov returned HTTP 500 on 2026-11-24 - availability, not licence).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "col_tif",
+   "name": "City of Columbus Tax Increment Financing Areas",
+   "jurisdiction": "Columbus, OH",
+   "endpoint": "https://maps2.columbus.gov/arcgis/rest/services/Schemas/Development/MapServer/23",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.tax_abatement",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=244fc2c7b49745d680f6770019486ee0",
+   "licence_quote": "This data is dedicated to the public domain under the Creative Commons Universal License (CC0).",
+   "verdict": "green",
+   "reason": "CC0 on item (maps2.columbus.gov returned HTTP 500 on 2026-11-24 - availability, not licence).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "cin_permits",
+   "name": "Cincinnati Building Permits",
+   "jurisdiction": "Cincinnati, OH",
+   "endpoint": "https://data.cincinnati-oh.gov/resource/uhjb-xac9.json",
+   "used_in": [
+    {
+     "script": "usa/adapters/cincinnati.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit",
+      "layers.permits",
+      "meta.city_data.counts.permits"
+     ]
+    }
+   ],
+   "licence_url": "https://data.cincinnati-oh.gov/d/uhjb-xac9",
+   "licence_quote": "Public Domain (City of Cincinnati Open Data, Socrata dataset licence)",
+   "verdict": "green",
+   "reason": "Dataset licence public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "cin_311",
+   "name": "Cincinnati 311 (Non-Emergency) Service Requests",
+   "jurisdiction": "Cincinnati, OH",
+   "endpoint": "https://data.cincinnati-oh.gov/resource/gcej-gmiw.json",
+   "used_in": [
+    {
+     "script": "usa/adapters/cincinnati.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].cases311",
+      "layers.cases311",
+      "meta.city_data.counts.cases311"
+     ]
+    }
+   ],
+   "licence_url": "https://data.cincinnati-oh.gov/d/gcej-gmiw",
+   "licence_quote": "Public Domain (City of Cincinnati Open Data, Socrata dataset licence)",
+   "verdict": "green",
+   "reason": "Dataset licence public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "cin_vacant",
+   "name": "Cincinnati Vacant & Foreclosed Property Registration",
+   "jurisdiction": "Cincinnati, OH",
+   "endpoint": "https://data.cincinnati-oh.gov/resource/w3jp-dfxy.json",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.vacant_or_condemned",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://data.cincinnati-oh.gov/d/w3jp-dfxy",
+   "licence_quote": "Public Domain (City of Cincinnati Open Data, Socrata dataset licence)",
+   "verdict": "green",
+   "reason": "Dataset licence public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "cin_code",
+   "name": "Cincinnati Code Enforcement",
+   "jurisdiction": "Cincinnati, OH",
+   "endpoint": "https://data.cincinnati-oh.gov/resource/cncm-znd6.json",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.code_cases_5y",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://data.cincinnati-oh.gov/d/cncm-znd6",
+   "licence_quote": "Public Domain (City of Cincinnati Open Data, Socrata dataset licence)",
+   "verdict": "green",
+   "reason": "Dataset licence public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "cin_abate",
+   "name": "Cincinnati Residential Tax Abatements",
+   "jurisdiction": "Cincinnati, OH",
+   "endpoint": "https://data.cincinnati-oh.gov/resource/6ck4-ukva.json",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.tax_abatement",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://data.cincinnati-oh.gov/d/6ck4-ukva",
+   "licence_quote": "Public Domain (City of Cincinnati Open Data, Socrata dataset licence)",
+   "verdict": "green",
+   "reason": "Dataset licence public domain.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "cagis_parcels",
+   "name": "CAGIS Hamilton County Parcels - Open Data (Parcel_Polygons)",
+   "jurisdiction": "Hamilton County, OH",
+   "endpoint": "https://services.arcgis.com/JyZag7oO4NteHGiq/arcgis/rest/services/Parcel_Polygons/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/cincinnati.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money (assessor-derived est_value_now/value_level/value_basis/last_sale/tax_yr/payments_20pct_down)",
+      "houses[].value",
+      "houses[].year_built (when filled from assessor)",
+      "houses[].zoning (when filled from assessor)",
+      "houses[].address + houses[].address_source (when filled from assessor)",
+      "meta.city_data.licences.assessor",
+      "meta.city_data.counts.assessor_matched",
+      "meta.assessor_label"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=b9c115e7b74a44fd95b951905101cdb2",
+   "licence_quote": "The provider makes no warranty or representation, either expressed or implied with respect to this information ... (disclaimer only)",
+   "verdict": "grey",
+   "reason": "CAGIS item is disclaimer only.",
+   "alternative": "City of Cincinnati Open Data lists 'Hamilton County Parcel Polygons' (https://data.cincinnati-oh.gov/d/g24g-2pi5) with licence 'Public Domain', access point CAGIS item 9ab9d942593d4b0fb06a8e99e7e0ff23 layer 0 - re-point the adapter there and cite the city listing (check it carries the value/class fields used).",
+   "action": "replace"
+  },
+  {
+   "id": "cagis_zoning",
+   "name": "CAGIS Cincinnati_Zoning (Open Data Feature Collection layer 31)",
+   "jurisdiction": "Cincinnati, OH",
+   "endpoint": "https://services.arcgis.com/JyZag7oO4NteHGiq/arcgis/rest/services/Open_Data_Feature_Collection/FeatureServer/31",
+   "used_in": [
+    {
+     "script": "usa/adapters/cincinnati.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor.zoning",
+      "houses[].zoning"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=15df9e3ab7d54372925a8d067bfced6a",
+   "licence_quote": "(item licenseInfo empty; the city listing 'Cincinnati Zoning Designation' gggp-gw2p has licence None)",
+   "verdict": "grey",
+   "reason": "No licence.",
+   "alternative": "'Hamilton County Zoning Designation' (https://data.cincinnati-oh.gov/d/f25h-aupn, Public Domain) only if it covers the City of Cincinnati; otherwise drop zoning.",
+   "action": "replace"
+  },
+  {
+   "id": "cagis_subdiv",
+   "name": "CAGIS Countywide Subdivision Boundaries (layer 22)",
+   "jurisdiction": "Hamilton County, OH",
+   "endpoint": "https://services.arcgis.com/JyZag7oO4NteHGiq/arcgis/rest/services/Open_Data_Feature_Collection/FeatureServer/22",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.hoa",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=15df9e3ab7d54372925a8d067bfced6a",
+   "licence_quote": "(item licenseInfo empty)",
+   "verdict": "grey",
+   "reason": "No licence on the feature collection.",
+   "alternative": "City of Cincinnati Open Data 'Hamilton County Subdivision Boundaries' (https://data.cincinnati-oh.gov/d/rynu-bywd, licence 'Public Domain', access point CAGIS c476f99bde094b9a8bff26b9ace21f17 layer 3).",
+   "action": "replace"
+  },
+  {
+   "id": "tul_parcels",
+   "name": "INCOG / Tulsa County Assessor parcels",
+   "jurisdiction": "Tulsa County, OK",
+   "endpoint": "https://map11.incog.org/arcgis11wa/rest/services/Parcels_TulsaCo/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/tulsa.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money (assessor-derived est_value_now/value_level/value_basis/last_sale/tax_yr/payments_20pct_down)",
+      "houses[].value",
+      "houses[].year_built (when filled from assessor)",
+      "houses[].zoning (when filled from assessor)",
+      "houses[].address + houses[].address_source (when filled from assessor)",
+      "meta.city_data.licences.assessor",
+      "meta.city_data.counts.assessor_matched",
+      "meta.assessor_label"
+     ]
+    }
+   ],
+   "licence_url": "https://map11.incog.org/arcgis11wa/rest/services/Parcels_TulsaCo/FeatureServer/0?f=json",
+   "licence_quote": "(copyrightText 'Tulsa County Assessor'; no licence; Tulsa County Assessor items: 'assumes no liability ...')",
+   "verdict": "grey",
+   "reason": "No licence.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "tul_zoning",
+   "name": "City of Tulsa Zoning (TulsaZoning_OpenData)",
+   "jurisdiction": "Tulsa, OK",
+   "endpoint": "https://services2.arcgis.com/XkZ90iCdbTJ9oNXl/arcgis/rest/services/TulsaZoning_OpenData/FeatureServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/tulsa.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor.zoning",
+      "houses[].zoning"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=62dd087b4dff46fd95a51962df0c975b",
+   "licence_quote": "USE OF THIS INFORMATION: This dataset has been created for illustrative purposes only. ... (same disclaimer on the City of Tulsa Open Data hub site item)",
+   "verdict": "grey",
+   "reason": "Disclaimer only, site-wide.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "tul_cases",
+   "name": "City of Tulsa Verint customer-care cases",
+   "jurisdiction": "Tulsa, OK",
+   "endpoint": "https://utility.arcgis.com/usrsvcs/servers/b89eb865b02c4b55a1ce64b80dc99bff/rest/services/CustomerCare/Verint_Cases/MapServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/tulsa.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].cases311",
+      "layers.cases311",
+      "meta.city_data.counts.cases311"
+     ]
+    }
+   ],
+   "licence_url": "(item af89e95d13ef4130ba80f6d545d10403 inaccessible)",
+   "licence_quote": "(no licence; proxied service, item not public)",
+   "verdict": "grey",
+   "reason": "No licence.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "tul_subdiv",
+   "name": "Tulsa County Subdivisions",
+   "jurisdiction": "Tulsa County, OK",
+   "endpoint": "https://services6.arcgis.com/afI6w4ZBSVtA8tmF/arcgis/rest/services/Tulsa_County_Subdivisions/FeatureServer/3",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.hoa",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=d1f66d8b3aa24fecb280309fdfabb615",
+   "licence_quote": "(item licenseInfo empty; staff-owned)",
+   "verdict": "grey",
+   "reason": "No licence.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "kc_parcels",
+   "name": "KCMO GIS Parcels (AGOL/MapServer/6)",
+   "jurisdiction": "Kansas City, MO",
+   "endpoint": "https://mapd.kcmo.org/kcgis/rest/services/AGOL/MapServer/6",
+   "used_in": [
+    {
+     "script": "usa/adapters/kansas_city.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money (assessor-derived est_value_now/value_level/value_basis/last_sale/tax_yr/payments_20pct_down)",
+      "houses[].value",
+      "houses[].year_built (when filled from assessor)",
+      "houses[].zoning (when filled from assessor)",
+      "houses[].address + houses[].address_source (when filled from assessor)",
+      "meta.city_data.licences.assessor",
+      "meta.city_data.counts.assessor_matched",
+      "meta.assessor_label",
+      "(also the PIN join used by kc_permits)"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=66462d38afed44998e634ae9ffdbd3f4",
+   "licence_quote": "For Public/Internal Use While the City of Kansas City, Missouri makes every effort to maintain and distribute accurate information, no warranties ... ; data.kcmo.org/terms: These Terms of Use do not grant anyone any title or right to any patent, copyright, trademark or other intellectual property rights that the City may have in any of the information ... (data.kcmo.org/terms)",
+   "verdict": "grey",
+   "reason": "Disclaimer + IP reservation; no licence.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "kc_zoning",
+   "name": "KCMO GIS Zoning (AGOL/MapServer/7)",
+   "jurisdiction": "Kansas City, MO",
+   "endpoint": "https://mapd.kcmo.org/kcgis/rest/services/AGOL/MapServer/7",
+   "used_in": [
+    {
+     "script": "usa/adapters/kansas_city.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor.zoning",
+      "houses[].zoning"
+     ]
+    }
+   ],
+   "licence_url": "https://mapd.kcmo.org/kcgis/rest/services/AGOL/MapServer/7?f=json",
+   "licence_quote": "(no licence on service; data.kcmo.org/terms reserves IP)",
+   "verdict": "grey",
+   "reason": "No licence.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "kc_landuse_codes",
+   "name": "KCMO Land Use Codes lookup",
+   "jurisdiction": "Kansas City, MO",
+   "endpoint": "https://data.kcmo.org/resource/83fx-3sa2.json",
+   "used_in": [
+    {
+     "script": "usa/adapters/kansas_city.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor.propertytype"
+     ]
+    }
+   ],
+   "licence_url": "https://data.kcmo.org/d/83fx-3sa2",
+   "licence_quote": "(Socrata licence null; site terms reserve IP)",
+   "verdict": "grey",
+   "reason": "No licence (a code-label table - low risk, but not green).",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "kc_permits",
+   "name": "KCMO Permits - CPD Dataset",
+   "jurisdiction": "Kansas City, MO",
+   "endpoint": "https://data.kcmo.org/resource/ntw8-aacc.json",
+   "used_in": [
+    {
+     "script": "usa/adapters/kansas_city.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit",
+      "layers.permits",
+      "meta.city_data.counts.permits"
+     ]
+    }
+   ],
+   "licence_url": "https://data.kcmo.org/d/ntw8-aacc",
+   "licence_quote": "(Socrata licence null) + These Terms of Use do not grant anyone any title or right to any patent, copyright, trademark or other intellectual property rights that the City may have in any of the information ... (data.kcmo.org/terms)",
+   "verdict": "grey",
+   "reason": "No licence; the Public Domain 'CPD Permits - Status Change Dataset' (6h9j-mu65) has no address/type so cannot replace it.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "kc_311_new",
+   "name": "KCMO 311 Call Center Reported Issues",
+   "jurisdiction": "Kansas City, MO",
+   "endpoint": "https://data.kcmo.org/resource/d4px-6rwg.json",
+   "used_in": [
+    {
+     "script": "usa/adapters/kansas_city.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].cases311",
+      "layers.cases311",
+      "meta.city_data.counts.cases311"
+     ]
+    }
+   ],
+   "licence_url": "https://data.kcmo.org/d/d4px-6rwg",
+   "licence_quote": "Public Domain (Socrata dataset licence)",
+   "verdict": "green",
+   "reason": "Dataset-level public-domain licence (overrides the generic site terms for this dataset).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "kc_311_old",
+   "name": "KCMO 311 Call Center Service Requests 2007-Mar 2021",
+   "jurisdiction": "Kansas City, MO",
+   "endpoint": "https://data.kcmo.org/resource/7at3-sxhp.json",
+   "used_in": [
+    {
+     "script": "usa/adapters/kansas_city.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].cases311",
+      "layers.cases311",
+      "meta.city_data.counts.cases311"
+     ]
+    }
+   ],
+   "licence_url": "https://data.kcmo.org/d/7at3-sxhp",
+   "licence_quote": "Public Domain (Socrata dataset licence)",
+   "verdict": "green",
+   "reason": "Dataset-level public-domain licence (overrides the generic site terms for this dataset).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "kc_danger",
+   "name": "KCMO Dangerous Buildings List",
+   "jurisdiction": "Kansas City, MO",
+   "endpoint": "https://data.kcmo.org/resource/ax3m-jhxx.json",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.dangerous_building",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://data.kcmo.org/d/ax3m-jhxx",
+   "licence_quote": "Public Domain (Socrata dataset licence)",
+   "verdict": "green",
+   "reason": "Dataset-level public-domain licence (overrides the generic site terms for this dataset).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "kc_viol",
+   "name": "KCMO EnerGov Neighborhood Preservation violations",
+   "jurisdiction": "Kansas City, MO",
+   "endpoint": "https://data.kcmo.org/resource/vq3e-m9ge.json",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.code_cases_5y",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://data.kcmo.org/d/vq3e-m9ge",
+   "licence_quote": "Public Domain U.S. Government (Socrata licence USGOV_WORKS)",
+   "verdict": "green",
+   "reason": "Dataset-level public-domain licence (overrides the generic site terms for this dataset).",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "kc_str",
+   "name": "KCMO Short Term Rental permits",
+   "jurisdiction": "Kansas City, MO",
+   "endpoint": "https://mapd.kcmo.org/kcgis/rest/services/DataLayers/MapServer/34",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.str_license",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://mapd.kcmo.org/kcgis/rest/services/DataLayers/MapServer/34?f=json",
+   "licence_quote": "(no licence on map service; data.kcmo.org/terms reserves IP)",
+   "verdict": "grey",
+   "reason": "No licence.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "kc_hoa",
+   "name": "KCMO Registered Homes Associations",
+   "jurisdiction": "Kansas City, MO",
+   "endpoint": "https://mapd.kcmo.org/kcgis/rest/services/DataLayers/MapServer/5",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.hoa",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://mapd.kcmo.org/kcgis/rest/services/DataLayers/MapServer/5?f=json",
+   "licence_quote": "(no licence on map service; data.kcmo.org/terms reserves IP)",
+   "verdict": "grey",
+   "reason": "No licence.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "kc_vacant",
+   "name": "KCMO Vacant Parcels",
+   "jurisdiction": "Kansas City, MO",
+   "endpoint": "https://mapd.kcmo.org/kcgis/rest/services/DataLayers/MapServer/17",
+   "used_in": [
+    {
+     "script": "usa/local_flags.py",
+     "outputs": [
+      "houses[].local.vacant_parcels",
+      "meta.local_flags (status/by_ds/counts entries for this dataset id)"
+     ]
+    }
+   ],
+   "licence_url": "https://mapd.kcmo.org/kcgis/rest/services/DataLayers/MapServer/17?f=json",
+   "licence_quote": "(no licence on map service; data.kcmo.org/terms reserves IP)",
+   "verdict": "grey",
+   "reason": "No licence.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "hsv_parcels",
+   "name": "City of Huntsville FindAProperty MadisonParcelInfo",
+   "jurisdiction": "Huntsville, AL",
+   "endpoint": "https://maps.huntsvilleal.gov/server/rest/services/Planning/FindAProperty/MapServer/1",
+   "used_in": [
+    {
+     "script": "usa/adapters/huntsville.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money (assessor-derived est_value_now/value_level/value_basis/last_sale/tax_yr/payments_20pct_down)",
+      "houses[].value",
+      "houses[].year_built (when filled from assessor)",
+      "houses[].zoning (when filled from assessor)",
+      "houses[].address + houses[].address_source (when filled from assessor)",
+      "meta.city_data.licences.assessor",
+      "meta.city_data.counts.assessor_matched",
+      "meta.assessor_label"
+     ]
+    }
+   ],
+   "licence_url": "https://maps.huntsvilleal.gov/server/rest/services/Planning/FindAProperty/MapServer/1?f=json",
+   "licence_quote": "(no copyright/licence; linked item inaccessible; no City of Huntsville open-data licence found)",
+   "verdict": "grey",
+   "reason": "No licence.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "hsv_permits",
+   "name": "City of Huntsville BuildingPermits",
+   "jurisdiction": "Huntsville, AL",
+   "endpoint": "https://maps.huntsvilleal.gov/server/rest/services/Licenses/BuildingPermits/MapServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/huntsville.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit",
+      "layers.permits",
+      "meta.city_data.counts.permits"
+     ]
+    }
+   ],
+   "licence_url": "https://maps.huntsvilleal.gov/server/rest/services/Licenses/BuildingPermits/MapServer?f=json",
+   "licence_quote": "(no licence; service keywords include 'Restricted')",
+   "verdict": "grey",
+   "reason": "No licence; keyword 'Restricted'.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "jcc_parcels",
+   "name": "Jefferson County AL BOE JCParcelsWMS",
+   "jurisdiction": "Jefferson County, AL",
+   "endpoint": "https://jccgis.jccal.org/server/rest/services/BOE/JCParcelsWMS/MapServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/birmingham.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money (assessor-derived est_value_now/value_level/value_basis/last_sale/tax_yr/payments_20pct_down)",
+      "houses[].value",
+      "houses[].year_built (when filled from assessor)",
+      "houses[].zoning (when filled from assessor)",
+      "houses[].address + houses[].address_source (when filled from assessor)",
+      "meta.city_data.licences.assessor",
+      "meta.city_data.counts.assessor_matched",
+      "meta.assessor_label"
+     ]
+    }
+   ],
+   "licence_url": "https://www.arcgis.com/home/item.html?id=ac6ec7f4f83d4715a45acc8990b8b8c8",
+   "licence_quote": "This data has been prepared by Jefferson County Information Technology Services, GIS Division. Any use of this data shall be at the sole risk of the person or entity using it. ... (other county items say only 'no use limitations')",
+   "verdict": "grey",
+   "reason": "Disclaimer / 'no use limitations' only; no licence grant.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "bhm_permits",
+   "name": "City of Birmingham Building Permits and Valuations (CKAN)",
+   "jurisdiction": "Birmingham, AL",
+   "endpoint": "https://data.birminghamal.gov/api/3/action/datastore_search (resources 7f72c1ef..., 66ff50a9..., 359e6339...)",
+   "used_in": [
+    {
+     "script": "usa/adapters/birmingham.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit",
+      "layers.permits",
+      "meta.city_data.counts.permits"
+     ]
+    }
+   ],
+   "licence_url": "https://data.birminghamal.gov/dataset/d2f503d7-b2b1-424b-8f77-6f7a4b781667",
+   "licence_quote": "license_id 'cc-by' - Creative Commons Attribution",
+   "verdict": "green",
+   "reason": "CC BY on the CKAN package.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "mca_parcels",
+   "name": "Maricopa County Assessor Parcels MapServer (+ optional Residential Master pool file)",
+   "jurisdiction": "Maricopa County, AZ",
+   "endpoint": "https://gis.mcassessor.maricopa.gov/arcgis/rest/services/Parcels/MapServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/maricopa.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].assessor",
+      "houses[].money (assessor-derived est_value_now/value_level/value_basis/last_sale/tax_yr/payments_20pct_down)",
+      "houses[].value",
+      "houses[].year_built (when filled from assessor)",
+      "houses[].zoning (when filled from assessor)",
+      "houses[].address + houses[].address_source (when filled from assessor)",
+      "meta.city_data.licences.assessor",
+      "meta.city_data.counts.assessor_matched",
+      "meta.assessor_label",
+      "houses[].assessor.pool / pool_area / limited_value / tax_year / lot_sqft"
+     ]
+    },
+    {
+     "script": "usa/pools.py, usa/cleaning_leads.py",
+     "outputs": [
+      "anything derived from houses[].assessor.pool for Maricopa blocks"
+     ]
+    },
+    {
+     "script": "usa/adapters/maricopa.py",
+     "outputs": [
+      "situs-address join used to place Phoenix NSD cases (phx_nsd)"
+     ]
+    }
+   ],
+   "licence_url": "https://mcassessor.maricopa.gov/page/data_sales/",
+   "licence_quote": "However, if you plan to use the information for a commercial purpose, you are responsible for complying with all applicable Arizona laws that govern the commercial use of public records.",
+   "verdict": "red",
+   "reason": "Commercial use goes through the A.R.S. 39-121.03 commercial-purpose request; AGOL copies say 'non-commercial use only'.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "phx_permits",
+   "name": "City of Phoenix Planning & Development Permits (Planning_Permit layer 1)",
+   "jurisdiction": "Phoenix, AZ",
+   "endpoint": "https://maps.phoenix.gov/pub/rest/services/Public/Planning_Permit/MapServer/1",
+   "used_in": [
+    {
+     "script": "usa/adapters/maricopa.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].permits",
+      "houses[].roof_permit",
+      "houses[].solar_permit",
+      "layers.permits",
+      "meta.city_data.counts.permits"
+     ]
+    }
+   ],
+   "licence_url": "https://www.phoenixopendata.com/pages/terms-of-use (bot-check, HTTP 403 - not read)",
+   "licence_quote": "(layer 1 is not listed on phoenixopendata.com; sibling layer 2 'Proposed Zoning' is CC BY; Phoenix hub items say 'This Data is subject to the Terms of Use (Terms) that accompany its distribution')",
+   "verdict": "grey",
+   "reason": "No dataset licence for this layer; site terms could not be read without passing a bot check.",
+   "alternative": null,
+   "action": "remove"
+  },
+  {
+   "id": "phx_nsd",
+   "name": "City of Phoenix NSD Property Maintenance",
+   "jurisdiction": "Phoenix, AZ",
+   "endpoint": "https://maps.phoenix.gov/pub/rest/services/Public/NSD_Property_Maintenance/MapServer/0",
+   "used_in": [
+    {
+     "script": "usa/adapters/maricopa.py + usa/city_enrich.py",
+     "outputs": [
+      "houses[].cases311",
+      "layers.cases311",
+      "meta.city_data.counts.cases311"
+     ]
+    }
+   ],
+   "licence_url": "https://www.phoenixopendata.com/dataset/nsd-property-maintenance",
+   "licence_quote": "CKAN license 'cc-by' - Creative Commons Attribution (the dataset's resource URL is this exact MapServer/0)",
+   "verdict": "green",
+   "reason": "CC BY. Caveat: rows are placed via Maricopa Assessor parcels (red); re-geocode with the Census geocoder (federal) when mca_parcels is removed.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "pha_payment_standards",
+   "name": "PHA HCV payment-standard schedules (13 PHAs: MPHA, St Paul PHA, Metro HRA, DHA, HACA, DHA Denver, BHP, CMHA Columbus, CMHA Cincinnati, THA, HAKC, HHA, HABD)",
+   "jurisdiction": "13 local public housing agencies",
+   "endpoint": "usa/research/rental_assistance_local.json payment_standards[].source_url (official PHA pages/PDFs; Metro HRA API)",
+   "used_in": [
+    {
+     "script": "usa/assistance_flags.py",
+     "outputs": [
+      "houses[].assistance.pha_payment_standard",
+      "houses[].assistance.pha_payment_standard_note",
+      "meta.assistance.pha_payment_standard_schedule",
+      "meta.assistance.policy_notes (local part)"
+     ]
+    }
+   ],
+   "licence_url": "per-entry source_url in usa/research/rental_assistance_local.json",
+   "licence_quote": "(no licence on PHA documents; we state individual dollar amounts - facts - with a link, not the documents)",
+   "verdict": "green",
+   "reason": "Facts in our own words with a source link - allowed by the owner's rule; never republish the PDFs/tables wholesale.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "local_landlord_programs",
+   "name": "Local landlord incentive / risk-mitigation / source-of-income pages (PHAs, cities, MN Housing, CO DOH, Hennepin, KCMO)",
+   "jurisdiction": "12 cities + MN/CO/TX/MO",
+   "endpoint": "usa/research/rental_assistance_local.json programs[].url and source_of_income_law[]",
+   "used_in": [
+    {
+     "script": "usa/assistance_flags.py",
+     "outputs": [
+      "meta.assistance.local_programs",
+      "meta.assistance.local_programs_status",
+      "meta.assistance.source_of_income"
+     ]
+    }
+   ],
+   "licence_url": "per-entry url in usa/research/rental_assistance_local.json",
+   "licence_quote": "(program web pages; facts summarised in our own words with link - no dataset licence needed)",
+   "verdict": "green",
+   "reason": "Facts with link, not a dataset.",
+   "alternative": null,
+   "action": "keep"
+  },
+  {
+   "id": "aus_affordable_inventory",
+   "name": "City of Austin Affordable Housing Inventory",
+   "jurisdiction": "Austin, TX",
+   "endpoint": "https://data.austintexas.gov/resource/ifzc-3xz8.json",
+   "used_in": [
+    {
+     "script": "usa/research/rental_assistance_local.json",
+     "outputs": [
+      "datasets[] listing only - not read by any pipeline"
+     ]
+    }
+   ],
+   "licence_url": "https://data.austintexas.gov/d/ifzc-3xz8",
+   "licence_quote": "Creative Commons Attribution | Share Alike 4.0 International",
+   "verdict": "green",
+   "reason": "CC BY-SA 4.0; listed only, not used.",
+   "alternative": null,
+   "action": "keep"
+  }
+ ]
+}

@@ -1,0 +1,588 @@
+{
+ "cities": {
+  "minneapolis": {
+   "deposit": {
+    "value": "No statutory cap on amount. Return within three weeks after tenancy ends (5 days if condemned) with 1% simple annual interest, or give a written statement of amounts withheld.",
+    "source_url": "https://www.revisor.mn.gov/statutes/cite/504B.178",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "504B.178 subd. 2 (1% simple interest) and subd. 3 (three weeks, written statement); section sets no amount limit.",
+    "changed": true
+   },
+   "notice": {
+    "value": "Tenancy at will: written notice at least as long as the rent interval or three months, whichever is less (504B.135). Fixed-term and periodic leases follow their lease terms.",
+    "source_url": "https://www.revisor.mn.gov/statutes/cite/504B.135",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "504B.135 Terminating tenancy at will: rent interval or three months, whichever less, in writing.",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "Common Interest Ownership Act (ch. 515B); association must keep records available to owners (515B.3-118). Flag bans void (500.215); solar limits restricted (500.216); child-care bans restricted (500.217). Use/occupancy (incl. leasing) restrictions must be in the declaration (515B.2-105(a)(11)).",
+    "source_url": "https://www.revisor.mn.gov/statutes/cite/515B.3-118",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Spot-check: read 515B.3-118, 500.215 subd. 1, 500.216, 500.217, 515B.2-105(a)(11); all support value.",
+    "changed": false
+   },
+   "yigby": {
+    "value": "SF 4915 (YIGBY Housing Act), companion HF 5020: introduced 3/26/2026, referred to Senate State and Local Government, no further action. Not law. Church-land housing needs normal zoning approval.",
+    "source_url": "https://www.revisor.mn.gov/bills/bill.php?b=Senate&f=SF4915&ssn=0&y=2026",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Spot-check: bill status shows introduction 3/26/2026 and committee referral only.",
+    "changed": false
+   },
+   "rluipa": {
+    "value": "Federal law: zoning may not substantially burden religious exercise without a compelling reason, must treat religious assemblies on equal terms with secular ones, and may not exclude them outright.",
+    "source_url": "https://www.justice.gov/crt/religious-land-use-and-institutionalized-persons-act",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Federal field already verified; not re-read in this MN lane.",
+    "changed": false
+   },
+   "worship_zoning": {
+    "value": "Religious place of assembly is a permitted use in nearly all districts (Table 545-1). Minneapolis code has no sacred-community rule, so under Minn. Stat. 327.30 micro-unit villages at a church's main worship site must be approved as a conditional use. Other housing on church land needs normal approval.",
+    "source_url": "https://library.municode.com/mn/minneapolis/codes/code_of_ordinances?nodeId=MICOOR_TIT20ZOCO_CH545USRE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Table 545-1 Religious place of assembly row; code search found no sacred-community text; 327.30 subd. 3(c).",
+    "changed": true
+   },
+   "shed": {
+    "value": "A shed is not a dwelling unit: a unit needs its own kitchen, sleeping area and bathroom for one household. Living space in an accessory building is legal only as a detached ADU meeting Ch. 550 Art. IX. Temporary structures used for living are banned (244.60).",
+    "source_url": "https://library.municode.com/mn/minneapolis/codes/code_of_ordinances?nodeId=MICOOR_TIT20ZOCO_CH565DE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "565 definition of Dwelling unit; 550.1420-.1430 ADU rules; 244.60 temporary housing prohibited.",
+    "changed": true
+   },
+   "tent": {
+    "value": "Banned: no tent or other temporary structure may be placed on public or private property and used for living (244.60). The regulatory services director may permit temporary housing only for specified emergencies such as natural disasters or public-health emergencies.",
+    "source_url": "https://library.municode.com/mn/minneapolis/codes/code_of_ordinances?nodeId=COOR_TIT12HO_CH244MACO",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Sec. 244.60 Temporary housing prohibited; exception for emergency permits.",
+    "changed": true
+   },
+   "thow": {
+    "value": "Not a dwelling: transportable structures not permanently attached count as temporary housing, which 244.60 bans for living. Exception: state law (327.30) lets churches host micro units on a chassis for chronically homeless and low-income people as a conditional use.",
+    "source_url": "https://library.municode.com/mn/minneapolis/codes/code_of_ordinances?nodeId=COOR_TIT12HO_CH244MACO",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "244.10 definition of Temporary housing; 244.60; Minn. Stat. 327.30 subd. 3(c) and subd. 4.",
+    "changed": true
+   },
+   "rv": {
+    "value": "Banned: no camp car, house trailer, automobile or similar may be parked on a street or private premises and used for living (244.60), except under an emergency permit. A proposed Safe Outdoor Parking amendment would allow managed overnight vehicle-sleeping lots by interim use permit.",
+    "source_url": "https://library.municode.com/mn/minneapolis/codes/code_of_ordinances?nodeId=COOR_TIT12HO_CH244MACO",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Sec. 244.60 Temporary housing prohibited; city Safe Outdoor Parking amendment page (pending).",
+    "changed": true
+   },
+   "rooming": {
+    "value": "Rooming houses not otherwise defined are an example of a prohibited use (545.80). Rooming units are allowed only through congregate living uses such as nonprofit- or agency-run single room occupancy housing (permitted in most districts). Housing code treats a rooming house as a licensed lodging establishment.",
+    "source_url": "https://library.municode.com/mn/minneapolis/codes/code_of_ordinances?nodeId=MICOOR_TIT20ZOCO_CH545USRE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "545.80 Prohibited uses item 5; Table 545-1 congregate living rows; 565 Rooming unit; 244.10 Rooming house.",
+    "changed": true
+   },
+   "coliving": {
+    "value": "Two or more unrelated adults can count as one family if they operate as a registered intentional community (244.820). Intentional community is a permitted use in most districts. Limits: units let to separate roomers do not qualify, and a rental owner may have only one intentional-community dwelling (nonprofits and owner-cooperatives exempt).",
+    "source_url": "https://library.municode.com/mn/minneapolis/codes/code_of_ordinances?nodeId=COOR_TIT12HO_CH244MACO",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Sec. 244.820(c)-(d) intentional community; Table 545-1 Intentional community row.",
+    "changed": true
+   },
+   "per_bedroom": {
+    "value": "Sleeping rooms need 70 sq ft for 1 person, 90 for 2, plus 50 for each extra person, and at most 4 people per sleeping room. Multi-use habitable rooms need 150 sq ft and other habitable rooms 70 (Housing Maintenance Code 244.810).",
+    "source_url": "https://library.municode.com/mn/minneapolis/codes/code_of_ordinances?nodeId=COOR_TIT12HO_CH244MACO",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Sec. 244.810 Required space in dwelling units, sleeping-room floor areas and four-person cap.",
+    "changed": true
+   },
+   "permit": {
+    "value": "Yes: licence for stays of 30 days or fewer. Renting a spare room while the host stays home is exempt.",
+    "source_url": "https://www.minneapolismn.gov/business-services/licenses-permits-inspections/rental-licenses/short-term-rentals/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Spot-check: city STR page, Who needs this license and Exemptions sections.",
+    "changed": false
+   },
+   "primary_residence": {
+    "value": "No, but an owner (LLCs included) may hold only one STR licence besides their home; non-homestead units must submit management and floor plans.",
+    "source_url": "https://www.minneapolismn.gov/business-services/licenses-permits-inspections/rental-licenses/short-term-rentals/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR page: one STR property besides home; non-homestead rows of requirements table.",
+    "changed": false
+   },
+   "zones": {
+    "value": "Short-term rental units count as dwelling units under zoning and are licensed under Ch. 351, so they go wherever dwellings are allowed. Hotels and hostels (5-20 rooms) are a separate lodging use, limited to certain districts.",
+    "source_url": "https://library.municode.com/mn/minneapolis/codes/code_of_ordinances?nodeId=MICOOR_TIT20ZOCO_CH545USRE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "545 Lodging use category exception 2 (STR units are dwelling units, Ch. 351); Table 545-1 lodging rows.",
+    "changed": true
+   },
+   "caps": {
+    "value": "1 non-homestead STR licence per owner; in buildings of 20+ units at most 10% may be STRs (not applied to condo buildings).",
+    "source_url": "https://www.minneapolismn.gov/business-services/licenses-permits-inspections/rental-licenses/short-term-rentals/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR page: 20 or more units, 10 percent; condo exception.",
+    "changed": false
+   },
+   "max_occupancy": {
+    "value": "10 occupants.",
+    "source_url": "https://www.minneapolismn.gov/business-services/licenses-permits-inspections/rental-licenses/short-term-rentals/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR page requirements table: limit occupants to 10.",
+    "changed": false
+   },
+   "hostel_shared": {
+    "value": "STR licence exempts room rental only when host stays home. Renting sleeping rooms to 5+ people for a week or more needs a city lodging facility licence; per-bed nightly rental not addressed.",
+    "source_url": "https://www.minneapolismn.gov/business-services/licenses-permits-inspections/business-licenses/lodging/lodging-facilities/",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "STR page exemption plus Lodging Facilities licence definition (5+ beds, week or more).",
+    "changed": true
+   },
+   "taxes": {
+    "value": "Combined sales tax 9.025% (6.875% state plus local) plus 3% Minneapolis entertainment tax on all short-term lodging; Minneapolis lodging tax only for 50+ room establishments. Facilitating platforms collect.",
+    "source_url": "https://www.revenue.state.mn.us/sites/default/files/2025-02/fs164m.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "MN DOR Fact Sheet 164M lodging section; DOR metro rate guide Q4 2026; DOR residential STR guide.",
+    "changed": true
+   },
+   "listing_id": {
+    "value": "Yes, licence ID must be on the platform listing; licence number serves as registration number, exempt rooms state the exemption.",
+    "source_url": "https://www.minneapolismn.gov/business-services/licenses-permits-inspections/rental-licenses/short-term-rentals/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Spot-check: city STR requirements table and Registration numbers section.",
+    "changed": false
+   },
+   "pending": {
+    "value": "Zoning amendments under review: Housing with 1-3 Units (council vote scheduled Dec 3, 2026) and Safe Outdoor Parking (vehicle-sleeping sites). No pending STR licence change found.",
+    "source_url": "https://www.minneapolismn.gov/business-services/planning-zoning/amendments/proposed-adopted/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City Proposed and Adopted Amendments page and the two amendment pages' adoption schedules.",
+    "changed": true
+   },
+   "registration": {
+    "value": "Every non-owner-occupied unit needs a city rental licence; buildings tiered 1/1D/2/3 by violations, setting inspection cycle (1-8 years) and fees. Active licence data on Open Data Minneapolis is updated weekly.",
+    "source_url": "https://www.minneapolismn.gov/business-services/licenses-permits-inspections/rental-licenses/tiers/",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City Rental license rules, Tiers, and Active rental licenses pages (data updated weekly).",
+    "changed": true
+   },
+   "family": {
+    "value": "No fixed count of unrelated people. Zoning uses the Ch. 244 definition: one or more people living together as a single household for 30+ days, not short-term or transient use. One family per unit (244.820), with room size setting the cap (244.810).",
+    "source_url": "https://library.municode.com/mn/minneapolis/codes/code_of_ordinances?nodeId=COOR_TIT12HO_CH244MACO",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "565 Family refers to Ch. 244; 244.10 Family definition; 244.820 one family per unit.",
+    "changed": true
+   },
+   "adu": {
+    "value": "One internal, attached or detached ADU per lot, only accessory to a single- or two-family dwelling, and no separate tax parcel (550.1420-.1430). Single-, two- and three-family dwellings are permitted in the urban-neighborhood districts (Table 545-1). A 1-3 unit code update is pending.",
+    "source_url": "https://library.municode.com/mn/minneapolis/codes/code_of_ordinances?nodeId=MICOOR_TIT20ZOCO_CH550DEST",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "550.1420 Permitted ADUs; 550.1430 standards (1) one per lot; Table 545-1 Dwellings rows.",
+    "changed": true
+   },
+   "hoa_data": {
+    "value": "No HOA layer for Hennepin. Proxies: MN subdivision plats; Mapping Prejudice historic racial covenants (CC0, history only). Neighborhoods are not HOAs.",
+    "source_url": "https://services.arcgis.com/8df8p0NlLFEShl0r/arcgis/rest/services/Hennepin_County_Covenants1/FeatureServer/0",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Data-source field, not legal text; not re-checked in this lane.",
+    "changed": false
+   }
+  },
+  "saint_paul": {
+   "deposit": {
+    "value": "No statutory cap on amount. Return within three weeks after tenancy ends (5 days if condemned) with 1% simple annual interest, or give a written statement of amounts withheld.",
+    "source_url": "https://www.revisor.mn.gov/statutes/cite/504B.178",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "504B.178 subd. 2 (1% simple interest) and subd. 3 (three weeks, written statement); section sets no amount limit.",
+    "changed": true
+   },
+   "notice": {
+    "value": "Tenancy at will: written notice at least as long as the rent interval or three months, whichever is less (504B.135). Fixed-term and periodic leases follow their lease terms.",
+    "source_url": "https://www.revisor.mn.gov/statutes/cite/504B.135",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "504B.135 Terminating tenancy at will: rent interval or three months, whichever less, in writing.",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "Common Interest Ownership Act (ch. 515B); association must keep records available to owners (515B.3-118). Flag bans void (500.215); solar limits restricted (500.216); child-care bans restricted (500.217). Use/occupancy (incl. leasing) restrictions must be in the declaration (515B.2-105(a)(11)).",
+    "source_url": "https://www.revisor.mn.gov/statutes/cite/515B.3-118",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Spot-check: read 515B.3-118, 500.215 subd. 1, 500.216, 500.217, 515B.2-105(a)(11); all support value.",
+    "changed": false
+   },
+   "yigby": {
+    "value": "SF 4915 (YIGBY Housing Act), companion HF 5020: introduced 3/26/2026, referred to Senate State and Local Government, no further action. Not law. Church-land housing needs normal zoning approval.",
+    "source_url": "https://www.revisor.mn.gov/bills/bill.php?b=Senate&f=SF4915&ssn=0&y=2026",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Spot-check: bill status shows introduction 3/26/2026 and committee referral only.",
+    "changed": false
+   },
+   "rluipa": {
+    "value": "Federal law: zoning may not substantially burden religious exercise without a compelling reason, must treat religious assemblies on equal terms with secular ones, and may not exclude them outright.",
+    "source_url": "https://www.justice.gov/crt/religious-land-use-and-institutionalized-persons-act",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Federal field already verified; not re-read in this MN lane.",
+    "changed": false
+   },
+   "worship_zoning": {
+    "value": "Religious institutions are permitted in all residential and traditional-neighborhood districts (Tables 66.221, 66.321). Micro-unit dwellings at a religious institution under Minn. Stat. 327.30 are permitted in all residential districts (65.919), and emergency housing at a church is allowed in several districts (65.154).",
+    "source_url": "https://library.municode.com/mn/st._paul/codes/code_of_ordinances?nodeId=PTIILECO_TITVIIIZOCO_CH66ZOCOONDIUSDEDIST",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Table 66.221 Religious institution and Micro-unit rows; 65.919 standards; 65.154 Emergency housing facility.",
+    "changed": true
+   },
+   "rooming": {
+    "value": "Roominghouse = rooms rented to more than 6 adults by the room (65.158). Conditional use in RM1-RM3 residential districts, with lot area 5,000 sq ft plus 1,000 per guest room over 6; rooming units must have 70 sq ft for 1 person and 60 per person if shared (34.17).",
+    "source_url": "https://library.municode.com/mn/st._paul/codes/code_of_ordinances?nodeId=PTIILECO_TITVIIIZOCO_CH65ZOCOANUSDEDEST",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "65.158 Roominghouse definition and standards; Table 66.221 row; 34.17(2) floor area.",
+    "changed": true
+   },
+   "coliving": {
+    "value": "Up to 6 adults plus their minor children are one household (60.209), so most co-living fits in a dwelling. Larger room-by-room setups are roominghouses (65.158). 'Shareable housing' for collaborative living (65.159) is a permitted use in traditional-neighborhood districts.",
+    "source_url": "https://library.municode.com/mn/st._paul/codes/code_of_ordinances?nodeId=PTIILECO_TITVIIIZOCO_CH60ZOCOENPRDEZODIMAGE_ARTII60.200.GEDE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "60.209 Household; 65.158 Roominghouse; 65.159 Shareable housing; Table 66.321 row.",
+    "changed": true
+   },
+   "per_bedroom": {
+    "value": "Dwelling units need 150 sq ft of habitable area for the first occupant and 100 for each additional one. Sleeping rooms need 70 sq ft for 1, or 50 per occupant if shared (34.13). Rooming units need 70 for 1, or 60 per occupant (34.17).",
+    "source_url": "https://library.municode.com/mn/st._paul/codes/code_of_ordinances?nodeId=PTIILECO_TITVIBUHO_CH34MIPRMASTALSTPR",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Sec. 34.13 Occupancy on residential properties (2)-(3); 34.17(2) rooming units.",
+    "changed": true
+   },
+   "shed": {
+    "value": "Not a dwelling: a dwelling unit needs complete living facilities incl. kitchen and bathroom (60.205). Accessory buildings are limited (63.501); living space there is legal only as a code-compliant ADU (65.913). No explicit shed-occupancy ban section found.",
+    "source_url": "https://library.municode.com/mn/st._paul/codes/code_of_ordinances?nodeId=PTIILECO_TITVIIIZOCO_CH63ZOCOEGGEAP",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "60.205 Dwelling unit; 63.501 Accessory buildings; 65.913 ADU. No explicit prohibition text located.",
+    "changed": true
+   },
+   "tent": {
+    "value": "No zoning use allows tents as housing; dwelling units need complete facilities (60.205). Tents or membrane structures over 200 sq ft need a fire-code permit (55.04). No explicit anti-camping housing section was found in the code search.",
+    "source_url": "https://library.municode.com/mn/st._paul/codes/code_of_ordinances?nodeId=PTIILECO_TITVIIIZOCO_CH60ZOCOENPRDEZODIMAGE_ARTII60.200.GEDE",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "60.205 Dwelling unit; 55.04 tent permit; code search for camping/tents found no housing rule.",
+    "changed": true
+   },
+   "rv": {
+    "value": "RVs are not dwelling units (60.205 requires complete permanent facilities). Trailers and campers may not be left on streets or alleys unless hitched to a vehicle (157.11). No explicit ban on living in an RV on private land was found.",
+    "source_url": "https://library.municode.com/mn/st._paul/codes/code_of_ordinances?nodeId=PTIILECO_TITVIIIZOCO_CH60ZOCOENPRDEZODIMAGE_ARTII60.200.GEDE",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "60.205 Dwelling unit; 157.11 Parking for larger vehicles; code search found no RV-occupancy rule.",
+    "changed": true
+   },
+   "thow": {
+    "value": "Not a dwelling unit in general. Exception: micro-unit dwellings on a chassis (max 400 sq ft, ANSI 119.5) at a religious institution's main worship site for chronically homeless and low-income residents are permitted in residential districts (65.919, Minn. Stat. 327.30).",
+    "source_url": "https://library.municode.com/mn/st._paul/codes/code_of_ordinances?nodeId=PTIILECO_TITVIIIZOCO_CH65ZOCOANUSDEDEST",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "65.919 Micro-unit dwellings accessory to a religious institution; Minn. Stat. 327.30 subd. 4.",
+    "changed": true
+   },
+   "permit": {
+    "value": "Yes: annual host licence and platform licence for stays under 30 days (Leg. Code Ch. 379).",
+    "source_url": "https://www.stpaul.gov/departments/safety-inspections/open-operate-expand-business/business-licenses-and-permits/short-term-rentals",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Spot-check: city STR page, less than thirty days; hosts and platforms licensed, renewed annually.",
+    "changed": false
+   },
+   "primary_residence": {
+    "value": "No primary-residence rule; owner-occupancy changes how many units may be STRs and whether a Fire C of O is needed.",
+    "source_url": "https://www.stpaul.gov/departments/safety-inspections/open-operate-expand-business/business-licenses-and-permits/short-term-rentals",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR requirements table, owner-occupied vs non-owner-occupied rows.",
+    "changed": true
+   },
+   "zones": {
+    "value": "Short-term rental dwelling units are P/C (permitted with standards) across residential, traditional-neighborhood and business district tables; per-building counts depend on owner-occupancy and the conditional use permit rules in the STR standards.",
+    "source_url": "https://library.municode.com/mn/st._paul/codes/code_of_ordinances?nodeId=PTIILECO_TITVIIIZOCO_CH66ZOCOONDIUSDEDIST",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Tables 66.221/66.321 Short term rental dwelling unit rows; STR zoning ordinance districts list.",
+    "changed": true
+   },
+   "caps": {
+    "value": "Non-owner-occupied 1-3 unit buildings: 1 STR; non-owner fourplex 1 (RL-RT1) or 2; owner-occupied: all units up to 4; 5+ unit buildings: 50% up to 4. More by conditional use permit.",
+    "source_url": "https://www.stpaul.gov/departments/safety-inspections/open-operate-expand-business/business-licenses-and-permits/short-term-rentals",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City STR requirements table and conditional use permit footnote.",
+    "changed": true
+   },
+   "max_occupancy": {
+    "value": "Occupancy capped at the zoning 'family' definition (Sec. 60.207) for one housekeeping unit; more only by conditional use permit for large 1-2 family homes on large lots, 1,000 ft apart.",
+    "source_url": "https://www.stpaul.gov/sites/default/files/Media%20Root/Safety%20%26%20Inspections/DSI.Licensing.Short_Term_Rental_Zoning_Ordinance.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "STR zoning ordinance condition (d) on total occupancy; city table footnote.",
+    "changed": true
+   },
+   "hostel_shared": {
+    "value": "Portions of a dwelling may be STRs, but occupancy is capped at the family definition; commercial and social events are banned. Per-bed rental not addressed.",
+    "source_url": "https://www.stpaul.gov/sites/default/files/Media%20Root/Safety%20%26%20Inspections/DSI.Licensing.Short_Term_Rental_Zoning_Ordinance.pdf",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "STR zoning ordinance conditions; city STR page definition.",
+    "changed": true
+   },
+   "taxes": {
+    "value": "Combined sales tax 9.875% (6.875% state, 1.5% city, 0.5% Ramsey transit, 1% metro) plus Saint Paul lodging tax 3% (<50 rooms) or 7% (50+). Facilitating platforms collect.",
+    "source_url": "https://www.revenue.state.mn.us/sites/default/files/2026-11/164s-2027-1st-quarter.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "MN DOR Special Local Taxes fact sheet, St. Paul entry; DOR metro rate guide Q4 2026.",
+    "changed": true
+   },
+   "listing_id": {
+    "value": "Yes: platforms must show the host's licence number on the listing and serve only licensed hosts.",
+    "source_url": "https://www.stpaul.gov/sites/default/files/Media%20Root/Safety%20%26%20Inspections/DSI.STR%20-%20Licensing%20Ordinance%20Final.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Ord 17-49 (Ch. 379), Sec. 379.06 platform provisions on licensed hosts and licence number on listing.",
+    "changed": true
+   },
+   "pending": {
+    "value": "No pending STR change found. Long-term: voter-approved rent stabilization (2021; amended 2022 and 2025) caps increases at 3% per 12 months, with exceptions.",
+    "source_url": "https://www.stpaul.gov/departments/safety-inspections/rent-buy-sell-property/renting-property/rent-stabilization",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "City Rent Stabilization page overview; no full pending-legislation search.",
+    "changed": true
+   },
+   "registration": {
+    "value": "Non-owner-occupied rentals need a Fire Certificate of Occupancy with inspections.",
+    "source_url": "https://www.stpaul.gov/departments/safety-inspections/open-operate-expand-business/business-licenses-and-permits/short-term-rentals",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "City STR table requires Fire C of O for non-owner-occupied units; long-term C of O program text not read.",
+    "changed": false
+   },
+   "family": {
+    "value": "Zoning 'family' means household: 6 or fewer adults plus minor children in their care, living together in a dwelling unit (60.209). This also caps STR and ADU occupancy. Ch. 40 (Fire C of O) separately defines family as related people plus at most 2 unrelated.",
+    "source_url": "https://library.municode.com/mn/st._paul/codes/code_of_ordinances?nodeId=PTIILECO_TITVIIIZOCO_CH60ZOCOENPRDEZODIMAGE_ARTII60.200.GEDE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "60.207 Family refers to Household; 60.209 Household definition; 40.03 Family definition.",
+    "changed": true
+   },
+   "adu": {
+    "value": "Up to 2 ADUs per one-family dwelling, at least one detached unless 50%+ of the existing house is kept; max 800 sq ft or 75% of the main unit; total occupancy within the household cap; not sold separately (65.913). Permitted in RL-RM2 (Table 66.221). Amended 2018, 2021, 2022 and 2023.",
+    "source_url": "https://library.municode.com/mn/st._paul/codes/code_of_ordinances?nodeId=PTIILECO_TITVIIIZOCO_CH65ZOCOANUSDEDEST",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "65.913 Dwelling unit, accessory (a)-(g) and history notes; Table 66.221 row.",
+    "changed": true
+   },
+   "hoa_data": {
+    "value": "No HOA layer for Ramsey; subdivision plat polygons only (no HOA field). District councils are not HOAs.",
+    "source_url": "https://maps.co.ramsey.mn.us/arcgis/rest/services/OpenData/OpenData/FeatureServer/21",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Data-source field already verified; not re-checked in this lane.",
+    "changed": false
+   }
+  }
+ },
+ "states": {
+  "MN": {
+   "str_preemption": {
+    "value": "No state preemption of STR rules found; cities license STRs (Minneapolis licence, Saint Paul Ch. 379). State and local taxes apply and facilitating platforms collect.",
+    "source_url": "https://www.revenue.state.mn.us/guide/sales-residential-short-term-rentals",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding; DOR residential STR guide plus city licence pages; statute search not exhaustive.",
+    "changed": true
+   },
+   "rent_control": {
+    "value": "Local rent control barred unless approved by voters at a general election (471.9996 subd. 2). Saint Paul has voter-approved rent stabilization (3% cap with exceptions).",
+    "source_url": "https://www.revisor.mn.gov/statutes/cite/471.9996",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "471.9996 subd. 1 prohibition and subd. 2 general-election exception.",
+    "changed": true
+   },
+   "ltr_registration": {
+    "value": "No state rental registry; cities license (Minneapolis tiered rental licence, Saint Paul Fire C of O).",
+    "source_url": "https://www.minneapolismn.gov/business-services/licenses-permits-inspections/rental-licenses/tiers/",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding for state; city programs confirmed on city pages.",
+    "changed": true
+   },
+   "source_of_income": {
+    "value": "Status regarding public assistance, including rental assistance or rent supplements (vouchers), is a protected class in housing statewide.",
+    "source_url": "https://www.revisor.mn.gov/statutes/cite/363A.03",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "363A.03 subd. 47 definition; 363A.09 subd. 1 real-property discrimination.",
+    "changed": true
+   },
+   "occupancy_law": {
+    "value": "No statewide family-size rule, but licensed residential facilities for 6 or fewer and licensed day care up to 12 (group family day care 14) count as permitted single-family uses (462.357 subd. 7).",
+    "source_url": "https://www.revisor.mn.gov/statutes/cite/462.357",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "462.357 subd. 7 Permitted single family use.",
+    "changed": true
+   },
+   "hoa_registry": {
+    "value": "No statewide HOA registry found; 515B associations must be incorporated (profit or nonprofit corporation), so SOS business filings and recorded plats/declarations are proxies.",
+    "source_url": "https://www.revisor.mn.gov/statutes/cite/515B.3-101",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "515B.3-101 incorporation requirement; registry absence is a negative finding.",
+    "changed": true
+   },
+   "deposit": {
+    "value": "No statutory cap on amount. Return within three weeks after tenancy ends (5 days if condemned) with 1% simple annual interest, or give a written statement of amounts withheld.",
+    "source_url": "https://www.revisor.mn.gov/statutes/cite/504B.178",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "504B.178 subd. 2 (1% simple interest) and subd. 3 (three weeks, written statement); section sets no amount limit.",
+    "changed": true
+   },
+   "notice": {
+    "value": "Tenancy at will: written notice at least as long as the rent interval or three months, whichever is less (504B.135). Fixed-term and periodic leases follow their lease terms.",
+    "source_url": "https://www.revisor.mn.gov/statutes/cite/504B.135",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "504B.135 Terminating tenancy at will: rent interval or three months, whichever less, in writing.",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "Common Interest Ownership Act (ch. 515B); association must keep records available to owners (515B.3-118). Flag bans void (500.215); solar limits restricted (500.216); child-care bans restricted (500.217). Use/occupancy (incl. leasing) restrictions must be in the declaration (515B.2-105(a)(11)).",
+    "source_url": "https://www.revisor.mn.gov/statutes/cite/515B.3-118",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Spot-check: read 515B.3-118, 500.215 subd. 1, 500.216, 500.217, 515B.2-105(a)(11); all support value.",
+    "changed": false
+   },
+   "yigby": {
+    "value": "SF 4915 (YIGBY Housing Act), companion HF 5020: introduced 3/26/2026, referred to Senate State and Local Government, no further action. Not law. Church-land housing needs normal zoning approval.",
+    "source_url": "https://www.revisor.mn.gov/bills/bill.php?b=Senate&f=SF4915&ssn=0&y=2026",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Spot-check: bill status shows introduction 3/26/2026 and committee referral only.",
+    "changed": false
+   }
+  }
+ },
+ "platforms": {
+  "Airbnb": [
+   {
+    "index": 0,
+    "value": "Listing types are entire place, room (private bedroom) and shared room (bedroom or common area possibly shared with others). The help article does not limit shared rooms to staffed hostels.",
+    "source_url": "https://www.airbnb.com/help/article/317",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Article 317 Select your home type: Entire place, Room, Shared room definitions; no hostel or 24/7 staff rule.",
+    "changed": true
+   },
+   {
+    "index": 1,
+    "value": "Community Disturbance Policy: no disruptive or open-invite gatherings or party-friendly ads; Airbnb may block higher-risk bookings and warn, suspend or remove listings or accounts.",
+    "source_url": "https://www.airbnb.com/help/article/3345",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Article 3345 sections What's not allowed, Reducing, Enforcing.",
+    "changed": false
+   },
+   {
+    "index": 2,
+    "value": "Smoke and CO alarms strongly urged; hosts record safety devices in the listing; local rules may require more alarms. Free combo alarm for eligible hosts.",
+    "source_url": "https://www.airbnb.com/help/article/514",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Spot-check: article 514 alarms guidance and update-safety-device steps.",
+    "changed": false
+   },
+   {
+    "index": 3,
+    "value": "US responsible-hosting guidance: set safe occupancy limits, check local permits, zoning, taxes and safety rules, keep smoke/CO alarms, no indoor cameras. Guidance only; no per-bed or registration-field rule here.",
+    "source_url": "https://www.airbnb.com/help/article/1376",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Article 1376 Safety, Occupancy, General regulations sections.",
+    "changed": true
+   }
+  ],
+  "Booking.com": [
+   {
+    "index": 0,
+    "value": "Partners are responsible for local licensing, permits, zoning, safety and tax; licence/registration fields appear where a place requires them.",
+    "source_url": "https://partner.booking.com/en-us/compliance/accommodation-licensing/understanding-accommodation-licensing-including-short-term",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not re-verified: page returned 202/403 to scripted fetch and no browser tab was available.",
+    "changed": false
+   },
+   {
+    "index": 1,
+    "value": "Supports a bed-based 'hostel' property type alongside hotels, apartments and holiday homes.",
+    "source_url": "https://partner.booking.com/en-us/compliance/accommodation-licensing/understanding-accommodation-licensing-including-short-term",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Not reachable (bot block); this licensing URL likely does not list property types anyway.",
+    "changed": false
+   }
+  ],
+  "Vrbo": [
+   {
+    "index": 0,
+    "value": "Registration/permit numbers go in a dedicated field (Local laws > Regulatory Compliance), preferred over the description; multiple numbers comma-separated.",
+    "source_url": "https://help.vrbo.com/articles/Add-or-update-your-property-registration-number",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Help article confirms dedicated field; host-responsibility wording not on this page.",
+    "changed": true
+   },
+   {
+    "index": 1,
+    "value": "Whole-home rentals only (no private or shared rooms); max occupancy set per listing.",
+    "source_url": "https://help.vrbo.com/articles/Add-or-update-your-property-registration-number",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "Cited article covers registration numbers only; no Vrbo listing-type page reached.",
+    "changed": false
+   }
+  ]
+ }
+}

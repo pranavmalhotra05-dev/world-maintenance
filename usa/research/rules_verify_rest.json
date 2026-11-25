@@ -1,0 +1,605 @@
+{
+ "cities": {
+  "cincinnati": {
+   "shed": {
+    "value": "Not a dwelling on its own: an accessory residential structure is capped at 800 sq ft and 15 ft, and a dwelling unit needs a kitchen. Living space in an outbuilding is lawful only as a permitted accessory dwelling unit (one per lot, separate entrance) under 1421-06.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TIXIZOCOCI_CH1421GESIST_S1421-06ACDWUN",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "1421-01 accessory structures (not ADUs) max 800 sq ft/15 ft; 1421-06 detached ADU rules; 1401-01-D16 dwelling unit has single kitchen.",
+    "changed": true
+   },
+   "tent": {
+    "value": "No zoning use lets a tent serve as housing on a residential lot; tents appear only in recreational vehicle parks (min. 5 acres, Board of Health regulated). No explicit tent-dwelling ban was found.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TIXIZOCOCI_CH1401DE_S1401-01-R4REVEPA",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "1401-01-R4: RV park = 5+ acre site where 2+ RVs or tents are parked or erected, regulated by Board of Health.",
+    "changed": true
+   },
+   "rv": {
+    "value": "RVs are defined as vehicles for temporary habitation and may be parked behind the front yard in single-family districts; RV parks need 5+ acres. Not a dwelling unit (needs a kitchen-equipped unit for one family). No explicit on-lot RV-living ban found.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TIXIZOCOCI_CH1401DE_S1401-01-R3REVE",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "1401-01-R3 RV = mobile vehicle for temporary habitation; Ch.1403 limitation: RVs may be parked beyond the front yard; 1401-01-R4 RV park.",
+    "changed": true
+   },
+   "thow": {
+    "value": "A tiny house on wheels fits the zoning 'recreational vehicle' (mobile vehicle for temporary habitation), so it is not a dwelling unit; long-term use would need an RV park (5+ acres) or a code-compliant ADU. No explicit ban text found.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TIXIZOCOCI_CH1401DE_S1401-01-R3REVE",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "1401-01-R3 RV definition; 1401-01-D16 dwelling unit; 1421-06 ADU.",
+    "changed": true
+   },
+   "coliving": {
+    "value": "Zoning 'family' in SF districts allows up to 4 unrelated people as one housekeeping unit; the Housing Code allows one family per unit with up to 5 unrelated. Larger shared houses are 'group residential' (rooming houses: 3+ rooming units), not permitted in SF districts; a SF home may rent at most two rooming units.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TIXIZOCOCI_CH1401DE_S1401-01-F2FA",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "1401-01-F2 family (4 unrelated in SF); 1401-01-G7, R14; Ch.1403 table rooming houses not permitted, L11 max two rooming units; 1117-19.1.",
+    "changed": true
+   },
+   "per_bedroom": {
+    "value": "Housing Code: unit needs 150 sq ft of habitable floor area for the first occupant plus 100 sq ft per extra occupant; sleeping rooms need 70 sq ft for one person and 50 sq ft per person when shared; no sleeping in kitchens. Rooming units: one person under 100 sq ft, two max above.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TITXICIBUCO_CH1117HOCO_S1117-19SPRE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "CBC 1117-19.1, 1117-19.2, 1117-19.4; zoning 1421-43(a) rooming unit occupancy.",
+    "changed": true
+   },
+   "hostel_shared": {
+    "value": "Hostels are classed as 'Hotel' (6+ guest rooms for transient stays via a common lobby), a use not listed in single-family districts. Shared-room rental in a house is limited: max two rooming units in a single-family dwelling; rooming houses not permitted in SF zones.",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TIXIZOCOCI_CH1401DE_S1401-01-H6HO",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "1401-01-H6 Hotel includes hostels; Ch.1403 SF use table (no hotel row; rooming houses 'â€”'; L11 two rooming units).",
+    "changed": true
+   },
+   "pending": {
+    "value": "No pending STR rule change shown; the city STR page describes the existing registration (3-year permit, registration ID in listings) and 7% excise tax.",
+    "source_url": "https://www.cincinnati-oh.gov/finance/short-term-rental/",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "City STR page: registration valid three years, include registration ID in listings, 7% tax; no proposed changes listed.",
+    "changed": false
+   },
+   "registration": {
+    "value": "Rentals must register with the Hamilton County Auditor (R.C. 5323). The city also runs a Residential Rental Property Inspection Program: rentals in pilot census tracts (Avondale, CUF, College Hill, Price Hills, Madisonville, Westwood) that meet problem triggers need an inspection certificate ($100/unit; re-inspect every 48 months if compliant).",
+    "source_url": "https://library.municode.com/oh/cincinnati/codes/code_of_ordinances?nodeId=TITXICIBUCO_CH1127GEINPR",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "CBC 1127-07.1-P pilot residential areas, 1127-07.7 applicable properties, 1127-07.13 intervals, 1127-07.19 fees.",
+    "changed": true
+   }
+  },
+  "huntsville": {
+   "shed": {
+    "value": "Not a dwelling: a zoning 'accessory structure' may hold no plumbing beyond one laundry sink and/or one toilet, and no kitchen is allowed in a detached accessory structure on a single-family lot. Huntsville has no accessory dwelling unit category.",
+    "source_url": "https://www.huntsvilleal.gov/wp-content/uploads/2026/04/ZonOrd_as_of_01April2026.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Zoning Ord. Art. 2 definition 'Accessory Structure'; Sec. 10.6.3 no kitchen in detached accessory structure.",
+    "changed": true
+   },
+   "tent": {
+    "value": "No zoning use treats a tent as a residence; overnight lodging for under 180 days is 'transient' use outside the single housekeeping unit, and camping trailer courts are a commercial (C-4) use. No explicit tent ban was found.",
+    "source_url": "https://www.huntsvilleal.gov/wp-content/uploads/2026/04/ZonOrd_as_of_01April2026.pdf",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Definitions 'Transient', 'Single housekeeping unit'; Sec. 24.2.3 camping trailer courts (2+ acres).",
+    "changed": true
+   },
+   "rv": {
+    "value": "Prohibited: occupying a motor home, camping trailer or similar vehicle designed for occupancy while it is parked on a residential lot; no variance allowed. Camping trailer courts (2+ acres) are a Highway Business C-4 use.",
+    "source_url": "https://www.huntsvilleal.gov/wp-content/uploads/2026/04/ZonOrd_as_of_01April2026.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Zoning Ord. Sec. 73.14.4 (occupancy prohibited on residential lot), 73.14.6 (no variances); Sec. 24.2.3.",
+    "changed": true
+   },
+   "thow": {
+    "value": "A tiny house on wheels is a 'house trailer' (structure for habitation on wheels, even if wheels removed) or a similar occupiable vehicle; living in one on a residential lot is barred by 73.14.4. Trailers belong in trailer/mobile home parks or camping courts.",
+    "source_url": "https://www.huntsvilleal.gov/wp-content/uploads/2026/04/ZonOrd_as_of_01April2026.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Definition 'House Trailer'; Sec. 73.14.4 vehicle occupancy ban on residential lots; Art. 24 parks/courts.",
+    "changed": true
+   },
+   "per_bedroom": {
+    "value": "Minimum Housing Standards: each dwelling unit needs 150 sq ft of habitable floor space for the first occupant plus 100 sq ft per extra occupant; sleeping rooms need 70 sq ft for one and 50 sq ft per person if shared (same rule for rooming houses).",
+    "source_url": "https://library.municode.com/al/huntsville/codes/code_of_ordinances?nodeId=COOR_CH7BUBURE_ARTVMIHOST",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City Code Sec. 7-386(a)-(b) dwelling space requirements; Sec. 7-382(e) roominghouses.",
+    "changed": true
+   },
+   "max_occupancy": {
+    "value": "No STR-specific guest cap: STRs need only a business license after zoning approval. Occupancy follows the Minimum Housing Standards floor-area rules (150 sq ft + 100 per extra person; 70/50 sq ft per sleeper).",
+    "source_url": "https://www.huntsvilleal.gov/business/licensing-permits/short-term-rentals/",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "City STR page (zoning check, business license, lodging tax) lists no guest cap; Code 7-386.",
+    "changed": true
+   },
+   "hostel_shared": {
+    "value": "Hostel-type transient lodging is a 'hotel' (transient guests, no unit kitchens), listed in commercial districts. In homes, a resident host (unit with max two adult residents) may take up to three non-transient roomers or boarders; transient stays under 180 days fall outside the household.",
+    "source_url": "https://www.huntsvilleal.gov/wp-content/uploads/2026/04/ZonOrd_as_of_01April2026.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Definitions 'Hotel', 'Transient'; Sec. 73.1.1(1)(c) and (2)(b) roomers/boarders accessory use.",
+    "changed": true
+   },
+   "listing_id": {
+    "value": "No listing-ID or permit-number display rule found: the city requires a business license and lodging-tax filing but its STR page and Ch. 15 business licence article set no platform-listing requirement.",
+    "source_url": "https://www.huntsvilleal.gov/business/licensing-permits/short-term-rentals/",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "City STR page steps 1-3 (zoning, licence, payment); Code Ch. 15 Art. II has no STR listing section.",
+    "changed": true
+   },
+   "pending": {
+    "value": "None found: the STR page shows no pending changes; recent uncodified ordinances (26-xxx) listed on Municode were not reviewed.",
+    "source_url": "https://www.huntsvilleal.gov/business/licensing-permits/short-term-rentals/",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "City STR page; Municode list of recent ordinances not opened.",
+    "changed": false
+   },
+   "registration": {
+    "value": "No city rental registration found: the Minimum Housing Standards (Ch. 7 Art. V) rely on inspections by the housing official, with no registry or rental licence section.",
+    "source_url": "https://library.municode.com/al/huntsville/codes/code_of_ordinances?nodeId=COOR_CH7BUBURE_ARTVMIHOST",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Code Ch. 7 Art. V table of contents and inspection sections; no registration provision.",
+    "changed": false
+   },
+   "hoa_data": {
+    "value": "No public HOA boundary layer found: an ArcGIS Online search (HOA Huntsville, Madison County subdivisions, homeowners association Alabama) returned no city or county HOA layer, only third-party or census items. Subdivision plats via the county are the fallback.",
+    "source_url": "https://www.arcgis.com/home/search.html?q=HOA",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "ArcGIS sharing/rest search 2026-11-24: 0 results for 'HOA Huntsville'; no official layer listed.",
+    "changed": false
+   }
+  },
+  "birmingham": {
+   "worship_zoning": {
+    "value": "Place of Worship needs a special exception (Board of Zoning Adjustment) in D-1 to D-4, UN, MU-L and C-1, and is permitted with conditions in D-5, MU-M, MU-H, MU-D, C-2 and AG; not allowed in industrial districts. Housing on church land follows the ordinary dwelling rules of the district.",
+    "source_url": "https://www.birminghamal.gov/government/city-departments/pep/pep-divisions/zoning-division/city-birmingham-zoning-ordinance",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Zoning Ord. (July 2026) Table 1.02.201 Permitted Uses, row 'Place of Worship'.",
+    "changed": true
+   },
+   "shed": {
+    "value": "Living space in an outbuilding is lawful only as an 'accessory dwelling' (rooms in an accessory structure with living, sleeping, cooking and eating facilities for one family), allowed in D-4, D-5, UN, MU and C districts with one per lot; not allowed in D-1 to D-3.",
+    "source_url": "https://www.birminghamal.gov/government/city-departments/pep/pep-divisions/zoning-division/city-birmingham-zoning-ordinance",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Zoning Ord. Ch.1 def. 82 'Dwelling, Accessory'; Table 1.02.201; Ch.4 Art.IV accessory dwelling conditions B.1-3.",
+    "changed": true
+   },
+   "tent": {
+    "value": "No zoning use treats a tent as a dwelling: a dwelling unit must have living, sleeping, cooking and eating facilities for one family. No explicit tent-living ban was found in the zoning ordinance.",
+    "source_url": "https://www.birminghamal.gov/government/city-departments/pep/pep-divisions/zoning-division/city-birmingham-zoning-ordinance",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Zoning Ord. Ch.1 def. 92 'Dwelling Unit, Other'; Table 1.02.201 lists no camping/tent use.",
+    "changed": true
+   },
+   "rv": {
+    "value": "RVs are not dwellings in the zoning use table (no RV park or RV-dwelling use); RVs appear only in parking/storage and floodplain rules. Manufactured housing (HUD-labelled) needs a special exception in D-1 to D-5. No explicit ban on sleeping in an RV found in the zoning text.",
+    "source_url": "https://www.birminghamal.gov/government/city-departments/pep/pep-divisions/zoning-division/city-birmingham-zoning-ordinance",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Table 1.02.201 dwelling uses; def. 142 Manufactured Home; Ch.5 parking (RV storage lots); floodplain RV standards.",
+    "changed": true
+   },
+   "thow": {
+    "value": "A tiny house on wheels is neither a listed dwelling type nor a manufactured home (which needs a HUD label), so it has no residential zoning path; floodplain rules treat RVs as temporary structures. No explicit ban found.",
+    "source_url": "https://www.birminghamal.gov/government/city-departments/pep/pep-divisions/zoning-division/city-birmingham-zoning-ordinance",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Def. 142 Manufactured Home (HUD label, Alabama insignia); Table 1.02.201 dwelling uses.",
+    "changed": true
+   },
+   "rooming": {
+    "value": "Boardinghouses fall under 'communal living facility' (four or more unrelated residents), which needs a special exception in D-4, D-5, UN, MU and C districts, with health/housing-code statements and 1,000 ft spacing from another such facility; barred in D-1 to D-3.",
+    "source_url": "https://www.birminghamal.gov/government/city-departments/pep/pep-divisions/zoning-division/city-birmingham-zoning-ordinance",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Zoning Ord. def. 58 Communal living facility; Table 1.02.201; Ch.4 special exception D.1-5.",
+    "changed": true
+   },
+   "coliving": {
+    "value": "A household may include at most two people not related by birth, adoption or marriage. Four or more unrelated residents make a 'communal living facility' (special exception only in D-4 and denser districts, 1,000 ft spacing).",
+    "source_url": "https://www.birminghamal.gov/government/city-departments/pep/pep-divisions/zoning-division/city-birmingham-zoning-ordinance",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Def. 96 Family ('all but two of whom are related'); def. 58; Ch.4 special exception D.",
+    "changed": true
+   },
+   "family": {
+    "value": "Family: one or more people living as a single housekeeping unit, all or all but two of whom are related by birth, adoption or marriage, as distinguished from a communal living facility.",
+    "source_url": "https://www.birminghamal.gov/government/city-departments/pep/pep-divisions/zoning-division/city-birmingham-zoning-ordinance",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Zoning Ord. Ch.1 definition 96 'Family'.",
+    "changed": true
+   },
+   "adu": {
+    "value": "Yes, in D-4, D-5, UN, MU-L, MU-M, MU-H, MU-D, C-1 and C-2 (not D-1 to D-3): one accessory structure per lot may be a dwelling, reached from an alley or approved driveway, accessory to a single-family home or B&B. ADUs up to 800 sq ft get some coverage relief.",
+    "source_url": "https://www.birminghamal.gov/government/city-departments/pep/pep-divisions/zoning-division/city-birmingham-zoning-ordinance",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Table 1.02.201 'Dwelling, Accessory' PAC; Ch.4 Art.IV Sec.2 B.1-3; Ch.3 note 32.",
+    "changed": true
+   },
+   "hostel_shared": {
+    "value": "Hostel-type lodging falls under Hotel/Motel (establishment offering sleeping accommodations to guests): permitted in MU-M, MU-H, MU-D, C-2, I-1, I-3, with conditions in PRD; not in dwelling districts. No STR rules in force for shared rooms.",
+    "source_url": "https://www.birminghamal.gov/government/city-departments/pep/pep-divisions/zoning-division/city-birmingham-zoning-ordinance",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Def. 123 Hotel/Motel; Table 1.02.201 row 'Hotel'.",
+    "changed": true
+   },
+   "per_bedroom": {
+    "value": "Birmingham adopts the 2015 International Property Maintenance Code; its amendments do not change Chapter 4 occupancy limits, so model 404.4.1 applies: bedrooms at least 70 sq ft, plus 50 sq ft per occupant when shared.",
+    "source_url": "https://library.municode.com/al/birmingham/codes/code_of_ordinances?nodeId=PT1THCOGEOR_TIT7BULAUSCO_CH1BUHOCOEN",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Code Sec. 7-1-10 adopts IPMC 2015; amended subsections list (101.1-602.4) excludes 404.",
+    "changed": true
+   },
+   "registration": {
+    "value": "No city rental registration found: Title 7 housing enforcement relies on the property maintenance code and inspections; the pending STR ordinance would add an STR permit only.",
+    "source_url": "https://library.municode.com/al/birmingham/codes/code_of_ordinances?nodeId=PT1THCOGEOR_TIT7BULAUSCO_CH1BUHOCOEN",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Title 7 Ch.1 articles A-D contain no rental registry.",
+    "changed": false
+   },
+   "primary_residence": {
+    "value": "No rule in force. The draft STR ordinance (first council reading Nov 24 2026) as reported needs a business licence, STR permit, insurance, HOA-compliance certification and a 30-minute local contact; no owner-occupancy rule was reported.",
+    "source_url": "https://www.wbhm.org/local-news/2026-10-01/birmingham-moves-closer-to-regulating-short-term-rentals",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "WBHM Oct 1 2026 summary of draft; draft text not read.",
+    "changed": true
+   },
+   "zones": {
+    "value": "No STR zoning rules in force; council staff plan to adopt licensing and enforcement first and address STR zoning later. Current zoning has no STR use; hotels and B&B inns are limited to listed districts.",
+    "source_url": "https://www.wbhm.org/local-news/2026-10-01/birmingham-moves-closer-to-regulating-short-term-rentals",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "WBHM: 'Zoning remains unresolved', licensing first; Zoning Table 1.02.201 Hotel and B&B rows.",
+    "changed": true
+   },
+   "caps": {
+    "value": "No cap in force. Reported draft: per-unit permits, with an enterprise licence for large operators under discussion; ADUs removed from the list of structures barred from STR use.",
+    "source_url": "https://www.wbhm.org/local-news/2026-10-01/birmingham-moves-closer-to-regulating-short-term-rentals",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "WBHM Oct 1 2026 report on committee changes; draft text not read.",
+    "changed": true
+   },
+   "max_occupancy": {
+    "value": "No STR rule in force; reported draft says the city would inspect and require operators to follow occupancy and safety rules (figures not reported). Until then IPMC 2015 404 bedroom areas apply.",
+    "source_url": "https://www.wbhm.org/local-news/2026-10-01/birmingham-moves-closer-to-regulating-short-term-rentals",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "WBHM summary of draft; Code 7-1-10 IPMC adoption.",
+    "changed": true
+   },
+   "listing_id": {
+    "value": "No rule in force; the draft creates an STR permit and puts permit data in police dispatch, but no listing-number display rule was reported.",
+    "source_url": "https://www.wbhm.org/local-news/2026-10-01/birmingham-moves-closer-to-regulating-short-term-rentals",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "WBHM report: permit info entered into computer-aided dispatch system; draft text not read.",
+    "changed": true
+   },
+   "hoa_data": {
+    "value": "No public HOA layer found: ArcGIS Online search returned none for HOA Birmingham or Jefferson County; only neighborhood-boundary layers (Birmingham's 99 neighborhoods, user-published) exist, and city neighborhood associations are civic bodies, not HOAs.",
+    "source_url": "https://www.arcgis.com/home/search.html?q=HOA",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "ArcGIS sharing/rest search 2026-11-24: 0 results 'HOA Birmingham'; 'Birmingham Neighborhoods' layers are third-party.",
+    "changed": false
+   }
+  },
+  "dallas": {
+   "max_occupancy": {
+    "value": "Codified Ch. 42B (enjoined, not enforced while the injunction stands): max three people per bedroom and 12 in total, two-night minimum stay, guest cars limited to off-street spaces.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-130667",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Dallas Code 42B-12(a) occupancy 3 per bedroom, total 12; 42B-12(e),(f). Injunction status from city STR page.",
+    "changed": true
+   },
+   "hostel_shared": {
+    "value": "Ch. 42B (enjoined) covers a full or partial rentable unit with a kitchen, bathroom and bedroom, so room rentals count, but only one STR per rentable unit; no hostel/bed-based model. Multitenant buildings with 20 or fewer units get zero STRs.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-130667",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "42B-1(12)-(13) rentable unit and STR definitions; 42B-12(b),(c).",
+    "changed": true
+   },
+   "listing_id": {
+    "value": "Ch. 42B (enjoined) requires every listing or ad to show the Dallas STR registration number plus occupancy, sound, vehicle and parking limits and the two-night minimum; platforms may not take fees for unregistered STRs.",
+    "source_url": "https://codelibrary.amlegal.com/codes/dallas/latest/dallas_tx/0-0-0-130667",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "42B-12(g)(1)-(6) listing contents; 42B-14(a) platform fee ban for unregistered units.",
+    "changed": true
+   }
+  },
+  "austin": {
+   "worship_zoning": {
+    "value": "Religious Assembly is permitted by right in every residential district (LA through MH) and most commercial and industrial districts; conditional only in CR and L. Housing on church land still follows the district's residential use and site rules.",
+    "source_url": "https://library.municode.com/tx/austin/codes/land_development_code?nodeId=TIT25LADE_CH25-2ZO_SUBCHAPTER_CUSDERE_ART2PRUSDERE_DIV1RETA_S25-2-491PECOPRUS",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "LDC 25-2-491 use table, row 'Religious Assembly'; 25-2-6 civic use definition.",
+    "changed": true
+   },
+   "rooming": {
+    "value": "Austin has no separate rooming-house use: boarding houses, dorms and fraternities fall under Group Residential (16+ adults with food provided by a third party), allowed in MF-4, MF-5, MF-6, CBD, DMU and CH, conditional in MF-3 and L, barred in single-family zones.",
+    "source_url": "https://library.municode.com/tx/austin/codes/land_development_code?nodeId=TIT25LADE_CH25-2ZO_SUBCHAPTER_CUSDERE_ART2PRUSDERE_DIV1RETA_S25-2-491PECOPRUS",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "LDC 25-2-3 Group Residential definition; 25-2-491 table row 'Group Residential'.",
+    "changed": true
+   },
+   "shed": {
+    "value": "No zoning use makes a shed a dwelling; living space in an outbuilding must be a permitted dwelling unit (HOME rules allow up to three units on a lot under 25-2-773). No explicit shed-living ban was read.",
+    "source_url": "https://library.municode.com/tx/austin/codes/land_development_code?nodeId=TIT25LADE_CH25-2ZO_SUBCHAPTER_CUSDERE_ART4ADRECEUS_SPARESPUS_S25-2-773DUTITTHITREUS",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "LDC 25-2-3 residential uses; 25-2-773 (title) two- and three-unit residential.",
+    "changed": true
+   },
+   "tent": {
+    "value": "Campgrounds are a commercial use (conditional in CR; permitted in CS, CS-1, CH, LI and some others), not allowed in residential zones; no explicit ban on a tent on a private lot was read.",
+    "source_url": "https://library.municode.com/tx/austin/codes/land_development_code?nodeId=TIT25LADE_CH25-2ZO_SUBCHAPTER_CUSDERE_ART2PRUSDERE_DIV1RETA_S25-2-491PECOPRUS",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "LDC 25-2-491 table row 'Campground'.",
+    "changed": true
+   }
+  },
+  "denver": {
+   "tent": {
+    "value": "Camping (temporarily dwelling with shelter such as a tent) on private property is unlawful without the owner's express written consent, and even with consent only where other city law (e.g. zoning) allows it; a tent is not a zoning dwelling unit.",
+    "source_url": "https://library.municode.com/co/denver/codes/code_of_ordinances?nodeId=TITIIREMUCO_CH38OFMIPR_ARTIVOFAGPUORSA",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "D.R.M.C. 38-86.2(a) private-property camping needs written consent and compliance with other city law; (d)(1) 'camp' definition.",
+    "changed": true
+   },
+   "per_bedroom": {
+    "value": "Denver does not use the IPMC figures directly: the Housing Code makes it unlawful to occupy or let a unit that fails minimum space, use and location standards, which are set by Board of Public Health and Environment rules (numbers not read here).",
+    "source_url": "https://library.municode.com/co/denver/codes/code_of_ordinances?nodeId=TITIIREMUCO_CH27HO_ARTIIHOCO",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "D.R.M.C. 27-22(1) space standards delegated to board rules; rules text not read.",
+    "changed": true
+   }
+  },
+  "boulder": {
+   "shed": {
+    "value": "Not a dwelling unless approved as an accessory dwelling unit under 9-6-3(n): an accessory building may be used only by the occupant of the main building and, for residential uses, may not have a bathtub or shower. A dwelling unit needs a bathroom and kitchen.",
+    "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT9LAUSCO_CH16DE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "B.R.C. 9-16-1 'Accessory building or structure' (4)(A)-(B); 'Dwelling unit'; 'Accessory dwelling unit'.",
+    "changed": true
+   },
+   "tent": {
+    "value": "Camping (temporary dwelling with shelter) on private property is an offense only without the owner's permission; city property camping is banned outright. A tent is not a zoning dwelling unit (needs kitchen and bathroom), so long-term tent living lacks a zoning path.",
+    "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT5GEOF_CH6MIOF",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "B.R.C. 5-6-10(a),(b)(2),(d) camping definitions and consent; 9-16-1 'Dwelling unit'.",
+    "changed": true
+   },
+   "rv": {
+    "value": "RVs are defined as temporary living quarters not designed as permanent dwellings and are not dwelling units; long-term placement of homes on wheels is channelled to mobile home parks. No explicit ban on living in an RV on a residential lot was found in Title 9 use standards.",
+    "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT9LAUSCO_CH16DE",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "B.R.C. 9-16-1 'Recreational vehicle', 'Mobile home park'; Ch. 9-6 searched, no RV-occupancy rule found.",
+    "changed": true
+   },
+   "thow": {
+    "value": "A tiny house on wheels fits the RV definition (single chassis, 400 sq ft or less, towable, temporary living quarters) unless it qualifies as a manufactured/mobile home for a mobile home park. Not an ADU or dwelling unit by itself.",
+    "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT9LAUSCO_CH16DE",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "B.R.C. 9-16-1 'Recreational vehicle', 'Manufactured home', 'Mobile home park'.",
+    "changed": true
+   },
+   "listing_id": {
+    "value": "Yes: no one may advertise a short-term rental unless the ad shows the valid STR licence number; all rental ads must carry the rental licence number once assigned.",
+    "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT10ST_CH3RELI",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "B.R.C. 10-3-19(l) STR ads include licence number; 10-3-2(a) rental ads include licensing number.",
+    "changed": true
+   },
+   "pending": {
+    "value": "None found: the city STR licensing page lists current rules (licence before advertising, 29-day maximum stay) and no pending changes.",
+    "source_url": "https://bouldercolorado.gov/services/rental-housing-licensing-short-term",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "City STR page text; no proposed ordinance noted.",
+    "changed": false
+   }
+  },
+  "columbus": {
+   "adu": {
+    "value": "Yes: one ADU may be added to a lot with a single-unit dwelling in every Ch. 3332 residential district (R-2F: also with a two-unit; R-4: up to two ADUs, max five units per lot). It may be attached, internal or detached, needs full living/cooking/sanitation and its own entrance; Ch. 598 STR rules apply if rented short-term.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT33ZOCO_CH3332REDI",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "C.C. 3332.355(A), (B)(1)-(2) accessory dwelling unit provisions.",
+    "changed": true
+   },
+   "shed": {
+    "value": "A plain accessory building is not a dwelling; sleeping or living space in a detached building is lawful only as a code-compliant ADU (permanent living, sleeping, eating, cooking and sanitation, separate entrance) under 3332.355.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT33ZOCO_CH3332REDI",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "C.C. 3332.35 accessory building; 3332.355(B)(1) ADU requirements.",
+    "changed": true
+   },
+   "tent": {
+    "value": "No zoning use allows a tent as housing; dwellings and ADUs need permanent living, cooking and sanitation provisions. No explicit tent-occupancy ban was found in Ch. 3332.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT33ZOCO_CH3332REDI",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "C.C. 3332.355(B)(1) permanent provisions; Ch. 3332 searched, no tent rule.",
+    "changed": true
+   },
+   "rv": {
+    "value": "Residential lots may not use required parking spaces, unimproved surfaces, front-of-setback areas or required yards to park or store camping trailers or other RVs, and outdoor trailers are barred except as Ch. 3312 allows. No explicit rule on sleeping in an RV was found.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT33ZOCO_CH3312OREPALO",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "C.C. 3312.35 RV parking in residential districts; 3332.289(2) trailers in yards.",
+    "changed": true
+   },
+   "thow": {
+    "value": "A tiny house on wheels is a trailer/RV for zoning: restricted to Ch. 3312 parking rules and not a dwelling unless it is a code-built ADU or a manufactured home meeting 3332.043 (720 sq ft min.) in an allowed district.",
+    "source_url": "https://library.municode.com/oh/columbus/codes/code_of_ordinances?nodeId=TIT33ZOCO_CH3332REDI",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "C.C. 3332.289(2); 3312.35; 3332.043 manufactured home standards (720 sq ft).",
+    "changed": true
+   }
+  },
+  "kansas_city": {
+   "max_occupancy": {
+    "value": "Registered STRs may hold at most two people per bedroom being rented plus one more per unit, and never more than eight guests per dwelling unit; no food service and no event or party use.",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/code_of_ordinances?nodeId=COORKAMIVOII_CH56PRMACO_ARTVIIISHRMRERE",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Code Sec. 56-803 annual STR registration conditions (two per bedroom +1, max eight guests).",
+    "changed": true
+   },
+   "hostel_shared": {
+    "value": "STR rules apply per dwelling unit (lodging under 30 days) with the guest cap counted on bedrooms being rented, so renting rooms in a registered resident STR is possible; no hostel or bed-based STR category exists. Hostels would need a lodging use under zoning.",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/code_of_ordinances?nodeId=COORKAMIVOII_CH56PRMACO_ARTVIIISHRMRERE",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Sec. 56-802 STR definition; 56-803 occupancy by bedroom rented; zoning lodging uses not read.",
+    "changed": true
+   },
+   "pending": {
+    "value": "None found in the codified STR article (Ch. 56 Art. VIII, current to Oct 21 2026); no pending amendment was checked on the council docket.",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/code_of_ordinances?nodeId=COORKAMIVOII_CH56PRMACO_ARTVIIISHRMRERE",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Municode version Oct 21 2026; council legislation not searched.",
+    "changed": false
+   },
+   "shed": {
+    "value": "An accessory structure must be subordinate to and serve the occupants of the main use; it becomes lawful living space only as an ADU (88-305-15: attached or rear-yard detached, up to 800 sq ft, owner-occupancy) or a pre-2005 historic carriage house in listed R districts.",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/zoning_and_development_code?nodeId=ZODECOKAMI_300_SERIESUSRE_88-305ACUSST",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Zoning Code 88-305-01-B accessory criteria; 88-305-05-A carriage houses; 88-305-15 ADUs.",
+    "changed": true
+   },
+   "tent": {
+    "value": "No zoning use allows a tent as a dwelling, and the accessory-use rules (88-305) contain no tent or camping allowance; RVs and similar may be lived in only in mobile home or RV parks (Sec. 72-2). No explicit tent ban was found.",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/zoning_and_development_code?nodeId=ZODECOKAMI_300_SERIESUSRE_88-305ACUSST",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "88-305-01 to -05 searched, no tent provision; Sec. 72-2(b) for vehicles.",
+    "changed": true
+   }
+  },
+  "tulsa": {
+   "yigby": {
+    "value": "No state law allowing housing by right on religious or institutional land found; the only overlay is federal RLUIPA. A full-text OSCN statute search was not run.",
+    "source_url": "https://www.justice.gov/crt/religious-land-use-and-institutionalized-persons-act",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding mirrored from OK state field.",
+    "changed": false
+   },
+   "tent": {
+    "value": "No zoning use treats a tent as housing; Tulsa's accessory-use chapter regulates RV parking but has no tent or camping provision, so a tent has no residential zoning path. No explicit private-lot tent ban was found.",
+    "source_url": "https://library.municode.com/ok/tulsa/codes/code_of_ordinances?nodeId=COOR_TIT42ZOCO_CH45ACUSST",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Zoning Code Ch. 45 searched (45.150 RV parking); no tent or camping rule.",
+    "changed": true
+   }
+  }
+ },
+ "states": {
+  "OK": {
+   "ltr_registration": {
+    "value": "No state rental registry found. The Residential Landlord and Tenant Act only makes landlords disclose to tenants who owns and manages the unit and who accepts service (41 O.S. 116); Tulsa has only a vacant-building registry.",
+    "source_url": "https://www.oscn.net/applications/oscn/index.asp?ftdb=STOKST41&level=1",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Title 41 index: Residential Landlord and Tenant Act 101-136, 201; no registration section; 116 owner/manager identity disclosure.",
+    "changed": true
+   },
+   "occupancy_law": {
+    "value": "No statewide occupancy cap or family definition found: the Residential Landlord and Tenant Act lets landlords set use and occupancy rules (41 O.S. 126) but sets no persons-per-room limit; caps come from local zoning and property maintenance codes.",
+    "source_url": "https://www.oscn.net/applications/oscn/index.asp?ftdb=STOKST41&level=1",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Title 41 index: 126 tenant's use and occupancy - rules; no occupancy-limit section.",
+    "changed": true
+   },
+   "yigby": {
+    "value": "No state law allowing housing by right on religious or institutional land found; the only overlay is federal RLUIPA. A full-text OSCN statute search was not run.",
+    "source_url": "https://www.justice.gov/crt/religious-land-use-and-institutionalized-persons-act",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Negative finding; OSCN Title 11 index has no faith-based housing section; federal RLUIPA only.",
+    "changed": false
+   }
+  }
+ },
+ "platforms": {
+  "Booking.com": [
+   {
+    "index": 1,
+    "value": "Property type is chosen at registration and cannot be changed later: Apartment, Home (entire place) or Hotel, where Hotel covers motels, hostels, resorts and lodges with shared areas. Hostel beds sell individually (a bunk counts as two single beds); vacation homes rent only whole, guest houses only per room.",
+    "source_url": "https://partner.booking.com/en-us/help/first-steps/registration/registering-your-property-bookingcom-step-step",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Partner Help 'Registering your property step-by-step': Choosing your property type; Hostel bunk-bed rule; layout per property type.",
+    "changed": true
+   }
+  ],
+  "Vrbo": [
+   {
+    "index": 0,
+    "value": "Registration/permit numbers go in a dedicated field (Local laws > Regulatory Compliance), preferred over the description; multiple numbers comma-separated.",
+    "source_url": "https://help.vrbo.com/articles/Add-or-update-your-property-registration-number",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Help article steps: Local laws, Regulatory Compliance, Edit registration; recommends dedicated field; comma-separate multiple numbers.",
+    "changed": false
+   },
+   {
+    "index": 1,
+    "value": "Whole-home rentals only (no private or shared rooms); max occupancy set per listing.",
+    "source_url": "https://help.vrbo.com/articles/Add-or-update-your-property-registration-number",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Not reached: Vrbo help search and listing pages returned 404/500 to the browser; no page stating the whole-home rule was read.",
+    "changed": false
+   }
+  ]
+ }
+}

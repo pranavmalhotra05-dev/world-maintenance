@@ -1,0 +1,1313 @@
+{
+  "lane": "SAT-1",
+  "topic": "US government Earth-observation satellites/missions: free + commercial-use data",
+  "as_of": "2026-11-24",
+  "policy_notes": {
+    "NASA": {
+      "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+      "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+    },
+    "NASA_partner_rule": "NASA Data & Information Policy: no exclusive-access period; for products from international partners or other agencies NASA restricts access only as an MOU requires. https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-information-policy",
+    "USGS": {
+      "text": "USGS: 'There are no restrictions on Landsat data downloaded from the USGS; it can be used or redistributed as desired' (source statement requested). USGS-produced data are US public domain.",
+      "url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits"
+    },
+    "NOAA": {
+      "text": "NOAA NODD: data 'are open to the public and can be used as desired'; NOAA requests attribution and no implied endorsement.",
+      "url": "https://registry.opendata.aws/noaa-goes/"
+    },
+    "Copernicus_inputs": "HLS, OPERA S1-based products and Sentinel-6 contain EU Copernicus data: free, full and open incl. commercial, with attribution."
+  },
+  "counts_by_commercial_ok": {
+    "yes": 36,
+    "verify": 1,
+    "no": 1
+  },
+  "records": [
+    {
+      "mission": "Landsat 9 (OLI-2/TIRS-2)",
+      "operator": "USGS / NASA",
+      "country": "USA",
+      "launched": "2021-09-27",
+      "status": "active",
+      "sensor_type": [
+        "multispectral",
+        "thermal"
+      ],
+      "resolution_m": "30 (VNIR/SWIR), 15 pan, 100 thermal (delivered at 30)",
+      "revisit": "16 days per satellite; 8 days combined with Landsat 8",
+      "coverage": "Global land + coasts",
+      "products": [
+        "Collection 2 Level-1",
+        "Level-2 Surface Reflectance",
+        "Level-2 Surface Temperature",
+        "ARD (US tiles)",
+        "Level-3 burned area, DSWE dynamic surface water, fractional snow"
+      ],
+      "access": [
+        "https://earthexplorer.usgs.gov",
+        "https://landsatlook.usgs.gov/stac-server",
+        "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2",
+        "https://registry.opendata.aws/usgs-landsat/ (requester-pays S3)"
+      ],
+      "key_or_login": "STAC search anonymous; EarthExplorer/M2M download needs free USGS ERS login; Planetary Computer assets via free anonymous SAS token; AWS bucket is requester-pays (you pay egress).",
+      "licence": {
+        "text": "USGS: 'There are no restrictions on Landsat data downloaded from the USGS; it can be used or redistributed as desired' (source statement requested). USGS-produced data are US public domain.",
+        "url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits"
+      },
+      "commercial_ok": "yes",
+      "latency": "Level-2 typically ~1 day (Tier 1 within ~2 weeks)",
+      "property_uses": [
+        "vegetation/lawn health (NDVI)",
+        "urban heat islands from 30 m surface temperature",
+        "burn scars after wildfire",
+        "flood/surface water extent",
+        "land-cover change since 1972 (new construction, clearing)"
+      ],
+      "tested": "LandsatLook STAC search over Dallas returned LC09_L2SP_027037_20261115 (2026-11-15, LANDSAT_9)."
+    },
+    {
+      "mission": "Landsat 8 (OLI/TIRS)",
+      "operator": "USGS / NASA",
+      "country": "USA",
+      "launched": "2013-02-11",
+      "status": "active",
+      "sensor_type": [
+        "multispectral",
+        "thermal"
+      ],
+      "resolution_m": "30, 15 pan, 100 thermal",
+      "revisit": "16 days (8 with Landsat 9)",
+      "coverage": "Global land",
+      "products": [
+        "Same Collection 2 L1/L2/L3 suite as Landsat 9"
+      ],
+      "access": [
+        "https://earthexplorer.usgs.gov",
+        "https://landsatlook.usgs.gov/stac-server",
+        "https://planetarycomputer.microsoft.com/dataset/landsat-c2-l2"
+      ],
+      "key_or_login": "As Landsat 9",
+      "licence": {
+        "text": "USGS: 'There are no restrictions on Landsat data downloaded from the USGS; it can be used or redistributed as desired' (source statement requested). USGS-produced data are US public domain.",
+        "url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits"
+      },
+      "commercial_ok": "yes",
+      "latency": "~1 day L2",
+      "property_uses": [
+        "as Landsat 9"
+      ],
+      "tested": "Same STAC endpoint (landsat-c2l2-sr) tested."
+    },
+    {
+      "mission": "Landsat 7 (ETM+)",
+      "operator": "USGS / NASA",
+      "country": "USA",
+      "launched": "1999-04-15",
+      "status": "retired (science data ended 2024-01-19; decommissioned 2025-06-04)",
+      "sensor_type": [
+        "multispectral",
+        "thermal"
+      ],
+      "resolution_m": "30, 15 pan, 60 thermal",
+      "revisit": "16 days (historical)",
+      "coverage": "Global archive 1999-2024 (SLC-off gaps after 2003)",
+      "products": [
+        "Collection 2 L1/L2 archive"
+      ],
+      "access": [
+        "https://earthexplorer.usgs.gov",
+        "https://landsatlook.usgs.gov/stac-server"
+      ],
+      "key_or_login": "As Landsat 9",
+      "licence": {
+        "text": "USGS: 'There are no restrictions on Landsat data downloaded from the USGS; it can be used or redistributed as desired' (source statement requested). USGS-produced data are US public domain.",
+        "url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits"
+      },
+      "commercial_ok": "yes",
+      "latency": "archive only",
+      "property_uses": [
+        "historical baseline change detection"
+      ],
+      "tested": "STAC query platform=LANDSAT_7 newest item LE07_L2SP_135047_20240119; USGS page confirms decommission 2025-06-04."
+    },
+    {
+      "mission": "Landsat Next / Landsat 10",
+      "operator": "USGS / NASA",
+      "country": "USA",
+      "launched": "planned 2031",
+      "status": "planned",
+      "sensor_type": [
+        "multispectral",
+        "thermal"
+      ],
+      "resolution_m": "USGS page now titles the mission 'Landsat 10' (restructured from the 3-satellite Landsat Next concept); continuity-class spec",
+      "revisit": "TBD",
+      "coverage": "Global land",
+      "products": [
+        "Continuity of Landsat record"
+      ],
+      "access": [
+        "https://www.usgs.gov/landsat-missions/landsat-next"
+      ],
+      "key_or_login": "n/a",
+      "licence": {
+        "text": "USGS: 'There are no restrictions on Landsat data downloaded from the USGS; it can be used or redistributed as desired' (source statement requested). USGS-produced data are US public domain.",
+        "url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits"
+      },
+      "commercial_ok": "yes",
+      "latency": "n/a",
+      "property_uses": [
+        "future continuity only"
+      ],
+      "tested": "USGS page (fetched 2026-11-24): 'Landsat 10 is expected to launch in 2031'."
+    },
+    {
+      "mission": "Harmonized Landsat Sentinel-2 (HLS v2.0)",
+      "operator": "NASA (LP DAAC/IMPACT); inputs Landsat 8/9 + Copernicus Sentinel-2",
+      "country": "USA",
+      "launched": "product from 2013 (L30) / 2015 (S30)",
+      "status": "active",
+      "sensor_type": [
+        "multispectral"
+      ],
+      "resolution_m": "30",
+      "revisit": "~2-3 days combined",
+      "coverage": "Global land (excl. Antarctica)",
+      "products": [
+        "HLSL30",
+        "HLSS30",
+        "HLSL30_VI / HLSS30_VI vegetation indices"
+      ],
+      "access": [
+        "https://search.earthdata.nasa.gov",
+        "https://planetarycomputer.microsoft.com/dataset/hls2-l30",
+        "https://registry.opendata.aws/nasa-hls/"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "AWS Open Data registry lists HLS as Creative Commons BY 4.0; Sentinel-2 inputs are Copernicus free/full/open incl. commercial. Attribute NASA + Copernicus.",
+        "url": "https://registry.opendata.aws/nasa-hls/"
+      },
+      "commercial_ok": "yes",
+      "latency": "typically 2-4 days",
+      "property_uses": [
+        "dense greenness time series, lawn/vegetation stress",
+        "pool/vegetation change at block scale",
+        "storm/flood/fire change detection"
+      ],
+      "tested": "CMR granule search over Dallas returned HLS.L30.T14SQB.2026320T165612.v2.0 (2026-11-16)."
+    },
+    {
+      "mission": "MODIS on Terra",
+      "operator": "NASA",
+      "country": "USA",
+      "launched": "1999-12-18",
+      "status": "active until 2026-12-01 (NASA alert: new Terra observations cease 1 Dec 2026; archive stays)",
+      "sensor_type": [
+        "multispectral",
+        "thermal"
+      ],
+      "resolution_m": "250 / 500 / 1000",
+      "revisit": "daily",
+      "coverage": "Global",
+      "products": [
+        "MOD09 reflectance",
+        "MOD11/MOD21 LST",
+        "MOD13 NDVI/EVI",
+        "MOD14 fire",
+        "MOD64 burned area"
+      ],
+      "access": [
+        "https://ladsweb.modaps.eosdis.nasa.gov",
+        "https://search.earthdata.nasa.gov",
+        "https://planetarycomputer.microsoft.com (modis-*-061)"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "NRT ~3 h (LANCE); standard 1-2 days",
+      "property_uses": [
+        "regional heat/drought context",
+        "fire detections",
+        "multi-decade baselines"
+      ],
+      "tested": "CMR latest MOD09GA 2026-11-22; Earthdata alert 'New Terra Observations to Cease on December 1, 2026' (issued 2026-11-17)."
+    },
+    {
+      "mission": "MODIS on Aqua",
+      "operator": "NASA",
+      "country": "USA",
+      "launched": "2002-05-04",
+      "status": "active (drifting orbit; NASA steering users to VIIRS)",
+      "sensor_type": [
+        "multispectral",
+        "thermal"
+      ],
+      "resolution_m": "250 / 500 / 1000",
+      "revisit": "daily",
+      "coverage": "Global",
+      "products": [
+        "MYD09",
+        "MYD11 LST",
+        "MYD13",
+        "MYD14 fire"
+      ],
+      "access": [
+        "https://ladsweb.modaps.eosdis.nasa.gov",
+        "https://search.earthdata.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "NRT ~3 h; standard 1-2 days",
+      "property_uses": [
+        "as Terra MODIS"
+      ],
+      "tested": "CMR latest MYD09GA 2026-11-22."
+    },
+    {
+      "mission": "Terra ASTER",
+      "operator": "NASA / Japan METI (instrument)",
+      "country": "USA",
+      "launched": "1999-12-18",
+      "status": "active until 2026-12-01 with Terra (SWIR failed 2008)",
+      "sensor_type": [
+        "multispectral",
+        "thermal"
+      ],
+      "resolution_m": "15 VNIR, 90 TIR",
+      "revisit": "tasked, ~16 days",
+      "coverage": "Global (tasked)",
+      "products": [
+        "AST_L1T",
+        "AST_07 reflectance",
+        "AST_08 temperature",
+        "ASTER GDEM v3"
+      ],
+      "access": [
+        "https://search.earthdata.nasa.gov",
+        "https://planetarycomputer.microsoft.com/dataset/aster-l1t"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "Japanese-built instrument; NASA/METI made ASTER products available at no cost since 2016. Partner (METI) terms not re-verified here, so marked verify.",
+        "url": "https://www.earthdata.nasa.gov/data/instruments/aster"
+      },
+      "commercial_ok": "verify",
+      "latency": "days",
+      "property_uses": [
+        "archive 15 m imagery, 90 m thermal"
+      ],
+      "tested": "Planetary Computer collection list includes 'aster-l1t'."
+    },
+    {
+      "mission": "VIIRS on Suomi NPP",
+      "operator": "NOAA / NASA",
+      "country": "USA",
+      "launched": "2011-10-28",
+      "status": "retired (new science data ended 2026-11-02 15:40 UTC per NESDIS/NASA; archive remains)",
+      "sensor_type": [
+        "multispectral",
+        "thermal"
+      ],
+      "resolution_m": "375 (I) / 750 (M, Day/Night Band)",
+      "revisit": "daily (archive)",
+      "coverage": "Global",
+      "products": [
+        "VNP09 reflectance",
+        "VNP21 LST",
+        "VNP14 fire",
+        "VNP46 Black Marble 2012-2026"
+      ],
+      "access": [
+        "https://ladsweb.modaps.eosdis.nasa.gov",
+        "https://registry.opendata.aws/noaa-jpss/ (noaa-nesdis-snpp-pds)"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous. NOAA buckets anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "archive only",
+      "property_uses": [
+        "night-light history 2012-2026"
+      ],
+      "tested": "CMR latest VNP09GA / VNP46A2 = 2026-11-02, matching the Earthdata cessation alert."
+    },
+    {
+      "mission": "VIIRS on NOAA-20 (JPSS-1) and NOAA-21 (JPSS-2)",
+      "operator": "NOAA (NASA science processing)",
+      "country": "USA",
+      "launched": "NOAA-20 2017-11-18; NOAA-21 2022-11-10",
+      "status": "active",
+      "sensor_type": [
+        "multispectral",
+        "thermal"
+      ],
+      "resolution_m": "375 / 750",
+      "revisit": "twice daily each",
+      "coverage": "Global",
+      "products": [
+        "VJ1*/VJ2* reflectance, LST, active fire",
+        "Black Marble VJ146A1-A4",
+        "NOAA EDRs (flood, aerosol, smoke)"
+      ],
+      "access": [
+        "https://ladsweb.modaps.eosdis.nasa.gov",
+        "https://blackmarble.gsfc.nasa.gov",
+        "https://registry.opendata.aws/noaa-jpss/"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous. NOAA NODD S3 buckets anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "NRT < 3 h",
+      "property_uses": [
+        "night-light growth = development/occupancy signal",
+        "post-hurricane outage mapping",
+        "wildfire detection",
+        "VIIRS flood maps"
+      ],
+      "tested": "CMR VJ146A1 latest 2026-11-19; anonymous listing of noaa-nesdis-n21-pds returned ATMS-SDR/ prefixes."
+    },
+    {
+      "mission": "NASA Black Marble (night lights)",
+      "operator": "NASA GSFC",
+      "country": "USA",
+      "launched": "product 2012-",
+      "status": "active (continues on NOAA-20/21; S-NPP series ended 2026-11-02)",
+      "sensor_type": [
+        "optical (low-light)"
+      ],
+      "resolution_m": "~500 (15 arc-sec)",
+      "revisit": "daily (A1/A2), monthly (A3), annual (A4)",
+      "coverage": "Global",
+      "products": [
+        "VNP46 / VJ146 / VJ246 A1-A4"
+      ],
+      "access": [
+        "https://blackmarble.gsfc.nasa.gov",
+        "https://ladsweb.modaps.eosdis.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "~1 day",
+      "property_uses": [
+        "neighbourhood growth/vacancy trend",
+        "outage and recovery after storms"
+      ],
+      "tested": "CMR found VNP46A2 v2 (2012-), VJ146A2 v2 (2018-), VJ146A2_NRT."
+    },
+    {
+      "mission": "GOES-East (GOES-19) and GOES-West (GOES-18) ABI",
+      "operator": "NOAA / NASA",
+      "country": "USA",
+      "launched": "GOES-18 2022-03-01; GOES-19 2024-06-25",
+      "status": "active",
+      "sensor_type": [
+        "multispectral",
+        "thermal"
+      ],
+      "resolution_m": "500 / 1000 / 2000",
+      "revisit": "CONUS 5 min, mesoscale 1 min, full disk 10 min",
+      "coverage": "Western hemisphere",
+      "products": [
+        "ABI L1b",
+        "L2 cloud & moisture imagery",
+        "fire/hot spot",
+        "aerosol/smoke",
+        "LST",
+        "ABI-Flood-Day composites"
+      ],
+      "access": [
+        "https://registry.opendata.aws/noaa-goes/",
+        "https://planetarycomputer.microsoft.com/dataset/goes-cmi",
+        "Google Cloud gcp-public-data-goes"
+      ],
+      "key_or_login": "None (anonymous)",
+      "licence": {
+        "text": "NOAA NODD: data 'are open to the public and can be used as desired'; NOAA requests attribution and no implied endorsement.",
+        "url": "https://registry.opendata.aws/noaa-goes/"
+      },
+      "commercial_ok": "yes",
+      "latency": "minutes",
+      "property_uses": [
+        "live wildfire/smoke tracking",
+        "severe storm context",
+        "flood composites"
+      ],
+      "tested": "Anonymous S3 listing noaa-goes19 ABI-L2-MCMIPC/2026/328/ OK; ABI-Flood-Day-TIF GeoTIFFs found."
+    },
+    {
+      "mission": "GOES GLM (Geostationary Lightning Mapper)",
+      "operator": "NOAA / NASA",
+      "country": "USA",
+      "launched": "on GOES-18/19",
+      "status": "active",
+      "sensor_type": [
+        "optical (lightning)"
+      ],
+      "resolution_m": "~8000-14000",
+      "revisit": "continuous, 20 s files",
+      "coverage": "Americas + oceans",
+      "products": [
+        "GLM-L2-LCFA events/groups/flashes"
+      ],
+      "access": [
+        "https://registry.opendata.aws/noaa-goes/",
+        "https://planetarycomputer.microsoft.com/dataset/goes-glm"
+      ],
+      "key_or_login": "None",
+      "licence": {
+        "text": "NOAA NODD: data 'are open to the public and can be used as desired'; NOAA requests attribution and no implied endorsement.",
+        "url": "https://registry.opendata.aws/noaa-goes/"
+      },
+      "commercial_ok": "yes",
+      "latency": "< 1 min",
+      "property_uses": [
+        "storm/lightning exposure history per area (pair with hail swaths for roof leads)"
+      ],
+      "tested": "S3 GLM-L2-LCFA/2026/328/ OK for goes18 & goes19; Planetary Computer newest goes-glm item OR_GLM-L2-LCFA_G19_s20263280840000."
+    },
+    {
+      "mission": "JPSS programme (NOAA-20/21; JPSS-3/4) ATMS, CrIS, OMPS, CERES",
+      "operator": "NOAA / NASA",
+      "country": "USA",
+      "launched": "2017, 2022",
+      "status": "active; JPSS-4 (NOAA-22) launch readiness 2027 per NESDIS",
+      "sensor_type": [
+        "microwave",
+        "atmospheric",
+        "multispectral"
+      ],
+      "resolution_m": "ATMS 16-75 km; CrIS 14 km",
+      "revisit": "twice daily",
+      "coverage": "Global",
+      "products": [
+        "SDR/EDR sounding",
+        "snow, sea-ice, flood, fire EDRs"
+      ],
+      "access": [
+        "https://registry.opendata.aws/noaa-jpss/",
+        "https://www.class.noaa.gov"
+      ],
+      "key_or_login": "None for NODD buckets",
+      "licence": {
+        "text": "NOAA NODD: data 'are open to the public and can be used as desired'; NOAA requests attribution and no implied endorsement.",
+        "url": "https://registry.opendata.aws/noaa-goes/"
+      },
+      "commercial_ok": "yes",
+      "latency": "minutes-hours",
+      "property_uses": [
+        "mainly weather-model input"
+      ],
+      "tested": "noaa-jpss bucket root listing returned BHP_PCT/ etc."
+    },
+    {
+      "mission": "DSCOVR EPIC",
+      "operator": "NOAA (spacecraft) / NASA (EPIC)",
+      "country": "USA",
+      "launched": "2015-02-11",
+      "status": "active",
+      "sensor_type": [
+        "multispectral",
+        "atmospheric"
+      ],
+      "resolution_m": "~10000",
+      "revisit": "~13-22 images/day",
+      "coverage": "Sunlit Earth disk from L1",
+      "products": [
+        "L1B images",
+        "L2 aerosol, ozone, cloud"
+      ],
+      "access": [
+        "https://epic.gsfc.nasa.gov/api",
+        "https://asdc.larc.nasa.gov"
+      ],
+      "key_or_login": "EPIC API anonymous",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "~1-2 days",
+      "property_uses": [
+        "little parcel value; regional smoke context"
+      ],
+      "tested": "EPIC API available dates end 2026-11-22; CMR EPIC L1B latest 2026-11-22."
+    },
+    {
+      "mission": "ICESat-2 (ATLAS photon LiDAR)",
+      "operator": "NASA",
+      "country": "USA",
+      "launched": "2018-09-15",
+      "status": "active",
+      "sensor_type": [
+        "LiDAR"
+      ],
+      "resolution_m": "~11-17 m footprints every 0.7 m along track; ATL08 100 m segments (20 m sub-segments)",
+      "revisit": "91-day repeat; sparse tracks",
+      "coverage": "Global tracks (not wall-to-wall)",
+      "products": [
+        "ATL03 photons",
+        "ATL06",
+        "ATL08 land & canopy height",
+        "ATL13 inland water",
+        "ATL24 bathymetry"
+      ],
+      "access": [
+        "https://nsidc.org/data/icesat-2",
+        "https://search.earthdata.nasa.gov",
+        "https://openaltimetry.earthdatacloud.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "ATL08 ~4-8 weeks; QL days",
+      "property_uses": [
+        "independent ground/canopy height checkpoints for DEM/tree heights"
+      ],
+      "tested": "CMR ATL08 v007 latest 2026-09-24."
+    },
+    {
+      "mission": "GEDI (waveform LiDAR on ISS)",
+      "operator": "NASA / Univ. of Maryland",
+      "country": "USA",
+      "launched": "2018-12-05",
+      "status": "active (stored Mar 2023-Apr 2024 then resumed; lifetime tied to ISS)",
+      "sensor_type": [
+        "LiDAR"
+      ],
+      "resolution_m": "25 m footprints, 60 m along-track, tracks ~600 m apart",
+      "revisit": "sparse sampling 51.6N-51.6S",
+      "coverage": "Temperate/tropical land",
+      "products": [
+        "L2A elevation & relative height",
+        "L2B canopy cover/PAI",
+        "L4A/L4B biomass"
+      ],
+      "access": [
+        "https://lpdaac.usgs.gov",
+        "https://search.earthdata.nasa.gov",
+        "https://daac.ornl.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "months",
+      "property_uses": [
+        "tree canopy height/cover around properties (fire fuel, overhang)"
+      ],
+      "tested": "CMR GEDI02_A V003 latest 2026-06-10 (long processing lag)."
+    },
+    {
+      "mission": "SMAP (soil moisture)",
+      "operator": "NASA",
+      "country": "USA",
+      "launched": "2015-01-31",
+      "status": "active (radiometer; radar failed 2015)",
+      "sensor_type": [
+        "microwave"
+      ],
+      "resolution_m": "9000 enhanced / 36000",
+      "revisit": "2-3 days",
+      "coverage": "Global",
+      "products": [
+        "SPL3SMP_E",
+        "SPL4SMAU root zone",
+        "freeze/thaw"
+      ],
+      "access": [
+        "https://nsidc.org/data/smap",
+        "https://search.earthdata.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "1-3 days",
+      "property_uses": [
+        "regional flood/drought and shrink-swell clay context (very coarse)"
+      ],
+      "tested": "CMR SPL3SMP_E latest 2026-11-22."
+    },
+    {
+      "mission": "GRACE-FO (gravity / groundwater)",
+      "operator": "NASA / GFZ Germany",
+      "country": "USA",
+      "launched": "2018-05-22",
+      "status": "active",
+      "sensor_type": [
+        "microwave (gravimetry)"
+      ],
+      "resolution_m": "~300000 (mascons)",
+      "revisit": "monthly",
+      "coverage": "Global",
+      "products": [
+        "JPL/CSR mascon water storage"
+      ],
+      "access": [
+        "https://podaac.jpl.nasa.gov",
+        "https://grace.jpl.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "~2 months",
+      "property_uses": [
+        "basin-scale groundwater depletion (subsidence context)"
+      ],
+      "tested": "CMR JPL mascon grid covers 2002-04 to 2026-09."
+    },
+    {
+      "mission": "ECOSTRESS (thermal on ISS)",
+      "operator": "NASA JPL",
+      "country": "USA",
+      "launched": "2018-06-29",
+      "status": "active",
+      "sensor_type": [
+        "thermal"
+      ],
+      "resolution_m": "70",
+      "revisit": "irregular 1-5 days, varying time of day",
+      "coverage": "ISS orbit ~52N-52S",
+      "products": [
+        "ECO_L2T_LSTE LST & emissivity",
+        "ET / ESI"
+      ],
+      "access": [
+        "https://search.earthdata.nasa.gov",
+        "https://appeears.earthdatacloud.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "~1-3 days",
+      "property_uses": [
+        "block-level heat islands, roof/pavement temperature",
+        "irrigated vs dry yards"
+      ],
+      "tested": "CMR ECO_L2T_LSTE latest 2026-11-20."
+    },
+    {
+      "mission": "EMIT (imaging spectrometer on ISS)",
+      "operator": "NASA JPL",
+      "country": "USA",
+      "launched": "2022-07-14",
+      "status": "active (extended)",
+      "sensor_type": [
+        "hyperspectral"
+      ],
+      "resolution_m": "60",
+      "revisit": "irregular",
+      "coverage": "ISS orbit, arid-land focus + targets",
+      "products": [
+        "L2A reflectance V002",
+        "L2B minerals",
+        "CH4/CO2 plumes"
+      ],
+      "access": [
+        "https://search.earthdata.nasa.gov",
+        "https://earth.jpl.nasa.gov/emit/"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "days",
+      "property_uses": [
+        "roof-material spectra at block scale (60 m too coarse per roof)",
+        "methane plumes"
+      ],
+      "tested": "CMR EMITL2ARFL V002 latest 2026-11-22 (V001 collections end 2026-08-31, superseded)."
+    },
+    {
+      "mission": "SWOT (Surface Water and Ocean Topography)",
+      "operator": "NASA / CNES (+CSA, UKSA)",
+      "country": "USA",
+      "launched": "2022-12-16",
+      "status": "active",
+      "sensor_type": [
+        "SAR (Ka-band interferometric altimeter)"
+      ],
+      "resolution_m": "100 / 250 rasters",
+      "revisit": "21-day repeat",
+      "coverage": "Global",
+      "products": [
+        "HR River/Lake SP",
+        "HR Raster water elevation",
+        "ocean SSH"
+      ],
+      "access": [
+        "https://podaac.jpl.nasa.gov/SWOT",
+        "https://search.earthdata.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA-distributed SWOT data follow NASA open policy (no restrictions); CNES also distributes openly.",
+        "url": "https://podaac.jpl.nasa.gov/SWOT"
+      },
+      "commercial_ok": "yes",
+      "latency": "days",
+      "property_uses": [
+        "river/lake level history for flood context"
+      ],
+      "tested": "CMR SWOT_L2_HR_Raster_D latest 2026-11-21."
+    },
+    {
+      "mission": "TEMPO (geostationary air quality)",
+      "operator": "NASA / Smithsonian SAO (on Intelsat-40e)",
+      "country": "USA",
+      "launched": "2023-04-07",
+      "status": "active",
+      "sensor_type": [
+        "atmospheric",
+        "hyperspectral (UV-vis)"
+      ],
+      "resolution_m": "~2000 x 4750",
+      "revisit": "hourly daytime",
+      "coverage": "North America",
+      "products": [
+        "NO2, HCHO, O3, aerosol, clouds L2/L3"
+      ],
+      "access": [
+        "https://asdc.larc.nasa.gov/project/TEMPO",
+        "https://search.earthdata.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "NRT ~3 h; standard ~1 day",
+      "property_uses": [
+        "neighbourhood air-quality scores (traffic NO2)",
+        "smoke days"
+      ],
+      "tested": "CMR TEMPO_NO2_L3 V04 latest 2026-11-24T17:25Z (same day)."
+    },
+    {
+      "mission": "PACE (OCI, HARP2, SPEXone)",
+      "operator": "NASA",
+      "country": "USA",
+      "launched": "2024-02-08",
+      "status": "active",
+      "sensor_type": [
+        "hyperspectral",
+        "atmospheric"
+      ],
+      "resolution_m": "~1000",
+      "revisit": "1-2 days",
+      "coverage": "Global",
+      "products": [
+        "ocean color/BGC",
+        "aerosol",
+        "surface reflectance"
+      ],
+      "access": [
+        "https://oceancolor.gsfc.nasa.gov",
+        "https://search.earthdata.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "hours-days",
+      "property_uses": [
+        "coastal algal blooms near waterfront property"
+      ],
+      "tested": "CMR PACE_OCI_L2_SFREFL latest 2026-10-01; 64 PACE_OCI collections."
+    },
+    {
+      "mission": "NISAR (NASA-ISRO L- and S-band SAR)",
+      "operator": "NASA JPL / ISRO",
+      "country": "USA",
+      "launched": "2025-07-30",
+      "status": "active (science phase; validated L-band L0-L2 products released 2026-11-06 for acquisitions from 2026-10-21; provisional/beta products from Sep-Oct 2025)",
+      "sensor_type": [
+        "SAR"
+      ],
+      "resolution_m": "~3-10 (SLC); GCOV/GUNW coarser posting",
+      "revisit": "12 days",
+      "coverage": "Global land and ice",
+      "products": [
+        "L1 RSLC",
+        "L2 GSLC",
+        "GCOV backscatter",
+        "GUNW interferograms",
+        "GOFF offsets"
+      ],
+      "access": [
+        "https://search.asf.alaska.edu",
+        "https://search.earthdata.nasa.gov",
+        "ISRO Bhoonidhi (S-band)"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA: 'NISAR data are openly available to the public'; L-band via ASF DAAC under NASA open policy. S-band via ISRO Bhoonidhi under ISRO terms (not verified).",
+        "url": "https://science.nasa.gov/mission/nisar/"
+      },
+      "commercial_ok": "yes",
+      "latency": "days-weeks",
+      "property_uses": [
+        "L-band InSAR subsidence/heave, sinkholes, landslides",
+        "flooding under vegetation/clouds",
+        "levee deformation"
+      ],
+      "tested": "CMR NISAR_L2_GCOV_V1 latest 2026-11-22; NISAR_L2_GUNW_V1 latest 2026-11-09 (25,367 granules)."
+    },
+    {
+      "mission": "OPERA DSWx (Dynamic Surface Water Extent)",
+      "operator": "NASA JPL OPERA",
+      "country": "USA",
+      "launched": "2023-",
+      "status": "active",
+      "sensor_type": [
+        "multispectral",
+        "SAR"
+      ],
+      "resolution_m": "30",
+      "revisit": "2-3 days (HLS) / 6-12 days (S1)",
+      "coverage": "Global (HLS); North America (S1)",
+      "products": [
+        "OPERA_L3_DSWX-HLS_V1",
+        "OPERA_L3_DSWX-S1_V1"
+      ],
+      "access": [
+        "https://search.earthdata.nasa.gov",
+        "https://www.earthdata.nasa.gov/data/projects/opera"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA-generated (CC0); S1 inputs from Copernicus Sentinel-1 (free/open incl. commercial; attribution).",
+        "url": "https://www.earthdata.nasa.gov/data/projects/opera"
+      },
+      "commercial_ok": "yes",
+      "latency": "hours-days",
+      "property_uses": [
+        "flood extent after storms; recurrent ponding"
+      ],
+      "tested": "CMR DSWx-HLS latest 2026-11-19."
+    },
+    {
+      "mission": "OPERA DIST-ALERT / DIST-ANN (surface disturbance)",
+      "operator": "NASA JPL OPERA",
+      "country": "USA",
+      "launched": "2023-",
+      "status": "active",
+      "sensor_type": [
+        "multispectral"
+      ],
+      "resolution_m": "30",
+      "revisit": "2-3 days",
+      "coverage": "Global",
+      "products": [
+        "OPERA_L3_DIST-ALERT-HLS_V1",
+        "OPERA_L3_DIST-ANN-HLS_V1"
+      ],
+      "access": [
+        "https://search.earthdata.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA-generated (CC0); inputs Landsat (public domain) + Sentinel-2 (Copernicus open).",
+        "url": "https://www.earthdata.nasa.gov/data/projects/opera"
+      },
+      "commercial_ok": "yes",
+      "latency": "~1-3 days",
+      "property_uses": [
+        "vegetation loss alerts = clearing, new construction, fire or storm damage"
+      ],
+      "tested": "CMR DIST-ALERT latest 2026-11-19."
+    },
+    {
+      "mission": "OPERA RTC-S1 (terrain-corrected Sentinel-1 backscatter)",
+      "operator": "NASA JPL OPERA (input Copernicus Sentinel-1)",
+      "country": "USA",
+      "launched": "2023-",
+      "status": "active",
+      "sensor_type": [
+        "SAR"
+      ],
+      "resolution_m": "30",
+      "revisit": "6-12 days",
+      "coverage": "North America (+ some global)",
+      "products": [
+        "OPERA_L2_RTC-S1_V1",
+        "RTC-S1-STATIC"
+      ],
+      "access": [
+        "https://search.asf.alaska.edu",
+        "https://search.earthdata.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "Derived from Copernicus Sentinel-1: free, full and open incl. commercial; credit 'contains modified Copernicus Sentinel data'.",
+        "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice"
+      },
+      "commercial_ok": "yes",
+      "latency": "hours",
+      "property_uses": [
+        "all-weather flood/storm change detection"
+      ],
+      "tested": "CMR RTC-S1 latest 2026-11-24T16:07Z (Sentinel-1C)."
+    },
+    {
+      "mission": "OPERA CSLC-S1 and DISP-S1 (InSAR ground displacement)",
+      "operator": "NASA JPL OPERA (Sentinel-1 input; NISAR-based DISP planned)",
+      "country": "USA",
+      "launched": "CSLC 2023; DISP-S1 2025",
+      "status": "active",
+      "sensor_type": [
+        "SAR"
+      ],
+      "resolution_m": "CSLC ~5x10; DISP 30",
+      "revisit": "12-day time series back to 2016",
+      "coverage": "North America",
+      "products": [
+        "OPERA_L2_CSLC-S1_V1",
+        "OPERA_L3_DISP-S1_V1 line-of-sight displacement"
+      ],
+      "access": [
+        "https://search.asf.alaska.edu",
+        "https://search.earthdata.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA-generated (CC0) from Copernicus Sentinel-1 (open incl. commercial).",
+        "url": "https://www.earthdata.nasa.gov/data/projects/opera"
+      },
+      "commercial_ok": "yes",
+      "latency": "~2-4 weeks",
+      "property_uses": [
+        "ground subsidence/heave per neighbourhood (Houston, Phoenix, Central Valley, sinkhole belts)",
+        "foundation-risk flags",
+        "landslide creep"
+      ],
+      "tested": "CMR DISP-S1 newest 2026-10-25/10-31 pair; Houston bbox returned 1,233 granules."
+    },
+    {
+      "mission": "Sentinel-6 Michael Freilich (6A) and Sentinel-6B",
+      "operator": "NASA / NOAA / ESA / EUMETSAT / CNES",
+      "country": "USA",
+      "launched": "6A 2020-11-21; 6B 2025-11",
+      "status": "active",
+      "sensor_type": [
+        "SAR (altimeter)",
+        "microwave"
+      ],
+      "resolution_m": "~300 along-track",
+      "revisit": "10 days",
+      "coverage": "Global ocean",
+      "products": [
+        "L2 sea surface height NRT/STC/NTC"
+      ],
+      "access": [
+        "https://podaac.jpl.nasa.gov",
+        "https://search.earthdata.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "Copernicus/EUMETSAT free and open policy plus NASA open policy; attribute Copernicus.",
+        "url": "https://podaac.jpl.nasa.gov/Sentinel-6"
+      },
+      "commercial_ok": "yes",
+      "latency": "NRT hours",
+      "property_uses": [
+        "sea-level trend for coastal flood risk"
+      ],
+      "tested": "CMR S6A L2 LR NRT latest 2026-11-24; NOAA OSPO lists Sentinel-6A and 6B services."
+    },
+    {
+      "mission": "Aqua AIRS",
+      "operator": "NASA",
+      "country": "USA",
+      "launched": "2002-05-04",
+      "status": "active",
+      "sensor_type": [
+        "atmospheric"
+      ],
+      "resolution_m": "13500",
+      "revisit": "twice daily",
+      "coverage": "Global",
+      "products": [
+        "AIRS2RET v7 profiles",
+        "CO, CH4"
+      ],
+      "access": [
+        "https://disc.gsfc.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "NRT ~3 h",
+      "property_uses": [
+        "low; heat/humidity context"
+      ],
+      "tested": "CMR AIRS2RET v7.0 latest 2026-11-24."
+    },
+    {
+      "mission": "OCO-2",
+      "operator": "NASA JPL",
+      "country": "USA",
+      "launched": "2014-07-02",
+      "status": "active (anomaly 28 Jul-13 Aug 2026; budget-termination risk - verify)",
+      "sensor_type": [
+        "atmospheric"
+      ],
+      "resolution_m": "~1300 x 2250",
+      "revisit": "16 days",
+      "coverage": "Global",
+      "products": [
+        "XCO2 Lite",
+        "SIF"
+      ],
+      "access": [
+        "https://disc.gsfc.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "months for Lite",
+      "property_uses": [
+        "negligible"
+      ],
+      "tested": "CMR OCO2 Lite 11.2r latest 2026-03-31; Earthdata OCO-2 anomaly alert Sep 2026."
+    },
+    {
+      "mission": "OCO-3 (on ISS)",
+      "operator": "NASA JPL",
+      "country": "USA",
+      "launched": "2019-05-04",
+      "status": "active",
+      "sensor_type": [
+        "atmospheric"
+      ],
+      "resolution_m": "<4000",
+      "revisit": "irregular",
+      "coverage": "ISS orbit",
+      "products": [
+        "XCO2 Lite",
+        "city snapshot maps"
+      ],
+      "access": [
+        "https://disc.gsfc.nasa.gov"
+      ],
+      "key_or_login": "Free NASA Earthdata Login (urs.earthdata.nasa.gov) needed for file download; CMR search / STAC metadata is anonymous.",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "months",
+      "property_uses": [
+        "negligible"
+      ],
+      "tested": "CMR OCO3 Lite latest 2026-09-30."
+    },
+    {
+      "mission": "NASA FIRMS (MODIS/VIIRS active fire)",
+      "operator": "NASA LANCE",
+      "country": "USA",
+      "launched": "2007-",
+      "status": "active",
+      "sensor_type": [
+        "thermal"
+      ],
+      "resolution_m": "375 (VIIRS) / 1000 (MODIS)",
+      "revisit": "several per day",
+      "coverage": "Global",
+      "products": [
+        "active fire CSV/SHP/KML/API"
+      ],
+      "access": [
+        "https://firms.modaps.eosdis.nasa.gov/api/"
+      ],
+      "key_or_login": "Free MAP_KEY (email) for API",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "< 3 h (US/Canada near real time minutes)",
+      "property_uses": [
+        "wildfire proximity alerts; post-fire loss leads"
+      ],
+      "tested": "FIRMS API landing page HTTP 200. Note: Terra/S-NPP feeds end 2026; NOAA-20/21 continue."
+    },
+    {
+      "mission": "NASA GIBS / Worldview tiles",
+      "operator": "NASA ESDIS",
+      "country": "USA",
+      "launched": "service",
+      "status": "active",
+      "sensor_type": [
+        "optical (visualisation)"
+      ],
+      "resolution_m": "15-2000 by layer",
+      "revisit": "daily layers",
+      "coverage": "Global",
+      "products": [
+        "WMTS tiles of MODIS/VIIRS/HLS etc."
+      ],
+      "access": [
+        "https://gibs.earthdata.nasa.gov",
+        "https://worldview.earthdata.nasa.gov"
+      ],
+      "key_or_login": "None",
+      "licence": {
+        "text": "NASA Earthdata data-use guidance: unless marked otherwise, data from NASA-led missions are licensed CC0; 'no restrictions on the use of these data' (citation strongly urged).",
+        "url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance"
+      },
+      "commercial_ok": "yes",
+      "latency": "hours",
+      "property_uses": [
+        "event imagery basemap in UI"
+      ],
+      "tested": "GIBS WMTS GetCapabilities HTTP 200 (5.3 MB)."
+    },
+    {
+      "mission": "NOAA ocean/weather open sets (Jason-3, COSMIC-2, CoastWatch, MRMS, HRRR, NEXRAD)",
+      "operator": "NOAA",
+      "country": "USA",
+      "launched": "various",
+      "status": "active",
+      "sensor_type": [
+        "microwave",
+        "atmospheric",
+        "radar (ground-based)"
+      ],
+      "resolution_m": "MRMS 1000; HRRR 3000",
+      "revisit": "2 min (MRMS) to 10 days",
+      "coverage": "US / global",
+      "products": [
+        "MRMS QPE and MESH hail",
+        "HRRR",
+        "NEXRAD Level II",
+        "CoastWatch SST/ocean color"
+      ],
+      "access": [
+        "https://registry.opendata.aws/collab/noaa/",
+        "https://planetarycomputer.microsoft.com (noaa-mrms-qpe, noaa-hrrr)",
+        "https://coastwatch.noaa.gov"
+      ],
+      "key_or_login": "None",
+      "licence": {
+        "text": "NOAA NODD: data 'are open to the public and can be used as desired'; NOAA requests attribution and no implied endorsement.",
+        "url": "https://registry.opendata.aws/noaa-goes/"
+      },
+      "commercial_ok": "yes",
+      "latency": "minutes",
+      "property_uses": [
+        "MRMS MESH hail swaths (not satellite) - strongest roof-damage lead signal",
+        "rainfall/flood context"
+      ],
+      "tested": "noaa-mrms-pds CONUS/ listing OK; noaa-hrrr-bdp-pds OK; noaa-nexrad-level2 anonymous ListBucket 403 (check registry for current bucket)."
+    },
+    {
+      "mission": "USGS 3DEP aerial LiDAR (reference, not satellite)",
+      "operator": "USGS",
+      "country": "USA",
+      "launched": "2016-",
+      "status": "active",
+      "sensor_type": [
+        "LiDAR"
+      ],
+      "resolution_m": "QL2 >= 2 pts/m2 (often 8+); 1 m DEM",
+      "revisit": "one-off / multi-year",
+      "coverage": "Nearly all CONUS",
+      "products": [
+        "LAZ/EPT/COPC point clouds",
+        "1 m DEMs",
+        "DSM/HAG on Planetary Computer"
+      ],
+      "access": [
+        "https://registry.opendata.aws/usgs-lidar/",
+        "https://planetarycomputer.microsoft.com/dataset/3dep-lidar-copc",
+        "https://apps.nationalmap.gov/downloader/"
+      ],
+      "key_or_login": "None",
+      "licence": {
+        "text": "USGS: 'There are no restrictions on Landsat data downloaded from the USGS; it can be used or redistributed as desired' (source statement requested). USGS-produced data are US public domain.",
+        "url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits"
+      },
+      "commercial_ok": "yes",
+      "latency": "n/a",
+      "property_uses": [
+        "roof shape, pitch, area, height, tree overhang"
+      ],
+      "tested": "Planetary Computer 3dep-lidar-copc search over downtown Dallas returned USGS_LPC_TX_Pecos_Dallas_2018_D19_14SQB0730."
+    },
+    {
+      "mission": "NASA CSDA (Commercial Satellite Data Acquisition: Planet, Maxar, Airbus, ICEYE, Capella, BlackSky ...)",
+      "operator": "NASA (purchases vendor data)",
+      "country": "USA",
+      "launched": "2017-",
+      "status": "active",
+      "sensor_type": [
+        "optical",
+        "SAR",
+        "hyperspectral"
+      ],
+      "resolution_m": "0.3-5",
+      "revisit": "daily+",
+      "coverage": "Global (vendor)",
+      "products": [
+        "vendor imagery under NASA EULAs"
+      ],
+      "access": [
+        "https://www.earthdata.nasa.gov/about/csda"
+      ],
+      "key_or_login": "Must be verified 'authorized user' (US-government-funded research)",
+      "licence": {
+        "text": "NASA: CSDA requires government-defined EULAs 'for all data products acquired from commercial partners for non-commercial use'; users must be verified authorized users.",
+        "url": "https://science.nasa.gov/earth-science/csda/end-user-license-agreements/"
+      },
+      "commercial_ok": "no",
+      "latency": "n/a",
+      "property_uses": [
+        "NOT usable in a commercial product"
+      ],
+      "tested": "EULA page fetched 2026-11-24; no data access attempted."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+# Lane MB national expansion: 22 new residential blocks. Column order follows usa/pipeline.py parse_batch
+# (address,slug,half_m); lon,lat (Census geocoder match, WGS84) and region are trailing reference columns the parser ignores.
+# Research and EPT/ACS checks: usa/research/metros.md
+address,slug,half_m,lon,lat,region
+"6500 37th Ave NE, Seattle, WA 98115",seattle-wa,40,-122.287562,47.675841,Pacific Northwest
+"5000 NE 30th Ave, Portland, OR 97211",portland-or,40,-122.634791,45.559102,Pacific Northwest
+"2600 Portola Way, Sacramento, CA 95818",sacramento-ca,40,-121.479752,38.549854,West Coast
+"3000 Kalmia St, San Diego, CA 92104",san-diego-ca,40,-117.129460,32.730810,West Coast
+"2800 Burnham Ave, Las Vegas, NV 89169",las-vegas-nv,40,-115.123018,36.138755,Mountain West
+"1500 E Kensington Ave, Salt Lake City, UT 84105",salt-lake-city-ut,40,-111.847886,40.736211,Mountain West
+"1000 Arlington St, Houston, TX 77008",houston-tx,40,-95.394099,29.788965,Gulf Coast
+"8000 Hampson St, New Orleans, LA 70118",new-orleans-la,40,-90.132597,29.943127,Gulf Coast
+"1400 NE 15th Ave, Fort Lauderdale, FL 33304",fort-lauderdale-fl,40,-80.128818,26.144401,Southeast
+"1500 Hillcrest St, Orlando, FL 32803",orlando-fl,40,-81.361095,28.552154,Southeast
+"1200 Lanier Blvd NE, Atlanta, GA 30306",atlanta-ga,40,-84.349932,33.787627,Southeast
+# charlotte-nc (2300 Sherwood Ave) failed build_block: 0 Overture footprints in the box; replaced by spokane-wa (built separately)
+"1000 E 29th Ave, Spokane, WA 99203",spokane-wa,40,-117.395338,47.628115,Inland Northwest
+"1800 Ashwood Ave, Nashville, TN 37212",nashville-tn,40,-86.797873,36.128796,South
+"600 N East Ave, Oak Park, IL 60302",oak-park-il,40,-87.789749,41.896374,Midwest
+"16900 Prairie St, Detroit, MI 48221",detroit-mi,40,-83.145012,42.415515,Midwest
+"2600 N 52nd St, Omaha, NE 68104",omaha-ne,40,-95.995123,41.282328,Great Plains
+"2600 S Bancroft St, Philadelphia, PA 19145",philadelphia-pa,40,-75.174925,39.918584,Mid-Atlantic
+"1500 Jackson St NE, Washington, DC 20017",washington-dc,40,-76.984131,38.929968,Mid-Atlantic
+"15 Water Ln, Levittown, NY 11756",levittown-ny,40,-73.510767,40.714776,Northeast
+"50 Highland Rd, Somerville, MA 02144",somerville-ma,40,-71.112755,42.396322,New England
+"1500 Ala Aolani St, Honolulu, HI 96819",honolulu-hi,40,-157.890490,21.367918,Pacific
+"8000 Sandlewood Pl, Anchorage, AK 99507",anchorage-ak,40,-149.852940,61.147273,Alaska

@@ -1,0 +1,246 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rental, occupancy &amp; HOA rules</title>
+<link rel="icon" href="data:,">
+<meta name="claude:viewport-fit-sides" content="cover">
+<script src="pack.js"></script>
+<script src="theme.js"></script>
+<script>{ const t = new URLSearchParams(location.search).get("theme"); if (t && window.Themes) Themes.set(t); }</script>
+<style>
+/* Rules console: one city dossier on top, then the 12-city comparison grid, state law, and platform policies.
+   Colours and fonts (--void --glass --edge --ink --dim --cyan --amber --red --green --magenta --lime --f-*) come from theme.js. */
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { background: var(--void); color: var(--ink); }
+body { margin: 0; font: 14px/1.5 var(--f-body); min-height: 100vh;
+  background: radial-gradient(120% 60% at 50% 0%, color-mix(in srgb, var(--cyan) 8%, var(--void)) 0%, var(--void) 70%) fixed;
+  padding: max(14px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 40px max(16px, env(safe-area-inset-left, 0px)); }
+body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background: repeating-linear-gradient(0deg, color-mix(in srgb, var(--cyan) 3%, transparent) 0 1px, transparent 1px 3px); mix-blend-mode: screen; }
+button, input, select { font: inherit; color: inherit; }
+a { color: var(--cyan); }
+:focus-visible { outline: 1px solid var(--cyan); outline-offset: 2px; }
+.mono { font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+.lbl { font-family: var(--f-mono); font-size: 10.5px; letter-spacing: .16em; text-transform: uppercase; color: var(--dim); }
+.wrap { position: relative; z-index: 2; max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.panel { position: relative; background: var(--glass); border: 1px solid var(--edge); border-radius: 4px; backdrop-filter: blur(8px); padding: 14px 16px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.4), 0 0 24px color-mix(in srgb, var(--cyan) 6%, transparent) inset; }
+.panel::before, .panel::after { content: ""; position: absolute; width: 10px; height: 10px; border: 1px solid var(--cyan); opacity: .7; pointer-events: none; }
+.panel::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; }
+.panel::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; }
+h1 { margin: 0; font: 700 28px/1.05 var(--f-display); letter-spacing: .04em; text-transform: uppercase; text-wrap: balance; }
+h1 b { color: var(--cyan); font-weight: 700; }
+h2 { margin: 0 0 8px; font: 600 16px var(--f-display); letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); }
+h3 { margin: 0; font: 600 11px var(--f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--cyan); border-bottom: 1px solid var(--edge); padding-bottom: 3px; }
+.top { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: flex-start; justify-content: space-between; }
+.top .sub { margin-top: 6px; color: var(--dim); font-size: 13px; max-width: 70ch; }
+.stamp { font: 12px var(--f-mono); color: var(--lime); letter-spacing: .1em; white-space: nowrap; }
+.stamp::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); margin-right: 6px; box-shadow: 0 0 8px var(--lime); }
+.disc { border: 1px solid var(--amber); background: color-mix(in srgb, var(--amber) 10%, var(--glass)); color: var(--ink); padding: 10px 14px; border-radius: 3px;
+  display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.disc b { font: 700 15px var(--f-display); letter-spacing: .1em; text-transform: uppercase; color: var(--amber); }
+.disc span { color: var(--dim); font-size: 12.5px; }
+.ctl { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin-top: 12px; }
+.ctl select { background: rgba(0,0,0,.4); border: 1px solid var(--edge); border-radius: 2px; padding: 6px 8px; font-family: var(--f-mono); font-size: 13px; min-width: 200px; }
+.ctl select option { background: var(--void); }
+.ctl label { display: inline-flex; gap: 7px; align-items: center; cursor: pointer; font-size: 13px; }
+.legend { display: inline-flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.b { display: inline-block; font: 600 10px var(--f-mono); letter-spacing: .08em; padding: 0 5px; border: 1px solid currentColor; border-radius: 2px; white-space: nowrap; vertical-align: 1px; }
+.b.v { color: var(--green); } .b.p { color: var(--amber); } .b.u { color: var(--red); }
+.tally { font: 12px var(--f-mono); color: var(--dim); }
+.tally i { font-style: normal; color: var(--ink); }
+.counts { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.counts .c { display: flex; flex-direction: column; align-items: flex-end; border: 1px solid var(--edge); border-radius: 3px; padding: 4px 10px; min-width: 84px; background: rgba(0,0,0,.25); }
+.counts .c b { font: 700 22px/1.1 var(--f-display); font-variant-numeric: tabular-nums; }
+.counts .c span { font: 600 9.5px var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.counts .c.v b { color: var(--green); } .counts .c.p b { color: var(--amber); } .counts .c.u b { color: var(--red); } .counts .c.e b { color: var(--cyan); }
+.ev { display: block; margin-top: 2px; font: 11px/1.35 var(--f-mono); color: var(--dim); cursor: help; }
+.ev::before { content: "§ "; color: var(--cyan); opacity: .8; }
+td .ev { max-width: 260px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+.dossier .hd { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; margin-bottom: 10px; }
+.dossier .hd .nm { font: 700 24px var(--f-display); letter-spacing: .03em; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px 18px; }
+.grp dl { margin: 6px 0 0; display: flex; flex-direction: column; gap: 7px; }
+.grp dt { font-size: 12px; color: var(--dim); }
+.grp dd { margin: 1px 0 0; font-size: 13.5px; }
+.grp dd a { color: var(--ink); text-decoration: none; border-bottom: 1px dotted color-mix(in srgb, var(--cyan) 60%, transparent); }
+.grp dd a:hover { color: var(--cyan); }
+.grp dd.off a, td.off a { color: var(--dim); font-style: italic; }
+
+.tbl { overflow-x: auto; border: 1px solid var(--edge); border-radius: 3px; }
+table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+.cmp table { min-width: 1900px; } .sttbl table { min-width: 1250px; }
+th, td { text-align: left; vertical-align: top; padding: 6px 8px; border-bottom: 1px solid color-mix(in srgb, var(--edge) 55%, transparent); }
+thead th { position: sticky; top: 0; background: var(--void); font: 600 11px var(--f-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--dim); z-index: 1; }
+thead th button { background: none; border: 0; padding: 0; cursor: pointer; font: inherit; color: inherit; text-transform: inherit; letter-spacing: inherit; }
+thead th button:hover { color: var(--cyan); }
+th.rowh { position: sticky; left: 0; background: color-mix(in srgb, var(--void) 92%, var(--cyan)); color: var(--dim); font-weight: 500; font-size: 12px; min-width: 170px; max-width: 190px; z-index: 1; }
+thead th.rowh { z-index: 2; }
+tr.gh th { background: color-mix(in srgb, var(--cyan) 10%, var(--void)); color: var(--cyan); font: 600 11px var(--f-mono); letter-spacing: .14em; text-transform: uppercase; position: sticky; left: 0; }
+td { min-width: 140px; }
+td a { color: var(--ink); text-decoration: none; }
+td a:hover { color: var(--cyan); text-decoration: underline; }
+td .b { margin-left: 4px; }
+.sel { background: color-mix(in srgb, var(--amber) 9%, transparent); }
+thead th.sel { color: var(--amber); box-shadow: inset 0 -2px 0 var(--amber); }
+.plat { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px 18px; }
+.plat ul { margin: 6px 0 0; padding-left: 16px; } .plat li { margin: 5px 0; font-size: 13px; }
+.plat li a { color: var(--ink); } .plat li a:hover { color: var(--cyan); }
+.notes { font-size: 12.5px; color: var(--dim); } .notes ul { margin: 4px 0 0; padding-left: 18px; }
+.err { color: var(--red); font-family: var(--f-mono); }
+@media (max-width: 640px) { h1 { font-size: 22px; } .ctl select { min-width: 0; width: 100%; } .grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="wrap">
+  <header class="panel">
+    <div class="top">
+      <div>
+        <div class="lbl">Roof Intel · USA · rules console</div>
+        <h1>Rental, occupancy <b>&amp;</b> HOA rules</h1>
+        <div class="sub">Short-term and long-term rental rules, occupancy limits, alternative living, HOA law and places of worship for 12 cities and 7 states, each linked to its source.</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;align-items:flex-end">
+        <div class="stamp" id="stamp">CHECKED —</div>
+        <div class="counts" id="counts" aria-label="Verification counts across all rules"></div>
+        <div id="themePick"></div>
+      </div>
+    </div>
+    <div class="ctl">
+      <label class="lbl" for="city" style="cursor:default">City</label>
+      <select id="city" aria-label="City"></select>
+      <label><input type="checkbox" id="vonly"> Verified only</label>
+      <span class="legend"><span class="b v">VERIFIED</span><span class="b p">PARTIAL</span><span class="b u">UNVERIFIED</span></span>
+      <span class="tally" id="tally"></span>
+    </div>
+  </header>
+
+  <div class="disc" role="note"><b>Not legal advice — rules change; check the official source.</b>
+    <span>Values are short summaries in our own words. "Unverified" means it came from background knowledge or a search snippet, not an official page read this session.</span></div>
+
+  <section class="panel dossier" id="dossier" aria-live="polite"></section>
+
+  <section class="panel cmp">
+    <h2>City comparison</h2>
+    <div class="tbl"><table id="cmp"></table></div>
+  </section>
+
+  <section class="panel sttbl">
+    <h2>State law</h2>
+    <div class="tbl"><table id="st"></table></div>
+  </section>
+
+  <section class="panel">
+    <h2>Platform policies</h2>
+    <div class="plat" id="plat"></div>
+    <p class="notes" style="margin:10px 0 0">Company terms, not law and not open data: summarised and linked only. Per-bed hostel-style rentals in an ordinary house fit neither Airbnb's shared-room category (staffed hostels) nor Vrbo (whole homes), and usually need hostel or rooming-house zoning.</p>
+  </section>
+
+  <section class="panel notes" id="notes"></section>
+</div>
+
+<script>
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+const BADGE = { true: ["v", "VERIFIED"], partial: ["p", "PARTIAL"], false: ["u", "UNVERIFIED"] };
+const badge = (v) => { const [c, t] = BADGE[String(v)] || BADGE.false; return `<span class="b ${c}">${t}</span>`; };
+const st = { city: "minneapolis", vonly: false };
+let R = null;
+
+if (window.Themes) Themes.mountPicker(document.getElementById("themePick"));
+
+function readUrl() {
+  const q = new URLSearchParams(location.search);
+  const c = (q.get("city") || "").toLowerCase().replace(/[\s-]+/g, "_");
+  if (R.cities[c]) st.city = c;
+  st.vonly = q.get("verified") === "1";
+}
+function writeUrl() {
+  const q = new URLSearchParams(location.search);
+  q.set("city", st.city);
+  if (st.vonly) q.set("verified", "1"); else q.delete("verified");
+  history.replaceState(null, "", `${location.pathname}?${q}`);
+}
+
+// A single fact: value linked to its source + badge, then the evidence line (section relied on), if any.
+// When "verified only" hides it, the source link stays.
+function fact(f) {
+  if (!f) return { cls: "off", html: "—" };
+  const ok = f.verified === true;
+  if (st.vonly && !ok) return { cls: "off", html: `<a href="${esc(f.source_url)}" target="_blank" rel="noopener" title="Hidden: not verified. Open the source.">hidden · not verified</a> ${badge(f.verified)}` };
+  const ev = f.evidence ? `<span class="ev" title="Evidence: ${esc(f.evidence)}">${esc(f.evidence)}</span>` : "";
+  return { cls: "", html: `<a href="${esc(f.source_url)}" target="_blank" rel="noopener" title="Source: ${esc(f.source_url)}">${esc(f.value)}</a> ${badge(f.verified)}${ev}` };
+}
+
+function drawDossier() {
+  const c = R.cities[st.city], s = R.states[c.state];
+  const block = (title, fields, src) => `<div class="grp"><h3>${esc(title)}</h3><dl>${fields.map(([k, lbl]) => { const x = fact(src[k]); return `<dt>${esc(lbl)}</dt><dd class="${x.cls}">${x.html}</dd>`; }).join("")}</dl></div>`;
+  document.getElementById("dossier").innerHTML =
+    `<div class="hd"><span class="lbl">Dossier</span><span class="nm">${esc(c.name)}, ${esc(c.state)}</span><span class="tally">${tallyOf(Object.values(c.fields))}</span></div>` +
+    `<div class="grid">${R.groups.map(([, title, fields]) => block(title, fields, c.fields)).join("")}` +
+    block(`${s.name} (state)`, [["str_preemption", "STR preemption"], ["rent_control", "Rent control"], ["source_of_income", "Source of income"], ["occupancy_law", "Occupancy / ADU laws"], ["hoa_registry", "HOA registry"]], s.fields) + `</div>`;
+}
+
+function tallyOf(fs) {
+  const n = { true: 0, partial: 0, false: 0 }; fs.forEach((f) => n[String(f.verified)]++);
+  return `<i>${n.true}</i> verified · <i>${n.partial}</i> partial · <i>${n.false}</i> unverified`;
+}
+
+function drawCmp() {
+  const keys = Object.keys(R.cities);
+  const head = `<thead><tr><th class="rowh">Rule</th>${keys.map((k) => `<th class="${k === st.city ? "sel" : ""}"><button data-city="${k}" title="Open ${esc(R.cities[k].name)} dossier">${esc(R.cities[k].name)} <span style="opacity:.6">${R.cities[k].state}</span></button></th>`).join("")}</tr></thead>`;
+  const body = R.groups.map(([, title, fields]) =>
+    `<tr class="gh"><th colspan="${keys.length + 1}">${esc(title)}</th></tr>` +
+    fields.map(([fk, lbl]) => `<tr><th class="rowh" scope="row">${esc(lbl)}</th>${keys.map((k) => { const x = fact(R.cities[k].fields[fk]); return `<td class="${x.cls} ${k === st.city ? "sel" : ""}">${x.html}</td>`; }).join("")}</tr>`).join("")).join("");
+  document.getElementById("cmp").innerHTML = head + `<tbody>${body}</tbody>`;
+}
+
+function drawStates() {
+  const keys = Object.keys(R.states), cur = R.cities[st.city].state;
+  const head = `<thead><tr><th class="rowh">Rule</th>${keys.map((k) => `<th class="${k === cur ? "sel" : ""}">${esc(R.states[k].name)}</th>`).join("")}</tr></thead>`;
+  const body = R.state_groups.map(([title, fields]) =>
+    `<tr class="gh"><th colspan="${keys.length + 1}">${esc(title)}</th></tr>` +
+    fields.map(([fk, lbl]) => `<tr><th class="rowh" scope="row">${esc(lbl)}</th>${keys.map((k) => { const x = fact(R.states[k].fields[fk]); return `<td class="${x.cls} ${k === cur ? "sel" : ""}">${x.html}</td>`; }).join("")}</tr>`).join("")).join("");
+  document.getElementById("st").innerHTML = head + `<tbody>${body}</tbody>`;
+}
+
+function drawPlat() {
+  document.getElementById("plat").innerHTML = R.platforms.map((p) => `<div class="grp"><h3>${esc(p.name)}</h3><ul>${p.items.map((f) => `<li class="${st.vonly && f.verified !== true ? "off" : ""}">${fact(f).html}</li>`).join("")}</ul></div>`).join("");
+}
+
+function draw() {
+  document.getElementById("city").value = st.city;
+  document.getElementById("vonly").checked = st.vonly;
+  drawDossier(); drawCmp(); drawStates(); drawPlat();
+  const all = [...Object.values(R.cities), ...Object.values(R.states)].flatMap((x) => Object.values(x.fields)).concat(R.platforms.flatMap((p) => p.items));
+  document.getElementById("tally").innerHTML = `All: ${tallyOf(all)}`;
+}
+
+// Header counts, computed from rules.json every load so they never drift from the data.
+function drawCounts() {
+  const all = [...Object.values(R.cities), ...Object.values(R.states)].flatMap((x) => Object.values(x.fields)).concat(R.platforms.flatMap((p) => p.items));
+  const n = { true: 0, partial: 0, false: 0 }; all.forEach((f) => { const k = String(f.verified); n[k in n ? k : "false"]++; });
+  const ev = all.filter((f) => f.evidence).length;
+  const box = (c, v, t, tip) => `<div class="c ${c}" title="${tip}"><b>${v}</b><span>${t}</span></div>`;
+  document.getElementById("counts").innerHTML =
+    box("v", n.true, "verified", "Read on an official page this session") + box("p", n.partial, "partial", "Part read, part from news or a docket") +
+    box("u", n.false, "unverified", "Background knowledge or a search snippet") + box("e", `${ev}/${all.length}`, "with evidence", "Facts that name the section relied on");
+}
+
+function setCity(k) { if (!R.cities[k]) return; st.city = k; writeUrl(); draw(); }
+
+fetch("data/rules.json").then((r) => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); }).then((data) => {
+  R = data;
+  document.getElementById("stamp").textContent = `CHECKED ${R.checked}`;
+  const sel = document.getElementById("city");
+  sel.innerHTML = Object.entries(R.cities).map(([k, c]) => `<option value="${k}">${esc(c.name)}, ${esc(c.state)}</option>`).join("");
+  readUrl(); writeUrl(); drawCounts(); draw();
+  sel.addEventListener("change", () => setCity(sel.value));
+  document.getElementById("vonly").addEventListener("change", (e) => { st.vonly = e.target.checked; writeUrl(); draw(); });
+  document.getElementById("cmp").addEventListener("click", (e) => { const b = e.target.closest("button[data-city]"); if (b) { setCity(b.dataset.city); document.getElementById("dossier").scrollIntoView({ behavior: "smooth", block: "start" }); } });
+  document.getElementById("notes").innerHTML = `<h2>Notes</h2><ul>${R.notes.map((n) => `<li>${esc(n)}</li>`).join("")}<li>Compiled from the rentals and HOA/occupancy research lanes, checked ${esc(R.checked)}. Deep link: <span class="mono">rules.html?city=denver</span> (add <span class="mono">&amp;verified=1</span> for verified-only).</li></ul>`;
+}).catch((e) => {
+  document.getElementById("dossier").innerHTML = `<p class="err">Could not load data/rules.json (${esc(e.message)}). Serve this folder over HTTP.</p>`;
+});
+</script>

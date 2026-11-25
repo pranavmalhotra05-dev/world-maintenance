@@ -1,0 +1,197 @@
+[
+ {
+  "slug": "minneapolis",
+  "name": "Minneapolis",
+  "state": "MN",
+  "county_fips": "27053",
+  "test_lon": -93.242,
+  "test_lat": 44.929,
+  "test_address": "4016 22nd Ave S",
+  "licences": {
+   "assessor": "CC0 (City of Minneapolis Open Data waiver)",
+   "permits": "CC0 (City of Minneapolis Open Data waiver)",
+   "311": "CC0 (City of Minneapolis Open Data waiver)"
+  },
+  "notes": "All three CC0 (commercial OK). Assessor 2026 has roof, wall, garage, beds/baths, values; no sales. Permits 2016-2026, 311 last 6 years."
+ },
+ {
+  "slug": "saint_paul",
+  "name": "Saint Paul",
+  "state": "MN",
+  "county_fips": "27123",
+  "test_lon": -93.1735,
+  "test_lat": 44.9335,
+  "test_address": "1753 Stanford Ave",
+  "licences": {
+   "assessor": "Public domain (Metropolitan Council Parcels_2025 layer 4, Minnesota Government Data Practices Act)",
+   "permits": "Public Domain (City of Saint Paul open data)",
+   "311": "Public Domain (City of Saint Paul open data)"
+  },
+  "notes": "Permits + 311 Public Domain (commercial OK), both stop mid-2025. Assessor = Metropolitan Council Parcels_2025 layer 4 (Ramsey County parcels, public domain under the MN Government Data Practices Act): values, tax year, year built, finished sq ft, last sale. No roof/walls/beds/baths/zoning. Replaced the unlicensed Ramsey County service."
+ },
+ {
+  "slug": "dallas",
+  "name": "Dallas",
+  "state": "TX",
+  "county_fips": "48113",
+  "test_lon": -96.8877,
+  "test_lat": 32.726,
+  "test_address": "4123 Falls Dr",
+  "licences": {
+   "assessor": "removed (DCAD: 'All Rights Reserved', no licence - red)",
+   "permits": "removed (Dallas Open Data e7gq-4sah: no licence set - grey)",
+   "311": "ODC-PDDL (public domain, Dallas Open Data d7e7-envw)"
+  },
+  "notes": "311 ODC-PDDL (commercial OK, 2020-today, slow). Assessor removed (DCAD: 'All Rights Reserved', red). Permits removed (e7gq-4sah has no licence, grey). Money falls back to the census-tract median."
+ },
+ {
+  "slug": "austin",
+  "name": "Austin",
+  "state": "TX",
+  "county_fips": "48453",
+  "test_lon": -97.727,
+  "test_lat": 30.344,
+  "test_address": "1521 Madison Ave",
+  "licences": {
+   "assessor": "removed (City of Austin Land Database: no licence, TCAD-derived values - grey)",
+   "permits": "Public Domain (data.austintexas.gov 3syk-w9eu)",
+   "311": "Public Domain (data.austintexas.gov xwdj-i9he)"
+  },
+  "notes": "Permits (1980-today) + 311 (2014-today) Public Domain, commercial OK. Assessor removed (City of Austin Land Database, TCAD-derived, no licence - grey). Money falls back to the census-tract median."
+ },
+ {
+  "slug": "denver",
+  "name": "Denver",
+  "state": "CO",
+  "county_fips": "08031",
+  "test_lon": -104.9395,
+  "test_lat": 39.7575,
+  "test_address": "2869 N Ash St",
+  "licences": {
+   "assessor": "CC BY 3.0 (City and County of Denver Open Data Catalog)",
+   "permits": "CC BY 3.0 (City and County of Denver Open Data Catalog)",
+   "311": "CC BY 3.0 (City and County of Denver Open Data Catalog)"
+  },
+  "notes": "All three CC BY 3.0 via the Denver Open Data Catalog terms (commercial OK, attribute 'City of Denver Open Data Catalog'). Assessor parcels + residential characteristics (no roof/wall). 311 layer is a rolling ~12 months."
+ },
+ {
+  "slug": "boulder",
+  "name": "Boulder",
+  "state": "CO",
+  "county_fips": "08013",
+  "test_lon": -105.2465,
+  "test_lat": 39.986,
+  "test_address": "420 S 41st St",
+  "licences": {
+   "assessor": "CC BY 4.0 (Boulder County Assessor's Property Data bulk CSVs + Boulder County Parcels); zoning CC0 1.0 (City of Boulder Zoning Districts)",
+   "permits": "CC0 1.0 (City of Boulder Construction Permits)",
+   "311": "CC0 1.0 (City of Boulder Code Enforcement Reports)"
+  },
+  "notes": "Assessor = Boulder County 'Assessor's Property Data' bulk CSVs (Buildings, Values, Sales; CC BY 4.0, cached in usa/cache/boulder/) on the CC BY 4.0 county parcels; zoning from City of Boulder Zoning Districts (CC0). Permits CC0 (1979-today, joined to county parcels). 311 substitute = City of Boulder Code Enforcement Reports (CC0). Inquire Boulder has no locations."
+ },
+ {
+  "slug": "columbus",
+  "name": "Columbus",
+  "state": "OH",
+  "county_fips": "39049",
+  "test_lon": -83.0131,
+  "test_lat": 40.028,
+  "test_address": "83 E Lakeview Ave",
+  "licences": {
+   "assessor": "removed (Franklin County Auditor parcels: owner - no clear legal standing)",
+   "permits": "CC0 (City of Columbus)",
+   "311": "CC0 (City of Columbus code enforcement cases; no open 311 feed)"
+  },
+  "notes": "Permits (2010-today) CC0; '311' = City code enforcement cases (CC0, 2019-today; no raw 311 feed). Assessor removed (Franklin County Auditor parcels: owner - no clear legal standing). Money falls back to the census-tract median."
+ },
+ {
+  "slug": "cincinnati",
+  "name": "Cincinnati",
+  "state": "OH",
+  "county_fips": "39061",
+  "test_lon": -84.595,
+  "test_lat": 39.151,
+  "test_address": "2815 Urwiler Ave",
+  "licences": {
+   "assessor": "Public Domain (City of Cincinnati Open Data g24g-2pi5 'Hamilton County Parcel Polygons'; no zoning)",
+   "permits": "Public Domain (City of Cincinnati Open Data)",
+   "311": "Public Domain (City of Cincinnati Open Data)"
+  },
+  "notes": "Swap for Fairfax County VA (Fairfax terms allow internal/personal use only). Permits (2010-today) + 311 (2002-today) Public Domain, commercial OK. Assessor = Hamilton County Parcel Polygons as listed Public Domain on City of Cincinnati Open Data (g24g-2pi5; CAGIS HCE/Cadastral layer 0): values + last sale, no building characteristics. No zoning (city zoning layer unlicensed; county RZC layer does not cover the city)."
+ },
+ {
+  "slug": "tulsa",
+  "name": "Tulsa",
+  "state": "OK",
+  "county_fips": "40143",
+  "test_lon": -95.98,
+  "test_lat": 36.115,
+  "test_address": "3174 S Madison Ave E",
+  "licences": {
+   "assessor": "removed (INCOG / Tulsa County Assessor parcels and City of Tulsa zoning: no licence - grey)",
+   "permits": "not open",
+   "311": "removed (City of Tulsa Verint cases: no licence - grey)"
+  },
+  "notes": "Swap for Oklahoma City. All Tulsa sources removed (INCOG/Tulsa County parcels, City of Tulsa zoning and Verint 311 cases have no licence - grey). Permits not open. Money falls back to the census-tract median."
+ },
+ {
+  "slug": "kansas_city",
+  "name": "Kansas City",
+  "state": "MO",
+  "county_fips": "29095",
+  "test_lon": -94.5905,
+  "test_lat": 39.0035,
+  "test_address": "16 W 69th Ter",
+  "licences": {
+   "assessor": "removed (City of Kansas City GIS parcels/zoning + land-use codes: no licence, IP reserved - grey)",
+   "permits": "removed (data.kcmo.org CPD permits ntw8-aacc: no licence - grey)",
+   "311": "Public Domain (data.kcmo.org)"
+  },
+  "notes": "311 Public Domain (2007-today). Assessor (city GIS parcels/zoning/land-use codes) and permits (ntw8-aacc) removed: no licence, data.kcmo.org terms reserve IP (grey). Money falls back to the census-tract median."
+ },
+ {
+  "slug": "huntsville",
+  "name": "Huntsville",
+  "state": "AL",
+  "county_fips": "01089",
+  "test_lon": -86.5415,
+  "test_lat": 34.652,
+  "test_address": "914 Cornelia Dr SE",
+  "licences": {
+   "assessor": "removed (City of Huntsville GIS parcels: no licence - grey)",
+   "permits": "removed (City of Huntsville GIS building permits: no licence, 'Restricted' - grey)",
+   "311": "not open"
+  },
+  "notes": "All Huntsville sources removed: City of Huntsville GIS parcels and building permits have no licence (permits keyworded 'Restricted') - grey. 311 not open. Money falls back to the census-tract median."
+ },
+ {
+  "slug": "birmingham",
+  "name": "Birmingham",
+  "state": "AL",
+  "county_fips": "01073",
+  "test_lon": -86.748,
+  "test_lat": 33.5242,
+  "test_address": "5424 11th Ave S",
+  "licences": {
+   "assessor": "removed (Jefferson County AL BOE parcels: disclaimer only, no licence - grey)",
+   "permits": "CC BY (data.birminghamal.gov, Creative Commons Attribution); placed with the US Census Geocoder (public domain)",
+   "311": "not open"
+  },
+  "notes": "Thin. Permits CC BY but only 2015-07..2017-06, placed with the US Census Geocoder (public domain). Assessor removed (Jefferson County BOE parcels: disclaimer only, grey). 311 not open (no location, contains names)."
+ },
+ {
+  "slug": "maricopa",
+  "name": "Maricopa County (Phoenix, Scottsdale, Paradise Valley)",
+  "state": "AZ",
+  "county_fips": "04013",
+  "test_lon": -112.0675,
+  "test_lat": 33.5125,
+  "test_address": "5136 N 6th St, Phoenix",
+  "licences": {
+   "assessor": "removed (Maricopa County Assessor: commercial use only via A.R.S. 39-121.03 request - red)",
+   "permits": "removed (City of Phoenix Planning_Permit layer 1: no dataset licence - grey)",
+   "311": "CC BY (City of Phoenix NSD Property Maintenance, phoenixopendata.com); placed with the US Census Geocoder (public domain) - Phoenix only"
+  },
+  "notes": "Assessor removed (Maricopa County Assessor: commercial use only via an A.R.S. 39-121.03 request - red; this includes pool / pool_area / limited value). Phoenix permits layer removed (no dataset licence - grey). 311 = Phoenix NSD code-enforcement complaints (CC BY), placed with the US Census Geocoder (public domain), year only. Scottsdale / Paradise Valley: nothing."
+ }
+]

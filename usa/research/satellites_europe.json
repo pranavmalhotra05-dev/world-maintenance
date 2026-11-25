@@ -1,0 +1,1284 @@
+{
+ "meta": {
+  "lane": "SAT-2 European Earth-observation missions, programmes and derived services",
+  "as_of": "2026-11-24",
+  "method": "Python requests + built-in browser against official ESA / EU Copernicus / EUMETSAT / ECMWF / DLR / ASI / CNES / ICEYE pages and AWS/Planetary Computer catalogues; licence text paraphrased with short quotes. 'tested' records what was fetched.",
+  "commercial_ok_legend": "yes = licence text confirms commercial use; verify = free but commercial terms unconfirmed; no = commercial, research-only, paid or restricted",
+  "counts": {
+   "total_records": 46,
+   "commercial_ok_yes": 28,
+   "commercial_ok_verify": 9,
+   "commercial_ok_no": 9,
+   "global_or_partly_global": 39,
+   "europe_only": 6,
+   "not_yet_launched": 6
+  }
+ },
+ "records": [
+  {
+   "id": "EU-01",
+   "mission": "Copernicus Sentinel-1C / Sentinel-1D (C-band SAR); Sentinel-1A retired",
+   "operator": "ESA for EU (European Commission)",
+   "country_region": "EU",
+   "launched": "S1A 2014-04-03 (mission ended June 2026); S1B 2016-04-25 (failed Dec 2021, ended Aug 2022); S1C 2024-12-05; S1D 2025-11-04",
+   "status": "operational (S1C + S1D pair)",
+   "sensor_type": "C-band SAR (IW, SM, EW, WV modes); S1C/S1D also carry AIS",
+   "resolution_m": "5x20 IW (10 m GRD pixel); SLC for InSAR",
+   "revisit": "6 days with 2 satellites (12 days single)",
+   "coverage": "global (systematic over land; Europe densest)",
+   "products": "L0, L1 GRD/SLC, L2 OCN; RTC backscatter (Planetary Computer), CARD4L on CDSE; archive from 2014",
+   "access": [
+    "Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)",
+    "Microsoft Planetary Computer (sentinel-1-grd, sentinel-1-rtc)",
+    "AWS Open Data Registry (Sentinel-1 GRD)",
+    "NASA ASF DAAC (full mirror)",
+    "WEkEO"
+   ],
+   "key_or_login": "Free registration (CDSE account) for downloads; Planetary Computer / AWS mirrors need no key to read",
+   "licence": {
+    "short": "Copernicus free, full and open data policy: free access for any lawful use incl. reproduction, distribution, adaptation, combination (EU Reg 377/2014 + Commission Delegated Reg 1159/2013). Attribution 'Copernicus Sentinel data [Year]' or 'Contains modified Copernicus Sentinel data [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "near-real-time; new scenes daily",
+   "property_uses": "US: all-weather flood extent after storms; InSAR subsidence/heave screening (self-processed SLC or NASA OPERA DISP-S1); building/new-construction change; landslide/sinkhole screening",
+   "tested": "2026-11-24: ESA Sentinel-1 page fetched (launch dates; 'Time to say goodbye to Sentinel-1A' 30 Jun 2026); Planetary Computer STAC sentinel-1-rtc returned license CC-BY-4.0",
+   "notes": null
+  },
+  {
+   "id": "EU-02",
+   "mission": "Copernicus Sentinel-2A / 2B / 2C (MSI multispectral)",
+   "operator": "ESA for EU",
+   "country_region": "EU",
+   "launched": "S2A 2015-06-23; S2B 2017-03-07; S2C 2024-09-05",
+   "status": "operational; S2B + S2C lead the core mission, S2A in extended/experimental use (ESA, Jan 2026); S2D planned",
+   "sensor_type": "Multispectral optical, 13 bands VNIR-SWIR",
+   "resolution_m": "10 (B/G/R/NIR), 20 (red-edge, SWIR), 60 (atmospheric)",
+   "revisit": "5 days (2 sats; 2-3 days at mid-latitudes)",
+   "coverage": "global land + coastal",
+   "products": "L1C top-of-atmosphere, L2A surface reflectance (COG), global mosaics",
+   "access": [
+    "Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)",
+    "Microsoft Planetary Computer (sentinel-2-l2a)",
+    "AWS Open Data Registry (sentinel-2-l2a-cogs / Earth Search)",
+    "Google Earth Engine (mirror)"
+   ],
+   "key_or_login": "Free registration (CDSE account) for downloads; Planetary Computer / AWS mirrors need no key to read",
+   "licence": {
+    "short": "Copernicus free, full and open data policy: free access for any lawful use incl. reproduction, distribution, adaptation, combination (EU Reg 377/2014 + Commission Delegated Reg 1159/2013). Attribution 'Copernicus Sentinel data [Year]' or 'Contains modified Copernicus Sentinel data [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "new scenes daily; ~5-day per location",
+   "property_uses": "US: NDVI/tree canopy around parcels, new-build and demolition detection, burn scars, neighbourhood-scale storm/hail damage, pool/water and bare-roof brightness (coarse), impervious change",
+   "tested": "2026-11-24: ESA Sentinel-2 page fetched (launch dates); PC STAC sentinel-2-l2a 200 OK (PC labels license 'proprietary' = Copernicus terms); AWS registry licence text 'free, full and open' confirmed",
+   "notes": null
+  },
+  {
+   "id": "EU-03",
+   "mission": "Copernicus Sentinel-3A / 3B / 3C (OLCI, SLSTR, SRAL)",
+   "operator": "ESA (land) + EUMETSAT (marine) for EU",
+   "country_region": "EU",
+   "launched": "S3A 2016-02-16; S3B 2018-04-25; S3C 2026-09-15 (first images Oct 2026, first thermal images Nov 2026)",
+   "status": "operational; S3C commissioning",
+   "sensor_type": "Ocean and Land Colour Instrument (21 bands), Sea and Land Surface Temperature Radiometer (thermal IR), SAR altimeter",
+   "resolution_m": "300 (OLCI), 500 / 1000 (SLSTR)",
+   "revisit": "daily (<2 days per satellite)",
+   "coverage": "global",
+   "products": "OLCI L1/L2, SLSTR land surface temperature, fire radiative power, synergy vegetation, altimetry water levels",
+   "access": [
+    "Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)",
+    "EUMETSAT Data Store / EUMETCast",
+    "WEkEO",
+    "Microsoft Planetary Computer (sentinel-3 collections)"
+   ],
+   "key_or_login": "Free registration (CDSE account) for downloads; Planetary Computer / AWS mirrors need no key to read",
+   "licence": {
+    "short": "Copernicus free, full and open data policy: free access for any lawful use incl. reproduction, distribution, adaptation, combination (EU Reg 377/2014 + Commission Delegated Reg 1159/2013). Attribution 'Copernicus Sentinel data [Year]' or 'Contains modified Copernicus Sentinel data [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "near-real-time daily",
+   "property_uses": "US: daily 1 km land surface temperature / urban heat island, active fire detection near communities, regional drought",
+   "tested": "2026-11-24: ESA Sentinel-3 page fetched (S3C launch 15 Sep 2026)",
+   "notes": null
+  },
+  {
+   "id": "EU-04",
+   "mission": "Copernicus Sentinel-5P (TROPOMI)",
+   "operator": "ESA for EU (with Netherlands NSO/KNMI)",
+   "country_region": "EU / Netherlands",
+   "launched": "2017-10-13",
+   "status": "operational (beyond 7-year design life)",
+   "sensor_type": "UV-VIS-NIR-SWIR imaging spectrometer",
+   "resolution_m": "5500 x 3500 (since Aug 2019)",
+   "revisit": "daily global",
+   "coverage": "global",
+   "products": "L2 NO2, O3, SO2, HCHO, CO, CH4, aerosol index, cloud",
+   "access": [
+    "Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)",
+    "Microsoft Planetary Computer (sentinel-5p-l2-netcdf)",
+    "NASA GES DISC mirror",
+    "AWS Open Data Registry"
+   ],
+   "key_or_login": "Free registration (CDSE account) for downloads; Planetary Computer / AWS mirrors need no key to read",
+   "licence": {
+    "short": "Copernicus free, full and open data policy: free access for any lawful use incl. reproduction, distribution, adaptation, combination (EU Reg 377/2014 + Commission Delegated Reg 1159/2013). Attribution 'Copernicus Sentinel data [Year]' or 'Contains modified Copernicus Sentinel data [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "daily (NRT ~3 h)",
+   "property_uses": "US: neighbourhood air-quality context (NO2 near highways/industry), methane plume proximity",
+   "tested": "2026-11-24: ESA Sentinel-5P page fetched (launch 13 Oct 2017)",
+   "notes": null
+  },
+  {
+   "id": "EU-05",
+   "mission": "Copernicus Sentinel-4 (UVN spectrometer on MTG-S1, geostationary)",
+   "operator": "ESA / EUMETSAT for EU",
+   "country_region": "EU",
+   "launched": "2025-07-01 (on MTG-S1, Falcon 9)",
+   "status": "operational / commissioning",
+   "sensor_type": "UV-VIS-NIR spectrometer, geostationary",
+   "resolution_m": "~8000",
+   "revisit": "hourly",
+   "coverage": "Europe + North Africa only",
+   "products": "hourly NO2, O3, SO2, HCHO, aerosols",
+   "access": [
+    "EUMETSAT Data Store / EUMETCast",
+    "Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)",
+    "WEkEO"
+   ],
+   "key_or_login": "Free EUMETSAT registration",
+   "licence": {
+    "short": "Copernicus free, full and open data policy: free access for any lawful use incl. reproduction, distribution, adaptation, combination (EU Reg 377/2014 + Commission Delegated Reg 1159/2013). Attribution 'Copernicus Sentinel data [Year]' or 'Contains modified Copernicus Sentinel data [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "hourly",
+   "property_uses": "Europe-only; no US use",
+   "tested": "2026-11-24: ESA Sentinel-4 page fetched",
+   "notes": null
+  },
+  {
+   "id": "EU-06",
+   "mission": "Copernicus Sentinel-5A (on Metop-SG-A1)",
+   "operator": "ESA / EUMETSAT for EU",
+   "country_region": "EU",
+   "launched": "2025-08-13 (Ariane 6)",
+   "status": "operational / commissioning; first images Nov 2025",
+   "sensor_type": "UV-VIS-NIR-SWIR imaging spectrometer (TROPOMI successor)",
+   "resolution_m": "~7500",
+   "revisit": "daily",
+   "coverage": "global",
+   "products": "trace gases, aerosols, CH4",
+   "access": [
+    "EUMETSAT Data Store / EUMETCast",
+    "Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)"
+   ],
+   "key_or_login": "Free EUMETSAT registration",
+   "licence": {
+    "short": "Copernicus free, full and open data policy: free access for any lawful use incl. reproduction, distribution, adaptation, combination (EU Reg 377/2014 + Commission Delegated Reg 1159/2013). Attribution 'Copernicus Sentinel data [Year]' or 'Contains modified Copernicus Sentinel data [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "daily",
+   "property_uses": "US: air-quality continuity after S5P",
+   "tested": "2026-11-24: ESA Sentinel-5 page fetched",
+   "notes": null
+  },
+  {
+   "id": "EU-07",
+   "mission": "Copernicus Sentinel-6 Michael Freilich / Sentinel-6B",
+   "operator": "ESA, EUMETSAT, NASA, NOAA for EU",
+   "country_region": "EU / US",
+   "launched": "S6-MF 2020-11-21; S6B 2025-11-17",
+   "status": "operational",
+   "sensor_type": "Poseidon-4 radar altimeter + microwave radiometer",
+   "resolution_m": "~300 along-track (SAR mode)",
+   "revisit": "10-day repeat",
+   "coverage": "global oceans",
+   "products": "sea surface height, global sea-level record",
+   "access": [
+    "EUMETSAT Data Store / EUMETCast",
+    "NASA PO.DAAC",
+    "Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)"
+   ],
+   "key_or_login": "Free EUMETSAT or NASA Earthdata registration",
+   "licence": {
+    "short": "Copernicus free, full and open data policy: free access for any lawful use incl. reproduction, distribution, adaptation, combination (EU Reg 377/2014 + Commission Delegated Reg 1159/2013). Attribution 'Copernicus Sentinel data [Year]' or 'Contains modified Copernicus Sentinel data [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "NRT hours; 10-day cycles",
+   "property_uses": "US: coastal sea-level trend context for flood risk (indirect)",
+   "tested": "2026-11-24: ESA Sentinel-6 page fetched (S6B launch 17 Nov 2025)",
+   "notes": null
+  },
+  {
+   "id": "EU-08",
+   "mission": "CO2M (Copernicus Anthropogenic CO2 Monitoring), Sentinel-7",
+   "operator": "ESA for EU (Copernicus Sentinel Expansion)",
+   "country_region": "EU",
+   "launched": "not launched as of 2026-11-24",
+   "status": "in development; launch target ~2027 (verify)",
+   "sensor_type": "NIR/SWIR CO2 + CH4 spectrometer, NO2, aerosol, cloud imagers",
+   "resolution_m": "~2000 (4 km2 pixels)",
+   "revisit": "TBD",
+   "coverage": "global (planned)",
+   "products": "planned",
+   "access": [
+    "(future) Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)"
+   ],
+   "key_or_login": "n/a yet",
+   "licence": {
+    "short": "Copernicus free, full and open data policy: free access for any lawful use incl. reproduction, distribution, adaptation, combination (EU Reg 377/2014 + Commission Delegated Reg 1159/2013). Attribution 'Copernicus Sentinel data [Year]' or 'Contains modified Copernicus Sentinel data [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes (expected under Copernicus policy once operational)",
+   "update_frequency": "n/a",
+   "property_uses": "US: point-source emission context (power plants, landfills); weak property relevance",
+   "tested": "2026-11-24: ESA Copernicus Expansion page fetched; latest news there: ROSE-L radar ground deployment test (8 Apr 2026), CO2M instrument vacuum test (17 Jun 2026) -> all six still in development, none launched. Target years are from earlier ESA planning, not re-verified.",
+   "notes": null
+  },
+  {
+   "id": "EU-09",
+   "mission": "CHIME (Copernicus Hyperspectral Imaging Mission), Sentinel-10",
+   "operator": "ESA for EU (Copernicus Sentinel Expansion)",
+   "country_region": "EU",
+   "launched": "not launched as of 2026-11-24",
+   "status": "in development; launch target ~2028-2029 (verify)",
+   "sensor_type": "VSWIR imaging spectrometer (~400-2500 nm)",
+   "resolution_m": "30",
+   "revisit": "TBD",
+   "coverage": "global (planned)",
+   "products": "planned",
+   "access": [
+    "(future) Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)"
+   ],
+   "key_or_login": "n/a yet",
+   "licence": {
+    "short": "Copernicus free, full and open data policy: free access for any lawful use incl. reproduction, distribution, adaptation, combination (EU Reg 377/2014 + Commission Delegated Reg 1159/2013). Attribution 'Copernicus Sentinel data [Year]' or 'Contains modified Copernicus Sentinel data [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes (expected under Copernicus policy once operational)",
+   "update_frequency": "n/a",
+   "property_uses": "US (if acquired): roof material spectral ID (asphalt/metal/tile), soil, vegetation stress",
+   "tested": "2026-11-24: ESA Copernicus Expansion page fetched; latest news there: ROSE-L radar ground deployment test (8 Apr 2026), CO2M instrument vacuum test (17 Jun 2026) -> all six still in development, none launched. Target years are from earlier ESA planning, not re-verified.",
+   "notes": null
+  },
+  {
+   "id": "EU-10",
+   "mission": "LSTM (Land Surface Temperature Monitoring), Sentinel-8",
+   "operator": "ESA for EU (Copernicus Sentinel Expansion)",
+   "country_region": "EU",
+   "launched": "not launched as of 2026-11-24",
+   "status": "in development; launch target ~2029 (verify)",
+   "sensor_type": "Thermal infrared imager",
+   "resolution_m": "~50",
+   "revisit": "TBD",
+   "coverage": "global (planned)",
+   "products": "planned",
+   "access": [
+    "(future) Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)"
+   ],
+   "key_or_login": "n/a yet",
+   "licence": {
+    "short": "Copernicus free, full and open data policy: free access for any lawful use incl. reproduction, distribution, adaptation, combination (EU Reg 377/2014 + Commission Delegated Reg 1159/2013). Attribution 'Copernicus Sentinel data [Year]' or 'Contains modified Copernicus Sentinel data [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes (expected under Copernicus policy once operational)",
+   "update_frequency": "n/a",
+   "property_uses": "US: block-level heat, coarse roof thermal anomalies, irrigation",
+   "tested": "2026-11-24: ESA Copernicus Expansion page fetched; latest news there: ROSE-L radar ground deployment test (8 Apr 2026), CO2M instrument vacuum test (17 Jun 2026) -> all six still in development, none launched. Target years are from earlier ESA planning, not re-verified.",
+   "notes": null
+  },
+  {
+   "id": "EU-11",
+   "mission": "ROSE-L (Radar Observing System for Europe, L-band), Sentinel-12",
+   "operator": "ESA for EU (Copernicus Sentinel Expansion)",
+   "country_region": "EU",
+   "launched": "not launched as of 2026-11-24",
+   "status": "in development; launch target ~2028-2029 (verify)",
+   "sensor_type": "L-band SAR",
+   "resolution_m": "5-10",
+   "revisit": "TBD",
+   "coverage": "global (planned)",
+   "products": "planned",
+   "access": [
+    "(future) Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)"
+   ],
+   "key_or_login": "n/a yet",
+   "licence": {
+    "short": "Copernicus free, full and open data policy: free access for any lawful use incl. reproduction, distribution, adaptation, combination (EU Reg 377/2014 + Commission Delegated Reg 1159/2013). Attribution 'Copernicus Sentinel data [Year]' or 'Contains modified Copernicus Sentinel data [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes (expected under Copernicus policy once operational)",
+   "update_frequency": "n/a",
+   "property_uses": "US: better InSAR coherence in vegetated suburbs; subsidence, soil moisture",
+   "tested": "2026-11-24: ESA Copernicus Expansion page fetched; latest news there: ROSE-L radar ground deployment test (8 Apr 2026), CO2M instrument vacuum test (17 Jun 2026) -> all six still in development, none launched. Target years are from earlier ESA planning, not re-verified.",
+   "notes": null
+  },
+  {
+   "id": "EU-12",
+   "mission": "CIMR (Copernicus Imaging Microwave Radiometer), Sentinel-11",
+   "operator": "ESA for EU (Copernicus Sentinel Expansion)",
+   "country_region": "EU",
+   "launched": "not launched as of 2026-11-24",
+   "status": "in development; launch target ~2029 (verify)",
+   "sensor_type": "Multi-frequency conically-scanning microwave radiometer",
+   "resolution_m": "5000-60000",
+   "revisit": "TBD",
+   "coverage": "global (planned)",
+   "products": "planned",
+   "access": [
+    "(future) Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)"
+   ],
+   "key_or_login": "n/a yet",
+   "licence": {
+    "short": "Copernicus free, full and open data policy: free access for any lawful use incl. reproduction, distribution, adaptation, combination (EU Reg 377/2014 + Commission Delegated Reg 1159/2013). Attribution 'Copernicus Sentinel data [Year]' or 'Contains modified Copernicus Sentinel data [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes (expected under Copernicus policy once operational)",
+   "update_frequency": "n/a",
+   "property_uses": "none (sea ice / ocean)",
+   "tested": "2026-11-24: ESA Copernicus Expansion page fetched; latest news there: ROSE-L radar ground deployment test (8 Apr 2026), CO2M instrument vacuum test (17 Jun 2026) -> all six still in development, none launched. Target years are from earlier ESA planning, not re-verified.",
+   "notes": null
+  },
+  {
+   "id": "EU-13",
+   "mission": "CRISTAL (Polar Ice and Snow Topography Altimeter), Sentinel-9",
+   "operator": "ESA for EU (Copernicus Sentinel Expansion)",
+   "country_region": "EU",
+   "launched": "not launched as of 2026-11-24",
+   "status": "in development; launch target ~2027-2028 (verify)",
+   "sensor_type": "Ku/Ka dual-frequency radar altimeter + radiometer",
+   "resolution_m": "altimeter footprint",
+   "revisit": "TBD",
+   "coverage": "global (planned)",
+   "products": "planned",
+   "access": [
+    "(future) Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)"
+   ],
+   "key_or_login": "n/a yet",
+   "licence": {
+    "short": "Copernicus free, full and open data policy: free access for any lawful use incl. reproduction, distribution, adaptation, combination (EU Reg 377/2014 + Commission Delegated Reg 1159/2013). Attribution 'Copernicus Sentinel data [Year]' or 'Contains modified Copernicus Sentinel data [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes (expected under Copernicus policy once operational)",
+   "update_frequency": "n/a",
+   "property_uses": "negligible (polar ice; inland water levels)",
+   "tested": "2026-11-24: ESA Copernicus Expansion page fetched; latest news there: ROSE-L radar ground deployment test (8 Apr 2026), CO2M instrument vacuum test (17 Jun 2026) -> all six still in development, none launched. Target years are from earlier ESA planning, not re-verified.",
+   "notes": null
+  },
+  {
+   "id": "EU-14",
+   "mission": "CLMS Urban Atlas",
+   "operator": "EEA / European Commission (Copernicus Land Monitoring Service)",
+   "country_region": "EU / EEA",
+   "launched": "editions 2006, 2012, 2018, 2021",
+   "status": "active",
+   "sensor_type": "derived from VHR imagery",
+   "resolution_m": "vector; MMU 0.25 ha urban",
+   "revisit": "~3-6 yearly editions",
+   "coverage": "Europe-only (Functional Urban Areas >50k)",
+   "products": "land use / land cover polygons, street tree layer, building height (capitals)",
+   "access": [
+    "land.copernicus.eu",
+    "Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub) (CLMS collections)",
+    "WEkEO"
+   ],
+   "key_or_login": "Free (EU Login for some downloads)",
+   "licence": {
+    "short": "Copernicus service information under Reg 1159/2013: free, full and open for any lawful use; attribution 'Copernicus Service information [Year]' or 'Contains modified Copernicus Service information [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "multi-year",
+   "property_uses": "Europe-only; no US use",
+   "tested": "2026-11-24: land.copernicus.eu timed out from this machine (not verified live); licence per Copernicus legal notice PDF (read)",
+   "notes": null
+  },
+  {
+   "id": "EU-15",
+   "mission": "CLMS High Resolution Layers (Imperviousness, Tree Cover Density, Grassland, Water and Wetness, Small Woody Features) and CLC+ Backbone",
+   "operator": "EEA (CLMS)",
+   "country_region": "EU / EEA",
+   "launched": "since 2006; 10 m editions from 2018",
+   "status": "active (moving to annual updates)",
+   "sensor_type": "derived from Sentinel-2 / Sentinel-1",
+   "resolution_m": "10-20 (100 m aggregates)",
+   "revisit": "1-3 yearly",
+   "coverage": "Europe-only (EEA38 + UK)",
+   "products": "imperviousness degree, tree cover density, change layers, CLC+ raster",
+   "access": [
+    "land.copernicus.eu",
+    "Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)",
+    "WEkEO"
+   ],
+   "key_or_login": "Free",
+   "licence": {
+    "short": "Copernicus service information under Reg 1159/2013: free, full and open for any lawful use; attribution 'Copernicus Service information [Year]' or 'Contains modified Copernicus Service information [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "every 1-3 years",
+   "property_uses": "Europe-only; no US use (US analogue: NLCD/Annual NLCD impervious + tree canopy)",
+   "tested": "2026-11-24: land.copernicus.eu unreachable; CDSE STAC lists clms_* collections",
+   "notes": null
+  },
+  {
+   "id": "EU-16",
+   "mission": "CLMS Global products (Burnt Area, LAI/FAPAR, NDVI, Land Surface Temperature, Water Bodies, Dynamic Land Cover)",
+   "operator": "JRC / EEA (CLMS Global)",
+   "country_region": "EU",
+   "launched": "since ~2014",
+   "status": "active",
+   "sensor_type": "derived from Sentinel-3 (PROBA-V heritage)",
+   "resolution_m": "300-1000",
+   "revisit": "hourly to 10-daily",
+   "coverage": "global",
+   "products": "burnt area 300 m daily, vegetation indices, hourly LST",
+   "access": [
+    "land.copernicus.eu/global",
+    "Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub) (e.g. clms_ba_global_300m_daily_v3_cog)"
+   ],
+   "key_or_login": "Free",
+   "licence": {
+    "short": "Copernicus service information under Reg 1159/2013: free, full and open for any lawful use; attribution 'Copernicus Service information [Year]' or 'Contains modified Copernicus Service information [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "daily / dekadal",
+   "property_uses": "US: wildfire burnt-area history near parcels, vegetation/drought trend (coarse)",
+   "tested": "2026-11-24: CDSE STAC collection list returned clms_ba_global_300m_daily_v3_cog",
+   "notes": null
+  },
+  {
+   "id": "EU-17",
+   "mission": "European Ground Motion Service (EGMS) - Sentinel-1 InSAR",
+   "operator": "EEA (CLMS)",
+   "country_region": "EU / EEA",
+   "launched": "first release 2022",
+   "status": "active; releases 2020-2024 and 2020-2025 selectable in viewer",
+   "sensor_type": "Sentinel-1 PSI / DS InSAR",
+   "resolution_m": "point measurements; Ortho L3 on 100 m grid",
+   "revisit": "annual update (6-12 day S1 sampling inside)",
+   "coverage": "Europe-only (Copernicus participating states)",
+   "products": "Basic L2a, Calibrated L2b (GNSS-tied), Ortho L3 (vertical and east-west) velocities + time series",
+   "access": [
+    "egms.land.copernicus.eu (viewer + download)"
+   ],
+   "key_or_login": "Free EU Login required to download",
+   "licence": {
+    "short": "Copernicus service information under Reg 1159/2013: free, full and open for any lawful use; attribution 'Copernicus Service information [Year]' or 'Contains modified Copernicus Service information [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "annual",
+   "property_uses": "Europe-only: NO US coverage. US equivalent = NASA/JPL OPERA DISP-S1 or self-processed Sentinel-1 SLC",
+   "tested": "2026-11-24: egms.land.copernicus.eu fetched (200; releases 2020-2024 and 2020-2025 shown; 'You must log in' for search/download)",
+   "notes": null
+  },
+  {
+   "id": "EU-18",
+   "mission": "Copernicus Emergency Management Service (CEMS) Mapping: Rapid Mapping + Risk & Recovery",
+   "operator": "JRC / European Commission",
+   "country_region": "EU",
+   "launched": "2012",
+   "status": "active",
+   "sensor_type": "derived from Sentinel + commercial VHR",
+   "resolution_m": "vector from 0.3-10 m source imagery",
+   "revisit": "per activation",
+   "coverage": "global (activations worldwide; occasional US events)",
+   "products": "delineation, damage grading per building, reference maps (vector + PDF)",
+   "access": [
+    "mapping.emergency.copernicus.eu",
+    "rapidmapping.emergency.copernicus.eu"
+   ],
+   "key_or_login": "No login for viewing/download",
+   "licence": {
+    "short": "Copernicus service information under Reg 1159/2013: free, full and open for any lawful use; attribution 'Copernicus Service information [Year]' or 'Contains modified Copernicus Service information [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes (derived vectors; underlying VHR images are not redistributed)",
+   "update_frequency": "per activation",
+   "property_uses": "US: sparse; occasional hurricane/wildfire activations with building damage grades. Europe: dense",
+   "tested": "2026-11-24: CEMS Mapping About page fetched: 'free of charge mapping service' and results 'freely available for public viewing and download (except for sensitive activations)'",
+   "notes": null
+  },
+  {
+   "id": "EU-19",
+   "mission": "CEMS GloFAS / EFAS / EFFIS / GWIS / Drought Observatory",
+   "operator": "JRC / ECMWF (CEMS)",
+   "country_region": "EU",
+   "launched": "various",
+   "status": "active",
+   "sensor_type": "model + satellite derived",
+   "resolution_m": "~1000-5000",
+   "revisit": "daily",
+   "coverage": "global (GloFAS, GWIS, GDO) + Europe (EFAS, EFFIS)",
+   "products": "flood forecasts/reanalysis, fire danger, burnt areas, drought indices",
+   "access": [
+    "Copernicus Early Warning Data Store (EWDS)",
+    "gwis.jrc.ec.europa.eu",
+    "effis.jrc.ec.europa.eu"
+   ],
+   "key_or_login": "Free ECMWF account for EWDS",
+   "licence": {
+    "short": "Licence to Use Copernicus Products: 'free of charge, worldwide, non-exclusive, royalty free and perpetual'; access 'for any purpose in so far as it is lawful'; clear attribution to Copernicus required.",
+    "url": "https://apps.ecmwf.int/datasets/licences/copernicus/"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "daily",
+   "property_uses": "US: global fire-danger and burnt-area history; coarse river-flood forecasts",
+   "tested": "2026-11-24: ECMWF Copernicus licence page fetched",
+   "notes": null
+  },
+  {
+   "id": "EU-20",
+   "mission": "Global Human Settlement Layer (GHSL)",
+   "operator": "JRC / European Commission (CEMS)",
+   "country_region": "EU",
+   "launched": "2016+ (R2023A and later)",
+   "status": "active",
+   "sensor_type": "derived from Landsat / Sentinel-2",
+   "resolution_m": "10 (built-up from S2), 100, 1000",
+   "revisit": "5-year epochs 1975-2030",
+   "coverage": "global",
+   "products": "built-up surface, building height (100 m), built volume, population grid, degree of urbanisation",
+   "access": [
+    "human-settlement.emergency.copernicus.eu"
+   ],
+   "key_or_login": "No login",
+   "licence": {
+    "short": "JRC: 'Open and free data and tools'; GHSL datasets are released under CC BY 4.0 per JRC/EC reuse policy (Decision 2011/833/EU) - confirm on each release page.",
+    "url": "https://human-settlement.emergency.copernicus.eu/"
+   },
+   "commercial_ok": "verify (expected yes, CC BY 4.0)",
+   "update_frequency": "multi-year releases",
+   "property_uses": "US: 100 m building height/volume grid, built-up density, urban expansion timeline",
+   "tested": "2026-11-24: GHSL homepage fetched ('Open and free data'); explicit CC BY line not captured",
+   "notes": null
+  },
+  {
+   "id": "EU-21",
+   "mission": "Copernicus Atmosphere Monitoring Service (CAMS)",
+   "operator": "ECMWF for EU",
+   "country_region": "EU",
+   "launched": "2014",
+   "status": "active",
+   "sensor_type": "model reanalysis/forecast assimilating satellite data",
+   "resolution_m": "~10000 (Europe), ~40000 (global)",
+   "revisit": "hourly fields; forecasts twice daily",
+   "coverage": "global + Europe regional",
+   "products": "air quality forecasts/reanalysis, aerosols, CAMS solar radiation time series, greenhouse gases",
+   "access": [
+    "Atmosphere Data Store (ADS)",
+    "WEkEO"
+   ],
+   "key_or_login": "Free ECMWF account + accept licence",
+   "licence": {
+    "short": "Licence to Use Copernicus Products: 'free of charge, worldwide, non-exclusive, royalty free and perpetual'; access 'for any purpose in so far as it is lawful'; clear attribution to Copernicus required.",
+    "url": "https://apps.ecmwf.int/datasets/licences/copernicus/"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "twice-daily forecasts",
+   "property_uses": "US: solar irradiance time series for rooftop-solar yield (CAMS radiation covers Americas via GOES), PM2.5 context",
+   "tested": "2026-11-24: ECMWF Copernicus licence fetched (free, worldwide, any lawful purpose)",
+   "notes": null
+  },
+  {
+   "id": "EU-22",
+   "mission": "Copernicus Climate Change Service (C3S) incl. ERA5 / ERA5-Land",
+   "operator": "ECMWF for EU",
+   "country_region": "EU",
+   "launched": "2015",
+   "status": "active",
+   "sensor_type": "reanalysis + satellite climate data records",
+   "resolution_m": "~31000 (ERA5), ~9000 (ERA5-Land)",
+   "revisit": "hourly since 1940",
+   "coverage": "global",
+   "products": "ERA5 / ERA5-Land, climate projections, satellite CDRs",
+   "access": [
+    "Climate Data Store (CDS)",
+    "AWS Open Data Registry (ERA5 mirror)",
+    "Microsoft Planetary Computer (era5)"
+   ],
+   "key_or_login": "Free ECMWF account + accept licence",
+   "licence": {
+    "short": "Licence to Use Copernicus Products: 'free of charge, worldwide, non-exclusive, royalty free and perpetual'; access 'for any purpose in so far as it is lawful'; clear attribution to Copernicus required.",
+    "url": "https://apps.ecmwf.int/datasets/licences/copernicus/"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "daily (~5-day lag)",
+   "property_uses": "US: hail/wind/precip/freeze-thaw climatology for roof-peril models, heating/cooling degree days",
+   "tested": "2026-11-24: licence page fetched",
+   "notes": null
+  },
+  {
+   "id": "EU-23",
+   "mission": "Copernicus Marine Service (CMEMS)",
+   "operator": "Mercator Ocean International for EU",
+   "country_region": "EU",
+   "launched": "2015",
+   "status": "active",
+   "sensor_type": "model + satellite",
+   "resolution_m": "~1000-25000",
+   "revisit": "daily",
+   "coverage": "global oceans",
+   "products": "sea level, SST, waves, currents",
+   "access": [
+    "marine.copernicus.eu"
+   ],
+   "key_or_login": "Free registration",
+   "licence": {
+    "short": "Copernicus service information under Reg 1159/2013: free, full and open for any lawful use; attribution 'Copernicus Service information [Year]' or 'Contains modified Copernicus Service information [Year]'.",
+    "url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "reg_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32013R1159"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "daily",
+   "property_uses": "US: coastal sea-level/wave context (weak)",
+   "tested": "not fetched (licence per Copernicus regulation)",
+   "notes": null
+  },
+  {
+   "id": "EU-24",
+   "mission": "Copernicus DEM GLO-30 / GLO-90 (EEA-10 restricted)",
+   "operator": "ESA / Airbus for EU (source: DLR TanDEM-X 2011-2015)",
+   "country_region": "EU",
+   "launched": "released 2019-2021",
+   "status": "static product (maintained until 2026 per CDSE)",
+   "sensor_type": "X-band InSAR digital surface model",
+   "resolution_m": "30 (GLO-30), 90 (GLO-90), 10 (EEA-10, Europe, restricted)",
+   "revisit": "static",
+   "coverage": "global (GLO-30/90); EEA-10 Europe-only",
+   "products": "DSM incl. buildings/trees + water body, edit, height-error masks",
+   "access": [
+    "Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub)",
+    "AWS Open Data Registry (copernicus-dem-30m, copernicus-dem-90m)",
+    "Microsoft Planetary Computer (cop-dem-glo-30, cop-dem-glo-90)",
+    "OpenTopography"
+   ],
+   "key_or_login": "No login on AWS/PC; CDSE registration",
+   "licence": {
+    "short": "GLO-30 Public and GLO-90 'available on a free basis for the general public under the terms and conditions of the Licence' (ESA CCM mission-specific annex); commercial use permitted with the DLR/Airbus/Copernicus attribution; EEA-10 limited to eligible users.",
+    "url": "https://registry.opendata.aws/copernicus-dem/",
+    "annex_url": "https://spacedata.copernicus.eu/documents/20123/121286/CSCDA_ESA_Mission-specific+Annex_31_Oct_22.pdf"
+   },
+   "commercial_ok": "yes (GLO-30 Public / GLO-90); no (EEA-10)",
+   "update_frequency": "static",
+   "property_uses": "US: parcel slope/aspect (solar, drainage), flood-height context; DSM-DTM building height only coarse (30 m smooths single houses)",
+   "tested": "2026-11-24: AWS registry + readme fetched (licence wording); CDSE COP-DEM page confirms general public may download GLO-30/90, EEA-10 restricted; PC STAC labels 'proprietary'; annex PDF host timed out so commercial wording not re-read live",
+   "notes": null
+  },
+  {
+   "id": "EU-25",
+   "mission": "ESA WorldCover 10 m (2020 v100, 2021 v200)",
+   "operator": "ESA (VITO-led consortium)",
+   "country_region": "ESA",
+   "launched": "2021 (2020 map), 2022 (2021 map)",
+   "status": "static (no newer edition confirmed)",
+   "sensor_type": "derived from Sentinel-1 + Sentinel-2",
+   "resolution_m": "10",
+   "revisit": "2020 and 2021 only",
+   "coverage": "global",
+   "products": "11-class land cover; S1/S2 annual composites",
+   "access": [
+    "AWS Open Data Registry (esa-worldcover)",
+    "Terrascope",
+    "Microsoft Planetary Computer (esa-worldcover)",
+    "Google Earth Engine"
+   ],
+   "key_or_login": "No login (AWS/PC)",
+   "licence": {
+    "short": "'provided free of charge, without restriction of use' under Creative Commons Attribution 4.0 International.",
+    "url": "https://esa-worldcover.org/en/data-access"
+   },
+   "commercial_ok": "yes",
+   "update_frequency": "static",
+   "property_uses": "US: tree / built-up / grass / water class per parcel at 10 m; wildfire fuel context",
+   "tested": "2026-11-24: esa-worldcover.org data-access page fetched (CC BY 4.0); PC STAC returned license CC-BY-4.0",
+   "notes": null
+  },
+  {
+   "id": "EU-26",
+   "mission": "ESA Climate Change Initiative (CCI) ECVs (Land Cover, Soil Moisture, Fire, Biomass)",
+   "operator": "ESA CCI",
+   "country_region": "ESA",
+   "launched": "various",
+   "status": "active",
+   "sensor_type": "derived multi-mission",
+   "resolution_m": "100-300 (land cover/biomass), coarser for others",
+   "revisit": "annual",
+   "coverage": "global",
+   "products": "land cover 1992-present, soil moisture, burned area, above-ground biomass",
+   "access": [
+    "climate.esa.int / CEDA archive",
+    "C3S CDS"
+   ],
+   "key_or_login": "Free",
+   "licence": {
+    "short": "ESA CCI open data (most CEDA datasets CC BY 4.0) - verify per ECV",
+    "url": "https://climate.esa.int/en/data/"
+   },
+   "commercial_ok": "verify",
+   "update_frequency": "annual",
+   "property_uses": "US: long-term land-cover change, biomass (coarse)",
+   "tested": "not fetched",
+   "notes": null
+  },
+  {
+   "id": "EU-27",
+   "mission": "ERS-1 / ERS-2",
+   "operator": "ESA",
+   "country_region": "ESA",
+   "launched": "1991-07-17 / 1995-04-21",
+   "status": "ended (2000 / 2011); heritage archive",
+   "sensor_type": "C-band SAR, ATSR, altimeter",
+   "resolution_m": "~25 (SAR)",
+   "revisit": "35-day repeat",
+   "coverage": "global (acquisition-limited)",
+   "products": "SAR L1, ATSR, altimetry",
+   "access": [
+    "ESA Earth Online / dissemination service"
+   ],
+   "key_or_login": "Free ESA EO Sign In + accept ESA T&C",
+   "licence": {
+    "short": "ESA EO data (heritage + Earth Explorers): 'freely and openly available to everyone' as the 'free dataset' after accepting ESA Terms and Conditions (ESA-EOPG-PDGS-PR-1, 2023). Commercial use: ESA open policy generally permits it, but re-read T&C per product.",
+    "url": "https://earth.esa.int/eogateway/documents/20142/1564626/Terms-and-Conditions-for-the-use-of-ESA-Data.pdf"
+   },
+   "commercial_ok": "verify (free dataset; check T&C)",
+   "update_frequency": "static archive",
+   "property_uses": "US: 1992-2000 InSAR baseline for long-term subsidence where acquired",
+   "tested": "2026-11-24: ESA ERS page ('freely and openly available to everyone'); ESA T&C PDF read (free vs restrained dataset)",
+   "notes": null
+  },
+  {
+   "id": "EU-28",
+   "mission": "Envisat (ASAR, MERIS, AATSR)",
+   "operator": "ESA",
+   "country_region": "ESA",
+   "launched": "2002-03-01",
+   "status": "ended 2012; heritage archive",
+   "sensor_type": "C-band ASAR, MERIS spectrometer, AATSR",
+   "resolution_m": "~30 (ASAR), 300 (MERIS)",
+   "revisit": "35-day",
+   "coverage": "global",
+   "products": "ASAR L1, MERIS L1/L2",
+   "access": [
+    "ESA Earth Online"
+   ],
+   "key_or_login": "Free ESA EO Sign In",
+   "licence": {
+    "short": "ESA EO data (heritage + Earth Explorers): 'freely and openly available to everyone' as the 'free dataset' after accepting ESA Terms and Conditions (ESA-EOPG-PDGS-PR-1, 2023). Commercial use: ESA open policy generally permits it, but re-read T&C per product.",
+    "url": "https://earth.esa.int/eogateway/documents/20142/1564626/Terms-and-Conditions-for-the-use-of-ESA-Data.pdf"
+   },
+   "commercial_ok": "verify",
+   "update_frequency": "static",
+   "property_uses": "US: 2002-2010 InSAR history (sparse)",
+   "tested": "2026-11-24: ESA Envisat page ('freely and openly available to everyone')",
+   "notes": null
+  },
+  {
+   "id": "EU-29",
+   "mission": "PROBA-V",
+   "operator": "ESA (Belgian-led)",
+   "country_region": "ESA / Belgium",
+   "launched": "2013-05-07",
+   "status": "ended (operations 30 Jun 2020; experimental to 31 Oct 2021)",
+   "sensor_type": "Vegetation multispectral",
+   "resolution_m": "100 / 300 / 1000",
+   "revisit": "daily",
+   "coverage": "global",
+   "products": "Collection 2 TOC reflectance, NDVI",
+   "access": [
+    "Terrascope / PROBA-V MEP"
+   ],
+   "key_or_login": "Free registration",
+   "licence": {
+    "short": "ESA EO data (heritage + Earth Explorers): 'freely and openly available to everyone' as the 'free dataset' after accepting ESA Terms and Conditions (ESA-EOPG-PDGS-PR-1, 2023). Commercial use: ESA open policy generally permits it, but re-read T&C per product.",
+    "url": "https://earth.esa.int/eogateway/documents/20142/1564626/Terms-and-Conditions-for-the-use-of-ESA-Data.pdf"
+   },
+   "commercial_ok": "verify (stated free and open)",
+   "update_frequency": "static",
+   "property_uses": "US: 2013-2020 vegetation history (coarse)",
+   "tested": "2026-11-24: ESA PROBA-V page ('freely and openly available to everyone')",
+   "notes": null
+  },
+  {
+   "id": "EU-30",
+   "mission": "ESA Earth Explorers: Biomass (P-band SAR), EarthCARE, FLEX, SMOS, CryoSat-2, Aeolus/GOCE archives",
+   "operator": "ESA FutureEO",
+   "country_region": "ESA",
+   "launched": "Biomass 2025-04-29; EarthCARE 2024-05-28; FLEX 2026-09-15; SMOS 2009; CryoSat-2 2010",
+   "status": "Biomass L1 open, L2 phased release; FLEX commissioning",
+   "sensor_type": "P-band SAR, cloud radar/lidar, fluorescence spectrometer, L-band radiometer, altimeter",
+   "resolution_m": "Biomass ~50-200; FLEX 300; SMOS ~40000",
+   "revisit": "mission-dependent",
+   "coverage": "global (Biomass does NOT image North America/Europe due to radar frequency restrictions)",
+   "products": "forest biomass/height, clouds/aerosols, fluorescence, soil moisture",
+   "access": [
+    "ESA Earth Online / ESA-NASA MAAP"
+   ],
+   "key_or_login": "Free ESA EO Sign In",
+   "licence": {
+    "short": "ESA EO data (heritage + Earth Explorers): 'freely and openly available to everyone' as the 'free dataset' after accepting ESA Terms and Conditions (ESA-EOPG-PDGS-PR-1, 2023). Commercial use: ESA open policy generally permits it, but re-read T&C per product.",
+    "url": "https://earth.esa.int/eogateway/documents/20142/1564626/Terms-and-Conditions-for-the-use-of-ESA-Data.pdf"
+   },
+   "commercial_ok": "verify",
+   "update_frequency": "mission-dependent",
+   "property_uses": "Low for US property",
+   "tested": "2026-11-24: ESA Biomass, FLEX, EarthCARE eogateway pages fetched (launch dates; Biomass L1 'openly available')",
+   "notes": null
+  },
+  {
+   "id": "EU-31",
+   "mission": "ESA Third Party Missions (TPM) and Copernicus Contributing Missions (CCM) VHR data (SPOT, Pleiades, TerraSAR-X, ICEYE tasked, WorldView, PlanetScope etc.)",
+   "operator": "ESA (distributes commercial data)",
+   "country_region": "ESA / EU",
+   "launched": "various",
+   "status": "active (>50 missions)",
+   "sensor_type": "VHR optical / SAR",
+   "resolution_m": "0.3-10",
+   "revisit": "tasked",
+   "coverage": "global",
+   "products": "restrained/commercial imagery for approved projects; Copernicus VHR mosaics of Europe (CCM)",
+   "access": [
+    "ESA Earth Online project proposals",
+    "Copernicus Data Space Ecosystem (dataspace.copernicus.eu: STAC, OData, S3, openEO, Sentinel Hub) CCM (eligible users)"
+   ],
+   "key_or_login": "Proposal + approval; research / Copernicus-service users only",
+   "licence": {
+    "short": "Granted only to approved research or Copernicus-service users under the owner's licence; not open.",
+    "url": "https://earth.esa.int/eogateway/missions/third-party-missions"
+   },
+   "commercial_ok": "no",
+   "update_frequency": "n/a",
+   "property_uses": "Not usable commercially",
+   "tested": "2026-11-24: ESA TPM page and CDSE CCM eligibility text fetched",
+   "notes": null
+  },
+  {
+   "id": "EU-32",
+   "mission": "Meteosat Second Generation (MSG, SEVIRI) - Meteosat-9/10/11",
+   "operator": "EUMETSAT",
+   "country_region": "EUMETSAT (Europe)",
+   "launched": "2002-2015",
+   "status": "operational (being replaced by MTG)",
+   "sensor_type": "Geostationary imager, 12 channels",
+   "resolution_m": "3000 (1000 HRV)",
+   "revisit": "15 min (5 min rapid scan)",
+   "coverage": "Europe / Africa / Atlantic + Indian Ocean - no view of the US",
+   "products": "L1.5 imagery (Recommended/licensed); many L2 products (Core)",
+   "access": [
+    "EUMETSAT Data Store / EUMETCast",
+    "WEkEO"
+   ],
+   "key_or_login": "Free EUMETSAT registration",
+   "licence": {
+    "short": "EUMETSAT 'Recommended' (licensed) data (MSG SEVIRI L1.5, MTG FCI L1c, IRS L1, global ASCAT L1, some Metop-SG L1): non-commercial use free; for latency <1 h commercial End User licence EUR 4,000/yr, Service Provider EUR 8,000/yr; no redistribution of original numerical data. Latency >=1 h: any purpose, no fee, but no redistribution of original numerical data.",
+    "url": "https://user.eumetsat.int/resources/user-guides/data-registration-and-licensing"
+   },
+   "commercial_ok": "no for L1.5 numerical data without paid licence (<1 h latency) / no redistribution; yes for Core L2 products",
+   "update_frequency": "15 min",
+   "property_uses": "None for US (Americas not in view)",
+   "tested": "2026-11-24: EUMETSAT 'Data registration and licensing' guide V2.2 (4 Nov 2026) read in browser",
+   "notes": null
+  },
+  {
+   "id": "EU-33",
+   "mission": "Meteosat Third Generation (MTG-I1 / Meteosat-12, MTG-S1)",
+   "operator": "EUMETSAT / ESA",
+   "country_region": "EUMETSAT",
+   "launched": "MTG-I1 2022-12-13; MTG-S1 2025-07-01",
+   "status": "operational",
+   "sensor_type": "FCI imager, Lightning Imager, IRS sounder (+ Sentinel-4)",
+   "resolution_m": "500-2000 (FCI)",
+   "revisit": "10 min (2.5 min rapid scan over Europe)",
+   "coverage": "Europe / Africa / Atlantic only",
+   "products": "FCI L1c and IRS L1 (Recommended/licensed); L2 products (mostly Core)",
+   "access": [
+    "EUMETSAT Data Store / EUMETCast"
+   ],
+   "key_or_login": "Free registration",
+   "licence": {
+    "short": "EUMETSAT 'Recommended' (licensed) data (MSG SEVIRI L1.5, MTG FCI L1c, IRS L1, global ASCAT L1, some Metop-SG L1): non-commercial use free; for latency <1 h commercial End User licence EUR 4,000/yr, Service Provider EUR 8,000/yr; no redistribution of original numerical data. Latency >=1 h: any purpose, no fee, but no redistribution of original numerical data.",
+    "url": "https://user.eumetsat.int/resources/user-guides/data-registration-and-licensing"
+   },
+   "commercial_ok": "no for FCI L1c real-time without EUR 4k-8k/yr licence; Core products yes",
+   "update_frequency": "10 min",
+   "property_uses": "None for US",
+   "tested": "2026-11-24: EUMETSAT licensing guide read",
+   "notes": null
+  },
+  {
+   "id": "EU-34",
+   "mission": "Metop-B/C (EPS) and Metop-SG-A1; Metop-SG-B1 scheduled 2026-12-18",
+   "operator": "EUMETSAT / ESA",
+   "country_region": "EUMETSAT",
+   "launched": "Metop-A 2006 (retired 2021), B 2012, C 2018, SG-A1 2025-08-13",
+   "status": "operational; SG-B1 in launch campaign at Kourou",
+   "sensor_type": "AVHRR, IASI, ASCAT, GOME-2, MWS, METimage, 3MI, Sentinel-5",
+   "resolution_m": "1000 (AVHRR), 500 (METimage), 12500 (ASCAT)",
+   "revisit": "twice daily global",
+   "coverage": "global",
+   "products": "most L1/L2 are Core (CC-BY-4.0); global ASCAT L1 and Metop-SG 3MI/SCA/MWI/ICI L1 are Recommended",
+   "access": [
+    "EUMETSAT Data Store / EUMETCast",
+    "NOAA CLASS (partial mirror)"
+   ],
+   "key_or_login": "Free registration",
+   "licence": {
+    "short": "EUMETSAT 'Core' data and products: free under CC-BY-4.0, may be used 'for any purpose, even commercially'; attribution '[Contains modified] EUMETSAT [Meteosat/Metop] data [Year]'.",
+    "url": "https://user.eumetsat.int/resources/user-guides/data-registration-and-licensing"
+   },
+   "commercial_ok": "yes for Core (vast majority); verify per product in EUMETSAT catalogue",
+   "update_frequency": "NRT",
+   "property_uses": "US: soil moisture (ASCAT L2), snow, LST - weather context, weak parcel relevance",
+   "tested": "2026-11-24: ESA MetOp-SG page (SG-A1 13 Aug 2025; SG-B1 18 Dec 2026) and EUMETSAT licensing guide read",
+   "notes": null
+  },
+  {
+   "id": "EU-35",
+   "mission": "EUMETSAT Satellite Application Facilities (LSA SAF, H SAF, CM SAF, NWC SAF, OSI SAF)",
+   "operator": "EUMETSAT SAF network",
+   "country_region": "EUMETSAT",
+   "launched": "various",
+   "status": "active",
+   "sensor_type": "derived",
+   "resolution_m": "1000-5000",
+   "revisit": "15 min to daily",
+   "coverage": "mostly MSG/MTG disk (Europe/Africa); some global Metop products",
+   "products": "LST, evapotranspiration, fire radiative power, surface solar irradiance (SARAH: Europe/Africa)",
+   "access": [
+    "SAF portals",
+    "EUMETSAT Data Store / EUMETCast"
+   ],
+   "key_or_login": "Free registration",
+   "licence": {
+    "short": "Most SAF products are Core (CC-BY-4.0) under EUMETSAT data policy - verify per product",
+    "url": "https://user.eumetsat.int/resources/user-guides/data-registration-and-licensing"
+   },
+   "commercial_ok": "verify",
+   "update_frequency": "various",
+   "property_uses": "Mostly Europe/Africa; little US use",
+   "tested": "licence framework read 2026-11-24; individual SAF pages not fetched",
+   "notes": null
+  },
+  {
+   "id": "EU-36",
+   "mission": "DLR EnMAP (hyperspectral)",
+   "operator": "DLR / GFZ (Germany)",
+   "country_region": "Germany",
+   "launched": "2022-04-01",
+   "status": "operational",
+   "sensor_type": "VNIR/SWIR imaging spectrometer (~230 bands, 420-2450 nm)",
+   "resolution_m": "30",
+   "revisit": "~4 days with pointing (27-day nadir); tasked",
+   "coverage": "global (tasked; archive patchy)",
+   "products": "L1B, L1C, L2A land/water, ARD tiles",
+   "access": [
+    "EnMAP Data Access Portal / EOWEB GeoPortal",
+    "DLR EOC Geoservice",
+    "EO-Lab"
+   ],
+   "key_or_login": "Free registration + role assignment; future tasking via proposal",
+   "licence": {
+    "short": "EnMAP Data License: 'free of charge, non-transferable, and non-exclusive right to use EnMAP data ... for commercial and non-commercial use', incl. processing, combining and sharing, with attribution.",
+    "url": "https://www.enmap.org/data/resources/EnMAP_Data_License.pdf"
+   },
+   "commercial_ok": "yes (per licence PDF; licence non-transferable - check limits on bulk redistribution of raw scenes)",
+   "update_frequency": "archive grows daily (tasked)",
+   "property_uses": "US: roof-material / surface spectral mapping where archive scenes exist (30 m = block scale, not single roof); vegetation stress, soils",
+   "tested": "2026-11-24: EnMAP data-access page fetched; Data License PDF downloaded and read (commercial wording confirmed)",
+   "notes": null
+  },
+  {
+   "id": "EU-37",
+   "mission": "DLR TanDEM-X 90 m DEM (TDM90)",
+   "operator": "DLR (Germany)",
+   "country_region": "Germany",
+   "launched": "TanDEM-X 2010-06-21; DEM released 2018",
+   "status": "static product",
+   "sensor_type": "X-band InSAR DEM",
+   "resolution_m": "90",
+   "revisit": "static",
+   "coverage": "global",
+   "products": "TDM90 DEM + auxiliary layers",
+   "access": [
+    "DLR EOC Geoservice"
+   ],
+   "key_or_login": "Registration + accept licence",
+   "licence": {
+    "short": "'User Licence for the Utilization of the TanDEM-X 90m DEM Data Products for Scientific Use' - scientific use only.",
+    "url": "https://geoservice.dlr.de/resources/licenses/tdm90/License_for_the_Utilization_of_90m_DEM_for_Scientific_Use.pdf"
+   },
+   "commercial_ok": "no",
+   "update_frequency": "static",
+   "property_uses": "Not allowed commercially - use Copernicus DEM GLO-30/90 instead (same TanDEM-X source, commercial OK)",
+   "tested": "2026-11-24: DLR TDM90 data guide fetched; licence PDF titled 'for Scientific Use'",
+   "notes": null
+  },
+  {
+   "id": "EU-38",
+   "mission": "DLR/Airbus TerraSAR-X, TanDEM-X imagery and WorldDEM",
+   "operator": "DLR + Airbus Defence and Space",
+   "country_region": "Germany",
+   "launched": "2007-06-15 / 2010-06-21",
+   "status": "operational (commercial)",
+   "sensor_type": "X-band SAR",
+   "resolution_m": "0.25-40",
+   "revisit": "11-day repeat; tasked",
+   "coverage": "global (tasked)",
+   "products": "commercial SAR scenes; WorldDEM (commercial)",
+   "access": [
+    "Airbus OneAtlas (paid)",
+    "DLR science proposals"
+   ],
+   "key_or_login": "Paid / proposal",
+   "licence": {
+    "short": "Commercial (Airbus) or science-proposal only; not open.",
+    "url": "https://earth.esa.int/eogateway/missions/terrasar-x-and-tandem-x"
+   },
+   "commercial_ok": "no",
+   "update_frequency": "tasked",
+   "property_uses": "Paid only",
+   "tested": "2026-11-24: ESA eogateway mission page fetched",
+   "notes": null
+  },
+  {
+   "id": "EU-39",
+   "mission": "ASI PRISMA (hyperspectral)",
+   "operator": "ASI (Italy)",
+   "country_region": "Italy",
+   "launched": "2019-03-22",
+   "status": "operational (PRISMA Second Generation in development)",
+   "sensor_type": "VNIR/SWIR hyperspectral (~240 bands) + 5 m panchromatic",
+   "resolution_m": "30 (hyperspectral), 5 (pan)",
+   "revisit": "~7 days (tasked)",
+   "coverage": "global (tasked)",
+   "products": "L1, L2B/L2C/L2D",
+   "access": [
+    "prisma.asi.it (login portal)"
+   ],
+   "key_or_login": "Registration + licence acceptance on ASI portal",
+   "licence": {
+    "short": "Free to registered users under an ASI end-user licence; publicly visible materials frame use as scientific/institutional. Commercial-use grant not confirmed (licence only visible after login).",
+    "url": "https://prisma.asi.it/"
+   },
+   "commercial_ok": "verify (treat as no until licence text confirms)",
+   "update_frequency": "tasked",
+   "property_uses": "Would give 30 m roof/surface spectral ID if licence allowed",
+   "tested": "2026-11-24: prisma.asi.it redirects to login (licence not readable without account); ASI mission page fetched",
+   "notes": null
+  },
+  {
+   "id": "EU-40",
+   "mission": "ASI COSMO-SkyMed (first and second generation)",
+   "operator": "ASI / Italian Ministry of Defence (e-GEOS commercial)",
+   "country_region": "Italy",
+   "launched": "2007-2010; CSG-1 2019, CSG-2 2022, CSG-3 2025",
+   "status": "operational (dual use)",
+   "sensor_type": "X-band SAR",
+   "resolution_m": "<1-100",
+   "revisit": "hours (constellation)",
+   "coverage": "global (tasked)",
+   "products": "commercial via e-GEOS; science via ASI calls",
+   "access": [
+    "e-GEOS (paid)",
+    "ASI science calls"
+   ],
+   "key_or_login": "Paid / proposal",
+   "licence": {
+    "short": "Commercial / dual-use; not open.",
+    "url": "https://www.asi.it/en/earth-science/cosmo-skymed/"
+   },
+   "commercial_ok": "no",
+   "update_frequency": "tasked",
+   "property_uses": "Paid only",
+   "tested": "not fetched",
+   "notes": null
+  },
+  {
+   "id": "EU-41",
+   "mission": "CNES SPOT World Heritage (SWH) - SPOT 1-5 archive",
+   "operator": "CNES (France)",
+   "country_region": "France",
+   "launched": "SPOT 1-5 1986-2002 (archive opened from 2015)",
+   "status": "static archive",
+   "sensor_type": "optical panchromatic / multispectral",
+   "resolution_m": "10-20 (2.5-5 for SPOT 5)",
+   "revisit": "archive",
+   "coverage": "global (archive scenes older than 5 years)",
+   "products": "ortho-rectified archive scenes",
+   "access": [
+    "regards.cnes.fr SWH portal"
+   ],
+   "key_or_login": "Free registration",
+   "licence": {
+    "short": "Free access to archive scenes; licence historically limited to non-commercial use - current terms not retrieved.",
+    "url": "https://regards.cnes.fr/user/swh/modules/60"
+   },
+   "commercial_ok": "verify (likely no)",
+   "update_frequency": "static",
+   "property_uses": "US: 1986-2012 imagery for construction-date/change if licence allows",
+   "tested": "2026-11-24: REGARDS SWH portal is a JS app; no licence text retrieved",
+   "notes": null
+  },
+  {
+   "id": "EU-42",
+   "mission": "CNES/Airbus Pleiades 1A/1B, Pleiades Neo, SPOT 6/7",
+   "operator": "Airbus Defence and Space (Pleiades 1A/1B with CNES)",
+   "country_region": "France",
+   "launched": "2011-2021",
+   "status": "operational (commercial)",
+   "sensor_type": "VHR optical",
+   "resolution_m": "0.3-1.5",
+   "revisit": "daily (tasked)",
+   "coverage": "global",
+   "products": "commercial; French institutional access via DINAMIS",
+   "access": [
+    "Airbus OneAtlas (paid)",
+    "DINAMIS (French public institutions only)"
+   ],
+   "key_or_login": "Paid",
+   "licence": {
+    "short": "Commercial; not open.",
+    "url": "https://earth.esa.int/eogateway/missions/pleiades"
+   },
+   "commercial_ok": "no",
+   "update_frequency": "tasked",
+   "property_uses": "Paid only",
+   "tested": "2026-11-24: ESA eogateway Pleiades and SPOT pages fetched",
+   "notes": null
+  },
+  {
+   "id": "EU-43",
+   "mission": "CNES/NASA SWOT",
+   "operator": "CNES with NASA (+ CSA, UKSA)",
+   "country_region": "France / US",
+   "launched": "2022-12-16",
+   "status": "operational",
+   "sensor_type": "Ka-band interferometric altimeter",
+   "resolution_m": "~100 (rivers/lakes products)",
+   "revisit": "21-day repeat",
+   "coverage": "global",
+   "products": "water surface elevation, river/lake heights",
+   "access": [
+    "NASA PO.DAAC",
+    "CNES hydroweb.next / AVISO"
+   ],
+   "key_or_login": "Free NASA Earthdata login",
+   "licence": {
+    "short": "Open via NASA Earthdata (no use restrictions) and CNES",
+    "url": "https://podaac.jpl.nasa.gov/SWOT"
+   },
+   "commercial_ok": "yes (via NASA distribution)",
+   "update_frequency": "daily",
+   "property_uses": "US: lake/river level context for flood risk (weak)",
+   "tested": "not fetched",
+   "notes": null
+  },
+  {
+   "id": "EU-44",
+   "mission": "ICEYE Open Data (SAR)",
+   "operator": "ICEYE (Finland, commercial)",
+   "country_region": "Finland",
+   "launched": "constellation since 2018",
+   "status": "operational; open sample archive",
+   "sensor_type": "X-band SAR microsatellite constellation",
+   "resolution_m": "0.25-15 (various modes)",
+   "revisit": "hours for commercial tasking; open set is sample scenes",
+   "coverage": "selected sites worldwide (some US) - not systematic",
+   "products": "SLC, GRD, CSI via STAC",
+   "access": [
+    "AWS Open Data Registry (iceye-opendata)",
+    "ICEYE Open SAR Data map + STAC browser"
+   ],
+   "key_or_login": "No registration",
+   "licence": {
+    "short": "Open subset under CC BY 4.0 ('share, copy, and redistribute ... adapt, remix, transform'); tasked/archive commercial data is paid.",
+    "url": "https://registry.opendata.aws/iceye-opendata/"
+   },
+   "commercial_ok": "yes (open subset only)",
+   "update_frequency": "'New data is added frequently'",
+   "property_uses": "US: R&D for VHR SAR building/damage detection on sample scenes; not wall-to-wall",
+   "tested": "2026-11-24: ICEYE open-data page ('No registration. No paywall.') and AWS registry (CC BY 4.0) fetched",
+   "notes": null
+  },
+  {
+   "id": "EU-45",
+   "mission": "UK NovaSAR-1",
+   "operator": "SSTL with UK Space Agency; data shares to CSIRO and others",
+   "country_region": "UK",
+   "launched": "2018-09-16",
+   "status": "operational (partner data shares)",
+   "sensor_type": "S-band SAR",
+   "resolution_m": "6-30",
+   "revisit": "~2-4 days",
+   "coverage": "global (tasked)",
+   "products": "SAR scenes for partner communities",
+   "access": [
+    "UK research data hub (UK researchers)",
+    "CSIRO (Australia)"
+   ],
+   "key_or_login": "Eligible institutions only",
+   "licence": {
+    "short": "Partner/research data shares; no open licence found.",
+    "url": "https://www.eoportal.org/satellite-missions/novasar-1"
+   },
+   "commercial_ok": "no",
+   "update_frequency": "tasked",
+   "property_uses": "Not available",
+   "tested": "2026-11-24: SSTL page 404; eoPortal page fetched (partner data-share model)",
+   "notes": null
+  },
+  {
+   "id": "EU-46",
+   "mission": "Spain PAZ (X-band SAR)",
+   "operator": "Hisdesat / INTA (Spain)",
+   "country_region": "Spain",
+   "launched": "2018-02-22",
+   "status": "operational (dual use, commercial)",
+   "sensor_type": "X-band SAR (TerraSAR-X compatible)",
+   "resolution_m": "0.25-40",
+   "revisit": "11-day",
+   "coverage": "global (tasked)",
+   "products": "commercial; science via ESA TPM",
+   "access": [
+    "Hisdesat (paid)",
+    "ESA TPM proposals"
+   ],
+   "key_or_login": "Paid / proposal",
+   "licence": {
+    "short": "Commercial; not open.",
+    "url": "https://earth.esa.int/eogateway/missions/third-party-missions"
+   },
+   "commercial_ok": "no",
+   "update_frequency": "tasked",
+   "property_uses": "Paid only",
+   "tested": "not fetched individually",
+   "notes": null
+  }
+ ]
+}

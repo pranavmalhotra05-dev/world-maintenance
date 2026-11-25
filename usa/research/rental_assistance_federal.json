@@ -1,0 +1,281 @@
+{
+ "generated": "2026-11-24",
+ "scope": "US federal programs where the government pays or guarantees rent to private landlords, and the open data showing which homes qualify and for how much. Licence and access tested by script.",
+ "licence_basis_default": "Works of the US federal government are not subject to US copyright (17 U.S.C. 105). Agency-specific terms recorded where they add conditions.",
+ "references_already_integrated": [
+  "HUD FMR / SAFMR dollars",
+  "HUD QCT / DDA",
+  "LIHTC",
+  "HUD HCV by tract",
+  "Public Housing developments/buildings",
+  "Picture of Subsidized Households (eGIS snapshot)",
+  "USDA RD eligibility",
+  "FEMA NFHL"
+ ],
+ "count": 15,
+ "sources": [
+  {
+   "id": "hud_safmr_designated",
+   "name": "SAFMR designated (mandatory) metro areas with 90%/110% payment-standard bands",
+   "agency": "HUD PD&R",
+   "what": "ZIP polygons in the 61 metros where Small Area FMRs are mandatory for HCV payment standards (designated 2018 or 2024), with SAFMR by bedroom plus precomputed 90% and 110% values.",
+   "geography": "ZIP (ZCTA) polygons",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/SAFMR_Year/FeatureServer/2/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "tested": "yes: 6,884 ZIP features; distinct Metro_Name/Year_Designated returned (e.g. Atlanta 2018, Los Angeles 2024, Seattle 2024). Layer last edited Nov 2024, so its dollar fields may be a prior FY. Use it for the mandatory flag and take dollars from the current SAFMR file (already integrated).",
+   "how_to_use_per_house": "Point-in-polygon. Inside: PHA payment standards must come from the ZIP SAFMR, so voucher ceiling = SAFMR(ZIP, bedrooms) x 0.90 to 1.10 (PHA chooses). Outside: metro/county FMR x 0.90 to 1.10, unless the PHA opted in to SAFMR.",
+   "update_frequency": "designations by Federal Register notice (2016, 2023); SAFMR dollars annual (Oct 1)",
+   "rule_source": "https://www.ecfr.gov/current/title-24/part-982/section-982.503 ; https://www.huduser.gov/portal/datasets/fmr/smallarea/index.html",
+   "integrated_elsewhere": "FMR/SAFMR dollars already integrated (federal_realestate)"
+  },
+  {
+   "id": "hud_hcv_tract",
+   "name": "Housing Choice Vouchers by tract",
+   "agency": "HUD PIH",
+   "what": "Voucher households per tract and % of renter units with a voucher.",
+   "geography": "tract",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Housing_Choice_Vouchers_by_Tract/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "tested": "yes: point query Atlanta (-84.39,33.75) -> tract 13121003500, HCV_PUBLIC=34, HCV_PUBLIC_PCT=4",
+   "how_to_use_per_house": "Demand signal: many vouchers = proven voucher market with an existing PHA landlord base. 0% may mean rents above the payment standard.",
+   "update_frequency": "annual (layer edited 2026)",
+   "integrated_elsewhere": "yes, federal_realestate id hud_hcv (reference only)"
+  },
+  {
+   "id": "hud_picture_2025",
+   "name": "Picture of Subsidized Households 2025 (2020-census geography)",
+   "agency": "HUD PD&R",
+   "what": "Units, % occupied, average household rent contribution, HUD spending per unit, income, waiting time and more, by program (HCV, project-based Section 8, public housing, 202/811, mod rehab), for US/state/CBSA/county/place/tract/ZIP/PHA/project.",
+   "geography": "tract, ZIP, PHA, project, county, place, CD",
+   "access": "https://www.huduser.gov/portal/datasets/assthsg.html ; e.g. https://www.huduser.gov/portal/datasets/pictures/files/Zipcode_2025_2020census.xlsx (47 MB), TRACT_AK_MN_2025_2020census.xlsx, TRACT_MO_WY_2025_2020census.xlsx, PHA_2025_2020census.xlsx; dictionary https://www.huduser.gov/portal/datasets/pictures/dictionary_2025.pdf",
+   "key_required": "no for files; the Picture API (https://www.huduser.gov/portal/dataset/picture-api.html) uses a free HUD User token",
+   "licence": {
+    "phrase": "Federal work. If the HUD User API is used, show: 'This product uses the HUD User Data API but is not endorsed or certified by HUD User'",
+    "url": "https://www.huduser.gov/portal/datasets/assthsg.html"
+   },
+   "commercial_ok": "yes",
+   "tested": "yes: range request on Zipcode_2025_2020census.xlsx -> 206, xlsx, 47,481,265 bytes. The eGIS 'Snapshot' layer is older (2019 ACS, edited 2022), so prefer the 2025 files.",
+   "how_to_use_per_house": "ZIP/tract row for 'Housing Choice Vouchers': average HUD spending per unit per month (roughly the typical HAP paid to landlords), average tenant contribution, months on the waiting list (depth of demand). PHA row: size and spending of each PHA.",
+   "update_frequency": "annual (2025 latest)",
+   "integrated_elsewhere": "eGIS snapshot is in federal_realestate (hud_picture); the 2025 files are new"
+  },
+  {
+   "id": "hud_pha_points",
+   "name": "Public Housing Authorities (inventory and contacts)",
+   "agency": "HUD PIH",
+   "what": "3,776 PHAs: code, name, office phone/email, executive director contact, Section 8 unit count, public housing units, occupancy, funding, program type.",
+   "geography": "point (PHA office)",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Public_Housing_Authorities/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "tested": "yes: 3,776 features, 45+ fields (edited 2026)",
+   "how_to_use_per_house": "Join on PARTICIPANT_CODE from the service-area layer to show the owner which PHA(s) to call, voucher program size (SECTION8_UNITS_CNT) and the office contact. Use office contacts only; don't republish personal names or emails.",
+   "update_frequency": "periodic (HUD PIC extract)"
+  },
+  {
+   "id": "hud_pha_service_areas",
+   "name": "Estimated Housing Authority Service Areas (PHA jurisdiction polygons)",
+   "agency": "HUD PIH / eGIS",
+   "what": "Estimated jurisdiction polygons (place, county, state) per PHA, with PCT_SHARE of that PHA's units in the area. HUD calls them estimates, not legal boundaries.",
+   "geography": "polygon (SUMLEV 160 place / 050 county / 040 state)",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Proposed_Housing_Authority_Service_Areas/FeatureServer/15/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "tested": "yes: 3,841 polygons; Atlanta point -> GA006 Atlanta HA (city, share 0.885), GA232 College Park, GA078 East Point, GA264 Fulton County, GA901 Georgia statewide",
+   "how_to_use_per_house": "List every PHA whose voucher holders could lease this house. Each sets its own payment standard, so show one ceiling per PHA once their schedules are captured.",
+   "update_frequency": "ad hoc (2024 edit)",
+   "companion": "PHA_Unit_Distribution_By_Census_Tract (89,658 PHA x tract share points): https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/PHA_Unit_Distribution_By_Census_Tract/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json"
+  },
+  {
+   "id": "hud_mf_sec8_contracts",
+   "name": "Multifamily Assistance & Section 8 Contracts database",
+   "agency": "HUD Office of Multifamily Housing",
+   "what": "Every project-based Section 8 / PRAC contract: property, management, assisted units by bedroom, contract rents, start and expiration dates, program type. Two tables (contract, property) linked by property id.",
+   "geography": "property (address)",
+   "access": "https://www.hud.gov/hud-partners/multifamily-assist-section8-database ; files https://www.hud.gov/sites/dfiles/Housing/documents/MF-Assistance-Sec8-Contracts1.xlsx (7.1 MB), https://www.hud.gov/sites/dfiles/Housing/documents/MF-Properties-with-Assistance-Sec8-Contracts1.xlsx (11.1 MB), zip https://www.hud.gov/sites/dfiles/Housing/documents/mfassistsec8cont1.zip",
+   "key_required": "no",
+   "licence": {
+    "phrase": "'furnished for the convenience of interested parties', no warranty; federal work",
+    "url": "https://www.hud.gov/hud-partners/multifamily-assist-section8-database"
+   },
+   "commercial_ok": "yes",
+   "tested": "yes: page reads 'Current as of 11/03/2026'; range requests on both xlsx -> 206 with zip header. The old URL /program_offices/housing/mfh/exp/mfhdiscl is now an empty stub.",
+   "how_to_use_per_house": "Nearby project-based contract rents by bedroom show what HUD pays comparable owners locally. Expiring contracts flag properties that may opt out (acquisition leads, and Tenant Protection Vouchers entering the area).",
+   "update_frequency": "monthly"
+  },
+  {
+   "id": "hud_mf_assisted_egis",
+   "name": "Multifamily Properties - Assisted, Section 202, Section 811 layers",
+   "agency": "HUD Multifamily",
+   "what": "Geocoded assisted multifamily properties: assisted unit count, REAC inspection score, troubled code, financing. Separate layers for Section 202 (elderly) and Section 811 (disability).",
+   "geography": "point",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/MULTIFAMILY_PROPERTIES_ASSISTED/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json ; https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/HUD_Section_202_Properties/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json ; https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Section_811_Properties/FeatureServer/21/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "tested": "yes: 23,771 / 10,973 / 7,155 features",
+   "how_to_use_per_house": "Proximity layer for assisted supply near the house; REAC score gives quality context.",
+   "update_frequency": "monthly to quarterly",
+   "integrated_elsewhere": "Multifamily Assisted already in federal_realestate; the 202 and 811 layers are new"
+  },
+  {
+   "id": "hud_coc_areas",
+   "name": "Continuum of Care grantee areas (with PIT/HIC counts)",
+   "agency": "HUD CPD",
+   "what": "387 CoC polygons with Housing Inventory Count fields incl. rapid re-housing (RRH_*) and permanent supportive housing (PSH_*) beds, plus sheltered/unsheltered counts.",
+   "geography": "polygon (CoC)",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Continuum_of_Care_Grantee_Areas/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "tested": "yes: Atlanta point -> GA-500 Atlanta CoC",
+   "how_to_use_per_house": "Shows which CoC runs rapid re-housing / PSH leasing locally and how many RRH/PSH beds exist (scale of landlord demand). Rent must be rent-reasonable (CoC) and no higher than FMR for ESG rapid re-housing.",
+   "update_frequency": "annual (PIT/HIC)"
+  },
+  {
+   "id": "hud_low_vacancy_tpv",
+   "name": "Low-vacancy areas (Tenant Protection Voucher set-aside)",
+   "agency": "HUD PIH",
+   "what": "2,472 county areas that HUD lists as low-vacancy for the TPV set-aside.",
+   "geography": "county polygon",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/Low_Vacancy_Areas_Set_Aside_Tenant_Protection_Vouchers/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "tested": "yes: 2,472 features",
+   "how_to_use_per_house": "Context flag: tight market where vouchers are hard to use, which gives landlords more leverage.",
+   "update_frequency": "ad hoc (2025 edit)"
+  },
+  {
+   "id": "usda_mfh_assets",
+   "name": "USDA Rural Housing assets (Section 515/514, with RA units)",
+   "agency": "USDA RD via HUD eGIS",
+   "what": "13,262 USDA multifamily projects: address, total units, RA_UNITS (Section 521 Rental Assistance), HUD_UNITS (vouchers), bedroom mix, restrictive-clause expiration, management agent contact.",
+   "geography": "point",
+   "access": "https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/USDA_Rural_Housing_Assets/FeatureServer/0/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json ; tract summary https://services.arcgis.com/VTyQ9soqVukalItT/ArcGIS/rest/services/USDA_Rural_Housing_by_Tract/FeatureServer/30/query?where=1%3D1&outFields=*&resultRecordCount=1&f=json",
+   "key_required": "no",
+   "licence": {
+    "phrase": "HUD eGIS open data (federal work, public domain)",
+    "url": "https://hudgis-hud.opendata.arcgis.com/"
+   },
+   "commercial_ok": "yes",
+   "tested": "yes: 13,262 points; tract layer 7,303 polygons",
+   "how_to_use_per_house": "Rural comps and supply. Restrictive-clause expiration flags owners leaving Section 515 (acquisition leads).",
+   "update_frequency": "about yearly (2025 edit)",
+   "integrated_elsewhere": "USDA_Rural_Housing_Assets is already listed in federal_realestate"
+  },
+  {
+   "id": "usda_mfh_files",
+   "name": "USDA RD Multi-Family Housing datasets (514/515, program exits, 538, property assignments)",
+   "agency": "USDA Rural Development",
+   "what": "Official RD files: active 514/515 property data (XML plus dictionary), Program Exit data (prepaid or matured properties), Section 538 guaranteed projects, property assignments by region.",
+   "geography": "property",
+   "access": "https://www.sc.egov.usda.gov/data/MFH.html ; e.g. https://www.sc.egov.usda.gov/data/files/MFH/USDA_RD_MFH_Program_Exit-2026-09-30.xlsx ; 515 page https://www.sc.egov.usda.gov/data/MFH_section_515.html",
+   "key_required": "no",
+   "licence": {
+    "phrase": "'RD is offering the following datasets for public use' (Open Government Initiative)",
+    "url": "https://www.sc.egov.usda.gov/data/MFH.html"
+   },
+   "commercial_ok": "yes",
+   "tested": "yes: Program Exit xlsx (3.48 MB, as of 2026-09-30) range request 206; 538 and property-assignment files dated 2026-11-18",
+   "how_to_use_per_house": "The Program Exit list shows rural complexes leaving USDA, whose tenants may get RD vouchers usable at private homes. The active 515 file gives rural rent comps.",
+   "update_frequency": "monthly to quarterly"
+  },
+  {
+   "id": "dod_bah",
+   "name": "DoD Basic Allowance for Housing rate files (ASCII)",
+   "agency": "DoD Defense Travel Management Office",
+   "what": "Monthly BAH by Military Housing Area (MHA) and pay grade, with and without dependents, plus a ZIP->MHA table and MHA names.",
+   "geography": "ZIP -> MHA",
+   "access": "https://www.travel.dod.mil/Allowances/Basic-Allowance-for-Housing/BAH-Rate-Lookup/ ; file pattern https://www.travel.dod.mil/Portals/119/Documents/BAH/BAH_Rates_All_Locations_All_Pay_Grades/ASCII/BAH-ASCII-2026.zip",
+   "key_required": "no",
+   "licence": {
+    "phrase": "Works of the US federal government are not subject to US copyright (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "tested": "partly: travel.dod.mil returns 403 to scripts and WebFetch (bot wall). The same zip via the Internet Archive (captured 2026-10-08) downloaded, 302 KB: bahw26.txt / bahwo26.txt (MHA + 27 pay-grade columns E1-E9, W1-W5, O1E-O3E, O1-O7), sorted_zipmha26.txt ('00501 NY218'), mhanames26.txt, ASCII-FILE-FORMAT.pdf. In production, download once a year from a real browser.",
+   "how_to_use_per_house": "ZIP -> MHA -> BAH for typical renters near a base (E-5 with dependents is a common benchmark). A house renting at or below that figure is 'BAH-priced' for military tenants. BAH is paid to the service member, not the landlord, so it is a rent benchmark, not a guarantee.",
+   "update_frequency": "annual (Jan 1), with occasional mid-year temporary increases (e.g. Abilene TX270, May 2026)",
+   "rule_source": "37 U.S.C. 403; Joint Travel Regulations ch. 10"
+  },
+  {
+   "id": "hud_landlord_incentives",
+   "name": "Landlord incentive and security-deposit funding rules",
+   "agency": "HUD PIH",
+   "what": "No dataset. Notice PIH 2022-18 lets PHAs spend HCV administrative fees on landlord incentive and retention payments, security and utility deposits, holding and application fees. Whether a PHA offers them is only in its Administrative Plan or website.",
+   "geography": "PHA",
+   "access": "https://www.hud.gov/sites/dfiles/OCHCO/documents/2022-18pihn.pdf",
+   "key_required": "no",
+   "licence": {
+    "phrase": "Works of the US federal government are not subject to US copyright (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "tested": "no data to test: notice located; no national list of PHAs with incentive programs exists",
+   "how_to_use_per_house": "Show 'ask PHA X about landlord incentives' with the PHA contact. A per-PHA list would have to be built by hand or by crawling PHA sites.",
+   "update_frequency": "n/a"
+  },
+  {
+   "id": "fema_direct_housing",
+   "name": "FEMA direct housing (Direct Lease / Multi-Family Lease and Repair)",
+   "agency": "FEMA",
+   "what": "No open list of leased properties. Only the eligibility rules and per-disaster fact sheets asking owners to come forward.",
+   "geography": "disaster declaration area",
+   "access": "https://www.fema.gov/blog/direct-lease-and-multi-family-lease-and-repair-programs ; OpenFEMA declarations https://www.fema.gov/api/open/v2/DisasterDeclarationsSummaries",
+   "key_required": "no",
+   "licence": {
+    "phrase": "OpenFEMA data is public; terms ask users not to imply FEMA endorsement",
+    "url": "https://www.fema.gov/about/openfema/terms-conditions"
+   },
+   "commercial_ok": "yes",
+   "tested": "declarations API already tested in federal_realestate; program rules read from FEMA pages",
+   "how_to_use_per_house": "Flag when the county has an active declaration with direct housing approved, the house is outside the SFHA (NFHL, already integrated), and it is habitable and near services: the owner can offer it for Direct Lease. MLR applies only to buildings with 3+ units previously used as multifamily.",
+   "update_frequency": "per disaster"
+  },
+  {
+   "id": "hud_eps_list",
+   "name": "Exception Payment Standard approvals",
+   "agency": "HUD PIH",
+   "what": "No national public list found. Rules are in 24 CFR 982.503(d); each PHA's actual schedule is on its own site or in its admin plan. HUD's 2026 Budget Management Letter tells PHAs to end approved EPS and stay within 90-110%.",
+   "geography": "PHA",
+   "access": "https://www.ecfr.gov/current/title-24/part-982/section-982.503 ; https://www.hud.gov/sites/default/files/PIH/documents/2026-Budget-Management-Letter.pdf",
+   "key_required": "no",
+   "licence": {
+    "phrase": "Works of the US federal government are not subject to US copyright (17 U.S.C. 105)",
+    "url": "https://www.usa.gov/government-copyright"
+   },
+   "commercial_ok": "yes",
+   "tested": "letter downloaded and read (file dated Feb-Mar 2026)",
+   "how_to_use_per_house": "Default to the 90-110% band. Show >110% only when a captured PHA schedule says so.",
+   "update_frequency": "n/a"
+  }
+ ]
+}

@@ -1,0 +1,656 @@
+{
+ "cities": {
+  "denver": {
+   "deposit": {
+    "value": "Capped at two months' rent (C.R.S. 38-12-102.5, added by SB23-184, effective Aug 7 2023). From Jan 1 2027 the cap does not apply to post-closing occupancy agreements (SB26-054). Return within 1 month, or up to 60 days if the lease says so (38-12-103; timing not re-read).",
+    "source_url": "https://leg.colorado.gov/bills/sb23-184",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "SB23-184 signed act section 5 adds 38-12-102.5 two-month cap; SB26-054 summary adds post-closing exception.",
+    "changed": true
+   },
+   "notice": {
+    "value": "Notice to end a periodic tenancy (13-40-107 as amended by HB24-1098): 91 days (1 yr+), 28 (6-12 mo), 21 (1-6 mo), 3 (under 1 mo), 1 (under 1 wk). Most residential landlords also need cause (38-12-1303); nonpayment and lease-violation notices are 10 days; no-fault evictions need 90 days.",
+    "source_url": "https://leg.colorado.gov/bills/hb24-1098",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "HB24-1098 signed act sec. 5 rewrites 13-40-107(2); 38-12-1303 cause rule and 90-day no-fault notice.",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "CCIOA (C.R.S. 38-33.3). Section 38-33.3-106.5 voids HOA rules against flags and political signs, renewable-energy devices, drought-tolerant landscaping, child care and more; HB24-1152 added 106.5(4) voiding HOA ADU bans in ADU subject or supportive jurisdictions. Records access (38-33.3-317) and EV-charger rules not re-read.",
+    "source_url": "https://leg.colorado.gov/bills/hb24-1152",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "HB24-1152 signed act sec. 6 adds 38-33.3-106.5(4); section heading lists the protected categories.",
+    "changed": true
+   },
+   "yigby": {
+    "value": "Enacted: HB26-1001 (signed Mar 25 2026) makes local governments over 2,000 people allow housing by administrative approval on parcels up to 5 acres owned by schools, colleges, housing authorities, transit districts or affordable-housing nonprofits, by Dec 31 2027. Church land qualifies through an agreement with such a nonprofit. HB25-1169 died May 2025.",
+    "source_url": "https://leg.colorado.gov/bills/hb26-1001",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "HB26-1001 signed act, new 29-35-503 and definitions of qualifying entity and subject jurisdiction; HB25-1169 status Lost.",
+    "changed": true
+   },
+   "worship_zoning": {
+    "value": "Public and religious assembly is permitted with limitations (zoning permit) in Urban single-unit, two-unit and row-house districts and permitted in mixed-use districts (DZC Art. 5 table, sec. 11.3.10). Church-land housing needs normal zoning, but a Temporary Managed Community may share a lot with a civic use (sec. 11.11.17).",
+    "source_url": "https://denvergov.org/files/assets/public/community-planning-and-development/documents/zoning/denver-zoning-code/denver_zoning_code_article5_urban.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "DZC Art. 5 use table row Public and Religious Assembly; sec. 11.11.17.2 civic-use allowance.",
+    "changed": true
+   },
+   "shed": {
+    "value": "Not a rentable dwelling, but members of the main house's household (or domestic employees) may live in a detached accessory structure; renting one for residential use is barred (DZC sec. 11.7, residential occupancy exceptions). Building code still applies.",
+    "source_url": "https://denvergov.org/files/assets/public/community-planning-and-development/documents/zoning/denver-zoning-code/denver_zoning_code_article11_use_limitations.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "DZC Div. 11.7 'Residential Occupancy Prohibited - Exceptions'.",
+    "changed": true
+   },
+   "rv": {
+    "value": "RVs, mobile homes and trailers may not be ADUs (sec. 11.8.2.B) and RV parking falls under DZC Div. 10.9. Sleeping in parked vehicles is zoning-legal only inside a permitted Temporary Managed Community (safe-parking site).",
+    "source_url": "https://denvergov.org/files/assets/public/community-planning-and-development/documents/zoning/denver-zoning-code/denver_zoning_code_article11_use_limitations.pdf",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "DZC 11.8.2.B.1 and Temporary Managed Community definition; DRMC vehicle-occupancy ordinance not read.",
+    "changed": true
+   },
+   "thow": {
+    "value": "Permanent tiny-home villages count as Congregate Living. Temporary Managed Communities (tiny homes or parked vehicles run by nonprofits or government) get permits of up to 4 years; in SU/TU/RH zones only with a civic use or on a vacant corner lot of 5,000+ sq ft.",
+    "source_url": "https://denvergov.org/files/assets/public/community-planning-and-development/documents/zoning/denver-zoning-code/denver_zoning_code_article11_use_limitations.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "DZC sec. 11.11.17 duration and siting; sec. 11.12.2.2 includes permanent tiny home villages.",
+    "changed": true
+   },
+   "rooming": {
+    "value": "Rent-by-the-room, rooming and boarding houses and student housing are Congregate Living (DZC sec. 11.12.2.2): not permitted in Urban SU, TU or RH-2.5 districts; permitted with a zoning permit in RH-3A and mixed-use districts.",
+    "source_url": "https://denvergov.org/files/assets/public/community-planning-and-development/documents/zoning/denver-zoning-code/denver_zoning_code_article11_use_limitations.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "DZC 11.12.2.2 definition; Art. 5 use table row Congregate Living All Types.",
+    "changed": true
+   },
+   "coliving": {
+    "value": "A household is any number of people who choose each other, share household activities and jointly occupy the whole unit (sec. 11.12.2.1). Groups on separate contracts, or not sharing the whole unit, are Congregate Living with the zone limits above.",
+    "source_url": "https://denvergov.org/files/assets/public/community-planning-and-development/documents/zoning/denver-zoning-code/denver_zoning_code_article11_use_limitations.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "DZC 11.12.2.1.B.2 household; 11.12.2.2 congregate living with separate contracts.",
+    "changed": true
+   },
+   "family": {
+    "value": "No cap on unrelated adults: a household is any number of persons sharing household duties and the whole dwelling unit (DZC sec. 11.12.2.1, republished Feb 2025). Occupancy is limited only by building and housing codes, consistent with HB24-1007.",
+    "source_url": "https://denvergov.org/files/assets/public/community-planning-and-development/documents/zoning/denver-zoning-code/denver_zoning_code_article11_use_limitations.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "DZC 11.12.2.1 'any number of persons' household definition; no five-adult limit in current text.",
+    "changed": true
+   },
+   "adu": {
+    "value": "One ADU per primary dwelling unit (permitted with limitations in all Urban residential districts). In SU districts max 864 sq ft on lots up to 7,000 sq ft, else 1,000 sq ft, and an owner must live in the main house at permit time. RVs cannot be ADUs.",
+    "source_url": "https://denvergov.org/files/assets/public/community-planning-and-development/documents/zoning/denver-zoning-code/denver_zoning_code_article11_use_limitations.pdf",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "DZC 11.8.2.1 one ADU per primary unit and GFA table; 11.8.2.2.B owner occupancy at application.",
+    "changed": true
+   },
+   "permit": {
+    "value": "Yes: STR licence for stays of 1-29 nights; $50 application fee plus $100 a year, renewed annually.",
+    "source_url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Business-Licensing/Business-licenses/Short-term-rentals/Short-term-rental-FAQ",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Denver STR page and FAQ: licence needed under 29 nights; fee amounts.",
+    "changed": false
+   },
+   "primary_residence": {
+    "value": "Yes: must be the host's primary residence (usual place of return; only one); renters need landlord permission.",
+    "source_url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Business-Licensing/Business-licenses/Short-term-rentals",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Denver STR page primary residence definition and DRMC criteria.",
+    "changed": false
+   },
+   "zones": {
+    "value": "STRs are an accessory use wherever residential use is allowed, including mixed-use districts. An ADU may be an STR only if the host lives in the main house.",
+    "source_url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Business-Licensing/Business-licenses/Short-term-rentals/Short-term-rental-FAQ",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "FAQ 'Where are short-term rentals allowed?' and ADU answer.",
+    "changed": true
+   },
+   "caps": {
+    "value": "Primary residence only, so effectively one STR per host.",
+    "source_url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Business-Licensing/Business-licenses/Short-term-rentals",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "A person can have only one primary residence.",
+    "changed": false
+   },
+   "max_occupancy": {
+    "value": "No city guest cap; the host sets it. One rental contract at a time; no parties, weddings or other commercial events.",
+    "source_url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Business-Licensing/Business-licenses/Short-term-rentals/Short-term-rental-FAQ",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "FAQ 'How many guests can stay in a short-term rental?'.",
+    "changed": true
+   },
+   "hostel_shared": {
+    "value": "Several rooms may be offered, but only to one booking party at a time; simultaneous separate contracts are not allowed.",
+    "source_url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Business-Licensing/Business-licenses/Short-term-rentals/Short-term-rental-FAQ",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "FAQ 'Can I rent out multiple bedrooms in my home?'.",
+    "changed": true
+   },
+   "taxes": {
+    "value": "Lodger's tax 10.75% plus occupational privilege tax of $48 a year.",
+    "source_url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Business-Licensing/Business-licenses/Short-term-rentals/Short-term-rental-FAQ",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "FAQ 'Do short-term rental licensees have to pay taxes?'.",
+    "changed": true
+   },
+   "listing_id": {
+    "value": "Yes: every ad must show the business file (licence) number, and booking platforms may not process bookings for unlicensed STRs (CB20-1229, Feb 2021).",
+    "source_url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Business-Licensing/Business-licenses/Short-term-rentals/Short-term-rentals-laws-rules-regulations",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Laws page key features and CB20-1229; FAQ on licence number in ads.",
+    "changed": true
+   },
+   "pending": {
+    "value": "None found on the city's STR rules page (latest listed change CB20-1229, 2021).",
+    "source_url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Business-Licensing/Business-licenses/Short-term-rentals/Short-term-rentals-laws-rules-regulations",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Laws page lists ordinances through 2021; council agendas not searched.",
+    "changed": false
+   },
+   "registration": {
+    "value": "Residential rental property licence (ordinance of May 3 2021) for any building, unit or ADU rented 30+ days at a time, with inspection.",
+    "source_url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Business-Licensing/Business-licenses/Residential-rental-property",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Denver residential rental property licence page.",
+    "changed": false
+   }
+  },
+  "boulder": {
+   "deposit": {
+    "value": "Capped at two months' rent (C.R.S. 38-12-102.5, added by SB23-184, effective Aug 7 2023). From Jan 1 2027 the cap does not apply to post-closing occupancy agreements (SB26-054). Return within 1 month, or up to 60 days if the lease says so (38-12-103; timing not re-read).",
+    "source_url": "https://leg.colorado.gov/bills/sb23-184",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "SB23-184 signed act section 5 adds 38-12-102.5 two-month cap; SB26-054 summary adds post-closing exception.",
+    "changed": true
+   },
+   "notice": {
+    "value": "Notice to end a periodic tenancy (13-40-107 as amended by HB24-1098): 91 days (1 yr+), 28 (6-12 mo), 21 (1-6 mo), 3 (under 1 mo), 1 (under 1 wk). Most residential landlords also need cause (38-12-1303); nonpayment and lease-violation notices are 10 days; no-fault evictions need 90 days.",
+    "source_url": "https://leg.colorado.gov/bills/hb24-1098",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "HB24-1098 signed act sec. 5 rewrites 13-40-107(2); 38-12-1303 cause rule and 90-day no-fault notice.",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "CCIOA (C.R.S. 38-33.3). Section 38-33.3-106.5 voids HOA rules against flags and political signs, renewable-energy devices, drought-tolerant landscaping, child care and more; HB24-1152 added 106.5(4) voiding HOA ADU bans in ADU subject or supportive jurisdictions. Records access (38-33.3-317) and EV-charger rules not re-read.",
+    "source_url": "https://leg.colorado.gov/bills/hb24-1152",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "HB24-1152 signed act sec. 6 adds 38-33.3-106.5(4); section heading lists the protected categories.",
+    "changed": true
+   },
+   "yigby": {
+    "value": "Enacted: HB26-1001 (signed Mar 25 2026) makes local governments over 2,000 people allow housing by administrative approval on parcels up to 5 acres owned by schools, colleges, housing authorities, transit districts or affordable-housing nonprofits, by Dec 31 2027. Church land qualifies through an agreement with such a nonprofit. HB25-1169 died May 2025.",
+    "source_url": "https://leg.colorado.gov/bills/hb26-1001",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "HB26-1001 signed act, new 29-35-503 and definitions of qualifying entity and subject jurisdiction; HB25-1169 status Lost.",
+    "changed": true
+   },
+   "family": {
+    "value": "Family-based limits are gone: B.R.C. 9-8-5 limits occupancy only through the Property Maintenance Code (ch. 10-2), and older approvals capping unrelated persons are void (amended through Ord. 8651, 2025). Affordable-housing limits may still apply.",
+    "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT9LAUSCO_CH8INST_9-8-5OCDWUN01",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "B.R.C. 9-8-5(a) and (b) Occupancy of Dwelling Units.",
+    "changed": true
+   },
+   "per_bedroom": {
+    "value": "B.R.C. 10-2-2 adopts the 2024 International Property Maintenance Code with Section 404 (occupancy limits) unchanged, plus Appendices A-C. The IPMC bedroom-size text itself was not re-read.",
+    "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT10ST_CH2PRMACO_10-2-2ADINPRMACOMO",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "B.R.C. 10-2-2(a)-(c): 2024 IPMC adopted; 404.1-404.7 'No changes'.",
+    "changed": true
+   },
+   "max_occupancy": {
+    "value": "No STR-specific guest cap found; occupancy follows the Property Maintenance Code (2024 IPMC Section 404 via B.R.C. 9-8-5 and 10-2-2).",
+    "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT9LAUSCO_CH8INST_9-8-5OCDWUN01",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "B.R.C. 9-8-5(a); STR licensing page silent on guest limits.",
+    "changed": true
+   },
+   "adu": {
+    "value": "ADUs allowed through a building permit (standards in 9-6-3(n)) in RR, RE, RL, RM, RMX, RH, MU, BT, BC, BR, DT, IG, IM, A and P districts. Owner occupancy no longer required from Mar 8 2025 (Ord. 8650); PUD bans void.",
+    "source_url": "https://bouldercolorado.gov/services/accessory-dwelling-units",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "City ADU page FAQs on where allowed and owner occupancy; Table 6-1 ADU row.",
+    "changed": true
+   },
+   "rooming": {
+    "value": "Boarding houses are prohibited in RR, RE, RL-1, RL-2 and RM-2, need use review in RM-1 and RM-3, and are allowed in several denser districts (Table 6-1, 9-6-3(i)). Three sleeping rooms count as one dwelling unit for density (9-8-6).",
+    "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT9LAUSCO_CH6USST_9-6-1SCPELAUS",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "B.R.C. Table 6-1 Boarding house row; 9-8-6(a).",
+    "changed": true
+   },
+   "coliving": {
+    "value": "With no family-based cap, a shared house is limited only by Property Maintenance Code occupancy; renting rooms separately is a boarding house governed by Table 6-1.",
+    "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT9LAUSCO_CH8INST_9-8-5OCDWUN01",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "B.R.C. 9-8-5 and Table 6-1; no separate co-living definition checked.",
+    "changed": true
+   },
+   "worship_zoning": {
+    "value": "Religious assembly is allowed by right in most districts, including RR, RE, RL-1, RL-2, RM-1, RM-2 and RM-3; a few districts need use review (Table 6-1).",
+    "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT9LAUSCO_CH6USST_9-6-1SCPELAUS",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "B.R.C. Table 6-1 Religious assembly row.",
+    "changed": true
+   },
+   "hostel_shared": {
+    "value": "Hostels need use review or are allowed only in certain mixed-use and business districts, with three sleeping rooms counted as one unit (9-8-6(b)). STRs are owner-occupied homes.",
+    "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT9LAUSCO_CH6USST_9-6-1SCPELAUS",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Table 6-1 Hostel row; 9-8-6(b).",
+    "changed": true
+   },
+   "permit": {
+    "value": "Yes: STR rental licence (4-year term, $190 plus $25 business licence) plus a yearly principal-residence affidavit ($20) for stays of 29 days or fewer.",
+    "source_url": "https://bouldercolorado.gov/services/rental-housing-licensing-short-term",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Boulder STR licensing page fees and term.",
+    "changed": false
+   },
+   "primary_residence": {
+    "value": "Yes: must be the owner's principal residence (B.R.C. 10-1-1); owner must be a natural person, trust or nonprofit; tenants may not run STRs.",
+    "source_url": "https://bouldercolorado.gov/services/rental-housing-licensing-short-term",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Boulder STR page requirements and renter FAQ.",
+    "changed": false
+   },
+   "zones": {
+    "value": "Owner-occupied principal residences only; not allowed on a property with an ADU (10-3-19(o)).",
+    "source_url": "https://bouldercolorado.gov/services/rental-housing-licensing-short-term",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Boulder STR page.",
+    "changed": false
+   },
+   "caps": {
+    "value": "Whole home: no day limit while it stays the owner's principal residence. An ADU may be an STR (up to 120 days a year) only if both the ADU and the STR licence predate Jan 3 2019.",
+    "source_url": "https://bouldercolorado.gov/services/rental-housing-licensing-short-term",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Boulder STR FAQ on accessory units and day limits.",
+    "changed": true
+   },
+   "taxes": {
+    "value": "Accommodations tax applies, filed quarterly through the Boulder Online Tax System; rate not stated on the licensing page.",
+    "source_url": "https://bouldercolorado.gov/services/rental-housing-licensing-short-term",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Boulder STR page Accommodation Tax information.",
+    "changed": false
+   },
+   "registration": {
+    "value": "Every rental needs a city rental licence under the Boulder Revised Code and Property Maintenance Code; long-term rentals are inspected and must meet SmartRegs; STRs self-certify safety equipment without inspection.",
+    "source_url": "https://bouldercolorado.gov/services/rental-housing-licensing-short-term",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "Boulder STR page Licensing Requirements and inspection FAQ.",
+    "changed": false
+   }
+  },
+  "kansas_city": {
+   "deposit": {
+    "value": "Capped at two months' rent; return it or an itemized list within 30 days after the tenancy ends (RSMo 535.300). Since Aug 28 2025 cities and counties may not set their own deposit limits (RSMo 441.043.2(3)).",
+    "source_url": "https://revisor.mo.gov/main/OneSection.aspx?section=535.300",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "RSMo 535.300.1 cap and .3 thirty-day return; 441.043.2(3) bars local deposit limits.",
+    "changed": true
+   },
+   "notice": {
+    "value": "Month-to-month, at-will or under-one-year tenancies end with one month's written notice (RSMo 441.060.1 and .4).",
+    "source_url": "https://revisor.mo.gov/main/OneSection.aspx?section=441.060",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "RSMo 441.060.1 and .4 one month's written notice; source URL corrected from 441.043.",
+    "changed": false
+   },
+   "hoa_law": {
+    "value": "RSMo 442.404: HOA covenants may not ban political signs, solar panels (reasonable placement rules allowed) or for-sale signs, and the section also covers chicken-keeping; condos fall under ch. 448.",
+    "source_url": "https://revisor.mo.gov/main/OneSection.aspx?section=442.404",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "RSMo 442.404 heading and subsections on signs, solar, sale signs, chickens; condo associations excluded.",
+    "changed": false
+   },
+   "yigby": {
+    "value": "No Missouri statute allowing by-right housing on faith or institutional land found in official statute searches.",
+    "source_url": "https://revisor.mo.gov/main/PageSearch.aspx?tb1=religious&op=and&tb2=dwelling&idx=2",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Revisor search 'religious' + 'dwelling' returned only tax, urban renewal and fair-housing sections.",
+    "changed": false
+   },
+   "family": {
+    "value": "A household is one person, any group related by blood, marriage or adoption, up to five unrelated people living as one housekeeping unit with one kitchen, or up to eight disabled people plus two houseparents (88-810-700).",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/zoning_and_development_code?nodeId=ZODECOKAMI_800_SERIESTEME_88-810DE_88-810-700HO",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KCMO 88-810-700 Household (Ord. 230936, 2023).",
+    "changed": true
+   },
+   "adu": {
+    "value": "ADUs allowed on any lot with a detached house (88-305-15, 2022-2023): attached, or detached in the rear yard, up to 800 sq ft, no extra parking. The owner must live in one of the units and record a deed restriction.",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/zoning_and_development_code?nodeId=ZODECOKAMI_300_SERIESUSRE_88-305ACUSST_88-305-05CAHO",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KCMO 88-305-15-B and -C general standards.",
+    "changed": true
+   },
+   "rooming": {
+    "value": "A household may take one lodger (or two related lodgers) sharing entrance, kitchen and living areas, with no more than five unrelated people in the home (88-305-12). Group living is barred in R-80 to R-2.5 and needs a special use permit in R-1.5 and denser (88-110-03).",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/zoning_and_development_code?nodeId=ZODECOKAMI_100_SERIESBAZODI_88-110REDI_88-110-03US",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KCMO 88-305-12 Lodging and board; 88-110-03 Group Living row.",
+    "changed": true
+   },
+   "coliving": {
+    "value": "More than five unrelated adults is group living, not a household: prohibited in R-80 to R-2.5 and a special use in R-1.5 to R-0.3 (88-110-03, 88-350).",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/zoning_and_development_code?nodeId=ZODECOKAMI_100_SERIESBAZODI_88-110REDI_88-110-03US",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KCMO 88-810-700 five-person cap; 88-110-03 Group Living row.",
+    "changed": true
+   },
+   "per_bedroom": {
+    "value": "Sleeping rooms need 70 sq ft for one occupant plus 50 sq ft per extra occupant; each dwelling needs 120 sq ft of habitable floor for the first occupant and 100 sq ft per additional one (Sec. 56-212, 56-213).",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/code_of_ordinances?nodeId=COORKAMIVOII_CH56PRMACO_ARTIIREPR_DIV3MIENOCSPRE_SDVIOCRE_S56-213RESPSLRO",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KCMO Sec. 56-212 and 56-213.",
+    "changed": true
+   },
+   "rv": {
+    "value": "No RV or mobile home may be used as living quarters except in a mobile home development or RV park, or as temporary watchman or construction-office quarters under a city permit (Sec. 72-2(b)). No guest-stay exception.",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/code_of_ordinances?nodeId=COORKAMIVOII_CH72MOHOREVE_S72-2AULOMOHODEREVEPA",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KCMO Sec. 72-2(b).",
+    "changed": true
+   },
+   "thow": {
+    "value": "A tiny house on wheels is treated like an RV or mobile home: living in one is allowed only in a mobile home development or RV park (Sec. 72-2(b)).",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/code_of_ordinances?nodeId=COORKAMIVOII_CH72MOHOREVE_S72-2AULOMOHODEREVEPA",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Sec. 72-2(b); tiny houses on wheels not named, applied through the RV definition (portable unit on wheels).",
+    "changed": true
+   },
+   "worship_zoning": {
+    "value": "Religious assembly is permitted (P/S under 88-365 standards) in every residential district from R-80 to R-0.3. Housing on church land still needs normal zoning.",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/zoning_and_development_code?nodeId=ZODECOKAMI_100_SERIESBAZODI_88-110REDI_88-110-03US",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KCMO 88-110-03 Religious Assembly row.",
+    "changed": true
+   },
+   "registration": {
+    "value": "Healthy Rental Homes program (Code ch. 34, art. XIX, Ord. 180248, 2018): a rental permit with a health and safety inspection report is required for rentals of 30+ days; STRs under 30 days are exempt.",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/code_of_ordinances?nodeId=PTIICOOR_CH34HESA_ARTXIXHEREHO_DIV1GE_S34-830PUINAR",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KCMO Sec. 34-830, 34-832, 34-835.",
+    "changed": true
+   },
+   "permit": {
+    "value": "Yes: every STR (under 30 days) registers yearly and passes an inspection (Ch. 56 Art. VIII, Sec. 56-803).",
+    "source_url": "https://bizcare.kcmo.gov/short-term-rentals",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KC BizCare STR page registration and renewal sections.",
+    "changed": false
+   },
+   "primary_residence": {
+    "value": "Only 'resident' STRs (host lives there 270+ days a year) are allowed in residential zones.",
+    "source_url": "https://bizcare.kcmo.gov/short-term-rentals",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KC BizCare STR page types of STRs.",
+    "changed": false
+   },
+   "zones": {
+    "value": "Non-resident STRs are banned in residential zones unless grandfathered (permitted before June 15 2023); resident STRs are allowed there and exempt from density rules.",
+    "source_url": "https://bizcare.kcmo.gov/short-term-rentals",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KC BizCare STR page.",
+    "changed": true
+   },
+   "caps": {
+    "value": "Non-resident STRs: 1,000 ft spacing for 1-2 unit buildings; at most 12.5% of units in 3+ unit buildings; none on city-incentivized property.",
+    "source_url": "https://bizcare.kcmo.gov/short-term-rentals",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KC BizCare STR page non-resident rules.",
+    "changed": true
+   },
+   "max_occupancy": {
+    "value": "Not stated on the city STR page.",
+    "source_url": "https://bizcare.kcmo.gov/short-term-rentals",
+    "verified": false,
+    "checked": "2026-11-24",
+    "evidence": "KC BizCare STR page has no guest cap; zoning sec. 88-321 not read.",
+    "changed": false
+   },
+   "taxes": {
+    "value": "7.5% transient boarding and accommodation tax, filed quarterly.",
+    "source_url": "https://bizcare.kcmo.gov/short-term-rentals",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KC BizCare STR page tax section.",
+    "changed": false
+   },
+   "listing_id": {
+    "value": "Yes: the STR registration number must appear on all listings.",
+    "source_url": "https://bizcare.kcmo.gov/short-term-rentals",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "KC BizCare STR page important rules.",
+    "changed": false
+   }
+  }
+ },
+ "states": {
+  "CO": {
+   "deposit": {
+    "value": "Capped at two months' rent (C.R.S. 38-12-102.5, added by SB23-184, effective Aug 7 2023). From Jan 1 2027 the cap does not apply to post-closing occupancy agreements (SB26-054). Return within 1 month, or up to 60 days if the lease says so (38-12-103; timing not re-read).",
+    "source_url": "https://leg.colorado.gov/bills/sb23-184",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "SB23-184 signed act section 5 adds 38-12-102.5 two-month cap; SB26-054 summary adds post-closing exception.",
+    "changed": true
+   },
+   "notice": {
+    "value": "Notice to end a periodic tenancy (13-40-107 as amended by HB24-1098): 91 days (1 yr+), 28 (6-12 mo), 21 (1-6 mo), 3 (under 1 mo), 1 (under 1 wk). Most residential landlords also need cause (38-12-1303); nonpayment and lease-violation notices are 10 days; no-fault evictions need 90 days.",
+    "source_url": "https://leg.colorado.gov/bills/hb24-1098",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "HB24-1098 signed act sec. 5 rewrites 13-40-107(2); 38-12-1303 cause rule and 90-day no-fault notice.",
+    "changed": true
+   },
+   "hoa_law": {
+    "value": "CCIOA (C.R.S. 38-33.3). Section 38-33.3-106.5 voids HOA rules against flags and political signs, renewable-energy devices, drought-tolerant landscaping, child care and more; HB24-1152 added 106.5(4) voiding HOA ADU bans in ADU subject or supportive jurisdictions. Records access (38-33.3-317) and EV-charger rules not re-read.",
+    "source_url": "https://leg.colorado.gov/bills/hb24-1152",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "HB24-1152 signed act sec. 6 adds 38-33.3-106.5(4); section heading lists the protected categories.",
+    "changed": true
+   },
+   "yigby": {
+    "value": "Enacted: HB26-1001 (signed Mar 25 2026) makes local governments over 2,000 people allow housing by administrative approval on parcels up to 5 acres owned by schools, colleges, housing authorities, transit districts or affordable-housing nonprofits, by Dec 31 2027. Church land qualifies through an agreement with such a nonprofit. HB25-1169 died May 2025.",
+    "source_url": "https://leg.colorado.gov/bills/hb26-1001",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "HB26-1001 signed act, new 29-35-503 and definitions of qualifying entity and subject jurisdiction; HB25-1169 status Lost.",
+    "changed": true
+   },
+   "str_preemption": {
+    "value": "No statewide STR preemption found; HB23-1287 (signed 2023) instead concerns county regulation of STRs. Home-rule cities such as Denver and Boulder license STRs themselves.",
+    "source_url": "https://leg.colorado.gov/bills/hb23-1287",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Bill search: HB23-1287 'County Regulation Related To Short-term Rentals' signed; bill text not read.",
+    "changed": true
+   },
+   "rent_control": {
+    "value": "Local rent control remains preempted (C.R.S. 38-12-301); HB23-1115, which would have repealed the ban, was lost in 2023.",
+    "source_url": "https://leg.colorado.gov/bills/hb23-1115",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "HB23-1115 status Lost; statute text not read (LexisNexis site requires accepting terms).",
+    "changed": false
+   },
+   "ltr_registration": {
+    "value": "No state rental registry found. Denver licenses all 30+ day rentals (2021 ordinance); Boulder requires a rental licence for every rental.",
+    "source_url": "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Business-Licensing/Business-licenses/Residential-rental-property",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Denver and Boulder licensing pages confirm local licences; absence of a state registry not provable from one page.",
+    "changed": false
+   },
+   "source_of_income": {
+    "value": "Protected statewide since HB20-1332: refusing to rent because of lawful source of income, including vouchers, is an unfair housing practice. Landlords with 3 or fewer units are exempt; owners of up to 5 single-family rentals need not accept federal vouchers for them.",
+    "source_url": "https://leg.colorado.gov/bills/hb20-1332",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "HB20-1332 enacted summary: source of income made an unfair housing practice, with small-landlord exemptions.",
+    "changed": true
+   },
+   "occupancy_law": {
+    "value": "HB24-1007 (C.R.S. 29-20-111, effective Jul 1 2024) bars local limits on household size based on family relationship; limits allowed only from health/safety codes or affordable-housing rules. HB24-1152 makes subject jurisdictions allow one ADU by administrative approval wherever single-unit homes are allowed, from June 30 2025.",
+    "source_url": "https://leg.colorado.gov/bills/hb24-1007",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "HB24-1007 signed act adds 29-20-111(3); HB24-1152 summary section 1 ADU mandate.",
+    "changed": true
+   },
+   "hoa_registry": {
+    "value": "Yes: the Division of Real Estate publishes free HOA registration rosters (active and expired), with no map geometry; DRE says it cannot verify what HOAs report.",
+    "source_url": "https://apps.colorado.gov/dre/licensing/Lookup/GenerateRoster.aspx",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "DRE roster page lists HOA Active and Expired rosters, no fee; notes this is all it collects on HOAs.",
+    "changed": false
+   }
+  },
+  "MO": {
+   "deposit": {
+    "value": "Capped at two months' rent; return it or an itemized list within 30 days after the tenancy ends (RSMo 535.300). Since Aug 28 2025 cities and counties may not set their own deposit limits (RSMo 441.043.2(3)).",
+    "source_url": "https://revisor.mo.gov/main/OneSection.aspx?section=535.300",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "RSMo 535.300.1 cap and .3 thirty-day return; 441.043.2(3) bars local deposit limits.",
+    "changed": true
+   },
+   "notice": {
+    "value": "Month-to-month, at-will or under-one-year tenancies end with one month's written notice (RSMo 441.060.1 and .4).",
+    "source_url": "https://revisor.mo.gov/main/OneSection.aspx?section=441.060",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "RSMo 441.060.1 and .4 one month's written notice; source URL corrected from 441.043.",
+    "changed": false
+   },
+   "hoa_law": {
+    "value": "RSMo 442.404: HOA covenants may not ban political signs, solar panels (reasonable placement rules allowed) or for-sale signs, and the section also covers chicken-keeping; condos fall under ch. 448.",
+    "source_url": "https://revisor.mo.gov/main/OneSection.aspx?section=442.404",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "RSMo 442.404 heading and subsections on signs, solar, sale signs, chickens; condo associations excluded.",
+    "changed": false
+   },
+   "yigby": {
+    "value": "No Missouri statute allowing by-right housing on faith or institutional land found in official statute searches.",
+    "source_url": "https://revisor.mo.gov/main/PageSearch.aspx?tb1=religious&op=and&tb2=dwelling&idx=2",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Revisor search 'religious' + 'dwelling' returned only tax, urban renewal and fair-housing sections.",
+    "changed": false
+   },
+   "str_preemption": {
+    "value": "No state STR preemption law: an official statute search for 'short-term rental' returns only an unrelated tax section (RSMo 137.018). Pending bills not checked.",
+    "source_url": "https://revisor.mo.gov/main/PageSearch.aspx?tb1=short-term%20rental&op=and&tb2=&idx=2",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "Revisor full-text search: one match, 137.018 (ad valorem merchandise exemption).",
+    "changed": false
+   },
+   "rent_control": {
+    "value": "Preempted: no city or county may regulate rent on private residential or commercial property (RSMo 441.043.1). 2025 amendments (H.B. 595) also bar local source-of-income, screening-criteria, deposit-limit and right-of-first-refusal ordinances.",
+    "source_url": "https://revisor.mo.gov/main/OneSection.aspx?section=441.043",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "RSMo 441.043.1 and .2, as amended by 2025 H.B. 595 & 343, effective Aug 28 2025.",
+    "changed": true
+   },
+   "ltr_registration": {
+    "value": "No state rental registry found. Kansas City requires a Healthy Rental Homes permit for rentals of 30+ days (Code ch. 34, art. XIX).",
+    "source_url": "https://library.municode.com/mo/kansas_city/codes/code_of_ordinances?nodeId=PTIICOOR_CH34HESA_ARTXIXHEREHO_DIV1GE_S34-830PUINAR",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "KCMO Sec. 34-832 rental permit; state-level absence not provable from one page.",
+    "changed": false
+   },
+   "source_of_income": {
+    "value": "No statewide protection, and since Aug 28 2025 cities and counties may not bar landlords from refusing tenants whose rent includes housing assistance (RSMo 441.043.2(1)); local bans on veterans'-benefits discrimination remain allowed.",
+    "source_url": "https://revisor.mo.gov/main/OneSection.aspx?section=441.043",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "RSMo 441.043.2(1) and .4, as amended by 2025 H.B. 595.",
+    "changed": true
+   },
+   "occupancy_law": {
+    "value": "RSMo 441.060.2: a limit of two persons per bedroom is presumed reasonable statewide; children born to the tenants during the lease are excepted.",
+    "source_url": "https://revisor.mo.gov/main/OneSection.aspx?section=441.060",
+    "verified": true,
+    "checked": "2026-11-24",
+    "evidence": "RSMo 441.060.2 two-persons-per-bedroom presumption.",
+    "changed": true
+   },
+   "hoa_registry": {
+    "value": "No statewide HOA registry found; HOAs appear only as Secretary of State nonprofit entities.",
+    "source_url": "https://revisor.mo.gov/main/OneChapter.aspx?chapter=448",
+    "verified": "partial",
+    "checked": "2026-11-24",
+    "evidence": "No registration duty found in 442.404 or revisor searches; SOS proxy not re-checked.",
+    "changed": false
+   }
+  }
+ }
+}

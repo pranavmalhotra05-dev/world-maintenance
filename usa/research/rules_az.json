@@ -1,0 +1,457 @@
+{
+ "cities": {
+  "phoenix": {
+   "name": "Phoenix",
+   "state": "AZ",
+   "fields": {
+    "deposit": {
+     "value": "Cap of 1.5 months' rent for all security and prepaid rent (tenant may voluntarily prepay more). Within 14 days, excluding weekends and holidays, after move-out and tenant demand, landlord must send itemized deductions and refund; wrongful withholding risks twice the amount withheld.",
+     "source_url": "https://www.azleg.gov/ars/33/01321.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 33-1321(A) 1.5-month cap; (D) 14 business days itemized list; (E) double damages."
+    },
+    "notice": {
+     "value": "Month-to-month: written notice at least 30 days before the periodic rental date named in the notice; week-to-week: 10 days. Either side may give it.",
+     "source_url": "https://www.azleg.gov/ars/33/01375.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 33-1375(A) week-to-week 10 days; (B) month-to-month 30 days before periodic rental date."
+    },
+    "rluipa": {
+     "value": "Federal law: zoning may not substantially burden religious exercise without a compelling reason, must treat religious assemblies on equal terms with secular ones, and may not exclude them outright.",
+     "source_url": "https://www.justice.gov/crt/religious-land-use-and-institutionalized-persons-act",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Federal field already verified; not re-read in this AZ lane."
+    },
+    "yigby": {
+     "value": "No YIGBY law. HB 2815 (2024) and HB 2191 (2025, single-family homes on church land) did not become law; SB 1096 (2026, senior living on religious sites) was prefiled. Current A.R.S. 9-462.15 is an unrelated assisted-living section, so church-land housing needs normal zoning.",
+     "source_url": "https://www.azleg.gov/legtext/57leg/2R/bills/SB1096P.htm",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Read SB1096 prefiled and HB2191 engrossed texts; Title 9 index has no religious-housing section; bill status pages not read."
+    },
+    "hoa_law": {
+     "value": "Planned communities (ch. 16) and condos (ch. 9): owners may rent unless the declaration bans it and must follow its rental-period limits; HOA may only ask tenant names, contacts, lease dates, vehicles; $25 fee cap. Solar devices cannot be banned (33-1816). Listed flags and for-sale/rent signs protected (33-1808, 33-1261). Free records review in 10 business days (33-1805).",
+     "source_url": "https://www.azleg.gov/ars/33/01806-01.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Read 33-1806.01(A),(C),(D); 33-1260.01; 33-1816(A); 33-1808(A),(G); 33-1261(A),(C); 33-1805(A)."
+    },
+    "permit": {
+     "value": "Annual STR permit from Planning & Development required before renting or advertising ($250 new/renewal). Application needs TPT licence, $500,000 insurance (or platform cover), Maricopa assessor rental registration, emergency contact, safety-equipment map; decision within 7 days. Certified-mail notice to neighbours and to HOAs/neighbourhood groups within 600 ft.",
+     "source_url": "https://phoenix.municipal.codes/CC/10_ArtXVI",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Phoenix City Code 10-195, 10-196, 10-197(A)-(C), 10-199(A),(E) (Ord. G-7156, 2023; G-7495, 2026)."
+    },
+    "primary_residence": {
+     "value": "Not required in general. Only where the lot has an ADU with a certificate of occupancy issued on or after 14 Sep 2024 must the owner attest to living on the property; state law allows nothing broader.",
+     "source_url": "https://phoenix.municipal.codes/CC/10_ArtXVI",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "10-197(A)(11) notarized residency attestation; A.R.S. 9-500.39(B)(9)."
+    },
+    "zones": {
+     "value": "Allowed wherever a dwelling is allowed: state law bars cities from banning STRs or zoning them differently from other residential property. Event-centre, banquet, retail and other nonresidential uses of an STR are banned.",
+     "source_url": "https://www.azleg.gov/ars/9/00500-39.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 9-500.39(A),(B),(K); Phoenix 10-193 'event center' and 'special event' definitions."
+    },
+    "caps": {
+     "value": "None. State preemption forbids prohibiting STRs or regulating them by classification, use or occupancy, so no count, density or night caps exist. Each unit on a property needs its own permit.",
+     "source_url": "https://www.azleg.gov/ars/9/00500-39.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 9-500.39(A)-(B); Phoenix 10-197(B) separate application per unit."
+    },
+    "max_occupancy": {
+     "value": "No STR-specific guest cap (state preempts occupancy-based STR rules). General dwelling standard in the Neighborhood Preservation Ordinance applies: 250 sq ft for the first two occupants plus 150 sq ft per extra person; children under 13 not counted.",
+     "source_url": "https://phoenix.municipal.codes/CC/39-5",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Phoenix Code 39-5(E) space standard read; its application to STR guests not stated in code."
+    },
+    "hostel_shared": {
+     "value": "STR definition covers owner-occupied homes offered to transients, so renting rooms is possible, but the zoning code caps a single-family dwelling at two guestrooms, each for at most two non-family persons, no cooking. Six or more lodgers is a boarding house needing a use permit outside single-family zones.",
+     "source_url": "https://phoenix.municipal.codes/ZO/608",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "10-193 STR definition; ZO 202 'Guestroom'; ZO 608 note 3 (max two guestrooms) and boarding house row."
+    },
+    "taxes": {
+     "value": "State TPT licence required and its number must appear on ads. Transient lodging (stays under 30 days): state+Maricopa County 7.27%, Phoenix hotel 2.8% plus 3% additional = about 13.07%. Platforms collect the state/county share when facilitated.",
+     "source_url": "https://azdor.gov/business/transaction-privilege-tax/tax-rate-table",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "ADOR rate CSV 11/2026: MAR 025 7.27%; PX 044 2.8% (from 7/2025), PX 144 3%; A.R.S. 42-5042, 42-5070(F)."
+    },
+    "listing_id": {
+     "value": "Yes. Every ad must show the Phoenix STR permit number and a notice that owner, renter and guest may owe up to $2,000 for police response to parties; permit posted within 10 ft of the main entrance. Platforms must require the permit number (fine up to $2,500/day).",
+     "source_url": "https://phoenix.municipal.codes/CC/10_ArtXVI",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "10-201(A)-(D); 2-22(C) party cost recovery $1,000/$1,500/$2,000."
+    },
+    "pending": {
+     "value": "Code amended again in 2026 (Ord. G-7495, ADU residency attestation). State law caps penalties: $500/$1,000/$3,500 or 1-3 nights' rent; suspension up to 12 months after three verified violations. No pending STR litigation or vote found.",
+     "source_url": "https://phoenix.municipal.codes/CC/10_ArtXVI",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "10-197 history note G-7495 (2026); 10-202; A.R.S. 9-500.39(F); negative finding not exhaustive."
+    },
+    "registration": {
+     "value": "Owners of any residential rental must register with the Maricopa County Assessor (owner, address, parcel, year built; out-of-state owners name an in-state agent); unregistered units may not be occupied; city civil penalties up to $150/day. Cities may not run their own rental registration or licensing.",
+     "source_url": "https://www.azleg.gov/ars/33/01902.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 33-1902(A)-(C),(G); 9-1304(B)-(C); Maricopa Assessor Rental Registration page."
+    },
+    "family": {
+     "value": "Family = any number of related persons (blood, marriage, adoption) plus servants, or up to five unrelated persons, living as one housekeeping unit.",
+     "source_url": "https://phoenix.municipal.codes/ZO/202",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Phoenix Zoning Ordinance Sec. 202 'Family' definitions 1 and 2."
+    },
+    "per_bedroom": {
+     "value": "Floor-area rule, not per bedroom: at least 250 sq ft of gross dwelling area for the first two occupants and 150 sq ft per additional occupant; children under 13 excluded.",
+     "source_url": "https://phoenix.municipal.codes/CC/39-5",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Neighborhood Preservation Ordinance 39-5(E) Space and occupancy standards."
+    },
+    "adu": {
+     "value": "Two ADUs allowed with one single-family home (one attached, one detached), a third if one is affordable on a lot of 1 acre+. Size: up to 75% of the house and 1,000 sq ft (lots over 10,000 sq ft: lesser of 3,000 sq ft or 10% of lot). Setbacks 3 ft side/rear. State mandate A.R.S. 9-461.18 applies.",
+     "source_url": "https://phoenix.municipal.codes/ZO/706",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "ZO 608 note 2 (two ADUs, third affordable); ZO 706.A.2-8; A.R.S. 9-461.18(A),(B)."
+    },
+    "shed": {
+     "value": "Accessory structures that are not ADUs have their own setbacks and height limits; living space must meet ADU rules (own sleeping and sanitation, Sec. 706.A). No specific shed-occupancy ban read.",
+     "source_url": "https://phoenix.municipal.codes/ZO/706",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "ZO 706.A vs 706.B accessory structures; ZO 202 ADU definitions."
+    },
+    "tent": {
+     "value": "No explicit private-lot tent rule found. RV parks are the zoning use for tents and similar temporary living quarters, and a tent is not a listed dwelling in residential districts.",
+     "source_url": "https://phoenix.municipal.codes/ZO/202",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "ZO 202 'Recreational Vehicle Park' definition (tents included); 608 residential use table."
+    },
+    "rv": {
+     "value": "Occupied RVs must be in a recreational vehicle park (C-1 to C-3 by special permit, max 20 spaces/acre), except hospital parking; a mobile home may be lived in during home construction only by use permit for up to one year.",
+     "source_url": "https://phoenix.municipal.codes/ZO/701",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "ZO 701 item 8 occupied RV in RV park; 647.A.2.g RV parks."
+    },
+    "thow": {
+     "value": "'Park model' (up to 400 sq ft, on wheels, ANSI) expressly includes tiny homes and is treated with RVs, so a wheeled tiny home is lived in only in an RV park; a tiny home on a foundation can be an ADU.",
+     "source_url": "https://phoenix.municipal.codes/ZO/202",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "ZO 202 'Park Model' and 'Recreational Vehicle Park' definitions; ZO 701 item 8."
+    },
+    "rooming": {
+     "value": "Rooming house = group home. Boarding house (6+ unrelated lodgers paying per room) is not allowed in single-family districts; use permit in multifamily districts, 1,320 ft spacing, 25% lot coverage, 100 sq ft open space per bed, arterial/collector access.",
+     "source_url": "https://phoenix.municipal.codes/ZO/608",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "ZO 202 'Boarding House', 'Rooming House'; ZO 608 use table and note 9."
+    },
+    "coliving": {
+     "value": "Up to five unrelated adults may share a unit as a family; six or more is a boarding house or group home needing a use permit in multifamily zones. A.R.S. 9-462.13 middle-housing mandate (duplex-fourplex near downtown) applies to Phoenix.",
+     "source_url": "https://phoenix.municipal.codes/ZO/202",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "ZO 202 Family; ZO 608 notes 9 and 18; A.R.S. 9-462.13(A); Phoenix implementing text not read."
+    },
+    "hoa_data": {
+     "value": "No state HOA registry. Phoenix keeps a registry of HOAs and neighbourhood associations (STR owners must notify those within 600 ft); declarations are recorded with the Maricopa County Recorder.",
+     "source_url": "https://phoenix.municipal.codes/CC/10_ArtXVI",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Phoenix 10-199(E) HOAs registered with Neighborhood Services; registry itself not downloaded."
+    },
+    "worship_zoning": {
+     "value": "'Church/Place of Worship' is permitted by right in every residential district; accessory uses allowed with conditions. Religious assembly may include rectory, dormitory, school and day care. Housing beyond that needs the district's residential rules.",
+     "source_url": "https://phoenix.municipal.codes/ZO/608",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "ZO 608 use table row Church/Place of Worship 'p' all districts; ZO 202 'Religious Assembly'."
+    }
+   }
+  },
+  "scottsdale": {
+   "name": "Scottsdale",
+   "state": "AZ",
+   "fields": {
+    "deposit": {
+     "value": "Cap of 1.5 months' rent for all security and prepaid rent (tenant may voluntarily prepay more). Within 14 days, excluding weekends and holidays, after move-out and tenant demand, landlord must send itemized deductions and refund; wrongful withholding risks twice the amount withheld.",
+     "source_url": "https://www.azleg.gov/ars/33/01321.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 33-1321(A) 1.5-month cap; (D) 14 business days itemized list; (E) double damages."
+    },
+    "notice": {
+     "value": "Month-to-month: written notice at least 30 days before the periodic rental date named in the notice; week-to-week: 10 days. Either side may give it.",
+     "source_url": "https://www.azleg.gov/ars/33/01375.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 33-1375(A) week-to-week 10 days; (B) month-to-month 30 days before periodic rental date."
+    },
+    "rluipa": {
+     "value": "Federal law: zoning may not substantially burden religious exercise without a compelling reason, must treat religious assemblies on equal terms with secular ones, and may not exclude them outright.",
+     "source_url": "https://www.justice.gov/crt/religious-land-use-and-institutionalized-persons-act",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Federal field already verified; not re-read in this AZ lane."
+    },
+    "yigby": {
+     "value": "No YIGBY law. HB 2815 (2024) and HB 2191 (2025, single-family homes on church land) did not become law; SB 1096 (2026, senior living on religious sites) was prefiled. Current A.R.S. 9-462.15 is an unrelated assisted-living section, so church-land housing needs normal zoning.",
+     "source_url": "https://www.azleg.gov/legtext/57leg/2R/bills/SB1096P.htm",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Read SB1096 prefiled and HB2191 engrossed texts; Title 9 index has no religious-housing section; bill status pages not read."
+    },
+    "hoa_law": {
+     "value": "Planned communities (ch. 16) and condos (ch. 9): owners may rent unless the declaration bans it and must follow its rental-period limits; HOA may only ask tenant names, contacts, lease dates, vehicles; $25 fee cap. Solar devices cannot be banned (33-1816). Listed flags and for-sale/rent signs protected (33-1808, 33-1261). Free records review in 10 business days (33-1805).",
+     "source_url": "https://www.azleg.gov/ars/33/01806-01.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Read 33-1806.01(A),(C),(D); 33-1260.01; 33-1816(A); 33-1808(A),(G); 33-1261(A),(C); 33-1805(A)."
+    },
+    "permit": {
+     "value": "Annual city vacation rental licence ($250) required since 8 Jan 2023, one per dwelling unit; issued within 7 business days. Needs TPT licence, 24-hour emergency contact, background attestations, $500,000 insurance (or platform cover) and written neighbour notice. Operating without one: fine of at least $1,000.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=REVISED_CODEVO1_CH18PUNUPRMA_ARTIXVARESHRMRE",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Scottsdale Code 18-151, 18-152, 18-154, 18-155, 18-173, 18-191 (Ord. 4566, 2022)."
+    },
+    "primary_residence": {
+     "value": "Not required, except an ADU with a certificate of occupancy issued on or after 14 Sep 2024 may be an STR only if the owner lives on the property as a primary residence. Restricted-affordable ADUs may never be STRs.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=VOLII_APXBBAZOOR_ARTVIIGEPR_S7.203VARESHRMRE",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Zoning Ord. 7.203.A.4; 7.902.A.3.c."
+    },
+    "zones": {
+     "value": "Single-family dwellings 'including vacation rental or short-term rental' are permitted in residential districts; state law bars bans. Nonresidential uses (event centre, banquet, retail, sober living, adult business) prohibited.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=VOLII_APXBBAZOOR_ARTVDIRE_S5.102USRE",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Table 5.102 row 9; Code 18-171; A.R.S. 9-500.39(A),(K)."
+    },
+    "caps": {
+     "value": "No numeric or density cap; state law preempts caps. A separate licence is needed for each house or dwelling unit.",
+     "source_url": "https://www.azleg.gov/ars/9/00500-39.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 9-500.39(A)-(B); Scottsdale 18-151(a)."
+    },
+    "max_occupancy": {
+     "value": "Required door notice states occupancy is limited to one family: one to six adults plus their related dependent children (zoning 'family' definition). With ADUs, the whole lot is capped at six adults.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=REVISED_CODEVO1_CH18PUNUPRMA_ARTIXVARESHRMRE",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Code 18-175(h) notice item 9; Zoning Ord. 3.100 Family; 7.904.A.3."
+    },
+    "hostel_shared": {
+     "value": "Not provided for. An STR is a dwelling rented under 30 days; lodging in non-dwelling buildings is 'travel accommodation' (commercial). Occupancy is capped at six adults, and minors may not rent.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=VOLII_APXBBAZOOR_ARTIIIDE",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Zoning 3.100 'Vacation rental', 'Travel accommodation'; Code 18-178 juveniles; no hostel rule found."
+    },
+    "taxes": {
+     "value": "State TPT licence required. Transient lodging: state+Maricopa County 7.27%, Scottsdale 1.7% plus 5% additional hotel/motel tax = about 13.97%. Platforms remit state/county tax for facilitated bookings.",
+     "source_url": "https://azdor.gov/business/transaction-privilege-tax/tax-rate-table",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "ADOR rate CSV 11/2026: MAR 025 7.27%; SC 044 1.7%, SC 144 5%; A.R.S. 42-5042."
+    },
+    "listing_id": {
+     "value": "Yes. Every ad must list the city vacation rental licence number (minimum fine $500). Inside, post a laminated notice with licence number, local contact, banned uses and party rules, plus an egress/safety map.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=REVISED_CODEVO1_CH18PUNUPRMA_ARTIXVARESHRMRE",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Code 18-174; 18-175(d),(h)."
+    },
+    "pending": {
+     "value": "No pending litigation or vote found. Rules added: emergency contact must arrive in person within 1 hour (fines $250-$500), sex-offender check of booker 24 h before stays, juvenile rentals banned (2024), nuisance-party rules in Art. VIII.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=REVISED_CODEVO1_CH18PUNUPRMA_ARTIXVARESHRMRE",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Code 18-172, 18-176, 18-178 (Ord. 4627, 2024); negative finding not exhaustive."
+    },
+    "registration": {
+     "value": "Owners of any residential rental must register with the Maricopa County Assessor; unregistered units may not be occupied; cities may fine but may not run their own rental registry or licence. STRs must also comply with assessor recording.",
+     "source_url": "https://www.azleg.gov/ars/33/01902.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 33-1902(A),(C),(G); 9-1304(B)-(C); Scottsdale 18-170(a)."
+    },
+    "family": {
+     "value": "Family = one to six adults plus their related dependent children living as one housekeeping unit; state-licensed homes for people with developmental disabilities count as a family. 'Group home' = more than six adults sharing without care.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=VOLII_APXBBAZOOR_ARTIIIDE",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Zoning Ord. 3.100 'Family' and 'Group home'."
+    },
+    "per_bedroom": {
+     "value": "No per-bedroom or floor-area occupancy rule found in the property maintenance article; the practical limit is the six-adult family definition (also lot-wide with ADUs).",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=VOLII_APXBBAZOOR_ARTIIIDE",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Code ch. 18 art. III searched; Zoning 3.100 Family; 7.904.A.3; building codes in ch. 31 not read."
+    },
+    "adu": {
+     "value": "One attached and one detached ADU allowed on single-family lots (max two on lots under 1 acre; a third restricted-affordable one on 1 acre+). One may be 75% of the house or 1,000 sq ft, whichever less; others 500 sq ft. Separate meters, no separate sale; six adults total on the lot.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=VOLII_APXBBAZOOR_ARTVIIGEPR_S7.900ACDWUN",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Zoning Ord. 7.902, 7.904.A.1-3 (Ord. 4652, 2024); Table 5.102 row 2."
+    },
+    "shed": {
+     "value": "A guest house is an accessory building for guests, not a dwelling: max half the house's floor area, no separate meter, never rented separately (deed restriction). Full-time living space needs an ADU approval.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=VOLII_APXBBAZOOR_ARTVDIRE_S5.102USRE",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Table 5.102 note 6 guest house; Zoning 3.100 Guest house and ADU definitions."
+    },
+    "tent": {
+     "value": "No tent-living rule found. Land may be used only for listed uses; residential tables list one main dwelling, ADUs and guest houses, not tents.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=VOLII_APXBBAZOOR_ARTVIIGEPR_S7.203VARESHRMRE",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Zoning Ord. 7.300 uses limited to those permitted; Table 5.102; no explicit tent text located."
+    },
+    "rv": {
+     "value": "RVs are vehicles; no zoning use lets people live in one on a residential lot, and only listed uses are allowed. Specific RV-occupancy ban not located.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=VOLII_APXBBAZOOR_ARTIIIDE",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Zoning 3.100 'Vehicle' includes campers and RVs; 7.300; Table 5.102."
+    },
+    "thow": {
+     "value": "Not a listed dwelling type; a tiny home must meet ADU or dwelling rules (own sleeping, kitchen, sanitary facilities, building code). Wheeled units fall under vehicles.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=VOLII_APXBBAZOOR_ARTIIIDE",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Zoning 3.100 'Dwelling unit', 'Accessory Dwelling Unit', 'Vehicle'; no tiny-home text."
+    },
+    "rooming": {
+     "value": "'Rooming house' points to 'boardinghouse', which has no definition in the current code, and group homes of more than six unrelated adults are not listed uses in single-family districts.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=VOLII_APXBBAZOOR_ARTIIIDE",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Zoning 3.100 'Rooming house. See boardinghouse'; Table 5.102 lacks group home."
+    },
+    "coliving": {
+     "value": "Up to six unrelated adults may share a dwelling. Larger groups are 'group homes', not permitted in single-family districts. Middle housing mandate (A.R.S. 9-462.13) applies (Scottsdale over 75,000).",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=VOLII_APXBBAZOOR_ARTIIIDE",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Zoning 3.100 Family, Group home; A.R.S. 9-462.13(A); local middle-housing text not read."
+    },
+    "hoa_data": {
+     "value": "No state HOA registry; HOAs are usually Arizona nonprofit corporations (Corporation Commission filings) and declarations are recorded with the Maricopa County Recorder. No Scottsdale HOA list found.",
+     "source_url": "https://www.azleg.gov/ars/33/01806-01.htm",
+     "verified": false,
+     "checked": "2026-11-24",
+     "evidence": "Background; no registry dataset located this session."
+    },
+    "worship_zoning": {
+     "value": "Place of worship permitted by right in single-family districts with standards: 20,000 sq ft minimum lot, FAR 0.20, 30 ft height (Design Review), collector-or-greater access, lights off 10 pm, no outdoor speakers. Permitted in commercial districts too.",
+     "source_url": "https://library.municode.com/az/scottsdale/codes/code_of_ordinances?nodeId=VOLII_APXBBAZOOR_ARTVDIRE_S5.102USRE",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Table 5.102 row 18 and note 8; Art. XI commercial land use table."
+    }
+   }
+  }
+ },
+ "states": {
+  "AZ": {
+   "name": "Arizona",
+   "fields": {
+    "str_preemption": {
+     "value": "Cities and counties may not ban STRs or regulate them by classification, use or occupancy. They may require a permit (max $250, decision in 7 business days), emergency contact, neighbour notice, licence number on ads, $500,000 insurance, owner residence only for post-9/14/2024 ADUs; fines $500-$3,500 and suspensions up to 12 months.",
+     "source_url": "https://www.azleg.gov/ars/9/00500-39.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 9-500.39(A)-(G),(K); 11-269.17 county twin listed in Title 11 index (not read)."
+    },
+    "rent_control": {
+     "value": "Rent control on private residential property is preempted statewide; cities, including charter cities, may not control rents. Exception: housing owned, financed, insured or subsidised by state or local government.",
+     "source_url": "https://www.azleg.gov/ars/33/01329.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 33-1329(A)-(B)."
+    },
+    "deposit": {
+     "value": "Cap of 1.5 months' rent for all security and prepaid rent (tenant may voluntarily prepay more). Within 14 days, excluding weekends and holidays, after move-out and tenant demand, landlord must send itemized deductions and refund; wrongful withholding risks twice the amount withheld.",
+     "source_url": "https://www.azleg.gov/ars/33/01321.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 33-1321(A) 1.5-month cap; (D) 14 business days itemized list; (E) double damages."
+    },
+    "notice": {
+     "value": "Month-to-month: written notice at least 30 days before the periodic rental date named in the notice; week-to-week: 10 days. Either side may give it.",
+     "source_url": "https://www.azleg.gov/ars/33/01375.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 33-1375(A) week-to-week 10 days; (B) month-to-month 30 days before periodic rental date."
+    },
+    "ltr_registration": {
+     "value": "Yes, via county assessor: every residential rental owner must keep owner, parcel and year-built data with the assessor (out-of-state owners name an in-state agent; fee max $10); unregistered rentals may not be occupied. Cities and counties may not adopt their own rental registration or licensing.",
+     "source_url": "https://www.azleg.gov/ars/33/01902.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 33-1902(A),(B),(C),(I); 9-1304(B)-(C); 11-1704(B)-(C)."
+    },
+    "source_of_income": {
+     "value": "State fair housing law does not list source of income. No state preemption found; Phoenix protects source of income (incl. vouchers) by city ordinance since 2023, Scottsdale does not.",
+     "source_url": "https://www.azleg.gov/ars/41/01491-14.htm",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "A.R.S. 41-1491.14 protected classes; Phoenix Code 18-11 et seq. (Ord. G-7086); preemption search not exhaustive."
+    },
+    "occupancy_law": {
+     "value": "Cities over 75,000 must allow one attached and one detached ADU by right, rentable long-term, no owner-occupancy or parking rules (9-461.18); duplex-fourplex/townhomes near downtown (9-462.13); housing on obsolete commercial sites in cities 150,000+ (9-462.10). Assisted living homes of 10 or fewer cannot be capped (9-462.15).",
+     "source_url": "https://www.azleg.gov/ars/9/00461-18.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Read A.R.S. 9-461.18(A),(B),(H); 9-462.13(A),(B); 9-462.10(A); 9-462.15(A)."
+    },
+    "hoa_law": {
+     "value": "Planned communities (ch. 16) and condos (ch. 9): owners may rent unless the declaration bans it and must follow its rental-period limits; HOA may only ask tenant names, contacts, lease dates, vehicles; $25 fee cap. Solar devices cannot be banned (33-1816). Listed flags and for-sale/rent signs protected (33-1808, 33-1261). Free records review in 10 business days (33-1805).",
+     "source_url": "https://www.azleg.gov/ars/33/01806-01.htm",
+     "verified": true,
+     "checked": "2026-11-24",
+     "evidence": "Read 33-1806.01(A),(C),(D); 33-1260.01; 33-1816(A); 33-1808(A),(G); 33-1261(A),(C); 33-1805(A)."
+    },
+    "hoa_registry": {
+     "value": "No statewide HOA registry found. Associations are typically nonprofit corporations filed with the Arizona Corporation Commission; declarations are recorded by county recorders. Owners must get free records access within 10 business days.",
+     "source_url": "https://www.azleg.gov/ars/33/01805.htm",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Negative finding; A.R.S. 33-1805(A) records access read."
+    },
+    "yigby": {
+     "value": "No YIGBY law. HB 2815 (2024) and HB 2191 (2025, single-family homes on church land) did not become law; SB 1096 (2026, senior living on religious sites) was prefiled. Current A.R.S. 9-462.15 is an unrelated assisted-living section, so church-land housing needs normal zoning.",
+     "source_url": "https://www.azleg.gov/legtext/57leg/2R/bills/SB1096P.htm",
+     "verified": "partial",
+     "checked": "2026-11-24",
+     "evidence": "Read SB1096 prefiled and HB2191 engrossed texts; Title 9 index has no religious-housing section; bill status pages not read."
+    }
+   }
+  }
+ }
+}

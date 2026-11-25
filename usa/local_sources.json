@@ -1,0 +1,145 @@
+{
+ "_doc": "Per-city local datasets for usa/local_flags.py. Green-only: every dataset here has an explicit licence that allows commercial use and redistribution (CC0 / CC BY / CC BY-SA / Public Domain / PDDL), checked in usa/research/licence_registry_local.json (2026-11-24); commercial_ok is 'yes' for all. Grey or red sources (disclaimer only, no stated terms, reserved rights) are not used and are named only in 'not_open'. Every reader in local_flags.py whitelists fields: names, phones, emails, agents, hosts, owners, grantors/grantees are never read. 'not_open' lists what was looked for and why it is not used. Sources: usa/research/state_local_realestate.json, rentals.json, hoa_occupancy.json (all checked 2026-11-24).",
+ "cities": {
+  "minneapolis": {
+   "datasets": [
+    {"id": "mpls_sales", "field": "sales", "kind": "arcgis", "geom": "table", "match": "address",
+     "url": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Property_Sales_2021_to_2025/FeatureServer/0",
+     "addr_field": "FORMATTED_ADDRESS", "name": "City of Minneapolis Property Sales 2021-2025 (MN eCRV)", "licence": "CC0 1.0 (City of Minneapolis waiver)", "commercial_ok": "yes"},
+    {"id": "mpls_rental", "field": "rental_license", "kind": "arcgis", "geom": "point", "match": "spatial",
+     "url": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Rental_Licenses/FeatureServer/0",
+     "name": "City of Minneapolis Rental Licenses (2016 snapshot; the current Active_Rental_Licenses service returns 'Invalid URL')", "licence": "CC BY-SA 4.0 (City of Minneapolis Rental Licenses (Archive) item; attribute City of Minneapolis, share-alike)", "commercial_ok": "yes"},
+    {"id": "mpls_cases", "field": "code_cases_5y", "kind": "arcgis", "geom": "point", "match": "spatial",
+     "url": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/CaseInspections/FeatureServer/0",
+     "name": "City of Minneapolis code violation case inspections", "licence": "CC0 1.0 (City of Minneapolis waiver)", "commercial_ok": "yes"}
+   ],
+   "not_open": {"str_license": "Minneapolis STR certificates: single-address Tableau lookup only, no bulk data",
+                "hoa": "no HOA layer for Hennepin County (neighbourhood organisations are not HOAs)",
+                "tax_abatement": "no open per-parcel abatement layer found",
+                "vacant_or_condemned": "Vacant Building Registry and Condemned by Boarding layers carry no licence (grey) - not used"}
+  },
+  "saint_paul": {
+   "datasets": [
+    {"id": "stp_vacant", "field": "vacant_or_condemned", "kind": "arcgis", "geom": "point", "match": "spatial",
+     "url": "https://services1.arcgis.com/9meaaHE3uiba0zr8/arcgis/rest/services/VacantBuildings/FeatureServer/0",
+     "name": "City of Saint Paul Vacant Buildings", "licence": "Public Domain (City of Saint Paul open data)", "commercial_ok": "yes"}
+   ],
+   "not_open": {"str_license": "no open STR licence list", "hoa": "no HOA layer (District Councils are not HOAs)",
+                "code_cases_5y": "no open per-address code case feed beyond 311", "sales": "MN eCRV statewide search is not bulk-open; Ramsey sales not open",
+                "rental_license": "Fire Certificate of Occupancy layer states no licence (grey) - not used"}
+  },
+  "dallas": {
+   "datasets": [],
+   "not_open": {"rental_license": "Dallas rental registration list not published", "str_license": "Dallas STR registration enjoined; only a 2023 aggregate snapshot exists",
+                "code_cases_5y": "Dallas Code Violation Activities (hqes-3ct4, Public Domain) has no address or coordinates (joins only via 311 SR id)",
+                "sales": "Texas is a non-disclosure state", "vacant_or_condemned": "no open vacant registry found",
+                "hoa": "City HOA/NA registry has only an accuracy disclaimer (grey) - not used"}
+  },
+  "austin": {
+   "datasets": [
+    {"id": "aus_rop", "field": "rental_license", "kind": "socrata", "geom": "point", "match": "spatial",
+     "domain": "data.austintexas.gov", "dataset": "86z9-i27i",
+     "name": "City of Austin Repeat Offender Program rental registrations", "licence": "Public Domain U.S. Government", "commercial_ok": "yes"},
+    {"id": "aus_str", "field": "str_license", "kind": "socrata", "geom": "table", "match": "hundred_block",
+     "domain": "data.austintexas.gov", "dataset": "2fah-4p7e", "addr_field": "prop_address",
+     "name": "City of Austin Short Term Rental Locations (published by hundred-block only)", "licence": "Public Domain U.S. Government", "commercial_ok": "yes"},
+    {"id": "aus_code", "field": "code_cases_5y", "kind": "socrata", "geom": "table", "match": "address",
+     "domain": "data.austintexas.gov", "dataset": "6wtj-zbtb", "addr_field": "address", "date_field": "opened_date",
+     "name": "City of Austin Code Complaint Cases", "licence": "Public Domain U.S. Government", "commercial_ok": "yes"}
+   ],
+   "not_open": {"sales": "Texas is a non-disclosure state", "vacant_or_condemned": "no open vacant registry found",
+                "tax_abatement": "no open per-parcel abatement list",
+                "hoa": "city subdivision boundaries carry a disclaimer only (grey) - not used"}
+  },
+  "denver": {
+   "datasets": [
+    {"id": "den_rental", "field": "rental_license", "kind": "arcgis", "geom": "table", "match": "address",
+     "url": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_residential_rental_property_active_licenses/FeatureServer/52",
+     "addr_field": "ADDRESS", "name": "City and County of Denver Residential Rental Property Active Licenses", "licence": "CC BY 3.0 (Denver Open Data Catalog terms; credit City of Denver Open Data Catalog)", "commercial_ok": "yes"},
+    {"id": "den_str", "field": "str_license", "kind": "arcgis", "geom": "table", "match": "address",
+     "url": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_short_term_rental_licenses_active_or_pending_renewal/FeatureServer/54",
+     "addr_field": "ADDRESS", "name": "City and County of Denver Short Term Rental Licenses (active or pending renewal)", "licence": "CC BY 3.0 (Denver Open Data Catalog terms; credit City of Denver Open Data Catalog)", "commercial_ok": "yes"}
+   ],
+   "not_open": {"hoa": "no HOA layer for Denver (RNOs are not HOAs)", "vacant_or_condemned": "no open vacant registry found",
+                "code_cases_5y": "Denver code cases are only in the rolling 311 layer (already in h.cases311)", "sales": "Denver sales not wired (assessor has last sale)"}
+  },
+  "boulder": {
+   "datasets": [
+    {"id": "bou_rental", "field": "rental_license", "kind": "arcgis", "geom": "polygon", "match": "spatial",
+     "url": "https://gis.bouldercolorado.gov/ags_svr1/rest/services/plan/RentalHousingLicenses/MapServer/0",
+     "name": "City of Boulder Rental Housing Licenses (incl. short-term rental types)", "licence": "CC0 (City of Boulder open data)", "commercial_ok": "yes"},
+    {"id": "bou_hoa", "field": "hoa", "kind": "arcgis", "geom": "polygon", "match": "area",
+     "url": "https://maps.bouldercounty.org/arcgis/rest/services/PLANNING/LUC_PlattedAreas/MapServer/0",
+     "name": "Boulder County Subdivisions and Other Platted Areas (HoaArcRef; unincorporated county only)", "licence": "CC BY 4.0 (Boulder County)", "commercial_ok": "yes"}
+   ],
+   "not_open": {"sales": "Boulder County Assessor bulk Sales.csv: page says 'developed solely for internal use' while the AGOL item says CC BY 4.0 - licence not clean, not used",
+                "vacant_or_condemned": "no open vacant registry found", "code_cases_5y": "Boulder code cases come through h.cases311 (usa/city_enrich.py)"}
+  },
+  "columbus": {
+   "datasets": [
+    {"id": "col_code", "field": "code_cases_5y", "kind": "arcgis", "geom": "point", "match": "spatial",
+     "url": "https://maps2.columbus.gov/arcgis/rest/services/Schemas/BuildingZoning/MapServer/23",
+     "name": "City of Columbus code enforcement cases", "licence": "CC0 (City of Columbus open data)", "commercial_ok": "yes"},
+    {"id": "col_subdiv", "field": "hoa", "kind": "arcgis", "geom": "polygon", "match": "area",
+     "url": "https://maps2.columbus.gov/arcgis/rest/services/Schemas/PublicService/MapServer/10",
+     "name": "City of Columbus Subdivisions (plats)", "licence": "Public domain / CC0 (City of Columbus open data)", "commercial_ok": "yes"},
+    {"id": "col_tif", "field": "tax_abatement", "kind": "arcgis", "geom": "polygon", "match": "area",
+     "url": "https://maps2.columbus.gov/arcgis/rest/services/Schemas/Development/MapServer/23",
+     "name": "City of Columbus Tax Increment Financing Areas", "licence": "Public domain / CC0 (City of Columbus open data)", "commercial_ok": "yes"}
+   ],
+   "not_open": {"rental_license": "Ohio R.C. 5323 rental registration is held by the county auditor; no open list", "str_license": "Columbus STR licence layer is a referer-locked proxy (HTTP 403)",
+                "vacant_or_condemned": "no open vacant registry found",
+                "sales": "Franklin County Auditor sale points carry a disclaimer only (grey) - not used",
+                "condo": "Franklin County Auditor Subdivision & Condominium Boundaries removed (owner: no clear legal standing - public-domain note only on the Auditor map item, service shows a disclaimer); HOA = City of Columbus CC0 plats only"}
+  },
+  "cincinnati": {
+   "datasets": [
+    {"id": "cin_vacant", "field": "vacant_or_condemned", "kind": "socrata", "geom": "point", "match": "spatial",
+     "domain": "data.cincinnati-oh.gov", "dataset": "w3jp-dfxy",
+     "name": "City of Cincinnati Vacant & Foreclosed Property Registration", "licence": "Public Domain (data.cincinnati-oh.gov)", "commercial_ok": "yes"},
+    {"id": "cin_code", "field": "code_cases_5y", "kind": "socrata", "geom": "table", "match": "address",
+     "domain": "data.cincinnati-oh.gov", "dataset": "cncm-znd6", "addr_field": "full_address", "date_field": "entered_date",
+     "name": "City of Cincinnati Code Enforcement", "licence": "Public Domain (data.cincinnati-oh.gov)", "commercial_ok": "yes"},
+    {"id": "cin_abate", "field": "tax_abatement", "kind": "socrata", "geom": "point", "match": "spatial",
+     "domain": "data.cincinnati-oh.gov", "dataset": "6ck4-ukva",
+     "name": "City of Cincinnati Residential Tax Abatements (CRA)", "licence": "Public Domain (data.cincinnati-oh.gov)", "commercial_ok": "yes"},
+    {"id": "cin_subdiv", "field": "hoa", "kind": "arcgis", "geom": "polygon", "match": "area",
+     "url": "https://cagisonline.hamilton-co.org/arcgis/rest/services/HCE/Cadastral/MapServer/3",
+     "name": "Hamilton County Subdivision Boundaries (City of Cincinnati Open Data rynu-bywd; CAGIS access point)", "licence": "Public Domain (data.cincinnati-oh.gov listing rynu-bywd)", "commercial_ok": "yes"}
+   ],
+   "not_open": {"rental_license": "no open rental registry", "str_license": "Cincinnati STR registrations not published as data",
+                "sales": "Hamilton County Auditor transfers: no bulk open licence (assessor already gives last sale)"}
+  },
+  "tulsa": {
+   "datasets": [],
+   "not_open": {"str_license": "Tulsa STR layer is a referer-locked utility.arcgis.com proxy (HTTP 403)",
+                "code_cases_5y": "Tulsa code enforcement layer is a referer-locked proxy (HTTP 403)",
+                "rental_license": "no rental registry", "vacant_or_condemned": "no open vacant registry found",
+                "hoa": "Tulsa County subdivisions state no licence (grey) - not used"}
+  },
+  "kansas_city": {
+   "datasets": [
+    {"id": "kc_danger", "field": "dangerous_building", "kind": "socrata", "geom": "point", "match": "spatial",
+     "domain": "data.kcmo.org", "dataset": "ax3m-jhxx",
+     "name": "KCMO Dangerous Buildings List", "licence": "Public Domain (data.kcmo.org)", "commercial_ok": "yes"},
+    {"id": "kc_viol", "field": "code_cases_5y", "kind": "socrata", "geom": "table", "match": "address",
+     "domain": "data.kcmo.org", "dataset": "vq3e-m9ge", "addr_field": "street_address", "date_field": "date_found",
+     "name": "KCMO EnerGov Neighborhood Preservation violations", "licence": "Public Domain U.S. Government (data.kcmo.org)", "commercial_ok": "yes"}
+   ],
+   "not_open": {"rental_license": "KCMO Healthy Homes rental permits not published as data", "sales": "Missouri sales are not disclosed in open data",
+                "str_license": "KCMO GIS STR permits: disclaimer only, city reserves IP (grey) - not used",
+                "hoa": "KCMO GIS homes associations: disclaimer only (grey) - not used",
+                "vacant_parcels": "KCMO GIS vacant parcels: disclaimer only (grey) - not used"}
+  },
+  "huntsville": {
+   "datasets": [],
+   "not_open": {"rental_license": "no rental registry", "str_license": "STR business licences: dashboards only", "hoa": "no HOA layer found for Madison County",
+                "code_cases_5y": "no open code case feed", "vacant_or_condemned": "no open vacant registry", "sales": "Alabama sales not open"}
+  },
+  "birmingham": {
+   "datasets": [],
+   "not_open": {"rental_license": "no rental registry", "str_license": "no STR ordinance yet", "hoa": "no HOA layer found for Jefferson County",
+                "vacant_or_condemned": "Birmingham 'Condemnation Notifications' covers only Bankhead Towers and has no licence", "code_cases_5y": "no open code case feed", "sales": "Alabama sales not open"}
+  }
+ }
+}
