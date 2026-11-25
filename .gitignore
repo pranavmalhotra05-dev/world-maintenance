@@ -1,0 +1,38 @@
+# environments
+.venv/
+__pycache__/
+*.pyc
+
+# downloaded and generated data (rebuild with the scripts)
+data/
+web/data/
+web/*/data/
+*.laz
+*.las
+*.npz
+*.parquet
+*.zip
+*.grib2
+*.gz
+
+# local / editor
+.claude/
+.vscode/
+.idea/
+*.log
+Thumbs.db
+.DS_Store
+
+# USA build: per-block data
+web/usa/blocks/
+usa/_cache/
+
+# local API tokens (never commit)
+usa/local_secrets.json
+
+# packed publish copy and large generated web data (rebuild with usa/pack_site.py, usa/metro_build.py, usa/lidar_boundaries.py)
+dist/
+web/usa/metros/*/
+web/lidar/boundaries/
+*.tmp
+*.lock
