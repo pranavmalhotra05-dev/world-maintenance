@@ -1,0 +1,112 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Maintenance</title>
+<link rel="icon" href="data:,">
+<meta name="claude:viewport-fit-sides" content="cover">
+<!-- One globe, one canvas: dot globe (GlobeView) -> county radar -> tracts -> metro buildings -> USGS LiDAR -> built blocks -> walk,
+     all loaded lazily by what is in view. URL: ?lat=&lon=&z=&pitch=&bearing=&block=<slug>&house=<id>&area=county:<fips>&panel=catalog -->
+<script src="../usa/pack.js"></script>
+<script src="https://unpkg.com/deck.gl@9.1.14/dist.min.js"></script>
+<script src="../usa/theme.js"></script>
+<script>{ const t = new URLSearchParams(location.search).get("theme"); if (t && window.Themes) Themes.set(t); }</script>
+<link rel="stylesheet" href="block-panel.css">
+<link rel="stylesheet" href="ui.css">
+
+<div class="stage">
+  <canvas id="sky"></canvas>
+  <div id="deck"></div>
+</div>
+
+<aside class="panel side" id="side" aria-label="Controls">
+  <div class="sidehead">
+    <div>
+      <div class="lbl">World Maintenance · Open Source Intelligence</div>
+      <h1>World <b>Maintenance</b></h1>
+    </div>
+    <button class="icon" id="collapse" aria-label="Collapse panel" title="Collapse panel">‹</button>
+  </div>
+  <div class="crumb" id="crumb"></div>
+  <div class="srch">
+    <input id="q" type="search" placeholder="Address, county, state or lat, lon" autocomplete="off" aria-label="Search" aria-controls="results">
+    <ul class="results" id="results" hidden></ul>
+  </div>
+
+  <details id="secGlobe" data-sec="globe" open>
+    <summary>Globe &amp; sky</summary>
+    <div class="tg">
+      <label><input type="checkbox" id="reliefOn" checked> Relief ×30</label>
+      <label><input type="checkbox" id="sunOn" checked> Sunlight</label>
+      <label><input type="checkbox" id="eptOn" checked> 3DEP LiDAR glow</label>
+      <label><input type="checkbox" id="statesOn" checked> State lines</label>
+      <label><input type="checkbox" id="texOn"> NASA texture</label>
+      <label><input type="checkbox" id="spinOn"> Spin</label>
+      <label><input type="checkbox" id="pinsOn" checked> Block pins</label>
+      <label><input type="checkbox" id="starsOn" checked> Stars</label>
+    </div>
+    <div class="ctl"><span class="lbl">Time · sun, night lights and stars</span>
+      <div class="time"><input type="date" id="day" aria-label="Date (UTC)"><button class="chip" id="now">NOW</button>
+        <input type="range" id="tod" min="0" max="1439" step="5" aria-label="Time of day (UTC)"><span class="t" id="tlabel"></span></div>
+    </div>
+  </details>
+
+  <details id="secRadar" data-sec="radar">
+    <summary>County radar</summary>
+    <label class="ctl"><span class="lbl">Colour by</span><select id="metric"></select></label>
+    <div class="tg">
+      <label><input type="checkbox" id="ozOn"> OZ tracts <span style="color:#ff4fa8">■</span><span style="color:#ffb3d9">□</span></label>
+      <label><input type="checkbox" id="tractsOn" checked> Tracts (zoom 7+)</label>
+    </div>
+    <div class="legend" id="legend"></div>
+  </details>
+
+  <details id="secStreet" data-sec="street">
+    <summary>LiDAR · blocks · street</summary>
+    <div class="row2">
+      <label class="ctl"><span class="lbl">LiDAR colour</span><select id="eptColor"></select></label>
+      <label class="ctl" id="mmetricRow" hidden><span class="lbl">Buildings by</span><select id="mmetric"></select></label>
+    </div>
+    <div class="tg">
+      <label><input type="checkbox" id="clipOn"> Clip LiDAR to county</label>
+      <label><input type="checkbox" id="bldgOn" checked> Metro buildings</label>
+    </div>
+    <div class="ctl"><button class="chip wide" id="walkBtn">◆ WALK HERE (W) · arrows move, drag looks, Esc exits</button></div>
+    <div class="stats" id="eptStats"></div>
+    <div class="lbl" style="margin-top:8px">Built blocks nearby</div>
+    <div class="blist" id="blist"></div>
+  </details>
+
+  <details id="secCat" data-sec="catalog">
+    <summary>Sources &amp; licences</summary>
+    <div class="note">Every data source we checked, with its licence verdict. Only green (commercial use explicit) sources are used in the app.</div>
+    <button class="chip wide" id="catOpen">OPEN THE SOURCES &amp; LICENCES PANEL</button>
+  </details>
+
+  <div class="ctl" id="themePick"></div>
+  <div class="credits" id="credits"></div>
+  <div class="status"><span class="live">ONLINE</span> <span id="status">loading dots…</span> <span id="fps" class="mono"></span></div>
+</aside>
+<button class="panel icon reopen" id="reopen" aria-label="Open panel" hidden>☰</button>
+
+<aside class="panel card" id="card" hidden aria-live="polite"></aside>
+
+<section class="panel catalog" id="catalog" hidden aria-label="Sources and licences">
+  <button class="x" id="catX" aria-label="Close">×</button>
+  <div class="lbl">Open Property Intelligence Catalog</div>
+  <h3>Sources &amp; licences</h3>
+  <p class="note"><b>Green-only policy:</b> only permanently free data whose terms explicitly allow commercial use. Rows marked "Excluded — terms not explicit" stay listed until their terms are re-checked. Rental and HOA rules are on the <a href="../usa/rules.html" target="_blank" rel="noopener">rules page</a>.</p>
+  <p class="totals" id="catTotals"></p>
+  <div class="filters" id="catFilters">
+    <button data-f="all" aria-pressed="true">All</button><button data-f="in" aria-pressed="false">In use</button><button data-f="ready" aria-pressed="false">Ready</button><button data-f="key" aria-pressed="false">Needs key</button><button data-f="no" aria-pressed="false">Excluded</button><button data-f="live" aria-pressed="false">Live / daily</button><button data-f="comm" aria-pressed="false">Green only</button>
+    <input id="catQ" type="search" placeholder="Search sources…" aria-label="Search sources"><span class="count" id="catCount"></span>
+  </div>
+  <div id="catBody" class="catbody"></div>
+</section>
+
+<div class="panel hint" id="hint" hidden></div>
+<div class="panel walkhud" id="walkHud" hidden><b>WALK</b> · ↑↓ / W S walk · ←→ turn · A D step · Shift run · drag to look · <b>Esc</b> back to map · eye 1.7 m <span id="walkInfo"></span></div>
+<div class="boot" id="boot">SAMPLING THE PLANET…</div>
+
+<script src="overview.js"></script>
+<script src="catalog.js"></script>
+<script src="main.js"></script>

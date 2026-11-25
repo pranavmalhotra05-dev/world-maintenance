@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Block layer test</title>
+<script src="../usa/pack.js"></script>
+<script src="https://unpkg.com/deck.gl@9.1.14/dist.min.js"></script>
+<link rel="stylesheet" href="block-panel.css">
+<style>
+:root { color-scheme: dark; --void: #05070b; --glass: rgba(9,13,20,.88); --edge: rgba(120,190,255,.22); --ink: #e2ebf5; --dim: #8b9bb0; --cyan: #4fdcff; }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; background: var(--void); color: var(--ink); font: 13px/1.45 "Segoe UI", sans-serif; }
+#map { position: fixed; inset: 0; }
+.box { position: fixed; z-index: 2; background: var(--glass); border: 1px solid var(--edge); border-radius: 6px; backdrop-filter: blur(8px); padding: 10px 12px; }
+#ctl { left: 12px; top: 12px; width: 300px; max-width: calc(100% - 24px); display: flex; flex-direction: column; gap: 8px; max-height: calc(100% - 24px); overflow: auto; }
+#side { right: 12px; top: 12px; width: 370px; max-width: calc(100% - 24px); max-height: calc(100% - 24px); overflow: auto; }
+#side:empty { display: none; }
+select, button { background: rgba(0,0,0,.4); color: var(--ink); border: 1px solid var(--edge); border-radius: 3px; padding: 4px 7px; font: 12px Consolas, monospace; }
+button { cursor: pointer; } button:hover { border-color: var(--cyan); }
+.row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.tg { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 8px; font-size: 12px; }
+.tg label { display: flex; gap: 5px; align-items: center; cursor: pointer; }
+#status { font: 11px Consolas, monospace; color: var(--dim); white-space: pre-wrap; }
+h1 { margin: 0; font: 700 16px sans-serif; letter-spacing: .04em; }
+@media (max-width: 760px) { #side { top: auto; bottom: 12px; left: 12px; width: auto; max-height: 50%; } #ctl { max-height: 40%; } }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div class="box" id="ctl">
+  <h1>Block layer test</h1>
+  <div class="row"><select id="sel" aria-label="Block"></select><button id="fly">Fly to</button><button id="out">Zoom out</button></div>
+  <div class="tg" id="tg"></div>
+  <div class="row"><label>Points <select id="color"><option value="class">what it hit</option><option value="height">height</option><option value="intensity">intensity</option><option value="dev">roof deviation</option><option value="photo">photo</option></select></label>
+    <label>z <select id="zmode"><option>absolute</option><option>relative</option></select></label></div>
+  <div id="status"></div>
+</div>
+<div class="box bm-panel" id="side"></div>
+<script type="module">
+import { BlockManager } from "./block.js";
+const $ = (id) => document.getElementById(id);
+const q = new URLSearchParams(location.search), SLUG = q.get("block") || "boulder-co";
+let deckgl, view = { longitude: -98, latitude: 39, zoom: 4, pitch: 0, bearing: 0 }, panelKey = "";
+const bm = (window.bm = new BlockManager({ onUpdate, onSelectHouse: (s) => console.debug("selected", s && s.slug, s && s.houseId) }));
+bm.bindPanel($("side"));
+function render() {
+  // basemap: USGS National Map imagery tiles (public domain)
+  // flat test basemap drawn at the camera-target height (block ground in absolute mode, 0 in relative mode), slightly under the LiDAR ground
+  const bz = (view.position?.[2] || 0) - 1;
+  const base = new deck.TileLayer({ id: "usgs", data: "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}", minZoom: 0, maxZoom: 16, tileSize: 256,
+    updateTriggers: { renderSubLayers: bz },
+    renderSubLayers: (p) => { const { west, south, east, north } = p.tile.bbox; return new deck.BitmapLayer(p, { id: p.id + "-" + Math.round(bz), data: null, image: p.data, bounds: [[west, south, bz], [west, north, bz], [east, north, bz], [east, south, bz]], opacity: 0.6 }); } });
+  const marks = new deck.ScatterplotLayer({ id: "block-marks", data: bm.list(), getPosition: (b) => [b.lon, b.lat], getRadius: 6, radiusUnits: "pixels", getFillColor: (b) => b.state_ === "ready" ? [108, 220, 140] : b.state_ === "loading" ? [255, 184, 77] : [79, 220, 255], stroked: true, getLineColor: [5, 7, 11], lineWidthMinPixels: 1, pickable: true, visible: view.zoom < 15, updateTriggers: { getFillColor: Date.now() } });
+  deckgl.setProps({ layers: [base, marks, ...bm.layers()] });
+}
+function panel() { const h = bm.panelHtml(); if (h !== panelKey) { $("side").innerHTML = h; panelKey = h; } }
+function status() {
+  const l = bm.list().filter((b) => b.state_ !== "idle");
+  $("status").textContent = `zoom ${view.zoom.toFixed(2)} · loaded ${l.map((b) => b.slug + ":" + b.state_).join(", ") || "none"}` + (l.length ? "\n" + l.map((b) => { const v = bm.verticalRef(b.slug); return v ? `${b.slug} z_base ${v.zBase.toFixed(2)} offset ${v.zOffset.toFixed(2)}` : ""; }).filter(Boolean).join("\n") : "");
+}
+// absolute z: block geometry sits at true LiDAR elevation, so the camera target is lifted to the block ground (viewState.position z)
+function lift() { if (bm.zMode !== "absolute") { if (view.position) { view = { ...view, position: [0, 0, 0] }; deckgl.setProps({ initialViewState: view }); } return; }
+  const g = bm.groundAt(view.longitude, view.latitude) ?? (bm.list().find((b) => b.state_ === "ready") && bm.verticalRef(bm.list().find((b) => b.state_ === "ready").slug)?.zBase);
+  if (g != null && Math.abs((view.position?.[2] || 0) - g) > 0.5) { view = { ...view, position: [0, 0, g] }; deckgl.setProps({ initialViewState: view }); } }
+function onUpdate(e) { if (!deckgl) return; if (e.type === "load") lift(); render(); if (e.type !== "frame") { panel(); status(); } }
+deckgl = window.deckgl = new deck.Deck({ parent: $("map"), views: new deck.MapView({ repeat: false }), controller: true, initialViewState: view,
+  onViewStateChange: ({ viewState }) => { view = viewState; bm.update({ ...viewState, width: innerWidth, height: innerHeight }); status(); },
+  onClick: (info) => { if (info.layer?.id === "block-marks") { fly(info.object.slug); return; } const r = bm.pick(info); if (!r && !info.object) bm.clear(); },
+  getTooltip: (info) => { const t = bm.tooltip(info); return t ? { text: t, style: { background: "rgba(9,13,20,.92)", color: "#e2ebf5", font: "11.5px Consolas, monospace", maxWidth: "320px" } } : info.layer?.id === "block-marks" ? { text: info.object.name + " · " + info.object.houses + " houses" } : null; } });
+function fly(slug) { const t = bm.flyTarget(slug); if (!t) return; deckgl.setProps({ initialViewState: { ...t, transitionDuration: 2500, transitionInterpolator: new deck.FlyToInterpolator() } }); }
+bm.ready.then(() => {
+  $("sel").innerHTML = bm.list().map((b) => `<option value="${b.slug}" ${b.slug === SLUG ? "selected" : ""}>${b.slug} (${b.houses ?? "?"})</option>`).join("");
+  render();
+  const t = bm.flyTarget(SLUG); if (t) { view = { ...t }; deckgl.setProps({ initialViewState: view }); bm.update({ ...view, width: innerWidth, height: innerHeight }); }
+  status();
+});
+$("fly").onclick = () => fly($("sel").value);
+$("sel").onchange = () => { history.replaceState(null, "", "?block=" + encodeURIComponent($("sel").value)); fly($("sel").value); };
+$("out").onclick = () => deckgl.setProps({ initialViewState: { ...view, zoom: 11, pitch: 0, transitionDuration: 1500, transitionInterpolator: new deck.FlyToInterpolator() } });
+const TOG = [["ground", "Ground pts"], ["house", "House pts"], ["veg", "Tree pts"], ["other", "Other pts"], ["model", "Roof models"], ["photo", "Photo surface"], ["streets", "Streets"], ["furniture", "Furniture"],
+  ["parcels", "Parcels"], ["hoa", "HOA"], ["trees", "Tree IDs"], ["thermal", "Thermal drape"], ["permits", "Permits"], ["c311", "311"], ["streetPhotos", "Street photos"]];
+$("tg").innerHTML = TOG.map(([k, l]) => `<label><input type="checkbox" data-k="${k}" ${bm.options[k] ? "checked" : ""}> ${l}</label>`).join("");
+$("tg").onchange = (e) => { const k = e.target.dataset.k; if (k) bm.setOptions({ [k]: e.target.checked }); };
+$("color").onchange = (e) => bm.setOptions({ color: e.target.value });
+$("zmode").onchange = (e) => { bm.zMode = e.target.value; lift(); render(); status(); };
+</script>
+</body>
+</html>

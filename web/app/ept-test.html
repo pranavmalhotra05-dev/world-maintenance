@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EPT Stream Test</title>
+<style>
+  :root { --bg:#05070b; --fg:#d8e2ee; --mut:#7d8a99; --panel:rgba(8,12,18,.82); --line:rgba(255,255,255,.12); }
+  html,body { margin:0; height:100%; background:var(--bg); color:var(--fg); font:12px/1.4 system-ui,-apple-system,Segoe UI,sans-serif; overflow:hidden; }
+  #map { position:absolute; inset:0; }
+  #hud { position:absolute; left:12px; top:12px; background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px 12px; min-width:230px; max-width:calc(100vw - 48px); }
+  #hud b { font-weight:600; }
+  #hud .row { display:flex; gap:8px; align-items:center; margin-top:6px; flex-wrap:wrap; }
+  #stats { font-family:ui-monospace,Consolas,monospace; white-space:pre; color:var(--fg); margin-top:6px; }
+  select,button { background:#111823; color:var(--fg); border:1px solid var(--line); border-radius:5px; padding:3px 6px; font:inherit; }
+  #credit { position:absolute; right:8px; bottom:6px; color:var(--mut); font-size:11px; background:var(--panel); padding:2px 6px; border-radius:4px; }
+</style>
+<script src="https://unpkg.com/deck.gl@9.1.14/dist.min.js"></script>
+</head>
+<body>
+<div id="map"></div>
+<div id="hud">
+  <b>EPT stream test</b>
+  <div class="row">
+    <label>Color <select id="mode"><option>elevation</option><option>classification</option><option>intensity</option><option>rgb</option></select></label>
+    <label>Height <select id="zmode"><option value="auto">on map (datum)</option><option value="0">absolute</option></select></label>
+  </div>
+  <div class="row"><button id="clip">Clip 200 m</button><button id="ground">groundAt centre</button></div>
+  <div id="stats"></div>
+</div>
+<div id="credit">LiDAR: USGS 3D Elevation Program (public domain) · Imagery: USGS The National Map</div>
+<script type="module">
+import { EptManager, EPT_CREDIT } from './ept.js';
+window.longTasks = [];
+try { new PerformanceObserver((l) => { for (const e of l.getEntries()) window.longTasks.push(Math.round(e.duration)); }).observe({ type: 'longtask', buffered: true }); } catch (e) {}
+const q = new URLSearchParams(location.search);
+const num = (k, d) => (q.has(k) && !isNaN(+q.get(k)) ? +q.get(k) : d);
+let viewState = { longitude: num('lon', -105.2465), latitude: num('lat', 39.9860), zoom: num('z', 17),
+  pitch: num('pitch', 50), bearing: num('bearing', 0), maxPitch: 85, maxZoom: 23 };
+const { Deck, MapView, TileLayer, BitmapLayer, WebMercatorViewport } = deck;
+
+const basemap = new TileLayer({
+  id: 'usgs-imagery', maxZoom: 16, tileSize: 256, onTileError: () => {}, // some tiles come back without CORS
+  data: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}',
+  renderSubLayers: (p) => { const [[w, s], [e, n]] = p.tile.boundingBox;
+    return new BitmapLayer(p, { data: null, image: p.data, bounds: [w, s, e, n], opacity: 0.85 }); },
+  // flat basemap must not depth-occlude LiDAR ground a metre or two below the datum
+  parameters: { depthWriteEnabled: false, depthCompare: 'always' },
+});
+
+const ept = new EptManager({ onUpdate: render, pointBudget: num('budget', 4_000_000), pointSize: num('ps', 1.5) });
+window.ept = ept;
+const deckgl = new Deck({
+  parent: document.getElementById('map'), // farZMultiplier: deck's default far plane sits ~1% below z=0, which would clip LiDAR ground below the datum
+  views: new MapView({ repeat: false, farZMultiplier: 10 }),
+  initialViewState: viewState, controller: true,
+  onViewStateChange: ({ viewState: v }) => { viewState = v; push(); return v; },
+  layers: [basemap],
+});
+window.deckgl = deckgl;
+function push() {
+  const vp = new WebMercatorViewport({ ...viewState, farZMultiplier: 10, width: deckgl.width || innerWidth, height: deckgl.height || innerHeight });
+  ept.update(vp);
+}
+window.setView = (v) => { viewState = { ...viewState, ...v }; deckgl.setProps({ initialViewState: viewState }); push(); };
+function render() { deckgl.setProps({ layers: [basemap, ...ept.layers()] }); }
+setTimeout(push, 50);
+
+document.getElementById('mode').onchange = (e) => ept.setColorMode(e.target.value);
+document.getElementById('zmode').onchange = (e) => { ept.setZOffset(e.target.value === 'auto' ? 'auto' : 0); render(); };
+let clipped = false;
+document.getElementById('clip').onclick = () => {
+  clipped = !clipped;
+  if (!clipped) return ept.setClip(null);
+  const { longitude: x, latitude: y } = viewState; const dx = 100 / (111320 * Math.cos(y * Math.PI / 180)), dy = 100 / 110540;
+  ept.setClip([[x - dx, y - dy], [x + dx, y - dy], [x + dx, y + dy], [x - dx, y + dy]]);
+};
+document.getElementById('ground').onclick = () => { window.lastGround = ept.groundAt(viewState.longitude, viewState.latitude); console.log('groundAt', window.lastGround); };
+
+// fps + stats
+let frames = 0, last = performance.now(), fps = 0;
+(function loop() { frames++; const t = performance.now(); if (t - last > 1000) { fps = frames * 1000 / (t - last); frames = 0; last = t; } requestAnimationFrame(loop); })();
+setInterval(() => {
+  const s = ept.stats(); window.lastStats = { ...s, fps };
+  document.getElementById('stats').textContent =
+    `zoom   ${viewState.zoom.toFixed(2)}  pitch ${viewState.pitch.toFixed(0)}\n` +
+    `fps    ${fps.toFixed(0)}\nproj   ${s.projects} ${s.projectNames.join(', ')}\n` +
+    `nodes  ${s.nodesLoaded}  depth ${s.maxDepth}\npoints ${s.points.toLocaleString()}\n` +
+    `cache  ${s.cachedPoints.toLocaleString()}\npending ${s.pending} (inflight ${s.inflight})\n` +
+    `datum  ${s.zOffset.toFixed(1)} m`;
+}, 500);
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+/* block-panel.css — styles for BlockManager.panelHtml() (web/app/block.js). Wrap the HTML in an element with class "bm-panel".
+   Everything is scoped under .bm-panel. Colours read the shared CSS variables (usa/theme.js sets them) with Default-HUD fallbacks. */
+.bm-panel {
+  --bm-ink: var(--ink, #e2ebf5); --bm-dim: var(--dim, #8b9bb0); --bm-edge: var(--edge, rgba(120,190,255,.22)); --bm-cyan: var(--cyan, #4fdcff);
+  --bm-amber: var(--amber, #ffb84d); --bm-red: var(--red, #ff5a5a); --bm-green: var(--green, #6cdc8c); --bm-mag: var(--magenta, #ff3fb4);
+  --bm-disp: var(--f-display, "Chakra Petch", "Bahnschrift", sans-serif); --bm-mono: var(--f-mono, "IBM Plex Mono", Consolas, monospace);
+  position: relative; color: var(--bm-ink); font: 13px/1.45 var(--f-body, "IBM Plex Sans", "Segoe UI", sans-serif); overflow-wrap: anywhere;
+}
+.bm-panel * { box-sizing: border-box; }
+.bm-panel a { color: var(--bm-cyan); }
+.bm-panel .lbl { font: 500 10.5px var(--bm-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--bm-dim); margin-top: 4px; }
+.bm-panel h3 { margin: 2px 0 4px; font: 700 20px/1.15 var(--bm-disp); padding-right: 26px; }
+.bm-panel h4 { margin: 12px 0 4px; font: 600 12px var(--bm-disp); letter-spacing: .12em; text-transform: uppercase; color: var(--bm-cyan); }
+.bm-panel .sub { font-size: 12.5px; color: var(--bm-dim); }
+.bm-panel .small { font-size: 11px; }
+.bm-panel .x { position: absolute; top: -4px; right: -4px; background: none; border: 0; color: var(--bm-dim); font-size: 22px; line-height: 1; cursor: pointer; padding: 4px 8px; }
+.bm-panel .x:hover { color: var(--bm-ink); }
+.bm-panel dl { display: grid; grid-template-columns: minmax(90px, auto) 1fr; gap: 2px 12px; margin: 0; font-size: 12.5px; }
+.bm-panel dt { color: var(--bm-dim); }
+.bm-panel dd { margin: 0; font-family: var(--bm-mono); font-size: 12px; }
+.bm-panel .chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 6px 0; }
+.bm-panel .chip { font: 11px var(--bm-mono); padding: 1px 7px; border-radius: 99px; border: 1px solid var(--bm-edge); }
+.bm-panel .chip.warn { border-color: var(--bm-amber); color: var(--bm-amber); }
+.bm-panel .chip.bad { border-color: var(--bm-red); color: var(--bm-red); }
+.bm-panel .chip.ok { border-color: var(--bm-green); color: var(--bm-green); }
+.bm-panel .chip.badge { font-size: 9.5px; padding: 0 5px; letter-spacing: .06em; }
+.bm-panel .good { color: var(--bm-green); } .bm-panel .warn { color: var(--bm-amber); } .bm-panel .dim { color: var(--bm-dim); }
+.bm-panel .hl { color: var(--bm-cyan); } .bm-panel .mag { color: var(--bm-mag); }
+.bm-panel .bigv { font: 700 22px var(--bm-disp); color: var(--bm-amber); }
+.bm-panel .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; margin: 6px 0; }
+.bm-panel .stats .v { display: block; font: 600 17px/1.1 var(--bm-disp); }
+.bm-panel .stats .l { font-size: 11px; color: var(--bm-dim); line-height: 1.25; }
+.bm-panel table.pay { width: 100%; border-collapse: collapse; font: 12px var(--bm-mono); margin-top: 4px; }
+.bm-panel table.pay td, .bm-panel table.pay th { padding: 3px 4px; border-bottom: 1px solid color-mix(in srgb, var(--bm-edge) 45%, transparent); text-align: right; }
+.bm-panel table.pay th { color: var(--bm-dim); font-weight: 500; }
+.bm-panel table.pay td:first-child, .bm-panel table.pay th:first-child { text-align: left; }
+.bm-panel .thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; }
+.bm-panel .thumbs figure, .bm-panel .sphotos figure { margin: 0; }
+.bm-panel .thumbs img { width: 100%; aspect-ratio: 1; border-radius: 3px; display: block; background: #111; }
+.bm-panel figcaption { font: 10.5px var(--bm-mono); color: var(--bm-dim); text-align: center; }
+.bm-panel .sphotos { display: flex; flex-direction: column; gap: 8px; }
+.bm-panel .sphotos img, .bm-panel .photo img { width: 100%; border-radius: 4px; display: block; background: #000; }
+.bm-panel .sphotos figcaption { text-align: left; line-height: 1.35; margin-top: 2px; }
+.bm-panel .photo { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+.bm-panel .photo .cr { font-size: 10.5px; color: var(--bm-dim); line-height: 1.3; }
+.bm-panel ul.log { list-style: none; margin: 2px 0 0; padding: 0; font-size: 12px; }
+.bm-panel ul.log li { padding: 3px 0; border-bottom: 1px solid color-mix(in srgb, var(--bm-edge) 40%, transparent); }
+.bm-panel ul.log b { font-family: var(--bm-mono); font-weight: 500; color: var(--bm-dim); margin-right: 6px; }
+.bm-panel ul.src { margin: 4px 0 0; padding-left: 16px; font-size: 11.5px; color: var(--bm-dim); }
+.bm-panel ul.src li { margin: 2px 0; } .bm-panel ul.src b { color: var(--bm-ink); font-weight: 500; }
+.bm-panel ol.hlist { margin: 0 0 4px; padding: 0; list-style: none; font-size: 12px; }
+.bm-panel ol.hlist button { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 6px; background: none; border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--bm-edge) 40%, transparent); color: var(--bm-ink); padding: 3px 0; cursor: pointer; text-align: left; font: inherit; }
+.bm-panel ol.hlist button:hover, .bm-panel ol.hlist button:focus-visible { color: var(--bm-cyan); }
+.bm-panel ol.hlist button b { font: 500 11.5px var(--bm-mono); color: var(--bm-dim); }
+.bm-panel .ystrip { display: flex; flex-wrap: wrap; gap: 3px; margin: 2px 0; }
+.bm-panel .ystrip span { display: flex; flex-direction: column; align-items: center; gap: 1px; font: 9.5px var(--bm-mono); color: var(--bm-dim); }
+.bm-panel .ystrip i { display: block; width: 22px; height: 14px; border-radius: 3px; border: 1px solid var(--bm-edge); }
+.bm-panel svg.bars { display: block; margin: 2px 0; }
+.bm-panel svg.bars rect { fill: var(--bm-cyan); opacity: .45; } .bm-panel svg.bars rect.pk { fill: var(--bm-amber); opacity: 1; }
+.bm-panel svg.bars text { fill: var(--bm-dim); font: 8px var(--bm-mono); }
+.bm-panel :focus-visible { outline: 1px solid var(--bm-cyan); outline-offset: 2px; }

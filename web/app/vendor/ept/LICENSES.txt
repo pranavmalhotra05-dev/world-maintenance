@@ -1,0 +1,27 @@
+Third-party files in this folder (copied unmodified from the Potree 1.8 distribution
+in web/lidar/potree, which is BSD-2-Clause, Copyright (c) 2011-2020 Markus Schuetz):
+
+copc.js        - copc.js (https://github.com/connormanning/copc.js), MIT License,
+                 Copyright (c) 2021 Connor Manning. Bundles laz-perf (below).
+laz-perf.wasm  - laz-perf (https://github.com/hobuinc/laz-perf), Apache License 2.0,
+                 Copyright (c) Hobu, Inc. LASzip-compatible decompressor.
+zstd-codec.js  - zstd-codec (https://github.com/yoshihitoh/zstd-codec), MIT License,
+                 Copyright (c) 2018 yoshihitoh. Wraps Zstandard (BSD License,
+                 Copyright (c) Facebook, Inc.). Loaded only for "zstandard" EPT data.
+
+ept-worker.js  - project code (not third-party).
+
+MIT License text (copc.js, zstd-codec):
+  Permission is hereby granted, free of charge, to any person obtaining a copy of this
+  software and associated documentation files (the "Software"), to deal in the Software
+  without restriction, including without limitation the rights to use, copy, modify,
+  merge, publish, distribute, sublicense, and/or sell copies of the Software, and to
+  permit persons to whom the Software is furnished to do so, subject to the following
+  conditions: The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS",
+  WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED.
+
+Apache License 2.0 (laz-perf): https://www.apache.org/licenses/LICENSE-2.0
+
+Data: USGS 3D Elevation Program (3DEP) LiDAR, public domain
+(s3://usgs-lidar-public, https://registry.opendata.aws/usgs-lidar/).
