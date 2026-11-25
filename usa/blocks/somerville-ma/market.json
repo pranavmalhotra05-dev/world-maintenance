@@ -1,0 +1,19 @@
+{
+ "rates": {
+  "date": "2026-11-23",
+  "r30": 7.34,
+  "r15": 6.88,
+  "r10": 6.71,
+  "label": "APOR (average prime offer rate, used by federal regulators)",
+  "source": "FFIEC / CFPB Average Prime Offer Rates, fixed-rate table (weekly)",
+  "url": "https://files.ffiec.cfpb.gov/apor/YieldTableFixed.txt",
+  "licence": "public domain (US federal work). CFPB Website Privacy Policy and Legal Notices (https://www.consumerfinance.gov/privacy/website-privacy-policy/): \"Information created by the CFPB is in the public domain and you may reproduce, publish, or otherwise use it without the Bureau's permission.\"",
+  "note": "APOR is the benchmark regulators use for HMDA rate spreads and QM/HPML tests; an average prime offer, not a quote. Computed by the CFPB from a commercial rate survey; only the published APOR values are used."
+ },
+ "rates_label": "APOR (average prime offer rate, used by federal regulators)",
+ "tract_median_value": 1032600.0,
+ "index_adj": 1.0,
+ "index_basis": null,
+ "index_licence": null,
+ "rejected_sources_note": "Not used (licence not clear-green): Freddie Mac PMMS, Zillow ZHVI, Realtor.com inventory."
+}

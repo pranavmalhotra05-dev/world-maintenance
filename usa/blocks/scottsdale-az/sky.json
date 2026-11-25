@@ -1,0 +1,24 @@
+{
+ "lat": 33.577369516318,
+ "lon": -111.914590387355,
+ "tz": "America/Phoenix",
+ "noon_elevation": {
+  "winter solstice": [
+   33.0,
+   "12:26"
+  ],
+  "spring equinox": [
+   56.6,
+   "12:35"
+  ],
+  "summer solstice": [
+   79.9,
+   "12:30"
+  ],
+  "fall equinox": [
+   56.4,
+   "12:20"
+  ]
+ },
+ "note": "Elevation in degrees above the horizon at solar noon, with local clock time (America/Phoenix)."
+}

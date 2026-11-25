@@ -1,0 +1,24 @@
+{
+ "lat": 21.367918361266,
+ "lon": -157.890489759493,
+ "tz": "Pacific/Honolulu",
+ "noon_elevation": {
+  "winter solstice": [
+   45.2,
+   "12:30"
+  ],
+  "spring equinox": [
+   68.9,
+   "12:39"
+  ],
+  "summer solstice": [
+   87.9,
+   "12:34"
+  ],
+  "fall equinox": [
+   68.6,
+   "12:24"
+  ]
+ },
+ "note": "Elevation in degrees above the horizon at solar noon, with local clock time (Pacific/Honolulu)."
+}

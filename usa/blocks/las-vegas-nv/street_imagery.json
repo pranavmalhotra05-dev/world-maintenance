@@ -1,0 +1,250 @@
+{
+ "images": [
+  {
+   "id": "kv:1693286601",
+   "source": "kartaview",
+   "lon": -115.123143,
+   "lat": 36.139451,
+   "x": -11.26,
+   "y": 77.51,
+   "heading_deg": 179.6,
+   "captured_at": "2023-02-06T22:33:18Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1693286601.jpg",
+   "url": "https://kartaview.org/details/6725865/61/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - greenhillzone, sequence 6725865, photo 1693286601",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": null,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1693286617",
+   "source": "kartaview",
+   "lon": -115.123141,
+   "lat": 36.139247,
+   "x": -11.08,
+   "y": 54.8,
+   "heading_deg": 178.0,
+   "captured_at": "2023-02-06T22:33:20Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1693286617.jpg",
+   "url": "https://kartaview.org/details/6725865/62/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - greenhillzone, sequence 6725865, photo 1693286617",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": null,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1693286633",
+   "source": "kartaview",
+   "lon": -115.123132,
+   "lat": 36.139038,
+   "x": -10.27,
+   "y": 31.54,
+   "heading_deg": 177.3,
+   "captured_at": "2023-02-06T22:33:22Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1693286633.jpg",
+   "url": "https://kartaview.org/details/6725865/63/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - greenhillzone, sequence 6725865, photo 1693286633",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": null,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1693286649",
+   "source": "kartaview",
+   "lon": -115.12312,
+   "lat": 36.138829,
+   "x": -9.19,
+   "y": 8.27,
+   "heading_deg": 177.9,
+   "captured_at": "2023-02-06T22:33:25Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1693286649.jpg",
+   "url": "https://kartaview.org/details/6725865/64/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - greenhillzone, sequence 6725865, photo 1693286649",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": null,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1693286665",
+   "source": "kartaview",
+   "lon": -115.123111,
+   "lat": 36.138629,
+   "x": -8.38,
+   "y": -13.99,
+   "heading_deg": 179.3,
+   "captured_at": "2023-02-06T22:33:26Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1693286665.jpg",
+   "url": "https://kartaview.org/details/6725865/65/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - greenhillzone, sequence 6725865, photo 1693286665",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": null,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1693286681",
+   "source": "kartaview",
+   "lon": -115.123108,
+   "lat": 36.138418,
+   "x": -8.11,
+   "y": -37.48,
+   "heading_deg": 177.9,
+   "captured_at": "2023-02-06T22:33:28Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1693286681.jpg",
+   "url": "https://kartaview.org/details/6725865/66/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - greenhillzone, sequence 6725865, photo 1693286681",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": null,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1693286697",
+   "source": "kartaview",
+   "lon": -115.123103,
+   "lat": 36.13831,
+   "x": -7.66,
+   "y": -49.5,
+   "heading_deg": 178.4,
+   "captured_at": "2023-02-06T22:33:30Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1693286697.jpg",
+   "url": "https://kartaview.org/details/6725865/67/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - greenhillzone, sequence 6725865, photo 1693286697",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": null,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1693286713",
+   "source": "kartaview",
+   "lon": -115.123099,
+   "lat": 36.138195,
+   "x": -7.3,
+   "y": -62.31,
+   "heading_deg": 178.4,
+   "captured_at": "2023-02-06T22:33:30Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1693286713.jpg",
+   "url": "https://kartaview.org/details/6725865/68/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - greenhillzone, sequence 6725865, photo 1693286713",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": null,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1693286729",
+   "source": "kartaview",
+   "lon": -115.123095,
+   "lat": 36.138082,
+   "x": -6.94,
+   "y": -74.88,
+   "heading_deg": 178.1,
+   "captured_at": "2023-02-06T22:33:31Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1693286729.jpg",
+   "url": "https://kartaview.org/details/6725865/69/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - greenhillzone, sequence 6725865, photo 1693286729",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": null,
+   "thumb_px": [
+    640,
+    360
+   ]
+  }
+ ],
+ "meta": {
+  "generated": "2026-11-25T01:39:27Z",
+  "origin": [
+   -115.123017789175,
+   36.138754702913
+  ],
+  "search_bbox": [
+   -115.1240189,
+   36.1379431,
+   -115.1220167,
+   36.1395664
+  ],
+  "margin_m": 50.0,
+  "sources": {
+   "kartaview": {
+    "status": "ok",
+    "api": "https://api.kartaview.org/2.0/photo/ (+ /1.0/list/nearby-photos/ for usernames)",
+    "licence": "CC BY-SA 4.0",
+    "credit": "© Grab and KartaView Contributors",
+    "terms": "https://kartaview.org/terms"
+   },
+   "mapillary": {
+    "status": "ok",
+    "api": "https://graph.mapillary.com/images",
+    "licence": "CC BY-SA 4.0",
+    "terms": "https://www.mapillary.com/terms",
+    "attribution_rule": "self-hosted images: visibly display the Mapillary logo and link to the Mapillary image page"
+   }
+  },
+  "licences": [
+   "CC BY-SA 4.0"
+  ],
+  "share_alike": "CC BY-SA 4.0: thumbnails (downscaled adaptations) are redistributed under CC BY-SA 4.0 with per-image attribution",
+  "counts": {
+   "kartaview": {
+    "images": 9,
+    "in_block": 4,
+    "with_thumb": 9,
+    "with_heading": 9
+   },
+   "mapillary": {
+    "images": 0,
+    "in_block": 0,
+    "with_thumb": 0,
+    "with_heading": 0
+   }
+  },
+  "newest": {
+   "kartaview": "2023-02-06T22:33:31Z"
+  },
+  "oldest": {
+   "kartaview": "2023-02-06T22:33:18Z"
+  },
+  "coverage_note": "9 real street-level photos within the block bbox + 50 m (KartaView 9, Mapillary 0). Photos are shown as published (platform-blurred), never synthesised; x/y are local metres from meta.origin (Web-Mercator/k convention, y north); heading_deg is the camera compass bearing (null = not recorded).",
+  "privacy": "No person-identifying processing; whole frames downscaled only; KartaView frames without platform blur status BLURRED are metadata-only.",
+  "artifact_csp_note": "Artifact pages block external URLs, so only local thumbs render inside the artifact; 'url' links open the platform page."
+ }
+}

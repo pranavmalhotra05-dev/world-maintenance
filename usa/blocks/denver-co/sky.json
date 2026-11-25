@@ -1,0 +1,24 @@
+{
+ "lat": 39.7575,
+ "lon": -104.9395,
+ "tz": "America/Denver",
+ "noon_elevation": {
+  "winter solstice": [
+   26.8,
+   "11:58"
+  ],
+  "spring equinox": [
+   50.4,
+   "13:07"
+  ],
+  "summer solstice": [
+   73.7,
+   "13:02"
+  ],
+  "fall equinox": [
+   50.2,
+   "12:52"
+  ]
+ },
+ "note": "Elevation in degrees above the horizon at solar noon, with local clock time (America/Denver)."
+}

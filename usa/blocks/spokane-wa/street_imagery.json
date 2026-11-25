@@ -1,0 +1,601 @@
+{
+ "images": [
+  {
+   "id": "mly:234632431786622",
+   "source": "mapillary",
+   "lon": -117.3942569,
+   "lat": 47.6281937,
+   "x": 81.08,
+   "y": 8.77,
+   "heading_deg": 272.4,
+   "captured_at": "2016-09-09T22:55:35.454000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_234632431786622.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=234632431786622",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence JgOWNO_qOupuj3TesoJzPQ, image 234632431786622",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:1327265794342014",
+   "source": "mapillary",
+   "lon": -117.3944894,
+   "lat": 47.6281948,
+   "x": 63.64,
+   "y": 8.89,
+   "heading_deg": 272.5,
+   "captured_at": "2016-09-09T22:55:36.600000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_1327265794342014.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=1327265794342014",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence JgOWNO_qOupuj3TesoJzPQ, image 1327265794342014",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:3011653975769542",
+   "source": "mapillary",
+   "lon": -117.3947105,
+   "lat": 47.6281962,
+   "x": 47.06,
+   "y": 9.05,
+   "heading_deg": 272.5,
+   "captured_at": "2016-09-09T22:55:37.692000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_3011653975769542.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=3011653975769542",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence JgOWNO_qOupuj3TesoJzPQ, image 3011653975769542",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:246115650532828",
+   "source": "mapillary",
+   "lon": -117.3948867,
+   "lat": 47.6281967,
+   "x": 33.83,
+   "y": 9.11,
+   "heading_deg": 272.4,
+   "captured_at": "2016-09-09T22:55:38.540000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_246115650532828.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=246115650532828",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence JgOWNO_qOupuj3TesoJzPQ, image 246115650532828",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:496359268151911",
+   "source": "mapillary",
+   "lon": -117.3951395,
+   "lat": 47.6281982,
+   "x": 14.87,
+   "y": 9.27,
+   "heading_deg": 272.3,
+   "captured_at": "2016-09-09T22:55:39.734000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_496359268151911.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=496359268151911",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence JgOWNO_qOupuj3TesoJzPQ, image 496359268151911",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:2750442598619731",
+   "source": "mapillary",
+   "lon": -117.3953515,
+   "lat": 47.6281997,
+   "x": -1.04,
+   "y": 9.44,
+   "heading_deg": 272.5,
+   "captured_at": "2016-09-09T22:55:40.694000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_2750442598619731.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=2750442598619731",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence JgOWNO_qOupuj3TesoJzPQ, image 2750442598619731",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:494204878384722",
+   "source": "mapillary",
+   "lon": -117.3955669,
+   "lat": 47.6282009,
+   "x": -17.2,
+   "y": 9.57,
+   "heading_deg": 272.1,
+   "captured_at": "2016-09-09T22:55:41.700000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_494204878384722.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=494204878384722",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence JgOWNO_qOupuj3TesoJzPQ, image 494204878384722",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:833463187256398",
+   "source": "mapillary",
+   "lon": -117.3957469,
+   "lat": 47.6282009,
+   "x": -30.7,
+   "y": 9.57,
+   "heading_deg": 272.1,
+   "captured_at": "2016-09-09T22:55:42.513000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_833463187256398.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=833463187256398",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence JgOWNO_qOupuj3TesoJzPQ, image 833463187256398",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:612713370126405",
+   "source": "mapillary",
+   "lon": -117.395972,
+   "lat": 47.6282017,
+   "x": -47.59,
+   "y": 9.66,
+   "heading_deg": 272.2,
+   "captured_at": "2016-09-09T22:55:43.543000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_612713370126405.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=612713370126405",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence JgOWNO_qOupuj3TesoJzPQ, image 612713370126405",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:809335323349074",
+   "source": "mapillary",
+   "lon": -117.3961664,
+   "lat": 47.628202,
+   "x": -62.17,
+   "y": 9.7,
+   "heading_deg": 272.1,
+   "captured_at": "2016-09-09T22:55:44.435000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_809335323349074.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=809335323349074",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence JgOWNO_qOupuj3TesoJzPQ, image 809335323349074",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:2849395798667469",
+   "source": "mapillary",
+   "lon": -117.3963906,
+   "lat": 47.6282024,
+   "x": -78.99,
+   "y": 9.74,
+   "heading_deg": 272.1,
+   "captured_at": "2016-09-09T22:55:45.465000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_2849395798667469.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=2849395798667469",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence JgOWNO_qOupuj3TesoJzPQ, image 2849395798667469",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:459260895355828",
+   "source": "mapillary",
+   "lon": -117.3964987,
+   "lat": 47.6280954,
+   "x": -87.1,
+   "y": -2.17,
+   "heading_deg": 90.0,
+   "captured_at": "2016-11-17T23:16:29.386000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_459260895355828.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=459260895355828",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence hBgxOyXhfwDC93PFAA3G_g, image 459260895355828",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:156126693180297",
+   "source": "mapillary",
+   "lon": -117.3962755,
+   "lat": 47.6280986,
+   "x": -70.36,
+   "y": -1.81,
+   "heading_deg": 89.9,
+   "captured_at": "2016-11-17T23:16:30.507000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_156126693180297.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=156126693180297",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence hBgxOyXhfwDC93PFAA3G_g, image 156126693180297",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:1701109006740551",
+   "source": "mapillary",
+   "lon": -117.3960768,
+   "lat": 47.6281011,
+   "x": -55.45,
+   "y": -1.54,
+   "heading_deg": 90.1,
+   "captured_at": "2016-11-17T23:16:31.488000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_1701109006740551.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=1701109006740551",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence hBgxOyXhfwDC93PFAA3G_g, image 1701109006740551",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:500776221174973",
+   "source": "mapillary",
+   "lon": -117.395888,
+   "lat": 47.6281032,
+   "x": -41.29,
+   "y": -1.3,
+   "heading_deg": 90.2,
+   "captured_at": "2016-11-17T23:16:32.458000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_500776221174973.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=500776221174973",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence hBgxOyXhfwDC93PFAA3G_g, image 500776221174973",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:231906082066812",
+   "source": "mapillary",
+   "lon": -117.3956944,
+   "lat": 47.6281062,
+   "x": -26.76,
+   "y": -0.96,
+   "heading_deg": 90.5,
+   "captured_at": "2016-11-17T23:16:33.499000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_231906082066812.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=231906082066812",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence hBgxOyXhfwDC93PFAA3G_g, image 231906082066812",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:206476237719667",
+   "source": "mapillary",
+   "lon": -117.395504,
+   "lat": 47.6281071,
+   "x": -12.48,
+   "y": -0.86,
+   "heading_deg": 90.9,
+   "captured_at": "2016-11-17T23:16:34.437000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_206476237719667.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=206476237719667",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence hBgxOyXhfwDC93PFAA3G_g, image 206476237719667",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:323967865821100",
+   "source": "mapillary",
+   "lon": -117.3953223,
+   "lat": 47.6281074,
+   "x": 1.16,
+   "y": -0.83,
+   "heading_deg": 91.1,
+   "captured_at": "2016-11-17T23:16:35.343000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_323967865821100.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=323967865821100",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence hBgxOyXhfwDC93PFAA3G_g, image 323967865821100",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:490590459035754",
+   "source": "mapillary",
+   "lon": -117.3951358,
+   "lat": 47.6281078,
+   "x": 15.14,
+   "y": -0.79,
+   "heading_deg": 91.0,
+   "captured_at": "2016-11-17T23:16:36.313000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_490590459035754.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=490590459035754",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence hBgxOyXhfwDC93PFAA3G_g, image 490590459035754",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:463165721655832",
+   "source": "mapillary",
+   "lon": -117.3949531,
+   "lat": 47.6281076,
+   "x": 28.85,
+   "y": -0.81,
+   "heading_deg": 91.2,
+   "captured_at": "2016-11-17T23:16:37.263000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_463165721655832.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=463165721655832",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence hBgxOyXhfwDC93PFAA3G_g, image 463165721655832",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:4738856732808126",
+   "source": "mapillary",
+   "lon": -117.3947333,
+   "lat": 47.6281081,
+   "x": 45.34,
+   "y": -0.75,
+   "heading_deg": 91.2,
+   "captured_at": "2016-11-17T23:16:38.465000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_4738856732808126.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=4738856732808126",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence hBgxOyXhfwDC93PFAA3G_g, image 4738856732808126",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:522595292451981",
+   "source": "mapillary",
+   "lon": -117.3945445,
+   "lat": 47.6281084,
+   "x": 59.51,
+   "y": -0.73,
+   "heading_deg": 91.0,
+   "captured_at": "2016-11-17T23:16:39.488000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_522595292451981.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=522595292451981",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence hBgxOyXhfwDC93PFAA3G_g, image 522595292451981",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:496003225078112",
+   "source": "mapillary",
+   "lon": -117.3943648,
+   "lat": 47.6281074,
+   "x": 72.98,
+   "y": -0.84,
+   "heading_deg": 91.0,
+   "captured_at": "2016-11-17T23:16:40.472000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_496003225078112.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=496003225078112",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence hBgxOyXhfwDC93PFAA3G_g, image 496003225078112",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:812948342973006",
+   "source": "mapillary",
+   "lon": -117.3941912,
+   "lat": 47.628108,
+   "x": 86.01,
+   "y": -0.77,
+   "heading_deg": 91.0,
+   "captured_at": "2016-11-17T23:16:41.428000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_812948342973006.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=812948342973006",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence hBgxOyXhfwDC93PFAA3G_g, image 812948342973006",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:196537995634592",
+   "source": "mapillary",
+   "lon": -117.3961052,
+   "lat": 47.6281385,
+   "x": -57.58,
+   "y": 2.63,
+   "heading_deg": 89.9,
+   "captured_at": "2017-03-21T20:23:29.342000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_196537995634592.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=196537995634592",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence 7c7wqP0TIwgYgZDXyEjHDQ, image 196537995634592",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:466176261356554",
+   "source": "mapillary",
+   "lon": -117.3948027,
+   "lat": 47.6281767,
+   "x": 40.14,
+   "y": 6.88,
+   "heading_deg": 92.4,
+   "captured_at": "2017-03-21T20:23:36.476000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_466176261356554.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=466176261356554",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence 7c7wqP0TIwgYgZDXyEjHDQ, image 466176261356554",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:799257520984692",
+   "source": "mapillary",
+   "lon": -117.3951806,
+   "lat": 47.6281923,
+   "x": 11.79,
+   "y": 8.62,
+   "heading_deg": 0.0,
+   "captured_at": "2017-03-21T20:53:56.653000Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_799257520984692.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=799257520984692",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - natfoot, sequence 1XYcNu91bJSY6nQ9wNiTsQ, image 799257520984692",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  }
+ ],
+ "meta": {
+  "generated": "2026-11-25T02:43:00Z",
+  "origin": [
+   -117.395337683579,
+   47.62811490359
+  ],
+  "search_bbox": [
+   -117.3965373,
+   47.6273033,
+   -117.394138,
+   47.6289266
+  ],
+  "margin_m": 50.0,
+  "sources": {
+   "kartaview": {
+    "status": "ok",
+    "api": "https://api.kartaview.org/2.0/photo/ (+ /1.0/list/nearby-photos/ for usernames)",
+    "licence": "CC BY-SA 4.0",
+    "credit": "© Grab and KartaView Contributors",
+    "terms": "https://kartaview.org/terms"
+   },
+   "mapillary": {
+    "status": "ok",
+    "api": "https://graph.mapillary.com/images",
+    "licence": "CC BY-SA 4.0",
+    "terms": "https://www.mapillary.com/terms",
+    "attribution_rule": "self-hosted images: visibly display the Mapillary logo and link to the Mapillary image page"
+   }
+  },
+  "licences": [
+   "CC BY-SA 4.0"
+  ],
+  "share_alike": "CC BY-SA 4.0: thumbnails (downscaled adaptations) are redistributed under CC BY-SA 4.0 with per-image attribution",
+  "counts": {
+   "mapillary": {
+    "images": 27,
+    "in_block": 11,
+    "with_thumb": 27,
+    "with_heading": 27
+   },
+   "kartaview": {
+    "images": 0,
+    "in_block": 0,
+    "with_thumb": 0,
+    "with_heading": 0
+   }
+  },
+  "newest": {
+   "mapillary": "2017-03-21T20:53:56.653000Z"
+  },
+  "oldest": {
+   "mapillary": "2016-09-09T22:55:35.454000Z"
+  },
+  "coverage_note": "27 real street-level photos within the block bbox + 50 m (KartaView 0, Mapillary 27). Photos are shown as published (platform-blurred), never synthesised; x/y are local metres from meta.origin (Web-Mercator/k convention, y north); heading_deg is the camera compass bearing (null = not recorded).",
+  "privacy": "No person-identifying processing; whole frames downscaled only; KartaView frames without platform blur status BLURRED are metadata-only.",
+  "artifact_csp_note": "Artifact pages block external URLs, so only local thumbs render inside the artifact; 'url' links open the platform page."
+ }
+}

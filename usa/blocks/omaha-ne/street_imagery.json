@@ -1,0 +1,201 @@
+{
+ "images": [
+  {
+   "id": "mly:159933712639900",
+   "source": "mapillary",
+   "lon": -95.9950881,
+   "lat": 41.2829631,
+   "x": 2.94,
+   "y": 70.7,
+   "heading_deg": 180.9,
+   "captured_at": "2016-01-23T13:59:12Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_159933712639900.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=159933712639900",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - midnightcomm, sequence f2ix4en2q14075xh30vsoy, image 159933712639900",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:759671951580928",
+   "source": "mapillary",
+   "lon": -95.9950931,
+   "lat": 41.28276,
+   "x": 2.53,
+   "y": 48.09,
+   "heading_deg": 180.6,
+   "captured_at": "2016-01-23T13:59:14Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_759671951580928.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=759671951580928",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - midnightcomm, sequence f2ix4en2q14075xh30vsoy, image 759671951580928",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:292954805747308",
+   "source": "mapillary",
+   "lon": -95.995095,
+   "lat": 41.2825531,
+   "x": 2.36,
+   "y": 25.06,
+   "heading_deg": 180.4,
+   "captured_at": "2016-01-23T13:59:16Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_292954805747308.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=292954805747308",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - midnightcomm, sequence f2ix4en2q14075xh30vsoy, image 292954805747308",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:288474932740982",
+   "source": "mapillary",
+   "lon": -95.9950964,
+   "lat": 41.2823331,
+   "x": 2.25,
+   "y": 0.57,
+   "heading_deg": 180.5,
+   "captured_at": "2016-01-23T13:59:18Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_288474932740982.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=288474932740982",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - midnightcomm, sequence f2ix4en2q14075xh30vsoy, image 288474932740982",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:294304218909903",
+   "source": "mapillary",
+   "lon": -95.9951014,
+   "lat": 41.2821081,
+   "x": 1.83,
+   "y": -24.48,
+   "heading_deg": 179.2,
+   "captured_at": "2016-01-23T13:59:20Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_294304218909903.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=294304218909903",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - midnightcomm, sequence f2ix4en2q14075xh30vsoy, image 294304218909903",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:2299273176888035",
+   "source": "mapillary",
+   "lon": -95.9950964,
+   "lat": 41.281873,
+   "x": 2.25,
+   "y": -50.64,
+   "heading_deg": 173.0,
+   "captured_at": "2016-01-23T13:59:22Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_2299273176888035.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=2299273176888035",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - midnightcomm, sequence f2ix4en2q14075xh30vsoy, image 2299273176888035",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "mly:471845607397309",
+   "source": "mapillary",
+   "lon": -95.9951016,
+   "lat": 41.281658,
+   "x": 1.81,
+   "y": -74.58,
+   "heading_deg": 158.1,
+   "captured_at": "2016-01-23T13:59:24Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/mly_471845607397309.jpg",
+   "url": "https://www.mapillary.com/app/?pKey=471845607397309",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "Mapillary - midnightcomm, sequence f2ix4en2q14075xh30vsoy, image 471845607397309",
+   "platform_blur": "Mapillary automatic face/plate blurring",
+   "thumb_px": [
+    640,
+    360
+   ]
+  }
+ ],
+ "meta": {
+  "generated": "2026-11-25T03:16:08Z",
+  "origin": [
+   -95.995123256692,
+   41.282327970373
+  ],
+  "search_bbox": [
+   -95.9961991,
+   41.2815163,
+   -95.9940474,
+   41.2831396
+  ],
+  "margin_m": 50.0,
+  "sources": {
+   "kartaview": {
+    "status": "ok",
+    "api": "https://api.kartaview.org/2.0/photo/ (+ /1.0/list/nearby-photos/ for usernames)",
+    "licence": "CC BY-SA 4.0",
+    "credit": "© Grab and KartaView Contributors",
+    "terms": "https://kartaview.org/terms"
+   },
+   "mapillary": {
+    "status": "ok",
+    "api": "https://graph.mapillary.com/images",
+    "licence": "CC BY-SA 4.0",
+    "terms": "https://www.mapillary.com/terms",
+    "attribution_rule": "self-hosted images: visibly display the Mapillary logo and link to the Mapillary image page"
+   }
+  },
+  "licences": [
+   "CC BY-SA 4.0"
+  ],
+  "share_alike": "CC BY-SA 4.0: thumbnails (downscaled adaptations) are redistributed under CC BY-SA 4.0 with per-image attribution",
+  "counts": {
+   "mapillary": {
+    "images": 7,
+    "in_block": 3,
+    "with_thumb": 7,
+    "with_heading": 7
+   },
+   "kartaview": {
+    "images": 0,
+    "in_block": 0,
+    "with_thumb": 0,
+    "with_heading": 0
+   }
+  },
+  "newest": {
+   "mapillary": "2016-01-23T13:59:24Z"
+  },
+  "oldest": {
+   "mapillary": "2016-01-23T13:59:12Z"
+  },
+  "coverage_note": "7 real street-level photos within the block bbox + 50 m (KartaView 0, Mapillary 7). Photos are shown as published (platform-blurred), never synthesised; x/y are local metres from meta.origin (Web-Mercator/k convention, y north); heading_deg is the camera compass bearing (null = not recorded).",
+  "privacy": "No person-identifying processing; whole frames downscaled only; KartaView frames without platform blur status BLURRED are metadata-only.",
+  "artifact_csp_note": "Artifact pages block external URLs, so only local thumbs render inside the artifact; 'url' links open the platform page."
+ }
+}

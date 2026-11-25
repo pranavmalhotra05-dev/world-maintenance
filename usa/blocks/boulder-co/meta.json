@@ -1,0 +1,4319 @@
+{
+ "origin": [
+  -105.2465,
+  39.986
+ ],
+ "half_m": 50.0,
+ "z_base": 1646.73,
+ "bounds": [
+  -105.24708621348572,
+  39.98555084088141,
+  -105.24591378651425,
+  39.98644915616553
+ ],
+ "points_total": 175385,
+ "points_per_m2": 17.5,
+ "points_shipped": 175385,
+ "point_parts": 1,
+ "point_bytes": 10,
+ "point_unit_m": 0.02,
+ "house_points": 8563,
+ "points_noise_excluded": 784,
+ "lidar": "USGS 3DEP CO_DRCOG_1_2020 (2020)",
+ "slug": "boulder-co",
+ "name": "39.98600, -105.24650",
+ "address_query": null,
+ "city": "Boulder",
+ "state": "CO",
+ "state_fips": "08",
+ "county": "Boulder County",
+ "county_fips": "08013",
+ "fips": "08013",
+ "tract": "08013012507",
+ "block_geoid": "080130125073007",
+ "zip": null,
+ "tz": "America/Denver",
+ "ept_project": "CO_DRCOG_1_2020",
+ "lidar_year": 2020,
+ "lidar_year_source": "WESM collect_end",
+ "ept_project_density": 21.62,
+ "ept_srs": "EPSG:3857",
+ "ept_candidates": [
+  {
+   "name": "CO_DRCOG_1_2020",
+   "count": 19912349351,
+   "density": 21.62,
+   "year": 2020,
+   "year_source": "WESM collect_end",
+   "box_coverage": 1.0
+  },
+  {
+   "name": "USGS_LPC_CO_SoPlatteRiver_Lot5_2013_LAS_2015",
+   "count": 33711288742,
+   "density": 4.93,
+   "year": 2015,
+   "year_source": "project name",
+   "box_coverage": 1.0
+  }
+ ],
+ "overture_release": "2026-11-18.0",
+ "aerial": "USGS National Map USGSImageryOnly",
+ "img_years": [
+  2011,
+  2013,
+  2015,
+  2017,
+  2019,
+  2021,
+  2023
+ ],
+ "buildings": 4,
+ "houses": 4,
+ "generated": "2026-11-24T09:00+00:00",
+ "files": [
+  ".lock",
+  "aerial.jpg",
+  "extras.json",
+  "feeds.json",
+  "goes.jpg",
+  "houses.json",
+  "img/2011.jpg",
+  "img/2013.jpg",
+  "img/2015.jpg",
+  "img/2017.jpg",
+  "img/2019.jpg",
+  "img/2021.jpg",
+  "img/2023.jpg",
+  "infra.json",
+  "layers.json",
+  "market.json",
+  "mesh.txt",
+  "meta.json",
+  "points_0.txt",
+  "sat/co_drapp22.jpg",
+  "sat/s2_2026-11-20_ndvi.jpg",
+  "sat/s2_2026-11-20_rgb.jpg",
+  "sky.json",
+  "sky_weather.json",
+  "sources.json",
+  "thermal/lst_grid.json",
+  "thermal/lst_grid_winter.json",
+  "thermal/lst_summer.png",
+  "thermal/lst_winter.png",
+  "trees.json",
+  "furniture.json",
+  "street_imagery.json",
+  "streets.json",
+  "renders/hero.jpg",
+  "renders/top.jpg",
+  "renders/street.jpg",
+  "renders/night.jpg",
+  "street/kv_1976856777.jpg",
+  "street/mly_1013973204149222.jpg",
+  "street/mly_1022158869745290.jpg",
+  "street/mly_1047899734101618.jpg",
+  "street/mly_1078368374228562.jpg",
+  "street/mly_1083585328801099.jpg",
+  "street/mly_112272107604370.jpg",
+  "street/mly_1132708607270035.jpg",
+  "street/mly_1139799257600382.jpg",
+  "street/mly_1154226471755292.jpg",
+  "street/mly_1197154758678855.jpg",
+  "street/mly_1242566073912029.jpg",
+  "street/mly_1274761423590558.jpg",
+  "street/mly_1299601898249069.jpg",
+  "street/mly_1419427872683765.jpg",
+  "street/mly_146181207426937.jpg",
+  "street/mly_1746892385499509.jpg",
+  "street/mly_1897645403718727.jpg",
+  "street/mly_189991432990763.jpg",
+  "street/mly_203308068292732.jpg",
+  "street/mly_2067220963807647.jpg",
+  "street/mly_213713346993816.jpg",
+  "street/mly_226884279240866.jpg",
+  "street/mly_23967742809548790.jpg",
+  "street/mly_253287209900519.jpg",
+  "street/mly_258773472662922.jpg",
+  "street/mly_2713831175428769.jpg",
+  "street/mly_2769337696616226.jpg",
+  "street/mly_282780220177153.jpg",
+  "street/mly_2846302162347843.jpg",
+  "street/mly_301731728159973.jpg",
+  "street/mly_303326254617634.jpg",
+  "street/mly_309395304372530.jpg",
+  "street/mly_3127684750838116.jpg",
+  "street/mly_313994474089476.jpg",
+  "street/mly_3463074610459985.jpg",
+  "street/mly_349088110555109.jpg",
+  "street/mly_4108473762805931.jpg",
+  "street/mly_427196879160406.jpg",
+  "street/mly_457141588715629.jpg",
+  "street/mly_461327774963665.jpg",
+  "street/mly_4642269965788487.jpg",
+  "street/mly_485517056205135.jpg",
+  "street/mly_491142125271348.jpg",
+  "street/mly_523329268667962.jpg",
+  "street/mly_552774919053644.jpg",
+  "street/mly_581746346083949.jpg",
+  "street/mly_602218482539062.jpg",
+  "street/mly_642229887112608.jpg",
+  "street/mly_647184033186327.jpg",
+  "street/mly_742999648794063.jpg",
+  "street/mly_753452206579667.jpg",
+  "street/mly_772952700074343.jpg",
+  "street/mly_786066222280280.jpg",
+  "street/mly_807893243086429.jpg",
+  "street/mly_812776006341881.jpg",
+  "street/mly_906054076908853.jpg",
+  "street/mly_937956211790512.jpg",
+  "street/mly_971266640298678.jpg",
+  "street/mly_982125042557010.jpg",
+  "parcels.json"
+ ],
+ "city_data": {
+  "adapter": "Boulder",
+  "licences": {
+   "assessor": "CC BY 4.0 (Boulder County Assessor's Property Data bulk CSVs + Boulder County Parcels); zoning CC0 1.0 (City of Boulder Zoning Districts)",
+   "permits": "CC0 1.0 (City of Boulder Construction Permits)",
+   "311": "CC0 1.0 (City of Boulder Code Enforcement Reports)"
+  },
+  "status": {
+   "assessor": "ok",
+   "permits": "ok",
+   "311": "ok"
+  },
+  "counts": {
+   "assessor_matched": 4,
+   "permits": 243,
+   "cases311": 46
+  }
+ },
+ "assessor_label": "Assessor (Boulder)",
+ "local_flags": {
+  "generated": "2026-11-24T22:20+00:00",
+  "city": "boulder",
+  "status": {
+   "bou_rental": "ok",
+   "bou_hoa": "ok",
+   "sales (no dataset)": "not open: Boulder County Assessor bulk Sales.csv: page says 'developed solely for internal use' while the AGOL item says CC BY 4.0 - licence not clean, not used",
+   "vacant_or_condemned (no dataset)": "not open: no open vacant registry found",
+   "code_cases_5y (no dataset)": "not open: Boulder code cases come through h.cases311 (usa/city_enrich.py)"
+  },
+  "attribution": {
+   "bou_rental": {
+    "name": "City of Boulder Rental Housing Licenses (incl. short-term rental types)",
+    "licence": "CC0 (City of Boulder open data)",
+    "commercial_ok": "yes",
+    "url": "https://gis.bouldercolorado.gov/ags_svr1/rest/services/plan/RentalHousingLicenses/MapServer/0"
+   },
+   "bou_hoa": {
+    "name": "Boulder County Subdivisions and Other Platted Areas (HoaArcRef; unincorporated county only)",
+    "licence": "CC BY 4.0 (Boulder County)",
+    "commercial_ok": "yes",
+    "url": "https://maps.bouldercounty.org/arcgis/rest/services/PLANNING/LUC_PlattedAreas/MapServer/0"
+   }
+  },
+  "counts": {
+   "rental_licences_in_block": 10,
+   "str_licences_in_block": 0,
+   "vacant_or_condemned_in_block": 0,
+   "dangerous_buildings_in_block": 0,
+   "code_cases_5y_in_block": 0,
+   "sales_in_block": 0,
+   "hoa_areas_touching_block": 0,
+   "tax_abatements_in_block": 0,
+   "houses": 4,
+   "houses_with": {
+    "rental_license": 4,
+    "str_license": 0,
+    "vacant_or_condemned": 0,
+    "dangerous_building": 0,
+    "hoa": 0,
+    "sales": 0,
+    "tax_abatement": 0,
+    "code_cases_5y": 0
+   }
+  },
+  "by_dataset": {
+   "bou_rental": {
+    "in_block": 10,
+    "house_matches": 5,
+    "rows_fetched": 23
+   },
+   "bou_hoa": {
+    "in_block": 0,
+    "house_matches": 0,
+    "rows_fetched": 0
+   }
+  },
+  "matching": "address, else point-in-footprint / nearest main building <= 15 m (never garages); polygons by building centroid",
+  "privacy": "field whitelists only; no owner, host, agent, grantor/grantee names, phones or emails"
+ },
+ "rent": {
+  "zip": "80305",
+  "zip_basis": "ZCTA (2020) containing the block origin, HUD eGIS SAFMR ZCTA layer",
+  "year": 2026,
+  "year_basis": "inferred: HUD FMR layer data last edited 2025-09-30; FMRs take effect Oct 1 for the next federal fiscal year (layer description does not state the FY)",
+  "safmr": {
+   "br0": 1840,
+   "br1": 2120,
+   "br2": 2510,
+   "br3": 3330,
+   "br4": 3830
+  },
+  "safmr_area": {
+   "hud_code": "METRO14500M14500",
+   "name": "Boulder, CO MSA"
+  },
+  "safmr_mandatory": false,
+  "safmr_mandatory_since": null,
+  "safmr_designation_layer": null,
+  "safmr_designation_layer_note": "values carried by HUD eGIS SAFMR_Year (mandatory-area layer); vintage not stated and may differ from the SAFMR table, which is used as the primary figure",
+  "fmr_area": {
+   "code": "METRO14500M14500",
+   "name": "Boulder, CO MSA",
+   "br0": 1553,
+   "br1": 1795,
+   "br2": 2124,
+   "br3": 2820,
+   "br4": 3239
+  },
+  "units": "USD per month, gross rent (rent + tenant-paid utilities), 40th percentile",
+  "source": "HUD Small Area FMR (HUD eGIS HUD_PDR_Small_Area_Fair_Market_Rents table 1, SAFMR_Year layer 2) and FMR (HUD eGIS Fair_Market_Rents layer 0)",
+  "layer_updated": {
+   "safmr": "2025-10-01",
+   "fmr": "2025-09-30"
+  }
+ },
+ "fhfa_hpi": {
+  "tract": "08013012507",
+  "tract_hpi": {
+   "year": 2025,
+   "hpi": 850.7,
+   "hpi_base2000": 327.05,
+   "change_1yr_pct": -3.68,
+   "change_5yr_pct": 25.36,
+   "change_10yr_pct": 72.27,
+   "change_1yr_pct_from_index": -3.68
+  },
+  "zip": "80305",
+  "zip_basis": "ZCTA (2020) containing the block origin, HUD eGIS SAFMR ZCTA layer",
+  "zip5_hpi": {
+   "year": 2025,
+   "hpi": 2174.56,
+   "hpi_base2000": 322.9,
+   "change_1yr_pct": -2.17,
+   "change_5yr_pct": 29.51,
+   "change_10yr_pct": 69.91,
+   "change_1yr_pct_from_index": -2.17
+  },
+  "index": "FHFA annual all-transactions HPI (developmental), not seasonally adjusted",
+  "source": {
+   "tract": "https://www.fhfa.gov/hpi/download/annual/hpi_at_tract.csv",
+   "zip5": "https://www.fhfa.gov/hpi/download/annual/hpi_at_zip5.xlsx"
+  },
+  "zip5_last_updated": "March 31, 2026"
+ },
+ "permits_bps": {
+  "county": {
+   "year": 2025,
+   "fips": "08013",
+   "name": "Boulder County",
+   "units_1": {
+    "bldgs": 428,
+    "units": 428,
+    "value_usd": 240137872
+   },
+   "units_2": {
+    "bldgs": 12,
+    "units": 24,
+    "value_usd": 6566327
+   },
+   "units_3_4": {
+    "bldgs": 4,
+    "units": 15,
+    "value_usd": 3146097
+   },
+   "units_5plus": {
+    "bldgs": 39,
+    "units": 1534,
+    "value_usd": 319735762
+   },
+   "total_units": 2001,
+   "total_value_usd": 569586058,
+   "url": "https://www2.census.gov/econ/bps/County/co2025a.txt"
+  },
+  "place": {
+   "year": 2025,
+   "name": "Boulder",
+   "place_fips": "07850",
+   "population": 107645,
+   "months_reported": 12,
+   "units_1": {
+    "bldgs": 31,
+    "units": 31,
+    "value_usd": 19381312
+   },
+   "units_2": {
+    "bldgs": 1,
+    "units": 2,
+    "value_usd": 588884
+   },
+   "units_3_4": {
+    "bldgs": 0,
+    "units": 0,
+    "value_usd": 0
+   },
+   "units_5plus": {
+    "bldgs": 3,
+    "units": 303,
+    "value_usd": 66703894
+   },
+   "total_units": 336,
+   "total_value_usd": 86674090,
+   "url": "https://www2.census.gov/econ/bps/Place/West%20Region/we2025a.txt"
+  },
+  "basis": "new privately-owned residential units authorized, annual, imputed totals (includes estimates for non-reporting permit offices)",
+  "source": "Census Bureau Building Permits Survey"
+ },
+ "federal_flags": {
+  "generated": "2026-11-24T09:29:30Z",
+  "status": {
+   "qct": "ok",
+   "dda": "ok",
+   "nmtc": "ok",
+   "usda_rd": "ok",
+   "lihtc": "ok",
+   "fmr": "ok",
+   "zcta": "ok",
+   "safmr": "ok",
+   "fhfa_hpi_tract": "ok",
+   "fhfa_hpi_zip5": "ok",
+   "bps_county": "ok",
+   "bps_place": "ok",
+   "hubzone": "not available: no documented public query service: SBA publishes HUBZones only through the map app maps.certify.sba.gov/hubzone/map (its internal search endpoint is not a public API; the research file notes the bulk shapefile URL is not pinned)"
+  },
+  "counts": {
+   "houses": 4,
+   "qct": 4,
+   "dda": 0,
+   "nmtc": 4,
+   "usda_rural_eligible": 0,
+   "usda_ineligible": 4,
+   "with_lihtc_within_400m": 0
+  },
+  "usda_method": "bbox inside ineligible area",
+  "hubzone": {
+   "value": null,
+   "reason": "no documented public query service: SBA publishes HUBZones only through the map app maps.certify.sba.gov/hubzone/map (its internal search endpoint is not a public API; the research file notes the bulk shapefile URL is not pinned)"
+  },
+  "lihtc_nearby": [],
+  "lihtc_search": "properties within 500 m of the block bbox; per-house count uses great-circle distance <= 400 m",
+  "vintages": {
+   "qct": "service QUALIFIED_CENSUS_TRACTS_2026 (data edited 2026-10-23; layer description text still says FY2024)",
+   "dda": "service Difficult_Development_Areas_2026 (data edited 2026-10-23; metro DDAs by ZCTA, non-metro by county)",
+   "nmtc": "2016-2020 ACS eligibility, 2010 tracts (data edited 2026-03-16)",
+   "lihtc": "HUD LIHTC database (data edited 2024-12-09)",
+   "fmr": "FY2026 (inferred, data edited 2025-09-30)",
+   "safmr": "FY2026 values (inferred, data edited 2025-10-01); mandatory-area list from SAFMR_Year",
+   "usda_rd": "current ineligible areas (USDA: 'updated often')",
+   "fhfa_hpi": "annual; tract file uses 2010 census tracts",
+   "bps": "latest annual file listed on www2.census.gov/econ/bps"
+  },
+  "method": "point-in-polygon of house lon/lat (shapely covers) against layer polygons fetched for the block bbox; USDA via server-side point/bbox queries",
+  "attribution": {
+   "qct": "Source: U.S. Department of Housing and Urban Development (HUD) Office of Policy Development and Research, HUD eGIS open data (hudgis-hud.opendata.arcgis.com); layer credit: \"U.S. Department of Housing and Urban Development, U.S. Census Bureau\". Not endorsed by HUD. Layer: Qualified Census Tracts 2026.",
+   "dda": "Source: U.S. Department of Housing and Urban Development (HUD) Office of Policy Development and Research, HUD eGIS open data (hudgis-hud.opendata.arcgis.com); layer credit: \"U.S. Department of Housing and Urban Development, U.S. Census Bureau\". Not endorsed by HUD. Layer: Difficult Development Areas 2026.",
+   "nmtc": "Source: U.S. Department of the Treasury, CDFI Fund, New Markets Tax Credit low-income community eligibility (2016-2020 ACS), via HUD eGIS layer NMTC20.",
+   "lihtc": "Source: U.S. Department of Housing and Urban Development (HUD) Office of Policy Development and Research, HUD eGIS open data (hudgis-hud.opendata.arcgis.com); layer credit: \"U.S. Department of Housing and Urban Development, U.S. Census Bureau\". Not endorsed by HUD. Layer: Low-Income Housing Tax Credit Properties (HUD National LIHTC Database). Locations are general property locations, not individual buildings.",
+   "usda_rd": "Source: USDA Rural Development GIS Group, Rural Designations (Ineligible Areas), layer RHS SFH MFH. Indicative only; confirm at https://eligibility.sc.egov.usda.gov/.",
+   "fmr": "Source: U.S. Department of Housing and Urban Development (HUD) Office of Policy Development and Research, HUD eGIS open data (hudgis-hud.opendata.arcgis.com); layer credit: \"U.S. Department of Housing and Urban Development, U.S. Census Bureau\". Not endorsed by HUD. Layer: Fair Market Rents.",
+   "safmr": "Source: U.S. Department of Housing and Urban Development (HUD) Office of Policy Development and Research, HUD eGIS open data (hudgis-hud.opendata.arcgis.com); layer credit: \"U.S. Department of Housing and Urban Development, U.S. Census Bureau\". Not endorsed by HUD. Layers: Small Area Fair Market Rents (SAFMR_table) and SAFMR_Year (designated areas).",
+   "fhfa_hpi": "Source: Federal Housing Finance Agency (FHFA) House Price Index, annual all-transactions indexes for census tracts and five-digit ZIP codes (developmental indexes).",
+   "bps": "Source: U.S. Census Bureau, Building Permits Survey (annual county and place files).",
+   "hubzone": "U.S. Small Business Administration HUBZone program (not queried)."
+  },
+  "licence": "US federal government works, not subject to copyright (17 U.S.C. 105): https://www.usa.gov/government-copyright",
+  "research": "usa/research/federal_realestate.json (commercial_ok yes: hud_qct, hud_dda, hud_nmtc, hud_lihtc, hud_fmr, hud_safmr, usda_elig_svc, fhfa_hpi_tract, fhfa_hpi_zip5, census_bps)"
+ },
+ "opportunity_zone": {
+  "houses": 4,
+  "in_zone": 0,
+  "in_zone_2018": 0,
+  "in_zone_2027": 0,
+  "origin_in_zone": false,
+  "origin_rounds": [],
+  "zone_tracts": [],
+  "block_tract": "08013012507",
+  "rounds": {
+   "2018": {
+    "effective": "2018",
+    "expires": "2028-12-31",
+    "source": "IRS Notice 2018-48/2019-42 via CDFI Fund QOZ list + shapefile (2010 tracts)",
+    "tract_vintage": "2010"
+   },
+   "2027": {
+    "effective": "2027-01-01",
+    "expires": "2036-12-31",
+    "source": "Treasury/IRS 2027 QOZ designations (CDFI Fund final_oz2_designations.xlsx, 2026-11-05) + Census TIGER/Line 2024 tracts",
+    "tract_vintage": "2020"
+   }
+  },
+  "method": "point-in-polygon of house lon/lat against full-resolution designated tract polygons",
+  "licence": "US federal government works (public domain, 17 U.S.C. 105); see web/usa/data/oz_licence.json",
+  "checked": "2026-11-24"
+ },
+ "assistance": {
+  "phas": [
+   {
+    "name": "Colorado Division of Housing",
+    "code": "CO911",
+    "phone": "3038647845",
+    "office_address": "1313 N Sherman St Ste 320, Denver, CO, 80203",
+    "website": null,
+    "section8_units": 8016,
+    "section8_occupied": 6046,
+    "public_housing_units": 0,
+    "program_type": "Section 8",
+    "section8_size": "EXTRA LARGE (5,000+)",
+    "phas_designation": null,
+    "service_area_level": "state",
+    "share_of_pha_units_in_area": null
+   },
+   {
+    "name": "Boulder Housing Partners",
+    "code": "CO016",
+    "phone": "7205644610",
+    "office_address": "4800 Broadway St, Boulder, CO, 80304",
+    "website": null,
+    "section8_units": 1328,
+    "section8_occupied": 1193,
+    "public_housing_units": 0,
+    "program_type": "Combined",
+    "section8_size": "LARGE (1,000-4,999)",
+    "phas_designation": "Standard Performer",
+    "service_area_level": "county",
+    "share_of_pha_units_in_area": 0.964
+   },
+   {
+    "name": "Boulder County Housing Authority",
+    "code": "CO061",
+    "phone": "3034413929",
+    "office_address": "3400 Broadway St, Boulder, CO, 80304",
+    "website": null,
+    "section8_units": 984,
+    "section8_occupied": 867,
+    "public_housing_units": 0,
+    "program_type": "Combined",
+    "section8_size": "MEDIUM HIGH (300-999)",
+    "phas_designation": "Standard Performer",
+    "service_area_level": "county",
+    "share_of_pha_units_in_area": 0.961
+   },
+   {
+    "name": "Colorado Housing Finance Authority",
+    "code": "CO921",
+    "phone": "3032977312",
+    "office_address": "1981 Blake St, Denver, CO, 80202",
+    "website": null,
+    "section8_units": 87,
+    "section8_occupied": 0,
+    "public_housing_units": 0,
+    "program_type": "Section 8",
+    "section8_size": "SMALL (50-99)",
+    "phas_designation": null,
+    "service_area_level": "state",
+    "share_of_pha_units_in_area": null
+   }
+  ],
+  "phas_note": "PHAs whose estimated service area contains the block (HUD calls these estimates, not legal boundaries); each sets its own payment standard. Office phone/address from the HUD PHA inventory; the layer has no website field; personal names and emails deliberately omitted.",
+  "safmr_mandatory": false,
+  "safmr_mandatory_since": null,
+  "tract_vouchers": {
+   "tract": "08013012507",
+   "voucher_households": 38,
+   "pct_of_renter_units": 3.7,
+   "egis_basis": "HUD eGIS Housing Choice Vouchers by Tract (HCV_PUBLIC, HCV_PUBLIC_PCT), point at block origin",
+   "picture_2025": {
+    "tract": "08013012507",
+    "housing_choice_vouchers": {
+     "units": 38,
+     "pct_occupied": 89,
+     "people_total": 43,
+     "avg_hud_spending_per_unit_month": 1495,
+     "avg_household_rent_contribution_month": 529,
+     "avg_utility_allowance": 169,
+     "months_waiting": null,
+     "months_since_move_in": 119,
+     "pct_units_1br": 64,
+     "pct_units_2br": 33,
+     "pct_units_3br_plus": 3,
+     "as_of": "31DEC2025"
+    },
+    "project_based_section8": {
+     "units": 28,
+     "pct_occupied": 96,
+     "people_total": 86,
+     "avg_hud_spending_per_unit_month": 2186,
+     "avg_household_rent_contribution_month": 1093,
+     "avg_utility_allowance": 192,
+     "months_waiting": null,
+     "months_since_move_in": 213,
+     "pct_units_1br": null,
+     "pct_units_2br": 11,
+     "pct_units_3br_plus": 89,
+     "as_of": "31DEC2025"
+    },
+    "public_housing": null,
+    "all_hud_programs": {
+     "units": 66,
+     "pct_occupied": 92,
+     "people_total": 129,
+     "avg_hud_spending_per_unit_month": 1801,
+     "avg_household_rent_contribution_month": 765,
+     "avg_utility_allowance": 188,
+     "months_waiting": null,
+     "months_since_move_in": 158,
+     "pct_units_1br": 37,
+     "pct_units_2br": 24,
+     "pct_units_3br_plus": 39,
+     "as_of": "31DEC2025"
+    },
+    "note": "aggregate tract statistics only (no household records); -1/-4 suppressed values shown as null. 'avg_hud_spending_per_unit_month' approximates the typical monthly HAP paid to owners."
+   }
+  },
+  "coc": {
+   "name": "Metropolitan Denver CoC",
+   "code": "CO-503",
+   "state": "Colorado",
+   "beds": null,
+   "why": "the CoC's rapid re-housing / permanent supportive housing providers lease private units and pay owners directly (24 CFR 578.51; ESG rent must not exceed FMR, 576.106)"
+  },
+  "hud_multifamily_nearby": [],
+  "hud_multifamily_note": "HUD-assisted multifamily properties within 800 m of the block centre (property-level, no tenant data). Contracts joined by property_id from the monthly contracts file (cached 2026-11-24). Expiring contracts can mean an owner opt-out and Tenant Protection Vouchers entering the area.",
+  "policy_notes": [
+   {
+    "id": "hud_2026_budget_letter",
+    "date": "2026-02/03",
+    "note": "HUD 2026 Budget Management Letter: vouchers are funding-constrained. PHAs asked to stop issuing new vouchers (except HUD-VASH and FYI), pause new project-based voucher commitments, and cut payment standards, ending exception payment standards and staying inside the 90-110% basic range. Expect payment standards toward the low end of the range.",
+    "url": "https://www.hud.gov/sites/default/files/PIH/documents/2026-Budget-Management-Letter.pdf"
+   },
+   {
+    "id": "nspire_delay",
+    "date": "2025-09-30",
+    "note": "NSPIRE inspections for vouchers delayed to 2027-02-01 (third extension). Until then PHAs may still inspect under the old HQS (24 CFR 982.401). The checklist here aims at both.",
+    "url": "https://www.federalregister.gov/documents/2025/09/30/2025-19070/economic-growth-regulatory-relief-and-consumer-protection-act-implementation-of-national-standards"
+   },
+   {
+    "id": "ehv_sunset",
+    "date": "2026",
+    "note": "Emergency Housing Vouchers are ending: families under EHV HAP contracts on 2026-09-30 move to Tenant Protection Vouchers by 2026-12-31 (PIH 2026-25); closeout from early 2027. For a landlord the lease continues as an ordinary voucher.",
+    "url": "https://www.hud.gov/sites/default/files/hudclips/documents/PIH-2026-25.pdf"
+   },
+   {
+    "id": "landlord_incentives",
+    "date": "2022",
+    "note": "PHAs may use HCV admin fees for landlord signing/retention bonuses, security and utility deposits and holding fees (PIH 2022-18). Optional and per PHA; 2026 budget pressure makes them scarcer.",
+    "url": "https://www.hud.gov/sites/dfiles/OCHCO/documents/2022-18pihn.pdf"
+   }
+  ],
+  "local_programs": [
+   {
+    "name": "Division of Housing voucher programs - security deposit and damage payment process",
+    "jurisdiction": "Colorado (statewide)",
+    "scope": "state",
+    "administrator": "Colorado Dept. of Local Affairs, Division of Housing (DOH)",
+    "landlord_gets": "Security deposit and damage payments for units leased under DOH supportive-housing vouchers (CoC PSH, State Housing Vouchers etc.); amounts not verified.",
+    "amounts": [],
+    "unit_eligibility": "Unit leased to DOH voucher participant.",
+    "how_to_list": null,
+    "claim_url": null,
+    "verified": "partial",
+    "source_url": "https://doh.colorado.gov/security-deposit-and-damage-payment-request-process",
+    "checked": "2026-11-24"
+   },
+   {
+    "name": "Landlord Assurance Fund (LAF)",
+    "jurisdiction": "Boulder County CO",
+    "scope": "county",
+    "administrator": "Boulder County Housing & Human Services, funded with Boulder County Housing Authority, Boulder Housing Partners, City of Boulder",
+    "landlord_gets": "$500-$2,500 per claim for tenant-caused damage after deposit and insurance; first 3 years of tenancy; leases effective 2023-03-01 or later. Excludes lost rent, arrears, mold, infestations, common areas, legal fees.",
+    "amounts": [
+     "$500",
+     "$2500"
+    ],
+    "unit_eligibility": "Unit in Boulder County leased with any federal/state/local voucher or rental assistance.",
+    "how_to_list": null,
+    "claim_url": "https://bouldercounty.formstack.com/forms/laf",
+    "verified": "true",
+    "source_url": "https://boulderhousing.org/wp-content/uploads/2025/12/LAF_Full_English.pdf",
+    "checked": "2026-11-24"
+   },
+   {
+    "name": "BHP Owner Incentive Payment",
+    "jurisdiction": "Boulder CO",
+    "scope": "city",
+    "administrator": "Boulder Housing Partners (MTW)",
+    "landlord_gets": "One-time incentive to new owners (or returning after >2 years); AMOUNT NOT STATED in flyer.",
+    "amounts": [],
+    "unit_eligibility": "Excludes BHP/PHA-owned units and any unit with recorded affordability covenant (e.g., LIHTC).",
+    "how_to_list": null,
+    "claim_url": null,
+    "verified": "partial",
+    "source_url": "https://boulderhousing.org/wp-content/uploads/2023/06/Owner-Incentive-Payment.pdf",
+    "checked": "2026-11-24"
+   }
+  ],
+  "local_programs_status": "ok",
+  "source_of_income": {
+   "law": "YES - statewide source-of-income protection incl. housing vouchers (HB20-1332, C.R.S. 24-34-501/502). Applies Denver & Boulder.",
+   "protected": true,
+   "jurisdiction": "Colorado (state)",
+   "verified": "false",
+   "source_url": null,
+   "meaning": "protected = a landlord may not refuse a tenant because rent is paid with a voucher; false = no protection or state preemption, so accepting vouchers is voluntary"
+  },
+  "pha_payment_standard_schedule": {
+   "administrator": "Boulder Housing Partners (BHP, MTW agency)",
+   "program": "HCV payment standards",
+   "notes": "No current payment-standard table found on site (WP media search returned none). Likely in 2026 Admin Plan https://boulderhousing.org/wp-content/uploads/2026/08/2026-Admin-Plan.pdf or MTW plan - NOT VERIFIED.",
+   "verified": "false",
+   "checked": "2026-11-24",
+   "source_url": "https://boulderhousing.org/landlord-hub/",
+   "year": null,
+   "from": "usa/research/rental_assistance_local.json"
+  },
+  "generated": "2026-11-24T22:35:10Z",
+  "status": {
+   "pha": "ok",
+   "hcv_tract": "ok",
+   "picture_2025": "ok",
+   "coc": "ok",
+   "hud_multifamily": "ok",
+   "bah": "ok",
+   "safmr_mandatory": "ok",
+   "fmr_safmr": "ok",
+   "local_json": "ok"
+  },
+  "vintages": {
+   "pha_service_areas": "2023-08-09",
+   "pha_inventory": "2026-10-23",
+   "hcv_tract": "2026-10-23",
+   "coc": "2025-08-19",
+   "multifamily": "2026-10-23",
+   "picture": "Picture of Subsidized Households 2025 (as of 31DEC2025 quarter)",
+   "bah": "BAH 2026"
+  },
+  "attribution": {
+   "pha": "Source: U.S. Department of Housing and Urban Development (HUD), HUD eGIS open data (hudgis-hud.opendata.arcgis.com). Not endorsed by HUD. Layers: Estimated Housing Authority Service Areas; Public Housing Authorities.",
+   "hcv_tract": "Source: U.S. Department of Housing and Urban Development (HUD), HUD eGIS open data (hudgis-hud.opendata.arcgis.com). Not endorsed by HUD. Layer: Housing Choice Vouchers by Tract.",
+   "picture_2025": "Source: HUD Office of Policy Development and Research, Picture of Subsidized Households 2025 (2020 census geography), https://www.huduser.gov/portal/datasets/assthsg.html",
+   "coc": "Source: U.S. Department of Housing and Urban Development (HUD), HUD eGIS open data (hudgis-hud.opendata.arcgis.com). Not endorsed by HUD. Layer: Continuum of Care Grantee Areas.",
+   "hud_multifamily": "Source: HUD Office of Multifamily Housing, Multifamily Assistance & Section 8 Contracts database (https://www.hud.gov/hud-partners/multifamily-assist-section8-database, 'furnished for the convenience of interested parties', no warranty) joined to HUD eGIS Multifamily Properties - Assisted for location.",
+   "fmr_safmr": "HUD FMR / Small Area FMR via meta.rent (usa/federal_flags.py, HUD eGIS layers).",
+   "bah": "Source: U.S. Department of Defense, Defense Travel Management Office, BAH rate files (https://www.travel.dod.mil/Allowances/Basic-Allowance-for-Housing/BAH-Rate-Lookup/).",
+   "rules": "Code of Federal Regulations via eCFR (ecfr.gov); HUD notices and letters (hud.gov)."
+  },
+  "licence": "US federal government works, not subject to copyright (17 U.S.C. 105): https://www.usa.gov/government-copyright",
+  "privacy": "no tenant or household-level data used; PHA office contacts only; HUD aggregate tract statistics",
+  "research": "usa/research/rental_assistance_federal.json"
+ },
+ "str": {
+  "county": {
+   "name": "Boulder",
+   "st": "CO",
+   "demand": 53.8,
+   "demand_raw": 55.4,
+   "credibility": 0.71,
+   "cost": 1.1,
+   "score": 32.5,
+   "score_raw": 33.5,
+   "score_invest": 32.5,
+   "market_depth": 96,
+   "peak_months": [
+    "Jun",
+    "Nov",
+    "Dec"
+   ],
+   "coverage": 0.89
+  },
+  "market_depth_parts": {
+   "households": 129940,
+   "households_pct": 93,
+   "visitor_volume_pct": 52,
+   "n_volume_inputs": 7
+  },
+  "county_parts": {
+   "demand": {
+    "air_visitor_pax_60km": [
+     0.0,
+     0
+    ],
+    "tourism_intensity": [
+     1.05,
+     50
+    ],
+    "leisure_emp_per_cap": [
+     0.0616,
+     89
+    ],
+    "nps_visits_80km": [
+     4171400,
+     88
+    ],
+    "venue_capacity": [
+     37064,
+     96
+    ],
+    "wiki_views_12m": [
+     231623,
+     82
+    ],
+    "hot_growth": null,
+    "in_commuters": [
+     113419,
+     95
+    ],
+    "vmt_daily": [
+     5526097,
+     91
+    ],
+    "federal_land_visits": [
+     653188,
+     93
+    ],
+    "state_park_visits": null,
+    "cruise_pax": [
+     0.0,
+     0
+    ],
+    "amtrak_riders": [
+     0.0,
+     0
+    ],
+    "border_crossings_12m": [
+     0.0,
+     0
+    ],
+    "state_overseas_visits": [
+     460000,
+     61
+    ]
+   },
+   "cost": {
+    "home_value": [
+     756300,
+     98.9,
+     4.15
+    ]
+   }
+  },
+  "county_legal": {
+   "status": "primary residence only",
+   "scope": "city",
+   "cities": [
+    "Boulder"
+   ],
+   "note": "City rules for Boulder apply inside city limits only; other cities and unincorporated areas in the county are not checked."
+  },
+  "note": "Estimate from aggregate public data; no booking or occupancy data is used",
+  "housing_demand": {
+   "score": 39.3,
+   "coverage": 0.9,
+   "parts": {
+    "emp_yoy": [
+     -1.61,
+     21
+    ],
+    "emp_5y": [
+     7.61,
+     47
+    ],
+    "wage_yoy": [
+     5.0,
+     75
+    ],
+    "net_mig_rate": [
+     -0.00684,
+     13
+    ],
+    "inflow_ratio": [
+     1.34,
+     96
+    ],
+    "unemp": [
+     4.4,
+     76
+    ],
+    "unemp_chg": [
+     0.5,
+     89
+    ],
+    "permits": null
+   },
+   "top_origins": [
+    {
+     "fips": "08123",
+     "name": "Weld, CO",
+     "people": 1657
+    },
+    {
+     "fips": "08031",
+     "name": "Denver, CO",
+     "people": 1429
+    },
+    {
+     "fips": "08001",
+     "name": "Adams, CO",
+     "people": 1383
+    },
+    {
+     "fips": "08059",
+     "name": "Jefferson, CO",
+     "people": 1314
+    },
+    {
+     "fips": "08014",
+     "name": "Broomfield, CO",
+     "people": 1034
+    }
+   ],
+   "pop_change_pct": -0.28,
+   "note": "County-level buy/long-term-rent demand from jobs, wages, migration and commuting."
+  },
+  "visitor_sites_25km": [
+   {
+    "name": "Two Ponds National Wildlife Refuge",
+    "kind": "wildlife_refuge",
+    "visits": 58000,
+    "km": 20.2
+   },
+   {
+    "name": "Rocky Flats National Wildlife Refuge",
+    "kind": "wildlife_refuge",
+    "visits": 57750,
+    "km": 12.4
+   }
+  ],
+  "city_legal": {
+   "city": "Boulder",
+   "state": "CO",
+   "status": "primary residence only",
+   "reasons": [
+    "City permit/licence required: Yes: STR rental licence (4-year term, $190 plus $25 business licence) plus a yearly principal-residence affidavit ($20) for stays of 29 days or fewer.",
+    "Primary-residence rule (no investor whole-home STR): Yes: must be the owner's principal residence (B.R.C. 10-1-1); owner must be a natural person, trust or nonprofit; tenants may not run STRs.",
+    "Zoning limits: Owner-occupied principal residences only; not allowed on a property with an ADU (10-3-19(o)).",
+    "Caps/density: Whole home: no day limit while it stays the owner's principal residence. An ADU may be an STR (up to 120 days a year) only if both the ADU and the STR licence predate Jan 3 2019."
+   ],
+   "verified": "partial",
+   "fields": {
+    "permit": {
+     "value": "Yes: STR rental licence (4-year term, $190 plus $25 business licence) plus a yearly principal-residence affidavit ($20) for stays of 29 days or fewer.",
+     "verified": true,
+     "source_url": "https://bouldercolorado.gov/services/rental-housing-licensing-short-term",
+     "checked": "2026-11-24"
+    },
+    "primary_residence": {
+     "value": "Yes: must be the owner's principal residence (B.R.C. 10-1-1); owner must be a natural person, trust or nonprofit; tenants may not run STRs.",
+     "verified": true,
+     "source_url": "https://bouldercolorado.gov/services/rental-housing-licensing-short-term",
+     "checked": "2026-11-24"
+    },
+    "zones": {
+     "value": "Owner-occupied principal residences only; not allowed on a property with an ADU (10-3-19(o)).",
+     "verified": true,
+     "source_url": "https://bouldercolorado.gov/services/rental-housing-licensing-short-term",
+     "checked": "2026-11-24"
+    },
+    "caps": {
+     "value": "Whole home: no day limit while it stays the owner's principal residence. An ADU may be an STR (up to 120 days a year) only if both the ADU and the STR licence predate Jan 3 2019.",
+     "verified": true,
+     "source_url": "https://bouldercolorado.gov/services/rental-housing-licensing-short-term",
+     "checked": "2026-11-24"
+    },
+    "max_occupancy": {
+     "value": "No STR-specific guest cap found; occupancy follows the Property Maintenance Code (2024 IPMC Section 404 via B.R.C. 9-8-5 and 10-2-2).",
+     "verified": "partial",
+     "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT9LAUSCO_CH8INST_9-8-5OCDWUN01",
+     "checked": "2026-11-24"
+    },
+    "taxes": {
+     "value": "Accommodations tax applies, filed quarterly through the Boulder Online Tax System; rate not stated on the licensing page.",
+     "verified": "partial",
+     "source_url": "https://bouldercolorado.gov/services/rental-housing-licensing-short-term",
+     "checked": "2026-11-24"
+    },
+    "listing_id": {
+     "value": "Yes: no one may advertise a short-term rental unless the ad shows the valid STR licence number; all rental ads must carry the rental licence number once assigned.",
+     "verified": true,
+     "source_url": "https://library.municode.com/co/boulder/codes/municipal_code?nodeId=TIT10ST_CH3RELI",
+     "checked": "2026-11-24"
+    },
+    "pending": {
+     "value": "None found: the city STR licensing page lists current rules (licence before advertising, 29-day maximum stay) and no pending changes.",
+     "verified": "partial",
+     "source_url": "https://bouldercolorado.gov/services/rental-housing-licensing-short-term",
+     "checked": "2026-11-24"
+    }
+   },
+   "state_preemption": {
+    "value": "No statewide STR preemption found; HB23-1287 (signed 2023) instead concerns county regulation of STRs. Home-rule cities such as Denver and Boulder license STRs themselves.",
+    "verified": "partial",
+    "source_url": "https://leg.colorado.gov/bills/hb23-1287",
+    "checked": "2026-11-24"
+   }
+  },
+  "airports_60km": [
+   {
+    "iata": "DEN",
+    "km": 50.9
+   }
+  ],
+  "nearest_airport": {
+   "iata": "DEN",
+   "km": 50.9
+  },
+  "airport": {
+   "iata": "DEN",
+   "km": 50.9,
+   "km_from": "block",
+   "name": "Denver International",
+   "pax_12m": 40257340,
+   "od_share": 0.537,
+   "visitor_share": 0.34,
+   "pax_yoy": 0.005,
+   "peak_months": [
+    7,
+    6,
+    8
+   ],
+   "arrivals": {
+    "peak_arrival_hour": 10,
+    "busiest_3h_window": "08:00-11:00",
+    "checkin_window": "09:00-12:00",
+    "share_in_window": 0.221,
+    "note": "Scheduled arrival hours (local time as given by the air lane); check-in window assumes ~1 h from gate to door."
+   },
+   "checkin_window_air_lane": {
+    "start_hour": 12,
+    "end_hour": 20,
+    "peak_hour": 10
+   },
+   "basis": "busiest airport by visitor passengers within 60 km (>=100k pax/yr)"
+  },
+  "venues_5km": [
+   {
+    "name": "Folsom Field",
+    "kind": "stadium",
+    "cap": 26000,
+    "km": 3.1,
+    "src": "08013"
+   },
+   {
+    "name": "CU Events Center",
+    "kind": "arena",
+    "cap": 11064,
+    "km": 2.39,
+    "src": "08013"
+   },
+   {
+    "name": "Bandshell",
+    "kind": "concert",
+    "cap": null,
+    "km": 4.3,
+    "src": "08013"
+   },
+   {
+    "name": "eTown Hall",
+    "kind": "concert",
+    "cap": null,
+    "km": 4.54,
+    "src": "08013"
+   },
+   {
+    "name": "University of Colorado Boulder",
+    "kind": "university",
+    "cap": null,
+    "km": 3.27,
+    "src": "08013"
+   }
+  ],
+  "venues_5km_total": 5,
+  "amtrak": {
+   "km": 37.7,
+   "station": null,
+   "km_from": "county centroid"
+  },
+  "transit_trips_per_capita": 24.22,
+  "walkability_median": 13.25,
+  "generated": "2026-11-24"
+ },
+ "traffic": {
+  "segments": [
+   {
+    "name": "TABLE MESA DR",
+    "aadt": 27000,
+    "year": 2025,
+    "km_from_center": 0.019,
+    "source": "hpms",
+    "trucks": 970
+   },
+   {
+    "name": "SR 93",
+    "aadt": 25000,
+    "year": 2025,
+    "km_from_center": 0.261,
+    "source": "hpms+cdot",
+    "trucks": 1230
+   },
+   {
+    "name": "SR 93",
+    "aadt": 20000,
+    "year": 2025,
+    "km_from_center": 0.307,
+    "source": "hpms+cdot",
+    "trucks": 840
+   },
+   {
+    "name": "TABLE MESA DR",
+    "aadt": 7300,
+    "year": 2025,
+    "km_from_center": 0.296,
+    "source": "hpms"
+   }
+  ],
+  "radius_m": 300,
+  "segments_within_radius": 15,
+  "nearest_outside_radius": null,
+  "county": {
+   "vmt_daily": 5526097,
+   "max_aadt": 89000,
+   "mean_aadt_arterial": 11258,
+   "truck_pct": 3.1,
+   "yoy": -0.01,
+   "road_mi": 502.6,
+   "year": 2025
+  },
+  "county_fips": "08013",
+  "seasonal_index": [
+   0.851,
+   0.901,
+   0.972,
+   0.988,
+   1.042,
+   1.088,
+   1.13,
+   1.088,
+   1.065,
+   1.04,
+   0.943,
+   0.925
+  ],
+  "state_tvt": {
+   "stations": 104,
+   "vmt_m_latest": 4769,
+   "vmt_m_prev_year": 4770,
+   "yoy_pct": 0,
+   "prior_month_stations": 114,
+   "prior_month_vmt_m": 5012,
+   "prior_month_yoy_pct": -1.2
+  },
+  "state_tvt_month": "2026-09 (preliminary)",
+  "seasonal_scope": "state",
+  "status": {
+   "hpms": "ok HPMS_FULL_CO_2025 (204 sections in box)",
+   "cdot": "ok (6 segments)"
+  },
+  "note": "Aggregate annual average daily traffic (vehicles/day) on public road sections; no individual vehicle or person data. Road noise is covered separately by the BTS National Transportation Noise Map already used elsewhere in this project.",
+  "sources": {
+   "cdot": {
+    "licence": "\"This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 License\" (attribution: Colorado Department of Transportation; share-alike applies to derived datasets)",
+    "url": "https://dtdapps.codot.gov/server/rest/services/Webapps/open_data_sde/FeatureServer/13"
+   },
+   "hpms": {
+    "licence": "US federal government work (17 U.S.C. 105), public domain. HPMS public release data is published by FHWA for unrestricted public use; NTAD notice: \"This NTAD dataset is a work of the United States government as defined in 17 U.S.C. 101 and as such are not protected by any U.S. copyrights. This work is available for unrestricted public use.\"",
+    "url": "https://geo.dot.gov/server/rest/services/Hosted (HPMS_FULL_<ST>_<YEAR>)"
+   },
+   "tmas": {
+    "licence": "\"This NTAD dataset is a work of the United States government as defined in 17 U.S.C. 101 and as such are not protected by any U.S. copyrights. This work is available for unrestricted public use.\"",
+    "url": "https://www.arcgis.com/sharing/rest/content/items/5a9462b519854ec6a2334b3c0bdfc3c1 ; https://www.arcgis.com/sharing/rest/content/items/ac3f8dd9c4454c20b8d3b7ac5247c8f4"
+   },
+   "tvt": {
+    "licence": "US federal government work (17 U.S.C. 105), public domain; FHWA monthly publication, no use restriction.",
+    "url": "https://highways.dot.gov/policy/policy-information/resources/tvt"
+   }
+  },
+  "generated": "2026-11-24T22:21+00:00"
+ },
+ "affluence": {
+  "tract": "08013012507",
+  "block_group": "080130125073",
+  "median_hh_income": {
+   "tract": 53971,
+   "block_group": 126071,
+   "block_group_moe": 49530
+  },
+  "share_hh_200k": {
+   "tract": 0.1905,
+   "block_group": 0.2735
+  },
+  "share_hh_150k": {
+   "tract": 0.2686,
+   "block_group": 0.453
+  },
+  "households": {
+   "tract": 1832,
+   "block_group": 234
+  },
+  "zip": "80305",
+  "zip_source": "dominant 2020 ZCTA of tract (Census relationship file)",
+  "zip_agi_per_return": 159275,
+  "zip_share_returns_200k": 0.2247,
+  "county_percentile": {
+   "block_group": 57.7,
+   "tract": 11.5,
+   "basis": "median household income vs all block groups / tracts in the county (ACS 2020-2024)"
+  },
+  "national_tract_percentile": 21.0,
+  "label": "middle",
+  "label_rule": "county percentile of block-group median HH income (tract if BG missing): >=90 very high, >=70 high, >=30 middle, else lower",
+  "sources": [
+   "ACS 2020-2024 5-year B19001/B19013 (Census, public domain)",
+   "IRS SOI ZIP-code data tax year 2023 (public domain)"
+  ],
+  "note": "Area aggregates only; no household-level income is used or inferred."
+ },
+ "pools": {
+  "n_pools": 0,
+  "houses": 4,
+  "share_houses_with_pool": 0.0,
+  "green_now": 0,
+  "green_ever": 0,
+  "context_pools": 0,
+  "context_m": 100.0,
+  "in_block_sites": 0,
+  "in_block_sites_unassigned": 0,
+  "imagery_dates": [
+   {
+    "date": "2011-07-30",
+    "source": "USDA NAIP",
+    "licence": "public domain (USDA FSA)",
+    "gsd_m": 1.0,
+    "nir": true,
+    "reference_pools": 0,
+    "reference_basis": null,
+    "colour_cast": false
+   },
+   {
+    "date": "2013-09-26",
+    "source": "USDA NAIP",
+    "licence": "public domain (USDA FSA)",
+    "gsd_m": 1.0,
+    "nir": true,
+    "reference_pools": 0,
+    "reference_basis": null,
+    "colour_cast": false
+   },
+   {
+    "date": "2015-09-19",
+    "source": "USDA NAIP",
+    "licence": "public domain (USDA FSA)",
+    "gsd_m": 1.0,
+    "nir": true,
+    "reference_pools": 0,
+    "reference_basis": null,
+    "colour_cast": false
+   },
+   {
+    "date": "2017-09-02",
+    "source": "USDA NAIP",
+    "licence": "public domain (USDA FSA)",
+    "gsd_m": 1.0,
+    "nir": true,
+    "reference_pools": 0,
+    "reference_basis": null,
+    "colour_cast": false
+   },
+   {
+    "date": "2019-09-19",
+    "source": "USDA NAIP",
+    "licence": "public domain (USDA FSA)",
+    "gsd_m": 0.6,
+    "nir": true,
+    "reference_pools": 0,
+    "reference_basis": null,
+    "colour_cast": false
+   },
+   {
+    "date": "2021-07-27",
+    "source": "USDA NAIP",
+    "licence": "public domain (USDA FSA)",
+    "gsd_m": 0.6,
+    "nir": true,
+    "reference_pools": 0,
+    "reference_basis": null,
+    "colour_cast": false
+   },
+   {
+    "date": "2023-09-25",
+    "source": "USDA NAIP",
+    "licence": "public domain (USDA FSA)",
+    "gsd_m": 0.3,
+    "nir": true,
+    "reference_pools": 0,
+    "reference_basis": null,
+    "colour_cast": false
+   }
+  ],
+  "method": "NAIP/open orthophoto water pixels (NDWI>0.10, blue>red, not dark, not roof/tree via LiDAR+footprints) -> compact 12-150 m2 sites fixed across snapshots -> per-snapshot state from grey-world-balanced colour + NDWI/NDVI, relative to the context window's clean pools; see usa/research/pools_method.md",
+  "licence": "USDA NAIP: public domain (USDA FSA)",
+  "sentinel2_neighbourhood": null,
+  "limitations": "snapshots every ~1-2 years on capture dates only; covered/shaded pools and pools under trees can be missed; colour states are indicative, not inspections",
+  "generated": "2026-11-24T21:54+00:00"
+ },
+ "imagery": {
+  "generated": "2026-11-24T21:56Z",
+  "latest": [
+   {
+    "source": "Sentinel-2 L2A true colour (block +300 m, SCL cloud-masked check)",
+    "date": "2026-11-20",
+    "resolution_m": 10,
+    "file": "sat/s2_2026-11-20_rgb.jpg",
+    "licence": "Copernicus Sentinel data legal notice (EU Reg. 1159/2013): free, full and open; reproduction/distribution/modification allowed, no commercial restriction; credit 'Contains modified Copernicus Sentinel data <year>'",
+    "licence_url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "clear_frac": 1.0
+   },
+   {
+    "source": "Sentinel-2 L2A NDVI (block +300 m)",
+    "date": "2026-11-20",
+    "resolution_m": 10,
+    "file": "sat/s2_2026-11-20_ndvi.jpg",
+    "licence": "Copernicus Sentinel data legal notice (EU Reg. 1159/2013): free, full and open; reproduction/distribution/modification allowed, no commercial restriction; credit 'Contains modified Copernicus Sentinel data <year>'",
+    "licence_url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+    "ndvi_mean": 0.284
+   },
+   {
+    "source": "Sentinel-1 RTC radar (all-weather)",
+    "date": "2026-11-19",
+    "latest_lowcloud_scene": null,
+    "resolution_m": 10,
+    "licence": "CC BY 4.0 (Planetary Computer Sentinel-1 RTC; contains modified Copernicus Sentinel data)",
+    "licence_url": "https://planetarycomputer.microsoft.com/dataset/sentinel-1-rtc",
+    "note": "metadata only (no clip)"
+   },
+   {
+    "source": "NASA HLS L30 (Landsat harmonised)",
+    "date": "2026-11-17",
+    "latest_lowcloud_scene": "2026-11-16",
+    "resolution_m": 30,
+    "licence": "CC0 (NASA ESDIS default for NASA-led mission data)",
+    "licence_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+    "note": "metadata only (no clip)"
+   },
+   {
+    "source": "NASA HLS S30 (Sentinel-2 harmonised)",
+    "date": "2026-11-16",
+    "latest_lowcloud_scene": "2026-11-16",
+    "resolution_m": 30,
+    "licence": "CC0 (NASA ESDIS default for NASA-led mission data)",
+    "licence_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+    "note": "metadata only (no clip)"
+   },
+   {
+    "source": "Landsat 8/9 Collection 2 L2",
+    "date": "2026-11-16",
+    "latest_lowcloud_scene": "2026-11-16",
+    "resolution_m": 30,
+    "licence": "USGS Landsat: no restrictions (US Government public domain)",
+    "licence_url": "https://www.usgs.gov/faqs/are-there-any-restrictions-use-or-redistribution-landsat-data",
+    "note": "metadata only (no clip)"
+   },
+   {
+    "source": "NAIP (USDA FSA) via Planetary Computer",
+    "date": "2023",
+    "resolution_m": 0.3,
+    "licence": "Public domain with attribution (USDA FSA NAIP)",
+    "licence_url": "https://registry.opendata.aws/naip/",
+    "note": "catalogue only here; img/<year>.jpg owned by another lane"
+   },
+   {
+    "source": "DRAPP 2022 Denver regional leaf-off orthos (State of Colorado on AWS)",
+    "date": "2022",
+    "resolution_m": 0.076,
+    "licence": "CC0 1.0 (State of Colorado public imagery, AWS Open Data registry)",
+    "licence_url": "https://registry.opendata.aws/colorado-imagery/",
+    "service": "https://gis.colorado.gov/public/rest/services/OIT/Public_Imagery_Layer_Index/MapServer/6/query",
+    "file": "sat/co_drapp22.jpg"
+   }
+  ],
+  "sentinel2_series": [
+   {
+    "month": "2024-12",
+    "ndvi": 0.2777,
+    "brightness": 0.0839,
+    "date": "2024-12-06",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2025-01",
+    "ndvi": 0.2354,
+    "brightness": 0.0926,
+    "date": "2025-01-15",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2025-02",
+    "ndvi": 0.226,
+    "brightness": 0.0988,
+    "date": "2025-02-06",
+    "clear_frac": 0.998
+   },
+   {
+    "month": "2025-03",
+    "ndvi": 0.2631,
+    "brightness": 0.0982,
+    "date": "2025-03-26",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2025-04",
+    "ndvi": 0.2844,
+    "brightness": 0.1076,
+    "date": "2025-04-10",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2025-05",
+    "ndvi": 0.3744,
+    "brightness": 0.1151,
+    "date": "2025-05-02",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2025-06",
+    "ndvi": 0.4373,
+    "brightness": 0.0998,
+    "date": "2025-06-21",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2025-07",
+    "ndvi": 0.4312,
+    "brightness": 0.101,
+    "date": "2025-07-31",
+    "clear_frac": 0.93
+   },
+   {
+    "month": "2025-08",
+    "ndvi": 0.4142,
+    "brightness": 0.1028,
+    "date": "2025-08-20",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2025-09",
+    "ndvi": 0.4558,
+    "brightness": 0.094,
+    "date": "2025-09-24",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2025-10",
+    "ndvi": 0.4184,
+    "brightness": 0.0777,
+    "date": "2025-10-22",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2025-11",
+    "ndvi": 0.3154,
+    "brightness": 0.0924,
+    "date": "2025-11-08",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2025-12",
+    "ndvi": 0.268,
+    "brightness": 0.0834,
+    "date": "2025-12-31",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2026-01",
+    "ndvi": 0.2468,
+    "brightness": 0.0964,
+    "date": "2026-01-07",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2026-02",
+    "ndvi": 0.2315,
+    "brightness": 0.0974,
+    "date": "2026-02-06",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2026-03",
+    "ndvi": 0.2462,
+    "brightness": 0.1014,
+    "date": "2026-03-21",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2026-04",
+    "ndvi": 0.2799,
+    "brightness": 0.1027,
+    "date": "2026-04-05",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2026-05",
+    "ndvi": 0.3209,
+    "brightness": 0.1195,
+    "date": "2026-05-02",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2026-06",
+    "ndvi": 0.3743,
+    "brightness": 0.1196,
+    "date": "2026-06-13",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2026-07",
+    "ndvi": 0.3811,
+    "brightness": 0.1197,
+    "date": "2026-07-11",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2026-08",
+    "ndvi": 0.379,
+    "brightness": 0.1023,
+    "date": "2026-08-20",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2026-09",
+    "ndvi": 0.3797,
+    "brightness": 0.0994,
+    "date": "2026-09-04",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2026-10",
+    "ndvi": 0.3711,
+    "brightness": 0.0874,
+    "date": "2026-10-19",
+    "clear_frac": 1.0
+   },
+   {
+    "month": "2026-11",
+    "ndvi": 0.2839,
+    "brightness": 0.0889,
+    "date": "2026-11-20",
+    "clear_frac": 1.0
+   }
+  ],
+  "sentinel2_trend": {
+   "pairs": 12,
+   "ndvi_yoy": -0.0309,
+   "brightness_yoy": 0.0045,
+   "read": "browning, stable brightness"
+  },
+  "revisit_summary": {
+   "sentinel2": {
+    "scenes_12mo": 152,
+    "median_revisit_days": 2.0,
+    "median_revisit_lowcloud_days": 3.0,
+    "latest": "2026-11-23"
+   },
+   "landsat89": {
+    "scenes_12mo": 87,
+    "median_revisit_days": 7.0,
+    "median_revisit_lowcloud_days": 8.0,
+    "latest": "2026-11-16"
+   },
+   "hls_s30": {
+    "scenes_12mo": 120,
+    "median_revisit_days": 2.0,
+    "median_revisit_lowcloud_days": 5.0,
+    "latest": "2026-11-16"
+   },
+   "hls_l30": {
+    "scenes_12mo": 76,
+    "median_revisit_days": 7.0,
+    "median_revisit_lowcloud_days": 15.5,
+    "latest": "2026-11-17"
+   },
+   "sentinel1_rtc": {
+    "scenes_12mo": 113,
+    "median_revisit_days": 4.0,
+    "median_revisit_lowcloud_days": null,
+    "latest": "2026-11-19"
+   },
+   "optical_combined": {
+    "acquisition_days_12mo": 202,
+    "median_revisit_days": 2.0
+   },
+   "naip_years": [
+    2011,
+    2013,
+    2015,
+    2017,
+    2019,
+    2021,
+    2023
+   ],
+   "newest_clear_optical": "2026-11-20",
+   "days_since_clear_optical": 4,
+   "newest_sub_metre": "2023",
+   "text": "Optical satellites imaged this block on 202 days in the last 12 months (median gap 2.0 d); newest clear Sentinel-2 view 2026-11-20 (4 d ago). Sentinel-1 radar every ~4.0 d regardless of cloud. Newest sub-metre open aerial: 2023."
+  },
+  "naip_years": [
+   {
+    "year": 2011,
+    "gsd_m": 1.0,
+    "items": 2,
+    "state": "co"
+   },
+   {
+    "year": 2013,
+    "gsd_m": 1.0,
+    "items": 2,
+    "state": "co"
+   },
+   {
+    "year": 2015,
+    "gsd_m": 1.0,
+    "items": 2,
+    "state": "co"
+   },
+   {
+    "year": 2017,
+    "gsd_m": 1.0,
+    "items": 2,
+    "state": "co"
+   },
+   {
+    "year": 2019,
+    "gsd_m": 0.6,
+    "items": 2,
+    "state": "co"
+   },
+   {
+    "year": 2021,
+    "gsd_m": 0.6,
+    "items": 2,
+    "state": "co"
+   },
+   {
+    "year": 2023,
+    "gsd_m": 0.3,
+    "items": 2,
+    "state": "co"
+   }
+  ],
+  "disaster_events": [],
+  "drone_images": [
+   {
+    "id": "5c6440b9eaa5bc0007eea42b",
+    "title": "Keewayden Park, Boulder Colorado",
+    "provider": "Spectrabotics",
+    "platform": "uav",
+    "date": "2018-07-05",
+    "gsd_m": 0.0199999740375,
+    "licence": "CC-BY 4.0",
+    "covers_block": false,
+    "tms": "https://tiles.openaerialmap.org/5c644046eaa5bc0007eea429/0/5c644046eaa5bc0007eea42a/{z}/{x}/{y}",
+    "distance_km": 1.61,
+    "page": "https://map.openaerialmap.org/#/5c6440b9eaa5bc0007eea42b"
+   },
+   {
+    "id": "5bcfb900e5203200052aeecc",
+    "title": "Denver Regional Aerial Photography Project - 2016 - 3in - Block 1a",
+    "provider": "Denver Regional Council of Governments",
+    "platform": "aircraft",
+    "date": "2017-01-01",
+    "gsd_m": 0.25,
+    "licence": "CC-BY 4.0",
+    "covers_block": false,
+    "tms": "https://tiles.openaerialmap.org/5bcf6a0591037900144c3972/0/5bcf6a0591037900144c39d1/{z}/{x}/{y}",
+    "distance_km": 9.34,
+    "page": "https://map.openaerialmap.org/#/5bcfb900e5203200052aeecc"
+   },
+   {
+    "id": "5bcfb5d1e5203200052aee9e",
+    "title": "Denver Regional Aerial Photography Project - 2016 - 3in - Block 1a",
+    "provider": "Denver Regional Council of Governments",
+    "platform": "aircraft",
+    "date": "2017-01-01",
+    "gsd_m": 0.25,
+    "licence": "CC-BY 4.0",
+    "covers_block": false,
+    "tms": "https://tiles.openaerialmap.org/5bcf6a0591037900144c3972/0/5bcf6a0591037900144c39b1/{z}/{x}/{y}",
+    "distance_km": 9.73,
+    "page": "https://map.openaerialmap.org/#/5bcfb5d1e5203200052aee9e"
+   },
+   {
+    "id": "5bcfb4e4e5203200052aee91",
+    "title": "Denver Regional Aerial Photography Project - 2016 - 3in - Block 1a",
+    "provider": "Denver Regional Council of Governments",
+    "platform": "aircraft",
+    "date": "2017-01-01",
+    "gsd_m": 0.25,
+    "licence": "CC-BY 4.0",
+    "covers_block": false,
+    "tms": "https://tiles.openaerialmap.org/5bcf6a0591037900144c3972/0/5bcf6a0591037900144c3992/{z}/{x}/{y}",
+    "distance_km": 9.83,
+    "page": "https://map.openaerialmap.org/#/5bcfb4e4e5203200052aee91"
+   },
+   {
+    "id": "5bcfb353e5203200052aee84",
+    "title": "Denver Regional Aerial Photography Project - 2016 - 3in - Block 1a",
+    "provider": "Denver Regional Council of Governments",
+    "platform": "aircraft",
+    "date": "2017-01-01",
+    "gsd_m": 0.25,
+    "licence": "CC-BY 4.0",
+    "covers_block": false,
+    "tms": "https://tiles.openaerialmap.org/5bcf6a0591037900144c3972/0/5bcf6a0591037900144c3994/{z}/{x}/{y}",
+    "distance_km": 10.11,
+    "page": "https://map.openaerialmap.org/#/5bcfb353e5203200052aee84"
+   },
+   {
+    "id": "5bcfb8fee5203200052aeeca",
+    "title": "Denver Regional Aerial Photography Project - 2016 - 3in - Block 1a",
+    "provider": "Denver Regional Council of Governments",
+    "platform": "aircraft",
+    "date": "2017-01-01",
+    "gsd_m": 0.25,
+    "licence": "CC-BY 4.0",
+    "covers_block": false,
+    "tms": "https://tiles.openaerialmap.org/5bcf6a0591037900144c3972/0/5bcf6a0591037900144c39b3/{z}/{x}/{y}",
+    "distance_km": 10.14,
+    "page": "https://map.openaerialmap.org/#/5bcfb8fee5203200052aeeca"
+   },
+   {
+    "id": "5bcfbae6e5203200052aeee2",
+    "title": "Denver Regional Aerial Photography Project - 2016 - 3in - Block 1a",
+    "provider": "Denver Regional Council of Governments",
+    "platform": "aircraft",
+    "date": "2017-01-01",
+    "gsd_m": 0.25,
+    "licence": "CC-BY 4.0",
+    "covers_block": false,
+    "tms": "https://tiles.openaerialmap.org/5bcf6a2791037900144c39d8/0/5bcf6a2791037900144c39f8/{z}/{x}/{y}",
+    "distance_km": 10.18,
+    "page": "https://map.openaerialmap.org/#/5bcfbae6e5203200052aeee2"
+   },
+   {
+    "id": "5bcfb238e5203200052aee71",
+    "title": "Denver Regional Aerial Photography Project - 2016 - 3in - Block 1a",
+    "provider": "Denver Regional Council of Governments",
+    "platform": "aircraft",
+    "date": "2017-01-01",
+    "gsd_m": 0.25,
+    "licence": "CC-BY 4.0",
+    "covers_block": false,
+    "tms": "https://tiles.openaerialmap.org/5bcf6a0591037900144c3972/0/5bcf6a0591037900144c3975/{z}/{x}/{y}",
+    "distance_km": 10.26,
+    "page": "https://map.openaerialmap.org/#/5bcfb238e5203200052aee71"
+   },
+   {
+    "id": "5bcfb372e5203200052aee85",
+    "title": "Denver Regional Aerial Photography Project - 2016 - 3in - Block 1a",
+    "provider": "Denver Regional Council of Governments",
+    "platform": "aircraft",
+    "date": "2017-01-01",
+    "gsd_m": 0.25,
+    "licence": "CC-BY 4.0",
+    "covers_block": false,
+    "tms": "https://tiles.openaerialmap.org/5bcf6a0591037900144c3972/0/5bcf6a0591037900144c3995/{z}/{x}/{y}",
+    "distance_km": 10.6,
+    "page": "https://map.openaerialmap.org/#/5bcfb372e5203200052aee85"
+   },
+   {
+    "id": "5bcfb372e5203200052aee85",
+    "title": "Denver Regional Aerial Photography Project - 2016 - 3in - Block 1a",
+    "provider": "Denver Regional Council of Governments",
+    "platform": "aircraft",
+    "date": "2017-01-01",
+    "gsd_m": 0.25,
+    "licence": "CC-BY 4.0",
+    "covers_block": false,
+    "tms": "https://tiles.openaerialmap.org/5bcf6a0591037900144c3972/0/5bcf6a0591037900144c3995/{z}/{x}/{y}",
+    "distance_km": 10.6,
+    "page": "https://map.openaerialmap.org/#/5bcfb372e5203200052aee85"
+   }
+  ],
+  "drone_summary": {
+   "open_within_25km": 880,
+   "rejected_within_25km": 6,
+   "covering_block": 0
+  },
+  "rejected_here": [
+   {
+    "source": "OpenAerialMap 61e481457cafc800070cd7ba Maxar - 104001007109E200",
+    "reason": "terms not explicit: image licence 'CC BY-NC 4.0' is not CC0 / CC BY / CC BY-SA"
+   },
+   {
+    "source": "OpenAerialMap 61d36d2289c86000078daf66 Maxar - 10200100BCB1A500",
+    "reason": "terms not explicit: image licence 'CC BY-NC 4.0' is not CC0 / CC BY / CC BY-SA"
+   },
+   {
+    "source": "OpenAerialMap 61d6f5b8c0ab110007f14f9a Maxar - 1040010071CA7100",
+    "reason": "terms not explicit: image licence 'CC BY-NC 4.0' is not CC0 / CC BY / CC BY-SA"
+   },
+   {
+    "source": "OpenAerialMap 61d6f60fc0ab110007f14f9c Maxar - 10300100CC3B7700",
+    "reason": "terms not explicit: image licence 'CC BY-NC 4.0' is not CC0 / CC BY / CC BY-SA"
+   },
+   {
+    "source": "OpenAerialMap 61d6f61bc0ab110007f14f9d Maxar - 1040010071622200",
+    "reason": "terms not explicit: image licence 'CC BY-NC 4.0' is not CC0 / CC BY / CC BY-SA"
+   },
+   {
+    "source": "OpenAerialMap 61d6f5b8c0ab110007f14f9b Maxar - 104001007109E200",
+    "reason": "terms not explicit: image licence 'CC BY-NC 4.0' is not CC0 / CC BY / CC BY-SA"
+   }
+  ],
+  "sources": "data/imagery_sources.json"
+ },
+ "thermal": {
+  "source": "Landsat 8/9 Collection 2 Level-2 Surface Temperature (ST_B10), USGS, via Microsoft Planetary Computer STAC 'landsat-c2-l2'",
+  "resolution_m": 30,
+  "native_tirs_m": 100,
+  "period": "2023-11-24/2026-11-24",
+  "acquisitions_n": 237,
+  "scenes_n": 147,
+  "clear_rule": "QA_PIXEL fill/dilated-cloud/cirrus/cloud/shadow all clear on every block pixel, >=80% clear within 2 km, Tier 1 only, ST_QA uncertainty <= 6 K",
+  "overpass_local": "~10:30-11:00 local solar time (Landsat); afternoon peak LST is higher",
+  "hottest_date": "2026-07-20",
+  "hottest_block_mean_c": 50.4,
+  "hottest_block_max_c": 51.2,
+  "coolest_date": "2026-01-24",
+  "coolest_block_mean_c": -9.8,
+  "summer_date": "2026-07-20",
+  "winter_date": "2026-01-24",
+  "summer_scenes_n": 41,
+  "winter_scenes_n": 35,
+  "uhi_vs_2km_hottest_c": 1.0,
+  "uhi_vs_2km_mean_c": 1.2,
+  "urban_heat_note": "On the hottest clear summer pass (2026-07-20) the block averaged 50.4 C, 1.0 C warmer than the median of clear pixels within 2 km (49.4 C); across all 147 clear passes the block is on average +1.2 C vs its 2 km surroundings. Surface (skin) temperature, not air temperature.",
+  "house_pixel_note": "30 m pixel covers several houses/yard; not a roof-only reading",
+  "hot_roof_rule": "houses whose mean (pixel - block median) across all clear scenes is in the block's top decile and > 0; houses sharing one 30 m pixel share the flag",
+  "sun_context": {
+   "corr_rel_lst_vs_modelled_shaded_pct": null,
+   "note": "h.sun is modelled from LiDAR; measured LST is a 30 m mixed pixel (roof+yard+trees). Use together only as context."
+  },
+  "air": {
+   "source": "NWS/FAA ASOS routine obs via Iowa Environmental Mesonet",
+   "station": {
+    "id": "BJC",
+    "name": "BROOMFIELD/JEFFCO",
+    "network": "CO_ASOS",
+    "km": 13.9,
+    "lon": -105.1172,
+    "lat": 39.9088,
+    "awos": false
+   },
+   "match": "nearest routine obs within 90 min of the Landsat pass",
+   "licence": "Public domain (NWS/FAA ASOS observations via Iowa Environmental Mesonet)"
+  },
+  "ecostress": "skipped: LP DAAC ECO_L2T_LSTE v002 granules exist over the block but downloads redirect to urs.earthdata.nasa.gov (free Earthdata login required; none configured)",
+  "licence": "US Government public domain (USGS Landsat Collection 2)",
+  "licence_quote": "There are no restrictions on the use of Landsat products.",
+  "licence_url": "https://www.usgs.gov/landsat-missions/landsat-collection-2-surface-temperature",
+  "citation": "EROS (2020) Landsat 8-9 OLI/TIRS Level-2, Collection 2. USGS. doi:10.5066/P9OGBGM6",
+  "files": [
+   "thermal/lst_summer.png",
+   "thermal/lst_winter.png",
+   "thermal/lst_grid.json",
+   "thermal/lst_grid_winter.json"
+  ],
+  "series": [
+   {
+    "date": "2023-12-18",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 7.7,
+    "block_max_c": 8.4,
+    "context_2km_median_c": 7.1,
+    "air_temp_c": 7.0,
+    "st_uncertainty_k": 2.43
+   },
+   {
+    "date": "2024-01-03",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 6.8,
+    "block_max_c": 7.4,
+    "context_2km_median_c": 6.3,
+    "air_temp_c": 4.0,
+    "st_uncertainty_k": 2.31
+   },
+   {
+    "date": "2024-01-12",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 0.0,
+    "block_max_c": 0.7,
+    "context_2km_median_c": 0.3,
+    "air_temp_c": 0.0,
+    "st_uncertainty_k": 2.43
+   },
+   {
+    "date": "2024-01-19",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": -2.4,
+    "block_max_c": -1.9,
+    "context_2km_median_c": -2.6,
+    "air_temp_c": -2.0,
+    "st_uncertainty_k": 2.4
+   },
+   {
+    "date": "2024-01-27",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 8.4,
+    "block_max_c": 9.2,
+    "context_2km_median_c": 7.7,
+    "air_temp_c": 7.0,
+    "st_uncertainty_k": 2.39
+   },
+   {
+    "date": "2024-01-28",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 13.6,
+    "block_max_c": 14.4,
+    "context_2km_median_c": 12.9,
+    "air_temp_c": 12.0,
+    "st_uncertainty_k": 3.24
+   },
+   {
+    "date": "2024-02-04",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": -0.7,
+    "block_max_c": -0.6,
+    "context_2km_median_c": -1.0,
+    "air_temp_c": 0.0,
+    "st_uncertainty_k": 1.71
+   },
+   {
+    "date": "2024-02-05",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": -0.1,
+    "block_max_c": 0.0,
+    "context_2km_median_c": -0.1,
+    "air_temp_c": 2.0,
+    "st_uncertainty_k": 4.0
+   },
+   {
+    "date": "2024-02-12",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 6.2,
+    "block_max_c": 6.9,
+    "context_2km_median_c": 5.0,
+    "air_temp_c": 3.0,
+    "st_uncertainty_k": 2.37
+   },
+   {
+    "date": "2024-02-13",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 9.2,
+    "block_max_c": 9.7,
+    "context_2km_median_c": 7.9,
+    "air_temp_c": 8.0,
+    "st_uncertainty_k": 2.94
+   },
+   {
+    "date": "2024-02-20",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 18.5,
+    "block_max_c": 19.1,
+    "context_2km_median_c": 16.4,
+    "air_temp_c": 16.0,
+    "st_uncertainty_k": 2.39
+   },
+   {
+    "date": "2024-02-28",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 9.8,
+    "block_max_c": 10.2,
+    "context_2km_median_c": 9.6,
+    "air_temp_c": 4.0,
+    "st_uncertainty_k": 2.39
+   },
+   {
+    "date": "2024-02-29",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 19.7,
+    "block_max_c": 20.6,
+    "context_2km_median_c": 18.8,
+    "air_temp_c": 13.0,
+    "st_uncertainty_k": 3.1
+   },
+   {
+    "date": "2024-03-15",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 1.7,
+    "block_max_c": 2.1,
+    "context_2km_median_c": 1.4,
+    "air_temp_c": 3.0,
+    "st_uncertainty_k": 3.61
+   },
+   {
+    "date": "2024-04-08",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 25.6,
+    "block_max_c": 26.4,
+    "context_2km_median_c": 24.2,
+    "air_temp_c": 10.0,
+    "st_uncertainty_k": 2.43
+   },
+   {
+    "date": "2024-04-09",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 26.9,
+    "block_max_c": 27.8,
+    "context_2km_median_c": 25.6,
+    "air_temp_c": 10.0,
+    "st_uncertainty_k": 3.17
+   },
+   {
+    "date": "2024-04-24",
+    "time_utc": "17:42Z",
+    "platform": "landsat-8",
+    "block_mean_c": 32.4,
+    "block_max_c": 33.1,
+    "context_2km_median_c": 30.0,
+    "air_temp_c": 18.0,
+    "st_uncertainty_k": 3.31
+   },
+   {
+    "date": "2024-04-25",
+    "time_utc": "17:36Z",
+    "platform": "landsat-9",
+    "block_mean_c": 35.1,
+    "block_max_c": 36.2,
+    "context_2km_median_c": 32.9,
+    "air_temp_c": 18.0,
+    "st_uncertainty_k": 3.34
+   },
+   {
+    "date": "2024-05-02",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 24.1,
+    "block_max_c": 25.1,
+    "context_2km_median_c": 25.8,
+    "air_temp_c": 12.0,
+    "st_uncertainty_k": 2.38
+   },
+   {
+    "date": "2024-05-18",
+    "time_utc": "17:42Z",
+    "platform": "landsat-9",
+    "block_mean_c": 29.7,
+    "block_max_c": 30.1,
+    "context_2km_median_c": 27.4,
+    "air_temp_c": 19.0,
+    "st_uncertainty_k": 3.4
+   },
+   {
+    "date": "2024-05-26",
+    "time_utc": "17:42Z",
+    "platform": "landsat-8",
+    "block_mean_c": 34.4,
+    "block_max_c": 35.0,
+    "context_2km_median_c": 32.7,
+    "air_temp_c": 18.0,
+    "st_uncertainty_k": 2.46
+   },
+   {
+    "date": "2024-06-11",
+    "time_utc": "17:42Z",
+    "platform": "landsat-8",
+    "block_mean_c": 41.0,
+    "block_max_c": 41.8,
+    "context_2km_median_c": 38.7,
+    "air_temp_c": 24.0,
+    "st_uncertainty_k": 2.37
+   },
+   {
+    "date": "2024-06-12",
+    "time_utc": "17:36Z",
+    "platform": "landsat-9",
+    "block_mean_c": 48.5,
+    "block_max_c": 49.5,
+    "context_2km_median_c": 46.5,
+    "air_temp_c": 32.0,
+    "st_uncertainty_k": 2.45
+   },
+   {
+    "date": "2024-06-20",
+    "time_utc": "17:36Z",
+    "platform": "landsat-8",
+    "block_mean_c": 42.1,
+    "block_max_c": 42.7,
+    "context_2km_median_c": 40.3,
+    "air_temp_c": 31.0,
+    "st_uncertainty_k": 3.16
+   },
+   {
+    "date": "2024-06-28",
+    "time_utc": "17:36Z",
+    "platform": "landsat-9",
+    "block_mean_c": 45.3,
+    "block_max_c": 45.8,
+    "context_2km_median_c": 42.8,
+    "air_temp_c": 31.0,
+    "st_uncertainty_k": 2.42
+   },
+   {
+    "date": "2024-07-05",
+    "time_utc": "17:42Z",
+    "platform": "landsat-9",
+    "block_mean_c": 39.8,
+    "block_max_c": 40.3,
+    "context_2km_median_c": 37.9,
+    "air_temp_c": 21.0,
+    "st_uncertainty_k": 2.42
+   },
+   {
+    "date": "2024-07-14",
+    "time_utc": "17:36Z",
+    "platform": "landsat-9",
+    "block_mean_c": 49.3,
+    "block_max_c": 50.2,
+    "context_2km_median_c": 46.9,
+    "air_temp_c": 36.0,
+    "st_uncertainty_k": 3.11
+   },
+   {
+    "date": "2024-07-21",
+    "time_utc": "17:42Z",
+    "platform": "landsat-9",
+    "block_mean_c": 38.0,
+    "block_max_c": 38.5,
+    "context_2km_median_c": 36.9,
+    "air_temp_c": 23.0,
+    "st_uncertainty_k": 3.52
+   },
+   {
+    "date": "2024-07-22",
+    "time_utc": "17:36Z",
+    "platform": "landsat-8",
+    "block_mean_c": 39.3,
+    "block_max_c": 40.0,
+    "context_2km_median_c": 37.7,
+    "air_temp_c": 24.0,
+    "st_uncertainty_k": 2.42
+   },
+   {
+    "date": "2024-07-29",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 46.7,
+    "block_max_c": 47.3,
+    "context_2km_median_c": 45.2,
+    "air_temp_c": 30.0,
+    "st_uncertainty_k": 2.16
+   },
+   {
+    "date": "2024-07-30",
+    "time_utc": "17:36Z",
+    "platform": "landsat-9",
+    "block_mean_c": 48.2,
+    "block_max_c": 49.0,
+    "context_2km_median_c": 46.7,
+    "air_temp_c": 34.0,
+    "st_uncertainty_k": 2.15
+   },
+   {
+    "date": "2024-08-06",
+    "time_utc": "17:42Z",
+    "platform": "landsat-9",
+    "block_mean_c": 44.1,
+    "block_max_c": 44.9,
+    "context_2km_median_c": 42.1,
+    "air_temp_c": 28.0,
+    "st_uncertainty_k": 2.51
+   },
+   {
+    "date": "2024-08-14",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 41.4,
+    "block_max_c": 42.1,
+    "context_2km_median_c": 39.1,
+    "air_temp_c": 30.0,
+    "st_uncertainty_k": 2.47
+   },
+   {
+    "date": "2024-08-23",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 37.0,
+    "block_max_c": 37.8,
+    "context_2km_median_c": 34.7,
+    "air_temp_c": 27.0,
+    "st_uncertainty_k": 3.26
+   },
+   {
+    "date": "2024-08-30",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 37.6,
+    "block_max_c": 38.3,
+    "context_2km_median_c": 35.7,
+    "air_temp_c": 25.0,
+    "st_uncertainty_k": 2.07
+   },
+   {
+    "date": "2024-08-31",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 41.1,
+    "block_max_c": 41.9,
+    "context_2km_median_c": 39.2,
+    "air_temp_c": 29.0,
+    "st_uncertainty_k": 2.43
+   },
+   {
+    "date": "2024-09-07",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 37.2,
+    "block_max_c": 38.1,
+    "context_2km_median_c": 35.2,
+    "air_temp_c": 25.0,
+    "st_uncertainty_k": 2.36
+   },
+   {
+    "date": "2024-09-15",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 37.8,
+    "block_max_c": 38.7,
+    "context_2km_median_c": 36.3,
+    "air_temp_c": 26.0,
+    "st_uncertainty_k": 2.19
+   },
+   {
+    "date": "2024-09-23",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 32.0,
+    "block_max_c": 32.8,
+    "context_2km_median_c": 30.5,
+    "air_temp_c": 24.0,
+    "st_uncertainty_k": 2.01
+   },
+   {
+    "date": "2024-09-24",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 31.2,
+    "block_max_c": 31.9,
+    "context_2km_median_c": 29.5,
+    "air_temp_c": 21.0,
+    "st_uncertainty_k": 2.47
+   },
+   {
+    "date": "2024-10-01",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 27.4,
+    "block_max_c": 28.0,
+    "context_2km_median_c": 25.8,
+    "air_temp_c": 16.0,
+    "st_uncertainty_k": 2.4
+   },
+   {
+    "date": "2024-10-02",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 34.6,
+    "block_max_c": 35.5,
+    "context_2km_median_c": 33.4,
+    "air_temp_c": 29.0,
+    "st_uncertainty_k": 2.4
+   },
+   {
+    "date": "2024-10-09",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 31.3,
+    "block_max_c": 31.9,
+    "context_2km_median_c": 29.9,
+    "air_temp_c": 26.0,
+    "st_uncertainty_k": 2.38
+   },
+   {
+    "date": "2024-10-10",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 33.1,
+    "block_max_c": 34.0,
+    "context_2km_median_c": 32.2,
+    "air_temp_c": 27.0,
+    "st_uncertainty_k": 3.29
+   },
+   {
+    "date": "2024-11-02",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 17.9,
+    "block_max_c": 18.7,
+    "context_2km_median_c": 17.4,
+    "air_temp_c": 11.0,
+    "st_uncertainty_k": 1.97
+   },
+   {
+    "date": "2024-11-10",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 10.3,
+    "block_max_c": 11.2,
+    "context_2km_median_c": 9.3,
+    "air_temp_c": 12.0,
+    "st_uncertainty_k": 2.8
+   },
+   {
+    "date": "2024-11-11",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 12.3,
+    "block_max_c": 12.7,
+    "context_2km_median_c": 11.8,
+    "air_temp_c": 12.0,
+    "st_uncertainty_k": 2.88
+   },
+   {
+    "date": "2024-11-18",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 14.0,
+    "block_max_c": 14.8,
+    "context_2km_median_c": 13.2,
+    "air_temp_c": 12.0,
+    "st_uncertainty_k": 2.4
+   },
+   {
+    "date": "2024-11-19",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 7.1,
+    "block_max_c": 7.8,
+    "context_2km_median_c": 6.6,
+    "air_temp_c": 3.0,
+    "st_uncertainty_k": 2.88
+   },
+   {
+    "date": "2024-12-04",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 11.3,
+    "block_max_c": 11.8,
+    "context_2km_median_c": 10.4,
+    "air_temp_c": 11.0,
+    "st_uncertainty_k": 2.43
+   },
+   {
+    "date": "2024-12-05",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 7.6,
+    "block_max_c": 8.2,
+    "context_2km_median_c": 6.9,
+    "air_temp_c": 5.0,
+    "st_uncertainty_k": 3.14
+   },
+   {
+    "date": "2024-12-12",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 9.1,
+    "block_max_c": 9.7,
+    "context_2km_median_c": 8.6,
+    "air_temp_c": 7.0,
+    "st_uncertainty_k": 1.98
+   },
+   {
+    "date": "2024-12-13",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 8.2,
+    "block_max_c": 8.9,
+    "context_2km_median_c": 7.7,
+    "air_temp_c": 4.0,
+    "st_uncertainty_k": 2.42
+   },
+   {
+    "date": "2025-01-06",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 1.0,
+    "block_max_c": 1.6,
+    "context_2km_median_c": 2.0,
+    "air_temp_c": 1.0,
+    "st_uncertainty_k": 4.16
+   },
+   {
+    "date": "2025-01-13",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 3.2,
+    "block_max_c": 3.7,
+    "context_2km_median_c": 3.1,
+    "air_temp_c": 1.0,
+    "st_uncertainty_k": 2.16
+   },
+   {
+    "date": "2025-01-29",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 2.6,
+    "block_max_c": 3.3,
+    "context_2km_median_c": 2.0,
+    "air_temp_c": 5.0,
+    "st_uncertainty_k": 1.84
+   },
+   {
+    "date": "2025-02-06",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 10.9,
+    "block_max_c": 11.5,
+    "context_2km_median_c": 10.1,
+    "air_temp_c": 4.0,
+    "st_uncertainty_k": 2.4
+   },
+   {
+    "date": "2025-02-07",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 13.0,
+    "block_max_c": 13.7,
+    "context_2km_median_c": 12.2,
+    "air_temp_c": 9.0,
+    "st_uncertainty_k": 2.38
+   },
+   {
+    "date": "2025-02-22",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 7.3,
+    "block_max_c": 7.8,
+    "context_2km_median_c": 6.2,
+    "air_temp_c": 5.0,
+    "st_uncertainty_k": 2.45
+   },
+   {
+    "date": "2025-02-23",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 15.3,
+    "block_max_c": 16.0,
+    "context_2km_median_c": 14.4,
+    "air_temp_c": 16.0,
+    "st_uncertainty_k": 2.58
+   },
+   {
+    "date": "2025-03-02",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 13.2,
+    "block_max_c": 14.0,
+    "context_2km_median_c": 12.6,
+    "air_temp_c": 12.0,
+    "st_uncertainty_k": 2.37
+   },
+   {
+    "date": "2025-03-03",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 23.3,
+    "block_max_c": 24.1,
+    "context_2km_median_c": 22.6,
+    "air_temp_c": 16.0,
+    "st_uncertainty_k": 2.41
+   },
+   {
+    "date": "2025-03-11",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 20.8,
+    "block_max_c": 21.5,
+    "context_2km_median_c": 20.2,
+    "air_temp_c": 17.0,
+    "st_uncertainty_k": 2.39
+   },
+   {
+    "date": "2025-03-18",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 24.5,
+    "block_max_c": 24.9,
+    "context_2km_median_c": 23.7,
+    "air_temp_c": 16.0,
+    "st_uncertainty_k": 2.51
+   },
+   {
+    "date": "2025-03-26",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 32.1,
+    "block_max_c": 33.1,
+    "context_2km_median_c": 31.4,
+    "air_temp_c": 18.0,
+    "st_uncertainty_k": 2.23
+   },
+   {
+    "date": "2025-04-11",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 36.3,
+    "block_max_c": 37.3,
+    "context_2km_median_c": 34.8,
+    "air_temp_c": 24.0,
+    "st_uncertainty_k": 2.36
+   },
+   {
+    "date": "2025-04-12",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 37.5,
+    "block_max_c": 38.4,
+    "context_2km_median_c": 35.9,
+    "air_temp_c": 26.0,
+    "st_uncertainty_k": 2.44
+   },
+   {
+    "date": "2025-04-19",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 9.1,
+    "block_max_c": 9.8,
+    "context_2km_median_c": 7.8,
+    "air_temp_c": 3.0,
+    "st_uncertainty_k": 3.34
+   },
+   {
+    "date": "2025-04-27",
+    "time_utc": "17:42Z",
+    "platform": "landsat-8",
+    "block_mean_c": 34.3,
+    "block_max_c": 35.2,
+    "context_2km_median_c": 32.6,
+    "air_temp_c": 24.0,
+    "st_uncertainty_k": 2.21
+   },
+   {
+    "date": "2025-05-14",
+    "time_utc": "17:36Z",
+    "platform": "landsat-9",
+    "block_mean_c": 34.8,
+    "block_max_c": 35.6,
+    "context_2km_median_c": 33.0,
+    "air_temp_c": 18.0,
+    "st_uncertainty_k": 2.82
+   },
+   {
+    "date": "2025-05-21",
+    "time_utc": "17:42Z",
+    "platform": "landsat-9",
+    "block_mean_c": 33.8,
+    "block_max_c": 34.4,
+    "context_2km_median_c": 31.1,
+    "air_temp_c": 18.0,
+    "st_uncertainty_k": 2.85
+   },
+   {
+    "date": "2025-05-22",
+    "time_utc": "17:36Z",
+    "platform": "landsat-8",
+    "block_mean_c": 35.2,
+    "block_max_c": 35.8,
+    "context_2km_median_c": 33.0,
+    "air_temp_c": 17.0,
+    "st_uncertainty_k": 2.79
+   },
+   {
+    "date": "2025-06-07",
+    "time_utc": "17:36Z",
+    "platform": "landsat-8",
+    "block_mean_c": 38.5,
+    "block_max_c": 39.7,
+    "context_2km_median_c": 36.3,
+    "air_temp_c": 24.0,
+    "st_uncertainty_k": 2.47
+   },
+   {
+    "date": "2025-06-14",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 42.6,
+    "block_max_c": 43.4,
+    "context_2km_median_c": 40.5,
+    "air_temp_c": 26.0,
+    "st_uncertainty_k": 2.47
+   },
+   {
+    "date": "2025-06-15",
+    "time_utc": "17:36Z",
+    "platform": "landsat-9",
+    "block_mean_c": 42.1,
+    "block_max_c": 42.8,
+    "context_2km_median_c": 40.0,
+    "air_temp_c": 29.0,
+    "st_uncertainty_k": 2.42
+   },
+   {
+    "date": "2025-06-22",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 41.9,
+    "block_max_c": 42.7,
+    "context_2km_median_c": 39.9,
+    "air_temp_c": 27.0,
+    "st_uncertainty_k": 2.44
+   },
+   {
+    "date": "2025-07-01",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 44.4,
+    "block_max_c": 45.2,
+    "context_2km_median_c": 41.9,
+    "air_temp_c": 29.0,
+    "st_uncertainty_k": 2.42
+   },
+   {
+    "date": "2025-07-09",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 48.7,
+    "block_max_c": 49.5,
+    "context_2km_median_c": 46.6,
+    "air_temp_c": 31.0,
+    "st_uncertainty_k": 2.49
+   },
+   {
+    "date": "2025-07-17",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 35.0,
+    "block_max_c": 35.8,
+    "context_2km_median_c": 32.8,
+    "air_temp_c": 21.0,
+    "st_uncertainty_k": 3.24
+   },
+   {
+    "date": "2025-07-24",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 40.1,
+    "block_max_c": 40.9,
+    "context_2km_median_c": 37.9,
+    "air_temp_c": 24.0,
+    "st_uncertainty_k": 2.46
+   },
+   {
+    "date": "2025-07-25",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 40.8,
+    "block_max_c": 41.6,
+    "context_2km_median_c": 39.1,
+    "air_temp_c": 27.0,
+    "st_uncertainty_k": 2.57
+   },
+   {
+    "date": "2025-08-01",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 38.2,
+    "block_max_c": 39.0,
+    "context_2km_median_c": 36.2,
+    "air_temp_c": 23.0,
+    "st_uncertainty_k": 2.25
+   },
+   {
+    "date": "2025-08-10",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 40.3,
+    "block_max_c": 41.1,
+    "context_2km_median_c": 38.1,
+    "air_temp_c": 22.0,
+    "st_uncertainty_k": 2.42
+   },
+   {
+    "date": "2025-09-02",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 37.6,
+    "block_max_c": 38.3,
+    "context_2km_median_c": 35.7,
+    "air_temp_c": 27.0,
+    "st_uncertainty_k": 2.37
+   },
+   {
+    "date": "2025-09-03",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 38.3,
+    "block_max_c": 39.2,
+    "context_2km_median_c": 36.8,
+    "air_temp_c": 29.0,
+    "st_uncertainty_k": 2.47
+   },
+   {
+    "date": "2025-09-10",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 37.3,
+    "block_max_c": 38.1,
+    "context_2km_median_c": 34.9,
+    "air_temp_c": 28.0,
+    "st_uncertainty_k": 2.86
+   },
+   {
+    "date": "2025-09-18",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 29.2,
+    "block_max_c": 30.0,
+    "context_2km_median_c": 27.5,
+    "air_temp_c": 17.0,
+    "st_uncertainty_k": 2.4
+   },
+   {
+    "date": "2025-09-26",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 29.5,
+    "block_max_c": 30.3,
+    "context_2km_median_c": 28.3,
+    "air_temp_c": 27.0,
+    "st_uncertainty_k": 2.0
+   },
+   {
+    "date": "2025-09-27",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 30.6,
+    "block_max_c": 31.3,
+    "context_2km_median_c": 28.9,
+    "air_temp_c": 21.0,
+    "st_uncertainty_k": 2.42
+   },
+   {
+    "date": "2025-10-12",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 22.7,
+    "block_max_c": 23.4,
+    "context_2km_median_c": 21.6,
+    "air_temp_c": 18.0,
+    "st_uncertainty_k": 2.17
+   },
+   {
+    "date": "2025-10-20",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 20.3,
+    "block_max_c": 20.9,
+    "context_2km_median_c": 19.4,
+    "air_temp_c": 13.0,
+    "st_uncertainty_k": 2.08
+   },
+   {
+    "date": "2025-10-28",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 14.6,
+    "block_max_c": 15.5,
+    "context_2km_median_c": 14.0,
+    "air_temp_c": 6.0,
+    "st_uncertainty_k": 2.4
+   },
+   {
+    "date": "2025-10-29",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 15.8,
+    "block_max_c": 16.6,
+    "context_2km_median_c": 15.1,
+    "air_temp_c": 9.0,
+    "st_uncertainty_k": 2.42
+   },
+   {
+    "date": "2025-11-05",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 19.6,
+    "block_max_c": 20.5,
+    "context_2km_median_c": 18.8,
+    "air_temp_c": 13.0,
+    "st_uncertainty_k": 1.99
+   },
+   {
+    "date": "2025-11-06",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 22.3,
+    "block_max_c": 23.0,
+    "context_2km_median_c": 21.9,
+    "air_temp_c": 20.0,
+    "st_uncertainty_k": 2.37
+   },
+   {
+    "date": "2025-11-13",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 23.6,
+    "block_max_c": 24.4,
+    "context_2km_median_c": 23.2,
+    "air_temp_c": 21.0,
+    "st_uncertainty_k": 2.4
+   },
+   {
+    "date": "2025-11-14",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 21.5,
+    "block_max_c": 22.3,
+    "context_2km_median_c": 20.8,
+    "air_temp_c": 23.0,
+    "st_uncertainty_k": 2.44
+   },
+   {
+    "date": "2025-11-22",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 15.4,
+    "block_max_c": 16.0,
+    "context_2km_median_c": 15.0,
+    "air_temp_c": 12.0,
+    "st_uncertainty_k": 2.38
+   },
+   {
+    "date": "2025-12-07",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 3.3,
+    "block_max_c": 4.0,
+    "context_2km_median_c": 2.8,
+    "air_temp_c": 7.0,
+    "st_uncertainty_k": 2.41
+   },
+   {
+    "date": "2025-12-08",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 9.2,
+    "block_max_c": 9.6,
+    "context_2km_median_c": 8.3,
+    "air_temp_c": 11.0,
+    "st_uncertainty_k": 3.23
+   },
+   {
+    "date": "2025-12-16",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 16.2,
+    "block_max_c": 17.0,
+    "context_2km_median_c": 15.9,
+    "air_temp_c": 18.0,
+    "st_uncertainty_k": 2.42
+   },
+   {
+    "date": "2025-12-31",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 11.1,
+    "block_max_c": 11.8,
+    "context_2km_median_c": 10.5,
+    "air_temp_c": 11.0,
+    "st_uncertainty_k": 2.1
+   },
+   {
+    "date": "2026-01-09",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": -3.7,
+    "block_max_c": -3.6,
+    "context_2km_median_c": -4.2,
+    "air_temp_c": -3.0,
+    "st_uncertainty_k": 3.6
+   },
+   {
+    "date": "2026-01-17",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 2.7,
+    "block_max_c": 3.2,
+    "context_2km_median_c": 2.3,
+    "air_temp_c": -3.0,
+    "st_uncertainty_k": 2.42
+   },
+   {
+    "date": "2026-01-24",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": -9.8,
+    "block_max_c": -9.6,
+    "context_2km_median_c": -9.8,
+    "air_temp_c": -11.0,
+    "st_uncertainty_k": 2.86
+   },
+   {
+    "date": "2026-02-01",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 14.1,
+    "block_max_c": 14.8,
+    "context_2km_median_c": 13.4,
+    "air_temp_c": 16.0,
+    "st_uncertainty_k": 2.33
+   },
+   {
+    "date": "2026-02-09",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 20.0,
+    "block_max_c": 20.7,
+    "context_2km_median_c": 19.4,
+    "air_temp_c": 20.0,
+    "st_uncertainty_k": 2.4
+   },
+   {
+    "date": "2026-02-17",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 14.1,
+    "block_max_c": 14.8,
+    "context_2km_median_c": 12.6,
+    "air_temp_c": 11.0,
+    "st_uncertainty_k": 2.39
+   },
+   {
+    "date": "2026-02-26",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 21.9,
+    "block_max_c": 22.7,
+    "context_2km_median_c": 21.7,
+    "air_temp_c": 16.0,
+    "st_uncertainty_k": 2.39
+   },
+   {
+    "date": "2026-03-05",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 25.3,
+    "block_max_c": 25.9,
+    "context_2km_median_c": 24.6,
+    "air_temp_c": 16.0,
+    "st_uncertainty_k": 2.22
+   },
+   {
+    "date": "2026-03-21",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 37.4,
+    "block_max_c": 38.4,
+    "context_2km_median_c": 37.0,
+    "air_temp_c": 27.0,
+    "st_uncertainty_k": 2.14
+   },
+   {
+    "date": "2026-03-22",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 25.2,
+    "block_max_c": 25.9,
+    "context_2km_median_c": 24.3,
+    "air_temp_c": 11.0,
+    "st_uncertainty_k": 2.41
+   },
+   {
+    "date": "2026-03-30",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 30.0,
+    "block_max_c": 30.6,
+    "context_2km_median_c": 29.1,
+    "air_temp_c": 24.0,
+    "st_uncertainty_k": 2.39
+   },
+   {
+    "date": "2026-04-07",
+    "time_utc": "17:36Z",
+    "platform": "landsat-8",
+    "block_mean_c": 29.1,
+    "block_max_c": 29.9,
+    "context_2km_median_c": 28.5,
+    "air_temp_c": 14.0,
+    "st_uncertainty_k": 2.41
+   },
+   {
+    "date": "2026-04-15",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 31.7,
+    "block_max_c": 32.3,
+    "context_2km_median_c": 30.8,
+    "air_temp_c": 17.0,
+    "st_uncertainty_k": 3.02
+   },
+   {
+    "date": "2026-04-23",
+    "time_utc": "17:36Z",
+    "platform": "landsat-8",
+    "block_mean_c": 34.4,
+    "block_max_c": 35.3,
+    "context_2km_median_c": 33.1,
+    "air_temp_c": 16.0,
+    "st_uncertainty_k": 2.46
+   },
+   {
+    "date": "2026-05-01",
+    "time_utc": "17:36Z",
+    "platform": "landsat-9",
+    "block_mean_c": 33.0,
+    "block_max_c": 33.7,
+    "context_2km_median_c": 31.5,
+    "air_temp_c": 13.0,
+    "st_uncertainty_k": 2.41
+   },
+   {
+    "date": "2026-05-09",
+    "time_utc": "17:36Z",
+    "platform": "landsat-8",
+    "block_mean_c": 38.7,
+    "block_max_c": 39.5,
+    "context_2km_median_c": 36.2,
+    "air_temp_c": 22.0,
+    "st_uncertainty_k": 2.83
+   },
+   {
+    "date": "2026-05-16",
+    "time_utc": "17:42Z",
+    "platform": "landsat-8",
+    "block_mean_c": 40.0,
+    "block_max_c": 41.0,
+    "context_2km_median_c": 38.1,
+    "air_temp_c": 24.0,
+    "st_uncertainty_k": 2.46
+   },
+   {
+    "date": "2026-05-25",
+    "time_utc": "17:36Z",
+    "platform": "landsat-8",
+    "block_mean_c": 38.5,
+    "block_max_c": 39.2,
+    "context_2km_median_c": 36.8,
+    "air_temp_c": 26.0,
+    "st_uncertainty_k": 2.43
+   },
+   {
+    "date": "2026-06-09",
+    "time_utc": "17:42Z",
+    "platform": "landsat-9",
+    "block_mean_c": 35.5,
+    "block_max_c": 36.2,
+    "context_2km_median_c": 33.6,
+    "air_temp_c": 22.0,
+    "st_uncertainty_k": 3.23
+   },
+   {
+    "date": "2026-06-10",
+    "time_utc": "17:36Z",
+    "platform": "landsat-8",
+    "block_mean_c": 44.8,
+    "block_max_c": 45.5,
+    "context_2km_median_c": 42.4,
+    "air_temp_c": 27.0,
+    "st_uncertainty_k": 2.51
+   },
+   {
+    "date": "2026-06-17",
+    "time_utc": "17:42Z",
+    "platform": "landsat-8",
+    "block_mean_c": 48.3,
+    "block_max_c": 49.2,
+    "context_2km_median_c": 46.2,
+    "air_temp_c": 31.0,
+    "st_uncertainty_k": 2.23
+   },
+   {
+    "date": "2026-06-18",
+    "time_utc": "17:36Z",
+    "platform": "landsat-9",
+    "block_mean_c": 33.2,
+    "block_max_c": 33.9,
+    "context_2km_median_c": 31.2,
+    "air_temp_c": 22.0,
+    "st_uncertainty_k": 3.48
+   },
+   {
+    "date": "2026-06-26",
+    "time_utc": "17:36Z",
+    "platform": "landsat-8",
+    "block_mean_c": 38.7,
+    "block_max_c": 39.6,
+    "context_2km_median_c": 37.2,
+    "air_temp_c": 27.0,
+    "st_uncertainty_k": 3.56
+   },
+   {
+    "date": "2026-07-03",
+    "time_utc": "17:42Z",
+    "platform": "landsat-8",
+    "block_mean_c": 42.0,
+    "block_max_c": 42.6,
+    "context_2km_median_c": 39.9,
+    "air_temp_c": 25.0,
+    "st_uncertainty_k": 2.47
+   },
+   {
+    "date": "2026-07-04",
+    "time_utc": "17:36Z",
+    "platform": "landsat-9",
+    "block_mean_c": 46.2,
+    "block_max_c": 46.9,
+    "context_2km_median_c": 43.9,
+    "air_temp_c": 28.0,
+    "st_uncertainty_k": 3.18
+   },
+   {
+    "date": "2026-07-11",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 44.6,
+    "block_max_c": 45.4,
+    "context_2km_median_c": 43.1,
+    "air_temp_c": 29.0,
+    "st_uncertainty_k": 2.38
+   },
+   {
+    "date": "2026-07-12",
+    "time_utc": "17:36Z",
+    "platform": "landsat-8",
+    "block_mean_c": 47.4,
+    "block_max_c": 48.2,
+    "context_2km_median_c": 45.9,
+    "air_temp_c": 31.0,
+    "st_uncertainty_k": 2.05
+   },
+   {
+    "date": "2026-07-19",
+    "time_utc": "17:42Z",
+    "platform": "landsat-8",
+    "block_mean_c": 47.6,
+    "block_max_c": 48.4,
+    "context_2km_median_c": 45.7,
+    "air_temp_c": 32.0,
+    "st_uncertainty_k": 2.46
+   },
+   {
+    "date": "2026-07-20",
+    "time_utc": "17:36Z",
+    "platform": "landsat-9",
+    "block_mean_c": 50.4,
+    "block_max_c": 51.2,
+    "context_2km_median_c": 49.4,
+    "air_temp_c": 34.0,
+    "st_uncertainty_k": 2.17
+   },
+   {
+    "date": "2026-08-05",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 35.6,
+    "block_max_c": 36.3,
+    "context_2km_median_c": 34.4,
+    "air_temp_c": 19.0,
+    "st_uncertainty_k": 2.38
+   },
+   {
+    "date": "2026-08-12",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 43.9,
+    "block_max_c": 44.5,
+    "context_2km_median_c": 42.9,
+    "air_temp_c": 31.0,
+    "st_uncertainty_k": 2.42
+   },
+   {
+    "date": "2026-08-20",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 44.3,
+    "block_max_c": 45.1,
+    "context_2km_median_c": 43.0,
+    "air_temp_c": 29.0,
+    "st_uncertainty_k": 2.27
+   },
+   {
+    "date": "2026-08-21",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 48.6,
+    "block_max_c": 49.2,
+    "context_2km_median_c": 47.1,
+    "air_temp_c": 34.0,
+    "st_uncertainty_k": 2.46
+   },
+   {
+    "date": "2026-09-05",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 42.9,
+    "block_max_c": 43.6,
+    "context_2km_median_c": 40.8,
+    "air_temp_c": 31.0,
+    "st_uncertainty_k": 2.43
+   },
+   {
+    "date": "2026-09-06",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 41.9,
+    "block_max_c": 42.5,
+    "context_2km_median_c": 40.6,
+    "air_temp_c": 27.0,
+    "st_uncertainty_k": 2.43
+   },
+   {
+    "date": "2026-09-13",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 40.2,
+    "block_max_c": 40.9,
+    "context_2km_median_c": 39.6,
+    "air_temp_c": 31.0,
+    "st_uncertainty_k": 2.4
+   },
+   {
+    "date": "2026-09-22",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 34.0,
+    "block_max_c": 34.7,
+    "context_2km_median_c": 32.8,
+    "air_temp_c": 22.0,
+    "st_uncertainty_k": 3.05
+   },
+   {
+    "date": "2026-10-07",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 32.0,
+    "block_max_c": 32.6,
+    "context_2km_median_c": 31.4,
+    "air_temp_c": 22.0,
+    "st_uncertainty_k": 2.36
+   },
+   {
+    "date": "2026-10-08",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 35.4,
+    "block_max_c": 36.2,
+    "context_2km_median_c": 34.8,
+    "air_temp_c": 27.0,
+    "st_uncertainty_k": 3.3
+   },
+   {
+    "date": "2026-10-16",
+    "time_utc": "17:37Z",
+    "platform": "landsat-8",
+    "block_mean_c": 19.5,
+    "block_max_c": 20.2,
+    "context_2km_median_c": 19.1,
+    "air_temp_c": 10.0,
+    "st_uncertainty_k": 2.43
+   },
+   {
+    "date": "2026-10-23",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 28.1,
+    "block_max_c": 28.9,
+    "context_2km_median_c": 27.5,
+    "air_temp_c": 23.0,
+    "st_uncertainty_k": 2.0
+   },
+   {
+    "date": "2026-10-31",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 18.4,
+    "block_max_c": 19.0,
+    "context_2km_median_c": 17.9,
+    "air_temp_c": 11.0,
+    "st_uncertainty_k": 2.34
+   },
+   {
+    "date": "2026-11-08",
+    "time_utc": "17:43Z",
+    "platform": "landsat-8",
+    "block_mean_c": 18.9,
+    "block_max_c": 19.7,
+    "context_2km_median_c": 18.5,
+    "air_temp_c": 14.0,
+    "st_uncertainty_k": 1.97
+   },
+   {
+    "date": "2026-11-09",
+    "time_utc": "17:37Z",
+    "platform": "landsat-9",
+    "block_mean_c": 20.4,
+    "block_max_c": 21.3,
+    "context_2km_median_c": 20.2,
+    "air_temp_c": 18.0,
+    "st_uncertainty_k": 3.73
+   },
+   {
+    "date": "2026-11-16",
+    "time_utc": "17:43Z",
+    "platform": "landsat-9",
+    "block_mean_c": 14.8,
+    "block_max_c": 15.6,
+    "context_2km_median_c": 16.0,
+    "air_temp_c": 14.0,
+    "st_uncertainty_k": 2.31
+   }
+  ],
+  "generated": "2026-11-24T22:04Z",
+  "goes_diurnal": {
+   "source": "GOES-19 ABI L2 Land Surface Temperature CONUS (ABI-L2-LSTC), NOAA NODD on AWS",
+   "resolution_m": 2000,
+   "day_utc_window": "2026-08-19T06Z + 24 h",
+   "points": [
+    {
+     "t_utc": "2026-08-19T06:00Z",
+     "lst_c": null,
+     "qf": "none"
+    },
+    {
+     "t_utc": "2026-08-19T07:00Z",
+     "lst_c": null,
+     "qf": "none"
+    },
+    {
+     "t_utc": "2026-08-19T08:00Z",
+     "lst_c": null,
+     "qf": "none"
+    },
+    {
+     "t_utc": "2026-08-19T09:00Z",
+     "lst_c": null,
+     "qf": "none"
+    },
+    {
+     "t_utc": "2026-08-19T10:00Z",
+     "lst_c": null,
+     "qf": "none"
+    },
+    {
+     "t_utc": "2026-08-19T11:00Z",
+     "lst_c": null,
+     "qf": "none"
+    },
+    {
+     "t_utc": "2026-08-19T12:00Z",
+     "lst_c": null,
+     "qf": "none"
+    },
+    {
+     "t_utc": "2026-08-19T13:00Z",
+     "lst_c": null,
+     "qf": "none"
+    },
+    {
+     "t_utc": "2026-08-19T14:00Z",
+     "lst_c": null,
+     "qf": "none"
+    },
+    {
+     "t_utc": "2026-08-19T16:00Z",
+     "lst_c": null,
+     "qf": "none"
+    },
+    {
+     "t_utc": "2026-08-19T17:00Z",
+     "lst_c": 37.1,
+     "qf": "medium"
+    },
+    {
+     "t_utc": "2026-08-19T18:00Z",
+     "lst_c": 40.4,
+     "qf": "medium"
+    },
+    {
+     "t_utc": "2026-08-19T19:00Z",
+     "lst_c": 42.7,
+     "qf": "medium"
+    },
+    {
+     "t_utc": "2026-08-19T20:00Z",
+     "lst_c": 42.4,
+     "qf": "medium"
+    },
+    {
+     "t_utc": "2026-08-19T21:00Z",
+     "lst_c": 31.1,
+     "qf": "medium"
+    },
+    {
+     "t_utc": "2026-08-19T22:00Z",
+     "lst_c": 37.1,
+     "qf": "medium"
+    },
+    {
+     "t_utc": "2026-08-19T23:00Z",
+     "lst_c": 25.2,
+     "qf": "medium"
+    },
+    {
+     "t_utc": "2026-08-20T00:00Z",
+     "lst_c": null,
+     "qf": "none"
+    },
+    {
+     "t_utc": "2026-08-20T01:00Z",
+     "lst_c": 24.1,
+     "qf": "medium"
+    },
+    {
+     "t_utc": "2026-08-20T02:00Z",
+     "lst_c": 21.2,
+     "qf": "medium"
+    },
+    {
+     "t_utc": "2026-08-20T03:00Z",
+     "lst_c": null,
+     "qf": "none"
+    },
+    {
+     "t_utc": "2026-08-20T04:00Z",
+     "lst_c": null,
+     "qf": "low"
+    },
+    {
+     "t_utc": "2026-08-20T05:00Z",
+     "lst_c": 19.0,
+     "qf": "medium"
+    }
+   ],
+   "max_c": 42.7,
+   "min_c": 19.0,
+   "clear_hours": 10,
+   "note": "2 km pixel = whole neighbourhood; only DQF high/medium-quality retrievals kept (low/no-retrieval = cloud or degraded); shows diurnal shape, not block detail",
+   "licence": "US Government public domain (NOAA GOES-R via NOAA Open Data Dissemination on AWS)",
+   "licence_url": "https://registry.opendata.aws/noaa-goes/"
+  }
+ },
+ "sky_weather": {
+  "updated": "2026-11-24T22:23:38Z",
+  "station": "KBDU",
+  "cloud_cover_pct": 0.0,
+  "condition": "Clear",
+  "goes_clear_sky_fraction": 1.0,
+  "best_cloud_cover_pct": 0.0,
+  "source": "NWS API + NOAA GOES-19 ABI L2 + IEM ASOS (public domain)"
+ },
+ "weather_triggers": {
+  "county_fips": "08013",
+  "nws_zone": "COZ039",
+  "county": {
+   "name": "Boulder",
+   "dust_days_yr": 0.09,
+   "dust_then_rain_yr": 0.09,
+   "high_wind_days_yr": 14.0,
+   "hail_days_yr": 3.55,
+   "trigger_days_yr": 17.36,
+   "monthly_trigger_profile": [
+    2.36,
+    2.18,
+    0.82,
+    1.09,
+    1.45,
+    1.64,
+    0.91,
+    0.64,
+    0.27,
+    1.18,
+    1.36,
+    3.45
+   ]
+  },
+  "nearest_pm10_monitor": {
+   "site": "080131001",
+   "name": "BOULDER - CU-ATHENS",
+   "lat": 40.012969,
+   "lon": -105.267212,
+   "km": 3.5,
+   "years": "2023-2026"
+  },
+  "nearest_rain_station": {
+   "id": "US1COBO0030",
+   "name": "BOULDER 1.9 SE",
+   "km": 0.8
+  },
+  "events_since_2020_within_25km": [
+   {
+    "date": "2026-08-30",
+    "type": "wind",
+    "source": "NCEI Storm Events: Thunderstorm Wind",
+    "km": 12.9
+   },
+   {
+    "date": "2026-08-26",
+    "type": "wind",
+    "source": "NCEI Storm Events: Thunderstorm Wind",
+    "km": 24.3
+   },
+   {
+    "date": "2026-07-24",
+    "type": "wind",
+    "source": "NCEI Storm Events: Thunderstorm Wind",
+    "km": 12.9
+   },
+   {
+    "date": "2026-06-26",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 20.5
+   },
+   {
+    "date": "2026-06-08",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 16.0
+   },
+   {
+    "date": "2026-03-12",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2026-02-19",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2026-02-18",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2026-02-17",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2025-12-19",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2025-12-17",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2025-12-09",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2025-08-23",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 15.0
+   },
+   {
+    "date": "2025-08-14",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2025-08-10",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 10.5
+   },
+   {
+    "date": "2025-07-11",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 8.2
+   },
+   {
+    "date": "2025-07-10",
+    "type": "wind",
+    "source": "NCEI Storm Events: Thunderstorm Wind",
+    "km": 11.1
+   },
+   {
+    "date": "2025-06-17",
+    "type": "wind",
+    "source": "NCEI Storm Events: Thunderstorm Wind",
+    "km": 21.6
+   },
+   {
+    "date": "2025-06-17",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 10.0
+   },
+   {
+    "date": "2025-05-18",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 1.3
+   },
+   {
+    "date": "2025-05-14",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 17.0
+   },
+   {
+    "date": "2025-03-24",
+    "type": "wind",
+    "source": "NCEI Storm Events: Strong Wind (zone)"
+   },
+   {
+    "date": "2025-03-04",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2025-02-03",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2025-02-02",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2025-01-21",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2024-12-30",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2024-12-19",
+    "type": "wind",
+    "source": "NCEI Storm Events: Strong Wind (zone)"
+   },
+   {
+    "date": "2024-12-18",
+    "type": "wind",
+    "source": "NCEI Storm Events: Strong Wind (zone)"
+   },
+   {
+    "date": "2024-09-17",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2024-07-20",
+    "type": "wind",
+    "source": "NCEI Storm Events: Thunderstorm Wind",
+    "km": 16.1
+   },
+   {
+    "date": "2024-07-20",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 24.0
+   },
+   {
+    "date": "2024-06-29",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 21.6
+   },
+   {
+    "date": "2024-06-27",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2024-06-07",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2024-05-30",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 8.8
+   },
+   {
+    "date": "2024-05-06",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2024-04-07",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2024-04-06",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2023-08-06",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 13.3
+   },
+   {
+    "date": "2023-08-02",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 19.7
+   },
+   {
+    "date": "2023-07-31",
+    "type": "wind",
+    "source": "NCEI Storm Events: Thunderstorm Wind",
+    "km": 5.1
+   },
+   {
+    "date": "2023-06-21",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 0.7
+   },
+   {
+    "date": "2023-06-12",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 3.3
+   },
+   {
+    "date": "2023-05-26",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 16.7
+   },
+   {
+    "date": "2023-05-09",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 14.3
+   },
+   {
+    "date": "2023-03-31",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2023-03-31",
+    "type": "dust",
+    "source": "NWS Blowing Dust Advisory (COZ039)"
+   },
+   {
+    "date": "2023-02-27",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2023-02-26",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2022-12-02",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2022-12-01",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2022-10-01",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 4.9
+   },
+   {
+    "date": "2022-07-27",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 14.4
+   },
+   {
+    "date": "2022-07-26",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 14.3
+   },
+   {
+    "date": "2022-04-29",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2022-04-22",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2021-12-30",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2021-12-15",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2021-11-14",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2021-08-19",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 15.4
+   },
+   {
+    "date": "2021-06-25",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 8.7
+   },
+   {
+    "date": "2021-05-02",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 17.3
+   },
+   {
+    "date": "2021-02-07",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2021-01-14",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2021-01-13",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2020-11-14",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2020-11-13",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2020-11-08",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2020-10-11",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2020-08-05",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 24.1
+   },
+   {
+    "date": "2020-08-04",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 24.0
+   },
+   {
+    "date": "2020-07-31",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 19.1
+   },
+   {
+    "date": "2020-06-25",
+    "type": "wind",
+    "source": "NCEI Storm Events: Thunderstorm Wind",
+    "km": 12.9
+   },
+   {
+    "date": "2020-06-24",
+    "type": "wind",
+    "source": "NCEI Storm Events: Thunderstorm Wind",
+    "km": 12.9
+   },
+   {
+    "date": "2020-06-09",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2020-06-08",
+    "type": "wind",
+    "source": "NWS High Wind Warning (COZ039)"
+   },
+   {
+    "date": "2020-06-08",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 19.8
+   },
+   {
+    "date": "2020-06-06",
+    "type": "wind",
+    "source": "NCEI Storm Events: Thunderstorm Wind",
+    "km": 6.5
+   },
+   {
+    "date": "2020-05-15",
+    "type": "hail",
+    "source": "NCEI Storm Events: Hail",
+    "km": 19.4
+   },
+   {
+    "date": "2020-01-18",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2020-01-17",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2020-01-06",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2020-01-05",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   },
+   {
+    "date": "2020-01-04",
+    "type": "wind",
+    "source": "NCEI Storm Events: High Wind (zone)"
+   }
+  ],
+  "event_days_since_2020": {
+   "wind": 56,
+   "hail": 28,
+   "dust": 1
+  },
+  "events_truncated": false,
+  "season_months": [
+   1,
+   2,
+   12
+  ],
+  "season": "Jan, Feb, Dec",
+  "radius_km": 25.0,
+  "definitions": "see web/usa/data/weather_triggers.json meta.definitions; zone/county events listed without km",
+  "sources": [
+   "ncei_storm_events",
+   "nws_vtec_iem",
+   "epa_aqs_pm10",
+   "ghcn_daily"
+  ],
+  "attribution": "Weather triggers derived from NOAA NCEI Storm Events Database, NOAA GHCN-Daily, EPA AQS PM10 and NWS warnings archived by the Iowa Environmental Mesonet (Iowa State University). Public domain.",
+  "generated": "2026-11-24T22:33:08+00:00"
+ },
+ "furniture": {
+  "file": "furniture.json",
+  "counts": {
+   "street_lamp": 2,
+   "fire_hydrant": 1,
+   "crossing": 2
+  },
+  "counts_by_kind_class": {
+   "physical_asset": {
+    "street_lamp": 2,
+    "fire_hydrant": 1
+   },
+   "control_point": {
+    "crossing": 2
+   }
+  },
+  "lidar_poles_detected": 0,
+  "lidar_poles_matched": 0,
+  "confirmed_by_lidar": 0,
+  "sources": [
+   "osm",
+   "boulder_lights",
+   "boulder_signals",
+   "boulder_rlc"
+  ],
+  "licence": "ODbL 1.0 (OSM derivative); city sources per furniture.json meta.licences",
+  "generated": "2026-11-24T15:34:56"
+ },
+ "cleaning": {
+  "version": 4,
+  "generated": "2026-11-24T22:36Z",
+  "method": "usa/research/cleaning_leads_method.md",
+  "houses_scored": 4,
+  "houses_with_pools": 0,
+  "green_pools_now": 0,
+  "pool_detection": {
+   "n_pools": 0,
+   "houses": 4,
+   "share_houses_with_pool": 0.0,
+   "green_now": 0,
+   "green_ever": 0,
+   "context_pools": 0,
+   "context_m": 100.0,
+   "in_block_sites": 0
+  },
+  "top_pool_leads": [],
+  "top_window_leads": [
+   {
+    "id": 0,
+    "address": "470 South 41st Street",
+    "score": 31,
+    "reasons": [
+     "~30 m2 of glass estimated (67 m perimeter x 3.0 m walls)",
+     "high spend capacity (home value + area income)"
+    ]
+   },
+   {
+    "id": 2,
+    "address": "455 South 41st Street",
+    "score": 31,
+    "reasons": [
+     "~27 m2 of glass estimated (59 m perimeter x 3.0 m walls)",
+     "high spend capacity (home value + area income)"
+    ]
+   },
+   {
+    "id": 1,
+    "address": "460 South 41st Street",
+    "score": 30,
+    "reasons": [
+     "~27 m2 of glass estimated (59 m perimeter x 3.1 m walls)",
+     "high spend capacity (home value + area income)",
+     "front facade gets 1528 sun-h/yr - streaks and hard-water spots show"
+    ]
+   },
+   {
+    "id": 3,
+    "address": "465 South 41st Street",
+    "score": 28,
+    "reasons": [
+     "~26 m2 of glass estimated (59 m perimeter x 2.9 m walls)",
+     "high spend capacity (home value + area income)"
+    ]
+   }
+  ],
+  "trigger_calendar": [
+   {
+    "month": "Jan",
+    "trigger": 0.66,
+    "service": 1.0,
+    "combined": 0.79
+   },
+   {
+    "month": "Feb",
+    "trigger": 0.6,
+    "service": 1.0,
+    "combined": 0.76
+   },
+   {
+    "month": "Mar",
+    "trigger": 0.17,
+    "service": 1.0,
+    "combined": 0.5
+   },
+   {
+    "month": "Apr",
+    "trigger": 0.26,
+    "service": 0.16,
+    "combined": 0.22
+   },
+   {
+    "month": "May",
+    "trigger": 0.37,
+    "service": 0.16,
+    "combined": 0.29
+   },
+   {
+    "month": "Jun",
+    "trigger": 0.43,
+    "service": 0.16,
+    "combined": 0.32
+   },
+   {
+    "month": "Jul",
+    "trigger": 0.2,
+    "service": 0.0,
+    "combined": 0.12
+   },
+   {
+    "month": "Aug",
+    "trigger": 0.12,
+    "service": 0.0,
+    "combined": 0.07
+   },
+   {
+    "month": "Sep",
+    "trigger": 0.0,
+    "service": 0.0,
+    "combined": 0.0
+   },
+   {
+    "month": "Oct",
+    "trigger": 0.29,
+    "service": 0.52,
+    "combined": 0.38
+   },
+   {
+    "month": "Nov",
+    "trigger": 0.34,
+    "service": 0.52,
+    "combined": 0.41
+   },
+   {
+    "month": "Dec",
+    "trigger": 1.0,
+    "service": 0.52,
+    "combined": 0.81
+   }
+  ],
+  "next_trigger_season": {
+   "status": "upcoming",
+   "months": [
+    "Dec",
+    "Jan",
+    "Feb"
+   ],
+   "label": "Dec-Feb",
+   "threshold": "months at >= 70% of the area's annual range of the combined trigger/service index"
+  },
+  "area": {
+   "dust_days_yr": 0.09,
+   "high_wind_days_yr": 14.0,
+   "dust_then_rain_yr": 0.09,
+   "dust_events_25km_since_2020": 1,
+   "last_dust_event": "2023-03-31",
+   "recent_dust_ref": "2026-11-24",
+   "recent_dust_ref_source": "run date (no imagery date in meta)",
+   "median_hh_income": 126071.0,
+   "share_hh_200k": 0.2735,
+   "affluence_label": "middle",
+   "affluence_geo": "block_group"
+  },
+  "market": {
+   "pool_svc_estabs": 20,
+   "pool_svc_emp": 111,
+   "pool_svc_nonemployers": 77,
+   "window_janitorial_estabs": 80,
+   "svc_per_10k_households": 7.08
+  },
+  "market_source": "web/usa/data/cleaning_market.json (Census CBP / NES, BLS QCEW)",
+  "weights": {
+   "pool": {
+    "green_now": 30,
+    "green_past": 15,
+    "trees": 15,
+    "dust_wind": 15,
+    "affluence": 15,
+    "season": 10
+   },
+   "window": {
+    "glass": 35,
+    "dust_rain": 20,
+    "affluence": 20,
+    "stories": 15,
+    "recent_dust": 10
+   },
+   "neutral_for_missing_area_parts": 0.5
+  },
+  "inputs_present": {
+   "weather_triggers": true,
+   "affluence": true,
+   "market_row": true,
+   "pools_meta": true
+  },
+  "caveats": [
+   "imagery snapshots every ~2 yrs; cleaning frequency per house is not observable from open data; area seasonality from QCEW",
+   "glass area is an estimate: LiDAR footprint perimeter x wall height x 15% typical glazing ratio; actual window count, film and cleaning history are not observable from open data",
+   "scores rank houses within an area for outreach; they are not a probability that a household buys service"
+  ]
+ },
+ "street_imagery": {
+  "file": "street_imagery.json",
+  "images": 341,
+  "thumbs": 60,
+  "counts": {
+   "kartaview": 10,
+   "mapillary": 331
+  },
+  "newest": {
+   "kartaview": "2024-06-13T01:48:59Z",
+   "mapillary": "2025-10-07T17:27:15.689000Z"
+  },
+  "status": {
+   "kartaview": "ok",
+   "mapillary": "ok"
+  },
+  "licences": [
+   "CC BY-SA 4.0"
+  ],
+  "generated": "2026-11-24T23:20:58Z"
+ },
+ "streets": {
+  "file": "streets.json",
+  "house_overlap_m2": 0.0,
+  "bytes": 44885,
+  "counts": {
+   "roads": 8,
+   "lines": 0,
+   "crosswalks": 0,
+   "stop_lines": 0,
+   "crossings": 4,
+   "sidewalks": 0,
+   "paths": 6,
+   "curbs": 2,
+   "driveways": 0,
+   "signals": 0,
+   "signals_by_kind": {},
+   "ways_not_measured": [],
+   "ways_measured": 3,
+   "ways_in_square": 3,
+   "road_area_m2": 1417.5
+  },
+  "validation": {
+   "house_overlap_m2": 0.0,
+   "house_buffer_m": 0.5,
+   "overlap": {
+    "roads_m2": 0.0,
+    "crosswalks_m2": 0.0,
+    "lines_m2": 0.0,
+    "total_m2": 0.0
+   },
+   "houses": 4,
+   "controls_inside_road": 0
+  },
+  "markings_source": null,
+  "osm_via": "Geofabrik extract colorado-latest.osm.pbf via usa/osm_extract.py (pyosmium)",
+  "licence": "ODbL 1.0 (\u00c2\u00a9 OpenStreetMap contributors)",
+  "generated": "2026-11-24T23:16:25Z"
+ },
+ "renders": {
+  "data": "every LiDAR return drawn (none thinned); roofs/walls = LiDAR-fitted mesh.txt; ground = LiDAR ground returns textured with USDA NAIP 2023; streets = none (no streets.json yet; roads are only the NAIP photo); sun = NOAA solar position; a neutral dark plinth under the block edge is the only non-data object",
+  "sun_date": "2026-09-22",
+  "script": "usa/render_export.py + usa/render_blender.py",
+  "views": {
+   "hero": {
+    "file": "renders/hero.jpg",
+    "what": "oblique aerial at golden hour",
+    "lighting": "golden hour 2026-09-22 18:18 MDT (sun 6.9 deg up, azimuth 264 deg)",
+    "bytes": 440997,
+    "size": "1600x900",
+    "engine": "Blender 5.3.0 Cycles (OPTIX)",
+    "seconds": 25.9
+   },
+   "top": {
+    "file": "renders/top.jpg",
+    "what": "straight-down orthographic view at solar noon",
+    "lighting": "solar noon 2026-09-22 12:54 MDT (sun 50.1 deg up)",
+    "bytes": 297599,
+    "size": "1600x900",
+    "engine": "Blender 5.3.0 Cycles (OPTIX)",
+    "seconds": 17.7
+   },
+   "street": {
+    "file": "renders/street.jpg",
+    "what": "street level, 1.7 m eye height, looking down the main street at golden hour",
+    "lighting": "golden hour 2026-09-22 18:18 MDT (sun 6.9 deg up, azimuth 264 deg)",
+    "bytes": 343782,
+    "size": "1600x900",
+    "engine": "Blender 5.3.0 Cycles (OPTIX)",
+    "seconds": 19.1,
+    "street_from": "LiDAR: dark-intensity ground band (asphalt), shifted -1.5 m to a clear line of sight"
+   },
+   "night": {
+    "file": "renders/night.jpg",
+    "what": "oblique at blue hour/night lit only by street lamps and signals from streets.json",
+    "lighting": "night 2026-09-22 19:20 MDT (sun -5 deg), 0 street lamps from streets.json",
+    "bytes": 280801,
+    "size": "1600x900",
+    "engine": "Blender 5.3.0 Cycles (OPTIX)",
+    "seconds": 9.1
+   }
+  }
+ },
+ "parcels": {
+  "file": "parcels.json",
+  "generated": "2026-11-25T01:06Z",
+  "status": "ok",
+  "count": 40,
+  "unique_ids": 40,
+  "source": "Boulder County 'Parcels (with address and ownership information)' (owner fields not read)",
+  "licence": "CC BY 4.0",
+  "attribution": "Boulder County, Colorado - Parcels (CC BY 4.0); Boulder County, Colorado - Subdivisions and Other Platted Areas (CC BY 4.0)",
+  "borderline": false,
+  "houses_linked": 4,
+  "houses_total": 4,
+  "houses_ambiguous": 0,
+  "hoa_status": "no open HOA data",
+  "hoa_counts": {},
+  "hoa_sources": [
+   "boco_platted"
+  ],
+  "hoa_licences": [
+   "CC BY 4.0"
+  ],
+  "method": "usa/research/parcels_hoa.md"
+ }
+}

@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>USA LiDAR Explorer</title>
+<link rel="icon" href="data:,">
+<!--
+  Every USGS 3DEP LiDAR point, streamed on demand from the public USGS EPT bucket
+  (s3-us-west-2.amazonaws.com/usgs-lidar-public/<project>/ept.json, US public domain).
+  Viewer: Potree 1.8.2 (BSD-2-Clause), vendored in ./potree (licences: ../../usa/research/lidar_viewer.md).
+  Run locally:  python -m http.server 8765  (from roof-intel/web)  ->  http://localhost:8765/lidar/
+  URL params: ?lat=..&lon=..  [&r=metres]  [&project=NAME]  [&block=slug]  [&budget=4000000]
+              ?area=county:<5-digit FIPS> | place:<7-digit GEOID>  [&preview=1..6 = 64/32/16/8/4/2 m preview spacing]  (area selection, boundaries in ./boundaries)
+-->
+<link rel="stylesheet" href="potree/build/potree/potree.css">
+<link rel="stylesheet" href="potree/libs/jquery-ui/jquery-ui.min.css">
+<link rel="stylesheet" href="potree/libs/openlayers3/ol.css">
+<link rel="stylesheet" href="potree/libs/spectrum/spectrum.css">
+<link rel="stylesheet" href="potree/libs/jstree/themes/mixed/style.css">
+<script src="../usa/theme.js"></script>
+<style>
+:root { --void:#05070b; --glass:rgba(9,13,20,.88); --edge:rgba(120,190,255,.22); --ink:#e2ebf5; --dim:#8b9bb0;
+  --cyan:#4fdcff; --amber:#ffb84d; --red:#ff5a5a; --green:#6cdc8c; --f-body:"Segoe UI",sans-serif; --f-mono:Consolas,monospace; --f-display:"Segoe UI",sans-serif; }
+html,body { margin:0; height:100%; background:var(--void); color:var(--ink); font:13px var(--f-body); overflow:hidden; }
+#potree_render_area { background:#000; }
+#lx { position:absolute; z-index:50; left:10px; top:10px; bottom:10px; width:340px; max-width:calc(100vw - 20px); display:flex; flex-direction:column;
+  background:var(--glass); border:1px solid var(--edge); border-radius:8px; backdrop-filter:blur(6px); }
+#lx.min { bottom:auto; }
+#lx.min .body { display:none; }
+#lx header { display:flex; align-items:center; gap:8px; padding:8px 10px; border-bottom:1px solid var(--edge); }
+#lx header h1 { font:600 15px var(--f-display); margin:0; flex:1; letter-spacing:.03em; }
+#lx .body { overflow-y:auto; padding:8px 10px 12px; flex:1; }
+#lx a { color:var(--cyan); text-decoration:none; } #lx a:hover { text-decoration:underline; }
+.nav { display:flex; flex-wrap:wrap; gap:6px 12px; font-size:12px; margin-bottom:8px; }
+.sec { margin:10px 0 4px; font:600 11px var(--f-mono); text-transform:uppercase; letter-spacing:.08em; color:var(--dim); }
+.row { display:flex; gap:6px; align-items:center; margin:4px 0; }
+.row label { flex:0 0 92px; color:var(--dim); font-size:12px; }
+input[type=text], select { flex:1; min-width:0; background:rgba(0,0,0,.4); color:var(--ink); border:1px solid var(--edge); border-radius:4px; padding:5px 6px; font:12px var(--f-body); }
+input[type=range] { flex:1; min-width:0; }
+button { background:rgba(79,220,255,.12); color:var(--ink); border:1px solid var(--edge); border-radius:4px; padding:5px 8px; font:12px var(--f-body); cursor:pointer; }
+button:hover { border-color:var(--cyan); } button.on { background:rgba(79,220,255,.35); }
+#map { width:100%; height:200px; display:block; background:rgba(0,0,0,.35); border:1px solid var(--edge); border-radius:4px; cursor:crosshair; touch-action:none; }
+.hint { color:var(--dim); font-size:11px; line-height:1.4; }
+.note { border-left:3px solid var(--amber); padding:4px 8px; background:rgba(255,184,77,.08); font-size:11.5px; line-height:1.4; margin:6px 0; }
+#projects { max-height:220px; overflow-y:auto; }
+.proj { display:flex; gap:6px; align-items:flex-start; padding:4px 2px; border-bottom:1px solid rgba(255,255,255,.05); font-size:12px; }
+.proj input { margin-top:2px; } .proj .yr { font:600 12px var(--f-mono); color:var(--amber); min-width:36px; }
+.proj .nm { flex:1; word-break:break-all; } .proj .ct { color:var(--dim); font:11px var(--f-mono); white-space:nowrap; }
+.proj.here .nm::after { content:" ● at point"; color:var(--green); font-size:10px; }
+#stats { font:11.5px/1.5 var(--f-mono); white-space:pre-wrap; background:rgba(0,0,0,.35); border:1px solid var(--edge); border-radius:4px; padding:6px; }
+#status { font-size:12px; color:var(--amber); min-height:16px; margin:4px 0; }
+.full { color:var(--green); } .lod { color:var(--amber); }
+#blocks { display:flex; flex-wrap:wrap; gap:4px; }
+#blocks button { padding:3px 6px; font-size:11px; }
+#legend { font-size:11px; display:flex; flex-wrap:wrap; gap:3px 10px; margin-top:4px; }
+#legend span i { display:inline-block; width:10px; height:10px; margin-right:3px; vertical-align:-1px; border-radius:2px; }
+#selPick { display:flex; flex-direction:column; gap:4px; margin:4px 0; }
+#selPick button { text-align:left; }
+#selPick button b { color:var(--cyan); font-weight:600; }
+#selMode.on { background:rgba(255,184,77,.35); border-color:var(--amber); }
+#map.picking, #potree_render_area.picking canvas { cursor:cell; }
+#selInfo .k { color:var(--ink); }
+.bar { height:6px; background:rgba(255,255,255,.08); border-radius:3px; overflow:hidden; margin:3px 0; }
+.bar i { display:block; height:100%; background:var(--green); }
+#potreeToggle { position:absolute; z-index:50; right:10px; top:10px; }
+@media (max-width:600px) { #lx { width:calc(100vw - 32px); left:16px; right:16px; } #lx:not(.min) { bottom:40%; } }
+</style>
+</head>
+<body>
+<script src="potree/libs/jquery/jquery-3.1.1.min.js"></script>
+<script src="potree/libs/spectrum/spectrum.js"></script>
+<script src="potree/libs/jquery-ui/jquery-ui.min.js"></script>
+<script src="potree/libs/other/BinaryHeap.js"></script>
+<script src="potree/libs/tween/tween.min.js"></script>
+<script src="potree/libs/d3/d3.js"></script>
+<script src="potree/libs/proj4/proj4.js"></script>
+<script src="potree/libs/openlayers3/ol.js"></script>
+<script src="potree/libs/i18next/i18next.js"></script>
+<script src="potree/libs/jstree/jstree.js"></script>
+<script src="potree/libs/copc/index.js"></script>
+<script src="potree/build/potree/potree.js"></script>
+<script src="potree/libs/plasio/js/laslaz.js"></script>
+
+<div class="potree_container" style="position:absolute; width:100%; height:100%; left:0; top:0;">
+  <div id="potree_render_area"></div>
+  <div id="potree_sidebar_container"></div>
+</div>
+<button id="potreeToggle" title="Potree's own tool sidebar: measure, profile, clip, scene tree">Measure / tools</button>
+
+<div id="lx">
+  <header><h1>USA LiDAR · every 3DEP point</h1><button id="minBtn" title="Collapse panel">–</button></header>
+  <div class="body">
+    <div class="nav">
+      <a href="../usa/globe.html">← Globe</a>
+      <a href="../usa/index.html">USA map</a>
+      <a href="../usa/view.html" id="blockLink">3D blocks</a>
+    </div>
+
+    <div class="row"><input type="text" id="q" placeholder="Address, or lat, lon (e.g. 42.05, -93.62)"><button id="go">Go</button></div>
+    <div class="hint">Addresses use the US Census geocoder (public domain). Click the map below to pick any spot; scroll to zoom, drag to pan.</div>
+    <canvas id="map"></canvas>
+    <div class="row" style="flex-wrap:wrap">
+      <button data-ll="42.0500,-93.4500">Iowa farmland</button>
+      <button data-ll="38.3600,-98.7600">Kansas wheat</button>
+      <button data-ll="35.6100,-83.4900">Smokies forest</button>
+      <button data-ll="47.8000,-123.9000">Olympic rainforest</button>
+    </div>
+    <div class="sec">Select area · county or city</div>
+    <div class="row"><button id="selMode" title="Then click the map above or the 3D view: pick the county or city under the click">Select area</button><button id="selClear" disabled>Clear selection</button></div>
+    <div id="selPick"></div>
+    <div id="selInfo" class="hint">Inside the selected area every LiDAR point loads (deepest EPT nodes, clipped exactly to the boundary). Outside it only a dimmed light preview is drawn, so the view stays smooth. Display only: no data is removed.</div>
+    <div class="row"><label>Preview density</label><input type="range" id="prev" min="1" max="6" step="1" value="3" title="Point spacing of the dimmed preview outside the selected area (per project this becomes an EPT level cap)"><span id="prevV" style="font:11px var(--f-mono);width:72px">≈ 16 m</span></div>
+    <details><summary class="sec" style="cursor:pointer">Our 3D blocks (click = LiDAR here, shift-click = open 3D block)</summary>
+    <div id="blocks"></div></details>
+
+    <div class="sec">LiDAR projects here</div>
+    <div class="row"><label>Search radius</label>
+      <select id="radius"><option value="100">100 m</option><option value="500">500 m</option><option value="1000" selected>1 km</option><option value="2000">2 km</option><option value="10000">10 km</option></select>
+      <button id="rescan" title="List projects around the current 3D view centre">Rescan at view</button></div>
+    <div id="status"></div>
+    <div id="projects" class="hint">Pick a location.</div>
+    <div class="row"><button id="showAll">Show all</button><button id="showNewest">Newest only</button><button id="fullDetail" title="Fly low over the target so the deepest EPT nodes load">Zoom to full detail</button></div>
+
+    <div class="sec">Display</div>
+    <div class="note">Point budget is a <b>display budget only</b> — all points stream at full resolution as you zoom in; no data is removed. Zoomed out you see a level-of-detail preview; close up, the deepest EPT nodes (every recorded point) load. If the budget ever stops the area under the view centre from reaching full detail, it is raised automatically (up to 40 M).</div>
+    <div class="row"><label>Point budget</label><input type="range" id="budget" min="1" max="30" step="1" value="4"><span id="budgetV" style="font:11px var(--f-mono);width:44px">4 M</span></div>
+    <div class="row"><label>Colour by</label>
+      <select id="colour"><option value="elevation">Elevation</option><option value="intensity">Intensity</option><option value="classification">Classification</option><option value="rgba">RGB (if present)</option><option value="return number">Return number</option><option value="source id">Flight line</option></select></div>
+    <div class="row" id="elevRow"><label>Elevation range</label><input type="text" id="elev" style="flex:1" placeholder="auto"><button id="elevAuto">Auto</button></div>
+    <div class="row" id="intRow" style="display:none"><label>Intensity max</label><input type="range" id="intMax" min="8" max="16" step="1" value="16"><span id="intMaxV" style="font:11px var(--f-mono);width:44px">65535</span></div>
+    <div id="legend"></div>
+    <div class="row"><label>Point size</label><input type="range" id="psize" min="0.5" max="4" step="0.1" value="1.5"><span id="psizeV" style="font:11px var(--f-mono);width:44px">1.5 px</span></div>
+    <div class="row"><label>Point shape</label><select id="shape"><option value="circle" selected>Circle (fine dots)</option><option value="square">Square</option></select></div>
+    <div class="row"><label>Shading</label><button id="edl" class="on">EDL on</button><label style="flex:0 0 auto">Z ×</label><input type="range" id="zx" min="0.3" max="5" step="0.1" value="1" style="max-width:80px"><span id="zxV" style="font:11px var(--f-mono)">1</span></div>
+    <div class="row"><label>True scale</label><button id="trueScale" class="on" title="EPT data is in Web Mercator (EPSG:3857), which stretches ground distance by 1/cos(lat). On = rescale x/y so 1 unit = 1 ground metre (vertical is untouched).">Mercator corrected</button></div>
+
+    <div class="sec">Streaming stats</div>
+    <div id="stats">–</div>
+    <div class="hint" style="margin-top:6px">“Frontier” = finest node drawn on each branch. A frontier node with no children in the EPT hierarchy is a leaf: every point in it is drawn. Data: USGS 3DEP via the public <code>usgs-lidar-public</code> EPT bucket (US public domain).</div>
+  </div>
+</div>
+
+<script type="module">
+import * as THREE from "./potree/libs/three.js/build/three.module.js";
+import { LineSegments2 } from "./potree/libs/three.js/lines/LineSegments2.js";
+import { LineSegmentsGeometry } from "./potree/libs/three.js/lines/LineSegmentsGeometry.js";
+import { LineMaterial } from "./potree/libs/three.js/lines/LineMaterial.js";
+
+const $id = (s) => document.getElementById(s);
+const R = 6378137;
+const merc = (lon, lat) => [lon * Math.PI / 180 * R, Math.log(Math.tan(Math.PI / 4 + lat * Math.PI / 360)) * R];
+const unmerc = (x, y) => [x / R * 180 / Math.PI, (2 * Math.atan(Math.exp(y / R)) - Math.PI / 2) * 180 / Math.PI];
+const fmt = (n) => n >= 1e9 ? (n / 1e9).toFixed(1) + " B" : n >= 1e6 ? (n / 1e6).toFixed(1) + " M" : n >= 1e3 ? (n / 1e3).toFixed(0) + " k" : String(n);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const yearOf = (name) => { const m = name.match(/(?:19|20)\d\d/g); return m ? +m[m.length - 1] : null; };
+const params = new URLSearchParams(location.search);
+
+// ---------------- Potree viewer ----------------
+const viewer = new Potree.Viewer($id("potree_render_area"));
+window.viewer = viewer;
+viewer.setEDLEnabled(true);
+viewer.setEDLStrength(0.4);
+viewer.setEDLRadius(1.0);
+viewer.setFOV(60);
+viewer.setBackground("black");
+viewer.setMinNodeSize(30);
+viewer.setPointBudget(+(params.get("budget") || 4e6));
+viewer.setControls(viewer.earthControls);
+Potree.maxNodesLoading = 6;
+let guiLoaded = false;
+$id("potreeToggle").onclick = () => {
+  if (!guiLoaded) { guiLoaded = true; viewer.loadGUI(() => { viewer.setLanguage("en"); viewer.toggleSidebar(); }); }
+  else viewer.toggleSidebar();
+};
+
+// ---------------- state ----------------
+let FEATURES = [];        // EPT project boundaries
+let STATES = null, BLOCKS = [];
+const S = { lon: null, lat: null, ox: 0, oy: 0, k: 1, zx: 1, ground: null, label: "" };
+let clouds = [];          // {f, name, year, count, here, pc, loading, on}
+let SEL = null, PICK = null, selMode = false; // selected area / hovered candidate / picking mode
+let opts = { colour: "elevation", size: 1.5, shape: "circle", elev: null, intMax: 65535, trueScale: true };
+
+// ---------------- geometry helpers ----------------
+function ringContains(ring, x, y) {
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+    const [xi, yi] = ring[i], [xj, yj] = ring[j];
+    if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) inside = !inside;
+  }
+  return inside;
+}
+function polys(g) { return g.type === "Polygon" ? [g.coordinates] : g.coordinates; }
+function featContains(f, lon, lat) {
+  const b = f.properties.bbox;
+  if (lon < b[0] || lon > b[2] || lat < b[1] || lat > b[3]) return false;
+  for (const p of polys(f.geometry)) { if (ringContains(p[0], lon, lat) && !p.slice(1).some((h) => ringContains(h, lon, lat))) return true; }
+  return false;
+}
+function featIntersectsBox(f, w, s, e, n) {
+  const b = f.properties.bbox;
+  if (b[2] < w || b[0] > e || b[3] < s || b[1] > n) return false;
+  for (let i = 0; i <= 6; i++) for (let j = 0; j <= 6; j++) if (featContains(f, w + (e - w) * i / 6, s + (n - s) * j / 6)) return true;
+  for (const p of polys(f.geometry)) for (const [x, y] of p[0]) if (x >= w && x <= e && y >= s && y <= n) return true;
+  return false;
+}
+
+// ---------------- overview map (canvas, lon/lat with cos correction) ----------------
+const cv = $id("map"), ctx = cv.getContext("2d");
+let mv = { cx: -96, cy: 38.5, scale: 0 }; // pixels per degree lon
+function fitMap() { const r = cv.getBoundingClientRect(); cv.width = r.width * devicePixelRatio; cv.height = r.height * devicePixelRatio; if (!mv.scale) mv.scale = cv.width / 62; drawMap(); }
+const kx = Math.cos(38.5 * Math.PI / 180);
+const toPx = (lon, lat) => [cv.width / 2 + (lon - mv.cx) * mv.scale * kx, cv.height / 2 - (lat - mv.cy) * mv.scale];
+const toLL = (px, py) => [mv.cx + (px - cv.width / 2) / (mv.scale * kx), mv.cy - (py - cv.height / 2) / mv.scale];
+function pathGeom(g) {
+  for (const p of polys(g)) for (const ring of p) {
+    ring.forEach(([x, y], i) => { const [a, b] = toPx(x, y); i ? ctx.lineTo(a, b) : ctx.moveTo(a, b); });
+    ctx.closePath();
+  }
+}
+function drawMap() {
+  const css = getComputedStyle(document.documentElement);
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  const [w, n] = toLL(0, 0), [e, s] = toLL(cv.width, cv.height);
+  ctx.beginPath();
+  for (const f of FEATURES) { const b = f.properties.bbox; if (b[2] < w || b[0] > e || b[3] < s || b[1] > n) continue; pathGeom(f.geometry); }
+  ctx.fillStyle = "rgba(79,220,255,.16)"; ctx.fill("evenodd");
+  if (STATES) { ctx.beginPath(); for (const f of STATES.features) pathGeom(f.geometry); ctx.strokeStyle = css.getPropertyValue("--dim") || "#8b9bb0"; ctx.lineWidth = devicePixelRatio; ctx.stroke(); }
+  ctx.fillStyle = css.getPropertyValue("--amber") || "#ffb84d";
+  for (const b of BLOCKS) { const [x, y] = toPx(b.lon, b.lat); ctx.fillRect(x - 2 * devicePixelRatio, y - 2 * devicePixelRatio, 4 * devicePixelRatio, 4 * devicePixelRatio); }
+  for (const [a, col, wdt] of [[PICK, "rgba(255,255,255,.7)", 1], [SEL && SEL.f, "rgba(255,184,77,.95)", 2]]) {
+    if (!a) continue;
+    ctx.beginPath(); pathGeom(a.geometry);
+    ctx.fillStyle = "rgba(255,184,77,.12)"; if (a === (SEL && SEL.f)) ctx.fill("evenodd");
+    ctx.strokeStyle = col; ctx.lineWidth = wdt * devicePixelRatio; ctx.stroke();
+  }
+  if (S.lon != null) {
+    const [x, y] = toPx(S.lon, S.lat); ctx.strokeStyle = "#fff"; ctx.lineWidth = 2 * devicePixelRatio;
+    ctx.beginPath(); ctx.arc(x, y, 6 * devicePixelRatio, 0, 7); ctx.stroke();
+  }
+  ctx.fillStyle = "rgba(255,255,255,.55)"; ctx.font = `${10 * devicePixelRatio}px sans-serif`;
+  ctx.fillText("shaded = 3DEP EPT coverage · squares = our blocks", 6 * devicePixelRatio, cv.height - 6 * devicePixelRatio);
+}
+let drag = null;
+cv.addEventListener("pointerdown", (e) => { drag = { x: e.offsetX, y: e.offsetY, cx: mv.cx, cy: mv.cy, moved: false }; cv.setPointerCapture(e.pointerId); });
+cv.addEventListener("pointermove", (e) => {
+  if (!drag) return; const dx = (e.offsetX - drag.x) * devicePixelRatio, dy = (e.offsetY - drag.y) * devicePixelRatio;
+  if (Math.abs(dx) + Math.abs(dy) > 4) drag.moved = true;
+  mv.cx = drag.cx - dx / (mv.scale * kx); mv.cy = drag.cy + dy / mv.scale; drawMap();
+});
+cv.addEventListener("pointerup", (e) => {
+  if (drag && !drag.moved) {
+    const [lon, lat] = toLL(e.offsetX * devicePixelRatio, e.offsetY * devicePixelRatio);
+    if (selMode) pickAreaAt(lon, lat); else goTo(lon, lat, `${lat.toFixed(5)}, ${lon.toFixed(5)}`);
+  }
+  drag = null;
+});
+cv.addEventListener("wheel", (e) => {
+  e.preventDefault(); const px = e.offsetX * devicePixelRatio, py = e.offsetY * devicePixelRatio;
+  const [lon, lat] = toLL(px, py); mv.scale *= e.deltaY < 0 ? 1.4 : 1 / 1.4; mv.scale = Math.max(cv.width / 200, Math.min(mv.scale, cv.width * 50));
+  const [l2, b2] = toLL(px, py); mv.cx += lon - l2; mv.cy += lat - b2; drawMap();
+}, { passive: false });
+window.addEventListener("resize", fitMap);
+
+// ---------------- search (Census geocoder via JSONP: it sends no CORS headers) ----------------
+function censusGeocode(address) {
+  return new Promise((res, rej) => {
+    const cb = "lxcb" + Date.now(); const sc = document.createElement("script");
+    const t = setTimeout(() => { cleanup(); rej(new Error("geocoder timeout")); }, 15000);
+    function cleanup() { clearTimeout(t); delete window[cb]; sc.remove(); }
+    window[cb] = (d) => { cleanup(); res(d); };
+    sc.onerror = () => { cleanup(); rej(new Error("geocoder unreachable")); };
+    sc.src = "https://geocoding.geo.census.gov/geocoder/locations/onelineaddress?benchmark=Public_AR_Current&format=jsonp&callback=" + cb + "&address=" + encodeURIComponent(address);
+    document.head.appendChild(sc);
+  });
+}
+async function search() {
+  const q = $id("q").value.trim(); if (!q) return;
+  const m = q.match(/^\s*(-?\d+(?:\.\d+)?)\s*[, ]\s*(-?\d+(?:\.\d+)?)\s*$/);
+  if (m) { let a = +m[1], b = +m[2]; if (a < 0 && b > 0) [a, b] = [b, a]; return goTo(b, a, q); }
+  const blk = BLOCKS.find((b) => (b.city + " " + b.state + " " + b.slug).toLowerCase().includes(q.toLowerCase()));
+  setStatus("Geocoding…");
+  try {
+    const d = await censusGeocode(q); const hit = d?.result?.addressMatches?.[0];
+    if (hit) return goTo(hit.coordinates.x, hit.coordinates.y, hit.matchedAddress);
+    if (blk) return goTo(blk.lon, blk.lat, `${blk.city}, ${blk.state} block`);
+    setStatus("No Census address match. Try a street address, or “lat, lon”.");
+  } catch (e) { if (blk) return goTo(blk.lon, blk.lat, `${blk.city}, ${blk.state} block`); setStatus(e.message); }
+}
+$id("go").onclick = search;
+$id("q").addEventListener("keydown", (e) => { if (e.key === "Enter") search(); });
+document.querySelectorAll("[data-ll]").forEach((b) => b.onclick = () => { const [la, lo] = b.dataset.ll.split(",").map(Number); goTo(lo, la, b.textContent); });
+const setStatus = (t) => { $id("status").textContent = t || ""; };
+
+// ---------------- location -> projects ----------------
+async function epqsGround(lon, lat) {
+  try { const r = await fetch(`https://epqs.nationalmap.gov/v1/json?x=${lon}&y=${lat}&units=Meters&wkid=4326&includeDate=false`); const d = await r.json(); const v = parseFloat(d.value); return isFinite(v) && v > -1000 ? v : null; } catch { return null; }
+}
+function removeAll() {
+  for (const c of clouds) if (c.pc) {
+    const i = viewer.scene.pointclouds.indexOf(c.pc); if (i >= 0) viewer.scene.pointclouds.splice(i, 1);
+    viewer.scene.scenePointCloud.remove(c.pc);
+    c.pc.traverse?.((o) => { if (o.geometry && o.geometry.dispose) o.geometry.dispose(); });
+  }
+  clouds = [];
+}
+function applyTransform(pc) {
+  const k = opts.trueScale ? S.k : 1;
+  pc.scale.set(k, k, S.zx);
+  pc.position.set(S.ox * (1 - k), S.oy * (1 - k), 0);
+  pc.updateMatrixWorld(true);
+}
+async function goTo(lon, lat, label, preferProject) {
+  S.lon = lon; S.lat = lat; S.label = label || ""; [S.ox, S.oy] = merc(lon, lat); S.k = Math.cos(lat * Math.PI / 180);
+  history.replaceState(null, "", `?lat=${lat.toFixed(6)}&lon=${lon.toFixed(6)}&r=${$id("radius").value}` + (SEL ? `&area=${SEL.id}` : ""));
+  if (mv.scale < cv.width / 8) { mv.scale = cv.width / 8; } mv.cx = lon; mv.cy = lat; drawMap();
+  removeAll(); viewer.setPointBudget(userBudget); autoRaised = false; floorS = null; lastG = { x: NaN, y: NaN, z: null, t: 0 };
+  const r = +$id("radius").value, dLat = r / 111320, dLon = r / (111320 * S.k);
+  const hits = FEATURES.filter((f) => featIntersectsBox(f, lon - dLon, lat - dLat, lon + dLon, lat + dLat));
+  clouds = hits.map((f) => ({ f, name: f.properties.name, year: yearOf(f.properties.name), count: f.properties.count, here: featContains(f, lon, lat), pc: null, on: false }))
+    .sort((a, b) => (b.here - a.here) || ((b.year || 0) - (a.year || 0)) || a.name.localeCompare(b.name));
+  if (!clouds.length) { renderProjects(); setStatus(`No 3DEP EPT project within ${r} m of ${label}. Try a larger radius.`); return; }
+  const pick = clouds.find((c) => c.name === preferProject) || clouds[0];
+  setStatus(`${label}: ${clouds.length} project(s). Loading ${pick.name}…`);
+  S.ground = await epqsGround(lon, lat);
+  await setOn(pick, true);
+  if (SEL) buildOutline();
+  renderProjects();
+  setStatus(`${label}: ${clouds.length} project(s) here; showing ${pick.name}. Tick others to overlay (other years/projects).`);
+  placeCamera(380);
+}
+// fly in: descend from high above the point to an oblique view (ground clamp still applies every frame)
+let flyId = 0;
+function placeCamera(dist) {
+  const z = (S.ground ?? 0) * S.zx, v = viewer.scene.view, id = ++flyId;
+  const tgt = new THREE.Vector3(S.ox, S.oy, z);
+  const end = new THREE.Vector3(S.ox, S.oy - dist * 0.9, z + dist * 0.75), start = new THREE.Vector3(S.ox, S.oy - dist * 2, z + dist * 12);
+  const t0 = performance.now(), T = 1400;
+  const step = () => {
+    if (id !== flyId) return;
+    const u = Math.min(1, (performance.now() - t0) / T), e = 1 - Math.pow(1 - u, 3);
+    v.position.lerpVectors(start, end, e); v.lookAt(tgt);
+    if (u < 1) requestAnimationFrame(step);
+  };
+  step();
+}
+async function setOn(c, on) {
+  c.on = on;
+  if (on && !c.pc && !c.loading) {
+    c.loading = true;
+    try {
+      const e = await Potree.loadPointCloud(c.f.properties.url || `https://s3-us-west-2.amazonaws.com/usgs-lidar-public/${c.name}/ept.json`, c.name);
+      if (!clouds.includes(c)) return; // location changed meanwhile
+      c.pc = e.pointcloud; c.pc.name = c.name; c.ept = c.pc.pcoGeometry.ept;
+      c.hasRGB = !!c.ept?.schema?.some((d) => d.name === "Red");
+      applyTransform(c.pc);
+      viewer.scene.addPointCloud(c.pc);
+      styleCloud(c);
+    } catch (err) { console.warn("load failed", c.name, err); setStatus("Failed to load " + c.name + ": " + err.message); }
+    c.loading = false;
+  }
+  if (c.pc) c.pc.visible = c.on;
+  if (c.on && c.pc && SEL) startWalk(c);
+  renderProjects();
+}
+function renderProjects() {
+  const el = $id("projects");
+  if (!clouds.length) { el.innerHTML = S.lon == null ? "Pick a location." : "No projects."; return; }
+  el.innerHTML = clouds.map((c, i) => `<div class="proj${c.here ? " here" : ""}"><input type="checkbox" data-i="${i}" ${c.on ? "checked" : ""}>
+    <span class="yr">${c.year || "—"}</span><span class="nm">${esc(c.name)}${c.cov != null ? ` <span class="hint">· covers ${(c.cov * 100).toFixed(c.cov < 0.1 ? 1 : 0)}% of area</span>` : ""}${c.loading ? " (loading…)" : ""}</span><span class="ct">${fmt(c.count)} pts</span></div>`).join("");
+  el.querySelectorAll("input").forEach((cb) => cb.onchange = () => setOn(clouds[+cb.dataset.i], cb.checked));
+}
+$id("showAll").onclick = () => clouds.forEach((c) => setOn(c, true));
+$id("showNewest").onclick = () => clouds.forEach((c, i) => setOn(c, i === 0));
+$id("rescan").onclick = () => {
+  const t = viewTarget();
+  const k = opts.trueScale ? S.k : 1; const rx = S.ox + (t.x - S.ox) / k, ry = S.oy + (t.y - S.oy) / k;
+  const [lon, lat] = unmerc(rx, ry); goTo(lon, lat, `${lat.toFixed(5)}, ${lon.toFixed(5)}`);
+};
+$id("fullDetail").onclick = () => {
+  const t = viewTarget(); const z = groundAt(t.x, t.y) ?? groundNear(t.x, t.y) ?? t.z;
+  viewer.scene.view.position.set(t.x, t.y - 45, Math.max(z + 40, (groundAt(t.x, t.y - 45) ?? -1e9) + 20));
+  viewer.scene.view.lookAt(new THREE.Vector3(t.x, t.y, z));
+};
+
+// where the camera looks: intersect the view ray with the local ground plane (earth controls have no stable pivot)
+function viewTarget() {
+  const pcs = viewer.scene.pointclouds.filter((p) => p.visible), el = viewer.renderer.domElement;
+  // GPU pick (readPixels stalls the GPU pipeline): only when the camera is within 3 km of the ground
+  const high = viewer.scene.view.position.z - (S.ground ?? 0) * S.zx > 3000;
+  if (pcs.length && !high) {
+    try {
+      const I = Potree.Utils.getMousePointCloudIntersection(new THREE.Vector2(el.clientWidth / 2, el.clientHeight / 2), viewer.scene.getActiveCamera(), viewer, pcs, { pickClipped: true });
+      if (I && I.location) return I.location.clone();
+    } catch (e) { /* fall back to plane */ }
+  }
+  const v = viewer.scene.view, pos = v.position, dir = v.direction, gz = (S.ground ?? 0) * S.zx;
+  if (dir.z < -0.02) { const t = (gz - pos.z) / dir.z; if (t > 0 && t < 2e5) return new THREE.Vector3(pos.x + dir.x * t, pos.y + dir.y * t, gz); }
+  return new THREE.Vector3(pos.x, pos.y, gz);
+}
+// median z of drawn points near a world-space xy (for camera targeting / sanity)
+function groundNear(wx, wy, rad = 15) {
+  const zs = []; const v = new THREE.Vector3();
+  for (const c of clouds) if (c.pc && c.pc.visible) for (const n of c.pc.visibleNodes) {
+    const g = n.geometryNode.geometry; if (!g) continue; const p = g.attributes.position; const m = n.sceneNode.matrixWorld;
+    const step = Math.max(1, Math.floor(p.count / 4000));
+    for (let i = 0; i < p.count; i += step) { v.fromBufferAttribute(p, i).applyMatrix4(m); if (Math.abs(v.x - wx) < rad && Math.abs(v.y - wy) < rad) zs.push(v.z); }
+  }
+  if (!zs.length) return null; zs.sort((a, b) => a - b); return zs[Math.floor(zs.length * 0.1)];
+}
+
+// ---------------- firm ground: per-node ground grids + camera clamp ----------------
+// Each loaded EPT node gets a lazily built grid (cells of ~1.5 ground metres, in the cloud's raw EPSG:3857 frame):
+// mean z of class-2 (ground) points and min z of all non-noise points. Queries look only at drawn nodes over the xy,
+// so they are O(nodes in column), cheap enough to run every frame.
+const NOISE = new Set([7, 18]);
+function nodeGrid(pc, sceneNode, gnode, cell) {
+  const geom = gnode.geometry; if (!geom) { gnode._lxg = null; return null; }
+  if (gnode._lxg && gnode._lxg.geom === geom && gnode._lxg.cell === cell) return gnode._lxg;
+  const pos = geom.attributes.position, cls = geom.attributes.classification;
+  const M = pc.matrixWorld.clone().invert().multiply(sceneNode.matrixWorld); const e = M.elements; // node-local -> raw cloud coords (scale+translate)
+  const map = new Map(); const pa = pos.array, ca = cls ? cls.array : null; const st = pos.itemSize;
+  for (let i = 0, n = pos.count; i < n; i++) {
+    const c = ca ? ca[i] : 1; if (NOISE.has(c)) continue;
+    const x = e[0] * pa[i * st] + e[12], y = e[5] * pa[i * st + 1] + e[13], z = e[10] * pa[i * st + 2] + e[14];
+    const key = Math.floor(x / cell) * 1e7 + Math.floor(y / cell);
+    let r = map.get(key); if (!r) { r = [0, 0, Infinity]; map.set(key, r); }
+    if (c === 2) { r[0] += z; r[1]++; } if (z < r[2]) r[2] = z;
+  }
+  return (gnode._lxg = { geom, cell, map });
+}
+// world xy -> world z of the LiDAR ground (null if nothing loaded there). Highest ground over all visible projects wins.
+function groundAt(wx, wy, radM = 3) {
+  let best = null;
+  for (const c of clouds) {
+    const pc = c.pc; if (!pc || !pc.visible) continue;
+    const ew = pc.matrixWorld.elements; const rx = (wx - ew[12]) / ew[0], ry = (wy - ew[13]) / ew[5];
+    const kk = opts.trueScale ? S.k : 1, cell = 1.5 / kk, rr = radM / kk, nc = Math.ceil(rr / cell);
+    let gs = 0, gn = 0, lo = Infinity;
+    for (const n of pc.visibleNodes) {
+      const g = n.geometryNode, b = g.boundingBox;
+      if (rx < b.min.x - rr || rx > b.max.x + rr || ry < b.min.y - rr || ry > b.max.y + rr) continue;
+      const grid = nodeGrid(pc, n.sceneNode, g, cell); if (!grid) continue;
+      const cx = Math.floor(rx / cell), cy = Math.floor(ry / cell);
+      for (let dx = -nc; dx <= nc; dx++) for (let dy = -nc; dy <= nc; dy++) {
+        const r = grid.map.get((cx + dx) * 1e7 + cy + dy); if (!r) continue;
+        gs += r[0]; gn += r[1]; if (r[2] < lo) lo = r[2];
+      }
+    }
+    const raw = gn ? gs / gn : lo; if (!isFinite(raw)) continue;
+    const wz = ew[10] * raw + ew[14]; if (best === null || wz > best) best = wz;
+  }
+  return best;
+}
+// Clamp after every controls update (before Potree copies view -> camera), for all control schemes.
+const EYE = 1.7; let floorS = null, lastG = { x: NaN, y: NaN, z: null, t: 0 };
+function clampView() {
+  const v = viewer.scene.view, p = v.position;
+  const now = performance.now();
+  if (Math.hypot(p.x - lastG.x, p.y - lastG.y) > 0.3 || now - lastG.t > 250) { lastG = { x: p.x, y: p.y, z: groundAt(p.x, p.y), t: now }; }
+  let g = lastG.z; if (g === null && S.ground != null) g = S.ground * S.zx; // fallback before data under the camera has loaded
+  if (g === null) return;
+  const f = g + EYE * S.zx;
+  floorS = floorS === null || f > floorS ? f : floorS + (f - floorS) * 0.15; // rise instantly, settle smoothly
+  if (p.z < floorS) p.z = floorS;
+  const ec = viewer.earthControls;
+  if (ec && ec.pivot) { const gp = groundAt(ec.pivot.x, ec.pivot.y); if (gp !== null && ec.pivot.z < gp) ec.pivot.z = gp; }
+}
+for (const ctl of [viewer.earthControls, viewer.orbitControls, viewer.fpControls]) {
+  if (!ctl || !ctl.update) continue; const orig = ctl.update.bind(ctl);
+  ctl.update = (delta) => { orig(delta); try { clampView(); } catch (e) { console.warn(e); } };
+}
+window.lxGroundAt = groundAt;
+
+// ---------------- styling ----------------
+const CLASS = { 1: ["Unclassified", "#9aa8bb"], 2: ["Ground", "#a0784a"], 3: ["Low veg", "#9fdc6c"], 4: ["Med veg", "#5fc24a"], 5: ["High veg", "#2f8f3a"], 6: ["Building", "#e8463c"], 7: ["Low noise", "#ff00ff"], 9: ["Water", "#3a7fe0"], 17: ["Bridge", "#e0d040"], 18: ["High noise", "#ff00ff"] };
+function styleCloud(c) {
+  const m = c.pc.material;
+  // fixed screen-pixel dots: points never swell into blocks when the camera is close
+  m.pointSizeType = Potree.PointSizeType.FIXED; m.size = opts.size;
+  m.shape = opts.shape === "square" ? Potree.PointShape.SQUARE : Potree.PointShape.CIRCLE;
+  const want = opts.colour === "rgba" && !c.hasRGB ? "elevation" : opts.colour;
+  m.activeAttributeName = want;
+  if (Potree.Gradients && Potree.Gradients.TURBO) m.gradient = Potree.Gradients.TURBO; // bright at the ground end, readable on black
+  if (want === "elevation") {
+    const g = S.ground ?? c.pc.pcoGeometry.tightBoundingBox.min.z;
+    const er = opts.elev || [g - 15, g + 30];
+    m.elevationRange = [er[0] * S.zx, er[1] * S.zx];
+    $id("elev").placeholder = `auto ${er[0].toFixed(0)}–${er[1].toFixed(0)} m`;
+  }
+  if (want === "intensity") m.intensityRange = [0, opts.intMax];
+  if (want === "classification") {
+    // every class stays visible (no data hidden); only colours change
+    const cl = JSON.parse(JSON.stringify(Potree.ClassificationScheme.DEFAULT));
+    for (const k in cl) cl[k].visible = true;
+    for (const [k, [name, col]] of Object.entries(CLASS)) { const c3 = new THREE.Color(col); cl[k] = { visible: true, name, color: [c3.r, c3.g, c3.b, 1] }; }
+    m.classification = cl;
+  }
+}
+function restyle() {
+  clouds.forEach((c) => c.pc && styleCloud(c));
+  $id("elevRow").style.display = opts.colour === "elevation" ? "" : "none";
+  $id("intRow").style.display = opts.colour === "intensity" ? "" : "none";
+  $id("legend").innerHTML = opts.colour === "classification" ? Object.entries(CLASS).map(([k, [n, c]]) => `<span><i style="background:${c}"></i>${k} ${n}</span>`).join("")
+    : opts.colour === "rgba" && clouds.some((c) => c.pc && !c.hasRGB) ? "<span>Projects without RGB fall back to elevation.</span>" : "";
+}
+$id("colour").onchange = (e) => { opts.colour = e.target.value; restyle(); };
+$id("psize").oninput = (e) => { opts.size = +e.target.value; $id("psizeV").textContent = opts.size + " px"; restyle(); };
+$id("shape").onchange = (e) => { opts.shape = e.target.value; restyle(); };
+$id("intMax").oninput = (e) => { opts.intMax = 2 ** +e.target.value - 1; $id("intMaxV").textContent = opts.intMax; restyle(); };
+$id("elev").onchange = (e) => { const m = e.target.value.match(/(-?\d+(?:\.\d+)?)\D+(-?\d+(?:\.\d+)?)/); opts.elev = m ? [+m[1], +m[2]] : null; restyle(); };
+$id("elevAuto").onclick = () => {
+  const t = viewTarget(); const g = groundNear(t.x, t.y, 200);
+  if (g != null) { S.ground = g / S.zx; } opts.elev = null; $id("elev").value = ""; restyle();
+};
+$id("budget").oninput = (e) => { const v = +e.target.value; userBudget = v * 1e6; autoRaised = false; viewer.setPointBudget(userBudget); $id("budgetV").textContent = v + " M"; };
+$id("edl").onclick = (e) => { const on = !viewer.useEDL; viewer.setEDLEnabled(on); e.target.classList.toggle("on", on); e.target.textContent = on ? "EDL on" : "EDL off"; };
+$id("zx").oninput = (e) => { S.zx = +e.target.value; $id("zxV").textContent = S.zx; clouds.forEach((c) => c.pc && applyTransform(c.pc)); restyle(); if (outline) { outline.z.fill(NaN); placeOutline(); } };
+$id("trueScale").onclick = (e) => { opts.trueScale = !opts.trueScale; e.target.classList.toggle("on", opts.trueScale); e.target.textContent = opts.trueScale ? "Mercator corrected" : "Raw EPSG:3857"; clouds.forEach((c) => c.pc && applyTransform(c.pc)); if (outline) placeOutline(); };
+$id("minBtn").onclick = () => { $id("lx").classList.toggle("min"); $id("minBtn").textContent = $id("lx").classList.contains("min") ? "+" : "–"; };
+{ const v = Math.round(viewer.getPointBudget() / 1e6); $id("budget").value = v; $id("budgetV").textContent = v + " M"; }
+
+// ---------------- area selection: county / incorporated city ----------------
+// Boundaries: US Census cartographic boundary files (public domain), split per state by usa/lidar_boundaries.py.
+// Policy (patched into Potree's traversal + point shader, see "roof-intel patch" in potree.js):
+//   EPT nodes touching the polygon refine to the deepest level regardless of screen size, nearest first;
+//   nodes entirely outside stop at the preview level and are drawn dimmed; points of straddling nodes that lie
+//   outside the polygon are hidden when deeper than the preview level, so the edge is exact. Display only.
+const BND = { index: null, county: {}, place: {} };
+const bIndex = async () => BND.index || (BND.index = await fetch("boundaries/index.json").then((r) => { if (!r.ok) throw new Error("boundaries/index.json " + r.status); return r.json(); }));
+async function bState(kind, st) {
+  const store = BND[kind];
+  if (!store[st]) {
+    const m = (await bIndex()).states[st], file = m && m[kind === "county" ? "counties" : "places"];
+    store[st] = file ? fetch("boundaries/" + file).then((r) => r.json()).then((d) => d.features) : Promise.resolve([]);
+  }
+  return store[st];
+}
+function geomContains(g, lon, lat) {
+  for (const p of polys(g)) if (ringContains(p[0], lon, lat) && !p.slice(1).some((h) => ringContains(h, lon, lat))) return true;
+  return false;
+}
+async function areasAt(lon, lat) {
+  const idx = await bIndex(), out = [];
+  const sts = Object.entries(idx.states).filter(([, m]) => lon >= m.bbox[0] && lon <= m.bbox[2] && lat >= m.bbox[1] && lat <= m.bbox[3]).map(([s]) => s);
+  for (const kind of ["county", "place"]) for (const st of sts) for (const f of await bState(kind, st)) {
+    const b = f.properties.b; if (lon < b[0] || lon > b[2] || lat < b[1] || lat > b[3]) continue;
+    if (geomContains(f.geometry, lon, lat)) out.push(f);
+  }
+  return out;
+}
+const km2 = (p) => (p.al + p.aw) / 1e6;
+const fmtKm2 = (v) => v >= 100 ? Math.round(v).toLocaleString() + " km²" : v.toFixed(v < 10 ? 2 : 1) + " km²";
+const kindName = (p) => p.k === "county" ? "County" : "City";
+async function pickAreaAt(lon, lat) {
+  const el = $id("selPick"); el.innerHTML = '<span class="hint">Looking up county / city here…</span>';
+  let hits; try { hits = await areasAt(lon, lat); } catch (e) { el.innerHTML = `<span class="hint">Boundaries unavailable: ${esc(e.message)}</span>`; return; }
+  if (!hits.length) { el.innerHTML = `<span class="hint">No county or incorporated city at ${lat.toFixed(4)}, ${lon.toFixed(4)}.</span>`; return; }
+  el.innerHTML = `<span class="hint">At ${lat.toFixed(4)}, ${lon.toFixed(4)} — choose:</span>` + hits.map((f, i) => { const p = f.properties;
+    return `<button data-i="${i}">${kindName(p)}: <b>${esc(p.ln)}</b>, ${esc(p.st)} · ${fmtKm2(km2(p))}</button>`; }).join("");
+  el.querySelectorAll("button").forEach((b) => {
+    const f = hits[+b.dataset.i];
+    b.onmouseenter = () => { PICK = f; drawMap(); }; b.onmouseleave = () => { PICK = null; drawMap(); };
+    b.onclick = () => { PICK = null; selectArea(f); };
+  });
+}
+function setSelMode(on) {
+  selMode = on; $id("selMode").classList.toggle("on", on); $id("selMode").textContent = on ? "Click map or 3D view…" : "Select area";
+  cv.classList.toggle("picking", on); $id("potree_render_area").classList.toggle("picking", on);
+  if (!on) { PICK = null; drawMap(); }
+}
+$id("selMode").onclick = () => setSelMode(!selMode);
+$id("selClear").onclick = () => clearSelection();
+const PREV_M = [64, 32, 16, 8, 4, 2];
+function setPreview(v) { lxSel.previewSpacing = PREV_M[v - 1]; $id("prev").value = v; $id("prevV").textContent = "≈ " + PREV_M[v - 1] + " m"; if (SEL) history.replaceState(null, "", location.search.replace(/&preview=\d+/, "") + (v !== 3 ? `&preview=${v}` : "")); }
+$id("prev").oninput = (e) => setPreview(+e.target.value);
+// 3D pick: a click (not a drag) on the point cloud while in select mode
+{
+  const el = viewer.renderer.domElement; let down = null;
+  el.addEventListener("pointerdown", (e) => { down = { x: e.clientX, y: e.clientY }; });
+  el.addEventListener("pointerup", (e) => {
+    if (!selMode || !down || Math.hypot(e.clientX - down.x, e.clientY - down.y) > 5) return;
+    const r = el.getBoundingClientRect(), pcs = viewer.scene.pointclouds.filter((p) => p.visible);
+    let w = null;
+    try { const I = Potree.Utils.getMousePointCloudIntersection(new THREE.Vector2(e.clientX - r.left, e.clientY - r.top), viewer.scene.getActiveCamera(), viewer, pcs, { pickClipped: true }); if (I) w = I.location; } catch {}
+    if (!w || S.lon == null) { $id("selPick").innerHTML = '<span class="hint">No LiDAR point under the click — click on the points, or use the map.</span>'; return; }
+    const k = opts.trueScale ? S.k : 1; const [lon, lat] = unmerc(S.ox + (w.x - S.ox) / k, S.oy + (w.y - S.oy) / k);
+    pickAreaAt(lon, lat);
+  });
+}
+
+// --- polygon grid: cells over the polygon (raw EPSG:3857), each with the inside state of a reference point and the
+// list of polygon edges crossing it. Point test = reference state flipped once per edge crossing the segment
+// reference->point (exact; the same test runs in the point shader). Prefix sums give O(1) box classification.
+const REF = [0.5123, 0.4871];
+function buildGrid(rings) {
+  let minX = Infinity, minY = Infinity, maxX = -Infinity, maxY = -Infinity, nE = 0;
+  for (const r of rings) { nE += r.length; for (const [x, y] of r) { if (x < minX) minX = x; if (x > maxX) maxX = x; if (y < minY) minY = y; if (y > maxY) maxY = y; } }
+  const longSide = Math.max(maxX - minX, maxY - minY, 1);
+  for (let res = Math.min(1024, Math.max(128, Math.ceil(Math.sqrt(nE) * 8))); ; res *= 2) { // ~1-3 edges per boundary cell keeps the shader test cheap
+    const cell = longSide / res, x0 = minX - cell, y0 = minY - cell;
+    const nx = Math.ceil((maxX - minX) / cell) + 3, ny = Math.ceil((maxY - minY) / cell) + 3;
+    const segs = [], lists = new Map(); let maxL = 0;
+    const add = (cx, cy, si) => { if (cx < 0 || cy < 0 || cx >= nx || cy >= ny) return; const k = cy * nx + cx; let l = lists.get(k); if (!l) lists.set(k, l = []); if (l[l.length - 1] !== si) { l.push(si); if (l.length > maxL) maxL = l.length; } };
+    for (const r of rings) for (let i = 0; i < r.length; i++) {
+      const a = r[i], b = r[(i + 1) % r.length]; if (a[0] === b[0] && a[1] === b[1]) continue;
+      const ax = (a[0] - x0) / cell, ay = (a[1] - y0) / cell, bx = (b[0] - x0) / cell, by = (b[1] - y0) / cell, si = segs.length;
+      segs.push([ax, ay, bx, by]);
+      const lx = Math.min(ax, bx), hx = Math.max(ax, bx);
+      for (let cx = Math.floor(lx); cx <= Math.floor(hx); cx++) {
+        const xa = Math.max(lx, cx), xb = Math.min(hx, cx + 1);
+        let ya, yb; if (bx === ax) { ya = Math.min(ay, by); yb = Math.max(ay, by); } else { const t = (by - ay) / (bx - ax); ya = ay + (xa - ax) * t; yb = ay + (xb - ax) * t; if (ya > yb) [ya, yb] = [yb, ya]; }
+        for (let cy = Math.floor(ya); cy <= Math.floor(yb); cy++) add(cx, cy, si);
+      }
+    }
+    if (maxL > 64 && res < 2048) continue; // the shader loop is bounded at 64 edges per cell
+    // reference-point states by scanline (even-odd over every ring: holes and multi-part areas work)
+    const ref = new Uint8Array(nx * ny);
+    for (let cy = 0; cy < ny; cy++) {
+      const y = cy + REF[1], xs = [];
+      for (const [ax, ay, bx, by] of segs) if ((ay > y) !== (by > y)) xs.push(ax + (y - ay) * (bx - ax) / (by - ay));
+      xs.sort((p, q) => p - q); let j = 0;
+      for (let cx = 0; cx < nx; cx++) { const x = cx + REF[0]; while (j < xs.length && xs[j] < x) j++; ref[cy * nx + cx] = j & 1; }
+    }
+    let T = 0; for (const l of lists.values()) T += l.length;
+    const ew = 2048, eh = Math.max(1, Math.ceil(T / ew));
+    const cellData = new Float32Array(nx * ny * 4), edgeData = new Float32Array(ew * eh * 4);
+    const start = new Int32Array(nx * ny), count = new Int32Array(nx * ny), P = new Int32Array((nx + 1) * (ny + 1));
+    let o = 0;
+    for (let k = 0; k < nx * ny; k++) {
+      const l = lists.get(k); cellData[k * 4] = ref[k];
+      if (l) { start[k] = o; count[k] = l.length; cellData[k * 4 + 1] = o; cellData[k * 4 + 2] = l.length; for (const si of l) { edgeData.set(segs[si], o * 4); o++; } }
+    }
+    for (let cy = 0; cy < ny; cy++) for (let cx = 0; cx < nx; cx++) P[(cy + 1) * (nx + 1) + cx + 1] = (count[cy * nx + cx] ? 1 : 0) + P[cy * (nx + 1) + cx + 1] + P[(cy + 1) * (nx + 1) + cx] - P[cy * (nx + 1) + cx];
+    return { x0, y0, cell, nx, ny, ref, start, count, P, edgeData, cellData, ew, eh, entries: T, segs: segs.length, maxL, bbox: [minX, minY, maxX, maxY] };
+  }
+}
+// 0 = box entirely outside, 1 = entirely inside, 2 = straddles the boundary (raw EPSG:3857 box)
+function classifyRaw(g, ax, ay, bx, by) {
+  let i0 = Math.floor((ax - g.x0) / g.cell), i1 = Math.floor((bx - g.x0) / g.cell), j0 = Math.floor((ay - g.y0) / g.cell), j1 = Math.floor((by - g.y0) / g.cell);
+  if (i1 < 0 || j1 < 0 || i0 >= g.nx || j0 >= g.ny) return 0;
+  const full = i0 >= 0 && j0 >= 0 && i1 < g.nx && j1 < g.ny;
+  i0 = Math.max(0, i0); j0 = Math.max(0, j0); i1 = Math.min(g.nx - 1, i1); j1 = Math.min(g.ny - 1, j1);
+  const W = g.nx + 1, P = g.P;
+  if (P[(j1 + 1) * W + i1 + 1] - P[j0 * W + i1 + 1] - P[(j1 + 1) * W + i0] + P[j0 * W + i0] > 0) return 2;
+  return g.ref[j0 * g.nx + i0] ? (full ? 1 : 2) : 0;
+}
+// exact point test, identical to the shader's lxInside (raw EPSG:3857 x/y)
+function insideRaw(g, rx, ry) {
+  const gx = (rx - g.x0) / g.cell, gy = (ry - g.y0) / g.cell;
+  if (gx < 0 || gy < 0 || gx >= g.nx || gy >= g.ny) return false;
+  const cx = Math.floor(gx), cy = Math.floor(gy), k = cy * g.nx + cx, px = cx + REF[0], py = cy + REF[1];
+  let ins = !!g.ref[k]; const cr = (ax, ay, bx, by) => ax * by - ay * bx;
+  for (let i = 0; i < g.count[k]; i++) {
+    const o = (g.start[k] + i) * 4, e = g.edgeData, x1 = e[o], y1 = e[o + 1], x2 = e[o + 2], y2 = e[o + 3];
+    const d1 = cr(x2 - x1, y2 - y1, px - x1, py - y1), d2 = cr(x2 - x1, y2 - y1, gx - x1, gy - y1);
+    const d3 = cr(gx - px, gy - py, x1 - px, y1 - py), d4 = cr(gx - px, gy - py, x2 - px, y2 - py);
+    if ((d1 > 0) !== (d2 > 0) && (d3 > 0) !== (d4 > 0)) ins = !ins;
+  }
+  return ins;
+}
+function fracInside(g, x0, y0, s) { let n = 0; for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) n += insideRaw(g, x0 + s * (i + 0.5) / 5, y0 + s * (j + 0.5) / 5); return n / 25; }
+
+// --- Potree hooks (called from the patched traversal and renderer in potree.js)
+const lxSel = Potree.lxSel = {
+  active: false, previewSpacing: 16, dim: 0.42, ver: 1, grid: null, tex: null, skipped: 0,
+  // preview level of a cloud: the shallowest EPT level whose point spacing is <= previewSpacing ground metres
+  previewFor(pc) {
+    const c = pc._lxPrev; if (c && c.s === this.previewSpacing && c.k === S.k) return c.L;
+    const sp = pc.pcoGeometry.spacing * S.k, L = Math.max(1, Math.ceil(Math.log2(sp / this.previewSpacing)));
+    pc._lxPrev = { s: this.previewSpacing, k: S.k, L }; return L;
+  },
+  _GP: new THREE.Matrix4(), _M: new THREE.Matrix4(), _f32: new Float32Array(16),
+  classify(pc, node) {
+    const g = node.geometryNode || node;
+    if (g._lxv === this.ver) return g._lxc;
+    const b = g.boundingBox; g._lxv = this.ver;
+    return (g._lxc = classifyRaw(this.grid, b.min.x, b.min.y, b.max.x, b.max.y));
+  },
+  upload(gl) {
+    const g = this.grid, gl2 = typeof WebGL2RenderingContext !== "undefined" && gl instanceof WebGL2RenderingContext;
+    if (!gl2) gl.getExtension("OES_texture_float");
+    if (this.tex) { gl.deleteTexture(this.tex.cells); gl.deleteTexture(this.tex.edges); }
+    const mk = (w, h, data) => {
+      const t = gl.createTexture(); gl.activeTexture(gl.TEXTURE15); gl.bindTexture(gl.TEXTURE_2D, t);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false); gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false); gl.pixelStorei(gl.UNPACK_ALIGNMENT, 4);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl2 ? gl.RGBA32F : gl.RGBA, w, h, 0, gl.RGBA, gl.FLOAT, data);
+      for (const [p, v] of [[gl.TEXTURE_MIN_FILTER, gl.NEAREST], [gl.TEXTURE_MAG_FILTER, gl.NEAREST], [gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE], [gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE]]) gl.texParameteri(gl.TEXTURE_2D, p, v);
+      return t;
+    };
+    this.tex = { ver: this.ver, cells: mk(g.nx, g.ny, g.cellData), edges: mk(g.ew, g.eh, g.edgeData) };
+  },
+  bind(gl, shader, octree) {
+    if (!this.active) return;
+    if (!this.tex || this.tex.ver !== this.ver) this.upload(gl);
+    gl.activeTexture(gl.TEXTURE14); gl.bindTexture(gl.TEXTURE_2D, this.tex.cells);
+    gl.activeTexture(gl.TEXTURE15); gl.bindTexture(gl.TEXTURE_2D, this.tex.edges);
+    shader.setUniform1i("uSelCells", 14); shader.setUniform1i("uSelEdges", 15);
+    const g = this.grid, lg = shader.uniformLocations["uSelGrid"]; if (lg) gl.uniform4f(lg, g.nx, g.ny, g.ew, g.eh);
+    shader.setUniform1f("uSelPreview", this.previewFor(octree)); shader.setUniform1f("uSelDim", this.dim);
+    // world -> raw cloud (pc inverse) -> grid cells; composed in float64 here, so the shader only sees small numbers
+    const G = new THREE.Matrix4().set(1 / g.cell, 0, 0, -g.x0 / g.cell, 0, 1 / g.cell, 0, -g.y0 / g.cell, 0, 0, 1, 0, 0, 0, 0, 1);
+    this._GP.multiplyMatrices(G, new THREE.Matrix4().copy(octree.matrixWorld).invert());
+  },
+  nodeUniforms(gl, shader, octree, node, world) {
+    const l = shader.uniformLocations["uSelMode"]; if (!l) return;
+    if (!this.active) { gl.uniform1i(l, 0); return; }
+    const c = this.classify(octree, node); gl.uniform1i(l, c === 1 ? 1 : c === 0 ? 2 : 3);
+    if (c === 2) { this._M.multiplyMatrices(this._GP, world); this._f32.set(this._M.elements); gl.uniformMatrix4fv(shader.uniformLocations["uSelM"], false, this._f32); }
+  },
+};
+
+// --- hierarchy walk: count every EPT node / point of a project that touches the selection (pages fetched lazily,
+// only below nodes that touch the polygon). Big areas: capped at WALK_MAX pages, then the density estimate stands.
+// Only 2 hierarchy fetches at a time: the browser allows ~6 connections per host and the point data needs them.
+const WALK_MAX = 1500, WQ = []; let wActive = 0;
+function wPump() { while (wActive < 2 && WQ.length) { const fn = WQ.shift(); wActive++; fn().finally(() => { wActive--; wPump(); }); } }
+function startWalk(c) {
+  if (c.walk || !c.ept || !SEL) return;
+  const sel = SEL, cube = c.ept.bounds, span = cube[3] - cube[0];
+  const base = (c.f.properties.url || `https://s3-us-west-2.amazonaws.com/usgs-lidar-public/${c.name}/ept.json`).replace(/\/ept\.json$/, "");
+  const w = c.walk = { sel, pages: 1, done: 0, nodes: 0, pts: 0, est: 0, inNodes: 0, partNodes: 0, maxD: 0, stopped: false, failed: 0 };
+  const visit = async (pk) => {
+    try {
+      if (w.sel !== SEL) return;
+      const d = await fetch(`${base}/ept-hierarchy/${pk}.json`).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); });
+      if (w.sel !== SEL) return;
+      for (const [k, n] of Object.entries(d)) {
+        const [D, X, Y] = k.split("-").map(Number), s = span / 2 ** D, x0 = cube[0] + X * s, y0 = cube[1] + Y * s;
+        const cls = classifyRaw(sel.grid, x0, y0, x0 + s, y0 + s); if (!cls) continue;
+        if (n === -1) { if (k === pk) continue; if (w.pages >= WALK_MAX) { w.stopped = true; continue; } w.pages++; WQ.push(() => visit(k)); continue; }
+        if (n <= 0) continue;
+        w.nodes++; w.pts += n; if (D > w.maxD) w.maxD = D;
+        if (cls === 1) { w.inNodes++; w.est += n; } else { w.partNodes++; w.est += n * fracInside(sel.grid, x0, y0, s); }
+      }
+    } catch (e) { w.failed++; } finally { w.done++; }
+    wPump();
+  };
+  WQ.push(() => visit("0-0-0-0")); wPump();
+}
+
+// --- outline: glowing line draped on the LiDAR ground (refreshed as data streams in)
+let outline = null;
+function removeOutline() { if (!outline) return; for (const o of outline.objs) { viewer.scene.scene.remove(o); o.geometry.dispose(); o.material.dispose(); } outline = null; }
+function buildOutline() {
+  removeOutline(); if (!SEL) return;
+  let per = 0; for (const r of SEL.rings) for (let i = 1; i < r.length; i++) per += Math.hypot(r[i][0] - r[i - 1][0], r[i][1] - r[i - 1][1]);
+  // densified vertices (<= ~2000 in all), each vertex draped once; segments join consecutive vertices of a ring
+  const step = Math.max(8 / S.k, per / 2000); const raw = [], segs = [];
+  for (const r of SEL.rings) {
+    const first = raw.length / 2;
+    for (let i = 1; i < r.length; i++) {
+      const [ax, ay] = r[i - 1], [bx, by] = r[i], n = Math.max(1, Math.ceil(Math.hypot(bx - ax, by - ay) / step));
+      for (let j = 0; j < n; j++) { const v = raw.length / 2; raw.push(ax + (bx - ax) * j / n, ay + (by - ay) * j / n); segs.push(v, v + 1); }
+    }
+    if (raw.length / 2 > first) segs[segs.length - 1] = first; // close the ring
+  }
+  const objs = [[10, 0.25, 0xffb84d], [2.5, 1, 0xffe2a8]].map(([lw, op, col]) => {
+    const m = new LineMaterial({ color: col, linewidth: lw, transparent: true, opacity: op, depthTest: false, depthWrite: false });
+    const o = new LineSegments2(new LineSegmentsGeometry(), m); o.frustumCulled = false; o.renderOrder = 10;
+    viewer.scene.scene.add(o); return o;
+  });
+  outline = { raw: new Float64Array(raw), segs: new Uint32Array(segs), z: new Float32Array(raw.length / 2).fill(NaN), objs, busy: false };
+  placeOutline();
+}
+function placeOutline() {
+  if (!outline) return;
+  const o = outline, k = opts.trueScale ? S.k : 1, n = o.raw.length / 2, vz = new Float32Array(n);
+  let last = (S.ground ?? 0) * S.zx;
+  for (let i = 0; i < n; i++) { if (isFinite(o.z[i])) last = o.z[i]; vz[i] = last + 1.5 * S.zx; }
+  const pos = new Float32Array(o.segs.length * 3);
+  o.segs.forEach((v, i) => { pos[i * 3] = k * (o.raw[v * 2] - S.ox); pos[i * 3 + 1] = k * (o.raw[v * 2 + 1] - S.oy); pos[i * 3 + 2] = vz[v]; });
+  for (const obj of o.objs) { obj.geometry.setPositions(pos); obj.position.set(S.ox, S.oy, 0); obj.updateMatrixWorld(true); }
+}
+// Cheap drape height: per drawn node a coarse 16x16 summary (<= ~4000 sampled points: class-2 mean, else lowest
+// non-noise z); the deepest drawn node over the xy that has a value wins. Far cheaper than the 1.5 m clamp grids.
+function coarseCell(pc, sceneNode, g) {
+  const geom = g.geometry; if (!geom) return null;
+  if (g._lxq && g._lxq.geom === geom) return g._lxq;
+  const pos = geom.attributes.position, cls = geom.attributes.classification, pa = pos.array, st = pos.itemSize, ca = cls ? cls.array : null;
+  const M = pc.matrixWorld.clone().invert().multiply(sceneNode.matrixWorld), e = M.elements, b = g.boundingBox;
+  const sx = 16 / (b.max.x - b.min.x), sy = 16 / (b.max.y - b.min.y), gs = new Float64Array(256), gn = new Uint32Array(256), lo = new Float64Array(256).fill(Infinity);
+  const stride = Math.max(1, Math.floor(pos.count / 4000));
+  for (let i = 0; i < pos.count; i += stride) {
+    const c = ca ? ca[i] : 1; if (NOISE.has(c)) continue;
+    const x = e[0] * pa[i * st] + e[12], y = e[5] * pa[i * st + 1] + e[13], z = e[10] * pa[i * st + 2] + e[14];
+    const k = Math.min(15, Math.max(0, Math.floor((y - b.min.y) * sy))) * 16 + Math.min(15, Math.max(0, Math.floor((x - b.min.x) * sx)));
+    if (c === 2) { gs[k] += z; gn[k]++; } if (z < lo[k]) lo[k] = z;
+  }
+  const z = new Float32Array(256); for (let k = 0; k < 256; k++) z[k] = gn[k] ? gs[k] / gn[k] : lo[k];
+  return (g._lxq = { geom, z, sx, sy });
+}
+function drapeZ(wx, wy) {
+  let best = null;
+  for (const c of clouds) {
+    const pc = c.pc; if (!pc || !pc.visible) continue;
+    const ew = pc.matrixWorld.elements, rx = (wx - ew[12]) / ew[0], ry = (wy - ew[13]) / ew[5];
+    let zr = null, lvl = -1;
+    for (const n of pc.visibleNodes) {
+      const g = n.geometryNode, b = g.boundingBox, L = g.getLevel();
+      if (L <= lvl || rx < b.min.x || rx > b.max.x || ry < b.min.y || ry > b.max.y) continue;
+      const q = coarseCell(pc, n.sceneNode, g); if (!q) continue;
+      const v = q.z[Math.min(15, Math.floor((ry - b.min.y) * q.sy)) * 16 + Math.min(15, Math.floor((rx - b.min.x) * q.sx))];
+      if (isFinite(v)) { zr = v; lvl = L; }
+    }
+    if (zr !== null) { const wz = ew[10] * zr + ew[14]; if (best === null || wz > best) best = wz; }
+  }
+  return best;
+}
+// time-sliced drape: at most ~4 ms of height lookups per frame, then re-place
+function drapeTick() {
+  if (outline && !outline.busy && clouds.some((c) => c.pc && c.pc.visible)) {
+    const o = outline; o.busy = true; let i = 0; const k = opts.trueScale ? S.k : 1, n = o.raw.length / 2;
+    const slice = () => {
+      if (outline !== o) return;
+      const t0 = performance.now();
+      for (; i < n && performance.now() - t0 < 4; i++) { const wx = S.ox + k * (o.raw[i * 2] - S.ox), wy = S.oy + k * (o.raw[i * 2 + 1] - S.oy); const z = drapeZ(wx, wy); if (z !== null) o.z[i] = z; }
+      if (i < n) requestAnimationFrame(slice); else { placeOutline(); o.busy = false; }
+    };
+    slice();
+  }
+}
+setInterval(drapeTick, 3000);
+viewer.addEventListener("update", () => {
+  if (!outline) return; const el = viewer.renderer.domElement;
+  for (const o of outline.objs) o.material.resolution.set(el.clientWidth, el.clientHeight);
+});
+
+// --- select / clear
+function projArea(F) { // m², local equirectangular
+  if (F._area) return F._area; let a = 0; const lat0 = (F.properties.bbox[1] + F.properties.bbox[3]) / 2, kx = 111320 * Math.cos(lat0 * Math.PI / 180), ky = 110574;
+  for (const p of polys(F.geometry)) p.forEach((r, ri) => { let s = 0; for (let i = 0, j = r.length - 1; i < r.length; j = i++) s += (r[j][0] * kx) * (r[i][1] * ky) - (r[i][0] * kx) * (r[j][1] * ky); a += (ri ? -1 : 1) * Math.abs(s) / 2; });
+  return (F._area = Math.max(a, 1));
+}
+async function selectArea(f) {
+  clearSelection(true);
+  const p = f.properties, id = (p.k === "county" ? "county:" : "place:") + p.g;
+  const rings = []; for (const poly of polys(f.geometry)) for (const r of poly) rings.push(r.map(([x, y]) => merc(x, y)));
+  const t0 = performance.now(), grid = buildGrid(rings);
+  // sample the area (lattice) to find covering projects and their share of it
+  const b = p.b, m = 48, smp = [];
+  for (let i = 0; i < m; i++) for (let j = 0; j < m; j++) { const lon = b[0] + (b[2] - b[0]) * (i + 0.5) / m, lat = b[1] + (b[3] - b[1]) * (j + 0.5) / m; if (geomContains(f.geometry, lon, lat)) smp.push([lon, lat]); }
+  if (!smp.length) smp.push([(b[0] + b[2]) / 2, (b[1] + b[3]) / 2]);
+  const cands = FEATURES.filter((F) => { const q = F.properties.bbox; return !(q[2] < b[0] || q[0] > b[2] || q[3] < b[1] || q[1] > b[3]); });
+  const projects = [];
+  for (const F of cands) {
+    const hit = smp.map((s, i) => featContains(F, s[0], s[1]) ? i : -1).filter((i) => i >= 0);
+    if (!hit.length && !featIntersectsBox(F, b[0], b[1], b[2], b[3])) continue;
+    if (!hit.length) { // slivers: keep only if the project really touches the polygon
+      const ring = polys(F.geometry)[0][0]; if (!ring.some(([x, y]) => geomContains(f.geometry, x, y))) continue;
+    }
+    projects.push({ F, hit: new Set(hit), cov: hit.length / smp.length, year: yearOf(F.properties.name), dens: F.properties.count / projArea(F) });
+  }
+  // default display set: greedy cover of the area (newest first on ties) until >= 99 % covered; slivers are left to the user
+  const covered = new Set(); const chosen = [];
+  while (covered.size < smp.length * 0.99) {
+    let best = null, gain = 0;
+    for (const q of projects) { if (chosen.includes(q)) continue; let g = 0; for (const i of q.hit) if (!covered.has(i)) g++; if (g > gain || (g === gain && g > 0 && (q.year || 0) > (best.year || 0))) { best = q; gain = g; } }
+    if (!best || gain < Math.max(1, smp.length * (chosen.length ? 0.05 : 0))) break; // extra projects only when they add >= 5 % of the area (each one costs GPU)
+    chosen.push(best); for (const i of best.hit) covered.add(i);
+  }
+  if (!chosen.length && projects.length) chosen.push(projects[0]);
+  projects.sort((a, c) => (chosen.includes(c) - chosen.includes(a)) || (c.cov - a.cov) || ((c.year || 0) - (a.year || 0)));
+  // label point: lattice sample nearest the mean of the samples
+  const mx = smp.reduce((s, q) => s + q[0], 0) / smp.length, my = smp.reduce((s, q) => s + q[1], 0) / smp.length;
+  const center = smp.reduce((best, q) => Math.hypot(q[0] - mx, q[1] - my) < Math.hypot(best[0] - mx, best[1] - my) ? q : best, smp[0]);
+  SEL = { id, f, p, rings, grid, projects, chosen, center, coverage: covered.size / smp.length, gridMs: performance.now() - t0, area: (p.al + p.aw) };
+  lxSel.grid = grid; lxSel.ver++; lxSel.active = true; Potree.maxNodesLoading = 10;
+  $id("selClear").disabled = false; $id("selPick").innerHTML = ""; setSelMode(false);
+  mv.cx = (b[0] + b[2]) / 2; mv.cy = (b[1] + b[3]) / 2; mv.scale = Math.max(cv.width / 200, Math.min(cv.width * 50, 0.7 * Math.min(cv.width / ((b[2] - b[0]) * kx), cv.height / (b[3] - b[1]))));
+  drawMap(); renderSelInfo();
+  await goArea();
+}
+async function goArea() {
+  const sel = SEL; if (!sel) return;
+  const [lon, lat] = sel.center;
+  S.lon = lon; S.lat = lat; S.label = sel.p.ln; [S.ox, S.oy] = merc(lon, lat); S.k = Math.cos(lat * Math.PI / 180);
+  history.replaceState(null, "", `?area=${sel.id}` + (lxSel.previewSpacing !== 16 ? `&preview=${PREV_M.indexOf(lxSel.previewSpacing) + 1}` : ""));
+  removeAll(); viewer.setPointBudget(userBudget); autoRaised = false; floorS = null; lastG = { x: NaN, y: NaN, z: null, t: 0 };
+  clouds = sel.projects.map((q) => ({ f: q.F, name: q.F.properties.name, year: q.year, count: q.F.properties.count, here: false, cov: q.cov, dens: q.dens, pick: sel.chosen.includes(q), pc: null, on: false }));
+  if (!clouds.length) { renderProjects(); setStatus(`No 3DEP EPT project covers ${sel.p.ln}.`); return; }
+  setStatus(`${kindName(sel.p)} ${sel.p.ln}: ${clouds.length} project(s) touch it. Loading ${clouds.filter((c) => c.pick).map((c) => c.name).join(", ")}…`);
+  S.ground = await epqsGround(lon, lat);
+  if (SEL !== sel) return;
+  await Promise.all(clouds.filter((c) => c.pick).map((c) => setOn(c, true)));
+  if (SEL !== sel) return;
+  renderProjects(); buildOutline();
+  setStatus(`${kindName(sel.p)} ${sel.p.ln}: showing ${clouds.filter((c) => c.on).length} of ${clouds.length} project(s) (default = fewest projects covering the area, newest on ties). Tick others to overlay.`);
+  const g = sel.grid.bbox, ext = Math.max((g[2] - g[0]) * S.k, (g[3] - g[1]) * S.k);
+  placeCamera(Math.max(250, ext * 0.8));
+}
+function clearSelection(quiet) {
+  for (const c of clouds) c.walk = null;
+  WQ.length = 0; SEL = null; lxSel.active = false; lxSel.ver++; Potree.maxNodesLoading = 6;
+  removeOutline(); $id("selClear").disabled = true; for (const c of clouds) c.cov = null;
+  if (quiet) return;
+  viewer.setPointBudget(userBudget); autoRaised = false;
+  history.replaceState(null, "", S.lon != null ? `?lat=${S.lat.toFixed(6)}&lon=${S.lon.toFixed(6)}&r=${$id("radius").value}` : location.pathname);
+  renderSelInfo(); renderProjects(); drawMap();
+}
+function renderSelInfo() {
+  const el = $id("selInfo");
+  if (!SEL) { el.innerHTML = "Inside the selected area every LiDAR point loads (deepest EPT nodes, clipped exactly to the boundary). Outside it only a dimmed light preview is drawn, so the view stays smooth. Display only: no data is removed."; return; }
+  const s = SEL, p = s.p; const on = clouds.filter((c) => c.on);
+  const dens = on.reduce((a, c) => a + (c.dens || 0) * (c.cov || 0), 0) * s.area;
+  let h = `<span class="k"><b>${kindName(p)}: ${esc(p.ln)}, ${esc(p.st)}</b></span> · GEOID ${esc(p.g)}<br>${fmtKm2(p.al / 1e6)} land + ${fmtKm2(p.aw / 1e6)} water · ${s.projects.length} EPT project(s) touch it · ${(s.coverage * 100).toFixed(0)}% covered by the shown set<br>`;
+  h += `≈ ${fmt(Math.round(dens))} points inside (project density × area share)`;
+  for (const c of on) {
+    const w = c.walk, d = c.selDrawn;
+    if (w) h += `<br><span class="k">${esc(c.name)}</span>: hierarchy ${w.done}/${w.pages} pages${w.stopped ? " (capped – area too large to walk fully)" : ""}${w.failed ? `, ${w.failed} failed` : ""} → ${w.nodes.toLocaleString()} nodes touch the area (${w.inNodes.toLocaleString()} inside, ${w.partNodes.toLocaleString()} on the edge, depth ≤ ${w.maxD}), ≈ ${fmt(Math.round(w.est))} points inside`;
+    if (w && d) { const pct = w.nodes ? Math.min(100, 100 * d.n / w.nodes) : 0;
+      h += `<br>loaded in view: <b>${d.n.toLocaleString()} / ${w.nodes.toLocaleString()}</b> selection nodes (${d.pts.toLocaleString()} pts, deepest ${d.maxD}) <div class="bar"><i style="width:${pct.toFixed(1)}%"></i></div>`; }
+  }
+  el.innerHTML = h;
+}
+window.lxSelect = async (id) => { const [kind, g] = id.split(":"); const idx = await bIndex(); const st = Object.keys(idx.states).find((s) => idx.states[s].fips === g.slice(0, 2)); if (!st) throw new Error("unknown state for " + id); const f = (await bState(kind, st)).find((x) => x.properties.g === g); if (!f) throw new Error("no " + id); return selectArea(f); };
+window.lxSel = lxSel; window.lxInsideLL = (lon, lat) => SEL ? insideRaw(SEL.grid, ...merc(lon, lat)) : null;
+
+// ---------------- streaming stats + full-resolution guarantee ----------------
+// "Complete at target": every EPT node whose footprint touches a small square around the view target is drawn,
+// i.e. each drawn node there either has no children (EPT leaf) or ALL of its children touching the square are drawn too.
+// EPT is additive (each point lives in exactly one node), so a complete column = every recorded point there.
+const CAP = +(params.get("cap") || 40e6), SELCAP = Math.min(CAP, +(params.get("selcap") || 20e6)); /* selection raise stops at 20 M by default (integrated GPUs) */ let userBudget = viewer.getPointBudget(), idleTicks = 0, autoRaised = false, selIdle = 0;
+function targetCheck(pc, pivot, radM) {
+  const vis = pc.visibleNodes, set = new Set(vis.map((n) => n.geometryNode));
+  const inv = pc.matrixWorld.clone().invert(); const lp = pivot.clone().applyMatrix4(inv);
+  const rr = radM / (opts.trueScale ? S.k : 1);
+  const hit = (b) => b.max.x >= lp.x - rr && b.min.x <= lp.x + rr && b.max.y >= lp.y - rr && b.min.y <= lp.y + rr;
+  let maxD = 0, nodes = 0, pts = 0, pending = 0, deep = 0, leaves = 0;
+  for (const n of vis) {
+    const g = n.geometryNode; maxD = Math.max(maxD, g.getLevel());
+    if (!hit(g.boundingBox)) continue;
+    nodes++; pts += g.numPoints > 0 ? g.numPoints : 0; deep = Math.max(deep, g.getLevel());
+    if (!g.hasChildren) { leaves++; continue; }
+    for (const k of g.getChildren()) if (hit(k.boundingBox) && !set.has(k)) pending++;
+  }
+  return { maxD, nodes, pts, pending, deep, leaves, visNodes: vis.length, drawn: pc.numVisiblePoints || 0 };
+}
+function stats() {
+  const live = clouds.filter((c) => c.pc && c.pc.visible);
+  if (!live.length) { $id("stats").textContent = "–"; return; }
+  const pivot = viewTarget(); const cam = viewer.scene.view.position;
+  // auto elevation colour range follows the LiDAR ground under the view centre (mountains span 1000+ m)
+  if (!opts.elev) { const gT = groundAt(pivot.x, pivot.y, 6); if (gT !== null && (S.ground == null || Math.abs(gT / S.zx - S.ground) > 6)) { S.ground = gT / S.zx; restyle(); } }
+  const alt = Math.max(0, (cam.z - pivot.z) / S.zx); const radM = Math.max(15, Math.min(150, alt * 0.25));
+  let out = [], tot = 0, pendingAll = 0;
+  for (const c of live) {
+    const t = targetCheck(c.pc, pivot, radM); c.last = t; tot += t.drawn; pendingAll += t.pending;
+    const centre = !t.nodes ? "no data under target" : t.pending === 0
+      ? `<span class="full">FULL RES – all ${t.nodes} nodes over target drawn (${t.pts.toLocaleString()} pts, deepest depth ${t.deep}, ${t.leaves} EPT leaves)</span>`
+      : `<span class="lod">streaming / LOD – ${t.pending} deeper node(s) over target not drawn yet (depth so far ${t.deep})${alt > 400 ? " – zoom in" : ""}</span>`;
+    out.push(`<b>${esc(c.name)}</b>\n points drawn ${t.drawn.toLocaleString()} in ${t.visNodes} nodes · deepest depth drawn ${t.maxD}\n target (±${radM.toFixed(0)} m): ${centre}`);
+  }
+  // Full-detail guarantee: near the ground, if detail over the target is still missing once loading has gone idle,
+  // the display budget was the limit, so raise it (up to CAP) until the target column is complete.
+  if (alt < 250 && pendingAll > 0 && Potree.numNodesLoading === 0) {
+    if (++idleTicks >= 2 && viewer.getPointBudget() < CAP) { viewer.setPointBudget(Math.min(CAP, Math.round(viewer.getPointBudget() * 1.5))); autoRaised = true; idleTicks = 0; }
+  } else idleTicks = 0;
+  if (autoRaised && alt > 800 && pendingAll === 0 && !SEL) { viewer.setPointBudget(userBudget); autoRaised = false; }
+  // Selected area: count drawn nodes that touch the polygon; while in-view selection nodes are being skipped because
+  // of the point budget (counted by the patched traversal) and loading has gone idle, raise the budget the same way
+  // (x1.5 per step, up to CAP).
+  if (SEL) {
+    let used = 0, incomplete = false;
+    for (const c of live) {
+      let n = 0, pts = 0, maxD = 0;
+      for (const v of c.pc.visibleNodes) if (lxSel.classify(c.pc, v) > 0) { n++; pts += Math.max(0, v.geometryNode.numPoints); maxD = Math.max(maxD, v.geometryNode.getLevel()); }
+      c.selDrawn = { n, pts, maxD }; used += c.pc.numVisiblePoints || 0;
+      if (!c.walk || c.walk.done < c.walk.pages || n < c.walk.nodes) incomplete = true;
+    }
+    if (incomplete && lxSel.skipped > 0 && Potree.numNodesLoading === 0) { // in-view selection nodes held back by the budget
+      if (++selIdle >= 2 && viewer.getPointBudget() < SELCAP) { viewer.setPointBudget(Math.min(SELCAP, Math.round(viewer.getPointBudget() * 1.5))); autoRaised = true; selIdle = 0; }
+    } else selIdle = 0;
+    renderSelInfo();
+  }
+  const k = opts.trueScale ? S.k : 1; const [lon, lat] = unmerc(S.ox + (pivot.x - S.ox) / k, S.oy + (pivot.y - S.oy) / k);
+  $id("stats").innerHTML = `total drawn ${tot.toLocaleString()} / budget ${viewer.getPointBudget().toLocaleString()}${autoRaised ? " (auto-raised for full detail)" : ""}\nloading nodes ${Potree.numNodesLoading}\ntarget ${lat.toFixed(5)}, ${lon.toFixed(5)} · cam ≈${alt.toFixed(0)} m above target\n\n` + out.join("\n\n");
+}
+setInterval(stats, 700);
+window.lxStats = () => clouds.filter((c) => c.pc && c.pc.visible).map((c) => ({ name: c.name, budget: viewer.getPointBudget(), loading: Potree.numNodesLoading, ...c.last }));
+window.lxGoTo = goTo;
+
+// ---------------- boot ----------------
+(async () => {
+  try { Themes?.on?.(() => drawMap()); } catch {}
+  const [b, st, bl] = await Promise.all([
+    fetch("ept_boundaries.geojson").then((r) => r.json()),
+    fetch("../usa/data/states.geojson").then((r) => r.json()).catch(() => null),
+    fetch("../usa/blocks/index.json").then((r) => r.json()).catch(() => []),
+  ]);
+  FEATURES = b.features; STATES = st; BLOCKS = bl;
+  $id("blocks").innerHTML = BLOCKS.map((x, i) => `<button data-b="${i}" title="LiDAR around our ${esc(x.city)} block (shift-click: open the 3D block)">${esc(x.city)} ${esc(x.state)}</button>`).join("");
+  $id("blocks").querySelectorAll("button").forEach((btn) => btn.onclick = (e) => {
+    const x = BLOCKS[+btn.dataset.b];
+    if (e.shiftKey) { location.href = "../usa/view.html?block=" + encodeURIComponent(x.slug); return; }
+    $id("blockLink").href = "../usa/view.html?block=" + encodeURIComponent(x.slug); $id("blockLink").textContent = `3D block: ${x.city}`;
+    goTo(x.lon, x.lat, `${x.city}, ${x.state} block`);
+  });
+  fitMap();
+  setStatus(`${FEATURES.length.toLocaleString()} USGS 3DEP EPT projects indexed. Pick a spot.`);
+  const lat = parseFloat(params.get("lat")), lon = parseFloat(params.get("lon"));
+  // ?lat=&lon=&r=<metres> (used by the globe): r defaults to 1000; any value is accepted (added to the picker if new)
+  const rq = Math.round(parseFloat(params.get("r")));
+  if (isFinite(rq) && rq > 0) {
+    const sel = $id("radius");
+    if (![...sel.options].some((o) => +o.value === rq)) { const o = document.createElement("option"); o.value = rq; o.textContent = rq >= 1000 ? rq / 1000 + " km" : rq + " m"; sel.appendChild(o); }
+    sel.value = String(rq);
+  }
+  const blk = params.get("block") && BLOCKS.find((x) => x.slug === params.get("block"));
+  const pv = Math.round(+params.get("preview")); if (pv >= 1 && pv <= 6) setPreview(pv);
+  const area = params.get("area");
+  if (area && /^(county|place):\d{5,7}$/.test(area)) lxSelect(area).catch((e) => setStatus(`Area ${area}: ${e.message}`));
+  else if (blk) { $id("blockLink").href = "../usa/view.html?block=" + encodeURIComponent(blk.slug); goTo(blk.lon, blk.lat, `${blk.city}, ${blk.state} block`); }
+  else if (isFinite(lat) && isFinite(lon)) goTo(lon, lat, `${lat}, ${lon}`, params.get("project"));
+})();
+</script>
+</body>
+</html>

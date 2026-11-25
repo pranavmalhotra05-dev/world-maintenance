@@ -1,0 +1,153 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Roofprint 3D · Build</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Same HUD language as view.html: dark void, glass panel, cyan accents. Single dark theme on purpose. */
+:root {
+  --void: #05070b; --glass: rgba(9, 13, 20, .86); --edge: rgba(120, 190, 255, .22);
+  --ink: #e2ebf5; --dim: #8b9bb0; --cyan: #4fdcff; --amber: #ffb84d; --red: #ff5a5a; --green: #6cdc8c;
+  --f-display: "Chakra Petch", "Bahnschrift", sans-serif; --f-body: "IBM Plex Sans", "Segoe UI", sans-serif; --f-mono: "IBM Plex Mono", Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { min-height: 100%; margin: 0; background: var(--void); color: var(--ink); font: 14px/1.5 var(--f-body); }
+body { background: radial-gradient(1200px 600px at 70% -10%, rgba(79,220,255,.08), transparent 60%), var(--void); }
+main { max-width: 640px; margin: 0 auto; padding: 24px 16px 40px; display: flex; flex-direction: column; gap: 14px; }
+.panel { background: var(--glass); border: 1px solid var(--edge); border-radius: 6px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.lbl { font: 500 10.5px var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+h1 { margin: 0; font: 700 28px/1.05 var(--f-display); letter-spacing: .03em; text-transform: uppercase; }
+h1 b { color: var(--cyan); }
+.sub { font-size: 12.5px; color: var(--dim); }
+.nav { display: flex; gap: 14px; }
+.nav a, a.link { color: var(--cyan); text-decoration: none; font: 600 11.5px var(--f-display); letter-spacing: .08em; text-transform: uppercase; }
+.nav a:hover, a.link:hover { text-decoration: underline; }
+form { display: flex; flex-direction: column; gap: 10px; }
+input[type=text] { width: 100%; background: rgba(0,0,0,.45); color: var(--ink); border: 1px solid var(--edge); border-radius: 3px; padding: 10px 12px; font: 15px var(--f-body); }
+input[type=text]::placeholder { color: #5d6b7d; }
+.row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.seg { display: flex; border: 1px solid var(--edge); }
+.seg label { cursor: pointer; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg span { display: block; color: var(--dim); padding: 6px 11px; font: 600 11.5px var(--f-display); letter-spacing: .07em; text-transform: uppercase; }
+.seg input:checked + span { background: rgba(79,220,255,.14); color: var(--cyan); box-shadow: inset 0 -2px 0 var(--cyan); }
+.seg input:focus-visible + span { outline: 1px solid var(--cyan); }
+.btn { background: rgba(79,220,255,.12); border: 1px solid var(--cyan); color: var(--cyan); padding: 8px 16px; cursor: pointer; font: 600 12.5px var(--f-display); letter-spacing: .08em; text-transform: uppercase; border-radius: 3px; text-decoration: none; display: inline-block; }
+.btn:hover { background: rgba(79,220,255,.22); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.btn.go { background: var(--cyan); color: #001018; }
+.note { border: 1px solid var(--amber); color: var(--amber); border-radius: 4px; padding: 10px 12px; font-size: 13px; }
+.note code { font: 12.5px var(--f-mono); color: var(--ink); background: rgba(0,0,0,.4); padding: 1px 5px; border-radius: 3px; }
+.err { color: var(--red); font-size: 13px; }
+.status { display: flex; justify-content: space-between; gap: 8px; font: 12px var(--f-mono); }
+.status .s-running { color: var(--cyan); } .status .s-done { color: var(--green); } .status .s-error { color: var(--red); } .status .s-queued { color: var(--amber); }
+pre.log { margin: 0; max-height: 46vh; overflow: auto; background: rgba(0,0,0,.5); border: 1px solid rgba(120,190,255,.12); border-radius: 3px; padding: 8px 10px; font: 11.5px/1.45 var(--f-mono); color: #b9c6d6; white-space: pre-wrap; word-break: break-word; }
+ul.blocks { list-style: none; margin: 0; padding: 0; font-size: 13px; }
+ul.blocks li { padding: 4px 0; border-bottom: 1px solid rgba(120,190,255,.08); display: flex; justify-content: space-between; gap: 8px; }
+ul.blocks .fr { font: 11px var(--f-mono); color: var(--dim); }
+:focus-visible { outline: 1px solid var(--cyan); outline-offset: 2px; }
+</style>
+<script src="pack.js"></script>
+<script src="theme.js"></script>
+<script>{ const t = new URLSearchParams(location.search).get("theme"); if (t && window.Themes) Themes.set(t); }</script>
+
+<main>
+  <div class="nav"><a href="index.html">◂ USA map</a><a href="view.html">3D viewer</a><span id="themePick" style="margin-left:auto"></span></div>
+  <div class="panel">
+    <div><div class="lbl">Roofprint 3D · any US address</div><h1>Type any <b>US address</b></h1>
+      <div class="sub">Builds a 3D block around it from open data: every USGS laser point, building outlines and national records.</div></div>
+    <div class="note" id="noServer" hidden>Building new addresses needs the local server: <code>python usa/serve.py</code><br><span class="sub" style="color:var(--amber)">Then open <code>http://127.0.0.1:8780/usa/build.html</code>. Blocks that are already built can still be viewed from the map.</span></div>
+    <div class="note" id="noBuilder" hidden>The local server is running, but <code>usa/build_block.py</code> is not installed yet, so new addresses cannot be built.</div>
+    <form id="f" autocomplete="off">
+      <input type="text" id="addr" name="address" placeholder="e.g. 4117 20th Ave S, Minneapolis, MN" aria-label="US street address" maxlength="160" required>
+      <div class="row">
+        <span class="lbl">Block size</span>
+        <div class="seg" role="radiogroup" aria-label="Half-size of the block">
+          <label><input type="radio" name="half_m" value="40"><span>80 m</span></label>
+          <label><input type="radio" name="half_m" value="60" checked><span>120 m</span></label>
+          <label><input type="radio" name="half_m" value="100"><span>200 m</span></label>
+        </div>
+        <span class="sub">square, centred on the address (40 / 60 / 100 m half-size)</span>
+        <button class="btn go" id="go" type="submit" style="margin-left:auto">Build</button>
+      </div>
+      <div class="err" id="err" role="alert"></div>
+    </form>
+  </div>
+  <div class="panel" id="job" hidden>
+    <div class="status"><span id="jobTitle"></span><span id="jobState"></span></div>
+    <pre class="log" id="log" aria-live="polite"></pre>
+    <div class="row" id="doneRow" hidden><a class="btn go" id="viewLink" href="#">Open in 3D ▸</a><span class="sub" id="doneNote"></span></div>
+  </div>
+  <div class="panel" id="have" hidden>
+    <div class="lbl">Blocks already built</div>
+    <ul class="blocks" id="blocks"></ul>
+  </div>
+</main>
+
+<script>
+window.Themes && Themes.mountPicker(document.getElementById("themePick"));
+const $ = (id) => document.getElementById(id);
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+let server = false, poll = 0;
+
+async function listBlocks() {
+  const list = await fetch("blocks/index.json", { cache: "no-store" }).then((r) => (r.ok ? r.json() : [])).catch(() => []);
+  if (!Array.isArray(list) || !list.length) { $("have").hidden = true; return; }
+  $("blocks").innerHTML = list.slice().reverse().map((b) => `<li><a class="link" href="view.html?block=${encodeURIComponent(b.slug)}">${esc(b.name || b.slug)}</a><span class="fr">${esc([b.city, b.state].filter(Boolean).join(", "))}</span></li>`).join("");
+  $("have").hidden = false;
+}
+async function detect() {
+  try {
+    const r = await fetch("/api/ping", { cache: "no-store" });
+    const j = r.ok ? await r.json() : null;
+    server = !!j?.ok;
+    if (server && !j.builder) $("noBuilder").hidden = false;
+  } catch { server = false; }
+  $("noServer").hidden = server;
+  $("go").disabled = !server;
+}
+function setState(j) {
+  const s = j.state || "error";
+  $("jobState").className = "s-" + s;
+  $("jobState").textContent = s === "queued" ? `queued${j.queue_position ? " · " + j.queue_position + " ahead" : ""}` : s;
+}
+async function follow(id, since = 0) {
+  clearTimeout(poll);
+  let j;
+  try { const r = await fetch(`/api/status?job=${encodeURIComponent(id)}&since=${since}`, { cache: "no-store" }); j = await r.json(); if (!r.ok) throw new Error(j.error || r.status); }
+  catch (e) { $("log").textContent += `\n[lost contact with the local server: ${e.message}]`; $("go").disabled = false; return; }
+  setState(j);
+  if (j.address) $("jobTitle").textContent = `${j.address} · ${j.half_m * 2} m block`;
+  if (j.lines?.length) { const el = $("log"), stick = el.scrollTop + el.clientHeight >= el.scrollHeight - 20; el.textContent += (el.textContent ? "\n" : "") + j.lines.join("\n"); if (stick) el.scrollTop = el.scrollHeight; }
+  if (j.state === "done") {
+    $("viewLink").href = j.view || `view.html?block=${encodeURIComponent(j.slug)}`; $("doneRow").hidden = false;
+    $("doneNote").textContent = j.entry?.name ? `${j.entry.name}${j.entry.city ? " · " + j.entry.city : ""}` : "";
+    $("go").disabled = false; listBlocks(); return;
+  }
+  if (j.state === "error") { $("err").textContent = j.error || "Build failed."; $("go").disabled = false; return; }
+  poll = setTimeout(() => follow(id, j.next ?? since), 900);
+}
+$("f").onsubmit = async (e) => {
+  e.preventDefault(); $("err").textContent = "";
+  if (!server) { await detect(); if (!server) return; }
+  const address = $("addr").value.trim(), half_m = new FormData($("f")).get("half_m");
+  if (address.length < 3) { $("err").textContent = "Type a street address, city and state."; return; }
+  $("go").disabled = true;
+  try {
+    const r = await fetch("/api/build", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ address, half_m }) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok) { $("err").textContent = j.error || `Server said ${r.status}`; $("go").disabled = false; if (j.builder === false) $("noBuilder").hidden = false; return; }
+    $("job").hidden = false; $("doneRow").hidden = true; $("log").textContent = "";
+    $("jobTitle").textContent = `${j.address} · ${j.half_m * 2} m block`;
+    try { history.replaceState(null, "", "?job=" + j.id); } catch {}
+    follow(j.id, 0);
+  } catch (err) { $("err").textContent = "Could not reach the local server: " + err.message; $("go").disabled = false; }
+};
+(async () => {
+  await Promise.all([detect(), listBlocks()]);
+  const jid = new URLSearchParams(location.search).get("job");  // resume watching after a reload
+  if (server && jid) { $("job").hidden = false; $("jobTitle").textContent = "Build " + jid; $("go").disabled = true; follow(jid, 0); }
+})();
+</script>

@@ -1,0 +1,24 @@
+{
+ "lat": 29.78896535765,
+ "lon": -95.394099211643,
+ "tz": "America/Chicago",
+ "noon_elevation": {
+  "winter solstice": [
+   36.8,
+   "12:20"
+  ],
+  "spring equinox": [
+   60.4,
+   "13:29"
+  ],
+  "summer solstice": [
+   83.6,
+   "13:23"
+  ],
+  "fall equinox": [
+   60.2,
+   "13:14"
+  ]
+ },
+ "note": "Elevation in degrees above the horizon at solar noon, with local clock time (America/Chicago)."
+}

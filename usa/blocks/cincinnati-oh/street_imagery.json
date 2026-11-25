@@ -1,0 +1,56 @@
+{
+ "images": [],
+ "meta": {
+  "generated": "2026-11-24T23:20:59Z",
+  "origin": [
+   -84.595,
+   39.151
+  ],
+  "search_bbox": [
+   -84.5961584,
+   39.1500985,
+   -84.5938416,
+   39.1519015
+  ],
+  "margin_m": 50.0,
+  "sources": {
+   "kartaview": {
+    "status": "ok",
+    "api": "https://api.kartaview.org/2.0/photo/ (+ /1.0/list/nearby-photos/ for usernames)",
+    "licence": "CC BY-SA 4.0",
+    "credit": "© Grab and KartaView Contributors",
+    "terms": "https://kartaview.org/terms"
+   },
+   "mapillary": {
+    "status": "ok",
+    "api": "https://graph.mapillary.com/images",
+    "licence": "CC BY-SA 4.0",
+    "terms": "https://www.mapillary.com/terms",
+    "attribution_rule": "self-hosted images: visibly display the Mapillary logo and link to the Mapillary image page"
+   }
+  },
+  "licences": [
+   "CC BY-SA 4.0"
+  ],
+  "share_alike": "CC BY-SA 4.0: thumbnails (downscaled adaptations) are redistributed under CC BY-SA 4.0 with per-image attribution",
+  "counts": {
+   "kartaview": {
+    "images": 0,
+    "in_block": 0,
+    "with_thumb": 0,
+    "with_heading": 0
+   },
+   "mapillary": {
+    "images": 0,
+    "in_block": 0,
+    "with_thumb": 0,
+    "with_heading": 0
+   }
+  },
+  "newest": {},
+  "oldest": {},
+  "coverage_note": "0 real street-level photos within the block bbox + 50 m (KartaView 0, Mapillary 0). No public street-level photos found here; walk mode should fall back to the 3D scene only. Photos are shown as published (platform-blurred), never synthesised; x/y are local metres from meta.origin (Web-Mercator/k convention, y north); heading_deg is the camera compass bearing (null = not recorded).",
+  "privacy": "No person-identifying processing; whole frames downscaled only; KartaView frames without platform blur status BLURRED are metadata-only.",
+  "artifact_csp_note": "Artifact pages block external URLs, so only local thumbs render inside the artifact; 'url' links open the platform page."
+ }
+}

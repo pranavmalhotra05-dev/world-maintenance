@@ -1,0 +1,57 @@
+[
+ {
+  "name": "USGS 3DEP LiDAR FL_Peninsular_FDEM_Orange_2018",
+  "detail": "2019 \u00b7 17 points/m\u00b2 in this block, every point kept",
+  "url": "registry.opendata.aws/usgs-lidar"
+ },
+ {
+  "name": "Overture Maps buildings 2026-11-18.0",
+  "detail": "footprints (OSM ODbL, Microsoft/Google/Esri CC-BY/ODbL)",
+  "url": "overturemaps.org"
+ },
+ {
+  "name": "Overture Maps addresses",
+  "detail": "0 buildings; only commercial-use licences ()",
+  "url": "overturemaps.org"
+ },
+ {
+  "name": "US Census Geocoder",
+  "detail": "location, state/county/tract/block",
+  "url": "geocoding.geo.census.gov"
+ },
+ {
+  "name": "USGS National Map orthoimagery",
+  "detail": "ground texture (aerial.jpg)",
+  "url": "basemap.nationalmap.gov"
+ },
+ {
+  "name": "USDA NAIP aerial imagery",
+  "detail": "2010\u20132023 (7 flights, ~0.6\u20131 m)",
+  "url": "planetarycomputer.microsoft.com/dataset/naip"
+ },
+ {
+  "name": "NOAA SPC storm reports",
+  "detail": "15 hail reports within 10 km since 2015",
+  "url": "spc.noaa.gov/wcm"
+ },
+ {
+  "name": "NOAA MRMS radar hail (MESH)",
+  "detail": "15 storm days checked since 2024-11-24 (SPC hail within 150 km)",
+  "url": "registry.opendata.aws/noaa-mrms-pds"
+ },
+ {
+  "name": "National infrastructure",
+  "detail": "US DOT NTAD, NCES, USGS structures, EIA-860M + EIA pipelines, USACE NID, EPA (public domain); power lines (c) OpenStreetMap contributors, ODbL 1.0",
+  "url": "geodata.bts.gov, eia.gov, openstreetmap.org"
+ },
+ {
+  "name": "US Census ACS 5-year",
+  "detail": "tract 12095018400 (ACS 5-year 2020-2024)",
+  "url": "www2.census.gov ACS summary file"
+ },
+ {
+  "name": "Mortgage rates: APOR (FFIEC/CFPB average prime offer rate)",
+  "detail": "2026-11-23: 10-yr 6.71%, 15-yr 6.88%, 30-yr 7.34% (public domain)",
+  "url": "ffiec.cfpb.gov/tools/rate-spread"
+ }
+]

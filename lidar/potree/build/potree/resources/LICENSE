@@ -1,0 +1,22 @@
+
+
+
+icons/map_icon.png  (roof-intel: original sitn icon replaced by our own drawn glyph - original licence not stated)
+from sitn PotreeViewer
+http://ne.ch/sitn
+https://github.com/PotreeViewer/PotreeViewer
+
+icons/navigation_cube.svg
+icons/orthographic_camera.svg
+icons/perspective_camera.svg
+free for commerical use without attribution
+http://www.freepik.com/free-icon/package-cube-box-for-delivery_720159.htm
+
+
+# VR Controller Model
+images/vr_controller_help*
+Controller model from https://sketchfab.com/3d-models/htc-vive-controller-9f03e4a80c5a4b31a24bb122f17cb229
+license: CC AttributionCreative Commons Attribution
+
+
+roof-intel note: removed vr_controller_help.* (CC-BY, VR only), background.jpg and loading.jpg (unused, provenance not stated) and models/ (Stanford bunny, unused).

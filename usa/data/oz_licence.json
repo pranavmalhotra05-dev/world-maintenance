@@ -1,0 +1,75 @@
+{
+ "dataset": "US Qualified Opportunity Zones (QOZ), IRC 1400Z-1 / 1400Z-2",
+ "checked": "2026-11-24",
+ "verdict": "OK: free, permanent, commercial use allowed. Designation lists and the CDFI shapefile are US federal government works (Treasury / IRS / CDFI Fund, HUD), not subject to copyright under 17 U.S.C. 105. Census TIGER/cartographic boundary geometry is free to use with acknowledgement of the U.S. Census Bureau. No key, signup or terms acceptance needed.",
+ "attribution": "Opportunity Zone designations: U.S. Department of the Treasury / IRS (Notice 2018-48, Notice 2019-42; 2027 designations announced 2026-11-05), data via CDFI Fund. Tract boundaries: U.S. Census Bureau TIGER/Line and cartographic boundary files.",
+ "authority": {
+  "official_list_2018": {
+   "what": "IRS Notice 2018-48 (2018-28 I.R.B. 9, July 9 2018), amplified by Notice 2019-42 (two extra Puerto Rico tracts). The IRS 'will be governed by this list in administering 1400Z-2'.",
+   "url": "https://www.irs.gov/pub/irs-drop/n-18-48.pdf",
+   "url_2019_42": "https://www.irs.gov/pub/irs-drop/n-19-42.pdf"
+  },
+  "cdfi_fund_page": "https://www.cdfifund.gov/opportunity-zones",
+  "treasury_data_page": "https://home.treasury.gov/policy-issues/tax-policy/data-transparency/qualified-opportunity-zones",
+  "hud_feature_service": "https://services.arcgis.com/VTyQ9soqVukalItT/arcgis/rest/services/Opportunity_Zones/FeatureServer/13 (HUD eGIS item ef143299845841f8abb95969c01f88b5; 8,765 features, field GEOID10; 2018 round only, 'Date of Coverage: 12/2019'; used as a cross-check, not as the build source)"
+ },
+ "designation_sets": [
+  {
+   "round": "2018",
+   "status": "in force; ends 2028-12-31 (Puerto Rico zones deemed designated under BBA 2018 end 2027-12-31, per Rev. Proc. 2026-14 sec. 2)",
+   "tracts": 8764,
+   "types": {"low-income": 8566, "contiguous": 198},
+   "list": "https://www.cdfifund.gov/system/files/documents/designated-qozs.12.14.18.xlsx (columns State, County, Census Tract Number, Tract Type, ACS Data Source; updated 2018-12-14 incl. the 2 Notice 2019-42 Puerto Rico tracts)",
+   "geometry": "https://www.cdfifund.gov/system/files/documents/opportunity-zones=8764.-9-10-2019.zip (8764oz.shp, EPSG:3857, field CENSUSTRAC = 2010 census tract GEOID; full TIGER resolution)",
+   "tract_vintage": "2010 census tracts. CDFI: 'designations are based upon the boundaries of the tract at the time of the designation in 2018, and do not change over the period of the designation, even if the boundaries of an individual census tract are redefined in future Census releases' (IRS Announcement 2021-10). Handling: we keep the 2010 polygons from the CDFI shapefile as-is (never re-map to 2020 tracts); point-in-polygon uses those 2010 polygons, so a house's current (2020) tract GEOID can differ from the 2018 zone GEOID.",
+   "quirk": "Shapefile carries 51515050100 (Bedford city VA, merged into Bedford County 2013); Notice/xlsx list 51019050100 for the same tract. We output 51019050100. HUD's service has 8,765 features (both codes / split parts)."
+  },
+  {
+   "round": "2027",
+   "status": "PUBLISHED. Treasury/IRS press release 2026-11-05 (sb0682): 6,576 tracts designated for all 50 states, DC and territories, of which 2,594 rural; effective 2027-01-01 through 2036-12-31.",
+   "tracts": 6576,
+   "rural": 2594,
+   "types": {"low-income": 6576},
+   "type_note": "OBBBA (Pub. L. 119-21, 'Working Families Tax Cuts') removed the contiguous non-LIC option; Rev. Proc. 2026-14 describes the contiguous rule as 'prior 1400Z-1(e)'. All 2027 zones are LICs.",
+   "list": "https://www.cdfifund.gov/system/files/2026-11/final_oz2_designations.xlsx (columns Census Tract Number, QOZID e.g. R01001020700-27, State or Territory, County, Rural QOZ). Same data also linked from Treasury's data page as OZ2-Designations-2027-Data-Transparency-10302026.xlsx (that host blocked our scripted download).",
+   "press_release": "https://home.treasury.gov/news/press-releases/sb0682",
+   "guidance": "https://www.irs.gov/pub/irs-drop/rp-26-14.pdf (Rev. Proc. 2026-14)",
+   "shapefile": "No dedicated 2027 QOZ shapefile was found on cdfifund.gov or treasury.gov as of 2026-11-24 (only the xlsx list and the CIMS web map). Geometry is joined from Census tracts by GEOID: all 6,576 GEOIDs matched.",
+   "geometry": "Display: https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_tract_500k.zip ; point-in-polygon: https://www2.census.gov/geo/tiger/TIGER2024/TRACT/tl_2024_{state}_tract.zip (full-resolution TIGER/Line).",
+   "tract_vintage": "2020 census tracts. Rev. Proc. 2026-14 sec. 3.01(3): data 'is collected from the geographic areas based on the population census tract numbers and boundaries established for the 2020 decennial census... such boundaries are controlling and not subject to change during the 2027 QOZ designation period.' Handling: we use 2024 TIGER tracts (identical 2020 tract boundaries) because the list uses Connecticut's 2022+ planning-region county codes (091xx); 61 CT GEOIDs do not exist in the 2020-vintage files."
+  }
+ ],
+ "overlap_note": "Between 2027-01-01 and 2028-12-31 both rounds are in force; a point can be in a 2018 zone, a 2027 zone, both or neither. Files keep the two rounds as separate features (prop r).",
+ "licence_evidence": [
+  {
+   "source": "IRS, Use of content from IRS.gov (Copyright notice) - IRS publishes Notice 2018-48 / 2019-42 and Rev. Proc. 2026-14 and administers 1400Z",
+   "url": "https://www.irs.gov/about-irs/use-of-content-from-irsgov",
+   "quote": "Content on this website that was created or maintained by federal employees in the course of their duties is not subject to copyright and may be freely copied. Credit is requested.",
+   "caveat": "Do not use the IRS/Treasury seal or imply endorsement (18 U.S.C. 701, 31 U.S.C. 333)."
+  },
+  {
+   "source": "CDFI Fund (U.S. Treasury bureau) Opportunity Zones Resources page and shapefile Readme8764.txt",
+   "url": "https://www.cdfifund.gov/opportunity-zones",
+   "quote": "Opportunity Zones Shapefile : This Zip file contains a Geographic Information System (GIS) shapefile of all population census tracts designated as QOZs.",
+   "note": "Published by a federal agency on a .gov site with no licence restriction, no login; a federal government work under 17 U.S.C. 105. CDFI's only site terms are a disclaimer of endorsement (https://www.cdfifund.gov/disclaimer)."
+  },
+  {
+   "source": "HUD eGIS Open Data / data.gov catalog record for 'Opportunity Zones' (HUD Office of Policy Development and Research)",
+   "url": "https://catalog.data.gov/dataset/opportunity-zones",
+   "quote": "HUD and the dataset and metadata authors assume no responsibility for the use or misuse of the dataset.",
+   "note": "Access rights 'Public'; the record's rights field is a no-warranty disclaimer only, no use restriction. HUD's DCAT catalog (https://data.hud.gov/data.json) lists no licence restriction for this dataset."
+  },
+  {
+   "source": "U.S. Census Bureau cartographic boundary file metadata (cb_2024_us_tract_500k / cb_2020_us_tract_500k .shp.iso.xml, Use Constraints)",
+   "url": "https://www2.census.gov/geo/tiger/GENZ2024/shp/cb_2024_us_tract_500k.zip",
+   "quote": "These products are free to use in a product or publication, however acknowledgement must be given to the U.S. Census Bureau as the source.",
+   "note": "Same metadata says CB files are for small-scale display and 'should not be used for geocoding addresses', so oz_enrich.py uses full-resolution TIGER/Line tracts for point-in-polygon."
+  }
+ ],
+ "outputs": {
+  "web/usa/data/oz_tracts.geojson": "15,340 features (8,764 r=2018 + 6,576 r=2027), props g/s/t/r (+ru=1 rural 2027), simplified 0.002 deg, 4 decimals, 7.3 MB",
+  "web/usa/data/oz_counties.json": "per-county counts/shares for both rounds, keyed to counties.geojson FIPS (CT planning regions; 2010 tracts re-homed by internal point)",
+  "builder": "usa/opportunity_zones.py",
+  "per-house": "usa/oz_enrich.py <slug>"
+ }
+}

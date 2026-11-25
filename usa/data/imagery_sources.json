@@ -1,0 +1,334 @@
+{
+ "meta": {
+  "generated": "2026-11-25T03:53Z",
+  "lane": "I1 imagery",
+  "script": "usa/imagery.py",
+  "doc": "usa/research/imagery.md",
+  "rule": "permanently free + commercial use OK; licence quote + URL recorded per source and per image",
+  "blocks": [
+   "anchorage-ak",
+   "atlanta-ga",
+   "austin-tx",
+   "birmingham-al",
+   "boulder-co",
+   "cincinnati-oh",
+   "columbus-oh",
+   "columbus-oz",
+   "dallas-tx",
+   "denver-co",
+   "detroit-mi",
+   "fort-lauderdale-fl",
+   "honolulu-hi",
+   "houston-tx",
+   "huntsville-al",
+   "kansas-city-mo",
+   "las-vegas-nv",
+   "levittown-ny",
+   "minneapolis-mn",
+   "minneapolis-oz",
+   "nashville-tn",
+   "new-orleans-la",
+   "oak-park-il",
+   "omaha-ne",
+   "orlando-fl",
+   "philadelphia-pa",
+   "phoenix-az",
+   "portland-or",
+   "sacramento-ca",
+   "saint-paul-mn",
+   "salt-lake-city-ut",
+   "san-diego-ca",
+   "scottsdale-az",
+   "seattle-wa",
+   "slc-ut-test",
+   "somerville-ma",
+   "spokane-wa",
+   "tulsa-ok",
+   "washington-dc"
+  ]
+ },
+ "sources": [
+  {
+   "name": "Sentinel-2 L2A (Copernicus) via Microsoft Planetary Computer",
+   "kind": "satellite",
+   "resolution_m": 10,
+   "revisit": "5 d nominal (2A/2B/2C), 2-3 d at overlap latitudes",
+   "coverage": "global land",
+   "licence": "Copernicus Sentinel data legal notice (EU Reg. 1159/2013): free, full and open; reproduction/distribution/modification allowed, no commercial restriction; credit 'Contains modified Copernicus Sentinel data <year>'",
+   "licence_quote": "users shall have a free, full and open access to Copernicus Sentinel Data",
+   "licence_url": "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice",
+   "commercial_ok": true,
+   "access": "STAC https://planetarycomputer.microsoft.com/api/stac/v1 collection sentinel-2-l2a; anonymous SAS signing, no key",
+   "used_for": "latest clear true-colour + NDVI clip (block +300 m), 24-month monthly NDVI/brightness series",
+   "tested": {
+    "ok": true,
+    "note": "clear clips for 39/39 blocks",
+    "date": "2026-11-25"
+   }
+  },
+  {
+   "name": "Landsat 8/9 Collection 2 Level-2 via Planetary Computer",
+   "kind": "satellite",
+   "resolution_m": 30,
+   "revisit": "8 d combined (16 d each)",
+   "coverage": "global land",
+   "licence": "USGS Landsat: no restrictions (US Government public domain)",
+   "licence_quote": "There are no restrictions on Landsat data downloaded from the USGS",
+   "licence_url": "https://www.usgs.gov/faqs/are-there-any-restrictions-use-or-redistribution-landsat-data",
+   "commercial_ok": true,
+   "access": "PC STAC collection landsat-c2-l2 (keyless); also USGS M2M/EarthExplorer (free login)",
+   "used_for": "revisit + latest date (metadata)",
+   "tested": {
+    "ok": true,
+    "note": "scene search per block",
+    "date": "2026-11-25"
+   }
+  },
+  {
+   "name": "NASA HLS v2 S30 + L30 (Harmonized Landsat Sentinel-2)",
+   "kind": "satellite",
+   "resolution_m": 30,
+   "revisit": "2-3 d combined",
+   "coverage": "global land",
+   "licence": "CC0 (NASA ESDIS default for NASA-led mission data)",
+   "licence_quote": "data provided from a NASA-led mission are licensed as Creative Commons Zero (CC0)",
+   "licence_url": "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+   "commercial_ok": true,
+   "access": "PC STAC collections hls2-s30 / hls2-l30 keyless; LP DAAC CMR-STAC needs a free Earthdata login (not used)",
+   "used_for": "revisit + latest date (metadata)",
+   "tested": {
+    "ok": true,
+    "note": "scene search per block via PC (no Earthdata login needed)",
+    "date": "2026-11-25"
+   }
+  },
+  {
+   "name": "Sentinel-1 RTC (radiometric terrain corrected) via Planetary Computer",
+   "kind": "satellite",
+   "resolution_m": 10,
+   "revisit": "12 d (S1A; S1C from 2025 restores ~6 d)",
+   "coverage": "global land",
+   "licence": "CC BY 4.0 (Planetary Computer Sentinel-1 RTC; contains modified Copernicus Sentinel data)",
+   "licence_quote": "STAC collection license: CC-BY-4.0",
+   "licence_url": "https://planetarycomputer.microsoft.com/dataset/sentinel-1-rtc",
+   "commercial_ok": true,
+   "access": "PC STAC collection sentinel-1-rtc (keyless)",
+   "used_for": "latest all-weather radar date (metadata)",
+   "tested": {
+    "ok": true,
+    "note": "scene search per block",
+    "date": "2026-11-25"
+   }
+  },
+  {
+   "name": "NAIP (USDA FSA) via Planetary Computer",
+   "kind": "aerial",
+   "resolution_m": 0.6,
+   "revisit": "2-3 yr per state (0.3-1 m)",
+   "coverage": "CONUS",
+   "licence": "Public domain with attribution (USDA FSA NAIP)",
+   "licence_quote": "Public Domain with Attribution",
+   "licence_url": "https://registry.opendata.aws/naip/",
+   "commercial_ok": true,
+   "access": "PC STAC collection naip (keyless)",
+   "used_for": "catalogue of years (another lane renders img/<year>.jpg)",
+   "tested": {
+    "ok": true,
+    "note": "year list per block",
+    "date": "2026-11-25"
+   }
+  },
+  {
+   "name": "Metropolitan Council / MnGeo Twin Cities 7-county spring leaf-off orthos",
+   "kind": "aerial",
+   "resolution_m": 0.3,
+   "revisit": "~5 yr (2016, 2020, 2025)",
+   "coverage": "minneapolis-mn, minneapolis-oz, saint-paul-mn",
+   "licence": "Public domain (Minnesota Government Data Practices Act)",
+   "licence_quote": "This dataset is public domain under the Minnesota Government Data Practices Act",
+   "licence_url": "https://mnatlas.org/metadata/2025_7_county.html",
+   "commercial_ok": true,
+   "access": "https://imageserver.gisdata.mn.gov/cgi-bin/wms",
+   "newest_year": 2025,
+   "tested": {
+    "ok": true,
+    "note": "clip exported for ['minneapolis-mn', 'minneapolis-oz', 'saint-paul-mn']",
+    "date": "2026-11-25"
+   }
+  },
+  {
+   "name": "TxGIO StratMap 2020 Capital Area leaf-off orthos",
+   "kind": "aerial",
+   "resolution_m": 0.076,
+   "revisit": "StratMap regional rotation (Travis 2019, 2020)",
+   "coverage": "austin-tx",
+   "licence": "CC0 1.0 (TxGIO DataHub collection licence)",
+   "licence_quote": "Creative Commons Zero v1.0 Universal",
+   "licence_url": "https://api.tnris.org/api/v1/collections",
+   "commercial_ok": true,
+   "access": "https://imagery.geographic.texas.gov/server/rest/services/StratMap/StratMap20_NCCIR_CapArea_McLennan/ImageServer",
+   "newest_year": 2020,
+   "tested": {
+    "ok": true,
+    "note": "clip exported for ['austin-tx']",
+    "date": "2026-11-25"
+   }
+  },
+  {
+   "name": "NAIP 2022 Texas 60 cm (TxGIO ImageServer)",
+   "kind": "aerial",
+   "resolution_m": 0.6,
+   "revisit": "NAIP 2-yr",
+   "coverage": "dallas-tx",
+   "licence": "CC0 1.0 (TxGIO DataHub collection licence)",
+   "licence_quote": "Creative Commons Zero v1.0 Universal",
+   "licence_url": "https://api.tnris.org/api/v1/collections",
+   "commercial_ok": true,
+   "access": "https://imagery.geographic.texas.gov/server/rest/services/NAIP/NAIP22_NCCIR_60cm/ImageServer",
+   "newest_year": 2022,
+   "tested": {
+    "ok": true,
+    "note": "clip exported for ['dallas-tx']",
+    "date": "2026-11-25"
+   }
+  },
+  {
+   "name": "DRAPP 2022 Denver regional leaf-off orthos (State of Colorado on AWS)",
+   "kind": "aerial",
+   "resolution_m": 0.076,
+   "revisit": "2 yr (DRAPP); 2024 not yet in open bucket",
+   "coverage": "denver-co, boulder-co",
+   "licence": "CC0 1.0 (State of Colorado public imagery, AWS Open Data registry)",
+   "licence_quote": "License: CC0 1.0",
+   "licence_url": "https://registry.opendata.aws/colorado-imagery/",
+   "commercial_ok": true,
+   "access": "S3 GeoTIFF https://colorado-public-imagery.s3.us-west-2.amazonaws.com/DRAPP/DRAPP2022/<tile>.tif, tile index https://gis.colorado.gov/public/rest/services/OIT/Public_Imagery_Layer_Index/MapServer/6/query",
+   "newest_year": 2022,
+   "tested": {
+    "ok": true,
+    "note": "clip exported for ['denver-co', 'boulder-co']",
+    "date": "2026-11-25"
+   }
+  },
+  {
+   "name": "NOAA NGS Emergency Response Imagery (storms.ngs.noaa.gov)",
+   "kind": "disaster",
+   "resolution_m": 0.25,
+   "revisit": "event-driven, flown 1-5 d after hurricanes/tornadoes/floods",
+   "coverage": "US event footprints",
+   "licence": "US Government public domain (NOAA NGS Emergency Response Imagery)",
+   "licence_quote": "open to the public and can be used as desired",
+   "licence_url": "https://registry.opendata.aws/noaa-eri/",
+   "commercial_ok": true,
+   "access": "per-event https://storms.ngs.noaa.gov/storms/<event>/services/index.json (bounds + XYZ tiles); raw tiles s3://noaa-eri-pds",
+   "filter": "layers attributed MAXAR (CC BY-NC) or CAP (licence not stated) are excluded",
+   "tested": {
+    "ok": true,
+    "note": "30 event indexes read; 49 layers within 25 km of a block",
+    "date": "2026-11-25"
+   }
+  },
+  {
+   "name": "OpenAerialMap (HOT OIN catalogue)",
+   "kind": "drone",
+   "resolution_m": null,
+   "revisit": "ad hoc uploads",
+   "coverage": "global, sparse",
+   "licence": "per image; kept only CC BY 4.0 / CC BY-SA / CC0",
+   "licence_url": "https://docs.openaerialmap.org/",
+   "commercial_ok": true,
+   "access": "https://api.openaerialmap.org/meta?bbox=... (keyless); TMS per image",
+   "tested": {
+    "ok": true,
+    "note": "3064 open-licence images within 25 km across all blocks",
+    "date": "2026-11-25"
+   }
+  }
+ ],
+ "rejected": [
+  {
+   "name": "Planet NICFI basemaps",
+   "reason": "NICFI licence is non-commercial; tropics only"
+  },
+  {
+   "name": "Maxar Open Data Program (incl. Maxar layers on NOAA ERI viewers)",
+   "reason": "CC BY-NC 4.0 - non-commercial"
+  },
+  {
+   "name": "Google satellite / Google Earth",
+   "reason": "proprietary, ToS forbids extraction"
+  },
+  {
+   "name": "Esri World Imagery",
+   "reason": "proprietary (Maxar/Vexcel etc.), ToS"
+  },
+  {
+   "name": "Bing Maps aerial",
+   "reason": "proprietary"
+  },
+  {
+   "name": "Mapbox Satellite",
+   "reason": "proprietary, ToS"
+  },
+  {
+   "name": "Nearmap (incl. CAGIS Hamilton Co OH aerials 2021-2026)",
+   "reason": "proprietary - CAGIS service description: 'CAGIS Nearmap Aerial Imagery'"
+  },
+  {
+   "name": "EagleView / Pictometry (incl. Maricopa County Assessor Aerials, INCOG Tulsa current imagery)",
+   "reason": "proprietary vendor imagery, sold via county data sales"
+  },
+  {
+   "name": "Colorado Statewide Aerial Imagery (Vexcel via OIT/CDOT)",
+   "reason": "vendor licence with acceptable-use policy"
+  },
+  {
+   "name": "City of Huntsville AerialImagery2026",
+   "reason": "'copyrighted by the City of Huntsville', repackaging/reselling prohibited"
+  },
+  {
+   "name": "Jefferson County AL imagery (jccgis.jccal.org)",
+   "reason": "terms not explicit (login/token required)"
+  },
+  {
+   "name": "Maricopa County GIO AerialComposite",
+   "reason": "terms not explicit (no licence on service; multi-vendor composite)"
+  },
+  {
+   "name": "Ohio OSIP Most Current ImageServer (maps.ohio.gov)",
+   "reason": "terms not explicit: disclaimer only ('public use at the user's own risk'); works, 0.08-0.3 m, 2017-2024"
+  },
+  {
+   "name": "Missouri MSDIS 6-inch statewide 2023/24",
+   "reason": "terms not explicit: free service, no licence text"
+  },
+  {
+   "name": "Hennepin 2022 (hen22) / Ramsey 2020 (rams20) 15 cm on MnGeo WMS",
+   "reason": "terms not explicit (met25, explicitly public domain, used instead)"
+  },
+  {
+   "name": "MnGeo mncomp composite",
+   "reason": "terms not explicit: mixed sources, per-pixel licence unclear"
+  },
+  {
+   "name": "Oklahoma statewide 2021 imagery (OKMaps)",
+   "reason": "terms not explicit (no public endpoint/licence found)"
+  },
+  {
+   "name": "NCTCOG regional orthos (Dallas)",
+   "reason": "member cost-share, no public service"
+  },
+  {
+   "name": "DRCOG DRAPP 2024 (gis.drcog.org)",
+   "reason": "terms not explicit: no imagery service/licence published (CC0 DRAPP 2022 on AWS used)"
+  },
+  {
+   "name": "NOAA ERI layers attributed CAP (Civil Air Patrol)",
+   "reason": "terms not explicit: no licence stated for these layers"
+  },
+  {
+   "name": "OpenAerialMap images without a CC0 / CC BY / CC BY-SA licence on the image",
+   "reason": "terms not explicit"
+  }
+ ]
+}

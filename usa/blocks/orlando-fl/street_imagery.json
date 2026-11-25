@@ -1,0 +1,628 @@
+{
+ "images": [
+  {
+   "id": "kv:336494007",
+   "source": "kartaview",
+   "lon": -81.360253,
+   "lat": 28.551579,
+   "x": 82.29,
+   "y": -63.96,
+   "heading_deg": 54.8,
+   "captured_at": "2018-12-12T18:11:42Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494007.jpg",
+   "url": "https://kartaview.org/details/1313867/36/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494007",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 10.72,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494009",
+   "source": "kartaview",
+   "lon": -81.360244,
+   "lat": 28.551687,
+   "x": 83.17,
+   "y": -51.94,
+   "heading_deg": 56.0,
+   "captured_at": "2018-12-12T18:11:44Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494009.jpg",
+   "url": "https://kartaview.org/details/1313867/37/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494009",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 10.72,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494011",
+   "source": "kartaview",
+   "lon": -81.360247,
+   "lat": 28.551785,
+   "x": 82.88,
+   "y": -41.03,
+   "heading_deg": 56.8,
+   "captured_at": "2018-12-12T18:11:45Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494011.jpg",
+   "url": "https://kartaview.org/details/1313867/38/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494011",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 11.792,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494013",
+   "source": "kartaview",
+   "lon": -81.360261,
+   "lat": 28.551967,
+   "x": 81.51,
+   "y": -20.77,
+   "heading_deg": 60.5,
+   "captured_at": "2018-12-12T18:11:47Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494013.jpg",
+   "url": "https://kartaview.org/details/1313867/39/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494013",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 10.72,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494015",
+   "source": "kartaview",
+   "lon": -81.360265,
+   "lat": 28.552148,
+   "x": 81.12,
+   "y": -0.62,
+   "heading_deg": 56.2,
+   "captured_at": "2018-12-12T18:11:49Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494015.jpg",
+   "url": "https://kartaview.org/details/1313867/40/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494015",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 10.72,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494017",
+   "source": "kartaview",
+   "lon": -81.360277,
+   "lat": 28.552348,
+   "x": 79.95,
+   "y": 21.64,
+   "heading_deg": 52.2,
+   "captured_at": "2018-12-12T18:11:51Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494017.jpg",
+   "url": "https://kartaview.org/details/1313867/41/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494017",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 11.792,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494019",
+   "source": "kartaview",
+   "lon": -81.3603,
+   "lat": 28.552557,
+   "x": 77.7,
+   "y": 44.91,
+   "heading_deg": 59.7,
+   "captured_at": "2018-12-12T18:11:53Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494019.jpg",
+   "url": "https://kartaview.org/details/1313867/42/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494019",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 11.792,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494021",
+   "source": "kartaview",
+   "lon": -81.360308,
+   "lat": 28.552723,
+   "x": 76.91,
+   "y": 63.39,
+   "heading_deg": 61.8,
+   "captured_at": "2018-12-12T18:11:55Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494021.jpg",
+   "url": "https://kartaview.org/details/1313867/43/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494021",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 12.864,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494023",
+   "source": "kartaview",
+   "lon": -81.360332,
+   "lat": 28.552831,
+   "x": 74.57,
+   "y": 75.41,
+   "heading_deg": 67.1,
+   "captured_at": "2018-12-12T18:11:57Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494023.jpg",
+   "url": "https://kartaview.org/details/1313867/44/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494023",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 12.864,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494025",
+   "source": "kartaview",
+   "lon": -81.360305,
+   "lat": 28.552965,
+   "x": 77.21,
+   "y": 90.33,
+   "heading_deg": 63.3,
+   "captured_at": "2018-12-12T18:11:59Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494025.jpg",
+   "url": "https://kartaview.org/details/1313867/45/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494025",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 13.936,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494027",
+   "source": "kartaview",
+   "lon": -81.360308,
+   "lat": 28.55292,
+   "x": 76.91,
+   "y": 85.32,
+   "heading_deg": 55.0,
+   "captured_at": "2018-12-12T18:12:07Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494027.jpg",
+   "url": "https://kartaview.org/details/1313867/46/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494027",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 8.561,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494029",
+   "source": "kartaview",
+   "lon": -81.360296,
+   "lat": 28.552874,
+   "x": 78.09,
+   "y": 80.2,
+   "heading_deg": 55.1,
+   "captured_at": "2018-12-12T18:12:16Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494029.jpg",
+   "url": "https://kartaview.org/details/1313867/47/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494029",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 9.367,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494031",
+   "source": "kartaview",
+   "lon": -81.360284,
+   "lat": 28.552824,
+   "x": 79.26,
+   "y": 74.63,
+   "heading_deg": 55.7,
+   "captured_at": "2018-12-12T18:12:22Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494031.jpg",
+   "url": "https://kartaview.org/details/1313867/48/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494031",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 10.05,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494033",
+   "source": "kartaview",
+   "lon": -81.36029,
+   "lat": 28.552922,
+   "x": 78.67,
+   "y": 85.54,
+   "heading_deg": 53.5,
+   "captured_at": "2018-12-12T18:12:28Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494033.jpg",
+   "url": "https://kartaview.org/details/1313867/49/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494033",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 9.9,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:336494035",
+   "source": "kartaview",
+   "lon": -81.360291,
+   "lat": 28.552963,
+   "x": 78.58,
+   "y": 90.1,
+   "heading_deg": 32.8,
+   "captured_at": "2018-12-12T18:12:29Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_336494035.jpg",
+   "url": "https://kartaview.org/details/1313867/50/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - tallmtt, sequence 1313867, photo 336494035",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 9.275,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1362337221",
+   "source": "kartaview",
+   "lon": -81.360248,
+   "lat": 28.552265,
+   "x": 82.78,
+   "y": 12.4,
+   "heading_deg": 252.4,
+   "captured_at": "2021-08-14T21:32:03Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1362337221.jpg",
+   "url": "https://kartaview.org/details/3788117/22/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - leoaye, sequence 3788117, photo 1362337221",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 8.218,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1362337225",
+   "source": "kartaview",
+   "lon": -81.36037,
+   "lat": 28.552231,
+   "x": 70.85,
+   "y": 8.62,
+   "heading_deg": 264.3,
+   "captured_at": "2021-08-14T21:32:08Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1362337225.jpg",
+   "url": "https://kartaview.org/details/3788117/23/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - leoaye, sequence 3788117, photo 1362337225",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 9.409,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1362337229",
+   "source": "kartaview",
+   "lon": -81.360496,
+   "lat": 28.55222,
+   "x": 58.53,
+   "y": 7.39,
+   "heading_deg": 267.0,
+   "captured_at": "2021-08-14T21:32:10Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1362337229.jpg",
+   "url": "https://kartaview.org/details/3788117/24/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - leoaye, sequence 3788117, photo 1362337229",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 7.265,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1362337233",
+   "source": "kartaview",
+   "lon": -81.360583,
+   "lat": 28.552216,
+   "x": 50.02,
+   "y": 6.95,
+   "heading_deg": 267.9,
+   "captured_at": "2021-08-14T21:32:11Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1362337233.jpg",
+   "url": "https://kartaview.org/details/3788117/25/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - leoaye, sequence 3788117, photo 1362337233",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 6.03,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1362337237",
+   "source": "kartaview",
+   "lon": -81.360674,
+   "lat": 28.552213,
+   "x": 41.13,
+   "y": 6.61,
+   "heading_deg": 268.6,
+   "captured_at": "2021-08-14T21:32:12Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1362337237.jpg",
+   "url": "https://kartaview.org/details/3788117/26/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - leoaye, sequence 3788117, photo 1362337237",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 5.494,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1362337241",
+   "source": "kartaview",
+   "lon": -81.360768,
+   "lat": 28.552211,
+   "x": 31.94,
+   "y": 6.39,
+   "heading_deg": 270.7,
+   "captured_at": "2021-08-14T21:32:13Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1362337241.jpg",
+   "url": "https://kartaview.org/details/3788117/27/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - leoaye, sequence 3788117, photo 1362337241",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 5.717,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1362337245",
+   "source": "kartaview",
+   "lon": -81.360953,
+   "lat": 28.552213,
+   "x": 13.85,
+   "y": 6.61,
+   "heading_deg": 272.9,
+   "captured_at": "2021-08-14T21:32:15Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1362337245.jpg",
+   "url": "https://kartaview.org/details/3788117/28/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - leoaye, sequence 3788117, photo 1362337245",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 6.432,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1362337249",
+   "source": "kartaview",
+   "lon": -81.361155,
+   "lat": 28.552222,
+   "x": -5.91,
+   "y": 7.62,
+   "heading_deg": 271.8,
+   "captured_at": "2021-08-14T21:32:17Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1362337249.jpg",
+   "url": "https://kartaview.org/details/3788117/29/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - leoaye, sequence 3788117, photo 1362337249",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 6.86,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1362337253",
+   "source": "kartaview",
+   "lon": -81.361372,
+   "lat": 28.552228,
+   "x": -27.12,
+   "y": 8.28,
+   "heading_deg": 272.7,
+   "captured_at": "2021-08-14T21:32:19Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1362337253.jpg",
+   "url": "https://kartaview.org/details/3788117/30/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - leoaye, sequence 3788117, photo 1362337253",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 6.61,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1362337257",
+   "source": "kartaview",
+   "lon": -81.361592,
+   "lat": 28.552237,
+   "x": -48.64,
+   "y": 9.29,
+   "heading_deg": 273.2,
+   "captured_at": "2021-08-14T21:32:21Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1362337257.jpg",
+   "url": "https://kartaview.org/details/3788117/31/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - leoaye, sequence 3788117, photo 1362337257",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 6.074,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1362337261",
+   "source": "kartaview",
+   "lon": -81.361797,
+   "lat": 28.552247,
+   "x": -68.68,
+   "y": 10.4,
+   "heading_deg": 272.8,
+   "captured_at": "2021-08-14T21:32:23Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1362337261.jpg",
+   "url": "https://kartaview.org/details/3788117/32/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - leoaye, sequence 3788117, photo 1362337261",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 5.36,
+   "thumb_px": [
+    640,
+    360
+   ]
+  },
+  {
+   "id": "kv:1362337265",
+   "source": "kartaview",
+   "lon": -81.36201,
+   "lat": 28.552256,
+   "x": -89.51,
+   "y": 11.4,
+   "heading_deg": 271.9,
+   "captured_at": "2021-08-14T21:32:25Z",
+   "captured_at_kind": "shot",
+   "thumb": "street/kv_1362337265.jpg",
+   "url": "https://kartaview.org/details/3788117/33/track-info",
+   "licence": "CC BY-SA 4.0",
+   "attribution": "© Grab and KartaView Contributors - leoaye, sequence 3788117, photo 1362337265",
+   "platform_blur": "BLURRED",
+   "gps_accuracy_m": 5.36,
+   "thumb_px": [
+    640,
+    360
+   ]
+  }
+ ],
+ "meta": {
+  "generated": "2026-11-25T02:28:40Z",
+  "origin": [
+   -81.361094601755,
+   28.552153589654
+  ],
+  "search_bbox": [
+   -81.362015,
+   28.5513419,
+   -81.3601742,
+   28.5529652
+  ],
+  "margin_m": 50.0,
+  "sources": {
+   "kartaview": {
+    "status": "ok",
+    "api": "https://api.kartaview.org/2.0/photo/ (+ /1.0/list/nearby-photos/ for usernames)",
+    "licence": "CC BY-SA 4.0",
+    "credit": "© Grab and KartaView Contributors",
+    "terms": "https://kartaview.org/terms"
+   },
+   "mapillary": {
+    "status": "ok",
+    "api": "https://graph.mapillary.com/images",
+    "licence": "CC BY-SA 4.0",
+    "terms": "https://www.mapillary.com/terms",
+    "attribution_rule": "self-hosted images: visibly display the Mapillary logo and link to the Mapillary image page"
+   }
+  },
+  "licences": [
+   "CC BY-SA 4.0"
+  ],
+  "share_alike": "CC BY-SA 4.0: thumbnails (downscaled adaptations) are redistributed under CC BY-SA 4.0 with per-image attribution",
+  "counts": {
+   "kartaview": {
+    "images": 27,
+    "in_block": 4,
+    "with_thumb": 27,
+    "with_heading": 27
+   },
+   "mapillary": {
+    "images": 0,
+    "in_block": 0,
+    "with_thumb": 0,
+    "with_heading": 0
+   }
+  },
+  "newest": {
+   "kartaview": "2021-08-14T21:32:25Z"
+  },
+  "oldest": {
+   "kartaview": "2018-12-12T18:11:42Z"
+  },
+  "coverage_note": "27 real street-level photos within the block bbox + 50 m (KartaView 27, Mapillary 0). Photos are shown as published (platform-blurred), never synthesised; x/y are local metres from meta.origin (Web-Mercator/k convention, y north); heading_deg is the camera compass bearing (null = not recorded).",
+  "privacy": "No person-identifying processing; whole frames downscaled only; KartaView frames without platform blur status BLURRED are metadata-only.",
+  "artifact_csp_note": "Artifact pages block external URLs, so only local thumbs render inside the artifact; 'url' links open the platform page."
+ }
+}

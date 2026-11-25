@@ -1,0 +1,72 @@
+{
+ "rates": {
+  "date": "2026-11-23",
+  "r30": 7.34,
+  "r15": 6.88,
+  "r10": 6.71,
+  "label": "APOR (average prime offer rate, used by federal regulators)",
+  "source": "FFIEC / CFPB Average Prime Offer Rates, fixed-rate table (weekly)",
+  "url": "https://files.ffiec.cfpb.gov/apor/YieldTableFixed.txt",
+  "licence": "public domain (US federal work). CFPB Website Privacy Policy and Legal Notices (https://www.consumerfinance.gov/privacy/website-privacy-policy/): \"Information created by the CFPB is in the public domain and you may reproduce, publish, or otherwise use it without the Bureau's permission.\"",
+  "note": "APOR is the benchmark regulators use for HMDA rate spreads and QM/HPML tests; it is an average prime offer, not a quote. Computed by the CFPB from a commercial rate survey; only the published APOR values are used."
+ },
+ "rates_label": "APOR (average prime offer rate, used by federal regulators)",
+ "index_adj": 1.0,
+ "index_basis": "FHFA House Price Index (annual, ZIP 55407) 2025->2025 (no newer annual figure yet; the county value is dated Jan 2, 2026)",
+ "index_licence": "public domain (FHFA). FHFA Copyright and Trademark Notice (https://www.fhfa.gov/about/fhfa-policies/website-privacy-policy): \"Generally, information and materials produced by Federal agencies, including FHFA, are in the public domain and may be copied and distributed without permission.\"",
+ "fhfa_zip_hpi": {
+  "zip": "55407",
+  "latest_year": 2025,
+  "series": [
+   [
+    2014,
+    405.2
+   ],
+   [
+    2015,
+    434.53
+   ],
+   [
+    2016,
+    466.15
+   ],
+   [
+    2017,
+    505.57
+   ],
+   [
+    2018,
+    541.02
+   ],
+   [
+    2019,
+    562.76
+   ],
+   [
+    2020,
+    590.83
+   ],
+   [
+    2021,
+    628.5
+   ],
+   [
+    2022,
+    667.12
+   ],
+   [
+    2023,
+    674.18
+   ],
+   [
+    2024,
+    696.36
+   ],
+   [
+    2025,
+    717.77
+   ]
+  ]
+ },
+ "rejected_sources_note": "Not used (licence not clear-green): Freddie Mac PMMS, Zillow ZHVI, Realtor.com inventory."
+}

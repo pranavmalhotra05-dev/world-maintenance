@@ -1,0 +1,24 @@
+{
+ "lat": 47.675841333306,
+ "lon": -122.287562448307,
+ "tz": "America/Los_Angeles",
+ "noon_elevation": {
+  "winter solstice": [
+   18.9,
+   "12:08"
+  ],
+  "spring equinox": [
+   42.5,
+   "13:17"
+  ],
+  "summer solstice": [
+   65.8,
+   "13:11"
+  ],
+  "fall equinox": [
+   42.3,
+   "13:01"
+  ]
+ },
+ "note": "Elevation in degrees above the horizon at solar noon, with local clock time (America/Los_Angeles)."
+}

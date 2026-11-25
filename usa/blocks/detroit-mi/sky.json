@@ -1,0 +1,24 @@
+{
+ "lat": 42.415515218231,
+ "lon": -83.145012484787,
+ "tz": "America/Detroit",
+ "noon_elevation": {
+  "winter solstice": [
+   24.2,
+   "12:31"
+  ],
+  "spring equinox": [
+   47.7,
+   "13:40"
+  ],
+  "summer solstice": [
+   71.0,
+   "13:34"
+  ],
+  "fall equinox": [
+   47.6,
+   "13:25"
+  ]
+ },
+ "note": "Elevation in degrees above the horizon at solar noon, with local clock time (America/Detroit)."
+}

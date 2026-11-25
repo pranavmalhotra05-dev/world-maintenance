@@ -1,0 +1,24 @@
+{
+ "lat": 26.144400957891,
+ "lon": -80.128817750338,
+ "tz": "America/New_York",
+ "noon_elevation": {
+  "winter solstice": [
+   40.4,
+   "12:19"
+  ],
+  "spring equinox": [
+   64.0,
+   "13:28"
+  ],
+  "summer solstice": [
+   87.3,
+   "13:22"
+  ],
+  "fall equinox": [
+   63.9,
+   "13:13"
+  ]
+ },
+ "note": "Elevation in degrees above the horizon at solar noon, with local clock time (America/New_York)."
+}

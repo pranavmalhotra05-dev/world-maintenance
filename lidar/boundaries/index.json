@@ -1,0 +1,855 @@
+{
+ "vintage_counties": 2025,
+ "vintage_places": 2025,
+ "simplify_deg": 0.0002,
+ "round_deg": 1e-05,
+ "places_filter": "incorporated places only (LSAD != 57); census-designated places excluded",
+ "licence": {
+  "source": "US Census Bureau, Cartographic Boundary Files (1:500,000), counties and places",
+  "url": "https://www.census.gov/geographies/mapping-files/time-series/geo/cartographic-boundary.html",
+  "licence": "US public domain (17 U.S.C. 105, work of the US Government); commercial use allowed",
+  "quote": "17 U.S.C. 105: \"Copyright protection under this title is not available for any work of the United States Government\""
+ },
+ "states": {
+  "AK": {
+   "fips": "02",
+   "bbox": [
+    -179.1467,
+    51.2156,
+    179.7785,
+    71.3878
+   ],
+   "counties": "counties_AK.json",
+   "places": "places_AK.json",
+   "n_counties": 30,
+   "n_places": 149,
+   "bytes": 2695433,
+   "tol": 0.0002
+  },
+  "AL": {
+   "fips": "01",
+   "bbox": [
+    -88.4732,
+    30.2233,
+    -84.8891,
+    35.008
+   ],
+   "counties": "counties_AL.json",
+   "places": "places_AL.json",
+   "n_counties": 67,
+   "n_places": 463,
+   "bytes": 1865907,
+   "tol": 0.0002
+  },
+  "AR": {
+   "fips": "05",
+   "bbox": [
+    -94.6179,
+    33.0043,
+    -89.641,
+    36.4996
+   ],
+   "counties": "counties_AR.json",
+   "places": "places_AR.json",
+   "n_counties": 75,
+   "n_places": 501,
+   "bytes": 1047087,
+   "tol": 0.0002
+  },
+  "AS": {
+   "fips": "60",
+   "bbox": [
+    -171.0899,
+    -14.5487,
+    -168.1433,
+    -11.0469
+   ],
+   "counties": "counties_AS.json",
+   "places": "places_AS.json",
+   "n_counties": 5,
+   "n_places": 77,
+   "bytes": 71227,
+   "tol": 0.0002
+  },
+  "AZ": {
+   "fips": "04",
+   "bbox": [
+    -114.8165,
+    31.3322,
+    -109.0452,
+    37.0043
+   ],
+   "counties": "counties_AZ.json",
+   "places": "places_AZ.json",
+   "n_counties": 15,
+   "n_places": 91,
+   "bytes": 507421,
+   "tol": 0.0002
+  },
+  "CA": {
+   "fips": "06",
+   "bbox": [
+    -124.4096,
+    32.5344,
+    -114.1312,
+    42.0095
+   ],
+   "counties": "counties_CA.json",
+   "places": "places_CA.json",
+   "n_counties": 58,
+   "n_places": 483,
+   "bytes": 1929237,
+   "tol": 0.0002
+  },
+  "CO": {
+   "fips": "08",
+   "bbox": [
+    -109.0603,
+    36.9924,
+    -102.0415,
+    41.0034
+   ],
+   "counties": "counties_CO.json",
+   "places": "places_CO.json",
+   "n_counties": 64,
+   "n_places": 273,
+   "bytes": 1014734,
+   "tol": 0.0002
+  },
+  "CT": {
+   "fips": "09",
+   "bbox": [
+    -73.7278,
+    40.9801,
+    -71.787,
+    42.0506
+   ],
+   "counties": "counties_CT.json",
+   "places": "places_CT.json",
+   "n_counties": 9,
+   "n_places": 30,
+   "bytes": 79207,
+   "tol": 0.0002
+  },
+  "DC": {
+   "fips": "11",
+   "bbox": [
+    -77.1198,
+    38.7916,
+    -76.9094,
+    38.9951
+   ],
+   "counties": "counties_DC.json",
+   "places": "places_DC.json",
+   "n_counties": 1,
+   "n_places": 1,
+   "bytes": 3038,
+   "tol": 0.0002
+  },
+  "DE": {
+   "fips": "10",
+   "bbox": [
+    -75.7887,
+    38.4512,
+    -75.0489,
+    39.839
+   ],
+   "counties": "counties_DE.json",
+   "places": "places_DE.json",
+   "n_counties": 3,
+   "n_places": 57,
+   "bytes": 100188,
+   "tol": 0.0002
+  },
+  "FL": {
+   "fips": "12",
+   "bbox": [
+    -87.6349,
+    24.5213,
+    -80.0314,
+    31.0009
+   ],
+   "counties": "counties_FL.json",
+   "places": "places_FL.json",
+   "n_counties": 67,
+   "n_places": 411,
+   "bytes": 1698318,
+   "tol": 0.0002
+  },
+  "GA": {
+   "fips": "13",
+   "bbox": [
+    -85.6052,
+    30.3579,
+    -80.8404,
+    35.0012
+   ],
+   "counties": "counties_GA.json",
+   "places": "places_GA.json",
+   "n_counties": 159,
+   "n_places": 538,
+   "bytes": 2127524,
+   "tol": 0.0002
+  },
+  "GU": {
+   "fips": "66",
+   "bbox": [
+    144.6181,
+    13.2342,
+    144.9567,
+    13.6544
+   ],
+   "counties": "counties_GU.json",
+   "places": null,
+   "n_counties": 1,
+   "n_places": null,
+   "bytes": 9244,
+   "tol": 0.0002
+  },
+  "HI": {
+   "fips": "15",
+   "bbox": [
+    -178.3347,
+    18.9104,
+    -154.8068,
+    28.4021
+   ],
+   "counties": "counties_HI.json",
+   "places": null,
+   "n_counties": 5,
+   "n_places": null,
+   "bytes": 52265,
+   "tol": 0.0002
+  },
+  "IA": {
+   "fips": "19",
+   "bbox": [
+    -96.6386,
+    40.3757,
+    -90.1401,
+    43.5012
+   ],
+   "counties": "counties_IA.json",
+   "places": "places_IA.json",
+   "n_counties": 99,
+   "n_places": 939,
+   "bytes": 754081,
+   "tol": 0.0002
+  },
+  "ID": {
+   "fips": "16",
+   "bbox": [
+    -117.243,
+    41.9882,
+    -111.0436,
+    49.0009
+   ],
+   "counties": "counties_ID.json",
+   "places": "places_ID.json",
+   "n_counties": 44,
+   "n_places": 200,
+   "bytes": 786645,
+   "tol": 0.0002
+  },
+  "IL": {
+   "fips": "17",
+   "bbox": [
+    -91.5131,
+    36.9703,
+    -87.4952,
+    42.5085
+   ],
+   "counties": "counties_IL.json",
+   "places": "places_IL.json",
+   "n_counties": 102,
+   "n_places": 1294,
+   "bytes": 2216294,
+   "tol": 0.0002
+  },
+  "IN": {
+   "fips": "18",
+   "bbox": [
+    -88.0979,
+    37.7717,
+    -84.7846,
+    41.7606
+   ],
+   "counties": "counties_IN.json",
+   "places": "places_IN.json",
+   "n_counties": 92,
+   "n_places": 566,
+   "bytes": 900420,
+   "tol": 0.0002
+  },
+  "KS": {
+   "fips": "20",
+   "bbox": [
+    -102.0517,
+    36.993,
+    -94.5884,
+    40.0032
+   ],
+   "counties": "counties_KS.json",
+   "places": "places_KS.json",
+   "n_counties": 105,
+   "n_places": 626,
+   "bytes": 700879,
+   "tol": 0.0002
+  },
+  "KY": {
+   "fips": "21",
+   "bbox": [
+    -89.5715,
+    36.4971,
+    -81.965,
+    39.1475
+   ],
+   "counties": "counties_KY.json",
+   "places": "places_KY.json",
+   "n_counties": 120,
+   "n_places": 419,
+   "bytes": 1579100,
+   "tol": 0.0002
+  },
+  "LA": {
+   "fips": "22",
+   "bbox": [
+    -94.0431,
+    28.9286,
+    -88.817,
+    33.0195
+   ],
+   "counties": "counties_LA.json",
+   "places": "places_LA.json",
+   "n_counties": 64,
+   "n_places": 305,
+   "bytes": 1056837,
+   "tol": 0.0002
+  },
+  "MA": {
+   "fips": "25",
+   "bbox": [
+    -73.5081,
+    41.238,
+    -69.9284,
+    42.8866
+   ],
+   "counties": "counties_MA.json",
+   "places": "places_MA.json",
+   "n_counties": 14,
+   "n_places": 58,
+   "bytes": 158135,
+   "tol": 0.0002
+  },
+  "MD": {
+   "fips": "24",
+   "bbox": [
+    -79.4877,
+    37.9117,
+    -75.0489,
+    39.723
+   ],
+   "counties": "counties_MD.json",
+   "places": "places_MD.json",
+   "n_counties": 24,
+   "n_places": 157,
+   "bytes": 450132,
+   "tol": 0.0002
+  },
+  "ME": {
+   "fips": "23",
+   "bbox": [
+    -71.0839,
+    42.9778,
+    -66.9499,
+    47.4597
+   ],
+   "counties": "counties_ME.json",
+   "places": "places_ME.json",
+   "n_counties": 16,
+   "n_places": 23,
+   "bytes": 249141,
+   "tol": 0.0002
+  },
+  "MI": {
+   "fips": "26",
+   "bbox": [
+    -90.4181,
+    41.6961,
+    -82.4135,
+    48.2388
+   ],
+   "counties": "counties_MI.json",
+   "places": "places_MI.json",
+   "n_counties": 83,
+   "n_places": 533,
+   "bytes": 745410,
+   "tol": 0.0002
+  },
+  "MN": {
+   "fips": "27",
+   "bbox": [
+    -97.2392,
+    43.4994,
+    -89.494,
+    49.3844
+   ],
+   "counties": "counties_MN.json",
+   "places": "places_MN.json",
+   "n_counties": 87,
+   "n_places": 856,
+   "bytes": 1052733,
+   "tol": 0.0002
+  },
+  "MO": {
+   "fips": "29",
+   "bbox": [
+    -95.7747,
+    35.9957,
+    -89.0988,
+    40.6136
+   ],
+   "counties": "counties_MO.json",
+   "places": "places_MO.json",
+   "n_counties": 115,
+   "n_places": 947,
+   "bytes": 1330467,
+   "tol": 0.0002
+  },
+  "MP": {
+   "fips": "69",
+   "bbox": [
+    144.8864,
+    14.1105,
+    146.0645,
+    20.5532
+   ],
+   "counties": "counties_MP.json",
+   "places": "places_MP.json",
+   "n_counties": 4,
+   "n_places": 135,
+   "bytes": 109453,
+   "tol": 0.0002
+  },
+  "MS": {
+   "fips": "28",
+   "bbox": [
+    -91.655,
+    30.1754,
+    -88.0979,
+    34.9961
+   ],
+   "counties": "counties_MS.json",
+   "places": "places_MS.json",
+   "n_counties": 82,
+   "n_places": 300,
+   "bytes": 588622,
+   "tol": 0.0002
+  },
+  "MT": {
+   "fips": "30",
+   "bbox": [
+    -116.0492,
+    44.358,
+    -104.0396,
+    49.0014
+   ],
+   "counties": "counties_MT.json",
+   "places": "places_MT.json",
+   "n_counties": 56,
+   "n_places": 127,
+   "bytes": 770674,
+   "tol": 0.0002
+  },
+  "NC": {
+   "fips": "37",
+   "bbox": [
+    -84.3219,
+    33.8423,
+    -75.4606,
+    36.5881
+   ],
+   "counties": "counties_NC.json",
+   "places": "places_NC.json",
+   "n_counties": 100,
+   "n_places": 552,
+   "bytes": 2530552,
+   "tol": 0.0002
+  },
+  "ND": {
+   "fips": "38",
+   "bbox": [
+    -104.0489,
+    45.9351,
+    -96.5545,
+    49.0006
+   ],
+   "counties": "counties_ND.json",
+   "places": "places_ND.json",
+   "n_counties": 53,
+   "n_places": 355,
+   "bytes": 411599,
+   "tol": 0.0002
+  },
+  "NE": {
+   "fips": "31",
+   "bbox": [
+    -104.0535,
+    40.0,
+    -95.3083,
+    43.0017
+   ],
+   "counties": "counties_NE.json",
+   "places": "places_NE.json",
+   "n_counties": 93,
+   "n_places": 528,
+   "bytes": 510176,
+   "tol": 0.0002
+  },
+  "NH": {
+   "fips": "33",
+   "bbox": [
+    -72.5572,
+    42.697,
+    -70.6106,
+    45.3055
+   ],
+   "counties": "counties_NH.json",
+   "places": "places_NH.json",
+   "n_counties": 10,
+   "n_places": 13,
+   "bytes": 66055,
+   "tol": 0.0002
+  },
+  "NJ": {
+   "fips": "34",
+   "bbox": [
+    -75.5595,
+    38.9285,
+    -73.8936,
+    41.3574
+   ],
+   "counties": "counties_NJ.json",
+   "places": "places_NJ.json",
+   "n_counties": 21,
+   "n_places": 323,
+   "bytes": 397081,
+   "tol": 0.0002
+  },
+  "NM": {
+   "fips": "35",
+   "bbox": [
+    -109.0502,
+    31.3323,
+    -103.002,
+    37.0002
+   ],
+   "counties": "counties_NM.json",
+   "places": "places_NM.json",
+   "n_counties": 33,
+   "n_places": 105,
+   "bytes": 289376,
+   "tol": 0.0002
+  },
+  "NV": {
+   "fips": "32",
+   "bbox": [
+    -120.0065,
+    35.0019,
+    -114.0396,
+    42.0022
+   ],
+   "counties": "counties_NV.json",
+   "places": "places_NV.json",
+   "n_counties": 17,
+   "n_places": 19,
+   "bytes": 160623,
+   "tol": 0.0002
+  },
+  "NY": {
+   "fips": "36",
+   "bbox": [
+    -79.7622,
+    40.4961,
+    -71.8565,
+    45.0158
+   ],
+   "counties": "counties_NY.json",
+   "places": "places_NY.json",
+   "n_counties": 62,
+   "n_places": 594,
+   "bytes": 751758,
+   "tol": 0.0002
+  },
+  "OH": {
+   "fips": "39",
+   "bbox": [
+    -84.8202,
+    38.4032,
+    -80.5187,
+    41.9772
+   ],
+   "counties": "counties_OH.json",
+   "places": "places_OH.json",
+   "n_counties": 88,
+   "n_places": 925,
+   "bytes": 1373357,
+   "tol": 0.0002
+  },
+  "OK": {
+   "fips": "40",
+   "bbox": [
+    -103.0026,
+    33.6158,
+    -94.4307,
+    37.0022
+   ],
+   "counties": "counties_OK.json",
+   "places": "places_OK.json",
+   "n_counties": 77,
+   "n_places": 599,
+   "bytes": 967696,
+   "tol": 0.0002
+  },
+  "OR": {
+   "fips": "41",
+   "bbox": [
+    -124.5662,
+    41.9918,
+    -116.4635,
+    46.2908
+   ],
+   "counties": "counties_OR.json",
+   "places": "places_OR.json",
+   "n_counties": 36,
+   "n_places": 241,
+   "bytes": 710616,
+   "tol": 0.0002
+  },
+  "PA": {
+   "fips": "42",
+   "bbox": [
+    -80.5199,
+    39.7198,
+    -74.6895,
+    42.2699
+   ],
+   "counties": "counties_PA.json",
+   "places": "places_PA.json",
+   "n_counties": 67,
+   "n_places": 1014,
+   "bytes": 1011757,
+   "tol": 0.0002
+  },
+  "PR": {
+   "fips": "72",
+   "bbox": [
+    -67.9454,
+    17.8833,
+    -65.2211,
+    18.516
+   ],
+   "counties": "counties_PR.json",
+   "places": "places_PR.json",
+   "n_counties": 78,
+   "n_places": 292,
+   "bytes": 520115,
+   "tol": 0.0002
+  },
+  "RI": {
+   "fips": "44",
+   "bbox": [
+    -71.8628,
+    41.1463,
+    -71.1206,
+    42.0188
+   ],
+   "counties": "counties_RI.json",
+   "places": "places_RI.json",
+   "n_counties": 5,
+   "n_places": 8,
+   "bytes": 36259,
+   "tol": 0.0002
+  },
+  "SC": {
+   "fips": "45",
+   "bbox": [
+    -83.3539,
+    32.0376,
+    -78.5473,
+    35.2154
+   ],
+   "counties": "counties_SC.json",
+   "places": "places_SC.json",
+   "n_counties": 46,
+   "n_places": 271,
+   "bytes": 1374344,
+   "tol": 0.0002
+  },
+  "SD": {
+   "fips": "46",
+   "bbox": [
+    -104.0579,
+    42.4796,
+    -96.4366,
+    45.9454
+   ],
+   "counties": "counties_SD.json",
+   "places": "places_SD.json",
+   "n_counties": 66,
+   "n_places": 310,
+   "bytes": 425124,
+   "tol": 0.0002
+  },
+  "TN": {
+   "fips": "47",
+   "bbox": [
+    -90.3105,
+    34.983,
+    -81.6469,
+    36.6781
+   ],
+   "counties": "counties_TN.json",
+   "places": "places_TN.json",
+   "n_counties": 95,
+   "n_places": 345,
+   "bytes": 1541874,
+   "tol": 0.0002
+  },
+  "TX": {
+   "fips": "48",
+   "bbox": [
+    -106.6456,
+    25.8374,
+    -93.5083,
+    36.5007
+   ],
+   "counties": "counties_TX.json",
+   "places": "places_TX.json",
+   "n_counties": 254,
+   "n_places": 1228,
+   "bytes": 3837291,
+   "tol": 0.0002
+  },
+  "UT": {
+   "fips": "49",
+   "bbox": [
+    -114.053,
+    36.998,
+    -109.0411,
+    42.0017
+   ],
+   "counties": "counties_UT.json",
+   "places": "places_UT.json",
+   "n_counties": 29,
+   "n_places": 255,
+   "bytes": 688606,
+   "tol": 0.0002
+  },
+  "VA": {
+   "fips": "51",
+   "bbox": [
+    -83.6754,
+    36.5407,
+    -75.2425,
+    39.466
+   ],
+   "counties": "counties_VA.json",
+   "places": "places_VA.json",
+   "n_counties": 133,
+   "n_places": 227,
+   "bytes": 1108575,
+   "tol": 0.0002
+  },
+  "VI": {
+   "fips": "78",
+   "bbox": [
+    -65.0854,
+    17.6747,
+    -64.5656,
+    18.4158
+   ],
+   "counties": "counties_VI.json",
+   "places": "places_VI.json",
+   "n_counties": 3,
+   "n_places": 3,
+   "bytes": 37874,
+   "tol": 0.0002
+  },
+  "VT": {
+   "fips": "50",
+   "bbox": [
+    -73.4377,
+    42.7269,
+    -71.4646,
+    45.0167
+   ],
+   "counties": "counties_VT.json",
+   "places": "places_VT.json",
+   "n_counties": 14,
+   "n_places": 40,
+   "bytes": 80329,
+   "tol": 0.0002
+  },
+  "WA": {
+   "fips": "53",
+   "bbox": [
+    -124.7631,
+    45.5435,
+    -116.916,
+    49.0025
+   ],
+   "counties": "counties_WA.json",
+   "places": "places_WA.json",
+   "n_counties": 39,
+   "n_places": 281,
+   "bytes": 840288,
+   "tol": 0.0002
+  },
+  "WI": {
+   "fips": "55",
+   "bbox": [
+    -92.8881,
+    42.492,
+    -86.8054,
+    47.0806
+   ],
+   "counties": "counties_WI.json",
+   "places": "places_WI.json",
+   "n_counties": 72,
+   "n_places": 608,
+   "bytes": 1050075,
+   "tol": 0.0002
+  },
+  "WV": {
+   "fips": "54",
+   "bbox": [
+    -82.6447,
+    37.2015,
+    -77.7195,
+    40.6388
+   ],
+   "counties": "counties_WV.json",
+   "places": "places_WV.json",
+   "n_counties": 55,
+   "n_places": 231,
+   "bytes": 693949,
+   "tol": 0.0002
+  },
+  "WY": {
+   "fips": "56",
+   "bbox": [
+    -111.0546,
+    40.9947,
+    -104.0522,
+    45.0058
+   ],
+   "counties": "counties_WY.json",
+   "places": "places_WY.json",
+   "n_counties": 23,
+   "n_places": 99,
+   "bytes": 236940,
+   "tol": 0.0002
+  }
+ }
+}
