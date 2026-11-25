@@ -408,18 +408,6 @@
   "city_data": null
  },
  {
-  "slug": "slc-ut-test",
-  "name": "1385 E YALE AVE, SALT LAKE CITY, UT, 84105",
-  "city": "Salt Lake City",
-  "state": "UT",
-  "fips": "49035",
-  "lon": -111.851354439657,
-  "lat": 40.745809280535,
-  "houses": 3,
-  "lidar_year": 2016,
-  "city_data": null
- },
- {
   "slug": "somerville-ma",
   "name": "50 HIGHLAND RD, SOMERVILLE, MA, 02144",
   "city": "Somerville",
