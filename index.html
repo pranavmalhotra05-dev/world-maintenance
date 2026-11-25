@@ -1,2 +1,31 @@
-<!doctype html><meta charset="utf-8"><title>World Maintenance</title>
-<meta http-equiv="refresh" content="0; url=usa/globe.html"><a href="usa/globe.html">World Maintenance globe</a>
+<!doctype html>
+<!-- Site root: opens the globe app at the USA view.
+     The World Maintenance globe app (app/index.html) replaced this page. The original lives in archive/web/index.html (old Rooftop Intel prototype).
+     URL scheme: app/index.html?lat=&lon=&z=&pitch=&bearing=&block=<slug>&house=<id>&area=county:<fips>|place:<geoid> -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Maintenance</title>
+<meta name="robots" content="noindex">
+<meta http-equiv="refresh" content="1; url=app/index.html?lat=39.5&lon=-98.35&z=4">
+<link rel="canonical" href="app/index.html?lat=39.5&lon=-98.35&z=4">
+<script>
+(function () {
+  var q = new URLSearchParams(location.search), h = new URLSearchParams(location.hash.replace(/^#/, ""));
+  function get(k) { return q.get(k) || h.get(k); }
+  function num(k) { var v = parseFloat(get(k)); return isFinite(v) ? v : null; }
+  var out = new URLSearchParams();
+  function set(k, v) { if (v !== null && v !== undefined && v !== "") out.set(k, String(v)); }
+  var lat = num("lat"), lon = num("lon");
+  set("lat", lat !== null ? lat : 39.5); set("lon", lon !== null ? lon : -98.35); set("z", num("z") !== null ? num("z") : 4);
+  var a = get("area"), c = get("county"), p = get("place");
+  if (a && /^(county|place):\d{5,7}$/.test(a)) set("area", a);
+  else if (c && /^\d{5}$/.test(c)) set("area", "county:" + c);
+  else if (p && /^\d{7}$/.test(p)) set("area", "place:" + p);
+  var b = get("block"); if (b && /^[\w.-]+$/.test(b)) set("block", b);
+  ["pitch", "bearing"].forEach(function (k) { if (!out.has(k) && num(k) !== null) set(k, num(k)); });
+  var th = get("theme"); if (th && /^[\w-]+$/.test(th)) set("theme", th);
+  location.replace("app/index.html?" + out.toString());
+})();
+</script>
+<style>body { background: #05070b; color: #cfd8e3; font: 15px system-ui, sans-serif; margin: 0; padding: 40px 16px; } a { color: #7fd4ff; }</style>
+<noscript><p>This page moved into the World Maintenance globe. <a href="app/index.html?lat=39.5&lon=-98.35&z=4">Open the globe</a>.</p></noscript>
