@@ -61,6 +61,13 @@ const monthName = m => (typeof m === "number" || /^\d+$/.test(m)) ? (MON[+m - 1]
 const listText = v => v == null ? undefined : Array.isArray(v) ? v.map(x => typeof x === "object" ? (pick(x, "name", "label", "h", "hour") ?? JSON.stringify(x)) : x).join(", ") : typeof v === "object" ? Object.entries(v).map(([a, b]) => `${a} ${b}`).join(", ") : String(v);
 const hoursText = v => v == null ? undefined : Array.isArray(v) ? v.map(h => typeof h === "number" ? String(h).padStart(2, "0") + ":00" : (typeof h === "object" ? listText([h]) : h)).join(", ") : String(v);
 const OPT_METRICS = [
+  { src: "earth", k: "radon_zone", label: "EPA radon zone (1 = highest)", unit: "", fmt: v => String(v), note: "EPA Map of Radon Zones: 1 is the highest predicted indoor radon and 3 the lowest (US EPA, public domain)." },
+  { src: "earth", k: "nure_eu", label: "Ground uranium (eU)", unit: " ppm", fmt: v => v.toFixed(2), note: "County mean equivalent uranium from the USGS NURE airborne gamma-ray grids (USGS, public domain)." },
+  { src: "earth", k: "nure_eth", label: "Ground thorium (eTh)", unit: " ppm", fmt: v => v.toFixed(1), note: "County mean equivalent thorium from the USGS NURE airborne gamma-ray grids (USGS, public domain)." },
+  { src: "earth", k: "nure_k", label: "Ground potassium (K)", unit: "%", fmt: v => v.toFixed(2), note: "County mean potassium from the USGS NURE airborne gamma-ray grids (USGS, public domain)." },
+  { src: "earth", k: "pm25_dv", label: "PM2.5 annual design value", unit: " µg/m³", fmt: v => v.toFixed(1), note: "EPA AQS 2023–2025 annual PM2.5 design value at the county's highest valid monitor (US EPA, public domain)." },
+  { src: "earth", k: "pm25_24h_dv", label: "PM2.5 24-hour design value", unit: " µg/m³", fmt: v => String(v), note: "EPA AQS 2023–2025 24-hour PM2.5 design value for the county (US EPA, public domain)." },
+  { src: "earth", k: "o3_dv", label: "Ozone design value", unit: " ppb", fmt: v => String(v), note: "EPA AQS 2023–2025 8-hour ozone design value for the county (US EPA, public domain)." },
   { src: "str", k: "str_demand", label: "STR demand (visitor flow)", unit: "", fmt: v => v.toFixed(1), note: "Short-term-rental demand index built from public visitor-flow signals (air passengers, lodging, attractions, events). Higher = more visitors. Aggregate public data; no booking or occupancy data." },
   { src: "str", k: "str_score", label: "STR investment score", unit: "", fmt: v => v.toFixed(1), note: "Demand balanced against entry cost (home prices) and known local rules. A screening index, not an underwriting model; no booking or occupancy data." },
   { src: "str", k: "str_cost", label: "Entry cost (cheaper = higher)", unit: "", fmt: v => v.toFixed(1), note: "Entry-cost index from public home values: a higher score means it is cheaper to buy in." },
@@ -233,7 +240,7 @@ function holidayHtml() {
   if (!up.length) return "";
   return `<h4>Upcoming holidays &amp; long weekends</h4><ul class="hol">${up.map(h => `<li><span>${esc(h._name)}${h._long ? " · long weekend" : ""}</span><span>${esc(h._date)}${h._end !== h._date ? " → " + esc(h._end.slice(5)) : ""}</span></li>`).join("")}</ul>`;
 }
-let AIR_BY_CODE = new Map(), AIR_STATE = new Map(), WX = null, CLEAN = null;
+let AIR_BY_CODE = new Map(), AIR_STATE = new Map(), WX = null, CLEAN = null, EARTH = null;
 // 12 numbers or a {Jan:..}/{1:..} map -> 12 values (null when unusable)
 function months12(p) {
   if (Array.isArray(p) && p.length === 12 && p.every(x => num(x) != null)) return p.map(Number);
@@ -325,7 +332,10 @@ function mergeOptional() {
     r.dust_days_yr = num(pick(o, "dust_days_yr")); r.dust_then_rain_yr = num(pick(o, "dust_then_rain_yr")); r.high_wind_days_yr = num(pick(o, "high_wind_days_yr")); r.hail_days_yr = num(pick(o, "hail_days_yr")); }
   for (const [f, o] of clean) { const r = byF.get(f); if (!r) continue; r._clean = o;
     r.svc_per_10k_households = num(pick(o, "svc_per_10k_households")); r.median_hh_income = num(pick(o, "median_hh_income")); r.share_hh_200k = num(pick(o, "share_hh_200k")); }
-  const src = { str: str.size, air: air.size, econ: econ.size, jobs: jobs.size, road: road.size, vis: vis.size, wx: wx.size, clean: clean.size };
+  const earth = countyMap(EARTH && (EARTH.counties ?? EARTH));
+  for (const [f, o] of earth) { const r = byF.get(f); if (!r) continue; r._earth = o;
+    for (const k of ["radon_zone", "nure_eu", "nure_eth", "nure_k", "pm25_dv", "pm25_24h_dv", "o3_dv"]) r[k] = num(o[k]); }
+  const src = { earth: earth.size, str: str.size, air: air.size, econ: econ.size, jobs: jobs.size, road: road.size, vis: vis.size, wx: wx.size, clean: clean.size };
   OPT_METRICS.forEach(m => { if (src[m.src] && ROWS.some(r => r[m.k] != null) && !METRICS.includes(m)) METRICS.push(m); });
 
   // points: airports and venues (county FIPS optional, used for click-to-select)

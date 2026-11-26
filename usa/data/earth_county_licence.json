@@ -1,0 +1,50 @@
+{
+ "epa_radon_zones": {
+  "name": "EPA Map of Radon Zones (county table, EPA 402-R-93-071; table updated 2025-09)",
+  "provider": "U.S. Environmental Protection Agency",
+  "licence": "US public domain (EPA Standard Open Data License)",
+  "licence_url": "https://edg.epa.gov/EPA_Data_License.html",
+  "page_url": "https://www.epa.gov/radon/epa-map-radon-zones",
+  "download_url": "https://www.epa.gov/system/files/documents/2024-05/radon_zones-spreadsheet.xls",
+  "fields": [
+   "radon_zone"
+  ],
+  "method": "matched by county name and state (the table has no FIPS); renamed or split units since 1993 take the zone of the unit they came from; Connecticut planning regions and Puerto Rico have no zone"
+ },
+ "usgs_nure_gamma": {
+  "name": "Bayesian modeling of NURE airborne radiometric data for the conterminous United States: predictions and grids (Goldman & Ellefsen 2020, doi:10.5066/P9YEAFHI)",
+  "provider": "U.S. Geological Survey",
+  "licence": "US public domain (USGS data release, listed CC0 on data.usgs.gov)",
+  "licence_url": "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits",
+  "licence_url_item": "https://data.usgs.gov/datacatalog/data/USGS:5dd2f264e4b0695797628351",
+  "page_url": "https://www.sciencebase.gov/catalog/item/5dd2f264e4b0695797628351",
+  "download_url": [
+   "https://www.sciencebase.gov/catalog/file/get/5dd2f264e4b0695797628351?facet=K_Y_mean_per",
+   "https://www.sciencebase.gov/catalog/file/get/5dd2f264e4b0695797628351?facet=eU_Y_mean_ppm",
+   "https://www.sciencebase.gov/catalog/file/get/5dd2f264e4b0695797628351?facet=eTh_Y_mean_ppm"
+  ],
+  "fields": [
+   "nure_k",
+   "nure_eu",
+   "nure_eth"
+  ],
+  "method": "area mean of 2 km EPSG:5070 grid cells whose centres fall in the county (all touched cells if none); conterminous US only"
+ },
+ "epa_aqs_design_values": {
+  "name": "EPA Air Quality Design Values 2023-2025 (ozone Table 4, PM2.5 Tables 4a/4b county level), from AQS",
+  "provider": "U.S. Environmental Protection Agency",
+  "licence": "US public domain (EPA Standard Open Data License)",
+  "licence_url": "https://edg.epa.gov/EPA_Data_License.html",
+  "page_url": "https://www.epa.gov/air-trends/air-quality-design-values",
+  "download_url": [
+   "https://www.epa.gov/system/files/documents/2026-06/o3_designvalues_2023_2025_final_06_08_26.xlsx",
+   "https://www.epa.gov/system/files/documents/2026-06/pm25_designvalues_2023_2025_final_06_12_26.xlsx"
+  ],
+  "fields": [
+   "o3_dv",
+   "pm25_dv",
+   "pm25_24h_dv"
+  ],
+  "method": "EPA's county design value (highest valid monitor in the county); Connecticut planning regions rebuilt from EPA's site tables by site location; ozone converted ppm to ppb"
+ }
+}
