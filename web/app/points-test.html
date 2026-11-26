@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Points Test</title>
+<script src="../usa/theme.js"></script>
+<link rel="stylesheet" href="ui.css">
+<style>
+  :root { --void:#05070b; --ink:#d8e2ee; --dim:#7d8a99; --edge:rgba(255,255,255,.16); --cyan:#4fdcff; --amber:#ffb84d;
+          --f-mono:ui-monospace,Consolas,monospace; --f-body:system-ui,Segoe UI,sans-serif; }
+  html, body { background: var(--void); overflow: hidden; }
+  #map { position: absolute; inset: 0; }
+  #panel { position: absolute; left: 12px; top: 12px; width: 290px; max-width: calc(100vw - 24px); background: rgba(5,8,12,.86);
+           border: 1px solid var(--edge); padding: 10px 12px; z-index: 2; }
+  #jump { display: flex; gap: 4px; margin-top: 8px; flex-wrap: wrap; }
+  #credit { position: absolute; right: 8px; bottom: 6px; color: var(--dim); font-size: 11px; background: rgba(5,8,12,.8); padding: 2px 6px; }
+</style>
+<script src="https://unpkg.com/deck.gl@9.1.14/dist.min.js"></script>
+<script src="points.js"></script>
+</head>
+<body>
+<div id="map"></div>
+<div id="panel"><div id="pts"></div>
+  <div id="jump"><button class="chip" data-v="-112.07,33.45,10">Phoenix</button><button class="chip" data-v="-119.6,36.6,9.5">Central Valley</button><button class="chip" data-v="-98,39,4">USA (z4)</button></div>
+</div>
+<div id="credit"></div>
+<script>
+const P = new EarthPoints({ onUpdate: render });
+P.bindPanel(document.getElementById("pts"));
+const q = new URLSearchParams(location.search);
+if (q.get("on")) P.setState({ on: q.get("on").split(",") });
+let vs = { longitude: -112.07, latitude: 33.45, zoom: 10, pitch: 0, bearing: 0 };
+const base = new deck.TileLayer({ id: "osm", data: "https://tile.openstreetmap.org/{z}/{x}/{y}.png", minZoom: 0, maxZoom: 19, tileSize: 256,
+  renderSubLayers: (p) => { const { west, south, east, north } = p.tile.bbox;
+    return new deck.BitmapLayer(p, { data: null, image: p.data, bounds: [west, south, east, north], desaturate: 0.85, tintColor: [120, 130, 150] }); } });
+const D = new deck.Deck({ parent: document.getElementById("map"), views: new deck.MapView({ repeat: true }), initialViewState: vs, controller: true,
+  onViewStateChange: ({ viewState }) => { vs = viewState; push(); render(); },
+  getTooltip: (info) => P.tooltip(info), layers: [] });
+function push() {
+  const vp = new deck.WebMercatorViewport({ ...vs, width: innerWidth, height: innerHeight });
+  P.update(vs, { globe: false, zoom: vs.zoom, bounds: vp.getBounds() });
+}
+function render() {
+  D.setProps({ layers: [base, ...P.layers({ globe: false, zoom: vs.zoom })] });
+  document.getElementById("credit").textContent = ["Map © OpenStreetMap contributors", P.credits()].filter(Boolean).join(" · ");
+}
+document.getElementById("jump").onclick = (e) => { const v = e.target.dataset.v; if (!v) return;
+  const [lo, la, z] = v.split(",").map(Number); vs = { ...vs, longitude: lo, latitude: la, zoom: z };
+  D.setProps({ initialViewState: { ...vs } }); push(); render(); };
+push(); render();
+window.__P = P;
+</script>
+</body>
+</html>

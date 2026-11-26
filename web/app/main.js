@@ -37,6 +37,7 @@ let DAY = null, NIGHT = null, EARTH_IMG = null, texBusy = false, texAgain = fals
 let VS = { longitude: -98.35, latitude: 39.5, zoom: 1.5, pitch: 0, bearing: 0 };
 let VIEW = "globe", WALK = null, FLY = null, LIFT_Z = 0, LIFT_T = 0, SWITCH_AT = 0, dragging = false;
 let layersDirty = true, skyDirty = true, recolorDirty = false, layerKey = "";
+let EO = null, PT = null, earthDirty = 0;   // earthDirty: frames left to force a redraw after an overlay tile lands (deck does not repaint on its own here)   // Earth-observation overlays (earthlayers.js) and measured points (points.js)
 let EPT = null, BL = null, HOUSE = null, MGR_STUB = { ept: true, block: true };
 let SECTION = "", catalogOpen = false;
 const GLOBE_VIEW = new deck._GlobeView({ id: "globe", resolution: 10 });
@@ -74,11 +75,23 @@ async function loadManagers() {
   try { if (typeof E === "function") { EPT = new E({ onUpdate: onMgrUpdate, zOffset: 0 }); MGR_STUB.ept = false; } } catch (e) { console.warn("EptManager", e); }
   try { if (typeof B === "function") { BL = new B({ onUpdate: onMgrUpdate, onSelectHouse, groundAt }); MGR_STUB.block = false; } } catch (e) { console.warn("BlockManager", e); }
   EPT = EPT || stubEpt(); BL = BL || stubBlocks();
+  initEarth();
   const modes = safe(() => EPT.colorModes, null) || [{ id: "elevation", label: "Elevation" }, { id: "classification", label: "Classification" }, { id: "intensity", label: "Intensity" }, { id: "rgb", label: "RGB (where flown)" }];
   $("eptColor").innerHTML = (Array.isArray(modes) ? modes : Object.keys(modes)).map(m => `<option value="${esc(m.id || m)}">${esc(m.label || m)}</option>`).join("");
   $("eptColor").onchange = e => { safe(() => EPT.setColorMode(e.target.value)); layersDirty = true; };
   scheduleSettle();
 }
+// ---------- Earth data: live satellite/agency overlays and measured points (both optional modules)
+function earthState(key) { try { const v = QS.get(key); return v ? JSON.parse(v) : null; } catch { return null; } }
+function initEarth() {
+  const onUpdate = () => { layersDirty = true; earthDirty = 2; updateCredits(); scheduleUrl(); };
+  try { if (window.EarthLayers) { EO = new window.EarthLayers({ onUpdate }); const st = earthState("eo"); if (st) safe(() => EO.setState(st)); safe(() => EO.bindPanel($("eoPanel"))); } } catch (e) { console.warn("EarthLayers", e); EO = null; }
+  try { if (window.EarthPoints) { PT = new window.EarthPoints({ onUpdate, gnssUrl: "data/gnss.json", icesat2Url: "data/icesat2.json" }); const st = earthState("pt"); if (st) safe(() => PT.setState(st)); safe(() => PT.bindPanel($("ptPanel"))); } } catch (e) { console.warn("EarthPoints", e); PT = null; }
+  if (!EO) $("eoPanel").innerHTML = `<div class="note">Overlays module not loaded.</div>`;
+  if (!PT) $("ptPanel").innerHTML = `<div class="note">Points module not loaded.</div>`;
+  if ((earthState("eo") || earthState("pt")) && $("secEarth")) $("secEarth").open = true;
+}
+function earthActive(m) { const s = m && safe(() => m.getState(), null); return !!(s && Array.isArray(s.on) && s.on.length); }
 let PENDING_HOUSE = null;
 function onMgrUpdate(evt) {
   layersDirty = true;
@@ -531,6 +544,8 @@ function buildLayers() {
     L.push(new deck.PathLayer({ id: "sel-glow", data: sp, getPath: d => d, getColor: [...sel.slice(0, 3), 80], widthUnits: "pixels", getWidth: 8, updateTriggers: { getColor: th }, parameters: { depthTest: !globe }, ...mm }));
     L.push(new deck.PathLayer({ id: "sel", data: sp, getPath: d => d, getColor: [...sel.slice(0, 3), 255], widthUnits: "pixels", getWidth: 1.8, updateTriggers: { getColor: th }, parameters: { depthTest: !globe }, ...mm }));
   }
+  // Earth-observation overlays: flat on the ground, under buildings and LiDAR
+  if (EO && VIEW !== "walk") for (const l of safe(() => EO.layers({ globe, zoom: z, modelMatrix: MMX }), []) || []) if (l) L.push(l);
   // metro buildings: one binary layer per loaded tile (stable ids, never rebuilt while panning)
   if (!globe && BLDG_ON) { const mA = smooth(Z_METRO - 0.5, Z_METRO + 0.3, z);
     if (mA > 0.02) for (const t of MT_LOADED.values()) if (t.bin) L.push(new deck.ScatterplotLayer({ id: "mt:" + t.key, data: t.bin, billboard: true, radiusUnits: "meters", getRadius: 1, radiusScale: 5.6,
@@ -538,6 +553,7 @@ function buildLayers() {
   // LiDAR and built blocks (other lanes)
   if (!globe && EPT) for (const l of eptLayersDeduped()) if (l) L.push(l);
   if (!globe && BL) for (const l of safe(() => BL.layers(), []) || []) if (l) L.push(l);
+  if (PT) for (const l of safe(() => PT.layers({ globe, zoom: z, modelMatrix: MMX }), []) || []) if (l) L.push(l);
   // block markers below street zoom
   if (BLOCKS.length && PINS_ON && z < 15.5 && VIEW !== "walk") {
     const zs = Math.max(0.45, Math.min(1, (z + 1) / 6)), p3 = pin.slice(0, 3), pz = b => [b.lon, b.lat, globe ? b._el * LIFT.e + 2500 : b._el + 40];
@@ -554,6 +570,8 @@ function setHover(f) { if (f !== hovered) { hovered = f; layersDirty = true; } }
 function tooltip(info) {
   const id = info.layer && info.layer.id;
   if (!id) return null;
+  if (id.startsWith("pt:") && PT && PT.tooltip) return safe(() => PT.tooltip(info), null);
+  if (id.startsWith("eo:") && EO && EO.tooltip) return safe(() => EO.tooltip(info), null);
   if (id.startsWith("mt:") && info.index >= 0) { const t = MT_LOADED.get(id.slice(3)); return t && t.data ? metroTooltip(t, info.index) : null; }
   if (id === "usa" && info.index >= 0) {
     const i = info.index, r = COUNTY.get(META.counties[UD.county[i]]); if (!r) return null;
@@ -837,6 +855,7 @@ function updateCredits() {
   if (MT_LOADED.size) c.push(esc(METROS.map(m => m.attribution).filter(Boolean)[0] || "© OpenStreetMap contributors, Overture Maps Foundation (ODbL)"));
   if (!globe && z >= Z_EPT) { const ec = EPT && EPT.credits ? safe(() => EPT.credits(), null) : null; c.push(ec ? esc(ec) : "LiDAR: USGS 3DEP (public domain)"); }
   if (!globe && z >= Z_BLOCKS - 1) { const bc = BL && BL.credits ? safe(() => BL.credits(), null) : null; if (bc) c.push(esc(bc)); }
+  for (const m of [EO, PT]) if (m && m.credits && earthActive(m)) { const t = safe(() => m.credits(), ""); if (t) c.push(esc(t)); }
   $("credits").innerHTML = c.join(" · ") + ` · <button id="credCat">all sources &amp; licences</button>`;
   $("credCat").onclick = () => openCatalog(true);
 }
@@ -900,6 +919,7 @@ function settle() {
   const vp = mgrViewport(), b = VIEW === "globe" ? null : viewBounds(vp);
   LAST_BOUNDS = b;
   if (EPT) safe(() => EPT.update(vp)); if (BL) safe(() => BL.update(vp));
+  if (PT) safe(() => PT.update(VS, { globe: VIEW === "globe", zoom: VIEW === "walk" ? 20 : VS.zoom, bounds: b }));
   tractTick(b); metroTick(b); updatePanel(); scheduleUrl();
 }
 
@@ -915,6 +935,7 @@ function writeUrl() {
   if (selected) p.set("area", "county:" + selected);
   if (VIEW === "walk") p.set("walk", "1");
   if (catalogOpen) p.set("panel", "catalog");
+  for (const [k, m] of [["eo", EO], ["pt", PT]]) if (earthActive(m)) p.set(k, JSON.stringify(m.getState()));
   if (QS.get("theme")) p.set("theme", T.current().id);
   if (QS.get("raf")) p.set("raf", QS.get("raf"));
   history.replaceState(null, "", "?" + p.toString().replace(/%3A/g, ":"));
@@ -996,6 +1017,7 @@ function frame(now) {
     const fps = deckgl2 && deckgl2.metrics ? deckgl2.metrics.fps : 0; $("fps").textContent = fps ? Math.round(fps) + " fps" : ""; }
   if (recolorDirty) { recolorDirty = false; recolor(); }
   if (layersDirty) { layersDirty = false; deckgl2.setProps({ layers: buildLayers() }); }
+  if (earthDirty > 0) { earthDirty--; deckgl2.redraw("earth"); }
   if (skyDirty) { skyDirty = false; drawSky(); }
   requestAnimationFrame(frame);
 }
@@ -1103,7 +1125,7 @@ async function main() {
     layersDirty = true; BLIST_KEY = ""; renderBlockList();
   });
   loadManagers();
-  [STR, AIR, ECON, EVT, JOBS, ROAD, VIS, WX, CLEAN] = await Promise.all(["str_score", "tourism_air", "tourism_econ", "tourism_events", "jobs_flow", "road_traffic", "visitors", "weather_triggers", "cleaning_market"].map(n => getJSON(U + "data/" + n + ".json")));
+  [STR, AIR, ECON, EVT, JOBS, ROAD, VIS, WX, CLEAN, EARTH] = await Promise.all(["str_score", "tourism_air", "tourism_econ", "tourism_events", "jobs_flow", "road_traffic", "visitors", "weather_triggers", "cleaning_market", "earth_county"].map(n => getJSON(U + "data/" + n + ".json")));
   mergeOptional(); fillMetrics();
   await Promise.all([pGeo, pBlocks]);
   // honour area / block / house from the URL

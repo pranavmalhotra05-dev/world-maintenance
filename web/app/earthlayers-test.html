@@ -1,0 +1,55 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>EO overlays test</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="ui.css">
+<script src="https://unpkg.com/deck.gl@9.1.14/dist.min.js"></script>
+<script src="earthlayers.js"></script>
+<style>
+  html, body { margin: 0; height: 100%; background: #05070a; color: #dde; font-family: system-ui, sans-serif; }
+  #map { position: absolute; inset: 0; }
+  #side { position: absolute; top: 0; right: 0; bottom: 0; width: 300px; overflow: auto; padding: 10px 12px; background: rgba(6,10,14,.9); border-left: 1px solid #234; z-index: 2; }
+  #bar { position: absolute; left: 10px; top: 10px; z-index: 2; display: flex; gap: 4px; flex-wrap: wrap; max-width: calc(100% - 340px); }
+  #cred { position: absolute; left: 10px; bottom: 6px; z-index: 2; font: 11px monospace; color: #9ab; }
+</style></head>
+<body>
+<div id="map"></div>
+<div id="bar">
+  <button class="chip" data-go="houston">Houston z13</button>
+  <button class="chip" data-go="houston16">Houston z15</button>
+  <button class="chip" data-go="sf">SF faults z9</button>
+  <button class="chip" data-go="us">US z4</button>
+  <button class="chip" data-go="world">World z1.5</button>
+  <button class="chip" id="gl">Globe view</button>
+  <span class="chip" id="zl">z</span>
+</div>
+<div id="side"><span class="lbl">Earth observation</span><div id="eo"></div></div>
+<div id="cred"></div>
+<script>
+const VIEWS = { houston: { longitude: -95.36, latitude: 29.76, zoom: 13 }, houston16: { longitude: -95.40, latitude: 29.765, zoom: 15 },
+  sf: { longitude: -122.2, latitude: 37.7, zoom: 9 }, us: { longitude: -97, latitude: 38, zoom: 4 }, world: { longitude: 0, latitude: 20, zoom: 1.5 } };
+let globe = false, vs = { ...VIEWS.us, pitch: 0, bearing: 0 };
+const base = () => new deck.TileLayer({ id: "base", data: "https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_ShadedRelief_Bathymetry/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg",
+  maxZoom: 8, tileSize: 256, opacity: 0.55, parameters: { depthWriteEnabled: false, depthCompare: "always" },
+  renderSubLayers: p => { const { west, south, east, north } = p.tile.bbox; return new deck.BitmapLayer(p, { data: null, image: p.data, bounds: [west, south, east, north],
+    _imageCoordinateSystem: globe ? deck.COORDINATE_SYSTEM.CARTESIAN : deck.COORDINATE_SYSTEM.DEFAULT }); } });
+const EO = window.EO = new EarthLayers({ onUpdate: () => redraw() });
+EO.bindPanel(document.getElementById("eo"));
+const dk = window.DK = new deck.Deck({ parent: document.getElementById("map"), views: new deck.MapView({ repeat: true }), initialViewState: vs, controller: true,
+  onViewStateChange: ({ viewState }) => { vs = viewState; redraw(); } });
+function redraw() {
+  dk.setProps({ layers: [base(), ...EO.layers({ globe, zoom: vs.zoom })] });
+  document.getElementById("zl").textContent = "z" + vs.zoom.toFixed(1);
+  document.getElementById("cred").textContent = EO.credits();
+  try { history.replaceState(null, "", "#eo=" + encodeURIComponent(JSON.stringify(EO.getState()))); } catch (e) {}
+}
+function go(k) { vs = { ...vs, ...VIEWS[k], transitionDuration: 0 }; dk.setProps({ initialViewState: vs }); redraw(); }
+document.querySelectorAll("[data-go]").forEach(b => b.onclick = () => go(b.dataset.go));
+document.getElementById("gl").onclick = () => {
+  globe = !globe; document.getElementById("gl").textContent = globe ? "Map view" : "Globe view";
+  dk.setProps({ views: globe ? new (deck.GlobeView || deck._GlobeView)() : new deck.MapView({ repeat: true }) }); redraw();
+};
+window.go = go; window.setGlobe = g => { if (g !== globe) document.getElementById("gl").click(); };
+const m = location.hash.match(/eo=([^&]+)/); if (m) try { EO.setState(JSON.parse(decodeURIComponent(m[1]))); } catch (e) {}
+redraw();
+</script>
+</body></html>
