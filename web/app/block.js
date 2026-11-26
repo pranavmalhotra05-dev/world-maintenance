@@ -236,6 +236,7 @@ export const DEFAULT_OPTIONS = {
   furniture: true,         // street furniture from records at exact positions (furniture.json, else streets.json signals)
   parcels: true,           // parcel rings from parcels.json (real boundary runs only; block-edge cuts not drawn)
   hoa: true,               // HOA / covenant areas from parcels.json
+  footpaths: true,         // footpaths: city sidewalk layers (footpaths.json) + OpenStreetMap footways (streets.json paths)
   trees: false,            // trees.json crowns (inventory / LiDAR tree IDs)
   thermal: false,          // Landsat land-surface-temperature drape (thermal/lst_grid*.json)
   thermalScene: 0,
@@ -380,6 +381,8 @@ export class BlockManager {
     if (role === "c311") return `311 · ${o.date || ""}\n${o.type || ""}\n${o.title || ""}`;
     if (role === "tree") return `${o.genus || "Tree (species not in inventory)"}\n${o.h ?? "?"} m tall · crown ~${((+o.r || 0) * 2).toFixed(0)} m wide`;
     if (role === "road") return `${roadName(o) || "Road"}${o.kind ? " · " + o.kind : ""}\n${o.source ? String(o.source) : "from streets.json"}`;
+    if (role === "walk") return `${o.kind ? o.kind[0].toUpperCase() + o.kind.slice(1) : "Footpath"}${o.street ? " · " + o.street : ""}${o.area != null ? " · " + o.area + " m²" : ""}
+${o.src || ""}`;
     if (role === "parcel") return `Parcel ${o.p?.id ?? ""}${o.p?.address ? "\n" + o.p.address : ""}`;
     return null;
   }
@@ -481,8 +484,8 @@ class Block {
     if (!tx.length) throw new Error("no laser points");
     this.P = decodePoints(tx, M.point_unit_m || 0.02);
     this.gz = this.groundGrid(); this.TZS = this.terrainSampler();
-    const [trees, infra, st, lst, lstW, fj, sim, pj] = await Promise.all([this.optJSON("trees.json"), this.optJSON("infra.json"), this.optLate("streets.json"), this.optLate("thermal/lst_grid.json"),
-      this.optLate("thermal/lst_grid_winter.json"), this.optLate("furniture.json"), this.optLate("street_imagery.json"), this.optLate("parcels.json")]);
+    const [trees, infra, st, lst, lstW, fj, sim, pj, fpj] = await Promise.all([this.optJSON("trees.json"), this.optJSON("infra.json"), this.optLate("streets.json"), this.optLate("thermal/lst_grid.json"),
+      this.optLate("thermal/lst_grid_winter.json"), this.optLate("furniture.json"), this.optLate("street_imagery.json"), this.optLate("parcels.json"), this.optLate("footpaths.json")]);
     if (this.ctrl.signal.aborted) throw new Error("aborted");
     this.T = arr(trees).filter((t) => isObj(t) && isFinite(+t.x) && isFinite(+t.y)); this.INF = infra; this.FURNJ = isObj(fj) ? fj : null;
     const safe = (f, name) => { try { return f(); } catch (e) { console.warn(`${this.slug} ${name} skipped:`, e.message); return null; } };
@@ -490,6 +493,7 @@ class Block {
     this.SIMG = arr(sim?.images).filter((i) => isObj(i) && isFinite(+i.x) && isFinite(+i.y)).map((i) => ({ ...i, x: +i.x, y: +i.y, heading_deg: num(+i.heading_deg), z: this.groundLocal(+i.x, +i.y) }));
     this.simgMeta = isObj(sim?.meta) ? sim.meta : null;
     this.STR = safe(() => this.prepStreets(st), "streets.json");
+    this.WALK = safe(() => this.prepWalks(fpj, st), "footpaths");
     this.LST = safe(() => this.parseLST(lst && lstW && !arr(lst.scenes).length ? { scenes: [lst, lstW], source: lst.source } : lst || lstW), "lst_grid.json");
     this.FURN = safe(() => this.prepFurniture(), "street furniture");
     this.state = "ready";
@@ -591,6 +595,16 @@ class Block {
     return { roads, sidewalks, drives, curbs, lines: lines.filter(keep), stops: marked ? stops : [], zebra: marked ? zebra : [], signals,
       markingsSource: marked ? String(typeof mk === "object" ? mk.name || JSON.stringify(mk) : mk) : "", attribution: String(st.meta?.attribution || ""), skipped,
       validated: num(st.meta?.validation?.house_overlap_m2) === 0 };
+  }
+  // footpaths: measured only. City sidewalk polygons/lines (footpaths.json, green licences) + OSM footways at their mapped lines.
+  prepWalks(fp, st) {
+    const ok = (p) => Array.isArray(p) && p.length >= 2 && isFinite(+p[0]) && isFinite(+p[1]), xy = (l) => arr(l).filter(ok).map((p) => [+p[0], +p[1]]);
+    const m = isObj(fp?.meta) ? fp.meta : {}, cityTxt = m.attribution ? String(m.attribution) : "";
+    const polys = arr(fp?.polys).filter(isObj).map((r) => ({ ring: xy(r.poly), kind: r.kind || "sidewalk", src: cityTxt, area: num(+r.area_m2), year: r.year })).filter((r) => r.ring.length >= 3);
+    const lines = arr(fp?.lines).filter(isObj).map((l) => ({ path: xy(l.path), kind: l.kind || "sidewalk", street: l.street, src: cityTxt, city: true })).filter((l) => l.path.length >= 2);
+    const osm = arr(st?.paths).filter(isObj).map((l) => ({ path: xy(l.path), kind: String(l.kind || "footway").replace(/^footway:/, "footway · "), src: "OpenStreetMap (ODbL), mapped line", city: false })).filter((l) => l.path.length >= 2);
+    if (!polys.length && !lines.length && !osm.length) return null;
+    return { polys, lines: [...lines, ...osm], cityAttribution: cityTxt, nOsm: osm.length };
   }
   prepFurniture() {
     const items = [], marks = [], lim = this.half + 5, fromFJ = arr(this.FURNJ?.items).length > 0;
@@ -935,6 +949,18 @@ class Block {
         getFillColor: (a) => A_(hoaCol(a.k, K), a.k === "plat" ? 26 : 42), pickable: true, blockRole: "hoa", parameters: { depthWriteEnabled: false }, updateTriggers: ut, extensions: [new dk.ClipExtension()], clipBounds: clipB }));
       ly.push(new dk.PathLayer({ ...base, id: id("hoa-line"), data: this.cache.hoaRuns, getPath: (d) => d.path, getColor: (d) => A_(hoaCol(d.a.k, K), 210), getWidth: (d) => (d.a.k === "plat" ? 1.5 : 2.2), widthUnits: "pixels", parameters: { depthWriteEnabled: false }, updateTriggers: ut }));
     }
+    // 2b. footpaths (draped on the LiDAR ground; measured outlines and mapped lines only, no guessed widths)
+    const WK = this.WALK;
+    if (WK && opt.footpaths) {
+      const wc = lift(K.accent, 0.55);
+      if (WK.polys.length) {
+        ly.push(new dk.PolygonLayer({ ...base, id: id("walk-area"), data: WK.polys, getPolygon: (w) => w.ring.map(([x, y]) => [x, y, gz(x, y) + 0.08]), filled: true, stroked: false,
+          getFillColor: (w) => A_(/cross/.test(w.kind) ? lift(K.accent, 0.2) : wc, 55), pickable: true, blockRole: "walk", parameters: { depthWriteEnabled: false }, updateTriggers: ut }));
+        ly.push(new dk.PathLayer({ ...base, id: id("walk-edge"), data: WK.polys, getPath: (w) => [...w.ring, w.ring[0]].map(([x, y]) => [x, y, gz(x, y) + 0.1]), getColor: A_(wc, 200), getWidth: 1.2, widthUnits: "pixels", parameters: { depthWriteEnabled: false }, updateTriggers: ut }));
+      }
+      if (WK.lines.length) ly.push(new dk.PathLayer({ ...base, id: id("walk-line"), data: WK.lines, getPath: (l) => l.path.map(([x, y]) => [x, y, gz(x, y) + 0.12]), getColor: (l) => A_(wc, l.city ? 230 : 150), getWidth: (l) => (l.city ? 2.4 : 1.6), widthUnits: "pixels",
+        pickable: true, blockRole: "walk", parameters: { depthWriteEnabled: false }, updateTriggers: ut }));
+    }
     // 3. furniture (records only)
     if (this.FURN && opt.furniture) {
       const F_ = this.FURN; if (!F_.built) this.buildFurnMesh();
@@ -1072,6 +1098,7 @@ class Block {
   }
   layerNotes() {
     const n = [], S = this.STR, F_ = this.FURN, opt = this.mgr.options;
+    if (this.WALK) n.push(`Footpaths: ${this.WALK.polys.length ? this.WALK.polys.length + " measured sidewalk/stair/crosswalk outlines" : ""}${this.WALK.lines.some((l) => l.city) ? " surveyed sidewalk lines" : ""}${this.WALK.cityAttribution ? " from " + esc(this.WALK.cityAttribution) : ""}${this.WALK.nOsm ? (this.WALK.cityAttribution ? "; " : "") + this.WALK.nOsm + " OpenStreetMap footways (ODbL)" : ""}`);
     if (S) n.push(S.validated ? `Road surface from streets.json (validated: 0 m² overlap with house footprints); ${S.markingsSource ? "lane markings from " + esc(S.markingsSource) : "no lane-marking dataset, so no markings drawn"}${S.attribution ? " · " + esc(S.attribution) : ""}` : "streets.json present but not validated against the footprints: not drawn");
     if (F_) n.push(`Street furniture at recorded positions only (${F_.items.length} items${F_.marks.length ? ", " + F_.marks.length + " stop/give-way control points" : ""}) from ${F_.fromFJ ? "furniture.json" : "streets.json"}${F_.signals.length ? " · signals shown as locations only (no live state data)" : ""}`);
     if (this.PAR?.parcels.length) n.push(`${this.PAR.parcels.length} parcel boundaries (block-edge cuts not drawn)`);

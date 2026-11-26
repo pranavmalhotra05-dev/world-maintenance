@@ -90,3 +90,10 @@ Pool ownership: usa/pool_owner.py. A pool belongs to the house whose parcel cont
 ALL Overture buildings (block + 80 m; outbuildings < 100 m2 count for their nearest main building). Result 2026-11-25:
 13 pools -> 9; Scottsdale 10022 N 77th St and Phoenix houses 2, 6, 7 had been given a neighbour's pool.
 No federal or state HOA boundary database exists (usa/research/hoa_boundaries.md); world cadastre audit in cadastre_world.md.
+
+## Footpaths (usa/footpaths.py -> footpaths.json, 2026-11-25)
+- washington-dc: Open Data DC Planimetrics_2023 layer 11 sidewalk / stair / crosswalk polygons, CC BY 4.0 (iteminfo read) - 11 outlines.
+- portland-or: Oregon Metro RLIS Sidewalks lines, ODbL 1.0 + DbCL (item f2bd3c2486de47b49186121da1f9c2d0 read) - 10 lines, width not recorded.
+- Minneapolis blocks keep their planimetric sidewalk strips in streets.json. Every block also shows OSM footways from streets.json (97 lines).
+- Not used: Franklin County OH Reference_Data Pavement (pavement edge lines, not footpaths), Anchorage (policy page 404), Seattle SDOT and
+  San Diego ROW (grey). Other blocks: 'no open sidewalk layer' - nothing guessed.
