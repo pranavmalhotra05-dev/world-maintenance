@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maintenance test</title>
+<script src="../usa/pack.js"></script>
+<script src="https://unpkg.com/deck.gl@9.1.14/dist.min.js"></script>
+<script src="../usa/theme.js"></script>
+<link rel="stylesheet" href="block-panel.css">
+<style>
+:root { color-scheme: dark; --void: #05070b; --glass: rgba(9,13,20,.88); --edge: rgba(120,190,255,.22); --ink: #e2ebf5; --dim: #8b9bb0; --cyan: #4fdcff; --amber: #ffb84d; }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; background: var(--void); color: var(--ink); font: 13px/1.45 "Segoe UI", sans-serif; }
+#map { position: fixed; inset: 0; }
+.box { position: fixed; z-index: 2; background: var(--glass); border: 1px solid var(--edge); border-radius: 6px; backdrop-filter: blur(8px); padding: 10px 12px; }
+#ctl { left: 12px; top: 12px; width: 300px; max-width: calc(100% - 24px); display: flex; flex-direction: column; gap: 8px; }
+#side { right: 12px; top: 12px; width: 390px; max-width: calc(100% - 24px); max-height: calc(100% - 24px); overflow: auto; }
+select, button { background: rgba(0,0,0,.4); color: var(--ink); border: 1px solid var(--edge); border-radius: 3px; padding: 4px 7px; font: 12px Consolas, monospace; cursor: pointer; }
+.row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+#status { font: 11px Consolas, monospace; color: var(--dim); white-space: pre-wrap; }
+h1 { margin: 0; font: 700 16px sans-serif; letter-spacing: .04em; }
+@media (max-width: 760px) { #side { top: auto; bottom: 12px; left: 12px; width: auto; max-height: 55%; } }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div class="box" id="ctl">
+  <h1>Maintenance test</h1>
+  <div class="row"><select id="sel" aria-label="Block"><option value="scottsdale-az">scottsdale-az</option><option value="boulder-co">boulder-co</option></select><button id="clr">Clear house</button></div>
+  <div id="status"></div>
+</div>
+<div class="box bm-panel" id="side"></div>
+<script src="poolsvc.js"></script>
+<script src="maint.js"></script>
+<script type="module">
+import { BlockManager } from "./block.js";
+const $ = (id) => document.getElementById(id);
+const q = new URLSearchParams(location.search), SLUG = q.get("block") || "scottsdale-az";
+$("sel").value = SLUG;
+let deckgl, view = { longitude: -98, latitude: 39, zoom: 4, pitch: 0, bearing: 0 }, panelKey = "", fixtureUsed = new Set();
+
+// ---- TEST FIXTURE ONLY: a maintenance.json-shaped object built from the block's real houses.json values.
+// Scores here are simple test formulas so the UI has something to rank; the real file comes from the build lane.
+function fixture(slug, houses) {
+  const r1 = (v) => (v == null ? null : Math.round(v * 10) / 10), cl = (v) => Math.max(0, Math.min(100, Math.round(v)));
+  const H = houses.map((h) => {
+    const T = {}, id = h.id;
+    const hail = h.hail_max_in, p95 = h.roof_dev?.p95_cm, pitch = h.roof_aspect?.main_pitch_deg;
+    if (hail != null || p95 != null) T.roof = { score: cl((hail || 0) * 60 + (p95 || 0) / 2), signals: [{ label: "Max hail", value: hail, unit: "in", source: "NOAA SPC" }, { label: "Roof deviation p95", value: p95, unit: "cm", source: "USGS 3DEP LiDAR" }, { label: "Main pitch", value: pitch, unit: "°", source: "USGS 3DEP LiDAR" }],
+      reasons: [hail != null ? `hail of ${hail} in within 150 km in the last two years` : null].filter(Boolean), next: hail >= 0.75 ? "hail inspection" : "visual check from the street" };
+    const tn = Array.isArray(h.trees_near) ? h.trees_near : [], over = tn.filter((t) => t.gap_m != null && t.gap_m < 0);
+    if (tn.length) { T.trees = { score: cl(over.length * 15 + tn.length * 4), signals: [{ label: "Crowns over roof", value: over.length, unit: "", source: "LiDAR trees" }, { label: "Trees near", value: tn.length, unit: "", source: "LiDAR trees" }, { label: "Tallest", value: r1(Math.max(...tn.map((t) => t.h || 0))), unit: "m", source: "LiDAR trees" }], reasons: over.length ? [`${over.length} crown(s) overhang the roof`] : [], next: over.length ? "trim back from roof" : null };
+      T.gutters = { score: cl(over.length * 20), signals: [{ label: "Crowns over roof", value: over.length, unit: "", source: "LiDAR trees" }, { label: "Eave", value: h.eave_m, unit: "m", source: "USGS 3DEP LiDAR" }], reasons: [], next: over.length ? "clean before winter" : null }; }
+    if (h.sun?.solar_kw != null) T.solar_clean = { score: cl(h.sun.solar_kw * 3), signals: [{ label: "Solar potential", value: h.sun.solar_kw, unit: "kW", source: "LiDAR roof planes" }, { label: "Shaded", value: h.sun.shaded_pct, unit: "%", source: "LiDAR sun model" }], reasons: [], next: null };
+    if (h.flood_zone) T.flood_water = { score: /^A|^V/.test(h.flood_zone) ? 70 : 12, signals: [{ label: "FEMA zone", value: h.flood_zone, unit: "", source: "FEMA NFHL" }], reasons: [], next: null };
+    if (h.facade_sun?.back?.sun_hours_yr != null) T.cooling = { score: cl(h.facade_sun.back.sun_hours_yr / 12), signals: [{ label: "Back facade sun", value: h.facade_sun.back.sun_hours_yr, unit: "h/yr", source: "sun model" }, { label: "Facing", value: h.facade_sun.back.compass, unit: "", source: "sun model" }], reasons: [], next: null };
+    if (h.pool?.present) T.pool = { score: cl((h.pool.confidence || 0) * 80), signals: [{ label: "Pool area", value: h.pool.area_m2, unit: "m²", source: "USDA NAIP" }, { label: "First seen", value: h.pool.first_seen_year, unit: "", source: "USDA NAIP" }], reasons: [], next: "weekly service" };
+    return { house_id: id, address: h.address ?? null, trades: T };
+  });
+  const top = (t) => H.filter((h) => h.trades[t]?.score != null).sort((a, b) => b.trades[t].score - a.trades[t].score).slice(0, 5).map((h) => h.house_id);
+  const trades = Maintenance.TRADES.map((t) => ({ ...t, blurb: "" }));
+  return { slug, built: "test fixture", version: 0, sources: [{ name: "Test fixture built from houses.json", licence: "—", url: "" }], trades, houses: H,
+    block: { trades: Object.fromEntries(["roof", "trees", "gutters", "solar_clean", "flood_water", "cooling", "pool"].map((t) => [t, { top: top(t), summary: `Fixture: ${top(t).length} houses with a ${t.replace(/_/g, " ")} signal.` }])), climate: {} } };
+}
+
+const mt = (window.mt = new Maintenance({ onUpdate: onMnt }));
+const bm = (window.bm = new BlockManager({ onUpdate, onSelectHouse: (s) => { mt.highlight(s?.slug, s?.houseId ?? null, "select"); panel(true); } }));
+bm.bindPanel($("side")); mt.bind($("side"));
+
+function onMnt(e) {
+  if (e.type === "focusHouse") { bm.select(e.slug, e.houseId); const t = bm.houseFlyTarget(e.slug, e.houseId); if (t) deckgl.setProps({ initialViewState: { ...view, ...t, transitionDuration: 1200, transitionInterpolator: new deck.FlyToInterpolator() } }); }
+  render(); if (e.type !== "highlight") { panel(true); status(); }
+}
+async function attach(slug) {
+  const B = bm.blocks.get(slug); if (!B || B.state !== "ready" || B._mnt) return; B._mnt = true;
+  mt.setHouses(slug, B.H);
+  const doc = await mt.load(slug, B.M);
+  if (!doc) { mt.setData(slug, fixture(slug, B.H)); fixtureUsed.add(slug); }
+  lift(); render();
+}
+function mLayers() {
+  const out = [];
+  for (const b of bm.list()) { if (b.state_ !== "ready") continue; const B = bm.blocks.get(b.slug), v = bm.verticalRef(b.slug);
+    out.push(...mt.layers({ slug: b.slug, coordinateOrigin: [B.lon0, B.lat0, v.zOffset], zBase: v.zBase, houses: B.H, zOf: (x, y) => B.groundLocal(x, y) })); }
+  return out;
+}
+function render() {
+  if (!deckgl) return;
+  const bz = (view.position?.[2] || 0) - 1;
+  const base = new deck.TileLayer({ id: "usgs", data: "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}", minZoom: 0, maxZoom: 16, tileSize: 256, updateTriggers: { renderSubLayers: bz },
+    renderSubLayers: (p) => { const { west, south, east, north } = p.tile.bbox; return new deck.BitmapLayer(p, { id: p.id + "-" + Math.round(bz), data: null, image: p.data, bounds: [[west, south, bz], [west, north, bz], [east, north, bz], [east, south, bz]], opacity: 0.5 }); } });
+  deckgl.setProps({ layers: [base, ...bm.layers(), ...mLayers()] });
+}
+function panel(force) {
+  const sel = bm.sel, f = bm.focus || bm.list().find((b) => b.state_ === "ready")?.slug;
+  const h = sel ? bm.panelHtml() + mt.houseHtml(sel.slug, sel.houseId) : (f ? mt.blockHtml(f) + bm.panelHtml() : bm.panelHtml());
+  if (force || h !== panelKey) { const st = $("side").scrollTop; $("side").innerHTML = h; panelKey = h; $("side").scrollTop = st; }
+}
+function status() { $("status").textContent = `zoom ${view.zoom.toFixed(2)} · trade ${mt.trade}\n` + bm.list().filter((b) => b.state_ !== "idle").map((b) => `${b.slug}: ${b.state_}${fixtureUsed.has(b.slug) ? " · FIXTURE (no maintenance.json)" : ""}`).join("\n"); }
+function lift() { const r = bm.list().find((b) => b.state_ === "ready"), g = bm.groundAt(view.longitude, view.latitude) ?? (r && bm.verticalRef(r.slug)?.zBase); if (g != null && Math.abs((view.position?.[2] || 0) - g) > 0.5) { view = { ...view, position: [0, 0, g] }; deckgl.setProps({ initialViewState: view }); } }
+function onUpdate(e) { if (!deckgl) return; if (e.type === "load") { lift(); attach(e.slug); } render(); if (e.type !== "frame") { panel(); status(); } }
+deckgl = window.deckgl = new deck.Deck({ parent: $("map"), views: new deck.MapView({ repeat: false }), controller: true, initialViewState: view,
+  onViewStateChange: ({ viewState }) => { view = viewState; bm.update({ ...viewState, width: innerWidth, height: innerHeight }); status(); },
+  onHover: (info) => { const o = info.object, L = info.layer; if (L?.props?.mntRole) mt.highlight(L.props.mntSlug, o.houseId, "hover"); else if (L?.props?.blockRole === "house") mt.highlight(L.props.blockSlug, bm.blocks.get(L.props.blockSlug)?.idOf(o), "hover"); else mt.highlight(null, null, "hover"); },
+  onClick: (info) => { if (mt.pick(info)) return; const r = bm.pick(info); if (!r && !info.object) bm.clear(); },
+  getTooltip: (info) => { const t = mt.tooltip(info) || bm.tooltip(info); return t ? { text: t, style: { background: "rgba(9,13,20,.92)", color: "#e2ebf5", font: "11.5px Consolas, monospace", maxWidth: "320px" } } : null; } });
+function go(slug) { const t = bm.flyTarget(slug); if (!t) return; view = { ...t }; deckgl.setProps({ initialViewState: view }); bm.update({ ...view, width: innerWidth, height: innerHeight }); }
+bm.ready.then(() => { render(); go(SLUG); status(); });
+$("sel").onchange = () => { history.replaceState(null, "", "?block=" + encodeURIComponent($("sel").value)); go($("sel").value); };
+$("clr").onclick = () => bm.clear();
+</script>
+</body>
+</html>

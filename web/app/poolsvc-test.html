@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pool service test</title>
+<script src="../usa/pack.js"></script>
+<script src="https://unpkg.com/deck.gl@9.1.14/dist.min.js"></script>
+<script src="../usa/theme.js"></script>
+<link rel="stylesheet" href="block-panel.css">
+<script src="poolsvc.js"></script>
+<style>
+:root { color-scheme: dark; --void: #05070b; --glass: rgba(9,13,20,.88); --edge: rgba(120,190,255,.22); --ink: #e2ebf5; --dim: #8b9bb0; --cyan: #4fdcff; }
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; background: var(--void); color: var(--ink); font: 13px/1.45 "Segoe UI", sans-serif; }
+#map { position: fixed; inset: 0; }
+.box { position: fixed; z-index: 2; background: var(--glass); border: 1px solid var(--edge); border-radius: 6px; backdrop-filter: blur(8px); padding: 10px 12px; }
+#ctl { left: 12px; top: 12px; width: 280px; max-width: calc(100% - 24px); display: flex; flex-direction: column; gap: 6px; }
+#side { right: 12px; top: 12px; width: 380px; max-width: calc(100% - 24px); max-height: calc(100% - 24px); overflow: auto; }
+#side:empty { display: none; }
+select, button { background: rgba(0,0,0,.4); color: var(--ink); border: 1px solid var(--edge); border-radius: 3px; padding: 4px 7px; font: 12px Consolas, monospace; cursor: pointer; }
+.row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+#status { font: 11px Consolas, monospace; color: var(--dim); white-space: pre-wrap; }
+h1 { margin: 0; font: 700 16px sans-serif; letter-spacing: .04em; }
+@media (max-width: 760px) { #side { top: auto; bottom: 12px; left: 12px; width: auto; max-height: 50%; } }
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div class="box" id="ctl">
+  <h1>Pool service lens</h1>
+  <div class="row"><label>Data <select id="mode"><option value="fetch">fetch pool_service.json / houses.json fallback</option><option value="fixture">inline fixture (no outlines)</option></select></label></div>
+  <div class="row"><label><input type="checkbox" id="on" checked> lens on</label><button id="live">NWS live</button><button id="blk">Block summary</button></div>
+  <div id="status"></div>
+</div>
+<div class="box bm-panel" id="side"></div>
+<script type="module">
+import { BlockManager } from "./block.js";
+const $ = (id) => document.getElementById(id), SLUG = "scottsdale-az";
+// Fixture in the pool_service.json schema. Every value is copied from web/usa/blocks/scottsdale-az/houses.json (pool, cleaning.pool)
+// and meta.json (pools, weather_triggers.county). Fields with no real value are null (rendered as "—"). No route: the lens computes one.
+// houses.json has no traced outline, so outline is null and the lens draws no pool shape for this fixture (text only). The
+// "fetch" mode reads the real pool_service.json (outlines traced from the LiDAR water gap) when it exists.
+const H = (year, date, state) => ({ year, date, state });
+const YRS = [[2010, "2010-06-08"], [2013, "2013-06-05"], [2015, "2015-06-01"], [2017, "2017-06-02"], [2019, "2019-06-14"], [2021, "2021-10-14"], [2023, "2023-09-15"]];
+const allClean = YRS.map(([y, d]) => H(y, d, "clean_blue"));
+const lead = { score: 28, reasons: ["dusty/windy area: 28 dust days, 13 high-wind days / yr", "high spend capacity (area income)"] };
+const base = { confidence: 0.98, first_seen_year: 2010, outline: null, state_now: "clean_blue", trees: null, sun: null, ground: null, visit: null, lead };
+const FIXTURE = {
+  slug: SLUG, built: null, version: null,
+  sources: [{ name: "USDA NAIP aerial imagery", licence: "public domain (USDA FSA)", url: "https://naip-usdaonline.hub.arcgis.com/" }],
+  block: { n_pools: 4, n_houses: 6, pools_within_100m: 50,
+    streets: [{ name: "North 77Th Street", pool_ids: ["0", "2", "3", "6"] }], route: null,
+    climate: { dust_days_yr: 27.91, high_wind_days_yr: 13.36, dust_then_rain_yr: 16.27, hail_days_yr: 3.64, pm25_dv: null, o3_dv: null, sun_kwh_m2_day: null, uv_note: null },
+    risks: null, market: null },
+  pools: [
+    { ...base, id: "0", house_id: "0", address: "10032 North 77Th Street", x: -39.2, y: 9.9, area_m2: 36.0,
+      history: YRS.map(([y, d], i) => H(y, d, i === 2 || i === 4 ? "turquoise" : "clean_blue")) },
+    { ...base, id: "2", house_id: "2", address: "10021 North 77Th Street", x: 34.4, y: -32.7, area_m2: 38.4, history: allClean },
+    { ...base, id: "3", house_id: "3", address: "10022 North 77Th Street", x: -45.8, y: -48.1, area_m2: 24.2, history: allClean },
+    { ...base, id: "6", house_id: "6", address: "10042 North 77Th Street", x: -46.4, y: 30.6, area_m2: 37.0, history: allClean },
+  ],
+};
+
+let deckgl, view = { longitude: -98, latitude: 39, zoom: 4, pitch: 0, bearing: 0 }, panelKey = "", showBlock = false;
+const ps = (window.ps = new PoolService({ onUpdate: onPs, baseUrl: "../usa/blocks/" }));
+const bm = (window.bm = new BlockManager({ onUpdate }));
+ps.bind($("side")); bm.bindPanel($("side"));
+const blk = () => { const B = bm.blocks.get(SLUG); return B && B.state === "ready" ? B : null; };
+let hoverHouse = null;
+const ctx = (B) => ({ slug: SLUG, coordinateOrigin: [B.lon0, B.lat0, bm._zOff(B)], zBase: B.zBase, zOf: (x, y) => B.groundLocal(x, y) });
+function poolLayers() {
+  const B = blk(); if (!B) return [];
+  const sel = bm.sel?.slug === SLUG ? bm.sel : null, out = ps.layers({ ...ctx(B), exceptHouseId: sel?.houseId });
+  // the selected house's pool glows with the house: same clock (selPrep t0) and colour (glowPal house) as block.js selectionLayers
+  if (sel) out.push(...ps.poolLayersForHouse(SLUG, sel.houseId, { ...ctx(B), glow: { t: (performance.now() - sel.X.t0) / 1000, color: sel.X.gp.house } }));
+  if (hoverHouse != null && hoverHouse !== sel?.houseId) out.push(...ps.poolLayersForHouse(SLUG, hoverHouse, { ...ctx(B), glow: false }));
+  return out;
+}
+function render() {
+  const bz = (view.position?.[2] || 0) - 1;
+  const tiles = new deck.TileLayer({ id: "usgs", data: "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}", minZoom: 0, maxZoom: 16, tileSize: 256,
+    updateTriggers: { renderSubLayers: bz }, renderSubLayers: (p) => { const { west, south, east, north } = p.tile.bbox; return new deck.BitmapLayer(p, { id: p.id + "-" + Math.round(bz), data: null, image: p.data, bounds: [[west, south, bz], [west, north, bz], [east, north, bz], [east, south, bz]], opacity: 0.6 }); } });
+  deckgl.setProps({ layers: [tiles, ...bm.layers(), ...poolLayers()] });
+}
+function panel() {
+  const sel = bm.sel && !showBlock ? bm.sel : null;
+  const h = sel ? ps.houseHtml(SLUG, sel.houseId) + bm.panelHtml() : ps.blockHtml(SLUG);
+  if (h !== panelKey) { $("side").innerHTML = h; panelKey = h; }
+  const M = ps.model(SLUG); $("status").textContent = `source: ${M ? M.src : "none"} · pools ${M ? M.pools.length : 0} · layers ${poolLayers().map((l) => l.id.split(":").pop()).join(",")}`;
+}
+function lift() { const B = blk(); if (!B) return; const g = bm.groundAt(view.longitude, view.latitude) ?? B.zBase; view = { ...view, position: [0, 0, g] }; deckgl.setProps({ initialViewState: view }); }
+function setup() {
+  const B = blk(); if (!B) return;
+  ps.unload(SLUG);
+  ps.setHouses(SLUG, B.RAW);
+  if ($("mode").value === "fixture") { ps._s(SLUG).meta = B.M; ps.setData(SLUG, FIXTURE); }
+  else ps.load(SLUG, B.M);
+}
+function onUpdate(e) { if (!deckgl) return; if (e.type === "load" && e.slug === SLUG) { lift(); setup(); } if (e.type === "select") showBlock = false; render(); if (e.type !== "frame") panel(); }
+function onPs(e) {
+  if (!deckgl) return;
+  if (e.type === "focusPool") { const B = blk(); if (B && e.x != null) { const [lon, lat] = B.toLngLat(e.x, e.y); view = { ...view, longitude: lon, latitude: lat, zoom: 20.3, pitch: 55, transitionDuration: 900, transitionInterpolator: new deck.FlyToInterpolator() }; deckgl.setProps({ initialViewState: view }); }
+    if (e.houseId != null) { showBlock = false; bm.select(e.slug, String(e.houseId)); } }
+  if (e.type === "selectHouse") { showBlock = false; bm.select(e.slug, String(e.houseId)); }
+  render(); panel();
+}
+deckgl = window.deckgl = new deck.Deck({ parent: $("map"), views: new deck.MapView({ repeat: false }), controller: true, initialViewState: view,
+  onViewStateChange: ({ viewState }) => { view = viewState; bm.update({ ...viewState, width: innerWidth, height: innerHeight }); },
+  onClick: (info) => { const r = bm.pick(info); if (!r && !info.object) { bm.clear(); } },   // pool shapes select their house via bm.pick
+  onHover: (info) => { const ly = info.layer, h = ly?.props?.blockRole === "house" && info.object ? String(info.object.id) : null; if (h !== hoverHouse) { hoverHouse = h; render(); } },
+  getTooltip: (info) => { const t = ps.tooltip(info) || bm.tooltip(info); return t ? { text: t, style: { background: "rgba(9,13,20,.92)", color: "#e2ebf5", font: "11.5px Consolas, monospace", maxWidth: "320px" } } : null; } });
+bm.ready.then(() => { const t = bm.flyTarget(SLUG); if (t) { view = { ...t, zoom: 19.2 }; deckgl.setProps({ initialViewState: view }); bm.update({ ...view, width: innerWidth, height: innerHeight }); } });
+$("mode").onchange = () => { setup(); render(); panel(); };
+$("on").onchange = () => ps.setEnabled($("on").checked);
+$("live").onclick = () => { const B = blk(); if (B) ps.live(SLUG, B.lat0, B.lon0); };
+$("blk").onclick = () => { showBlock = true; panel(); };
+</script>
+</body>
+</html>

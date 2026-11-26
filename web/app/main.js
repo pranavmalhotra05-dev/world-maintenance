@@ -37,7 +37,7 @@ let DAY = null, NIGHT = null, EARTH_IMG = null, texBusy = false, texAgain = fals
 let VS = { longitude: -98.35, latitude: 39.5, zoom: 1.5, pitch: 0, bearing: 0 };
 let VIEW = "globe", WALK = null, FLY = null, LIFT_Z = 0, LIFT_T = 0, SWITCH_AT = 0, dragging = false;
 let layersDirty = true, skyDirty = true, recolorDirty = false, layerKey = "";
-let EO = null, PT = null, earthDirty = 0;   // earthDirty: frames left to force a redraw after an overlay tile lands (deck does not repaint on its own here)   // Earth-observation overlays (earthlayers.js) and measured points (points.js)
+let EO = null, PT = null, MT = null, MT_SLUG = null, earthDirty = 0;   // earthDirty: frames left to force a redraw after an overlay tile lands (deck does not repaint on its own here)   // Earth-observation overlays (earthlayers.js) and measured points (points.js)
 let EPT = null, BL = null, HOUSE = null, MGR_STUB = { ept: true, block: true };
 let SECTION = "", catalogOpen = false;
 const GLOBE_VIEW = new deck._GlobeView({ id: "globe", resolution: 10 });
@@ -82,7 +82,7 @@ async function loadManagers() {
   try { if (typeof E === "function") { EPT = new E({ onUpdate: onMgrUpdate, zOffset: 0 }); MGR_STUB.ept = false; } } catch (e) { console.warn("EptManager", e); }
   try { if (typeof B === "function") { BL = new B({ onUpdate: onMgrUpdate, onSelectHouse, groundAt }); MGR_STUB.block = false; } } catch (e) { console.warn("BlockManager", e); }
   EPT = EPT || stubEpt(); BL = BL || stubBlocks();
-  initEarth();
+  initEarth(); initMaint();
   const modes = safe(() => EPT.colorModes, null) || [{ id: "elevation", label: "Elevation" }, { id: "classification", label: "Classification" }, { id: "intensity", label: "Intensity" }, { id: "rgb", label: "RGB (where flown)" }];
   $("eptColor").innerHTML = (Array.isArray(modes) ? modes : Object.keys(modes)).map(m => `<option value="${esc(m.id || m)}">${esc(m.label || m)}</option>`).join("");
   $("eptColor").onchange = e => { safe(() => EPT.setColorMode(e.target.value)); layersDirty = true; };
@@ -98,10 +98,44 @@ function initEarth() {
   if (!PT) $("ptPanel").innerHTML = `<div class="note">Points module not loaded.</div>`;
   if ((earthState("eo") || earthState("pt")) && $("secEarth")) $("secEarth").open = true;
 }
+// ---------- maintenance view (maint.js, with poolsvc.js for pools): per-house trade signals on built blocks
+function initMaint() {
+  if (!window.Maintenance) return;
+  try {
+    MT = new window.Maintenance({ baseUrl: "../usa/blocks/", onUpdate: e => {
+      layersDirty = true;
+      if (e && (e.type === "focusHouse" || e.type === "selectHouse" || e.type === "focusPool") && e.slug && (e.houseId ?? e.house_id) != null) {
+        const id = e.houseId ?? e.house_id; safe(() => BL.select(e.slug, id)); const t = safe(() => BL.houseFlyTarget(e.slug, id), null); if (t && typeof flyTo === "function") flyTo(t);
+      }
+      if (e && e.type !== "highlight") { if (HOUSE) showHouse(HOUSE.id, false); renderMaint(); }
+    } });
+    $("mntOn").onchange = ev => { safe(() => MT.setEnabled(ev.target.checked)); layersDirty = true; renderMaint(); };
+  } catch (err) { console.warn("Maintenance", err); MT = null; }
+}
+function mtBlock(slug) { const B = BL && BL.blocks && BL.blocks.get(slug); return B && B.state === "ready" ? B : null; }
+function renderMaint() {
+  const el = $("mntPanel"); if (!el) return;
+  const slug = BL && BL.focus && mtBlock(BL.focus) ? BL.focus : null;
+  if (!MT || !slug) { el.innerHTML = `<div class="note">Zoom into a built block (the pins) to see its maintenance signals.</div>`; MT_SLUG = null; return; }
+  const h = safe(() => MT.blockHtml(slug), ""); if (h === el._h && MT_SLUG === slug) return;
+  el._h = h; MT_SLUG = slug; el.innerHTML = h || `<div class="note">Loading maintenance signals…</div>`; safe(() => MT.bind(el));
+  if ($("secMaint") && !$("secMaint")._auto) { $("secMaint")._auto = true; $("secMaint").open = true; }
+}
+function mtLayers() {
+  if (!MT || !BL || !BL.blocks) return [];
+  const out = [];
+  for (const [slug, B] of BL.blocks) { if (B.state !== "ready") continue; const v = safe(() => BL.verticalRef(slug), null); if (!v) continue;
+    const ls = safe(() => MT.layers({ slug, coordinateOrigin: [B.lon0, B.lat0, v.zOffset || 0], zBase: v.zBase, houses: B.H, zOf: (x, y) => B.groundLocal(x, y) }), []);
+    for (const l of ls || []) if (l) out.push(l); }
+  return out;
+}
 function earthActive(m) { const s = m && safe(() => m.getState(), null); return !!(s && Array.isArray(s.on) && s.on.length); }
 let PENDING_HOUSE = null;
 function onMgrUpdate(evt) {
   layersDirty = true;
+  if (MT && evt && evt.type === "load" && evt.slug) { const B = mtBlock(evt.slug); if (B) { safe(() => MT.setHouses(evt.slug, B.RAW || B.H)); Promise.resolve(safe(() => MT.load(evt.slug, B.M))).then(() => { layersDirty = true; renderMaint(); if (HOUSE) showHouse(HOUSE.id, false); }); } }
+  if (MT && evt && evt.type === "unload" && evt.slug) { safe(() => MT.unload(evt.slug)); renderMaint(); }
+  if (MT && evt && (evt.type === "select" || evt.type === "index")) renderMaint();
   if (evt && evt.type === "frame") return;   // selection glow tick: layers only
   statsDirty = true;
   { const now = performance.now(); if (now - (onMgrUpdate.s || 0) > 400) { onMgrUpdate.s = now; renderStats(); } }
@@ -110,6 +144,7 @@ function onMgrUpdate(evt) {
   if (HOUSE) showHouse(HOUSE.id, false);
 }
 function onSelectHouse(sel) {
+  if (MT) safe(() => MT.highlight(sel && sel.slug, sel ? (sel.houseId ?? null) : null, "select"));
   if (!sel) { if (HOUSE) { HOUSE = null; renderDossier(); scheduleUrl(); } return; }
   HOUSE = { id: String(sel.houseId), slug: sel.slug }; showHouse(HOUSE.id, true); scheduleUrl(sel.slug);
 }
@@ -560,6 +595,7 @@ function buildLayers() {
   // LiDAR and built blocks (other lanes)
   if (!globe && EPT) for (const l of eptLayersDeduped()) if (l) L.push(l);
   if (!globe && BL) for (const l of safe(() => BL.layers(), []) || []) if (l) L.push(l);
+  if (!globe && VS.zoom >= Z_BLOCKS - 1) for (const l of mtLayers()) L.push(l);
   if (PT) for (const l of safe(() => PT.layers({ globe, zoom: z, modelMatrix: MMX }), []) || []) if (l) L.push(l);
   // block markers below street zoom
   if (BLOCKS.length && PINS_ON && z < 15.5 && VIEW !== "walk") {
@@ -577,6 +613,7 @@ function setHover(f) { if (f !== hovered) { hovered = f; layersDirty = true; } }
 function tooltip(info) {
   const id = info.layer && info.layer.id;
   if (!id) return null;
+  if (/^(mnt|pool):/.test(id) && MT && MT.tooltip) { const t = safe(() => MT.tooltip(info), null); if (t) return t; }
   if (id.startsWith("pt:") && PT && PT.tooltip) return safe(() => PT.tooltip(info), null);
   if (id.startsWith("eo:") && EO && EO.tooltip) return safe(() => EO.tooltip(info), null);
   if (id.startsWith("mt:") && info.index >= 0) { const t = MT_LOADED.get(id.slice(3)); return t && t.data ? metroTooltip(t, info.index) : null; }
@@ -603,6 +640,7 @@ function metricLine(r, m) {
   return "";
 }
 function onClick(info) {
+  if (MT && info && info.layer && /^(mnt|pool):/.test(info.layer.id) && safe(() => MT.pick(info), false)) return;
   if (BL && safe(() => BL.pick(info), false)) return;
   // a house under the cursor wins even when something else (points, a building dot) is on top
   if (BL && VIEW !== "globe" && VS.zoom >= Z_BLOCKS - 0.5) {
@@ -633,7 +671,8 @@ function renderDossier() {
 }
 let HOUSE_HTML = "";
 function showHouse(id, open) {
-  const html = BL ? safe(() => BL.panelHtml(id), "") : "";
+  let html = BL ? safe(() => BL.panelHtml(id), "") : "";
+  if (html && MT && HOUSE && HOUSE.slug) { const mh = safe(() => MT.houseHtml(HOUSE.slug, HOUSE.id), ""); if (mh) html += mh; }
   const card = $("card");
   if (!html && !open) return;
   if (html === HOUSE_HTML && !card.hidden && !open) return;
@@ -642,6 +681,7 @@ function showHouse(id, open) {
   card.innerHTML = `<button class="x" aria-label="Close" id="cardX"${html.includes("data-bm-close") ? " hidden" : ""}>×</button><div class="bm-panel" id="bmPanel">${html || `<div class="lbl">House ${esc(id)}</div><div class="caveat">Loading the block…</div>`}</div>${selected ? `<button class="badge" id="toCounty">◆ COUNTY DOSSIER</button>` : ""}`;
   card.hidden = false; if (!open) card.scrollTop = st;
   if (BL && BL.bindPanel) safe(() => BL.bindPanel($("bmPanel")));
+  if (MT) safe(() => MT.bind($("bmPanel")));
   $("cardX").onclick = () => { HOUSE = null; HOUSE_HTML = ""; card.hidden = true; safe(() => BL.clear && BL.clear()); scheduleUrl(); };
   const tc = $("toCounty"); if (tc) tc.onclick = () => { HOUSE = null; renderDossier(); scheduleUrl(); };
 }
@@ -863,6 +903,7 @@ function updateCredits() {
   if (MT_LOADED.size) c.push(esc(METROS.map(m => m.attribution).filter(Boolean)[0] || "© OpenStreetMap contributors, Overture Maps Foundation (ODbL)"));
   if (!globe && z >= Z_EPT) { const ec = EPT && EPT.credits ? safe(() => EPT.credits(), null) : null; c.push(ec ? esc(ec) : "LiDAR: USGS 3DEP (public domain)"); }
   if (!globe && z >= Z_BLOCKS - 1) { const bc = BL && BL.credits ? safe(() => BL.credits(), null) : null; if (bc) c.push(esc(bc)); }
+  if (MT && MT_SLUG) { const t = safe(() => MT.credits(), ""); if (t) c.push(esc(t)); }
   for (const m of [EO, PT]) if (m && m.credits && earthActive(m)) { const t = safe(() => m.credits(), ""); if (t) c.push(esc(t)); }
   $("credits").innerHTML = c.join(" · ") + ` · <button id="credCat">all sources &amp; licences</button>`;
   $("credCat").onclick = () => openCatalog(true);
