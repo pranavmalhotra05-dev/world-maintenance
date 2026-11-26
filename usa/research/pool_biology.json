@@ -1,0 +1,103 @@
+{
+  "lane": "pool-biology",
+  "date": "2026-11-26",
+  "legend": {"src": "number from cited source", "pond-proxy": "small pond / farm dam measured value applied to pools", "estimate": "own calculation, working given"},
+  "verdict": {
+    "gas_remote_sensing_single_pool": "impossible: worst-case pool CH4 ~9 g/h vs best airborne limit 5-10 kg/h (~1000x) and EMIT 1060 kg/h (~1e5x)",
+    "ground_sniffer": "marginal, only extreme anaerobic pool; leak-survey test floor 0.5 slpm ~20 g/h",
+    "optical": "works: NAIP 4-band separates clean/cloudy/green/covered/dark; cyanobacteria vs green algae needs 620 nm band at <=5 m (airborne hyperspectral)"
+  },
+  "organisms": [
+    {"group": "green algae", "taxa": ["Chlorella", "Chlamydomonas", "Scenedesmus"], "habitat": "pool", "trigger": "free chlorine <1 ppm, warm, sun, phosphate", "basis": "industry/general phycology"},
+    {"group": "mustard/yellow algae", "taxa": ["trade term, chlorine-tolerant yellow-green forms"], "habitat": "pool walls, shade", "basis": "industry, no peer-reviewed survey found"},
+    {"group": "black algae", "taxa": ["Oscillatoria", "Phormidium (cyanobacteria)"], "habitat": "plaster pits", "trigger": "low FC, rough surfaces; sheath shields from chlorine", "basis": "industry"},
+    {"group": "pink slime", "taxa": ["Methylobacterium"], "habitat": "biofilm, low-flow corners", "basis": "general microbiology"},
+    {"group": "biofilm bacteria", "taxa": ["Pseudomonas aeruginosa", "non-tuberculous Mycobacterium"], "habitat": "pools/hot tubs", "source": ["https://doi.org/10.1128/mra.00896-24", "https://europepmc.org/article/PMC/PMC13465383"], "note": "20 Shanghai pools: 24,035 species, 441 pathogenic"},
+    {"group": "Legionella", "taxa": ["L. pneumophila"], "habitat": "hot tubs 35-40 C, aerosol", "source": "https://www.cdc.gov/healthy-swimming/about/index.html"},
+    {"group": "Cryptosporidium", "taxa": ["C. parvum", "C. hominis"], "habitat": "pools", "note": "survives >7 days in properly chlorinated water", "source": "https://www.cdc.gov/healthy-swimming/safety/what-you-can-do-to-stay-healthy-in-swimming-pools.html"},
+    {"group": "Naegleria fowleri", "habitat": "warm unchlorinated water; rare pool case", "source": "https://europepmc.org/article/PMC/PMC12440956"},
+    {"group": "mosquito larvae", "taxa": ["Culex quinquefasciatus / pipiens complex", "Aedes"], "habitat": "green/neglected pools", "note": "17% of 42 visible pools green; 276% rise in human WNV, Kern 2007", "source": "https://europepmc.org/article/PMC/PMC2630753"},
+    {"group": "cyanobacteria HAB", "taxa": ["Microcystis", "Dolichospermum", "Planktothrix", "Aphanizomenon"], "habitat": "lakes, stormwater/ornamental ponds", "note": "Portishead Lake up to 5.6e6 cells/mL, microcystins up to ~18,069 ug/L", "source": "https://europepmc.org/article/PMC/PMC13709399"},
+    {"group": "diatoms", "taxa": ["Asterionella", "Fragilaria", "Aulacoseira"], "habitat": "lakes/ponds, cool spring", "basis": "general limnology"},
+    {"group": "macrophytes", "taxa": ["Lemna", "Elodea", "Typha"], "habitat": "ponds", "basis": "general limnology"},
+    {"group": "methanogens / sulfate reducers", "habitat": "anoxic pond sediment", "note": "source of CH4/H2S"},
+    {"group": "geosmin/2-MIB producers", "taxa": ["cyanobacteria", "Streptomyces"], "habitat": "ponds", "source": "https://europepmc.org/article/PMC/PMC5636946"}
+  ],
+  "conditions": {
+    "free_chlorine_ppm": [1, 4], "bromine_ppm": [3, 8], "pH": [7.2, 7.8],
+    "source": "https://www.cdc.gov/healthy-swimming/safety/what-you-can-do-to-stay-healthy-in-swimming-pools.html",
+    "time_to_green_days": {"value": [5, 14], "type": "estimate", "working": "chlorine depleted in hours (unstabilised, sun) to 1-3 d (with CYA); then 10-17 doublings at 1-2/day from 10-100 to 1e5-1e6 cells/mL"},
+    "mosquito_generation_days": {"value": [7, 10], "type": "estimate", "basis": "Culex at 25-30 C"}
+  },
+  "gases": [
+    {"state": "chlorinated", "gas": "CO2", "flux_g_m2_d": [5, 6], "type": "estimate", "working": "TA 100 mg/L CaCO3, pH 7.5 -> CO2aq 6.2 mg/L vs 0.6 eq; x k=1 m/d"},
+    {"state": "chlorinated", "gas": "CHCl3", "flux_mg_m2_d": [10, 100], "type": "estimate", "working": "10-100 ug/L x k 1 m/d"},
+    {"state": "chlorinated", "gas": "NCl3", "flux_mg_m2_d": [10, 100], "type": "estimate", "working": "0.01-0.1 mg/L x k; only indoor air measurements exist", "context_source": ["https://europepmc.org/article/PMC/PMC5896097", "https://doi.org/10.1080/15459624.2024.2327370"]},
+    {"state": "algae_green_day", "gas": "O2", "flux_g_m2_d": [3, 10], "type": "estimate", "working": "GPP 1-4 g C/m2/d x 2.67"},
+    {"state": "algae_green_night", "gas": "CO2", "flux_g_m2_d": [2, 8], "type": "estimate"},
+    {"state": "neglected/small pond", "gas": "CH4 diffusive", "flux_mg_m2_d": {"mean_fenced": 3.5, "mean_unfenced": 8.05, "range": [1, 164]}, "type": "pond-proxy", "source": "https://europepmc.org/article/PMC/PMC9327511", "note": "doubling DO 5->10 mg/L cut CH4 74%"},
+    {"state": "neglected/small pond", "gas": "CH4 total incl. ebullition", "flux_mg_m2_d": {"urban_mean": 129, "irrigation_mean": 84, "stock_mean": 168, "weir_mean": 730, "min": 1, "max": 5425}, "type": "pond-proxy", "source": "https://doi.org/10.5194/hess-22-5281-2018"},
+    {"state": "small pond", "gas": "CO2", "flux_g_m2_d": [-1.7, 14], "type": "pond-proxy", "source": "https://europepmc.org/article/PMC/PMC9327511"},
+    {"state": "very small ponds global", "gas": "CO2/CH4", "note": "8.6% of area, 15.1% of CO2, 40.6% of diffusive CH4", "type": "pond-proxy", "source": "https://doi.org/10.1038/ngeo2654"},
+    {"state": "anaerobic extreme (ceiling)", "gas": "H2S", "flux_mg_m2_d": 49, "raw": "0.57 ug/m2/s swine CAFO lagoon", "type": "proxy", "source": "https://europepmc.org/article/PMC/PMC3144569"},
+    {"state": "neglected", "gas": "N2O", "flux_mg_m2_d": [0.1, 1], "type": "estimate"},
+    {"state": "algae_green high pH", "gas": "NH3", "flux_mg_m2_d": [1, 50], "type": "estimate"},
+    {"state": "cyanobacteria/sediment", "gas": "geosmin/2-MIB", "note": "ng-ug scale, odour threshold ~10 ng/L in water", "type": "estimate"}
+  ],
+  "pool_emission_40m2": {
+    "CH4_diffusive_g_h": 0.013, "CH4_urban_pond_mean_g_h": 0.22, "CH4_worst_g_h": 9.0,
+    "H2S_ceiling_g_h": 0.08, "CHCl3_g_h": [0.02, 0.17], "CO2_offgas_g_h": 9,
+    "working": "flux x 40 m2 / 24 h"
+  },
+  "detection_limits": [
+    {"sensor": "EMIT", "pixel_m": 60, "CH4_limit_kg_h": 1060, "note": "90% POD at 3 m/s wind", "source": "https://europepmc.org/article/PMC/PMC11636213", "also": "https://doi.org/10.1126/sciadv.adh2391", "pool_detectable": false},
+    {"sensor": "AVIRIS-NG / GAO", "pixel_m": [1, 5], "CH4_limit_kg_h": [5, 10], "source": "https://europepmc.org/article/PMC/PMC9499563", "also": "https://doi.org/10.1038/s41586-019-1720-3", "pool_detectable": false},
+    {"sensor": "AVIRIS-3", "pixel_m": [1, 5], "CH4_limit_kg_h": [5, 10], "type": "estimate (same class as AVIRIS-NG)", "pool_detectable": false},
+    {"sensor": "Carbon Mapper Tanager", "pixel_m": 30, "CH4_limit_kg_h": 100, "type": "estimate (EU super-emitter threshold class)", "pool_detectable": false},
+    {"sensor": "TROPOMI / Sentinel-5P", "pixel_m": "5500x7000", "CH4_limit_kg_h": 25000, "source": "https://doi.org/10.1126/science.abj4351", "pool_detectable": false},
+    {"sensor": "GOSAT / MethaneSAT", "CH4_limit_kg_h": "area/regional; point hundreds kg/h", "type": "estimate", "pool_detectable": false},
+    {"sensor": "TEMPO", "note": "does not retrieve CH4 or H2S (NO2, HCHO, O3)", "pool_detectable": false},
+    {"sensor": "ground mobile CH4 sniffer", "CH4_limit_kg_h": 0.02, "note": "test leak 0.5 slpm = 0.334 g/min", "source": "https://europepmc.org/article/PMC/PMC12902981", "pool_detectable": "marginal, worst case only"},
+    {"sensor": "ground H2S sensor / nose", "note": "ceiling case ~2 ppb at 10 m downwind (Gaussian estimate, u=2 m/s, sigma 1-1.5 m)", "type": "estimate", "pool_detectable": "extreme case only"}
+  ],
+  "column_checks": {
+    "EMIT_dXCH4_ppb": 0.003, "AVIRIS_3m_ppm_m": 0.4, "type": "estimate",
+    "working": "Q=0.0025 g/s, u=3 m/s, residence = pixel/u, column air 3.45e5 mol/m2"
+  },
+  "optical_proxies": [
+    {"proxy": "chlorophyll-a", "bands_nm": [440, 675, 705], "instruments": ["Sentinel-2 B5 (20 m)", "OLCI", "AVIRIS", "EMIT"], "pool_scale": "airborne hyperspectral only"},
+    {"proxy": "phycocyanin", "bands_nm": [620], "instruments": ["OLCI Oa6 300 m", "EMIT 60 m", "AVIRIS 1-5 m"], "pool_scale": "AVIRIS only"},
+    {"proxy": "NIR/NDVI algae", "instruments": ["NAIP 0.6 m", "Sentinel-2 10 m"], "pool_scale": "yes (NAIP)"},
+    {"proxy": "NDWI", "instruments": ["NAIP"], "pool_scale": "yes", "source": "https://doi.org/10.3390/rs5073544", "note": "78-91% accuracy"},
+    {"proxy": "turbidity/brightness", "instruments": ["NAIP", "Sentinel-2"], "pool_scale": "yes"},
+    {"proxy": "CyAN CI", "instruments": ["Sentinel-3 OLCI 300 m"], "pool_scale": "no (lakes)", "source": "https://www.epa.gov/water-research/cyanobacteria-assessment-network-cyan"}
+  ],
+  "state_separability": {
+    "NAIP_4band": ["clean_blue", "turquoise_cloudy", "green_algae_or_cyano (not separable)", "covered_or_empty_or_debris", "dark"],
+    "hyperspectral": ["adds: cyanobacteria (620 nm trough) vs chlorophyte (675 + red-edge, no 620)", "leaf debris SWIR/cellulose", "CDOM/tannin dark water"]
+  },
+  "published_pool_remote_sensing": [
+    {"ref": "Reisen et al. 2008 EID 14:1747", "url": "https://europepmc.org/article/PMC/PMC2630753", "finding": "aerial survey: 17% of 42 pools green; found unknown problem pools", "licence": "US Gov public domain"},
+    {"ref": "McFeeters 2013 Remote Sens 5:3544", "url": "https://doi.org/10.3390/rs5073544", "finding": "NDWI+parcels pool detection 78-91%", "licence": "CC BY 3.0"},
+    {"ref": "PLOS ONE 2021 pools/water tanks UAV deep learning dengue", "url": "https://europepmc.org/article/PMC/PMC8659416"},
+    {"ref": "MMWR 2023 Maricopa WNV 2021", "url": "https://doi.org/10.15585/mmwr.mm7217a1"}
+  ],
+  "datasets": [
+    {"name": "NAIP 4-band", "verdict": "GREEN", "licence": "USDA public domain"},
+    {"name": "EPA CyAN", "verdict": "GREEN", "licence": "US federal public domain", "access": "https://www.epa.gov/water-research/cyanobacteria-assessment-network-cyan ; NASA OceanColor"},
+    {"name": "EPA National Lakes Assessment", "verdict": "GREEN", "access": "https://www.epa.gov/national-aquatic-resource-surveys/nla"},
+    {"name": "Water Quality Portal", "verdict": "GREEN (USGS/EPA records) / GREY (other contributors)", "access": "https://www.waterqualitydata.us"},
+    {"name": "Sentinel-2 / Sentinel-3", "verdict": "GREEN", "licence": "Copernicus free full open incl. commercial"},
+    {"name": "EMIT", "verdict": "GREEN", "access": "NASA LP DAAC (free Earthdata login)"},
+    {"name": "AVIRIS-NG / AVIRIS-3", "verdict": "GREEN", "access": "https://avirisng.jpl.nasa.gov ; ORNL DAAC", "note": "sparse coverage"},
+    {"name": "Montgomery County MD Standing Water violations", "verdict": "GREEN", "licence": "Socrata tag Public Domain", "access": "https://data.montgomerycountymd.gov/resource/mx9q-5uj7.json", "note": "address-level, lat/lon often 0, not pool-specific"},
+    {"name": "Bronx 311 Standing Water complaints", "verdict": "GREEN", "licence": "Socrata tag Public Domain", "access": "bronx.lehman.cuny.edu dataset ma23-mzpm"},
+    {"name": "Dallas 311 code violations", "verdict": "GREY", "licence": "no licence field"},
+    {"name": "State HAB report maps", "verdict": "GREY", "note": "per-state terms"},
+    {"name": "County vector-control green-pool data", "verdict": "GREY/RED", "note": "mostly unpublished"},
+    {"name": "OpenStreetMap leisure=swimming_pool", "verdict": "GREEN", "licence": "ODbL"},
+    {"name": "Kaggle labelled pool datasets", "verdict": "GREY/RED", "note": "mixed or NC licences"},
+    {"name": "PlanetScope", "verdict": "RED", "licence": "commercial"},
+    {"name": "Carbon Mapper / Tanager data", "verdict": "GREY", "note": "terms not verified; unneeded for pools"}
+  ]
+}
