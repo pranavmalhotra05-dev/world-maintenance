@@ -268,7 +268,8 @@
       // hover / selection highlight
       const hl = [];
       for (const k of ["select", "hover"]) { const v = this.hi[k]; if (!v || v.slug !== slug) continue; const g = s._geo.find((q) => q.id === v.houseId); if (!g) continue; const c = k === "hover" ? HI.hover : selCol();
-        hl.push({ houseId: g.id, c, path: g.path, dots: g.dots, fill: g.fill, kind: "house", hl: k }); const p = poolGeo(g.id); if (p) hl.push({ houseId: g.id, c, path: p.path, dots: p.dots, kind: "pool", hl: k }); }
+        const p = poolGeo(g.id);   // the house and its lot are lit by the block viewer's own selection; here only its pool joins in
+         if (p) hl.push({ houseId: g.id, c, path: p.path, dots: p.dots, fill: p.path, kind: "pool", hl: k }); }
       const ut = { getColor: tr + "|" + (globalThis.Themes?.current?.().id || ""), getFillColor: tr + "|" + (globalThis.Themes?.current?.().id || "") };
       const stack = (data, tag, wide) => {
         if (!data.length) return;
@@ -280,7 +281,7 @@
         ly.push(new dk.ScatterplotLayer({ ...base, id: id(tag + "-dots"), data: data.flatMap((d) => d.dots.map((pos) => ({ pos, c: d.c }))), getPosition: (d) => d.pos, getRadius: 1.2, radiusUnits: "pixels", billboard: true,
           getFillColor: (d) => [...mix(d.c, [255, 255, 255], 0.55), 220], updateTriggers: ut }));
       };
-      stack(items, "score", false);
+      // no score colouring on the map (owner decision 2026-11-25): only official property lots + the selected house/pool highlight
       stack(hl, "hl", true);
       // pool tab: PoolService draws its own lens on top
       if (tr === "pool" && this.pool?.layers) { try { ly.push(...(this.pool.layers({ slug, coordinateOrigin: O, zBase, zOf }) || [])); } catch (e) { console.warn("Maintenance pool layers", e); } }

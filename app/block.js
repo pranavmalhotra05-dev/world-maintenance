@@ -819,8 +819,8 @@ class Block {
     };
     // the property = the whole lot (building, yard, drive, parking), shaded on the ground; only from real parcel lines
     if (X_.lot) out.push(new dk.PolygonLayer({ ...base, id: id("sellot"), data: [X_.lot], getPolygon: (r) => r, filled: true, stroked: false,
-      getFillColor: A_(gp.parcel, Math.round(34 + 16 * pulse)), parameters: { depthWriteEnabled: false }, updateTriggers: { getFillColor: Math.round(pulse * 20) } }));
-    shimmer("selparcel", X_.parcel, gp.parcel, 2);
+      getFillColor: A_(gp.house, Math.round(34 + 16 * pulse)), parameters: { depthWriteEnabled: false }, updateTriggers: { getFillColor: Math.round(pulse * 20) } }));
+    shimmer("selparcel", X_.parcel, gp.house, 2.2);
     // pin label: only this house's own value (never a neighbourhood median)
     const h = X_.h, g0 = Math.min(...h.ring.map(([x, y]) => this.gz(x, y))), top = Math.max(g0 + (num(h.height_m) ?? 6), X_.zTop), [cx, cy] = centroid(h.ring), K = themeColors();
     out.push(new dk.LineLayer({ ...base, id: id("pinline"), data: [0], getSourcePosition: [cx, cy, top + 0.5], getTargetPosition: [cx, cy, top + 9], getColor: A_(K.pin, 230), getWidth: 2 }));
