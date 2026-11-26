@@ -10,6 +10,12 @@
               "stations": [[id, lon, lat, ve, vn, vu, "YYYY-MM-DD"], ...] }   ve/vn/vu in mm/yr
      icesat2 ICESat-2 ATL08 ground and canopy heights. Static JSON only (opts.icesat2Url).
             { "points": [[lon, lat, h_te_m, h_canopy_m|null, "YYYY-MM-DD", track, "gt1l"], ...] }
+     insar  NASA/JPL OPERA DISP-S1 radar line-of-sight displacement, real 30 m pixels around each block
+            (static JSON opts.insarUrl, built by usa/build_insar.py). Rate = least-squares slope, computed.
+     emit   NASA EMIT methane / CO2 plume outlines exactly as the L2B plume product draws them
+            (static JSON opts.emitUrl, built by usa/build_emit.py).
+     gedi   NASA GEDI 25 m laser footprints (V003 L2A/L2B/L4A): ground height, canopy height RH98, cover, biomass
+            (static JSON opts.gediUrl, built by usa/build_gedi.py).
    Each point is drawn only where the data places it. z = 0 unless the data gives a height. */
 (function () {
   "use strict";
@@ -34,7 +40,26 @@
       licUrl: "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
       credit: "ICESat-2 ATL08: NASA / NSIDC",
     },
+    insar: {
+      name: "Radar ground motion (InSAR)", unit: "mm/yr line of sight",
+      by: "NASA/JPL OPERA DISP-S1 via ASF DAAC", lic: "CC0 (NASA open data; contains modified Copernicus Sentinel data)",
+      licUrl: "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+      credit: "OPERA DISP-S1: NASA/JPL/OPERA, ASF DAAC; contains modified Copernicus Sentinel data",
+    },
+    emit: {
+      name: "Methane / CO₂ plumes (EMIT)", unit: "plume outline",
+      by: "NASA EMIT L2B CH4PLM / CO2PLM (JPL, LP DAAC)", lic: "CC0 (NASA open data)",
+      licUrl: "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+      credit: "EMIT plumes: NASA JPL / LP DAAC",
+    },
+    gedi: {
+      name: "GEDI space laser (tree height)", unit: "m canopy height (RH98)",
+      by: "NASA GEDI V003 (UMD / LP DAAC / ORNL DAAC) via gediDB (GFZ)", lic: "CC0 (NASA open data)",
+      licUrl: "https://www.earthdata.nasa.gov/engage/open-data-services-software-policies/data-use-guidance",
+      credit: "GEDI V003: NASA / UMD, via gediDB (GFZ Potsdam)",
+    },
   };
+  const STATIC = ["gnss", "icesat2", "insar", "emit", "gedi"];
 
   // colour ramps: stops [t, [r,g,b]]
   const RAMP_DEPTH = [[0, [90, 230, 255]], [0.15, [80, 200, 140]], [0.35, [240, 220, 80]], [0.6, [255, 140, 50]], [1, [230, 40, 90]]];
@@ -50,6 +75,9 @@
   }
   const css = (stops) => "linear-gradient(90deg," + stops.map(([t, c]) => `rgb(${c}) ${t * 100}%`).join(",") + ")";
   const wellT = (ft) => Math.sqrt(Math.max(0, ft) / 600);            // 0..600 ft, sqrt stretch
+  const RAMP_TREE = [[0, [70, 60, 40]], [0.15, [150, 140, 70]], [0.4, [90, 200, 90]], [1, [20, 255, 170]]];
+  const insarT = (r) => 0.5 + Math.max(-1, Math.min(1, r / 5)) / 2;    // -5..+5 mm/yr LOS
+  const GAS = { CH4: [255, 176, 60], CO2: [190, 140, 255] };
   const gnssT = (vu) => 0.5 + Math.max(-1, Math.min(1, vu / 10)) / 2; // -10..+10 mm/yr
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
@@ -74,6 +102,7 @@
       this.onUpdate = opts.onUpdate || (() => {});
       this.gnssUrl = opts.gnssUrl || null;
       this.icesat2Url = opts.icesat2Url || null;
+      this.urls = { gnss: this.gnssUrl, icesat2: this.icesat2Url, insar: opts.insarUrl || null, emit: opts.emitUrl || null, gedi: opts.gediUrl || null };
       this.on = new Set();
       this.since = 0;                  // year filter for wells (0 = all years)
       this.view = null;
@@ -83,7 +112,7 @@
       this.panel = null;
       this._ver = 0; this._layerCache = null;
     }
-    available(k) { return k === "wells" || (k === "gnss" && !!this.gnssUrl) || (k === "icesat2" && !!this.icesat2Url); }
+    available(k) { return k === "wells" || !!this.urls[k]; }
 
     // ---------- state ----------
     getState() { return { on: [...this.on], since: this.since }; }
@@ -124,7 +153,7 @@
       const active = () => [...this.tiles.values()].filter((t) => t.state === "loading").length;
       const pump = () => { while (queue.length && active() < CONC) this._fetchWellTile(queue.shift()).finally(pump); };
       pump();
-      for (const k of ["gnss", "icesat2"]) if (this.on.has(k) && !this.statics[k]) this._fetchStatic(k);
+      for (const k of STATIC) if (this.on.has(k) && !this.statics[k]) this._fetchStatic(k);
       this._renderPanel();
     }
     async _fetchWellTile(key) {
@@ -163,11 +192,23 @@
     async _fetchStatic(k) {
       const s = this.statics[k] = { state: "loading", data: [] };
       try {
-        const r = await fetch(k === "gnss" ? this.gnssUrl : this.icesat2Url);
+        const r = await fetch(this.urls[k]);
         if (!r.ok) throw new Error("HTTP " + r.status);
         const j = await r.json();
         if (k === "gnss") s.data = (j.stations || []).map(([id, lon, lat, ve, vn, vu, date]) =>
           ({ src: "gnss", id, lon, lat, ve, vn, vu, time: date || "", frame: j.frame || "", by: j.source || "" }));
+        else if (k === "insar") for (const [slug, pts] of Object.entries(j.blocks || {})) for (const p of pts) {
+          const fr = (j.frames || {})[p[2]] || {};
+          s.data.push({ src: "insar", slug, lon: p[0], lat: p[1], frame: fr.frame || p[2], dir: fr.flightDirection || "",
+            ref: fr.reference || "", rate: p[5], n: p[6], time: p[8], t0: p[7], dates: p[9], mm: p[10], masked: p[11] || [] });
+        }
+        else if (k === "emit") for (const [slug, b] of Object.entries(j.blocks || {})) for (const q of b.plumes || []) {
+          if (!q.poly || !q.poly.length) continue;
+          s.data.push({ src: "emit", slug, gas: q.gas, id: q.id, rings: q.poly, time: q.t || "", km: q.distKm,
+            lon: q.poly[0][0][0], lat: q.poly[0][0][1] });
+        }
+        else if (k === "gedi") s.data = (j.points || []).map(([lon, lat, h, rh98, rh100, cover, pai, agbd, date, beam, shot]) =>
+          ({ src: "gedi", lon, lat, h, rh98, rh100, cover, pai, agbd, time: date || "", beam, shot }));
         else s.data = (j.points || []).map(([lon, lat, h, hc, date, track, beam]) =>
           ({ src: "icesat2", lon, lat, h, hc: hc != null && hc < 1e30 ? hc : null, time: date || "", track, beam }));
         s.state = "ok";
@@ -229,6 +270,24 @@
           getPosition: (d) => [d.lon, d.lat, globe ? 0 : d.h], getRadius: 1.4,
           getFillColor: (d) => [...ramp(RAMP_H, (d.h - lo) / (hi - lo || 1)), 230] }));
       }
+      if (this.on.has("emit") && this.statics.emit && this.statics.emit.state === "ok") {
+        L.push(new D.PolygonLayer({ ...mm, id: "pt:emit", data: this.statics.emit.data, pickable: true, stroked: true, filled: true,
+          parameters: { depthTest: false }, lineWidthUnits: "pixels", getLineWidth: 1.4,
+          getPolygon: (d) => d.rings, getFillColor: (d) => [...(GAS[d.gas] || GAS.CH4), 40], getLineColor: (d) => [...(GAS[d.gas] || GAS.CH4), 230] }));
+      }
+      if (this.on.has("gedi") && this.statics.gedi && this.statics.gedi.state === "ok") {
+        L.push(new D.ScatterplotLayer({ ...base, id: "pt:gedi", data: this.statics.gedi.data,
+          getPosition: (d) => [d.lon, d.lat, globe ? 0 : d.h], getRadius: z >= 14 ? 3 : 1.6,
+          getFillColor: (d) => d.rh98 == null ? [140, 140, 140, 160] : [...ramp(RAMP_TREE, Math.min(1, Math.max(0, d.rh98) / 35)), 230],
+          updateTriggers: { getRadius: z >= 14 } }));
+      }
+      if (this.on.has("insar") && this.statics.insar && this.statics.insar.state === "ok") {
+        L.push(new D.ScatterplotLayer({ ...base, id: "pt:insar", data: this.statics.insar.data, stroked: true, lineWidthUnits: "pixels",
+          getLineWidth: 0.8, getLineColor: (d) => d.dir === "DESCENDING" ? [255, 255, 255, 160] : [0, 0, 0, 180],
+          getPosition: (d) => [d.lon, d.lat, 0], getRadius: z >= 14 ? 6 : 4,
+          getFillColor: (d) => d.rate == null ? [120, 120, 120, 200] : [...ramp(RAMP_DIV, insarT(d.rate)), 240],
+          updateTriggers: { getRadius: z >= 14 } }));
+      }
       this._layerCache = { k: ck, mm: modelMatrix, L };
       return L;
     }
@@ -246,6 +305,23 @@
         `<b>${d.vu >= 0 ? "+" : ""}${esc(d.vu.toFixed(2))} mm/yr</b> vertical (${d.vu < 0 ? "sinking" : "rising"})` +
         `<br>E ${esc(d.ve.toFixed(2))} · N ${esc(d.vn.toFixed(2))} mm/yr${d.frame ? " (" + esc(d.frame) + ")" : ""}` +
         `<br><span class="s">station ${esc(d.id)}${date ? " · to " + date : ""}</span>`;
+      else if (d.src === "insar") {
+        const ok = d.mm.filter((_, i) => !d.masked.includes(i));
+        body = `<b>${d.rate == null ? "no rate" : (d.rate >= 0 ? "+" : "") + esc(d.rate.toFixed(1)) + " mm/yr"}</b> along the radar line of sight` +
+          (d.rate == null ? "" : Math.abs(d.rate) < 1 ? " (about stable)" : d.rate < 0 ? " (away from the satellite, e.g. sinking)" : " (toward the satellite, e.g. rising)") +
+          `<br>${esc(d.n)} measurements ${esc(d.t0)} → ${esc(d.time)}${d.masked.length ? " · " + d.masked.length + " masked by the product" : ""}` +
+          (ok.length ? `<br>range ${esc(Math.min(...ok).toFixed(1))} to ${esc(Math.max(...ok).toFixed(1))} mm vs ${esc(String(d.ref).slice(0, 10))}` : "") +
+          `<br><span class="s">30 m pixel · frame ${esc(d.frame)} ${esc(d.dir.toLowerCase())} · rate is a straight-line fit (computed here)</span>`;
+      }
+      else if (d.src === "emit") body =
+        `<b>${d.gas === "CO2" ? "CO₂" : "Methane"} plume</b> seen by EMIT ${date}` +
+        `<br>outline as drawn by the product · ${esc(d.km)} km from the block` +
+        `<br><span class="s">${esc(d.id)}</span>`;
+      else if (d.src === "gedi") body =
+        `<b>${d.rh98 == null ? "no canopy height" : esc(d.rh98.toFixed(1)) + " m"}</b> tallest return above ground (RH98)` +
+        `<br>ground ${esc(d.h.toFixed(2))} m NAVD88${d.cover != null ? " · canopy cover " + esc(Math.round(d.cover * 100)) + "%" : ""}` +
+        (d.agbd != null ? ` · biomass ${esc(d.agbd.toFixed(0))} Mg/ha` : "") +
+        `<br>${date} · 25 m footprint · beam ${esc(d.beam)}<br><span class="s">shot ${esc(d.shot)}</span>`;
       else body =
         `<b>${esc(d.h.toFixed(2))} m</b> ground height${d.hc != null ? ` · canopy ${esc(d.hc.toFixed(2))} m` : ""}` +
         `<br>${date} · track ${esc(d.track)} ${esc(d.beam)}`;
@@ -276,7 +352,7 @@
           parts.push(`wells: ${ld ? "loading " + ld + " tiles · " : ""}${n} points${er ? " · " + er + " tiles failed" : ""}`);
         }
       }
-      for (const k of ["gnss", "icesat2"]) if (this.on.has(k)) {
+      for (const k of STATIC) if (this.on.has(k)) {
         const s = this.statics[k];
         parts.push(`${k}: ` + (!s || s.state === "loading" ? "loading" : s.state === "err" ? "file not available (" + s.err + ")"
           : s.data.filter((p) => this._inView(p)).length + " points in view"));
@@ -303,13 +379,18 @@
       const leg = [];
       if (this.on.has("wells")) leg.push(["Depth to water, ft below land", RAMP_DEPTH, ["0", "150", "600+"]]);
       if (this.on.has("gnss")) leg.push(["Vertical velocity, mm/yr (line = horizontal)", RAMP_DIV, ["−10 sinking", "0", "+10 rising"]]);
+      if (this.on.has("insar")) leg.push(["Radar ground motion, mm/yr line of sight (white ring = descending pass)", RAMP_DIV, ["−5 away", "0", "+5 toward"]]);
+      if (this.on.has("gedi")) leg.push(["GEDI canopy height RH98, m (grey = no height)", RAMP_TREE, ["0", "", "35+"]]);
+      if (this.on.has("emit")) leg.push(["Plume outlines: amber methane, violet CO₂", [[0, GAS.CH4], [0.49, GAS.CH4], [0.51, GAS.CO2], [1, GAS.CO2]], ["CH₄", "", "CO₂"]]);
       if (this.on.has("icesat2")) { const r = this._hRange; leg.push(["Ground height, m", RAMP_H, r ? [r[0].toFixed(0), "", r[1].toFixed(0)] : ["low", "", "high"]]); }
       el.querySelector(".leg").innerHTML = leg.map(([t, s, ax]) =>
         `<div class="lbl">${esc(t)}</div><div class="bar" style="background:${css(s)}"></div>` +
         `<div class="ax">${ax.map((a) => `<span>${esc(a)}</span>`).join("")}</div>`).join("");
       el.querySelector(".note").innerHTML = this.on.size
         ? [...this.on].map((k) => `${esc(SRC[k].by)}: <a href="${SRC[k].licUrl}" target="_blank" rel="noopener">${esc(SRC[k].lic)}</a>`).join("<br>") +
-          (this.on.has("wells") ? "<br>Latest manual reading per well; dates vary, see tooltip." : "")
+          (this.on.has("wells") ? "<br>Latest manual reading per well; dates vary, see tooltip." : "") +
+          (this.on.has("insar") ? "<br>InSAR: 3×3 real 30 m pixels per 3D block; line of sight, not purely vertical." : "") +
+          (this.on.has("emit") ? "<br>EMIT: plumes within ~30 km of a 3D block." : "")
         : "Real located measurements only. Pick a source.";
       const st = el.querySelector(".pt-st"); st.textContent = this._status(); st.style.whiteSpace = "pre-line";
     }

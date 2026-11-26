@@ -93,7 +93,7 @@ function earthState(key) { try { const v = QS.get(key); return v ? JSON.parse(v)
 function initEarth() {
   const onUpdate = () => { layersDirty = true; earthDirty = 2; updateCredits(); scheduleUrl(); };
   try { if (window.EarthLayers) { EO = new window.EarthLayers({ onUpdate }); const st = earthState("eo"); if (st) safe(() => EO.setState(st)); safe(() => EO.bindPanel($("eoPanel"))); } } catch (e) { console.warn("EarthLayers", e); EO = null; }
-  try { if (window.EarthPoints) { PT = new window.EarthPoints({ onUpdate, gnssUrl: "data/gnss.json", icesat2Url: "data/icesat2.json" }); const st = earthState("pt"); if (st) safe(() => PT.setState(st)); safe(() => PT.bindPanel($("ptPanel"))); } } catch (e) { console.warn("EarthPoints", e); PT = null; }
+  try { if (window.EarthPoints) { PT = new window.EarthPoints({ onUpdate, gnssUrl: "data/gnss.json", icesat2Url: "data/icesat2.json", insarUrl: "data/insar.json", emitUrl: "data/emit.json", gediUrl: "data/gedi.json" }); const st = earthState("pt"); if (st) safe(() => PT.setState(st)); safe(() => PT.bindPanel($("ptPanel"))); } } catch (e) { console.warn("EarthPoints", e); PT = null; }
   if (!EO) $("eoPanel").innerHTML = `<div class="note">Overlays module not loaded.</div>`;
   if (!PT) $("ptPanel").innerHTML = `<div class="note">Points module not loaded.</div>`;
   if ((earthState("eo") || earthState("pt")) && $("secEarth")) $("secEarth").open = true;
