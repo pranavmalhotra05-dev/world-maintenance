@@ -125,7 +125,7 @@ function mtLayers() {
   if (!MT || !BL || !BL.blocks) return [];
   const out = [];
   for (const [slug, B] of BL.blocks) { if (B.state !== "ready") continue; const v = safe(() => BL.verticalRef(slug), null); if (!v) continue;
-    const ls = safe(() => MT.layers({ slug, coordinateOrigin: [B.lon0, B.lat0, v.zOffset || 0], zBase: v.zBase, houses: B.H, zOf: (x, y) => B.groundLocal(x, y) }), []);
+    const ls = safe(() => MT.layers({ slug, coordinateOrigin: [B.lon0, B.lat0, v.zOffset || 0], zBase: v.zBase, houses: B.H, zOf: (x, y) => B.groundLow(x, y), lotOf: (h) => { const pr = B.parcelOf && B.parcelOf(h); return pr && pr.p && pr.p.ring || null; } }), []);
     for (const l of ls || []) if (l) out.push(l); }
   return out;
 }
