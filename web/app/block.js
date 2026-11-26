@@ -1355,7 +1355,7 @@ class Block {
     if (Array.isArray(h.window_permits) && h.window_permits.length) {
       const W = h.windows || {};
       out.push(`<h4>Windows · city permits</h4><dl><dt>Window jobs on record</dt><dd>${esc(W.window_permits ?? h.window_permits.length)}${W.last_date ? " · latest " + esc(W.last_date) : ""}</dd>` +
-        `<dt>Windows named in permits</dt><dd>${W.stated_windows ? esc(W.stated_windows) : "number not written"}</dd></dl><ul class="log">` +
+        `<dt>Windows named, all permits added up</dt><dd>${W.stated_windows ? esc(W.stated_windows) + " (a window replaced twice counts twice)" : "number not written"}</dd></dl><ul class="log">` +
         h.window_permits.slice(0, 8).map((w) => `<li><b>${esc(w.date || "")}</b>${esc(w.kind)}${w.count ? " · " + esc(w.count) + " window" + (w.count > 1 ? "s" : "") : ""}` +
           `${w.same_openings ? " · same openings" : ""}${w.maybe_not_done ? ' · <span class="mag">' + esc(w.status || "voided/expired") + ", may not have been done</span>" : ""}` +
           `<br><span class="sub small">${esc(w.text)}${w.also_filed_as ? " (also filed as " + esc(w.also_filed_as.length) + " trade permit" + (w.also_filed_as.length > 1 ? "s" : "") + ")" : ""}</span></li>`).join("") +
