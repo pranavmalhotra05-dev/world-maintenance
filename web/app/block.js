@@ -743,10 +743,10 @@ class Block {
       const dense = [], s = []; let L = 0; const p = run.pts;
       for (let i = 0; i + 1 < p.length; i++) {
         const [ax, ay] = p[i], [bx, by] = p[i + 1], len = Math.hypot(bx - ax, by - ay), n = Math.max(1, Math.ceil(len / step));
-        for (let k = 0; k < n; k++) { const f = k / n, x = ax + (bx - ax) * f, y = ay + (by - ay) * f; dense.push([x, y, this.groundLocal(x, y) + up]); s.push(L + len * f); }
+        for (let k = 0; k < n; k++) { const f = k / n, x = ax + (bx - ax) * f, y = ay + (by - ay) * f; dense.push([x, y, this.groundLow(x, y) + up]); s.push(L + len * f); }
         L += len;
       }
-      const [ex, ey] = p[p.length - 1]; dense.push([ex, ey, this.groundLocal(ex, ey) + up]); s.push(L);
+      const [ex, ey] = p[p.length - 1]; dense.push([ex, ey, this.groundLow(ex, ey) + up]); s.push(L);
       if (!(L > 0.5)) continue;
       const R = { full: dense, L, Lw: run.closed ? L : L + 10, nb: Math.max(1, Math.round(L / 30)) }; runs.push(R); Ltot += L;
       for (let i = 0; i + 1 < dense.length; i++) segs.push({ path: [dense[i], dense[i + 1]], s: (s[i] + s[i + 1]) / 2, R });
@@ -792,7 +792,7 @@ class Block {
     idx.forEach((i, j) => { pos.set(P.pos.subarray(i * 3, i * 3 + 3), j * 3); const t = zh > g0 ? (P.pos[i * 3 + 2] - g0) / (zh - g0) : 0.5; tz[j] = t;
       const c = mix(lo, hi, 0.25 + 0.75 * t); base[j * 3] = c[0]; base[j * 3 + 1] = c[1]; base[j * 3 + 2] = c[2]; });
     const part = this.houseMeshPart(h, gp), pr = this.parcelOf(h);
-    return { h, gp, n, pos, base, col: new Uint8Array(n * 3), tz, zTop: Math.max(zh, part?.zTop ?? -Infinity), part, foot: this.shimmerPath(h.ring, 0.35), parcel: pr ? this.shimmerPath(pr.p.ring, 0.25, 0.6, !!pr.p.clipped) : null, t0: performance.now() };
+    return { h, gp, n, pos, base, col: new Uint8Array(n * 3), tz, zTop: Math.max(zh, part?.zTop ?? -Infinity), part, parcel: pr ? this.shimmerPath(pr.p.ring, 0.12, 0.6, !!pr.p.clipped) : null, lot: pr ? pr.p.ring.map(([x, y]) => [x, y, this.groundLow(x, y) + 0.06]) : null, t0: performance.now() };
   }
   selectionLayers(base, X_, opt) {
     const dk = D(), t = (performance.now() - X_.t0) / 1000, gp = X_.gp, out = [], id = (s) => `blk:${this.slug}:${s}`;
@@ -817,7 +817,9 @@ class Block {
       out.push(new dk.PathLayer({ ...base, id: id(nm + "-halo"), data: sp.segs, getPath: (d) => d.path, getColor: (d) => A_(col, Math.round(150 * I(d) ** 1.5)), getWidth: w * 4.5, widthUnits: "pixels", parameters: glowBlend, updateTriggers: { getColor: key } }));
       out.push(new dk.PathLayer({ ...base, id: id(nm + "-core"), data: sp.segs, getPath: (d) => d.path, getColor: (d) => { const i = I(d); return A_(lift(col, 0.65 * i), Math.round(60 + 195 * i)); }, getWidth: w, widthUnits: "pixels", parameters: { depthWriteEnabled: false }, updateTriggers: { getColor: key } }));
     };
-    shimmer("selfoot", X_.foot, gp.house, 2.4);
+    // the property = the whole lot (building, yard, drive, parking), shaded on the ground; only from real parcel lines
+    if (X_.lot) out.push(new dk.PolygonLayer({ ...base, id: id("sellot"), data: [X_.lot], getPolygon: (r) => r, filled: true, stroked: false,
+      getFillColor: A_(gp.parcel, Math.round(34 + 16 * pulse)), parameters: { depthWriteEnabled: false }, updateTriggers: { getFillColor: Math.round(pulse * 20) } }));
     shimmer("selparcel", X_.parcel, gp.parcel, 2);
     // pin label: only this house's own value (never a neighbourhood median)
     const h = X_.h, g0 = Math.min(...h.ring.map(([x, y]) => this.gz(x, y))), top = Math.max(g0 + (num(h.height_m) ?? 6), X_.zTop), [cx, cy] = centroid(h.ring), K = themeColors();
@@ -908,7 +910,7 @@ class Block {
     const meta = { blockSlug: this.slug }, base = { coordinateSystem: CS, coordinateOrigin: O, ...meta }, id = (s) => `blk:${this.slug}:${s}`, ly = [];
     const ut = { getColor: th, getFillColor: th, getLineColor: th };
     const sel = mgr.sel?.slug === this.slug ? mgr.sel : null, dim = (mgr.sel && opt.dimOthersOnSelect);
-    const gz = (x, y) => this.groundLocal(x, y), half = this.half, clipB = [-half, -half, half, half];
+    const gz = (x, y) => this.groundLocal(x, y), gl = (x, y) => this.groundLow(x, y), half = this.half, clipB = [-half, -half, half, half];
     const thermalOn = opt.thermal && this.LST;
     // 1. surfaces under the points
     if (thermalOn) {
@@ -940,12 +942,12 @@ class Block {
     // 2. parcels + HOA (draped on the LiDAR ground)
     const PAR = this.PAR;
     if (PAR && opt.parcels && PAR.parcels.length) {
-      if (!this.cache.parcelRuns) this.cache.parcelRuns = PAR.parcels.flatMap((p) => this.ringRuns(p.ring, !!p.clipped).map((r) => ({ p, path: r.pts.map(([x, y]) => [x, y, gz(x, y) + 0.1]) })));
+      if (!this.cache.parcelRuns) this.cache.parcelRuns = PAR.parcels.flatMap((p) => this.ringRuns(p.ring, !!p.clipped).map((r) => ({ p, path: r.pts.map(([x, y]) => [x, y, gl(x, y) + 0.1]) })));
       ly.push(new dk.PathLayer({ ...base, id: id("parcels"), data: this.cache.parcelRuns, getPath: (d) => d.path, getColor: A_(lift(K.accent, 0.3), 120), getWidth: 1, widthUnits: "pixels", parameters: { depthWriteEnabled: false }, pickable: false, updateTriggers: ut }));
     }
     if (PAR && opt.hoa && PAR.hoa.length) {
-      if (!this.cache.hoaRuns) this.cache.hoaRuns = PAR.hoa.flatMap((a) => this.ringRuns(a.ring, !!a.clipped).map((r) => ({ a, path: r.pts.map(([x, y]) => [x, y, gz(x, y) + 0.15]) })));
-      ly.push(new dk.PolygonLayer({ ...base, id: id("hoa"), data: PAR.hoa, getPolygon: (a) => a.ring.map(([x, y]) => [x, y, gz(x, y) + 0.12]), filled: true, stroked: false,
+      if (!this.cache.hoaRuns) this.cache.hoaRuns = PAR.hoa.flatMap((a) => this.ringRuns(a.ring, !!a.clipped).map((r) => ({ a, path: r.pts.map(([x, y]) => [x, y, gl(x, y) + 0.15]) })));
+      ly.push(new dk.PolygonLayer({ ...base, id: id("hoa"), data: PAR.hoa, getPolygon: (a) => a.ring.map(([x, y]) => [x, y, gl(x, y) + 0.12]), filled: true, stroked: false,
         getFillColor: (a) => A_(hoaCol(a.k, K), a.k === "plat" ? 26 : 42), pickable: true, blockRole: "hoa", parameters: { depthWriteEnabled: false }, updateTriggers: ut, extensions: [new dk.ClipExtension()], clipBounds: clipB }));
       ly.push(new dk.PathLayer({ ...base, id: id("hoa-line"), data: this.cache.hoaRuns, getPath: (d) => d.path, getColor: (d) => A_(hoaCol(d.a.k, K), 210), getWidth: (d) => (d.a.k === "plat" ? 1.5 : 2.2), widthUnits: "pixels", parameters: { depthWriteEnabled: false }, updateTriggers: ut }));
     }
@@ -954,11 +956,11 @@ class Block {
     if (WK && opt.footpaths) {
       const wc = lift(K.accent, 0.55);
       if (WK.polys.length) {
-        ly.push(new dk.PolygonLayer({ ...base, id: id("walk-area"), data: WK.polys, getPolygon: (w) => w.ring.map(([x, y]) => [x, y, gz(x, y) + 0.08]), filled: true, stroked: false,
+        ly.push(new dk.PolygonLayer({ ...base, id: id("walk-area"), data: WK.polys, getPolygon: (w) => w.ring.map(([x, y]) => [x, y, gl(x, y) + 0.08]), filled: true, stroked: false,
           getFillColor: (w) => A_(/cross/.test(w.kind) ? lift(K.accent, 0.2) : wc, 55), pickable: true, blockRole: "walk", parameters: { depthWriteEnabled: false }, updateTriggers: ut }));
-        ly.push(new dk.PathLayer({ ...base, id: id("walk-edge"), data: WK.polys, getPath: (w) => [...w.ring, w.ring[0]].map(([x, y]) => [x, y, gz(x, y) + 0.1]), getColor: A_(wc, 200), getWidth: 1.2, widthUnits: "pixels", parameters: { depthWriteEnabled: false }, updateTriggers: ut }));
+        ly.push(new dk.PathLayer({ ...base, id: id("walk-edge"), data: WK.polys, getPath: (w) => [...w.ring, w.ring[0]].map(([x, y]) => [x, y, gl(x, y) + 0.1]), getColor: A_(wc, 200), getWidth: 1.2, widthUnits: "pixels", parameters: { depthWriteEnabled: false }, updateTriggers: ut }));
       }
-      if (WK.lines.length) ly.push(new dk.PathLayer({ ...base, id: id("walk-line"), data: WK.lines, getPath: (l) => l.path.map(([x, y]) => [x, y, gz(x, y) + 0.12]), getColor: (l) => A_(wc, l.city ? 230 : 150), getWidth: (l) => (l.city ? 2.4 : 1.6), widthUnits: "pixels",
+      if (WK.lines.length) ly.push(new dk.PathLayer({ ...base, id: id("walk-line"), data: WK.lines, getPath: (l) => l.path.map(([x, y]) => [x, y, gl(x, y) + 0.12]), getColor: (l) => A_(wc, l.city ? 230 : 150), getWidth: (l) => (l.city ? 2.4 : 1.6), widthUnits: "pixels",
         pickable: true, blockRole: "walk", parameters: { depthWriteEnabled: false }, updateTriggers: ut }));
     }
     // 3. furniture (records only)
