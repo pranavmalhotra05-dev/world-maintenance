@@ -772,7 +772,7 @@ def build(slug, cov):
              "x": rnd(x, 1), "y": rnd(y, 1), "lon": rnd(plon, 6), "lat": rnd(plat, 6),
              "area_m2": rnd(P.get("area_m2"), 1), "confidence": rnd(P.get("confidence"), 2), "first_seen_year": P.get("first_seen_year"),
              "outline": [[rnd(a, 1), rnd(b, 1)] for a, b in list(poly.exterior.coords)[:-1]] if poly is not None else None,
-             "outline_source": osrc, "outline_note": onote, "outline_area_m2": rnd(poly.area, 1) if poly is not None else None,
+             "outline_source": osrc, "outline_note": onote, "owner": P.get("owner"), "outline_area_m2": rnd(poly.area, 1) if poly is not None else None,
              "state_now": latest["state"] if latest else None, "state_now_date": latest.get("date") if latest else None,
              "history": hist, "trees": trees, "sun": sun,
              "ground": {"soil_shrink_swell": (soil or {}).get("class"), "flood_zone": h.get("flood_zone"),

@@ -1,0 +1,2258 @@
+[
+ {
+  "country": "Netherlands",
+  "region": "National",
+  "dataset": "Kadaster BRK Kadastrale kaart (Perceel, KadastraleGrens)",
+  "access": {
+   "wfs": "https://service.pdok.nl/kadaster/kadastralekaart/wfs/v5_0?request=GetCapabilities&service=WFS",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole country, all parcels",
+  "licence": "CC0 1.0",
+  "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.nl",
+  "licence_quote": "<ows:Fees>none</ows:Fees> <ows:AccessConstraints>https://creativecommons.org/publicdomain/zero/1.0/deed.nl</ows:AccessConstraints>",
+  "verdict": "green",
+  "notes": "Verified in the live WFS GetCapabilities (2026-11-25). Feature types: Perceel, KadastraleGrens, Bebouwing, Nummeraanduidingreeks, OpenbareRuimteNaam. PDOK also offers bulk download (GML/GPKG)."
+ },
+ {
+  "country": "France",
+  "region": "National",
+  "dataset": "Plan Cadastral Informatise (PCI) / cadastre Etalab GeoJSON",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://cadastre.data.gouv.fr/data/etalab-cadastre/latest/geojson/communes/"
+  },
+  "coverage": "Whole country (excl. Strasbourg/Alsace-Moselle partly vectorised differently); parcels, buildings, sections",
+  "licence": "Licence Ouverte 2.0 (lov2 / etalab-2.0)",
+  "licence_url": "https://www.data.gouv.fr/api/1/datasets/plan-cadastral-informatise/",
+  "licence_quote": "data.gouv.fr dataset record \"Plan Cadastral Informatise\": \"license\": \"lov2\". Licence Ouverte 2.0 lets the reuser \"exploiter l'Information a titre commercial\".",
+  "verdict": "green",
+  "notes": "Licence id verified via data.gouv.fr API. The cadastre.data.gouv.fr page itself carries no licence sentence; the commercial clause is from the Licence Ouverte 2.0 text (etalab.gouv.fr page now redirects to data.gouv.fr). Monthly/quarterly vintages."
+ },
+ {
+  "country": "Spain",
+  "region": "National (excl. Navarra, Basque Country)",
+  "dataset": "Direccion General del Catastro INSPIRE Cadastral Parcels",
+  "access": {
+   "wfs": "http://ovc.catastro.meh.es/INSPIRE/wfsCP.aspx?service=WFS&request=GetCapabilities",
+   "rest": "",
+   "download": "https://www.catastro.hacienda.gob.es/webinspire/index.html"
+  },
+  "coverage": "Common-regime territory; Navarra and the Basque provinces run their own cadastres",
+  "licence": "DG Catastro INSPIRE licence (custom)",
+  "licence_url": "https://www.catastro.hacienda.gob.es/webinspire/documentos/Licencia_en.pdf",
+  "licence_quote": "This license authorizes the public use, including commercial, of cadastral information that has been the subject of any prior process of transformation ... the license does not authorized the diffusion, distribution or commercialization of the given original information",
+  "verdict": "grey",
+  "notes": "Commercial use allowed only for transformed/value-added products; redistributing the raw parcels is forbidden; new products must not 'supplant' Catastro's. Not a clean open licence. Navarra (IDENA, CC BY 4.0) and Basque provinces not checked (search budget exhausted)."
+ },
+ {
+  "country": "Belgium",
+  "region": "Flanders",
+  "dataset": "GRB Adpf - Administratieve percelen fiscaal (yearly fiscal parcels 2017-2026)",
+  "access": {
+   "wfs": "https://geo.api.vlaanderen.be/Adpf/wfs?service=WFS&request=GetCapabilities",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "All of Flanders",
+  "licence": "Modellicentie voor gratis hergebruik v1.0 (Flemish model licence, CC BY-equivalent)",
+  "licence_url": "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
+  "licence_quote": "Metadata 54877caf-3024-42b6-ad98-91d8434b9cda: licence link \"Modellicentie voor gratis hergebruik\"; \"Bronvermeldingsvoorschrift: Bron: Grootschalig Referentie Bestand Vlaanderen, Digitaal Vlaanderen\"",
+  "verdict": "green",
+  "notes": "Licence named in the ISO metadata (verified). The model licence for free reuse permits commercial reuse with attribution (licence page fetched but its body did not render; commercial clause from the licence's known text, recheck once). Metadata also says 'De gegevens zijn beschermd door het auteursrecht' - normal for a licence."
+ },
+ {
+  "country": "Belgium",
+  "region": "Wallonia / federal (CadGIS)",
+  "dataset": "SPF Finances AGDP CadGIS parcellaire (Wallonia CADMAP_2024_PARCELLES; federal CadGIS download)",
+  "access": {
+   "wfs": "",
+   "rest": "https://geoservices.wallonie.be/arcgis/rest/services/PLAN_REGLEMENT/CADMAP_2024_PARCELLES/MapServer",
+   "download": "https://ccff02.minfin.fgov.be/geodata/download/"
+  },
+  "coverage": "All Belgium (federal), Wallonia view service",
+  "licence": "Not stated",
+  "licence_url": "",
+  "licence_quote": "Wallonia service copyrightText: \"AGDP (2024)\"; no licence text in service description.",
+  "verdict": "grey",
+  "notes": "Walloon REST service shows only copyright. Federal CadGIS download page returned 403/CAPTCHA to the fetcher, so its terms could not be read. Brussels (UrbIS/CadGIS) not checked."
+ },
+ {
+  "country": "Italy",
+  "region": "National (excl. Trento & Bolzano)",
+  "dataset": "Agenzia delle Entrate - Cartografia catastale (WMS, WFS, bulk GML per comune)",
+  "access": {
+   "wfs": "https://wfs.cartografia.agenziaentrate.gov.it/inspire/wfs/owfs01.php",
+   "rest": "",
+   "download": "https://www.agenziaentrate.gov.it/portale/download-massivo-cartografia-catastale"
+  },
+  "coverage": "National except Autonomous Provinces of Trento and Bolzano",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://www.agenziaentrate.gov.it/portale/cartografia-catastale-wfs",
+  "licence_quote": "il servizio WFS ... e disponibile con licenza CC-BY 4.0 ... e obbligatorio citarne la titolarita",
+  "verdict": "green",
+  "notes": "WFS and bulk download (ZIP per region/province, GML) both stated CC BY 4.0. Credit Agenzia delle Entrate."
+ },
+ {
+  "country": "Portugal",
+  "region": "National (partial geometric cadastre)",
+  "dataset": "DGT Cadastro Predial (SNIC INSPIRE)",
+  "access": {
+   "wfs": "https://snicws.dgterritorio.gov.pt/geoserver/inspire/ows?service=WMS&request=GetCapabilities&version=1.3.0",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Only municipalities with geometric/predial cadastre (roughly half of mainland area, mostly the south); BUPi parcels elsewhere not covered",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://dados.gov.pt/api/1/datasets/?q=cadastro%20predial",
+  "licence_quote": "dados.gov.pt record \"Cadastro Predial\", Direcao-Geral do Territorio: license Creative Commons Attribution 4.0",
+  "verdict": "green",
+  "notes": "Licence from the national portal record (catalogue field, not a sentence). Coverage is the weak point."
+ },
+ {
+  "country": "Germany",
+  "region": "Nordrhein-Westfalen",
+  "dataset": "ALKIS vereinfacht (Flurstueck)",
+  "access": {
+   "wfs": "https://www.wfs.nrw.de/geobasis/wfs_nw_alkis_vereinfacht?Service=WFS&REQUEST=GetCapabilities",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole Land",
+  "licence": "Datenlizenz Deutschland - Zero 2.0",
+  "licence_url": "https://www.govdata.de/dl-de/zero-2-0",
+  "licence_quote": "Es gelten die durch den IT-Planungsrat im Datenportal fuer Deutschland (GovData) veroeffentlichten ... Datenlizenz Deutschland - Zero",
+  "verdict": "green",
+  "notes": "Verified in WFS capabilities. Also bulk GPKG 'ALKIS NW Grundrissdaten vereinfacht'."
+ },
+ {
+  "country": "Germany",
+  "region": "Berlin",
+  "dataset": "ALKIS Berlin Flurstuecke",
+  "access": {
+   "wfs": "https://gdi.berlin.de/services/wfs/alkis_flurstuecke?REQUEST=GetCapabilities&SERVICE=WFS",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole city",
+  "licence": "Datenlizenz Deutschland - Zero 2.0",
+  "licence_url": "https://www.govdata.de/dl-de/zero-2-0",
+  "licence_quote": "Fuer die Nutzung der Daten ist die Datenlizenz Deutschland - Zero - Version 2.0 anzuwenden.",
+  "verdict": "green",
+  "notes": "Verified in WFS capabilities."
+ },
+ {
+  "country": "Germany",
+  "region": "Hamburg",
+  "dataset": "WFS ALKIS Liegenschaften (Flurstueck) / INSPIRE HH Flurstuecke",
+  "access": {
+   "wfs": "https://geodienste.hamburg.de/WFS_HH_ALKIS_vereinfacht?SERVICE=WFS&REQUEST=GetCapabilities",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole city",
+  "licence": "Datenlizenz Deutschland - Namensnennung 2.0",
+  "licence_url": "https://www.govdata.de/dl-de/by-2-0",
+  "licence_quote": "Transparenzportal Hamburg: \"INSPIRE HH Flurstuecke/Grundstuecke ALKIS\" license dl-de-by-2.0 / Datenlizenz Deutschland - Namensnennung - 2.0; WFS Fees: \"Quellenvermerk: Freie und Hansestadt Hamburg, LGV\"",
+  "verdict": "green",
+  "notes": "Licence from the Transparenzportal CKAN record."
+ },
+ {
+  "country": "Germany",
+  "region": "Brandenburg",
+  "dataset": "WFS BB ALKIS Vereinfacht",
+  "access": {
+   "wfs": "https://isk.geobasis-bb.de/ows/alkis_vereinf_wfs?SERVICE=WFS&REQUEST=GetCapabilities",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole Land",
+  "licence": "dl-de/by-2-0",
+  "licence_url": "https://www.govdata.de/dl-de/by-2-0",
+  "licence_quote": "Die Daten koennen gemaess der Datenlizenz Deutschland - Namensnennung - Version 2.0 (https://www.govdata.de/dl-de/by-2-0) genutzt werden.",
+  "verdict": "green",
+  "notes": "Attribution \"(c) GeoBasis-DE/LGB, dl-de/by-2-0\"."
+ },
+ {
+  "country": "Germany",
+  "region": "Sachsen",
+  "dataset": "ALKIS Bestandsdaten ohne Eigentuemerdaten (NAS statewide zip) + WFS SN ALKIS Vereinfacht",
+  "access": {
+   "wfs": "https://geodienste.sachsen.de/aaa/public_alkis/vereinf/wfs?SERVICE=WFS&REQUEST=GetCapabilities",
+   "rest": "",
+   "download": "https://www.geodaten.sachsen.de/downloadbereich-alkis-4176.html"
+  },
+  "coverage": "Whole Land, quarterly",
+  "licence": "dl-de/by-2-0",
+  "licence_url": "https://www.govdata.de/dl-de/by-2-0",
+  "licence_quote": "GovData record \"ALKIS Bestandsdaten ohne Eigentuemerdaten\" (Freistaat Sachsen): resource license dl-by-de/2.0; WFS Fees: \"Der Dienst ist kostenfrei unter Angabe der Quelle\"",
+  "verdict": "green",
+  "notes": "Licence from the GovData catalogue; the GeoSN download page itself states only 'kostenfreier Download'."
+ },
+ {
+  "country": "Germany",
+  "region": "Thueringen",
+  "dataset": "WFS TH ALKIS Vereinfacht",
+  "access": {
+   "wfs": "https://www.geoproxy.geoportal-th.de/geoproxy/services/adv_alkis_wfs?SERVICE=WFS&REQUEST=GetCapabilities",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole Land",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0/deed.de",
+  "licence_quote": "Lizenz: Creative Commons BY 4.0 (https://creativecommons.org/licenses/by/4.0/deed.de) Namensnennung: \"(c) GDI-Th\"",
+  "verdict": "green",
+  "notes": "Verified in WFS capabilities."
+ },
+ {
+  "country": "Germany",
+  "region": "Niedersachsen",
+  "dataset": "WFS NI ALKIS Vereinfacht",
+  "access": {
+   "wfs": "https://opendata.lgln.niedersachsen.de/doorman/noauth/alkis_wfs_einfach?SERVICE=WFS&REQUEST=GetCapabilities",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole Land",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+  "licence_quote": "Es gelten die Lizenzbedingungen Creative Commons Namensnennung - 4.0 International (CC BY 4.0)",
+  "verdict": "green",
+  "notes": "Attribution LGLN + year. Verified in WFS capabilities."
+ },
+ {
+  "country": "Germany",
+  "region": "Hessen",
+  "dataset": "WFS HE ALKIS Vereinfacht",
+  "access": {
+   "wfs": "https://www.gds.hessen.de/wfs2/aaa-suite/cgi-bin/alkis/vereinf/wfs?SERVICE=WFS&REQUEST=GetCapabilities",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole Land",
+  "licence": "Statutory open use (para 18 HVGG; equivalent to dl-de/zero)",
+  "licence_url": "https://www.gds.hessen.de/",
+  "licence_quote": "Jede Nutzung der Geobasisdaten und zugehoerigen Metadaten ist ohne Einschraenkung oder Bedingung erlaubt. Die bereitgestellten Geobasisdaten ... duerfen fuer die kommerzielle und nicht kommerzielle Nutzung ... an Dritte uebermittelt werden",
+  "verdict": "green",
+  "notes": "Explicit commercial + redistribution in WFS capabilities."
+ },
+ {
+  "country": "Germany",
+  "region": "Sachsen-Anhalt",
+  "dataset": "WFS ST ALKIS Vereinfacht (OpenData)",
+  "access": {
+   "wfs": "https://www.geodatenportal.sachsen-anhalt.de/wss/service/ST_LVermGeo_ALKIS_WFS_OpenData/guest?SERVICE=WFS&REQUEST=GetCapabilities",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole Land",
+  "licence": "dl-de/by-2-0 (for 'offene Daten')",
+  "licence_url": "https://www.lvermgeo.sachsen-anhalt.de/de/nutzungsbedingungen.html",
+  "licence_quote": "Offene Daten des LVermGeo duerfen frei genutzt werden unter der Lizenz Datenlizenz Deutschland - Namensnennung - Version 2.0",
+  "verdict": "green",
+  "notes": "Service sits under the OpenData path; WFS Fees field still cites the Kostenverordnung (applies to non-open products). Attribution (c) GeoBasis-DE / LVermGeo ST."
+ },
+ {
+  "country": "Germany",
+  "region": "Mecklenburg-Vorpommern",
+  "dataset": "WFS MV ALKIS Vereinfacht",
+  "access": {
+   "wfs": "https://www.geodaten-mv.de/dienste/alkis_wfs_einfach?SERVICE=WFS&REQUEST=GetCapabilities",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole Land",
+  "licence": "Custom attribution terms (no named licence in capabilities)",
+  "licence_url": "https://www.geodaten-mv.de/dienste/alkis_wfs_einfach?SERVICE=WFS&REQUEST=GetCapabilities",
+  "licence_quote": "Fees: Es gelten keine Bedingungen. AccessConstraints: Der Lizenznehmer ist verpflichtet, bei jeder oeffentlichen Wiedergabe, Verbreitung oder Praesentation der Geodaten ... (c) GeoBasis-DE/M-V",
+  "verdict": "grey",
+  "notes": "Free and attribution-only, but no sentence explicitly allowing commercial use was found; likely green - check MV licence page."
+ },
+ {
+  "country": "Germany",
+  "region": "Baden-Wuerttemberg",
+  "dataset": "ALKIS (LGL OpenGeoData)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://opengeodata.lgl-bw.de/#/(sidenav:product/alkis)"
+  },
+  "coverage": "Whole Land",
+  "licence": "CC BY 4.0",
+  "licence_url": "http://dcat-ap.de/def/licenses/cc-by/4.0",
+  "licence_quote": "GovData record \"ALKIS\" (Open Data Baden-Wuerttemberg): resource opengeodata.lgl-bw.de ... license cc-by/4.0",
+  "verdict": "green",
+  "notes": "Licence from GovData catalogue; LGL WFS proxy returned 401 (needs no key for download portal). Verify parcels are in the download."
+ },
+ {
+  "country": "Germany",
+  "region": "Rheinland-Pfalz",
+  "dataset": "ALKIS / INSPIRE RP Flurstuecke",
+  "access": {
+   "wfs": "https://www.geoportal.rlp.de/",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole Land",
+  "licence": "dl-de/by-2-0",
+  "licence_url": "https://www.govdata.de/dl-de/by-2-0",
+  "licence_quote": "GovData record \"ALKIS\" (Land Rheinland-Pfalz): map, WMS, WFS resources license dl-by-de/2.0",
+  "verdict": "green",
+  "notes": "Licence from GovData catalogue."
+ },
+ {
+  "country": "Germany",
+  "region": "Schleswig-Holstein",
+  "dataset": "ALKIS Schleswig-Holstein (ohne Eigentuemerangaben) - OpenGBD",
+  "access": {
+   "wfs": "https://dienste.gdi-sh.de/WMTS_SH_ALKIS_OpenGBD/wmts/1.0.0/WMTSCapabilities.xml",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole Land",
+  "licence": "CC BY 4.0",
+  "licence_url": "http://dcat-ap.de/def/licenses/cc-by/4.0",
+  "licence_quote": "GovData record \"ALKIS Schleswig-Holstein (ohne Eigentuemerangaben)\": resource license cc-by/4.0",
+  "verdict": "green",
+  "notes": "Catalogue licence; listed resource is WMTS - check for vector WFS/download."
+ },
+ {
+  "country": "Germany",
+  "region": "Bremen",
+  "dataset": "ALKIS - Liegenschaftskarte Land Bremen",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://gdi2.geo.bremen.de/inspire/download/ALKIS_o_E_o_KS/data/ALKIS_OE_OKS_NAS_HB.zip"
+  },
+  "coverage": "Whole Land",
+  "licence": "CC BY 4.0",
+  "licence_url": "http://dcat-ap.de/def/licenses/cc-by/4.0",
+  "licence_quote": "GovData record \"ALKIS - Liegenschaftskarte Land Bremen\": resource license cc-by/4.0",
+  "verdict": "green",
+  "notes": "Catalogue licence."
+ },
+ {
+  "country": "Germany",
+  "region": "Saarland",
+  "dataset": "INSPIRE SL Flurstuecke/Grundstuecke ALKIS",
+  "access": {
+   "wfs": "https://geoportal.saarland.de/gdi-sl/inspirewfs_Flurstuecke_Grundstuecke_ALKIS?&request=GetCapabilities&VERSION=2.0.0&SERVICE=WFS",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole Land",
+  "licence": "dl-de/by-2-0",
+  "licence_url": "https://www.govdata.de/dl-de/by-2-0",
+  "licence_quote": "GovData record \"INSPIRE SL Flurstuecke/Grundstuecke ALKIS\": resource license dl-by-de/2.0",
+  "verdict": "green",
+  "notes": "Catalogue licence."
+ },
+ {
+  "country": "Germany",
+  "region": "Bayern",
+  "dataset": "LDBV OpenGeoData (ALKIS parcels?)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://geodaten.bayern.de/opengeodata/"
+  },
+  "coverage": "Unknown",
+  "licence": "Not confirmed",
+  "licence_url": "https://geodaten.bayern.de/opengeodata/",
+  "licence_quote": "Portal says \"Kostenfreie Geodaten der Bayerischen Vermessungsverwaltung\"; no licence or ALKIS product visible to the fetcher.",
+  "verdict": "grey",
+  "notes": "Could not confirm a parcel product or licence (JS portal). Bavaria historically sold ALKIS; HVD regulation should have opened it - recheck in browser."
+ },
+ {
+  "country": "Austria",
+  "region": "National",
+  "dataset": "BEV Digitale Katastralmappe (DKM)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://www.bev.gv.at/Services/Produkte/Kataster-und-Verzeichnisse/Katastralmappe-und-Sachdaten-digital.html"
+  },
+  "coverage": "Whole country",
+  "licence": "Paid BEV licence (UrhG)",
+  "licence_url": "https://www.bev.gv.at/Services/Produkte/Kataster-und-Verzeichnisse/Katastralmappe-und-Sachdaten-digital.html",
+  "licence_quote": "Die Produkte des BEV unterliegen dem Schutz des Urheberrechtsgesetzes (UrhG) ... Grundstuecksgrenzen, Grundstuecksnummern, Grenzpunkte ... 0,065 [EUR per object]",
+  "verdict": "red",
+  "notes": "Priced per object. BEV free products list (Kataster Stichtagsdaten, KG-Verzeichnis, VGD) did not show DKM. Recheck data.bev.gv.at for an HVD CC BY release."
+ },
+ {
+  "country": "Switzerland",
+  "region": "Cantons AG, AI, AR, BE, BL, BS, FR, GE, GL, SH, SO, SZ, TG, TI, UR, VS, ZG, ZH (+FL)",
+  "dataset": "Amtliche Vermessung (Liegenschaften) via geodienste.ch",
+  "access": {
+   "wfs": "https://www.geodienste.ch/services/av",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Listed cantons, full",
+  "licence": "opendata.swiss terms \"Freie Nutzung (. Quellenangabe ist Pflicht)\"",
+  "licence_url": "https://www.geodienste.ch/services/av",
+  "licence_quote": "Freie Nutzung. Quellenangabe ist Pflicht.",
+  "verdict": "green",
+  "notes": "geodienste.ch Open Data column 'Frei erhaeltlich'. These labels are the opendata.swiss terms categories, which permit commercial use; the opendata.swiss terms page returned 403 so the commercial sentence was not re-quoted. GR and SG say only 'Es gelten die kantonalen Nutzungsbedingungen' (grey)."
+ },
+ {
+  "country": "Switzerland",
+  "region": "Cantons JU, LU, NE, NW, OW, VD (+GR, SG unclear)",
+  "dataset": "Amtliche Vermessung via geodienste.ch",
+  "access": {
+   "wfs": "https://www.geodienste.ch/services/av",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Listed cantons",
+  "licence": "Release/contract required; fees (JU >10 ha, LU per ha)",
+  "licence_url": "https://www.geodienste.ch/services/av",
+  "licence_quote": "Freigabe erforderlich",
+  "verdict": "red",
+  "notes": "Contract or fee needed for vector data; GR and SG cantonal terms not read (grey)."
+ },
+ {
+  "country": "Denmark",
+  "region": "National",
+  "dataset": "Matriklen (MAT2) via Datafordeler",
+  "access": {
+   "wfs": "https://datafordeler.dk/dataoversigt/matriklen-mat/",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole country",
+  "licence": "CC BY 4.0 (frie grunddata)",
+  "licence_url": "https://datafordeler.dk/vejledning/brugervilkaar/ejendomsoplysninger-ebr-og-mat/",
+  "licence_quote": "Som bruger af frie grunddata er du underlagt CC BY 4.0 licens. ... frit hente, dele og tilpasse frie grunddata. Du skal kreditere Geodatastyrelsen",
+  "verdict": "green",
+  "notes": "Free Datafordeler user account needed for API access (allowed: signup only, licence is permanent CC BY)."
+ },
+ {
+  "country": "Norway",
+  "region": "National",
+  "dataset": "Matrikkelen - Eiendomskart Teig",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "http://nedlasting.geonorge.no/geonorge/ATOM-feeds/MatrikkelenEiendomskartTeig_AtomFeedGML.xml"
+  },
+  "coverage": "Whole country",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://kartkatalog.geonorge.no/api/getdata/74340c24-1c8a-4454-b813-bfe498e80f16",
+  "licence_quote": "Geonorge metadata: UseConstraints license \"Creative Commons Attribution 4.0\"; AccessConstraints \"Aapne data\"",
+  "verdict": "green",
+  "notes": "FGDB/GML/PostGIS/SOSI downloads + WMS."
+ },
+ {
+  "country": "Finland",
+  "region": "National",
+  "dataset": "NLS Kiinteistoerekisterikartta (cadastral index map, vector)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://www.maanmittauslaitos.fi/en/e-services/open-data-file-download-service"
+  },
+  "coverage": "Whole country",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+  "licence_quote": "Open data by National Land Survey of Finland is licensed under a Creative Commons Attribution 4.0 International License.",
+  "verdict": "green",
+  "notes": "Licence page verified; that the cadastral index map is in the open-data product list is from NLS product descriptions (not re-fetched)."
+ },
+ {
+  "country": "Sweden",
+  "region": "National",
+  "dataset": "Lantmateriet Fastighetsindelning (nedladdning vektor / API)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://geotorget.lantmateriet.se/geodataprodukter/fastighetsindelning-nedladdning-vektor-api"
+  },
+  "coverage": "Whole country",
+  "licence": "Not confirmed",
+  "licence_url": "https://geotorget.lantmateriet.se/geodataprodukter/fastighetsindelning-nedladdning-vektor-api",
+  "licence_quote": "(Geotorget page is a JS app; no licence text returned)",
+  "verdict": "grey",
+  "notes": "Lantmateriet moved products to Geotorget; under the EU HVD rules property boundaries should now be open (CC BY 4.0 / CC0), but this could not be verified. Recheck in browser."
+ },
+ {
+  "country": "Estonia",
+  "region": "National",
+  "dataset": "Maa- ja Ruumiamet katastriuksused (cadastral units)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://s3.pilw.io/rp-kemit-kataster/ANDMED/Eesti_KATASTER_GPKG.zip"
+  },
+  "coverage": "Whole country, nightly",
+  "licence": "Attribution required (no licence name on page)",
+  "licence_url": "https://geoportaal.maaruum.ee/eng/Spatial-Data/Cadastral-Data-p310.html",
+  "licence_quote": "Please refer to the Land and Spatial Development Board and date when using the data.",
+  "verdict": "grey",
+  "notes": "Freely downloadable whole-country SHP/GPKG/JSON; the agency's general open-data licence (believed CC BY 4.0-compatible) was not quoted. Likely green after one check."
+ },
+ {
+  "country": "Latvia",
+  "region": "National",
+  "dataset": "VZD Kadastra informacijas sistemas atvertie telpiskie dati",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://data.gov.lv/dati/dataset/b28f0eed-73b0-4e44-94e7-b04b11bf0b69/resource/bf88b763-98b8-445d-a51f-b76f45c362c5/download/0001000_kk_shp.zip"
+  },
+  "coverage": "Whole country",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://data.gov.lv/dati/dataset/b28f0eed-73b0-4e44-94e7-b04b11bf0b69",
+  "licence_quote": "data.gov.lv: \"Kadastra informacijas sistemas atvertie telpiskie dati\", Valsts zemes dienests, license CC-BY-4.0 / Creative Commons Attribution 4.0",
+  "verdict": "green",
+  "notes": "Catalogue licence field."
+ },
+ {
+  "country": "Lithuania",
+  "region": "National",
+  "dataset": "NTKR / Nekilnojamojo turto kadastras parcels (Registru centras)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Unknown",
+  "licence": "Not verified",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not verified (search budget exhausted before this check). Check data.gov.lt / geoportal.lt for an HVD release."
+ },
+ {
+  "country": "Poland",
+  "region": "National",
+  "dataset": "GUGiK Krajowa Integracja Ewidencji Gruntow (KIEG) - dzialki",
+  "access": {
+   "wfs": "https://integracja.gugik.gov.pl/cgi-bin/KrajowaIntegracjaEwidencjiGruntow?SERVICE=WMS&REQUEST=GetCapabilities",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Nearly all powiats (view)",
+  "licence": "Free view service; harvesting forbidden",
+  "licence_url": "https://integracja.gugik.gov.pl/cgi-bin/KrajowaIntegracjaEwidencjiGruntow?SERVICE=WFS&REQUEST=GetCapabilities",
+  "licence_quote": "Wykorzystanie uslugi nie podlega zadnym ograniczeniom z wylaczeniem automatycznego pobierania i kolekcjonowania obrazow lub informacji ... (tzw. harvesting).",
+  "verdict": "red",
+  "notes": "National service is WMS view only with a no-harvesting clause. Vector parcels sit in ~380 powiat WFS services with mixed terms (not audited)."
+ },
+ {
+  "country": "Czechia",
+  "region": "National",
+  "dataset": "CUZK INSPIRE Cadastral Parcels / katastralni mapa (vector)",
+  "access": {
+   "wfs": "https://services.cuzk.cz/wfs/inspire-cp-wfs.asp?service=WFS&request=GetCapabilities",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole country (vector map where digitised)",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://cuzk.gov.cz/Predpisy/Podminky-poskytovani-prostor-dat-a-sitovych-sluzeb/Podminky-poskytovani-prostorovych-dat-CUZK.aspx",
+  "licence_quote": "bezuplatne na zaklade licence Creative Commons CC-BY 4.0 ... udaje katastralni mapy ve vektorove podobe",
+  "verdict": "green",
+  "notes": "Attribution \"CUZK, [rok]\". WFS Fees none / AccessConstraints none."
+ },
+ {
+  "country": "Slovakia",
+  "region": "National",
+  "dataset": "UGKK SR INSPIRE Cadastral Parcels",
+  "access": {
+   "wfs": "https://inspirews.skgeodesy.sk/geoserver/cp/ows?service=WFS&request=GetCapabilities",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole country",
+  "licence": "Not verified",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Service refused connection from the fetcher; licence not read."
+ },
+ {
+  "country": "Slovenia",
+  "region": "National",
+  "dataset": "GURS Kataster nepremicnin (parcels)",
+  "access": {
+   "wfs": "https://ipi.eprostor.gov.si/wfs-si-gurs-kn/wfs?request=getCapabilities",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole country",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://podatki.gov.si/",
+  "licence_quote": "podatki.gov.si record \"Kataster nepremicnin\", Geodetska uprava RS: licence \"Priznanje avtorstva (CC BY 4.0)\"",
+  "verdict": "green",
+  "notes": "Catalogue licence field; eprostor site returned 403 to the fetcher."
+ },
+ {
+  "country": "Croatia",
+  "region": "National",
+  "dataset": "DGU Katastarske cestice i katastarske opcine INSPIRE",
+  "access": {
+   "wfs": "https://api.uredjenazemlja.hr/services/inspire/cp/wfs?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Whole country",
+  "licence": "Otvorena dozvola (Croatian Open Licence)",
+  "licence_url": "https://data.gov.hr/",
+  "licence_quote": "data.gov.hr record: license \"open-license / Otvorena dozvola (OD)\"; WFS Fees NONE, AccessConstraints NONE",
+  "verdict": "green",
+  "notes": "The Otvorena dozvola permits commercial reuse with attribution (licence page body did not render; recheck wording)."
+ },
+ {
+  "country": "Ireland",
+  "region": "National",
+  "dataset": "Tailte Eireann High Value Dataset - Cadastral Parcels Freehold / Leasehold",
+  "access": {
+   "wfs": "",
+   "rest": "https://data-osi.opendata.arcgis.com/datasets/4ed4c7d8775a4c80a3d4d5c73c9a1185_12",
+   "download": ""
+  },
+  "coverage": "Registered land (approx. 90%+ of land area)",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0",
+  "licence_quote": "data.gov.ie: \"High Value Dataset - Cadastral Parcels Freehold\", Tailte Eireann; ArcGIS Hub resource licence https://creativecommons.org/licenses/by/4.0",
+  "verdict": "green",
+  "notes": "Released under the EU HVD regulation. Index map, not a legal boundary."
+ },
+ {
+  "country": "United Kingdom",
+  "region": "England & Wales",
+  "dataset": "HM Land Registry INSPIRE Index Polygons",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://use-land-property-data.service.gov.uk/datasets/inspire"
+  },
+  "coverage": "Registered freehold titles, per local authority",
+  "licence": "OGL v3 + HMLR/Ordnance Survey conditions of use",
+  "licence_url": "https://use-land-property-data.service.gov.uk/datasets/inspire#use_the_data",
+  "licence_quote": "data.gov.uk lists \"UK Open Government Licence (OGL)\"; GOV.UK guidance: \"You must follow the conditions of use to use the data.\"",
+  "verdict": "grey",
+  "notes": "The dataset page with the specific conditions (incl. Ordnance Survey's 'clarification of the existing conditions of use') returned 403 to the fetcher. The polygons derive from OS MasterMap and the extra OS conditions historically limit some commercial uses - read them before treating as green."
+ },
+ {
+  "country": "United Kingdom",
+  "region": "Scotland",
+  "dataset": "Registers of Scotland INSPIRE cadastral parcels",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://www.ros.gov.uk/data-and-statistics/inspire"
+  },
+  "coverage": "Registered titles",
+  "licence": "Not verified",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "ros.gov.uk returned 403. Historically view-only (WMS), no open bulk download - treat as red until checked."
+ },
+ {
+  "country": "United Kingdom",
+  "region": "Northern Ireland",
+  "dataset": "LPS / OSNI property boundaries",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "n/a",
+  "licence": "Not verified",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not checked (search budget exhausted). No known open parcel layer; OSNI data generally under commercial licence."
+ },
+ {
+  "country": "Canada",
+  "region": "British Columbia",
+  "dataset": "ParcelMap BC Parcel Fabric (WHSE_CADASTRE.PMBC_PARCEL_FABRIC_POLY_SVW)",
+  "access": {
+   "wfs": "https://openmaps.gov.bc.ca/geo/pub/WHSE_CADASTRE.PMBC_PARCEL_FABRIC_POLY_SVW/ows?service=WMS&request=GetCapabilities (catalogue lists WMS only)",
+   "rest": "",
+   "download": "https://pub.data.gov.bc.ca/datasets/4cf233c2-f020-4f7a-9b87-1923252fbc24/pmbc_parcel_fabric_poly_svw.zip"
+  },
+  "coverage": "Province-wide parcel fabric",
+  "licence": "Open Government Licence - British Columbia",
+  "licence_url": "https://www2.gov.bc.ca/gov/content?id=A519A56BC2BF44E4A008B33FCF527F61",
+  "licence_quote": "license_title: \"Open Government Licence - British Columbia\" (BC Data Catalogue API, package parcelmap-bc-parcel-fabric)",
+  "verdict": "green",
+  "notes": "Licence field read from the catalogue API. OGL-BC allows commercial use with attribution."
+ },
+ {
+  "country": "Canada",
+  "region": "Alberta",
+  "dataset": "Alberta cadastral / titled parcels (Alberta Data Partnerships via AltaLIS)",
+  "access": {
+   "wfs": "",
+   "rest": "https://azimuth.epsb.ca/server/rest/services/Hosted/Titled_Lots_Current/FeatureServer (third-party re-host, licenseInfo empty)",
+   "download": ""
+  },
+  "coverage": "Province-wide (commercial product)",
+  "licence": "Not stated for cadastral. Other AltaLIS products (ATS, municipal boundaries) are OGL-Alberta",
+  "licence_url": "https://open.alberta.ca/licence",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "No licence sentence found for the parcel cadastre. GoA terms only say cadastral data is provided by Alberta Data Partnerships. It is widely taken to be a paid AltaLIS product. The ATS grid (not parcels) is OGL-Alberta. Treat as not usable."
+ },
+ {
+  "country": "Canada",
+  "region": "Saskatchewan",
+  "dataset": "ISC Sask Cadastral (Surface Cadastral)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://www.isc.ca/MapsandPhotos/GISData/SaskCadastral/Pages/SurfaceCadastral.aspx"
+  },
+  "coverage": "Province-wide",
+  "licence": "ISC restricted data licence",
+  "licence_url": "https://www.isc.ca/MapsandPhotos/GISData/SaskCadastral/Pages/SurfaceCadastral.aspx",
+  "licence_quote": "Data cannot be re-distributed and only be in a non-extractable format.",
+  "verdict": "red",
+  "notes": "ISC GeoSask letter: commercial use, including reselling or combining with other data, needs a separate licence agreement. Quote taken from a search snippet of the ISC page."
+ },
+ {
+  "country": "Canada",
+  "region": "Manitoba",
+  "dataset": "Manitoba Land Initiative (MLI) cadastral / DataMB",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://mli.gov.mb.ca/ (MLI frozen since 2022-02-09; successor DataMB)"
+  },
+  "coverage": "Province (parcel infrastructure partial; MLI not updated)",
+  "licence": "OpenMB licence (general). Parcel-specific licence not confirmed",
+  "licence_url": "https://gov.mb.ca/legal/copyright.html",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Could not fetch the MLI cadastral page (DNS failure). No parcel-specific licence sentence found. Older MLI data needed a separate digital data licence agreement."
+ },
+ {
+  "country": "Canada",
+  "region": "Ontario",
+  "dataset": "Ontario Parcel (Teranet / MPAC / MNR)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://data.ontario.ca/dataset/ontario-land-parcels"
+  },
+  "coverage": "Province-wide",
+  "licence": "Commercial licence (Teranet)",
+  "licence_url": "https://data.ontario.ca/dataset/ontario-land-parcels",
+  "licence_quote": "The Ontario Parcel is commercially licensed data with restricted usage.",
+  "verdict": "red",
+  "notes": "The provincial 'Lot fabric improved' layer (township lots and concessions, not property parcels) is OGL-Ontario. Some municipalities (e.g. Toronto under OGL-Toronto, Ottawa) publish their own property boundary layers. Check each dataset."
+ },
+ {
+  "country": "Canada",
+  "region": "Quebec",
+  "dataset": "Cadastre du Québec - Lots du cadastre rénové (Cadastre_allege service) / Infolot",
+  "access": {
+   "wfs": "",
+   "rest": "https://geo.environnement.gouv.qc.ca/donnees/rest/services/Reference/Cadastre_allege/MapServer/0",
+   "download": ""
+  },
+  "coverage": "Province-wide renovated cadastre",
+  "licence": "Not stated (service iteminfo licence field empty)",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Infolot (MRNF) is the official source and is not offered as open data on Données Québec. The Sherbrooke library lists MRNF cadastral data as licensed to the institution. Derived datasets (e.g. zone agricole transposée) are CC BY 4.0 but are not parcels."
+ },
+ {
+  "country": "Canada",
+  "region": "New Brunswick",
+  "dataset": "GeoNB Digital Property Maps / Property Assessment Map (SNB)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://snb.ca/geonb1/e/DC/propmap.asp ; https://snb.ca/geonb1/e/DC/DPM.asp"
+  },
+  "coverage": "All land parcels in NB (approximate boundaries)",
+  "licence": "Open Government Licence – New Brunswick (based on OGL-Canada 2.0)",
+  "licence_url": "https://www.gnb.ca/en/campaign/geonb/open-government-license.html",
+  "licence_quote": "Contains information licensed under the Open Government Licence – New Brunswick",
+  "verdict": "green",
+  "notes": "Catalogue entries list the use restriction as 'unrestricted' and the licence as 'Open Government Licence'. The quote is the required attribution statement, from a search snippet."
+ },
+ {
+  "country": "Canada",
+  "region": "Nova Scotia",
+  "dataset": "Nova Scotia Property Records Database (NSPRD) parcels",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://geonova.novascotia.ca/node/176"
+  },
+  "coverage": "Province-wide",
+  "licence": "Restricted data use licence (fee)",
+  "licence_url": "https://geonova.novascotia.ca/sites/default/files/resource-library/GeoData_NSPRD.pdf",
+  "licence_quote": "available for order, under a restricted data use license",
+  "verdict": "red",
+  "notes": "The full provincial shapefile costs about $8,786.42 + tax. Halifax (HRM) open data may have municipal parcels under its own licence. Not checked."
+ },
+ {
+  "country": "Canada",
+  "region": "Prince Edward Island",
+  "dataset": "PEI Property Lines (Dept of Finance, Taxation and Property Records)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://princeedwardisland.ca/fr/information/finances/gis-products-and-price-list"
+  },
+  "coverage": "Province-wide",
+  "licence": "Sold per price list",
+  "licence_url": "https://princeedwardisland.ca/fr/information/finances/gis-products-and-price-list",
+  "licence_quote": "",
+  "verdict": "red",
+  "notes": "Listed on the GIS Products and Price List, so a fee applies. No open-licence parcel dataset found. National park parcels are available through CLSS (OGL-Canada)."
+ },
+ {
+  "country": "Canada",
+  "region": "Newfoundland and Labrador",
+  "dataset": "No provincial open parcel dataset found",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "https://opendata.gov.nl.ca/",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "No official parcel download found. The only source is a commercial reseller (Regrid). Federal lands are available through CLSS."
+ },
+ {
+  "country": "Canada",
+  "region": "Yukon",
+  "dataset": "Land Parcels Polygon - Surveyed (Geomatics Yukon / NRCan CCCM)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://open.yukon.ca/data/land-parcels-polygon-surveyed"
+  },
+  "coverage": "Territory-wide surveyed parcels, weekly",
+  "licence": "Open Government Licence - Yukon",
+  "licence_url": "https://open.yukon.ca/open-government-licence-yukon",
+  "licence_quote": "License: Open Government Licence - Yukon (catalogue field)",
+  "verdict": "green",
+  "notes": "Licence name taken from the catalogue (the page returned 403 to the fetcher). OGL-Yukon belongs to the OGL-Canada family and allows commercial use. Licence URL is inferred. Verify."
+ },
+ {
+  "country": "Canada",
+  "region": "Northwest Territories",
+  "dataset": "Canada Lands Digital Cadastral Data - NWT (by UTM zone)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "ftp://ftp.nrcan.gc.ca/ess/sgb_pub/sgb_datasets/nt/Zone12/Zone12_SHP.zip"
+  },
+  "coverage": "Surveyed parcels on Canada Lands/territory",
+  "licence": "Open Government Licence - Canada",
+  "licence_url": "https://open.canada.ca/en/open-government-licence-canada",
+  "licence_quote": "When you download data, you agree with the Open Government Licence – Canada.",
+  "verdict": "green",
+  "notes": "license_title confirmed via the open.canada.ca API (dataset c78684ae...). GNWT has its own OGL-NWT. Territorial-only parcel layers not checked."
+ },
+ {
+  "country": "Canada",
+  "region": "Nunavut",
+  "dataset": "Canada Lands Digital Cadastral Data - Nunavut (by UTM zone)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://clss.nrcan.gc.ca (CLSS downloads, e.g. ftp.nrcan.gc.ca/ess/sgb_pub/sgb_datasets/)"
+  },
+  "coverage": "Surveyed parcels",
+  "licence": "Open Government Licence - Canada",
+  "licence_url": "https://open.canada.ca/en/open-government-licence-canada",
+  "licence_quote": "When you download data, you agree with the Open Government Licence – Canada.",
+  "verdict": "green",
+  "notes": "Same CLSS product as NWT."
+ },
+ {
+  "country": "Canada",
+  "region": "Federal (Canada Lands)",
+  "dataset": "Canada Lands Survey System - digital cadastral parcels (NRCan)",
+  "access": {
+   "wfs": "",
+   "rest": "ESRI REST + WMS (EPSG:3979) via https://clss.nrcan-rncan.gc.ca/mb-nc/en",
+   "download": "ftp://ftp.nrcan.gc.ca/ess/sgb_pub/sgb_datasets/"
+  },
+  "coverage": "Indian reserves, national parks, the three territories, offshore",
+  "licence": "Open Government Licence - Canada",
+  "licence_url": "https://open.canada.ca/en/open-government-licence-canada",
+  "licence_quote": "When you download data, you agree with the Open Government Licence – Canada.",
+  "verdict": "green",
+  "notes": "Quote from the NRCan Canada Lands tools page (search snippet). Licence field confirmed via the open.canada.ca API."
+ },
+ {
+  "country": "Australia",
+  "region": "New South Wales",
+  "dataset": "NSW Cadastre (DCDB) - Spatial Services",
+  "access": {
+   "wfs": "",
+   "rest": "https://maps.six.nsw.gov.au/arcgis/rest/services/public/NSW_Cadastre/MapServer",
+   "download": "Spatial Services Customer Hub (no bulk file link confirmed)"
+  },
+  "coverage": "State-wide lots",
+  "licence": "CC BY 4.0 (some data.nsw listings still show CC BY 3.0 AU)",
+  "licence_url": "https://www.spatial.nsw.gov.au/copyright",
+  "licence_quote": "© State of New South Wales (Spatial Services, a business unit of the Department of Customer Service NSW)",
+  "verdict": "green",
+  "notes": "Per a search summary, the copyright page says material is CC BY 4.0 unless stated otherwise (the page redirected, so not fetched). The quote is the required attribution. Either CC BY version counts as green."
+ },
+ {
+  "country": "Australia",
+  "region": "Victoria",
+  "dataset": "Vicmap Property - Parcel Polygon",
+  "access": {
+   "wfs": "https://opendata.maps.vic.gov.au/geoserver/wfs (layer open-data-platform:parcel_view)",
+   "rest": "",
+   "download": "https://datashare.maps.vic.gov.au/search?md=a8b936ae-a746-58f9-b1de-7632db652300"
+  },
+  "coverage": "State-wide parcels",
+  "licence": "Creative Commons Attribution 4.0 International",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+  "licence_quote": "Creative Commons Attribution 4.0 International (licence field, discover.data.vic.gov.au)",
+  "verdict": "green",
+  "notes": "Dataset page fetched directly. The data.gov.au mirror shows the older CC BY 3.0 AU."
+ },
+ {
+  "country": "Australia",
+  "region": "Queensland",
+  "dataset": "Cadastral data - Queensland series (DCDB)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://www.data.qld.gov.au/dataset/cadastral-data-queensland-series (weekly whole-of-state FGDB)"
+  },
+  "coverage": "State-wide lots, weekly",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://business.qld.gov.au/running-business/support-services/mapping-data-imagery/data/digital-cadastral/access",
+  "licence_quote": "All spatial cadastral data is provided as open data is provided under a Creative Commons CC-BY licence.",
+  "verdict": "green",
+  "notes": "Quote from a search snippet of business.qld.gov.au (the fetch failed). The DCDB is moving to a new environment from 2025."
+ },
+ {
+  "country": "Australia",
+  "region": "South Australia",
+  "dataset": "Parcel Cadastre (state) - Land Services SA",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://www.landservices.com.au/products-and-services/south-australian-cadastral-data/ (paid)"
+  },
+  "coverage": "State-wide",
+  "licence": "AusGOAL classification Restricted",
+  "licence_url": "https://location.sa.gov.au/lms/Reports/ReportMetadata.aspx?p_no=832",
+  "licence_quote": "AusGOAL Licensing Classification: Restricted",
+  "verdict": "red",
+  "notes": "The CC BY 3.0 notice covers the metadata report only. Council-level parcels (Port Adelaide Enfield, City of Adelaide) on data.sa.gov.au are CC BY. Green but partial coverage."
+ },
+ {
+  "country": "Australia",
+  "region": "Western Australia",
+  "dataset": "Cadastre (Polygon) LGATE-217",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://catalogue.data.wa.gov.au/dataset/cadastre-polygon"
+  },
+  "coverage": "State-wide",
+  "licence": "Custom (Other) - subscription",
+  "licence_url": "https://catalogue.data.wa.gov.au/dataset/cadastre-polygon",
+  "licence_quote": "This dataset is available for use subject to payment",
+  "verdict": "red",
+  "notes": "Downloads are marked 'Fees Apply'. Otherwise, use falls under the Personal Use Licence."
+ },
+ {
+  "country": "Australia",
+  "region": "Tasmania",
+  "dataset": "LIST Cadastral Parcels (Land Tasmania)",
+  "access": {
+   "wfs": "",
+   "rest": "https://services.thelist.tas.gov.au/arcgis/rest/services/Public/CadastreAndAdministrative/MapServer",
+   "download": "https://listdata.thelist.tas.gov.au/opendata/ (LIST_Cadastral_Parcels)"
+  },
+  "coverage": "State-wide",
+  "licence": "Creative Commons Attribution 3.0 Australia",
+  "licence_url": "https://creativecommons.org/licenses/by/3.0/au/",
+  "licence_quote": "Creative Commons Attribution 3.0 Australia Licence",
+  "verdict": "green",
+  "notes": "From TheList metadata via a search snippet (the data.gov.au page returned 403, and one listing says 'Not Specified'). Spatial index only."
+ },
+ {
+  "country": "Australia",
+  "region": "Australian Capital Territory",
+  "dataset": "ACTmapi Blocks (cadastre)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://www.actmapi.act.gov.au/access-to-data (ACT Geospatial Data Catalogue: SHP/KML/GeoJSON/GeoService)"
+  },
+  "coverage": "Territory-wide blocks",
+  "licence": "CC BY 4.0",
+  "licence_url": "https://www.actmapi.act.gov.au/terms-and-conditions",
+  "licence_quote": "",
+  "verdict": "green",
+  "notes": "A search snippet of the ACTmapi terms says data is distributed under CC BY 4.0 unless the metadata states otherwise. The page returned 403, so the exact sentence was not captured. Verify before relying on it."
+ },
+ {
+  "country": "Australia",
+  "region": "Northern Territory",
+  "dataset": "NT DCDB cadastre (DIPL) via NR Maps",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Territory-wide",
+  "licence": "Unclear - NR Maps says custodian-specific arrangements",
+  "licence_url": "https://environment.nt.gov.au/__data/assets/pdf_file/0008/948914/nr-maps-glossary-of-terms.pdf",
+  "licence_quote": "Other data custodians may have different data sharing arrangements.",
+  "verdict": "grey",
+  "notes": "The CC licence covers data whose custodian is DEPWS. The cadastre's custodian is DIPL, and it may not be exportable."
+ },
+ {
+  "country": "New Zealand",
+  "region": "National",
+  "dataset": "NZ Primary Parcels (LINZ layer 50823)",
+  "access": {
+   "wfs": "https://data.linz.govt.nz/services;key=YOUR_KEY/wfs/layer-50823",
+   "rest": "",
+   "download": "https://data.linz.govt.nz/layer/50823-nz-primary-parcels/"
+  },
+  "coverage": "National",
+  "licence": "Creative Commons Attribution 4.0 International",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0/",
+  "licence_quote": "You may use this work for commercial purposes",
+  "verdict": "green",
+  "notes": "Needs a free API key."
+ },
+ {
+  "country": "Japan",
+  "region": "National",
+  "dataset": "登記所備付地図データ (MOJ map XML) on G空間情報センター",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://front.geospatial.jp/moj-chizu-xml-download/"
+  },
+  "coverage": "National (registry maps, partial accuracy)",
+  "licence": "登記所備付地図データ利用規約 (custom terms)",
+  "licence_url": "https://www.moj.go.jp/MINJI/minji05_00494.html",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Terms text not retrieved (403). Press reports say free use and redistribution are allowed within the terms, and NTT Data uses the data commercially. Read the terms before upgrading to green."
+ },
+ {
+  "country": "South Korea",
+  "region": "National",
+  "dataset": "연속지적도 (MOLIT / VWorld LP_PA_CBND_BUBUN)",
+  "access": {
+   "wfs": "VWorld WFS/WMS (API key)",
+   "rest": "",
+   "download": "https://www.vworld.kr/ ; https://www.data.go.kr/data/15056910/openapi.do"
+  },
+  "coverage": "National",
+  "licence": "data.go.kr: 이용허락범위 제한 없음",
+  "licence_url": "https://www.data.go.kr/data/15056910/openapi.do",
+  "licence_quote": "이용허락범위 제한 없음",
+  "verdict": "green",
+  "notes": "The official portal says there is no restriction on the scope of use, and the data is free. KOGL type not shown. VWorld's own download terms not checked."
+ },
+ {
+  "country": "Singapore",
+  "region": "National",
+  "dataset": "SLA Cadastral Land Parcel",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://data.gov.sg/datasets/d_e7395d743076a2bcc487b0d12b9bf33b/view"
+  },
+  "coverage": "National, approximate lot boundaries, weekly",
+  "licence": "Singapore Open Data Licence",
+  "licence_url": "https://data.gov.sg/open-data-licence",
+  "licence_quote": "Free forever for personal or commercial use, under the Open Data Licence.",
+  "verdict": "green",
+  "notes": "SLA's richer cadastral survey data is licensed separately."
+ },
+ {
+  "country": "Israel",
+  "region": "National",
+  "dataset": "חלקות shape (Survey of Israel) / נתוני קדסטר במבנה חדש",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://data.gov.il/dataset/dff8a168-af6c-4e0f-bbe3-c4bd3646084c/resource/c68b4df6-c809-4bb5-a546-61fa1528fed5/download/parcel_all.zip"
+  },
+  "coverage": "National parcels",
+  "licence": "אחר (פתוח) / Other (Open)",
+  "licence_url": "https://data.gov.il/",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Only a licence label was found. The data.gov.il terms page could not be retrieved, so no licence sentence was captured. Probably open. Read the terms to upgrade."
+ },
+ {
+  "country": "Brazil",
+  "region": "National",
+  "dataset": "INCRA SIGEF / Acervo Fundiário (certified rural properties)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://acervofundiario.incra.gov.br/ (shapefile export)"
+  },
+  "coverage": "Certified rural properties",
+  "licence": "Not stated",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "The service says access is free, but no reuse licence was found."
+ },
+ {
+  "country": "Brazil",
+  "region": "National",
+  "dataset": "SICAR / CAR rural property boundaries",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://consultapublica.car.gov.br/publico/imoveis/index (per-municipality, captcha)"
+  },
+  "coverage": "Self-declared rural properties",
+  "licence": "Not stated",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Downloads are behind a captcha. No licence found."
+ },
+ {
+  "country": "Mexico",
+  "region": "Ciudad de México",
+  "dataset": "Catastro CDMX predios (sig.cdmx.gob.mx)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://sig.cdmx.gob.mx"
+  },
+  "coverage": "CDMX lots",
+  "licence": "Not confirmed",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "The datos.cdmx portal uses both CC BY and CC NC licences. The catastro dataset's licence was not verified (API unreachable)."
+ },
+ {
+  "country": "Mexico",
+  "region": "National",
+  "dataset": "RAN núcleos agrarios perimeters / INEGI",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Ejido/communal perimeters",
+  "licence": "Not confirmed",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Per a 2015 OSM thread, the RAN site terms barred reuse, while copies on datos.gob.mx would fall under Libre Uso MX. Not verified."
+ },
+ {
+  "country": "Chile",
+  "region": "National",
+  "dataset": "SII cartografía predial (SII Mapas)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "National",
+  "licence": "Restricted interoperability protocol",
+  "licence_url": "https://www.sii.cl/sitios_de_interes/interoperabilidad_cartografia_municipalidades.pdf",
+  "licence_quote": "sólo para sus fines propios, por lo que deberá mantener la confidencialidad correspondiente",
+  "verdict": "red",
+  "notes": "WMS access is only for authorised municipal officials. The public gets a viewer only. IDE Chile not checked."
+ },
+ {
+  "country": "Colombia",
+  "region": "National",
+  "dataset": "IGAC Base Catastral Nacional (terrenos)",
+  "access": {
+   "wfs": "",
+   "rest": "https://datos-abiertos-igac-igac-oit.hub.arcgis.com/",
+   "download": "https://datos-abiertos-igac-igac-oit.hub.arcgis.com/datasets/e9b8fa55ab094fa68b61698c080d3493/about (08-2026)"
+  },
+  "coverage": "National + departmental, monthly",
+  "licence": "CC BY-SA 4.0",
+  "licence_url": "https://www.igac.gov.co/datos-abiertos/datos-abiertos-geoespaciales",
+  "licence_quote": "licenciado bajo CC BY-SA 4.0",
+  "verdict": "green",
+  "notes": "Areas run by other cadastral managers (Bogotá, Antioquia, etc.) may be missing."
+ },
+ {
+  "country": "Argentina",
+  "region": "Ciudad Autónoma de Buenos Aires",
+  "dataset": "Parcelas (catastro CABA)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://cdn.buenosaires.gob.ar/datosabiertos/datasets/secretaria-de-desarrollo-urbano/parcelas/parcelas_catastrales.geojson"
+  },
+  "coverage": "~391k parcels",
+  "licence": "CC-BY-2.5-AR",
+  "licence_url": "https://creativecommons.org/licenses/by/2.5/ar/",
+  "licence_quote": "license_title: CC-BY-2.5-AR (data.buenosaires.gob.ar CKAN, dataset parcelas)",
+  "verdict": "green",
+  "notes": ""
+ },
+ {
+  "country": "Argentina",
+  "region": "Provincia de Buenos Aires",
+  "dataset": "ARBA parcelario",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched: web search limit reached."
+ },
+ {
+  "country": "Uruguay",
+  "region": "National",
+  "dataset": "DNC Padrones urbanos y rurales",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://catalogodatos.gub.uy/dataset/direccion-nacional-de-catastro-padrones-urbanos-y-rurales"
+  },
+  "coverage": "National, monthly",
+  "licence": "Licencia de Datos Abiertos de Uruguay",
+  "licence_url": "https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/sites/agencia-gobierno-electronico-sociedad-informacion-conocimiento/files/documentos/publicaciones/licencia_de_datos_abiertos_0.pdf",
+  "licence_quote": "Los datos abiertos y los metadatos abiertos proporcionados, para uso comercial y no comercial podrán ser: enajenados, reproducidos, distribuidos, publicados",
+  "verdict": "green",
+  "notes": "Quote extracted from the licence PDF. Users must cite DNC and the licence."
+ },
+ {
+  "country": "South Africa",
+  "region": "National",
+  "dataset": "Chief Surveyor-General cadastral spatial data",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "National",
+  "licence": "Not found",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Only fee notices and old mailing-list threads found. No licence."
+ },
+ {
+  "country": "India",
+  "region": "National/States",
+  "dataset": "Bhunaksha state cadastral maps",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "Varies by state",
+  "licence": "Not stated (GODL applies only to data.gov.in datasets)",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "No parcel dataset found on data.gov.in. Bhunaksha portals offer viewing and PDFs only. Bhuvan not checked."
+ },
+ {
+  "country": "Hong Kong",
+  "region": "National",
+  "dataset": "Lot (Lands Department, CSDI) / Digital Land Boundary Map iC1000",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": "https://portal.csdi.gov.hk/geoportal/?datasetId=landsd_rcd_1637217253134_22729"
+  },
+  "coverage": "Territory, quarterly",
+  "licence": "DATA.GOV.HK Terms and Conditions",
+  "licence_url": "https://data.gov.hk/en/terms-and-conditions",
+  "licence_quote": "distribute, reproduce, hyperlink to, and print the Data for both commercial and non-commercial purposes",
+  "verdict": "green",
+  "notes": "Lot extents may not show precise lot boundaries. The CSDI portal's own terms were not checked separately."
+ },
+ {
+  "country": "Taiwan",
+  "region": "National",
+  "dataset": "段籍圖 LANDSECT (NLSC) - section outlines only",
+  "access": {
+   "wfs": "NLSC WMS/WMTS layer LANDSECT",
+   "rest": "",
+   "download": "https://data.gov.tw/dataset/17220"
+  },
+  "coverage": "National cadastral sections (not individual parcels)",
+  "licence": "政府資料開放授權條款-第1版",
+  "licence_url": "https://data.gov.tw/license",
+  "licence_quote": "授權使用者不限目的、時間及地域、非專屬、不可撤回、免授權金進行利用",
+  "verdict": "green",
+  "notes": "Green for section outlines only. Individual parcel 地籍圖 was not found as open data, so parcels are grey."
+ },
+ {
+  "country": "Peru",
+  "region": "National",
+  "dataset": "Peru (COFOPRI)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched: web search limit reached."
+ },
+ {
+  "country": "Costa Rica",
+  "region": "National",
+  "dataset": "Costa Rica (SNIT/Registro Nacional)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched: web search limit reached."
+ },
+ {
+  "country": "Kenya",
+  "region": "National",
+  "dataset": "Kenya (Ardhisasa)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched: web search limit reached."
+ },
+ {
+  "country": "Rwanda",
+  "region": "National",
+  "dataset": "Rwanda (LAIS)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched: web search limit reached."
+ },
+ {
+  "country": "Philippines",
+  "region": "National",
+  "dataset": "Philippines (LMB/LRA)",
+  "access": {
+   "wfs": "",
+   "rest": "",
+   "download": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched: web search limit reached."
+ },
+ {
+  "country": "United States",
+  "region": "Utah",
+  "dataset": "UGRC SGID Utah Statewide Parcels / county LIR parcels",
+  "access": {
+   "rest": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/ (Parcels_<County>, Parcels_<County>_LIR FeatureServers)",
+   "download": "https://opendata.gis.utah.gov/datasets/utah-statewide-parcels/explore",
+   "wfs": ""
+  },
+  "coverage": "All 29 counties (basic parcels + LIR)",
+  "licence": "No constraints (explicit), attribution encouraged",
+  "licence_url": "https://gis.utah.gov/products/sgid/cadastre/parcels/",
+  "licence_quote": "There are no constraints or warranties with regard to the use of this dataset. Users are encouraged to attribute content to: State of Utah, SGID.",
+  "verdict": "green",
+  "notes": "Not a named open licence but an explicit no-constraints statement; attribution requested, not required."
+ },
+ {
+  "country": "United States",
+  "region": "Connecticut",
+  "dataset": "Connecticut CAMA and Parcel Layer 2025 (also 2024)",
+  "access": {
+   "rest": "",
+   "download": "https://geodata.ct.gov/datasets/ctmaps::connecticut-cama-and-parcel-layer-2025",
+   "wfs": ""
+  },
+  "coverage": "Statewide, all municipalities (via COGs)",
+  "licence": "CC0 1.0",
+  "licence_url": "https://catalog.data.gov/dataset/connecticut-cama-and-parcel-layer-2025",
+  "licence_quote": "License: https://creativecommons.org/publicdomain/zero/1.0",
+  "verdict": "green",
+  "notes": "CC0 per State of Connecticut DCAT metadata harvested to data.gov (publisher State of Connecticut). The separate data.ct.gov 2024 CAMA table copy says 'License not specified' - use the geodata.ct.gov layer. Some records suppressed under CGS 1-217."
+ },
+ {
+  "country": "United States",
+  "region": "Massachusetts",
+  "dataset": "MassGIS Property Tax Parcels (Level 3 standardized assessor parcels)",
+  "access": {
+   "rest": "https://tiles.arcgis.com/tiles/hGdibHYSPO59RG1h/arcgis/rest/services/MassGIS_Level3_Parcels/MapServer",
+   "download": "https://www.mass.gov/info-details/massgis-data-property-tax-parcels",
+   "wfs": ""
+  },
+  "coverage": "All 351 municipalities",
+  "licence": "Public domain (MassGIS statement)",
+  "licence_url": "https://www.mass.gov/info-details/massgis-frequently-asked-questions",
+  "licence_quote": "the data are in the public domain and therefore can be used by anyone for any purpose",
+  "verdict": "green",
+  "notes": "mass.gov returned HTTP 403 to my fetcher; quote is the MassGIS FAQ text as indexed by search/quoted on wiki.openstreetmap.org/wiki/MassGIS. Credit requested. Some old layer pages wrongly said CC-BY. Re-verify the FAQ page in a browser before relying on it."
+ },
+ {
+  "country": "United States",
+  "region": "Tennessee",
+  "dataset": "TN Comptroller (Division of Property Assessments) county parcel shapefiles",
+  "access": {
+   "rest": "TNMap viewing services (view only)",
+   "download": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html (request form per county)",
+   "wfs": ""
+  },
+  "coverage": "86 of 95 counties (excludes Davidson, Shelby, Knox, Hamilton and others); NO statewide extract",
+  "licence": "Terms page explicitly allows any use incl. commercial; redistribution not stated",
+  "licence_url": "https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/parcel-data.html",
+  "licence_quote": "Any company or organization can use, save, and maintain the shapefile data for any use case ... including consumption in a commercial application/software",
+  "verdict": "green",
+  "notes": "Commercial use explicit, but: 'We do not provide statewide extracts', no bulk/recurring/automated downloads, manual request form per county. Redistribution of raw files not addressed - treat redistribution as unconfirmed."
+ },
+ {
+  "country": "United States",
+  "region": "Wisconsin",
+  "dataset": "SCO Statewide Parcel Map V12 (V-series)",
+  "access": {
+   "rest": "",
+   "download": "https://www.sco.wisc.edu/parcels/data/",
+   "wfs": ""
+  },
+  "coverage": "All 72 counties",
+  "licence": "None stated; free of charge + no-warranty disclaimer",
+  "licence_url": "https://www.sco.wisc.edu/parcels/data/",
+  "licence_quote": "No warranty, expressed or implied, is made regarding accuracy, completeness, or legality of the information herein.",
+  "verdict": "grey",
+  "notes": "Page says 'This data is provided free of charge' but gives no licence/commercial-use sentence."
+ },
+ {
+  "country": "United States",
+  "region": "Montana",
+  "dataset": "MSDI Cadastral (Montana Cadastral parcels)",
+  "access": {
+   "rest": "https://gisservice.mt.gov/arcgis/rest/services/msdi_cadastral_map_v1/MapServer/1",
+   "download": "https://ftpgeoinfo.msl.mt.gov/Data/Spatial/MSDI/Cadastral/Parcels",
+   "wfs": ""
+  },
+  "coverage": "All 56 counties, monthly",
+  "licence": "Not stated",
+  "licence_url": "https://msl.mt.gov/geoinfo/msdi/cadastral/",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "No licence sentence found on the MSDI cadastral page; related MSL metadata carries only informational-use/no-liability disclaimers."
+ },
+ {
+  "country": "United States",
+  "region": "Colorado",
+  "dataset": "Colorado Public Parcel Composite (OIT GIS)",
+  "access": {
+   "rest": "https://gis.colorado.gov/Public/rest/services/Address_and_Parcel/Colorado_Public_Parcels/MapServer/0",
+   "download": "https://geodata.colorado.gov",
+   "wfs": ""
+  },
+  "coverage": "Only counties that chose 'Public' sharing in annual data call",
+  "licence": "Not stated (licenseInfo blank)",
+  "licence_url": "https://gis.colorado.gov/public/rest/services/GOV/PropertyTaxParels/MapServer/0/iteminfo",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "No licence sentence found. Non-public counties restricted to state agencies."
+ },
+ {
+  "country": "United States",
+  "region": "Washington",
+  "dataset": "WA Statewide Parcels (OCIO/WaTech, hosted by WA DNR)",
+  "access": {
+   "rest": "https://gis.dnr.wa.gov/site2/rest/services/Public_Forest_Practices/WADNR_PUBLIC_OCIO_Parcels/MapServer",
+   "download": "WA Geospatial Open Data Portal (geo.wa.gov)",
+   "wfs": ""
+  },
+  "coverage": "Statewide, owner fields removed; some counties restrict use",
+  "licence": "Disclaimer with indemnity; no licence",
+  "licence_url": "https://watech.wa.gov/sites/default/files/2023-11/Washington%20State%20Data%20Disclaimer%202016.pdf",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Could not retrieve exact disclaimer text; search summary indicates users must indemnify OCIO and some counties limit use to State business. No commercial/redistribution grant found."
+ },
+ {
+  "country": "United States",
+  "region": "Oregon",
+  "dataset": "ORMAP taxlots / GEO Statewide Parcels Initiative",
+  "access": {
+   "rest": "https://services8.arcgis.com/8PAo5HGmvRMlF2eU/ArcGIS/rest/services/or_cadastral_wm/FeatureServer",
+   "download": "Oregon GEOHub (partial)",
+   "wfs": ""
+  },
+  "coverage": "Public statewide parcels only ~5 counties (2025); full statewide taxlots shared internally to agencies only",
+  "licence": "GEOHub 'free to download and use'; county licences govern taxlots",
+  "licence_url": "https://www.oregon.gov/geo/Pages/faq.aspx",
+  "licence_quote": "Yes, the data on GEOHub is free to download and use. Data disclaimers and terms of use are available on GEOHub.",
+  "verdict": "grey",
+  "notes": "No explicit commercial/redistribution grant; statewide taxlot file is credentialed internal sharing. ORMAP data.gov: 'contact the county Assessor's office'."
+ },
+ {
+  "country": "United States",
+  "region": "Texas",
+  "dataset": "TxGIO StratMap Land Parcels",
+  "access": {
+   "rest": "https://feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer",
+   "download": "https://geographic.texas.gov (Data Hub)",
+   "wfs": ""
+  },
+  "coverage": "Most but not all 254 counties (from appraisal districts, as-is)",
+  "licence": "Not stated (licenseInfo empty)",
+  "licence_url": "https://www.geographic.texas.gov/stratmap/land-parcels.html",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Free statewide distribution at no cost, copyright 'TxGIO, Various Counties, Various Vendors'; no licence sentence found. geodata.geo.texas.gov not fetchable."
+ },
+ {
+  "country": "United States",
+  "region": "Arkansas",
+  "dataset": "PARCEL_POLYGON_CAMP (County Assessor Mapping Program)",
+  "access": {
+   "rest": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/MapServer/6",
+   "download": "https://gis.arkansas.gov/?product=parcel-polygon-county-assessor-mapping-program-polygon",
+   "wfs": ""
+  },
+  "coverage": "Most counties (CAMP), semi-annual",
+  "licence": "'other restrictions' + liability disclaimer",
+  "licence_url": "https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/MapServer/6/iteminfo?f=pjson",
+  "licence_quote": "Refer to distribution liability in this document.",
+  "verdict": "grey",
+  "notes": "Metadata use constraint 'other restrictions'; no commercial/redistribution grant found."
+ },
+ {
+  "country": "United States",
+  "region": "West Virginia",
+  "dataset": "WV statewide tax parcels (WV Property Tax Division / WVGISTC)",
+  "access": {
+   "rest": "https://mapwv.gov/parcel/",
+   "download": "https://data.wvgis.wvu.edu/pub/Clearinghouse/planningLanduseCadastres/wv_tax_maps/",
+   "wfs": ""
+  },
+  "coverage": "Statewide",
+  "licence": "Free download; terms not found",
+  "licence_url": "https://mapwv.gov/parcel/template/helpPanel.html",
+  "licence_quote": "permitted the WV Property Tax Division to allow all digital surface tax maps and GIS files to be downloaded at no charge.",
+  "verdict": "grey",
+  "notes": "Free-of-charge statement only; Terms of Use page not located."
+ },
+ {
+  "country": "United States",
+  "region": "North Dakota",
+  "dataset": "ND Statewide Parcels (NDIT / GIS Hub)",
+  "access": {
+   "rest": "",
+   "download": "https://north-dakota-state-parcel-program-ndgov.hub.arcgis.com/",
+   "wfs": ""
+  },
+  "coverage": "53 counties (aggregated)",
+  "licence": "Not found",
+  "licence_url": "https://www.gis.nd.gov/news/north-dakota-statewide-parcels",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "No licence sentence on announcement page; only a third-party catalog labels it 'open'."
+ },
+ {
+  "country": "United States",
+  "region": "Nebraska",
+  "dataset": "StatewideParcelsExternal (NE OCIO)",
+  "access": {
+   "rest": "https://giscat.ne.gov/enterprise/rest/services/StatewideParcelsExternal/MapServer/0",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "Statewide snapshot (2024)",
+  "licence": "Internal State use; counties hold authority",
+  "licence_url": "https://giscat.ne.gov/enterprise/rest/services/StatewideParcelsExternal/MapServer/0/iteminfo?f=pjson",
+  "licence_quote": "for official, internal use by the State of Nebraska.",
+  "verdict": "red",
+  "notes": "Description says compiled for official internal State use; no public licence."
+ },
+ {
+  "country": "United States",
+  "region": "Iowa",
+  "dataset": "None current (2017 Statewide Parcel Data Server, archived)",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "No current statewide state-agency layer found",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "No current statewide parcel layer found at geodata.iowa.gov; counties individually."
+ },
+ {
+  "country": "United States",
+  "region": "Indiana",
+  "dataset": "Parcel Boundaries of Indiana Current (IGIO Data Harvest)",
+  "access": {
+   "rest": "https://gisdata.in.gov/server/rest/services/Hosted/Parcel_Boundaries_of_Indiana_Current/FeatureServer",
+   "download": "https://dataharvest.gio.in.gov/pages/data-access",
+   "wfs": ""
+  },
+  "coverage": "All 92 counties",
+  "licence": "AS-IS disclaimer, citation requested; no licence grant",
+  "licence_url": "https://gisdata.in.gov/server/rest/services/Hosted/Parcel_Boundaries_of_Indiana_Current/FeatureServer/info/iteminfo?f=pjson",
+  "licence_quote": "No spatial accuracy standard is enforced on this data, and accuracy may vary widely by area.",
+  "verdict": "grey",
+  "notes": "licenseInfo is disclaimer/liability-cap only; no commercial/redistribution sentence."
+ },
+ {
+  "country": "United States",
+  "region": "Ohio",
+  "dataset": "Ohio Statewide Parcels Public View (OGRIP)",
+  "access": {
+   "rest": "",
+   "download": "https://ohioparcels-geohio.hub.arcgis.com",
+   "wfs": ""
+  },
+  "coverage": "Counties that provide data (2024)",
+  "licence": "Not found ('Public' rights label only)",
+  "licence_url": "https://geo.btaa.org/catalog/26ab5fad8d5d4258a7492a14de83bc0e",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "No licence sentence found."
+ },
+ {
+  "country": "United States",
+  "region": "Michigan",
+  "dataset": "MGF statewide parcel layer (DTMB)",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "Statewide, internal only",
+  "licence": "Internal use only",
+  "licence_url": "https://www.michigan.gov/dtmb/services/maps/mgf-data-hub/boundaries-and-mgf/boundary-faqs",
+  "licence_quote": "this data is for internal use only and is not available in the Open Data Portal",
+  "verdict": "red",
+  "notes": "Quote from search index of the FAQ (page 403 to fetcher). Counties may charge fees."
+ },
+ {
+  "country": "United States",
+  "region": "Vermont",
+  "dataset": "VCGI Statewide Standardized Parcel Data (VTPARCELS)",
+  "access": {
+   "rest": "https://services1.arcgis.com/BkFxaEFNwHqX3tAw/ArcGIS/rest/services/",
+   "download": "https://geodata.vermont.gov",
+   "wfs": ""
+  },
+  "coverage": "All municipalities, Grand List joined",
+  "licence": "Vermont Open Geodata Policy (no named licence)",
+  "licence_url": "https://files.vcgi.vermont.gov/other/policies/vermont-open-geodata-policy.html",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Policy (v1.1, Dec 2025) reportedly allows no-cost access to download, share and use, but I could not retrieve the exact text; no explicit commercial clause confirmed. Strong candidate - verify policy text."
+ },
+ {
+  "country": "United States",
+  "region": "New Hampshire",
+  "dataset": "NH DRA Parcel Mosaic (GRANIT)",
+  "access": {
+   "rest": "https://nhgeodata.unh.edu/nhgeodata/rest/services/CAD/ParcelMosaic/MapServer",
+   "download": "GRANIT FTP",
+   "wfs": ""
+  },
+  "coverage": "Most communities",
+  "licence": "Not stated (licenseInfo blank)",
+  "licence_url": "https://nhgeodata.unh.edu/nhgeodata/rest/services/CAD/ParcelMosaic/MapServer/info/iteminfo",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Credits NHDRA and Axiomatic, Inc. (vendor) - vendor involvement adds risk."
+ },
+ {
+  "country": "United States",
+  "region": "Maine",
+  "dataset": "Maine Parcels Organized Towns (GeoLibrary)",
+  "access": {
+   "rest": "https://services1.arcgis.com/RbMX0mRVOFNTdLzd/ArcGIS/rest/services/Parcels/FeatureServer",
+   "download": "https://www.maine.gov/geolib/content/data-catalog",
+   "wfs": ""
+  },
+  "coverage": "Voluntary-submitting towns; uneven currency",
+  "licence": "Not stated",
+  "licence_url": "https://www1.maine.gov/geolib/catalog/metadata/parcels.html",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Copyright text 'Maine GeoLibrary' only."
+ },
+ {
+  "country": "United States",
+  "region": "Rhode Island",
+  "dataset": "No statewide RIGIS parcel layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Nothing found; municipal only."
+ },
+ {
+  "country": "United States",
+  "region": "New Jersey",
+  "dataset": "NJOGIS Parcels and MOD-IV Composite of NJ",
+  "access": {
+   "rest": "",
+   "download": "https://njogis-newjersey.opendata.arcgis.com/documents/newjersey::parcels-and-mod-iv-composite-of-nj-download/about",
+   "wfs": ""
+  },
+  "coverage": "All 21 counties; owner names redacted (Daniel's Law)",
+  "licence": "Not found on parcels page (links to Legal Statement & Disclaimers)",
+  "licence_url": "https://nj.gov/njgin/edata/parcels/",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Only not-legal-boundary/not-survey disclaimers found."
+ },
+ {
+  "country": "United States",
+  "region": "New York",
+  "dataset": "NYS Tax Parcels Public (ITS Geospatial Services)",
+  "access": {
+   "rest": "https://gisservices.its.ny.gov/arcgis/rest/services/NYS_Tax_Parcels_Public/FeatureServer",
+   "download": "https://gis.ny.gov/parcels",
+   "wfs": ""
+  },
+  "coverage": "38 of 62 counties (opt-in); centroids & state-owned for all 62",
+  "licence": "County-controlled distribution; AS-IS",
+  "licence_url": "https://gis.ny.gov/parcels",
+  "licence_quote": "we respect each county's right as the data owner to control the distribution their GIS data.",
+  "verdict": "grey",
+  "notes": "No licence grant; commercial use/redistribution not addressed."
+ },
+ {
+  "country": "United States",
+  "region": "Pennsylvania",
+  "dataset": "No state-agency statewide layer (PASDA hosts county parcels; PA_Parcels_2022 service exists)",
+  "access": {
+   "rest": "https://apps.pasda.psu.edu/arcgis/rest/services/PA_Parcels_2022/MapServer",
+   "download": "https://www.pasda.psu.edu",
+   "wfs": ""
+  },
+  "coverage": "County-by-county",
+  "licence": "Per county",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "PASDA is Penn State-run; iteminfo empty."
+ },
+ {
+  "country": "United States",
+  "region": "Maryland",
+  "dataset": "MD iMAP Parcel Boundaries (MDP/SDAT)",
+  "access": {
+   "rest": "https://geodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer",
+   "download": "https://data.imap.maryland.gov",
+   "wfs": ""
+  },
+  "coverage": "Statewide",
+  "licence": "MD iMAP terms (AS-IS + attribution); full text not retrieved",
+  "licence_url": "https://geodata.md.gov/imap/rest/services/PlanningCadastre/MD_ParcelBoundaries/MapServer/info/iteminfo?f=pjson",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Service returned 503; snippets indicate derived data must acknowledge State of Maryland. No commercial clause confirmed - re-check 'ADDITIONAL LICENSE TERMS'."
+ },
+ {
+  "country": "United States",
+  "region": "Delaware",
+  "dataset": "FirstMap DE_StateParcels",
+  "access": {
+   "rest": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/PlanningCadastre/DE_StateParcels/FeatureServer",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "Statewide with ownership",
+  "licence": "Not stated (licenseInfo and accessInformation empty)",
+  "licence_url": "https://enterprise.firstmap.delaware.gov/arcgis/rest/services/PlanningCadastre/DE_StateParcels/FeatureServer/info/iteminfo?f=pjson",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": ""
+ },
+ {
+  "country": "United States",
+  "region": "Virginia",
+  "dataset": "VGIN Virginia Parcels",
+  "access": {
+   "rest": "https://vginmaps.vdem.virginia.gov/arcgis/rest/services/VA_Base_Layers/VA_Parcels/FeatureServer",
+   "download": "Virginia GIS Clearinghouse (vgin.vdem.virginia.gov)",
+   "wfs": ""
+  },
+  "coverage": "Statewide, quarterly, geometry + IDs",
+  "licence": "Not stated (licenseInfo empty)",
+  "licence_url": "https://vginmaps.vdem.virginia.gov/arcgis/rest/services/VA_Base_Layers/VA_Parcels/MapServer/info/iteminfo?f=pjson",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "VGIN says its data is openly available without charge, but no licence sentence on the layer."
+ },
+ {
+  "country": "United States",
+  "region": "North Carolina",
+  "dataset": "NC OneMap NC1Map_Parcels",
+  "access": {
+   "rest": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer",
+   "download": "https://www.nconemap.gov",
+   "wfs": ""
+  },
+  "coverage": "All 100 counties + EBCI, weekly",
+  "licence": "Disclaimer only; terms page empty",
+  "licence_url": "https://services.nconemap.gov/secure/rest/services/NC1Map_Parcels/MapServer/0/iteminfo?f=pjson",
+  "licence_quote": "This dataset is an inventory of county representations of tax parcels. This dataset is not a survey document and should not be utilized as such.",
+  "verdict": "grey",
+  "notes": "nconemap.gov/pages/terms rendered with no text."
+ },
+ {
+  "country": "United States",
+  "region": "Florida",
+  "dataset": "FDOR statewide cadastral (county property appraiser GIS)",
+  "access": {
+   "rest": "",
+   "download": "https://www.floridarevenue.com/property/Pages/Cofficial_GIS.aspx",
+   "wfs": ""
+  },
+  "coverage": "All 67 counties, annual",
+  "licence": "'GIS Data Download Disclaimer' PDF (not read)",
+  "licence_url": "https://www.floridarevenue.com/property/Pages/Cofficial_GIS.aspx",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Florida public-records law favours reuse but no licence sentence retrieved."
+ },
+ {
+  "country": "United States",
+  "region": "Minnesota",
+  "dataset": "Parcels, Compiled from Opt-In Open Data Counties (MnGeo)",
+  "access": {
+   "rest": "https://enterprise.gisdata.mn.gov/aghost/rest/services/us_mn_state_mngeo/plan_parcels_open/MapServer/0",
+   "download": "https://gisdata.mn.gov/dataset/plan-parcels-open (now gis.data.mn.gov)",
+   "wfs": ""
+  },
+  "coverage": "Opt-in counties (~59 of 87)",
+  "licence": "'License not specified'; access constraint None",
+  "licence_url": "https://gisdata.mn.gov/dataset/plan-parcels-open",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Opt-in counties are 'open data' counties, but no explicit licence text found."
+ },
+ {
+  "country": "United States",
+  "region": "Hawaii",
+  "dataset": "Statewide TMK Parcels (Hawaii Statewide GIS Program)",
+  "access": {
+   "rest": "https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/25",
+   "download": "https://planning.hawaii.gov/gis/download-gis-data-expanded/",
+   "wfs": ""
+  },
+  "coverage": "All 4 counties",
+  "licence": "Disclaimer only",
+  "licence_url": "https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/25/iteminfo?f=pjson",
+  "licence_quote": "The parcel boundaries are intended to provide a visual reference only and do not represent legal or survey level accuracy.",
+  "verdict": "grey",
+  "notes": "Program Terms of Use page not read."
+ },
+ {
+  "country": "United States",
+  "region": "Mississippi",
+  "dataset": "MARIS / MDEQ Statewide Parcels (East/West)",
+  "access": {
+   "rest": "https://gis.mississippi.edu/server/rest/services/Cadastral/",
+   "download": "https://maris.mississippi.edu/MARISdata/Parcels/",
+   "wfs": ""
+  },
+  "coverage": "Statewide (2023/2024 releases)",
+  "licence": "Not checked",
+  "licence_url": "https://maris.mississippi.edu/MARISdata/Parcels/MS_StatewideParcels_Aug2024/MS_East_MDEQPARCELS_2024_meta.pdf",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Metadata PDF not read; vendor-compiled (TriState)."
+ },
+ {
+  "country": "United States",
+  "region": "Idaho",
+  "dataset": "Idaho statewide parcels framework (ITS/IGC)",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "Counties decide what is shared",
+  "licence": "",
+  "licence_url": "https://gis.idaho.gov/?p=1764",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "County-controlled sharing; no public statewide licence found."
+ },
+ {
+  "country": "United States",
+  "region": "Kansas",
+  "dataset": "No confirmed statewide public parcel layer (DASC / ORKA)",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not confirmed."
+ },
+ {
+  "country": "United States",
+  "region": "Kentucky",
+  "dataset": "No statewide parcel layer found (KyGovMaps)",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "County only",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": ""
+ },
+ {
+  "country": "United States",
+  "region": "South Carolina",
+  "dataset": "No statewide state-agency layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": ""
+ },
+ {
+  "country": "United States",
+  "region": "Georgia",
+  "dataset": "No statewide state-agency layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched in depth."
+ },
+ {
+  "country": "United States",
+  "region": "Alabama",
+  "dataset": "No statewide state-agency layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched in depth."
+ },
+ {
+  "country": "United States",
+  "region": "Louisiana",
+  "dataset": "No statewide state-agency layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched in depth."
+ },
+ {
+  "country": "United States",
+  "region": "Oklahoma",
+  "dataset": "No statewide state-agency layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched in depth."
+ },
+ {
+  "country": "United States",
+  "region": "New Mexico",
+  "dataset": "No statewide state-agency layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched in depth."
+ },
+ {
+  "country": "United States",
+  "region": "Arizona",
+  "dataset": "No statewide state-agency layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched in depth."
+ },
+ {
+  "country": "United States",
+  "region": "Nevada",
+  "dataset": "No statewide state-agency layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched in depth."
+ },
+ {
+  "country": "United States",
+  "region": "Wyoming",
+  "dataset": "No statewide state-agency layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched in depth."
+ },
+ {
+  "country": "United States",
+  "region": "Alaska",
+  "dataset": "No statewide state-agency layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched in depth."
+ },
+ {
+  "country": "United States",
+  "region": "California",
+  "dataset": "None statewide",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "County only",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "No statewide parcel layer exists."
+ },
+ {
+  "country": "United States",
+  "region": "South Dakota",
+  "dataset": "No statewide state-agency layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched in depth."
+ },
+ {
+  "country": "United States",
+  "region": "Illinois",
+  "dataset": "No statewide state-agency layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched in depth."
+ },
+ {
+  "country": "United States",
+  "region": "Missouri",
+  "dataset": "No statewide state-agency layer found",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "grey",
+  "notes": "Not researched in depth."
+ },
+ {
+  "country": "United States",
+  "region": "National",
+  "dataset": "BLM PLSS CadNSDI (survey grid, not tax parcels)",
+  "access": {
+   "rest": "https://gis.blm.gov/arcgis/rest/services/Cadastral/BLM_Natl_PLSS_CadNSDI/MapServer",
+   "download": "https://catalog.data.gov (BLM CadNSDI by state)",
+   "wfs": ""
+  },
+  "coverage": "30 PLSS states (townships/sections), not ownership parcels",
+  "licence": "US public domain (us-pd)",
+  "licence_url": "https://catalog.data.gov/dataset/blm-ca-public-land-survey-system-cadnsdi-d2fca",
+  "licence_quote": "",
+  "verdict": "green",
+  "notes": "data.gov lists licence us-pd (federal work); BLM asks to be cited. Exact sentence not captured - it is a licence field value, not a sentence."
+ },
+ {
+  "country": "United States",
+  "region": "National",
+  "dataset": "Regrid nationwide parcels",
+  "access": {
+   "rest": "",
+   "download": "https://app.regrid.com/store",
+   "wfs": ""
+  },
+  "coverage": "~3,100 counties",
+  "licence": "Commercial paid licence",
+  "licence_url": "https://regrid.com/terms",
+  "licence_quote": "You can't copy, reproduce, publish, create derivative works from, perform, upload, post, distribute",
+  "verdict": "red",
+  "notes": "Paid; bulk/API licences via sales; no redistribution."
+ },
+ {
+  "country": "United States",
+  "region": "National",
+  "dataset": "HIFLD Open (incl. parcels topic)",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "Retired",
+  "licence_url": "https://www.napsgfoundation.org/hifld_open/",
+  "licence_quote": "",
+  "verdict": "red",
+  "notes": "HIFLD Open discontinued 26 Aug 2025; some layers moved to HIFLD Secure (restricted). Never had an open national parcel layer. Archives on DataLumos / source.coop (seerai) - not a parcel source."
+ },
+ {
+  "country": "United States",
+  "region": "National",
+  "dataset": "LightBox / ReportAll / OpenAddresses parcels",
+  "access": {
+   "rest": "",
+   "download": "",
+   "wfs": ""
+  },
+  "coverage": "",
+  "licence": "Commercial (LightBox, ReportAll) / per-source (OpenAddresses)",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "red",
+  "notes": "LightBox and ReportAll are paid. OpenAddresses parcel files inherit each county's terms - grey per source. No USDA/FEMA/USGS national parcel layer exists."
+ }
+]

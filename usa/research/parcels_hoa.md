@@ -66,3 +66,27 @@ the registry yet, so they report "no open parcel data" until a licence check add
 | columbus-oz | 46 | 20/20 | 4 subdivision plats | possible covenants |
 | cincinnati-oh | 35 | 9/9 | 2 subdivision plat pieces | possible covenants |
 | other 13 blocks | 0 | 0 | 0 | no open parcel data / no open HOA data |
+
+## 2026-11-25 additions (lanes parcels_west / parcels_south / parcels_east / hoa_boundaries; licences re-read on the official pages)
+
+| Block | Parcels | Licence | Result |
+|---|---|---|---|
+| washington-dc | Open Data DC Owner Polygons (Property_and_Land/40) | CC BY 4.0 | 41 parcels, 7/7 houses |
+| somerville-ma | MassGIS Massachusetts_Property_Tax_Parcels/0 | public domain ("can be used by anyone for any purpose", MassGIS FAQ) | 58 parcels, 14/14 |
+| salt-lake-city-ut | UGRC Parcels_SaltLake_LIR/0 | CC BY 4.0 (UGRC licence page) | 30 parcels, 6/6 |
+| sacramento-ca | Sacramento County GIS Parcels/0 | CC0 (item licenseInfo) | 36 parcels, 5/5 |
+| atlanta-ga | Fulton County Tax_Parcels/0 | CC BY-SA (share-alike; owner fields never read) | 29 parcels, 3/3 |
+
+HOA / plat additions: DC Condo Approval Lots (layer 44, CC BY 4.0, condo association), Sacramento Filed Subdivision Maps (CC0),
+City of Scottsdale OpenData Subdivisions (ODbL), Spokane County Plats (CC BY) - plats are "possible covenants - not confirmed HOA".
+
+Not green (kept out): Anchorage (item says only "for public use"; the open-data policy page is 404), Phoenix CityParcels,
+Scottsdale GIS sales, Clark/Las Vegas, SanGIS, Seattle/King, Spokane/WA geoportal, Portland RLIS (revocable, never says
+commercial), Honolulu, Houston, Travis, KCMO, Douglas NE, Birmingham, New Orleans, Florida statewide, Tulsa, Nashville (red),
+Detroit (FOIA-page statement only), Cook (commercial only when combined), Nassau (none), Philadelphia (red), Franklin OH (grey).
+Dallas: City of Dallas 2016 Parcel 77mr-n8tf is ODC-By (green) but Socrata-only and 2016 - not wired yet.
+
+Pool ownership: usa/pool_owner.py. A pool belongs to the house whose parcel contains it; with no open parcels, to the nearest of
+ALL Overture buildings (block + 80 m; outbuildings < 100 m2 count for their nearest main building). Result 2026-11-25:
+13 pools -> 9; Scottsdale 10022 N 77th St and Phoenix houses 2, 6, 7 had been given a neighbour's pool.
+No federal or state HOA boundary database exists (usa/research/hoa_boundaries.md); world cadastre audit in cadastre_world.md.

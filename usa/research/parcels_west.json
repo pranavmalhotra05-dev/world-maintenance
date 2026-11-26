@@ -1,0 +1,328 @@
+[
+  {
+    "slug": "phoenix-az",
+    "county": "04013",
+    "source_name": "City of Phoenix - City Parcels (phoenixopendata.com / egishub-phoenix)",
+    "rest_url": "https://maps.phoenix.gov/pub/rest/services/Public/CityParcels/MapServer/0",
+    "id_field": "APN",
+    "address_fields": [
+      "ADDR",
+      "PREFIX",
+      "STREET",
+      "STREET_TYPE",
+      "POSTDIR",
+      "ZIP_CODE"
+    ],
+    "licence": "Portal CKAN record tags CC-BY, but dataset notes say non-commercial; service says viewing/label only",
+    "licence_url": "https://www.phoenixopendata.com/api/3/action/package_show?id=city-parcels",
+    "licence_quote": "Service description: \"To be used for viewing/label purposes only.\" (CKAN notes also state non-commercial use only, contradicting license_id cc-by.)",
+    "verdict": "grey",
+    "tested": {
+      "ok": true,
+      "count_in_200m_box": 62,
+      "note": "Test = ArcGIS REST query returnCountOnly=true, envelope ~200 m around block centre (EPSG:4326), run 2026-11-25."
+    },
+    "notes": "Conflicting licence signals (cc-by tag vs non-commercial note vs 'viewing/label only'); also 'does not include ALL City Parcels but only unique address records'. Maricopa Assessor is RED (A.R.S. 39-121.03). No green parcel source found for Phoenix. AZ state (AZGeo) not checked - web search budget exhausted."
+  },
+  {
+    "slug": "scottsdale-az",
+    "county": "04013",
+    "source_name": "City of Scottsdale GIS data sales (parcels shapefile)",
+    "rest_url": "",
+    "id_field": "",
+    "address_fields": [],
+    "licence": "Paid data sale; redistribution needs written permission",
+    "licence_url": "https://www.scottsdaleaz.gov/maps/gis-data-sales",
+    "licence_quote": "\"cannot be redistributed (sales, copies, etc.) in any form without written permission from the City of Scottsdale.\" / \"Commercial uses of the data are subject to higher fees.\"",
+    "verdict": "red",
+    "tested": {
+      "ok": false,
+      "count_in_200m_box": 0,
+      "note": "No public parcel REST layer with a licence found; not tested."
+    },
+    "notes": "Scottsdale AR297 open-data policy defines its open licence for non-commercial use only. Maricopa Assessor RED. Phoenix CityParcels does not cover Scottsdale. No green path found."
+  },
+  {
+    "slug": "las-vegas-nv",
+    "county": "32003",
+    "source_name": "City of Las Vegas ArcGIS - CC_PARCELS_SHP (Clark County Assessor parcels)",
+    "rest_url": "https://services1.arcgis.com/F1v0ufATbBQScMtY/arcgis/rest/services/CC_PARCELS_SHP/FeatureServer/1",
+    "id_field": "PARCEL",
+    "address_fields": [
+      "STRNO",
+      "STRDIR",
+      "STRNAME",
+      "STRTYPE",
+      "STRCITY",
+      "ZIPCODE"
+    ],
+    "licence": "Item licenceInfo is a disclaimer only; underlying Clark County Assessor/GISMO parcel data is sold under a subscriber licence agreement",
+    "licence_url": "https://www.clarkcountynv.gov/government/departments/geographic_info_systems/services/data-for-purchase",
+    "licence_quote": "Item: \"The City of Las Vegas makes no warranty, representation or guarantee of any kind regarding either any maps or other information provided herein...\" (no grant). County: annual subscription requires a licence agreement and fee.",
+    "verdict": "red",
+    "tested": {
+      "ok": true,
+      "count_in_200m_box": 29,
+      "note": "Test = ArcGIS REST query returnCountOnly=true, envelope ~200 m around block centre (EPSG:4326), run 2026-11-25. Layer also contains OWNER/ADDRESS1-5 mailing fields - never request them (use an outFields whitelist)."
+    },
+    "notes": "City 2016 open-data policy says portal datasets are public domain, but this layer is Clark County Assessor data (paid subscriber agreement) - treat as red unless the City portal item itself carries a PD licence."
+  },
+  {
+    "slug": "salt-lake-city-ut",
+    "county": "49035",
+    "source_name": "UGRC SGID - Utah Salt Lake County Parcels LIR",
+    "rest_url": "https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_SaltLake_LIR/FeatureServer/0",
+    "id_field": "PARCEL_ID",
+    "address_fields": [
+      "PARCEL_ADD",
+      "PARCEL_CITY"
+    ],
+    "licence": "CC BY 4.0 (UGRC default) + 'no constraints' statement on the parcels page",
+    "licence_url": "https://gis.utah.gov/documentation/policy/license/",
+    "licence_quote": "\"Unless otherwise stated in a dataset's metadata, UGRC licenses our data and services under a Creative Commons Attribution 4.0 International License.\" Parcels page (https://gis.utah.gov/products/sgid/cadastre/parcels/): \"There are no constraints or warranties with regard to the use of this dataset.\"",
+    "verdict": "green",
+    "tested": {
+      "ok": true,
+      "count_in_200m_box": 52,
+      "note": "Test = ArcGIS REST query returnCountOnly=true, envelope ~200 m around block centre (EPSG:4326), run 2026-11-25."
+    },
+    "notes": "Attribute 'State of Utah, SGID' / UGRC. No owner fields in LIR schema. Statewide also: Parcels_Utah_LIR FeatureServer."
+  },
+  {
+    "slug": "sacramento-ca",
+    "county": "06067",
+    "source_name": "Sacramento County GIS (ArcGIS org 'sacramentocounty') - Parcels",
+    "rest_url": "https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/Parcels/FeatureServer/0",
+    "id_field": "APN",
+    "address_fields": [
+      "STREET_NBR",
+      "STREET_NAM",
+      "CITY",
+      "ZIP"
+    ],
+    "licence": "Creative Commons public domain dedication (stated in item licenseInfo)",
+    "licence_url": "https://www.arcgis.com/home/item.html?id=8d011b99aebc46d48060b2e5bdd7f4a0",
+    "licence_quote": "\"This work is licensed under a Creative Commons Public Domain Dedication License\"",
+    "verdict": "green",
+    "tested": {
+      "ok": true,
+      "count_in_200m_box": 60,
+      "note": "Test = ArcGIS REST query returnCountOnly=true, envelope ~200 m around block centre (EPSG:4326), run 2026-11-25."
+    },
+    "notes": "Publisher org confirmed as 'Sacramento County GIS' (portal 5NARefyPVtAeuJPU); extent covers Sacramento County; no owner fields in schema. City of Sacramento open-data terms are NOT green (no rights grant), so use the County item. Item modified 2026."
+  },
+  {
+    "slug": "san-diego-ca",
+    "county": "06073",
+    "source_name": "SANDAG/SanGIS GeoServer - Hosted/Parcels",
+    "rest_url": "https://geo.sandag.org/server/rest/services/Hosted/Parcels/FeatureServer/0",
+    "id_field": "apn",
+    "address_fields": [
+      "situs_address",
+      "situs_pre_dir",
+      "situs_street",
+      "situs_suffix",
+      "situs_post_dir",
+      "situs_juris"
+    ],
+    "licence": "No licence in item metadata; SanGIS public data governed by a click-through 'GIS Data End User Use Agreement & Disclaimer' (indemnity)",
+    "licence_url": "https://geo.sandag.org/server/rest/services/Hosted/Parcels/FeatureServer/info/iteminfo",
+    "licence_quote": "licenseInfo empty; accessInformation: \"SanGIS using legal recorded data provided by the County Recorders and Assessor's Office.\"",
+    "verdict": "grey",
+    "tested": {
+      "ok": true,
+      "count_in_200m_box": 75,
+      "note": "Test = ArcGIS REST query returnCountOnly=true, envelope ~200 m around block centre (EPSG:4326), run 2026-11-25. Stacked condo parcels inflate counts. Layer has owner-related fields - whitelist outFields."
+    },
+    "notes": "No explicit commercial grant found. City of San Diego (data.sandiego.gov, PDDL) only publishes city-owned parcels, address-point-to-APN points and ROW polygons, not all parcels. Hosted/Lots (legal lots, 19 in box) has the same SanGIS terms."
+  },
+  {
+    "slug": "seattle-wa",
+    "county": "53033",
+    "source_name": "City of Seattle - Zoned Development Capacity Layers 2016 / Parcels (PDDL)",
+    "rest_url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Zoned_Development_Capacity_Layers_2016/FeatureServer/2",
+    "id_field": "PIN",
+    "address_fields": [
+      "ADDRESS"
+    ],
+    "licence": "ODC PDDL on the City item; upstream King County parcels carry 'no sale without written agreement'",
+    "licence_url": "https://www.arcgis.com/home/item.html?id=42863f1debdc47488a1c2b9edd38053e",
+    "licence_quote": "Item licenceInfo: \"PDDL | This item is meant for public access and use.\" King County GIS terms (https://kingcounty.gov/en/dept/kcit/data-information-services/gis-center/about/terms-conditions-copyrights): \"no one is permitted to sell this information except in accordance with a written agreement with King County.\"",
+    "verdict": "grey",
+    "tested": {
+      "ok": true,
+      "count_in_200m_box": 71,
+      "note": "Test = ArcGIS REST query returnCountOnly=true, envelope ~200 m around block centre (EPSG:4326), run 2026-11-25."
+    },
+    "notes": "Would be green on the City's own PDDL, but geometry is King County Assessor parcels frozen at 2016 and KC terms bar sale -> grey area. Current City layer PARCEL_GEO (93 in box) is disclaimer-only. WA statewide Current_Parcels (72 in box) is disclaimer-only (grey)."
+  },
+  {
+    "slug": "spokane-wa",
+    "county": "53063",
+    "source_name": "WA Geoportal - Current Parcels (statewide, Parcels_2026)",
+    "rest_url": "https://services.arcgis.com/jsIt88o09Q0r1j8h/arcgis/rest/services/Current_Parcels/FeatureServer/0",
+    "id_field": "PARCEL_ID_NR",
+    "address_fields": [
+      "SITUS_ADDRESS",
+      "SUB_ADDRESS",
+      "SITUS_CITY_NM",
+      "SITUS_ZIP_NR"
+    ],
+    "licence": "Disclaimer only ('informational purposes only'); no licence grant",
+    "licence_url": "https://www.arcgis.com/home/item.html?id=2b603a599a0842a3b2284c04c8927f35",
+    "licence_quote": "\"The Washington State Geoportal provides this product/service for informational purposes only.\"",
+    "verdict": "grey",
+    "tested": {
+      "ok": true,
+      "count_in_200m_box": 40,
+      "note": "Test = ArcGIS REST query returnCountOnly=true, envelope ~200 m around block centre (EPSG:4326), run 2026-11-25."
+    },
+    "notes": "Spokane County's own OpenData/Property service is CC BY-NC-SA (RED, non-commercial): \"CC BY-NC-SA Spokane County is pleased to give you online access...\" (https://gismo.spokanecounty.org/arcgis/rest/services/OpenData/Property/MapServer; Lots layer 2 = 43 in box). Spokane Valley layers are 'internal/viewer only'. City of Spokane portal not checked (search budget exhausted)."
+  },
+  {
+    "slug": "portland-or",
+    "county": "41051",
+    "source_name": "Oregon Metro RLIS Discovery - Taxlots (Public)",
+    "rest_url": "https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/Taxlots_%28Public%29/FeatureServer/3",
+    "id_field": "TLID",
+    "address_fields": [
+      "SITEADDR",
+      "SITECITY",
+      "SITEZIP"
+    ],
+    "licence": "RLIS Open Database End User License Agreement (ODbL-style custom licence; revocable; attribution + same-terms on redistributed data)",
+    "licence_url": "https://rlisdiscovery.oregonmetro.gov/pages/open-database-license",
+    "licence_quote": "\"Metro grants you a limited, worldwide, royalty-free, non-exclusive, revocable license to: Copy, publish, distribute, and share the Data; Extract, modify, and adapt the Data; and Combine it with other data, or include it in your own product or application.\"",
+    "verdict": "grey",
+    "tested": {
+      "ok": true,
+      "count_in_200m_box": 83,
+      "note": "Test = ArcGIS REST query returnCountOnly=true, envelope ~200 m around block centre (EPSG:4326), run 2026-11-25."
+    },
+    "notes": "Strongest near-green: permits inclusion in your own product with no purpose restriction, but it is a custom revocable licence that never says 'commercial', so under the strict rule it is grey pending user sign-off. Owner fields are paywalled and absent. Required attribution string is given on the licence page."
+  },
+  {
+    "slug": "honolulu-hi",
+    "county": "15003",
+    "source_name": "Hawaii Statewide GIS Program - Oahu Parcels (from C&C Honolulu HOLIS)",
+    "rest_url": "https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/11",
+    "id_field": "tmk",
+    "address_fields": [],
+    "licence": "Disclaimer only (HOLIS); some HOLIS items assert City proprietary rights",
+    "licence_url": "https://geodata.hawaii.gov/arcgis/rest/services/ParcelsZoning/MapServer/11/iteminfo",
+    "licence_quote": "\"Any implied warranties, including warranties of merchantibility or fitness for a particular purpose, shall be expressly excluded.\" (no grant). Another HOLIS item: \"The GIS data are proprietary to the City, and title to this information remains in the City.\"",
+    "verdict": "grey",
+    "tested": {
+      "ok": true,
+      "count_in_200m_box": 70,
+      "note": "Test = ArcGIS REST query returnCountOnly=true, envelope ~200 m around block centre (EPSG:4326), run 2026-11-25. No situs address field on this layer."
+    },
+    "notes": "State OPSD page says its web page contents are public domain, but the parcels are HOLIS data with disclaimer-only terms. HOLIS hub layer services.arcgis.com/tNJpAOha4mODLkXz/.../All_Parcels has the same disclaimer."
+  },
+  {
+    "slug": "anchorage-ak",
+    "county": "02020",
+    "source_name": "Municipality of Anchorage - PropertyInformation_Hosted (parcels + CAMA)",
+    "rest_url": "https://services2.arcgis.com/Ce3DhLRthdwbHlfF/arcgis/rest/services/PropertyInformation_Hosted/FeatureServer/0",
+    "id_field": "Parcel_ID",
+    "address_fields": [
+      "Parcel_Address",
+      "GIS_Site_Street_Number",
+      "GIS_Site_Street_Pre",
+      "GIS_Site_Street_Name",
+      "GIS_Site_Street_Type",
+      "GIS_Site_City",
+      "GIS_Site_Zipcode"
+    ],
+    "licence": "MOA Open Data Policy (2016): public data not subject to copyright; free to republish/use as they wish; item licenceInfo 'for public use'",
+    "licence_url": "https://www.muni.org/Departments/Mayor/Pages/OpenDataPolicy.aspx",
+    "licence_quote": "Open Data is data \"made open and freely available to everyone to be republished or used as they wish\" and \"shall not be subject to copyright, patent, trademark or trade secret restrictions.\"",
+    "verdict": "green",
+    "tested": {
+      "ok": true,
+      "count_in_200m_box": 14,
+      "note": "Test = ArcGIS REST query returnCountOnly=true, envelope ~200 m around block centre (EPSG:4326), run 2026-11-25. Large-lot area. Layer contains Owner_* fields - use an outFields whitelist only."
+    },
+    "notes": "Green on 'used as they wish' (= any purpose). Caveat: the MOA hub download page references a 'Terms of Use and Disclaimer' whose text could not be retrieved; policy quote read via the Sunlight Foundation policy-hub copy (muni.org page did not load). Updated daily."
+  },
+  {
+    "kind": "sidewalk",
+    "slug": "portland-or",
+    "county": "41051",
+    "source_name": "Oregon Metro RLIS - Sidewalks (polylines)",
+    "rest_url": "https://services2.arcgis.com/McQ0OlIABe29rJJy/arcgis/rest/services/Sidewalks/FeatureServer/0",
+    "id_field": "LOCALID",
+    "address_fields": [
+      "STREETNAME"
+    ],
+    "licence": "ODbL",
+    "licence_url": "https://opendatacommons.org/licenses/odbl/summary",
+    "licence_quote": "RLIS DCAT feed licence for 'Sidewalks': https://opendatacommons.org/licenses/odbl/summary",
+    "verdict": "green",
+    "tested": {
+      "ok": true,
+      "count_in_200m_box": 16,
+      "note": "Test = ArcGIS REST query returnCountOnly=true, envelope ~200 m around block centre (EPSG:4326), run 2026-11-25."
+    },
+    "notes": "Polylines with left/right sidewalk presence (LS/RS, LPCT/RPCT), not polygons."
+  },
+  {
+    "kind": "sidewalk",
+    "slug": "san-diego-ca",
+    "county": "06073",
+    "source_name": "City of San Diego open data - Right-of-way parcels (SanGIS ROW polygons)",
+    "rest_url": "https://geo.sandag.org/server/rest/services/Hosted/Right_of_Way/FeatureServer/0",
+    "id_field": "parcelid",
+    "address_fields": [],
+    "licence": "ODC PDDL on data.sandiego.gov listing; data originates from SanGIS",
+    "licence_url": "https://data.sandiego.gov/datasets/right-of-way",
+    "licence_quote": "Dataset page licence link: https://opendefinition.org/licenses/odc-pddl/ ; description: \"polygons showing dedicated rights-of-way (ROW) within the County of San Diego.\"",
+    "verdict": "grey",
+    "tested": {
+      "ok": true,
+      "count_in_200m_box": 10,
+      "note": "Test = ArcGIS REST query returnCountOnly=true, envelope ~200 m around block centre (EPSG:4326), run 2026-11-25."
+    },
+    "notes": "PDDL is explicit on the City portal, but SanGIS upstream terms are unclear -> grey (same logic as Seattle). ROW polygons are the complement of lot lines; useful to clip yards."
+  },
+  {
+    "kind": "sidewalk",
+    "slug": "anchorage-ak",
+    "county": "02020",
+    "source_name": "Municipality of Anchorage - Maintained Sidewalks (polylines)",
+    "rest_url": "https://services2.arcgis.com/Ce3DhLRthdwbHlfF/arcgis/rest/services/MaintainedSidewalks_Hosted/FeatureServer/0",
+    "id_field": "Segment_Number",
+    "address_fields": [
+      "Street"
+    ],
+    "licence": "MOA Open Data Policy",
+    "licence_url": "https://www.muni.org/Departments/Mayor/Pages/OpenDataPolicy.aspx",
+    "licence_quote": "\"made open and freely available to everyone to be republished or used as they wish\"",
+    "verdict": "green",
+    "tested": {
+      "ok": true,
+      "count_in_200m_box": 1,
+      "note": "Test = ArcGIS REST query returnCountOnly=true, envelope ~200 m around block centre (EPSG:4326), run 2026-11-25."
+    },
+    "notes": "Polylines; only municipally maintained sidewalks."
+  },
+  {
+    "kind": "sidewalk",
+    "slug": "seattle-wa",
+    "county": "53033",
+    "source_name": "City of Seattle SDOT - Sidewalks (Active)",
+    "rest_url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Sidewalks_%28Active%29/FeatureServer/0",
+    "id_field": "",
+    "address_fields": [],
+    "licence": "Disclaimer only",
+    "licence_url": "https://www.arcgis.com/home/item.html?id=507f49bf3346495bba29871837e73408",
+    "licence_quote": "\"The City of Seattle makes no representation or warranty as to its accuracy...\" (no grant)",
+    "verdict": "grey",
+    "tested": {
+      "ok": false,
+      "count_in_200m_box": 0,
+      "note": "Not queried."
+    },
+    "notes": "Not tested; disclaimer-only licence."
+  }
+]

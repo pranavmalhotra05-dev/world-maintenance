@@ -1,0 +1,399 @@
+[
+ {
+  "slug": "austin-tx",
+  "county": "48453",
+  "source_name": "Travis County GIS - TCAD Parcels (public)",
+  "rest_url": "https://gis.traviscountytx.gov/server1/rest/services/Boundaries_and_Jurisdictions/TCAD_public/MapServer/0",
+  "id_field": "PROP_ID",
+  "address_fields": [
+   "situs_address",
+   "situs_num",
+   "situs_street",
+   "situs_city",
+   "situs_zip"
+  ],
+  "licence": "none (copyright 'Travis Central Appraisal District')",
+  "licence_url": "https://traviscad.org/publicinformation",
+  "licence_quote": "Copyright text: 'Travis Central Appraisal District' (no licence)",
+  "verdict": "grey",
+  "tested": {
+   "ok": true,
+   "count_in_200m_box": 68,
+   "note": "envelope count query OK"
+  },
+  "notes": "No green Austin parcels found. TxGIO StratMap (feature.geographic.texas.gov/arcgis/rest/services/Parcels/stratmap_land_parcels_48_most_recent/MapServer/0): licenseInfo blank, copyright 'TxGIO, Various Counties, Various Vendors'; its MapServer refuses query (400 'not supported'). City of Austin parcel items carry an 'informational purposes' disclaimer only. TxGIO Site Policies page not read (web-search budget exhausted)."
+ },
+ {
+  "slug": "dallas-tx",
+  "county": "48113",
+  "source_name": "City of Dallas Open Data - 'Parcel' (2016 certified roll, Dallas + 1 mile)",
+  "rest_url": "https://www.dallasopendata.com/resource/77mr-n8tf.json",
+  "id_field": "acct",
+  "address_fields": [
+   "st_num",
+   "st_dir",
+   "st_name",
+   "st_type",
+   "unitid"
+  ],
+  "licence": "Open Data Commons Attribution License (ODC-By 1.0)",
+  "licence_url": "https://www.dallasopendata.com/d/77mr-n8tf",
+  "licence_quote": "Dataset licence: 'Open Data Commons Attribution License' (termsLink http://opendatacommons.org/licenses/by/1.0/), attribution 'City of Dallas GIS Services'",
+  "verdict": "green",
+  "tested": {
+   "ok": true,
+   "count_in_200m_box": 48,
+   "note": "Socrata SoQL intersects() count on 200 m polygon; sample returned acct + situs fields only"
+  },
+  "notes": "Socrata dataset, not ArcGIS (no /layerId); geometry column the_geom; same licence on shapefile twin hy5f-5hrv. STALE: 2016 roll. Derived from county CAD data (DCAD itself = All Rights Reserved) but republished by City of Dallas under ODC-By. Has taxpayer name/address columns - never select them. Current city layer CurrentDcadParcels is disclaimer-only = grey."
+ },
+ {
+  "slug": "houston-tx",
+  "county": "48201",
+  "source_name": "City of Houston MyCity - Land Use (Grouped) parcels (HCAD-derived)",
+  "rest_url": "https://mycity2.houstontx.gov/gisweb02/rest/services/HoustonMap/Landuse/MapServer/0",
+  "id_field": "TAX_ID",
+  "address_fields": [
+   "SITE_ADDR_1",
+   "SITE_ADDR_2",
+   "SITE_ADDR_3",
+   "STR_NUM",
+   "STR_NAME"
+  ],
+  "licence": "public-domain statement on AGOL item registered by Harris County HCD (not the data owner)",
+  "licence_url": "https://www.arcgis.com/home/item.html?id=719ddea706594632ae1b871784ffc866",
+  "licence_quote": "'This data is placed in the public domain. There are no restrictions on copying, publishing, distributing, or using the data for a non-commercial or commercial purpose.'",
+  "verdict": "grey",
+  "tested": {
+   "ok": true,
+   "count_in_200m_box": 52,
+   "note": "envelope count OK"
+  },
+  "notes": "Licence text is Harris County HCD boilerplate on an item pointing at a City of Houston service; the City's own items for the same parcels (COH CADASTRAL PARCELS https://www.arcgis.com/home/item.html?id=01ac72c09a3d4b588d433a953c3e79d7) say 'general reference purposes only'; HCAD GIS readme has only a legal disclaimer and hcad.org says 'All Rights Reserved'. Conflicting publisher statements -> grey; would become green with written owner confirmation. Harris County Parcels (HarrisCountyGIS) = HCAD disclaimer only."
+ },
+ {
+  "slug": "tulsa-ok",
+  "county": "40143",
+  "source_name": "City of Tulsa GIS - Tulsa Parcels (LandBase web map view)",
+  "rest_url": "https://utility.arcgis.com/usrsvcs/servers/5dfa262780b34a4ab21b563b06a524b9/rest/services/WebMapViews/LandBaseWebMapView/MapServer/10",
+  "id_field": "unknown",
+  "address_fields": [],
+  "licence": "none (disclaimer)",
+  "licence_url": "https://www.arcgis.com/home/item.html?id=5dfa262780b34a4ab21b563b06a524b9",
+  "licence_quote": "'This dataset has been created for illustrative purposes only.'",
+  "verdict": "grey",
+  "tested": {
+   "ok": false,
+   "count_in_200m_box": 0,
+   "note": "utility proxy returned 403 to anonymous query"
+  },
+  "notes": "INCOG / Tulsa County Assessor still not green (assessor item: liability disclaimer only). No Oklahoma statewide parcel layer found."
+ },
+ {
+  "slug": "kansas-city-mo",
+  "county": "29095",
+  "source_name": "City of Kansas City MO GIS - Parcels (AGOL/6)",
+  "rest_url": "https://mapd.kcmo.org/kcgis/rest/services/AGOL/MapServer/6",
+  "id_field": "APN",
+  "address_fields": [
+   "ADDRESS",
+   "ADDR",
+   "PREFIX",
+   "STREET",
+   "STREET_TYPE",
+   "SUITE"
+  ],
+  "licence": "none ('For Public/Internal Use' + disclaimer)",
+  "licence_url": "https://www.arcgis.com/home/item.html?id=66462d38afed44998e634ae9ffdbd3f4",
+  "licence_quote": "'For Public/Internal Use While the City of Kansas City, Missouri makes every effort...' (no licence)",
+  "verdict": "grey",
+  "tested": {
+   "ok": true,
+   "count_in_200m_box": 67,
+   "note": "envelope count OK"
+  },
+  "notes": "Unchanged from earlier judgement. data.kcmo.org Parcels (6js9-krgw, 6g4y-sh3m) have no licence set. Jackson County MO GIS sells shapefiles / as-is disclaimer = red."
+ },
+ {
+  "slug": "omaha-ne",
+  "county": "31055",
+  "source_name": "Douglas County / DOGIS - Parcels public",
+  "rest_url": "https://dcgis.org/server/rest/services/vector/Parcels_public/FeatureServer/0",
+  "id_field": "PIN",
+  "address_fields": [
+   "PROPERTY_A",
+   "HOUSE",
+   "STREET_DIR",
+   "STREET_NAM",
+   "STREET_TYP",
+   "APARTMENT",
+   "PROP_CITY",
+   "PROP_ZIP"
+  ],
+  "licence": "none (licence field blank; DOGIS mapping-site disclaimer)",
+  "licence_url": "https://www.arcgis.com/home/item.html?id=0937da9304a0443a84da5106527d8707",
+  "licence_quote": "DCAT licence empty; disclaimer: 'This data is for informational purposed only'",
+  "verdict": "grey",
+  "tested": {
+   "ok": true,
+   "count_in_200m_box": 51,
+   "note": "envelope count OK"
+  },
+  "notes": "DOGIS hub DCAT feed: CC-BY-SA appears only on the portal site item itself, not on parcels."
+ },
+ {
+  "slug": "birmingham-al",
+  "county": "01073",
+  "source_name": "City of Birmingham GIS - Essentials/Parcels",
+  "rest_url": "https://gisweb.birminghamal.gov/arcgis/rest/services/Essentials/Parcels/MapServer/0",
+  "id_field": "PARCELID",
+  "address_fields": [
+   "ADDR",
+   "HSENO",
+   "STREET",
+   "TYPE",
+   "DIR",
+   "CITY",
+   "ZIPP"
+  ],
+  "licence": "none (GIS disclaimer)",
+  "licence_url": "https://gisweb.birminghamal.gov/disclaimer.html",
+  "licence_quote": "Data provided for 'general reference' and 'as is' (no licence)",
+  "verdict": "grey",
+  "tested": {
+   "ok": true,
+   "count_in_200m_box": 45,
+   "note": "envelope count OK"
+  },
+  "notes": "Jefferson County AL BOE still not green; the JeffersonCountyALgis 'no use limitations' text is on a Web Experience, not a parcel layer. Birmingham CKAN portal has CC-BY on zoning, no parcel dataset found. No Alabama statewide layer."
+ },
+ {
+  "slug": "huntsville-al",
+  "county": "01089",
+  "source_name": "none found",
+  "rest_url": "",
+  "id_field": "",
+  "address_fields": [],
+  "licence": "n/a",
+  "licence_url": "",
+  "licence_quote": "",
+  "verdict": "red",
+  "tested": {
+   "ok": false,
+   "count_in_200m_box": 0,
+   "note": "not tested"
+  },
+  "notes": "City of Huntsville GIS still not green (no licence). Madison County AL GIS not checked - web-search budget exhausted. No Alabama statewide layer."
+ },
+ {
+  "slug": "nashville-tn",
+  "county": "47037",
+  "source_name": "Metro Nashville - Parcels_view",
+  "rest_url": "https://services2.arcgis.com/HdTo6HJqh92wn4D8/arcgis/rest/services/Parcels_view/FeatureServer/0",
+  "id_field": "ParID",
+  "address_fields": [
+   "PropAddr",
+   "PropHouse",
+   "PropStreet",
+   "PropSuite",
+   "PropCity",
+   "PropZip"
+  ],
+  "licence": "Metro Open Data Executive Order 018 + nashville.gov Terms of Service",
+  "licence_url": "https://www.nashville.gov/departments/metro-clerk/legal-resources/executive-orders/mayor-freddie-oconnell/fo018",
+  "licence_quote": "EO 018 Sec. IX: 'The Open Data should be used for informational purposes only'; site terms: commercial use prohibited without written permission of Metro",
+  "verdict": "red",
+  "tested": {
+   "ok": true,
+   "count_in_200m_box": 54,
+   "note": "envelope count OK"
+  },
+  "notes": "Commercial use restricted. TN Comptroller statewide layer excludes Davidson."
+ },
+ {
+  "slug": "new-orleans-la",
+  "county": "22071",
+  "source_name": "City of New Orleans eGIS - LandBase/Parcels (Assessor)",
+  "rest_url": "https://gis.nola.gov/arcgis/rest/services/LandBase/Parcels/MapServer/0",
+  "id_field": "GEOPIN",
+  "address_fields": [],
+  "licence": "none on parcels (portal policy favours open licences)",
+  "licence_url": "https://data.nola.gov/d/v9q5-fz7t",
+  "licence_quote": "Socrata licence field empty for Parcels (v9q5-fz7t) and Parcels To Join (pzqp-4ri7); AGOL item: 'provided for general informational purposes only'",
+  "verdict": "grey",
+  "tested": {
+   "ok": true,
+   "count_in_200m_box": 58,
+   "note": "envelope count OK; layer has GEOPIN only, no situs address"
+  },
+  "notes": "Many other data.nola.gov sets are CC0 and Policy Memo 135 aims at open licences, but parcels carry none. Addresses would come via 'Parcels To Join' (also no licence)."
+ },
+ {
+  "slug": "atlanta-ga",
+  "county": "13121",
+  "source_name": "Fulton County GIS - Tax Parcels (current year)",
+  "rest_url": "https://services1.arcgis.com/AQDHTHDrZzfsFsB5/arcgis/rest/services/Tax_Parcels/FeatureServer/0",
+  "id_field": "ParcelID",
+  "address_fields": [
+   "Address",
+   "AddrNumber",
+   "AddrPreDir",
+   "AddrStreet",
+   "AddrSuffix",
+   "AddrPosDir",
+   "AddrUntTyp",
+   "AddrUnit"
+  ],
+  "licence": "CC BY-SA",
+  "licence_url": "https://www.arcgis.com/home/item.html?id=e581a072dca9442e884d3682bff03484",
+  "licence_quote": "licenseInfo: 'CC BY-SA' followed by Fulton County 'as is' disclaimer",
+  "verdict": "green",
+  "tested": {
+   "ok": true,
+   "count_in_200m_box": 44,
+   "note": "envelope count OK, maxRecordCount 1000"
+  },
+  "notes": "Owner/OwnerAddr1/OwnerAddr2 exist - never request. Share-alike: derived parcel data must stay CC BY-SA + attribute Fulton County. Same CC BY-SA on 2015/2016/2018 vintages. DeKalb Tax Parcels 2022 is CC BY 4.0 (2025 vintage disclaimer-only) for blocks east of the county line."
+ },
+ {
+  "slug": "fort-lauderdale-fl",
+  "county": "12011",
+  "source_name": "Florida Statewide Cadastral (FDOR via FloridaGIO)",
+  "rest_url": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0",
+  "id_field": "PARCEL_ID",
+  "address_fields": [
+   "PHY_ADDR1",
+   "PHY_ADDR2",
+   "PHY_CITY",
+   "PHY_ZIPCD"
+  ],
+  "licence": "none (FDOR disclaimer; data owned by county property appraisers)",
+  "licence_url": "https://www.arcgis.com/home/item.html?id=efa909d6b1c841d298b0a649e7f71cf2",
+  "licence_quote": "'The Department does not generate or maintain the data used to compile this statewide parcel map...'",
+  "verdict": "grey",
+  "tested": {
+   "ok": true,
+   "count_in_200m_box": 71,
+   "note": "envelope count OK"
+  },
+  "notes": "Broward GeoHub parcel items point to broward.org Terms (public-records statute + disclaimer = statute-gated, grey); BCPA sells parcel data; City of Fort Lauderdale Tax Parcel items have blank licence. FGDL/UF GeoPlan copy: 'Use constraints: None' (not an explicit grant). OWN_ADDR fields exist - never request."
+ },
+ {
+  "slug": "orlando-fl",
+  "county": "12095",
+  "source_name": "Florida Statewide Cadastral (FDOR via FloridaGIO)",
+  "rest_url": "https://services9.arcgis.com/Gh9awoU677aKree0/arcgis/rest/services/Florida_Statewide_Cadastral/FeatureServer/0",
+  "id_field": "PARCEL_ID",
+  "address_fields": [
+   "PHY_ADDR1",
+   "PHY_ADDR2",
+   "PHY_CITY",
+   "PHY_ZIPCD"
+  ],
+  "licence": "none (FDOR disclaimer)",
+  "licence_url": "https://www.arcgis.com/home/item.html?id=efa909d6b1c841d298b0a649e7f71cf2",
+  "licence_quote": "'The Department does not generate or maintain the data used to compile this statewide parcel map...'",
+  "verdict": "grey",
+  "tested": {
+   "ok": true,
+   "count_in_200m_box": 20,
+   "note": "envelope count OK (low count - large lots / water in box)"
+  },
+  "notes": "Orange County OCGIS hub: 57/90 items 'Data is provided as is' only; OCPA-sourced parcel items: 'provided by The Orange County Property Appraiser is for general reference only'."
+ },
+ {
+  "kind": "sidewalk",
+  "slug": "austin-tx",
+  "county": "48453",
+  "source_name": "City of Austin TRANSPORTATION_sidewalks",
+  "rest_url": "https://services.arcgis.com/0L95CJ0VTaxqcmED/arcgis/rest/services/TRANSPORTATION_sidewalks/FeatureServer/0",
+  "id_field": "",
+  "address_fields": [],
+  "licence": "none (informational disclaimer)",
+  "licence_url": "https://www.arcgis.com/home/item.html?id=6b8657412a33463285778628892fc395",
+  "licence_quote": "'This product is for informational purposes...'",
+  "verdict": "grey",
+  "tested": {
+   "ok": false,
+   "count_in_200m_box": 0,
+   "note": "not tested"
+  },
+  "notes": ""
+ },
+ {
+  "kind": "sidewalk",
+  "slug": "houston-tx",
+  "county": "48201",
+  "source_name": "City of Houston sidewalk service areas / permits",
+  "rest_url": "https://mycity2.houstontx.gov/gisweb02/rest/services/HoustonMap/Transportation/MapServer/4",
+  "id_field": "",
+  "address_fields": [],
+  "licence": "none (COHGIS general-reference disclaimer)",
+  "licence_url": "https://www.arcgis.com/home/item.html?id=5507a06a9d8949db83f71f65b4048791",
+  "licence_quote": "'made available for general reference purposes only'",
+  "verdict": "grey",
+  "tested": {
+   "ok": false,
+   "count_in_200m_box": 0,
+   "note": "not tested"
+  },
+  "notes": "Service areas, not sidewalk geometry."
+ },
+ {
+  "kind": "sidewalk",
+  "slug": "new-orleans-la",
+  "county": "22071",
+  "source_name": "City of New Orleans Edge Of Pavement (2013 curbs, line + polygon)",
+  "rest_url": "https://gis.nola.gov/arcgis/rest/services/Basemaps/EdgeOfPavement/MapServer/0",
+  "id_field": "",
+  "address_fields": [],
+  "licence": "none",
+  "licence_url": "https://www.arcgis.com/home/item.html?id=f03c0eb846f94643b55f329bc87b323f",
+  "licence_quote": "'provided for general informational purposes only' (Socrata igww-2uzd: no licence)",
+  "verdict": "grey",
+  "tested": {
+   "ok": false,
+   "count_in_200m_box": 0,
+   "note": "not tested"
+  },
+  "notes": "Geometry would be ideal, licence missing."
+ },
+ {
+  "kind": "sidewalk",
+  "slug": "dallas-tx",
+  "county": "48113",
+  "source_name": "City of Dallas ROW Restrictions / ROW Permits",
+  "rest_url": "https://www.dallasopendata.com/d/s6zx-pihw",
+  "id_field": "",
+  "address_fields": [],
+  "licence": "none set",
+  "licence_url": "https://www.dallasopendata.com/d/s6zx-pihw",
+  "licence_quote": "licence field empty",
+  "verdict": "grey",
+  "tested": {
+   "ok": false,
+   "count_in_200m_box": 0,
+   "note": "not tested"
+  },
+  "notes": "Permits/restrictions, not edge-of-pavement polygons."
+ },
+ {
+  "kind": "sidewalk",
+  "slug": "all",
+  "county": "",
+  "source_name": "OpenStreetMap footway=sidewalk / area:highway (all 13 cities)",
+  "rest_url": "https://overpass-api.de/api/interpreter",
+  "id_field": "osm id",
+  "address_fields": [],
+  "licence": "ODbL 1.0",
+  "licence_url": "https://www.openstreetmap.org/copyright",
+  "licence_quote": "'You are free to copy, distribute, transmit and adapt our data, as long as you credit OpenStreetMap and its contributors.'",
+  "verdict": "green",
+  "tested": {
+   "ok": false,
+   "count_in_200m_box": 0,
+   "note": "not tested in this lane"
+  },
+  "notes": "Only green sidewalk option found; coverage varies by city. No city/county sidewalk, edge-of-pavement or ROW polygon layer with an explicit commercial-OK licence was found for these 13 cities (Sandy Springs GA layers are CC BY 4.0 but outside the Atlanta block)."
+ }
+]

@@ -77,11 +77,44 @@ PARCEL_SRC = {
                             licence="Public Domain (data.cincinnati-oh.gov listing g24g-2pi5)", licence_url="https://data.cincinnati-oh.gov/d/g24g-2pi5",
                             licence_quote="Licence: Public Domain (City of Cincinnati Open Data listing 'Hamilton County Parcel Polygons')",
                             attribution="Hamilton County / CAGIS via City of Cincinnati Open Data", borderline=False),
+    "District of Columbia": dict(id="dc_owner_polygons", name="Open Data DC Owner Polygons (Common Ownership Lots), DCGIS Property_and_Land layer 40 (owner fields not read)",
+                                 url="https://maps2.dcgis.dc.gov/DCGIS/rest/services/DCGIS_DATA/Property_and_Land/MapServer/40",
+                                 fields="SSL,PREMISEADD,UNITNUMBER", licence="CC BY 4.0",
+                                 licence_url="https://maps2.dcgis.dc.gov/DCGIS/rest/services/DCGIS_DATA/Property_and_Land/MapServer/40/iteminfo?f=pjson",
+                                 licence_quote="This work is licensed under a Creative Commons Attribution 4.0 International License.",
+                                 attribution="District of Columbia, Office of the Chief Technology Officer - Open Data DC (CC BY 4.0)", borderline=False),
+    "Middlesex County": dict(id="massgis_l3_parcels", name="MassGIS Massachusetts Property Tax Parcels (Level 3), layer 0 (owner fields not read)",
+                             url="https://services1.arcgis.com/hGdibHYSPO59RG1h/arcgis/rest/services/Massachusetts_Property_Tax_Parcels/FeatureServer/0",
+                             fields="LOC_ID,MAP_PAR_ID,SITE_ADDR,CITY", licence="Public domain (MassGIS)",
+                             licence_url="https://www.mass.gov/info-details/massgis-frequently-asked-questions",
+                             licence_quote="Since MassGIS data is paid for by public tax dollars, the data are in the public domain and therefore can be used by anyone for any purpose.",
+                             attribution="MassGIS (Bureau of Geographic Information), Commonwealth of Massachusetts EOTSS", borderline=False),
+    "Salt Lake County": dict(id="ugrc_parcels_saltlake_lir", name="UGRC SGID Utah Salt Lake County Parcels LIR (layer 0)",
+                             url="https://services1.arcgis.com/99lidPhWCzftIe9K/ArcGIS/rest/services/Parcels_SaltLake_LIR/FeatureServer/0",
+                             fields="PARCEL_ID,PARCEL_ADD,PARCEL_CITY", licence="CC BY 4.0 (UGRC)",
+                             licence_url="https://gis.utah.gov/documentation/policy/license/",
+                             licence_quote="Unless otherwise stated in a dataset's metadata, UGRC licenses our data and services under a Creative Commons Attribution 4.0 International License.",
+                             attribution="Utah Geospatial Resource Center (UGRC), State of Utah SGID / Salt Lake County (CC BY 4.0)", borderline=False),
+    "Sacramento County": dict(id="saccounty_parcels", name="Sacramento County GIS Parcels (ArcGIS item 8d011b99aebc46d48060b2e5bdd7f4a0)",
+                              url="https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/Parcels/FeatureServer/0",
+                              fields="APN,STREET_NBR,STREET_NAM,CITY", licence="CC0 1.0 (Creative Commons Public Domain Dedication)",
+                              licence_url="https://www.arcgis.com/home/item.html?id=8d011b99aebc46d48060b2e5bdd7f4a0",
+                              licence_quote="This work is licensed under a Creative Commons Public Domain Dedication License",
+                              attribution="Sacramento County GIS (CC0)", borderline=False),
+    "Fulton County": dict(id="fulton_tax_parcels", name="Fulton County GIS Tax Parcels (item e581a072dca9442e884d3682bff03484; owner fields not read)",
+                          url="https://services1.arcgis.com/AQDHTHDrZzfsFsB5/arcgis/rest/services/Tax_Parcels/FeatureServer/0",
+                          fields="ParcelID,Address", licence="CC BY-SA (share-alike: parcels.json for this block stays CC BY-SA)",
+                          licence_url="https://www.arcgis.com/home/item.html?id=e581a072dca9442e884d3682bff03484",
+                          licence_quote="licenseInfo: CC BY-SA",
+                          attribution="Fulton County, Georgia - Department of Information Technology, GIS Division (CC BY-SA)", borderline=False),
 }
 # county -> state guard (Franklin / Hamilton exist in many states); Franklin County OH has HOA plats (City of Columbus CC0)
 # only - its Auditor parcel/condo layers were removed (owner: no clear legal standing)
 PARCEL_STATE = {"Hennepin County": "MN", "Ramsey County": "MN", "Boulder County": "CO", "Denver County": "CO",
-                "Franklin County": "OH", "Hamilton County": "OH"}
+                "Franklin County": "OH", "Hamilton County": "OH",
+                "District of Columbia": "DC", "Middlesex County": "MA",
+                "Salt Lake County": "UT", "Sacramento County": "CA", "Fulton County": "GA",
+                "Maricopa County": "AZ", "Spokane County": "WA"}
 
 K_HOA = "HOA (recorded)"
 K_CONDO = "condo association"
@@ -103,6 +136,27 @@ HOA_SRC = {
                              fields="NAME,TYPE,CONVEYANCETYPE,HISTORICAL,LEGALENDDATE", licence="Public Domain (data.cincinnati-oh.gov listing rynu-bywd)",
                              licence_url="https://data.cincinnati-oh.gov/d/rynu-bywd",
                              attribution="Hamilton County / CAGIS via City of Cincinnati Open Data", borderline=False)],
+    "District of Columbia": [dict(id="dc_condo_lots", reader="dccondo", name="Open Data DC Condo Approval Lots (DCGIS Property_and_Land layer 44)",
+                                  url="https://maps2.dcgis.dc.gov/DCGIS/rest/services/DCGIS_DATA/Property_and_Land/MapServer/44",
+                                  fields="SSL,CONDO_REGIME_NUM,CONDO_BOOK_NUM,CONDO_PAGE_NUM", licence="CC BY 4.0",
+                                  licence_url="https://maps2.dcgis.dc.gov/DCGIS/rest/services/DCGIS_DATA/Property_and_Land/MapServer/44/iteminfo?f=pjson",
+                                  attribution="District of Columbia, OCTO - Open Data DC (CC BY 4.0)", borderline=False)],
+    "Sacramento County": [dict(id="sac_subdiv_maps", reader="sac", name="Sacramento County Filed Subdivision Maps",
+                               url="https://services1.arcgis.com/5NARefyPVtAeuJPU/arcgis/rest/services/RecordedSubdivisionMaps/FeatureServer/0",
+                               fields="MAP_TITLE,MAP_YEAR,MAP_TYPE,MAP_BOOK,MAP_PAGE", licence="CC0 1.0 (Creative Commons Public Domain Dedication)",
+                               licence_url="https://www.arcgis.com/home/item.html?id=b5497d89071045aba712b953a6b65d1e",
+                               attribution="Sacramento County GIS (CC0)", borderline=False)],
+    "Maricopa County": [dict(id="scottsdale_subdivisions", reader="sco", name="City of Scottsdale OpenData Subdivisions (layer 7; Scottsdale city limits only)",
+                             url="https://maps.scottsdaleaz.gov/arcgis/rest/services/OpenData/MapServer/7",
+                             fields="mcr_num,name,recorded_date", licence="ODbL 1.0 (share-alike for derived databases)",
+                             licence_url="https://www.arcgis.com/home/item.html?id=15c6c08aefe441648537b7f4630ef225",
+                             attribution="Contains information from the City of Scottsdale Open Database Portal, which is made available here under the Open Database License (ODbL)",
+                             borderline=False)],
+    "Spokane County": [dict(id="spokane_plats", reader="spo", name="Spokane County OpenData Property Plats (layer 3)",
+                            url="https://gismo.spokanecounty.org/arcgis/rest/services/OpenData/Property/MapServer/3",
+                            fields="Plat_Name", licence="CC BY (Spokane County item licence)",
+                            licence_url="https://www.arcgis.com/home/item.html?id=e6bbf00f37ec448c81500fc5b4b5fda1",
+                            attribution="Spokane County, Washington (CC BY)", borderline=False)],
 }
 
 NO_PARCEL_NOTES = {
@@ -142,6 +196,17 @@ def address_of(county, p):
         return join(p.get("StrNum"), p.get("StrPrx"), p.get("Street"), p.get("StrSuf"), ("#" + str(p["StrUnit"])) if clean(p.get("StrUnit")) else None)
     if county == "Denver County":
         return clean(p.get("SITUS_ADDRESS_LINE1"))
+    if county == "Fulton County":
+        return clean(p.get("Address"))
+    if county == "Salt Lake County":
+        return join(p.get("PARCEL_ADD"), p.get("PARCEL_CITY"))
+    if county == "Sacramento County":
+        num = p.get("STREET_NBR")
+        return join(None if num in (None, 0, "0") else num, p.get("STREET_NAM"), p.get("CITY"))
+    if county == "District of Columbia":
+        return join(p.get("PREMISEADD"), ("Unit " + str(p["UNITNUMBER"])) if clean(p.get("UNITNUMBER")) else None)
+    if county == "Middlesex County":
+        return join(p.get("SITE_ADDR"), p.get("CITY"))
     if county == "Hamilton County":
         num = p.get("ADDRNO")
         return join(None if num in (None, 0, "0") else num, p.get("ADDRST"), p.get("ADDRSF"), ("Unit " + str(p["UNIT"])) if clean(p.get("UNIT")) else None)
@@ -155,6 +220,16 @@ def parcel_id_of(county, p):
         return clean(p.get("ParcelNo")) or clean(p.get("AccountNo"))
     if county == "Denver County":
         return clean(p.get("SCHEDNUM"))
+    if county == "Fulton County":
+        return clean(p.get("ParcelID"))
+    if county == "Salt Lake County":
+        return clean(p.get("PARCEL_ID"))
+    if county == "Sacramento County":
+        return clean(p.get("APN"))
+    if county == "District of Columbia":
+        return clean(p.get("SSL"))
+    if county == "Middlesex County":
+        return clean(p.get("LOC_ID")) or clean(p.get("MAP_PAR_ID"))
     if county == "Hamilton County":
         return clean(p.get("PARCELID")) or clean(p.get("AUDPTYID"))
     return None
@@ -277,6 +352,18 @@ def hoa_rows(src, feats):
             elif "SUBDIV" in t:
                 out.append(({"name": clean(p.get("NAME")), "kind": K_SUB, "confidence": "low",
                              "note": "recorded subdivision plat; deed restrictions may exist - no HOA confirmed"}, g))
+        elif r == "dccondo":
+            ref = join(("book " + str(p["CONDO_BOOK_NUM"])) if clean(p.get("CONDO_BOOK_NUM")) else None,
+                       ("page " + str(p["CONDO_PAGE_NUM"])) if clean(p.get("CONDO_PAGE_NUM")) else None)
+            out.append(({"name": ("Condo regime " + str(p["CONDO_REGIME_NUM"])) if clean(p.get("CONDO_REGIME_NUM")) else "Condo regime",
+                         "kind": K_CONDO, "confidence": "medium",
+                         "note": "recorded DC condominium regime (DC Code 42-19: a unit owners' association exists)", "rec_ref": ref}, g))
+        elif r in ("sac", "sco", "spo"):
+            nm = clean(p.get("MAP_TITLE") if r == "sac" else p.get("name") if r == "sco" else p.get("Plat_Name"))
+            ref = (join("book", p.get("MAP_BOOK"), "page", p.get("MAP_PAGE")) if r == "sac" and clean(p.get("MAP_BOOK"))
+                   else join("MCR", p.get("mcr_num")) if r == "sco" and clean(p.get("mcr_num")) else None)
+            out.append(({"name": nm, "kind": K_SUB, "confidence": "low",
+                         "note": "recorded subdivision plat; deed restrictions may exist - no HOA confirmed", "rec_ref": ref}, g))
     return out
 
 
