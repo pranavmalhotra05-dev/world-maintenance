@@ -233,20 +233,26 @@
     }
 
     // ------------------------------------------------------------ deck layers
-    layers({ slug, coordinateOrigin, zBase, houses, zOf } = {}) {
+    layers({ slug, coordinateOrigin, zBase, houses, zOf, lotOf } = {}) {
       const dk = D(), s = this.S.get(slug); if (!this.enabled || !dk || !s) return [];
       const o = arr(coordinateOrigin); if (o.length < 2) return [];
       const O = [+o[0], +o[1], num(o[2]) ?? num(zBase) ?? 0];
       const H = arr(houses).length ? houses : arr(s.houses); if (!H.length && !s.byId?.size) return [];
       if (houses && houses !== s.houses) { s.houses = houses; s._geo = null; }
       const gz = (x, y) => { try { return num(typeof zOf === "function" ? zOf(x, y) : null) ?? 0; } catch { return 0; } };
-      const key = O.join(",") + "|" + (typeof zOf === "function" ? "z" : "0") + "|" + H.length;
+      const key = O.join(",") + "|" + (typeof zOf === "function" ? "z" : "0") + "|" + (typeof lotOf === "function" ? "l" : "") + "|" + H.length;
       if (s._geoKey !== key || !s._geo) {
         s._geoKey = key;
         s._geo = H.map((h, i) => {
           if (!okRing(h?.ring)) return null;
-          const ring = cleanRing(h.ring), g0 = Math.min(...ring.map(([x, y]) => gz(x, y))), top = num(h.height_m) ?? num(h.eave_m) ?? 0, z = g0 + top + 0.4;   // ridge height: the outline floats just above the roof points
-          return { id: hid(h, i), path: closed(ring, z), dots: dotsOf(ring, z, 0.8) };
+          // a property is the lot (building + yard + drive), drawn ON THE GROUND from real parcel lines only.
+          // No parcel data -> no outline at all: a thin marker stands at the house instead (no invented lot shape).
+          const lot = typeof lotOf === "function" ? (() => { try { const r = lotOf(h); return okRing(r) ? cleanRing(r) : null; } catch { return null; } })() : null;
+          if (lot) { const path = groundPath(lot, gz, 0.15, 0.8); return { id: hid(h, i), path, dots: path.filter((_, k) => k % 2 === 0), fill: path, lot: true }; }
+          const ring = cleanRing(h.ring), g0 = Math.min(...ring.map(([x, y]) => gz(x, y))), top = num(h.height_m) ?? num(h.eave_m) ?? 6;
+          let cx = 0, cy = 0; for (const [x, y] of ring) { cx += x; cy += y; } cx /= ring.length; cy /= ring.length;
+          const zt = g0 + top + 3;
+          return { id: hid(h, i), path: [[cx, cy, gz(cx, cy) + 0.1], [cx, cy, zt]], dots: [[cx, cy, zt]], lot: false };
         }).filter(Boolean);
         s._pgeo = new Map();
       }
@@ -258,14 +264,16 @@
       const id = (n) => `mnt:${slug}:${n}`, ly = [];
       // scored objects: the house ring plus its pool outline, in one colour
       const items = [];
-      for (const g of s._geo) { const sc = this.score(slug, g.id, tr); if (sc == null) continue; const c = ramp(sc / 100); items.push({ houseId: g.id, score: sc, c, path: g.path, dots: g.dots, kind: "house" }); const p = poolGeo(g.id); if (p) items.push({ houseId: g.id, score: sc, c, path: p.path, dots: p.dots, kind: "pool" }); }
+      for (const g of s._geo) { const sc = this.score(slug, g.id, tr); if (sc == null) continue; const c = ramp(sc / 100); items.push({ houseId: g.id, score: sc, c, path: g.path, dots: g.dots, fill: g.fill, kind: "house" }); const p = poolGeo(g.id); if (p) items.push({ houseId: g.id, score: sc, c, path: p.path, dots: p.dots, kind: "pool" }); }
       // hover / selection highlight
       const hl = [];
       for (const k of ["select", "hover"]) { const v = this.hi[k]; if (!v || v.slug !== slug) continue; const g = s._geo.find((q) => q.id === v.houseId); if (!g) continue; const c = k === "hover" ? HI.hover : selCol();
-        hl.push({ houseId: g.id, c, path: g.path, dots: g.dots, kind: "house", hl: k }); const p = poolGeo(g.id); if (p) hl.push({ houseId: g.id, c, path: p.path, dots: p.dots, kind: "pool", hl: k }); }
+        hl.push({ houseId: g.id, c, path: g.path, dots: g.dots, fill: g.fill, kind: "house", hl: k }); const p = poolGeo(g.id); if (p) hl.push({ houseId: g.id, c, path: p.path, dots: p.dots, kind: "pool", hl: k }); }
       const ut = { getColor: tr + "|" + (globalThis.Themes?.current?.().id || ""), getFillColor: tr + "|" + (globalThis.Themes?.current?.().id || "") };
       const stack = (data, tag, wide) => {
         if (!data.length) return;
+        const lots = data.filter((d) => d.fill);
+        if (lots.length) ly.push(new dk.PolygonLayer({ ...base, id: id(tag + "-lot"), data: lots, getPolygon: (d) => d.fill, filled: true, stroked: false, getFillColor: (d) => [...d.c, wide ? 46 : 30], pickable: true, mntRole: "house", updateTriggers: ut }));
         ly.push(new dk.PathLayer({ ...base, id: id(tag + "-halo"), data, getPath: (d) => d.path, getColor: (d) => [...d.c, wide ? 60 : 42], getWidth: wide ? 9 : 7, widthUnits: "pixels", jointRounded: true, capRounded: true, updateTriggers: ut }));
         ly.push(new dk.PathLayer({ ...base, id: id(tag + "-glow"), data, getPath: (d) => d.path, getColor: (d) => [...d.c, 110], getWidth: 2.5, widthUnits: "pixels", jointRounded: true, updateTriggers: ut }));
         ly.push(new dk.PathLayer({ ...base, id: id(tag + "-edge"), data, getPath: (d) => d.path, getColor: (d) => [...d.c.map((x) => Math.min(255, x + 50)), 235], getWidth: 1, widthUnits: "pixels", pickable: true, mntRole: "house", updateTriggers: ut }));
@@ -425,6 +433,13 @@
   }
 
   // ---------------------------------------------------------------- helpers
+  function groundPath(ring, gz, up, step) {   // closed ring densified to `step` m, every vertex on the ground
+    const p = [...ring]; if (p[0][0] !== p[p.length - 1][0] || p[0][1] !== p[p.length - 1][1]) p.push(p[0]);
+    const out = [];
+    for (let i = 0; i + 1 < p.length; i++) { const [ax, ay] = p[i], [bx, by] = p[i + 1], n = Math.max(1, Math.ceil(Math.hypot(bx - ax, by - ay) / step));
+      for (let k = 0; k < n; k++) { const x = ax + (bx - ax) * k / n, y = ay + (by - ay) * k / n; out.push([x, y, gz(x, y) + up]); } }
+    const [ex, ey] = p[p.length - 1]; out.push([ex, ey, gz(ex, ey) + up]); return out;
+  }
   function closed(ring, z) { const p = ring.map(([x, y]) => [x, y, z]); const a = p[0], b = p[p.length - 1]; if (a[0] !== b[0] || a[1] !== b[1]) p.push([a[0], a[1], z]); return p; }
   function dotsOf(ring, z, step) {
     const out = [];
