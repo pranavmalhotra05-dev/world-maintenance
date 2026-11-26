@@ -1352,6 +1352,15 @@ class Block {
     const hh = h.hail_history;
     if (Array.isArray(hh) || h.flood_zone) out.push(`<h4>Hazards</h4><dl>${Array.isArray(hh) ? `<dt>Radar hail days ≥0.5"</dt><dd>${hh.length ? hh.map(([dd, v]) => `${esc(dd)} ${esc(v)}"`).join(", ") : "none on radar record"}</dd>` : ""}
       ${h.flood_zone ? `<dt>FEMA flood zone</dt><dd>${esc(h.flood_zone)}</dd>` : ""}</dl>`);
+    if (Array.isArray(h.window_permits) && h.window_permits.length) {
+      const W = h.windows || {};
+      out.push(`<h4>Windows · city permits</h4><dl><dt>Window jobs on record</dt><dd>${esc(W.window_permits ?? h.window_permits.length)}${W.last_date ? " · latest " + esc(W.last_date) : ""}</dd>` +
+        `<dt>Windows named in permits</dt><dd>${W.stated_windows ? esc(W.stated_windows) : "number not written"}</dd></dl><ul class="log">` +
+        h.window_permits.slice(0, 8).map((w) => `<li><b>${esc(w.date || "")}</b>${esc(w.kind)}${w.count ? " · " + esc(w.count) + " window" + (w.count > 1 ? "s" : "") : ""}` +
+          `${w.same_openings ? " · same openings" : ""}${w.maybe_not_done ? ' · <span class="mag">' + esc(w.status || "voided/expired") + ", may not have been done</span>" : ""}` +
+          `<br><span class="sub small">${esc(w.text)}${w.also_filed_as ? " (also filed as " + esc(w.also_filed_as.length) + " trade permit" + (w.also_filed_as.length > 1 ? "s" : "") + ")" : ""}</span></li>`).join("") +
+        `</ul><div class="sub small">Only what the city permit says. No open record holds a house's total number of windows.</div>`);
+    }
     if (Array.isArray(h.permits)) out.push(`<h4>Permits (${h.permits.length})</h4><ul class="log">${h.permits.slice().sort((a, b) => String(b.date || "").localeCompare(String(a.date || ""))).slice(0, 8).map((p) => `<li><b>${esc(p.date || "")}</b>${esc(p.type || "")} ${esc(p.work || "")}: ${esc(p.comments || "")}</li>`).join("") || "<li>none on record</li>"}</ul>`);
     if (Array.isArray(h.cases311)) out.push(`<h4>311 cases (${h.cases311.length})</h4><ul class="log">${h.cases311.slice(0, 6).map((c) => `<li><b>${esc(c.date || "")}</b>${esc(c.type || "")}${c.title ? " – " + esc(c.title) : ""}</li>`).join("") || "<li>none on record</li>"}</ul>`);
     out.push(this.streetPhotosSection(h));
