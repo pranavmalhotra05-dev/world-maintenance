@@ -41,6 +41,13 @@ let EO = null, PT = null, earthDirty = 0;   // earthDirty: frames left to force 
 let EPT = null, BL = null, HOUSE = null, MGR_STUB = { ept: true, block: true };
 let SECTION = "", catalogOpen = false;
 const GLOBE_VIEW = new deck._GlobeView({ id: "globe", resolution: 10 });
+// Globe zoom: our own wheel handler zooms smoothly about the globe centre (deck's anchors on the pointer, which makes the
+// globe jump and spin when the pointer is in space beside it), and the globe never shrinks below ~half the canvas.
+const GLOBE_CTRL = { doubleClickZoom: true, inertia: false, scrollZoom: false, dragPan: false, dragRotate: false };   // drag and wheel are ours (wireGlobeInput)
+let GDRAG = null, GVEL = null;   // globe drag state and release glide (deg/ms)
+let GZ_TARGET = null;
+function globeMinZoom() { const el = document.getElementById("deck"), m = Math.max(200, Math.min(el.clientWidth || 800, el.clientHeight || 600));
+  return Math.max(-1, Math.log2(0.55 * m * Math.PI / 256)); }
 const MAP_VIEW = new deck.MapView({ id: "map", repeat: false, nearZMultiplier: 0.02, farZMultiplier: 10 });
 // walk = the same MapView driven as a first-person camera (eye fixed at ground + 1.7 m, target ahead): every layer keeps
 // the exact projection it has on the map (FirstPersonView mis-placed the METER_OFFSETS point clouds in testing)
@@ -702,20 +709,21 @@ function deckViewState() {
     return { longitude: WALK.lon + Math.sin(b) * fwd / (111320 * Math.cos(WALK.lat * D2R)), latitude: WALK.lat + Math.cos(b) * fwd / 110540, zoom: WALK_ZOOM,
       pitch: WALK.pitch, bearing: WALK.bearing, position: [0, 0, WALK.z - dist * Math.cos(p)], minZoom: WALK_ZOOM, maxZoom: WALK_ZOOM, maxPitch: 85, minPitch: 30 };
   }
-  if (VIEW === "globe") return { longitude: VS.longitude, latitude: VS.latitude, zoom: VS.zoom - zoff(VS.latitude), pitch: 0, bearing: 0, minZoom: -1, maxZoom: 8 };
+  if (VIEW === "globe") return { longitude: VS.longitude, latitude: VS.latitude, zoom: VS.zoom - zoff(VS.latitude), pitch: 0, bearing: 0, minZoom: globeMinZoom() - zoff(VS.latitude), maxZoom: 8 };
   return { longitude: VS.longitude, latitude: VS.latitude, zoom: VS.zoom, pitch: VS.pitch, bearing: VS.bearing, position: [0, 0, LIFT_Z], minZoom: 4, maxZoom: 21.5, maxPitch: maxPitchFor(VS.zoom) };
 }
 function setView(v) {
   VIEW = v; SWITCH_AT = performance.now();
   const views = v === "globe" ? GLOBE_VIEW : v === "walk" ? WALK_VIEW : MAP_VIEW;
   const controller = v === "map" ? { dragRotate: true, touchRotate: true, doubleClickZoom: true, inertia: 300 }
-    : v === "walk" ? { dragPan: false, dragRotate: true, scrollZoom: false, doubleClickZoom: false, touchZoom: false, keyboard: false, inertia: false } : { doubleClickZoom: true, inertia: 300 };
+    : v === "walk" ? { dragPan: false, dragRotate: true, scrollZoom: false, doubleClickZoom: false, touchZoom: false, keyboard: false, inertia: false } : GLOBE_CTRL;
   deckgl2.setProps({ views, controller });
   if (v === "globe") { VS = { ...VS, pitch: 0, bearing: 0 }; LIFT_Z = LIFT_T = 0; }
   checkLift(true); skyDirty = true; layersDirty = true; OUTLINE_CACHE.clear();
 }
 function applyVS() {
   if (VIEW !== "walk") {
+    if (VIEW === "globe" && VS.zoom < globeMinZoom()) VS = { ...VS, zoom: globeMinZoom() };
     if (VIEW === "globe" && VS.zoom >= Z_TO_MAP) setView("map");
     else if (VIEW === "map" && VS.zoom < Z_TO_GLOBE) setView("globe");
   }
@@ -1010,6 +1018,10 @@ function frame(now) {
   const dt = Math.min(64, now - (lastFrame || now)); lastFrame = now;
   if (VIEW === "walk") { if (KEYS.size || Math.abs(groundAt(WALK.lon, WALK.lat) + 1.7 - WALK.z) > 0.02) walkStep(dt); }
   else if (FLY) { flyStep(now); applyVS(); }
+  else if (GVEL && VIEW === "globe" && !GDRAG) { const f = Math.exp(-dt / 350); GVEL = { lon: GVEL.lon * f, lat: GVEL.lat * f };
+    VS = { ...VS, longitude: norm180(VS.longitude + GVEL.lon * dt), latitude: Math.max(-85, Math.min(85, VS.latitude + GVEL.lat * dt)) }; applyVS();
+    if (Math.abs(GVEL.lon) + Math.abs(GVEL.lat) < 2e-4) GVEL = null; }
+  if (GZ_TARGET != null && VIEW === "globe") { const d = GZ_TARGET - VS.zoom; if (Math.abs(d) < 0.005) { VS = { ...VS, zoom: GZ_TARGET }; GZ_TARGET = null; } else VS = { ...VS, zoom: VS.zoom + d * Math.min(1, dt / 110) }; applyVS(); if (VIEW !== "globe") GZ_TARGET = null; }
   else if (SPIN && VIEW === "globe" && !dragging) { VS = { ...VS, longitude: norm180(VS.longitude + dt * 0.006) }; applyVS(); }
   else if (VIEW === "map" && Math.abs(LIFT_T - LIFT_Z) > 0.3) { LIFT_Z += (LIFT_T - LIFT_Z) * Math.min(1, dt / 200); deckgl2.setProps({ viewState: deckViewState() }); const k = fadeKey(); if (k !== layerKey) { layerKey = k; layersDirty = true; } }
   if (now - lastSlow > 1000) { lastSlow = now;
@@ -1092,7 +1104,7 @@ async function main() {
 
   deckgl2 = deckgl = new deck.Deck({
     parent: $("deck"), views: VIEW === "map" ? MAP_VIEW : GLOBE_VIEW, pickingRadius: 6, viewState: deckViewState(),
-    controller: VIEW === "map" ? { dragRotate: true, touchRotate: true, doubleClickZoom: true, inertia: 300 } : { doubleClickZoom: true, inertia: 300 },
+    controller: VIEW === "map" ? { dragRotate: true, touchRotate: true, doubleClickZoom: true, inertia: 300 } : GLOBE_CTRL,
     useDevicePixels: Math.min(1.5, devicePixelRatio || 1),
     onViewStateChange: ({ viewState, interactionState }) => {
       const user = interactionState && (interactionState.isDragging || interactionState.isPanning || interactionState.isZooming || interactionState.isRotating);
@@ -1138,7 +1150,38 @@ async function main() {
   await loadMetroList(); settle();
 }
 
+function wireGlobeInput() {
+  // drag anywhere (on the sphere or in space beside it) spins the globe; moving the pointer one globe-diameter turns it 180°
+  const el = $("deck");
+  el.addEventListener("pointerdown", e => { if (VIEW !== "globe" || e.button !== 0 || !e.isPrimary) return;
+    GDRAG = { x: e.clientX, y: e.clientY, t: performance.now(), moved: false, id: e.pointerId }; GVEL = null; FLY = null; }, true);
+  addEventListener("pointermove", e => { if (!GDRAG || e.pointerId !== GDRAG.id) return;
+    if (VIEW !== "globe") { GDRAG = null; return; }
+    const dx = e.clientX - GDRAG.x, dy = e.clientY - GDRAG.y;
+    if (!GDRAG.moved && Math.hypot(dx, dy) < 3) return;
+    if (!GDRAG.moved) { GDRAG.moved = true; dragging = true; try { el.setPointerCapture(e.pointerId); } catch {} }
+    const now = performance.now(), dt = Math.max(1, now - GDRAG.t), D = 256 * 2 ** VS.zoom / Math.PI, k = 180 / Math.max(120, D);
+    const dLon = -dx * k / Math.max(0.25, Math.cos(VS.latitude * Math.PI / 180)) * 0.6 - dx * k * 0.4, dLat = dy * k;
+    VS = { ...VS, longitude: norm180(VS.longitude + dLon), latitude: Math.max(-85, Math.min(85, VS.latitude + dLat)) };
+    const cap = v => Math.max(-0.06, Math.min(0.06, v)), w = Math.max(16, dt), pv = GVEL || { lon: 0, lat: 0 };   // deg/ms, smoothed and capped
+    GVEL = { lon: cap(0.5 * pv.lon + 0.5 * dLon / w), lat: cap(0.5 * pv.lat + 0.5 * dLat / w) }; GDRAG.x = e.clientX; GDRAG.y = e.clientY; GDRAG.t = now; applyVS(); });
+  const up = e => { if (!GDRAG || (e.pointerId != null && e.pointerId !== GDRAG.id)) return;
+    const moved = GDRAG.moved, idle = performance.now() - GDRAG.t; GDRAG = null; dragging = false;
+    if (!moved || idle > 50) GVEL = null; };
+  addEventListener("pointerup", up); addEventListener("pointercancel", up);
+}
+function wireGlobeWheel() {
+  $("deck").addEventListener("wheel", e => {
+    if (VIEW !== "globe") { GZ_TARGET = null; return; }
+    e.preventDefault(); e.stopPropagation(); FLY = null;
+    const px = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaMode === 2 ? e.deltaY * 400 : e.deltaY;
+    const base = GZ_TARGET != null ? GZ_TARGET : VS.zoom;
+    GZ_TARGET = Math.max(globeMinZoom(), Math.min(Z_TO_MAP + 0.4, base - Math.max(-240, Math.min(240, px)) * 0.0035));
+  }, { passive: false, capture: true });
+  addEventListener("resize", () => { if (VIEW === "globe" && VS.zoom < globeMinZoom()) { VS = { ...VS, zoom: globeMinZoom() }; applyVS(); } });
+}
 function wireUi() {
+  wireGlobeWheel(); wireGlobeInput();
   const q = $("q");
   q.oninput = () => { resIdx2 = -1; RES = localResults(q.value); showResults(); };
   q.onkeydown = e => {
