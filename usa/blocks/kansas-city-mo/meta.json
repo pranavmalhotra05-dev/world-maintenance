@@ -521,7 +521,7 @@
    }
   },
   "coc": {
-   "name": "Kansas City (MO&KS), Independence, Lee\u00e2\u20ac\u2122s Summit/Jackson, Wyandotte Counties CoC",
+   "name": "Kansas City (MO&KS), Independence, Leeâ€™s Summit/Jackson, Wyandotte Counties CoC",
    "code": "MO-604",
    "state": "Missouri",
    "beds": null,
@@ -1324,7 +1324,20 @@
    "use": "neighbourhood-level only: 10 m pixels mix each pool with its yard"
   },
   "limitations": "snapshots every ~1-2 years on capture dates only; covered/shaded pools and pools under trees can be missed; colour states are indicative, not inspections",
-  "generated": "2026-11-24T21:54+00:00"
+  "generated": "2026-11-24T21:54+00:00",
+  "owner_check": {
+   "generated": "2026-11-26T04:08Z",
+   "method": "nearest building among all Overture footprints (block + 80 m)",
+   "parcels": 0,
+   "overture_buildings": 103,
+   "pools_in": 1,
+   "pools_kept": 1,
+   "moved": [],
+   "neighbour_pools": [],
+   "sources": [
+    "Overture Maps buildings (OSM ODbL; Microsoft/Google/Esri CC BY / ODbL / CDLA-P)"
+   ]
+  }
  },
  "thermal": {
   "source": "Landsat 8/9 Collection 2 Level-2 Surface Temperature (ST_B10), USGS, via Microsoft Planetary Computer STAC 'landsat-c2-l2'",
@@ -3844,7 +3857,7 @@
  },
  "cleaning": {
   "version": 4,
-  "generated": "2026-11-24T22:36Z",
+  "generated": "2026-11-26T04:09Z",
   "method": "usa/research/cleaning_leads_method.md",
   "houses_scored": 13,
   "houses_with_pools": 1,
@@ -4011,7 +4024,7 @@
    "dust_then_rain_yr": 0.18,
    "dust_events_25km_since_2020": 6,
    "last_dust_event": "2025-03-14",
-   "recent_dust_ref": "2026-11-24",
+   "recent_dust_ref": "2026-11-25",
    "recent_dust_ref_source": "run date (no imagery date in meta)",
    "median_hh_income": 153015.0,
    "share_hh_200k": 0.2977,
@@ -4153,7 +4166,7 @@
   },
   "markings_source": null,
   "osm_via": "Geofabrik extract missouri-latest.osm.pbf via usa/osm_extract.py (pyosmium)",
-  "licence": "ODbL 1.0 (\u00c2\u00a9 OpenStreetMap contributors)",
+  "licence": "ODbL 1.0 (Â© OpenStreetMap contributors)",
   "generated": "2026-11-24T23:21:30Z"
  },
  "parcels": {

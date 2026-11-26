@@ -479,15 +479,15 @@
  },
  "cleaning": {
   "version": 4,
-  "generated": "2026-11-24T22:36Z",
+  "generated": "2026-11-26T04:09Z",
   "method": "usa/research/cleaning_leads_method.md",
   "houses_scored": 13,
-  "houses_with_pools": 5,
+  "houses_with_pools": 2,
   "green_pools_now": 0,
   "pool_detection": {
-   "n_pools": 5,
+   "n_pools": 2,
    "houses": 13,
-   "share_houses_with_pool": 0.385,
+   "share_houses_with_pool": 0.154,
    "green_now": 0,
    "green_ever": 1,
    "context_pools": 27,
@@ -496,33 +496,8 @@
   },
   "top_pool_leads": [
    {
-    "id": 6,
-    "address": "14016 North 37Th Place",
-    "score": 28,
-    "reasons": [
-     "green in past image(s) 2015 - history of neglect",
-     "dusty/windy area: 28 dust days, 13 high-wind days / yr"
-    ]
-   },
-   {
     "id": 0,
     "address": "14010 North 37Th Way",
-    "score": 18,
-    "reasons": [
-     "dusty/windy area: 28 dust days, 13 high-wind days / yr"
-    ]
-   },
-   {
-    "id": 2,
-    "address": "14024 North 37Th Way",
-    "score": 18,
-    "reasons": [
-     "dusty/windy area: 28 dust days, 13 high-wind days / yr"
-    ]
-   },
-   {
-    "id": 7,
-    "address": "14024 North 37Th Place",
     "score": 18,
     "reasons": [
      "dusty/windy area: 28 dust days, 13 high-wind days / yr"
@@ -676,7 +651,7 @@
    "dust_then_rain_yr": 16.27,
    "dust_events_25km_since_2020": 134,
    "last_dust_event": "2026-10-10",
-   "recent_dust_ref": "2026-11-24",
+   "recent_dust_ref": "2026-11-25",
    "recent_dust_ref_source": "run date (no imagery date in meta)",
    "median_hh_income": 103986.0,
    "share_hh_200k": 0.0,
@@ -722,9 +697,9 @@
   ]
  },
  "pools": {
-  "n_pools": 5,
+  "n_pools": 2,
   "houses": 13,
-  "share_houses_with_pool": 0.385,
+  "share_houses_with_pool": 0.154,
   "green_now": 0,
   "green_ever": 1,
   "context_pools": 27,
@@ -902,7 +877,48 @@
    "use": "neighbourhood-level only: 10 m pixels mix each pool with its yard"
   },
   "limitations": "snapshots every ~1-2 years on capture dates only; covered/shaded pools and pools under trees can be missed; colour states are indicative, not inspections",
-  "generated": "2026-11-24T21:54+00:00"
+  "generated": "2026-11-24T21:54+00:00",
+  "owner_check": {
+   "generated": "2026-11-26T04:08Z",
+   "method": "nearest building among all Overture footprints (block + 80 m)",
+   "parcels": 0,
+   "overture_buildings": 88,
+   "pools_in": 5,
+   "pools_kept": 2,
+   "moved": [],
+   "neighbour_pools": [
+    {
+     "x": 43.3,
+     "y": 28.8,
+     "area_m2": 25.5,
+     "was_given_to": 2,
+     "method": "nearest building (all Overture footprints, not a lot line)",
+     "nearest_m": 4.7,
+     "parcel_id": null
+    },
+    {
+     "x": -47.3,
+     "y": 16.3,
+     "area_m2": 27.0,
+     "was_given_to": 6,
+     "method": "nearest building (all Overture footprints, not a lot line)",
+     "nearest_m": 5.7,
+     "parcel_id": null
+    },
+    {
+     "x": -41.7,
+     "y": 37.7,
+     "area_m2": 28.5,
+     "was_given_to": 7,
+     "method": "nearest building (all Overture footprints, not a lot line)",
+     "nearest_m": 4.2,
+     "parcel_id": null
+    }
+   ],
+   "sources": [
+    "Overture Maps buildings (OSM ODbL; Microsoft/Google/Esri CC BY / ODbL / CDLA-P)"
+   ]
+  }
  },
  "city_data": {
   "adapter": "Maricopa",
@@ -4497,28 +4513,31 @@
   },
   "markings_source": null,
   "osm_via": "Geofabrik extract arizona-latest.osm.pbf via usa/osm_extract.py (pyosmium)",
-  "licence": "ODbL 1.0 (\u00c2\u00a9 OpenStreetMap contributors)",
+  "licence": "ODbL 1.0 (\u00c3\u201a\u00c2\u00a9 OpenStreetMap contributors)",
   "generated": "2026-11-24T23:21:31Z"
  },
  "parcels": {
   "file": "parcels.json",
-  "generated": "2026-11-25T01:06Z",
+  "generated": "2026-11-26T04:22Z",
   "status": "no open parcel data",
   "count": 0,
   "unique_ids": 0,
   "source": null,
   "licence": null,
-  "attribution": null,
+  "attribution": "Contains information from the City of Scottsdale Open Database Portal, which is made available here under the Open Database License (ODbL)",
   "borderline": false,
   "houses_linked": 0,
   "houses_total": 13,
   "houses_ambiguous": 0,
   "hoa_status": "no open HOA data",
   "hoa_counts": {},
-  "hoa_sources": [],
-  "hoa_licences": [],
+  "hoa_sources": [
+   "scottsdale_subdivisions"
+  ],
+  "hoa_licences": [
+   "ODbL 1.0 (share-alike for derived databases)"
+  ],
   "method": "usa/research/parcels_hoa.md",
-  "note": "no green (explicit commercial-use) parcel layer for this county; lot lines are not synthesized",
-  "hoa_note": "no green HOA / plat polygon layer found for this county"
+  "note": "no green (explicit commercial-use) parcel layer for this county; lot lines are not synthesized"
  }
 }

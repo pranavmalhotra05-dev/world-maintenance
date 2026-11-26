@@ -142,7 +142,8 @@
   "thermal/lst_grid_winter.json",
   "thermal/lst_summer.png",
   "thermal/lst_winter.png",
-  "trees.json"
+  "trees.json",
+  "parcels.json"
  ],
  "pipeline": {
   "stages": {
@@ -3442,5 +3443,28 @@
   "transit_trips_per_capita": 94.3,
   "walkability_median": 14.5,
   "generated": "2026-11-24"
+ },
+ "parcels": {
+  "file": "parcels.json",
+  "generated": "2026-11-26T04:21Z",
+  "status": "ok",
+  "count": 41,
+  "unique_ids": 41,
+  "source": "Open Data DC Owner Polygons (Common Ownership Lots), DCGIS Property_and_Land layer 40 (owner fields not read)",
+  "licence": "CC BY 4.0",
+  "attribution": "District of Columbia, OCTO - Open Data DC (CC BY 4.0); District of Columbia, Office of the Chief Technology Officer - Open Data DC (CC BY 4.0)",
+  "borderline": false,
+  "houses_linked": 7,
+  "houses_total": 7,
+  "houses_ambiguous": 0,
+  "hoa_status": "no open HOA data",
+  "hoa_counts": {},
+  "hoa_sources": [
+   "dc_condo_lots"
+  ],
+  "hoa_licences": [
+   "CC BY 4.0"
+  ],
+  "method": "usa/research/parcels_hoa.md"
  }
 }

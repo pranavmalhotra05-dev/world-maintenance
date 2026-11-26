@@ -153,7 +153,8 @@
   "thermal/lst_grid_winter.json",
   "thermal/lst_summer.png",
   "thermal/lst_winter.png",
-  "trees.json"
+  "trees.json",
+  "parcels.json"
  ],
  "pipeline": {
   "stages": {
@@ -3245,5 +3246,25 @@
   "transit_trips_per_capita": 31.6,
   "walkability_median": 11.67,
   "generated": "2026-11-24"
+ },
+ "parcels": {
+  "file": "parcels.json",
+  "generated": "2026-11-26T04:14Z",
+  "status": "ok",
+  "count": 29,
+  "unique_ids": 29,
+  "source": "Fulton County GIS Tax Parcels (item e581a072dca9442e884d3682bff03484; owner fields not read)",
+  "licence": "CC BY-SA (share-alike: parcels.json for this block stays CC BY-SA)",
+  "attribution": "Fulton County, Georgia - Department of Information Technology, GIS Division (CC BY-SA)",
+  "borderline": false,
+  "houses_linked": 3,
+  "houses_total": 3,
+  "houses_ambiguous": 0,
+  "hoa_status": "no open HOA data",
+  "hoa_counts": {},
+  "hoa_sources": [],
+  "hoa_licences": [],
+  "method": "usa/research/parcels_hoa.md",
+  "hoa_note": "no green HOA / plat polygon layer found for this county"
  }
 }

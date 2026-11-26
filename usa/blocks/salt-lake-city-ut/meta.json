@@ -128,7 +128,8 @@
   "thermal/lst_grid_winter.json",
   "thermal/lst_summer.png",
   "thermal/lst_winter.png",
-  "trees.json"
+  "trees.json",
+  "parcels.json"
  ],
  "pipeline": {
   "stages": {
@@ -3287,5 +3288,25 @@
   "transit_trips_per_capita": 16.26,
   "walkability_median": 13.83,
   "generated": "2026-11-24"
+ },
+ "parcels": {
+  "file": "parcels.json",
+  "generated": "2026-11-26T04:13Z",
+  "status": "ok",
+  "count": 30,
+  "unique_ids": 30,
+  "source": "UGRC SGID Utah Salt Lake County Parcels LIR (layer 0)",
+  "licence": "CC BY 4.0 (UGRC)",
+  "attribution": "Utah Geospatial Resource Center (UGRC), State of Utah SGID / Salt Lake County (CC BY 4.0)",
+  "borderline": false,
+  "houses_linked": 6,
+  "houses_total": 6,
+  "houses_ambiguous": 0,
+  "hoa_status": "no open HOA data",
+  "hoa_counts": {},
+  "hoa_sources": [],
+  "hoa_licences": [],
+  "method": "usa/research/parcels_hoa.md",
+  "hoa_note": "no green HOA / plat polygon layer found for this county"
  }
 }

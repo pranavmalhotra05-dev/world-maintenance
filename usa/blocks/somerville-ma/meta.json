@@ -159,7 +159,8 @@
   "thermal/lst_grid_winter.json",
   "thermal/lst_summer.png",
   "thermal/lst_winter.png",
-  "trees.json"
+  "trees.json",
+  "parcels.json"
  ],
  "pipeline": {
   "stages": {
@@ -3408,5 +3409,25 @@
   "transit_trips_per_capita": 60.57,
   "walkability_median": 13.5,
   "generated": "2026-11-24"
+ },
+ "parcels": {
+  "file": "parcels.json",
+  "generated": "2026-11-26T04:11Z",
+  "status": "ok",
+  "count": 58,
+  "unique_ids": 58,
+  "source": "MassGIS Massachusetts Property Tax Parcels (Level 3), layer 0 (owner fields not read)",
+  "licence": "Public domain (MassGIS)",
+  "attribution": "MassGIS (Bureau of Geographic Information), Commonwealth of Massachusetts EOTSS",
+  "borderline": false,
+  "houses_linked": 14,
+  "houses_total": 14,
+  "houses_ambiguous": 0,
+  "hoa_status": "no open HOA data",
+  "hoa_counts": {},
+  "hoa_sources": [],
+  "hoa_licences": [],
+  "method": "usa/research/parcels_hoa.md",
+  "hoa_note": "no green HOA / plat polygon layer found for this county"
  }
 }

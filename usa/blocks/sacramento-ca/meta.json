@@ -663,24 +663,28 @@
  },
  "parcels": {
   "file": "parcels.json",
-  "generated": "2026-11-25T01:06Z",
-  "status": "no open parcel data",
-  "count": 0,
-  "unique_ids": 0,
-  "source": null,
-  "licence": null,
-  "attribution": null,
+  "generated": "2026-11-26T04:21Z",
+  "status": "ok",
+  "count": 36,
+  "unique_ids": 36,
+  "source": "Sacramento County GIS Parcels (ArcGIS item 8d011b99aebc46d48060b2e5bdd7f4a0)",
+  "licence": "CC0 1.0 (Creative Commons Public Domain Dedication)",
+  "attribution": "Sacramento County GIS (CC0)",
   "borderline": false,
-  "houses_linked": 0,
+  "houses_linked": 5,
   "houses_total": 5,
   "houses_ambiguous": 0,
-  "hoa_status": "no open HOA data",
-  "hoa_counts": {},
-  "hoa_sources": [],
-  "hoa_licences": [],
-  "method": "usa/research/parcels_hoa.md",
-  "note": "no green (explicit commercial-use) parcel layer for this county; lot lines are not synthesized",
-  "hoa_note": "no green HOA / plat polygon layer found for this county"
+  "hoa_status": "possible covenants",
+  "hoa_counts": {
+   "subdivision plat (possible covenants - not confirmed HOA)": 2
+  },
+  "hoa_sources": [
+   "sac_subdiv_maps"
+  ],
+  "hoa_licences": [
+   "CC0 1.0 (Creative Commons Public Domain Dedication)"
+  ],
+  "method": "usa/research/parcels_hoa.md"
  },
  "thermal": {
   "source": "Landsat 8/9 Collection 2 Level-2 Surface Temperature (ST_B10), USGS, via Microsoft Planetary Computer STAC 'landsat-c2-l2'",

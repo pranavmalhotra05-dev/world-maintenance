@@ -120,7 +120,8 @@
   "thermal/lst_grid_winter.json",
   "thermal/lst_summer.png",
   "thermal/lst_winter.png",
-  "trees.json"
+  "trees.json",
+  "parcels.json"
  ],
  "pipeline": {
   "stages": {
@@ -3000,5 +3001,31 @@
   "transit_trips_per_capita": 19.61,
   "walkability_median": 13.08,
   "generated": "2026-11-24"
+ },
+ "parcels": {
+  "file": "parcels.json",
+  "generated": "2026-11-26T04:21Z",
+  "status": "no open parcel data",
+  "count": 0,
+  "unique_ids": 0,
+  "source": null,
+  "licence": null,
+  "attribution": "Spokane County, Washington (CC BY)",
+  "borderline": false,
+  "houses_linked": 0,
+  "houses_total": 3,
+  "houses_ambiguous": 0,
+  "hoa_status": "possible covenants",
+  "hoa_counts": {
+   "subdivision plat (possible covenants - not confirmed HOA)": 4
+  },
+  "hoa_sources": [
+   "spokane_plats"
+  ],
+  "hoa_licences": [
+   "CC BY (Spokane County item licence)"
+  ],
+  "method": "usa/research/parcels_hoa.md",
+  "note": "no green (explicit commercial-use) parcel layer for this county; lot lines are not synthesized"
  }
 }
