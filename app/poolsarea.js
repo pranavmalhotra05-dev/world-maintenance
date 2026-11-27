@@ -95,8 +95,8 @@
         updateTriggers: { getLineWidth: sel && sel.id, getFillColor: sel && sel.id, getPolygon: this._ver } }));
       // a marker on each pool so it stays visible among the LiDAR colours when zoomed out (outline still drawn)
       if (pools.length && (zoom || 0) < 18) L.push(new D.ScatterplotLayer({ ...mm, id: "pa:dots", data: pools, pickable: true, billboard: true, radiusUnits: "pixels",
-        getRadius: (zoom || 0) < 15 ? 3.5 : 5, stroked: true, lineWidthUnits: "pixels", getLineWidth: 1.5, getLineColor: [255, 255, 255, 255], parameters: { depthTest: false },
-        getPosition: (d) => [(d.centre || d.ring[0])[0], (d.centre || d.ring[0])[1], this._z(d) + 0.5], getFillColor: (d) => [...col(d.latest_state), 255],
+        getRadius: (zoom || 0) < 15 ? 3.5 : 5, stroked: true, lineWidthUnits: "pixels", getLineWidth: (d) => d.check ? 2 : 1.5, getLineColor: (d) => d.check ? [...col(d.latest_state), 255] : [255, 255, 255, 255], parameters: { depthTest: false },
+        getPosition: (d) => [(d.centre || d.ring[0])[0], (d.centre || d.ring[0])[1], this._z(d) + 0.5], getFillColor: (d) => d.check ? [0, 0, 0, 0] : [...col(d.latest_state), 255],   // hollow ring = needs a look
         updateTriggers: { getPosition: this._ver, getRadius: (zoom || 0) < 15 } }));
       if (holes.length) L.push(new D.PolygonLayer({ ...mm, id: "pa:holes", data: holes, pickable: true, stroked: true, filled: false, lineWidthUnits: "pixels", getLineWidth: 1.2,
         parameters: { depthTest: false }, getPolygon: (d) => ring3(d.ring, this._z(d) + 0.1),
@@ -121,6 +121,7 @@
         o.kind === "community" ? "community / shared pool" : "not inside any lot";
       return { html: `<div class="pt-tip"><b>Pool · ${esc((ST[o.latest_state] || [0, o.latest_state])[1])}</b> · ${esc(o.area_m2)} m²<br>${own}` +
         `<br>${hist}${o.green_years && o.green_years.length ? `<br>green in ${esc(o.green_years.join(", "))}` : ""}` +
+        (o.check ? `<br><b style="color:#ffb347">needs a look:</b> ${esc(o.check)}` : "") +
         `<br><span class="s">NAIP aerial photos (public domain) · state = photo day only · click to light its house${o.parcel ? " and lot" : ""}</span></div>` };
     }
 
@@ -136,7 +137,7 @@
       if (!el.querySelector(".pt-st")) el.innerHTML = `<div class="tg">${AREAS.map((a) => `<label><input type="checkbox" data-pa="${a.slug}" ${this.on.has(a.slug) ? "checked" : ""}> ${esc(a.name)}</label>`).join("")}</div>` +
         `<div class="leg"></div><div class="note"></div><div class="pt-st"></div>`;
       for (const i of el.querySelectorAll("input[data-pa]")) i.checked = this.on.has(i.dataset.pa);
-      el.querySelector(".leg").innerHTML = this.on.size ? `<div class="sub small">` + Object.values(ST).slice(0, 6).map(([c, t]) => `<span style="color:rgb(${c})">■</span> ${esc(t)}`).join(" · ") +
+      el.querySelector(".leg").innerHTML = this.on.size ? `<div class="sub small">` + Object.values(ST).slice(0, 6).map(([c, t]) => `<span style="color:rgb(${c})">■</span> ${esc(t)}`).join(" · ") + " · ○ hollow ring = needs a look" +
         (this.on.has("scottsdale_lidar") ? ` · <span style="color:#fff">□</span> LiDAR hole, photo confirms water · <span style="color:rgb(255,150,90)">□</span> hole, photo says not water` : "") + `</div>` : "";
       el.querySelector(".note").textContent = this.on.size ? "Zoom in (street level) to load pools. Click a pool to light its house and official lot." : "Every pool found across a whole city.";
       const v = this.view, lines = [...this.on].map((k) => { const I = this.idx[k], a = AREAS.find((x) => x.slug === k);
