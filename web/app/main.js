@@ -37,7 +37,7 @@ let DAY = null, NIGHT = null, EARTH_IMG = null, texBusy = false, texAgain = fals
 let VS = { longitude: -98.35, latitude: 39.5, zoom: 1.5, pitch: 0, bearing: 0 };
 let VIEW = "globe", WALK = null, FLY = null, LIFT_Z = 0, LIFT_T = 0, SWITCH_AT = 0, dragging = false;
 let layersDirty = true, skyDirty = true, recolorDirty = false, layerKey = "";
-let EO = null, PT = null, MT = null, MT_SLUG = null, earthDirty = 0;   // earthDirty: frames left to force a redraw after an overlay tile lands (deck does not repaint on its own here)   // Earth-observation overlays (earthlayers.js) and measured points (points.js)
+let SKY = null, EO = null, PT = null, MT = null, MT_SLUG = null, earthDirty = 0;   // earthDirty: frames left to force a redraw after an overlay tile lands (deck does not repaint on its own here)   // Earth-observation overlays (earthlayers.js) and measured points (points.js)
 let EPT = null, BL = null, HOUSE = null, MGR_STUB = { ept: true, block: true };
 let SECTION = "", catalogOpen = false;
 const GLOBE_VIEW = new deck._GlobeView({ id: "globe", resolution: 10 });
@@ -47,7 +47,8 @@ const GLOBE_CTRL = { doubleClickZoom: true, inertia: false, scrollZoom: false, d
 let GDRAG = null, GVEL = null;   // globe drag state and release glide (deg/ms)
 let GZ_TARGET = null;
 function globeMinZoom() { const el = document.getElementById("deck"), m = Math.max(200, Math.min(el.clientWidth || 800, el.clientHeight || 600));
-  return Math.max(-1, Math.log2(0.55 * m * Math.PI / 256)); }
+  const far = SKY && SKY.on && (SKY.on.has("gnss") || SKY.on.has("sats")) ? 4 : 0;   // satellites up to ~36,000 km need room around the Earth
+  return Math.max(-1 - far, Math.log2(0.55 * m * Math.PI / 256) - far); }
 const MAP_VIEW = new deck.MapView({ id: "map", repeat: false, nearZMultiplier: 0.02, farZMultiplier: 10 });
 // walk = the same MapView driven as a first-person camera (eye fixed at ground + 1.7 m, target ahead): every layer keeps
 // the exact projection it has on the map (FirstPersonView mis-placed the METER_OFFSETS point clouds in testing)
@@ -95,6 +96,7 @@ function initEarth() {
   try { if (window.EarthLayers) { EO = new window.EarthLayers({ onUpdate }); const st = earthState("eo"); if (st) safe(() => EO.setState(st)); safe(() => EO.bindPanel($("eoPanel"))); } } catch (e) { console.warn("EarthLayers", e); EO = null; }
   try { if (window.EarthPoints) { PT = new window.EarthPoints({ onUpdate, gnssUrl: "data/gnss.json", icesat2Url: "data/icesat2.json", insarUrl: "data/insar.json", emitUrl: "data/emit.json", gediUrl: "data/gedi.json" }); const st = earthState("pt"); if (st) safe(() => PT.setState(st)); safe(() => PT.bindPanel($("ptPanel"))); } } catch (e) { console.warn("EarthPoints", e); PT = null; }
   if (!EO) $("eoPanel").innerHTML = `<div class="note">Overlays module not loaded.</div>`;
+  try { if (window.SkyTraffic) { SKY = new window.SkyTraffic({ onUpdate, aircraftUrl: "data/sky/aircraft.json" }); const st = earthState("sky"); if (st) safe(() => SKY.setState(st)); safe(() => SKY.bindPanel($("skyPanel"))); } } catch (e) { console.warn("SkyTraffic", e); SKY = null; }
   if (!PT) $("ptPanel").innerHTML = `<div class="note">Points module not loaded.</div>`;
   if ((earthState("eo") || earthState("pt")) && $("secEarth")) $("secEarth").open = true;
 }
@@ -597,6 +599,7 @@ function buildLayers() {
   if (!globe && BL) for (const l of safe(() => BL.layers(), []) || []) if (l) L.push(l);
   if (!globe && VS.zoom >= Z_BLOCKS - 1) for (const l of mtLayers()) L.push(l);
   if (PT) for (const l of safe(() => PT.layers({ globe, zoom: z, modelMatrix: MMX }), []) || []) if (l) L.push(l);
+  if (SKY && VIEW !== "walk") for (const l of safe(() => SKY.layers({ globe, modelMatrix: MMX }), []) || []) if (l) L.push(l);
   // block markers below street zoom
   if (BLOCKS.length && PINS_ON && z < 15.5 && VIEW !== "walk") {
     const zs = Math.max(0.45, Math.min(1, (z + 1) / 6)), p3 = pin.slice(0, 3), pz = b => [b.lon, b.lat, globe ? b._el * LIFT.e + 2500 : b._el + 40];
@@ -614,6 +617,7 @@ function tooltip(info) {
   const id = info.layer && info.layer.id;
   if (!id) return null;
   if (/^(mnt|pool):/.test(id) && MT && MT.tooltip) { const t = safe(() => MT.tooltip(info), null); if (t) return t; }
+  if (id.startsWith("sky:") && SKY) return safe(() => SKY.tooltip(info), null);
   if (id.startsWith("pt:") && PT && PT.tooltip) return safe(() => PT.tooltip(info), null);
   if (id.startsWith("eo:") && EO && EO.tooltip) return safe(() => EO.tooltip(info), null);
   if (id.startsWith("mt:") && info.index >= 0) { const t = MT_LOADED.get(id.slice(3)); return t && t.data ? metroTooltip(t, info.index) : null; }
@@ -904,7 +908,7 @@ function updateCredits() {
   if (!globe && z >= Z_EPT) { const ec = EPT && EPT.credits ? safe(() => EPT.credits(), null) : null; c.push(ec ? esc(ec) : "LiDAR: USGS 3DEP (public domain)"); }
   if (!globe && z >= Z_BLOCKS - 1) { const bc = BL && BL.credits ? safe(() => BL.credits(), null) : null; if (bc) c.push(esc(bc)); }
   if (MT && MT_SLUG) { const t = safe(() => MT.credits(), ""); if (t) c.push(esc(t)); }
-  for (const m of [EO, PT]) if (m && m.credits && earthActive(m)) { const t = safe(() => m.credits(), ""); if (t) c.push(esc(t)); }
+  for (const m of [EO, PT, SKY]) if (m && m.credits && earthActive(m)) { const t = safe(() => m.credits(), ""); if (t) c.push(esc(t)); }
   $("credits").innerHTML = c.join(" · ") + ` · <button id="credCat">all sources &amp; licences</button>`;
   $("credCat").onclick = () => openCatalog(true);
 }
@@ -984,7 +988,7 @@ function writeUrl() {
   if (selected) p.set("area", "county:" + selected);
   if (VIEW === "walk") p.set("walk", "1");
   if (catalogOpen) p.set("panel", "catalog");
-  for (const [k, m] of [["eo", EO], ["pt", PT]]) if (earthActive(m)) p.set(k, JSON.stringify(m.getState()));
+  for (const [k, m] of [["eo", EO], ["pt", PT], ["sky", SKY]]) if (earthActive(m)) p.set(k, JSON.stringify(m.getState()));
   if (QS.get("theme")) p.set("theme", T.current().id);
   if (QS.get("raf")) p.set("raf", QS.get("raf"));
   history.replaceState(null, "", "?" + p.toString().replace(/%3A/g, ":"));

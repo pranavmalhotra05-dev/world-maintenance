@@ -1,0 +1,94 @@
+[
+ {
+  "name": "MarineCadastre.gov Vessel Traffic (AIS) - BOEM + NOAA OCM, from USCG NAIS",
+  "coverage": "US waters + nearby international waters (USCG terrestrial receivers)",
+  "kind": "historical daily point files (CSV in zip, ~180-310 MB/day); newest day 2024-12-31 (2025 folder 404 on 2026-11-26)",
+  "access": "https://coast.noaa.gov/htdata/CMSP/AISDataHandler/{year}/AIS_{y}_{m}_{d}.zip",
+  "login_or_key": "none",
+  "cost": "free",
+  "licence_quote": "'The information on government web pages is in the public domain and not subject to copyright protection within the United States unless specifically annotated otherwise'",
+  "licence_url": "https://hub.marinecadastre.gov/documents/4a1d5c56ceb94fe2a656bf53eaece8d3",
+  "verdict": "GREEN",
+  "used": "yes - usa/build_sky_ships.py -> web/app/data/sky/ships.json",
+  "notes": "17 U.S.C. 403 notice required when a work consists predominantly of this material; included in attribution. Fields include MMSI/name/IMO/callsign - we drop them.",
+  "checked": "2026-11-26"
+ },
+ {
+  "name": "Fintraffic Digitraffic marine AIS (Finland / Baltic)",
+  "coverage": "Finnish waters + Baltic Sea (Finnish AIS network)",
+  "kind": "LIVE REST: /api/ais/v1/locations (GeoJSON, latest position per vessel), /api/ais/v1/vessels (metadata incl. shipType); MQTT wss://meri.digitraffic.fi:443/mqtt",
+  "access": "https://meri.digitraffic.fi/api/ais/v1/locations",
+  "login_or_key": "none (send Digitraffic-User header)",
+  "cost": "free",
+  "cors": "Access-Control-Allow-Origin: * (tested 2026-11-26 with Origin https://example.github.io)",
+  "licence_quote": "'licensed under the Creative Commons 4.0 By license. It gives the right to distribute, remix, tweak, and build upon our data, even commercially'",
+  "licence_url": "https://www.digitraffic.fi/en/terms-of-service/",
+  "attribution_required": "Source: Fintraffic / digitraffic.fi, license CC 4.0 BY",
+  "verdict": "GREEN",
+  "used": "proposed for live browser fetch (not built into a file)",
+  "notes": "No history/track endpoint for positions (locations = latest only); trails must be built from successive polls. Vessels metadata contains names/callsign/IMO - do not display.",
+  "checked": "2026-11-26"
+ },
+ {
+  "name": "Kystverket (Norwegian Coastal Administration) open AIS",
+  "coverage": "Norwegian waters, EEZ, Svalbard, Jan Mayen (excludes fishing <15 m and leisure <45 m)",
+  "kind": "LIVE raw NMEA TCP stream 153.44.253.27:5631; BarentsWatch AIS API (OAuth client registration)",
+  "login_or_key": "TCP none; BarentsWatch API needs client registration",
+  "cost": "free",
+  "licence_quote": "'Data er gratis og tilgjengelig for alle, og dataene er regulert under Norsk Lisens for offentlige data - NLOD.' (data free for all, under NLOD; credit Kystverket)",
+  "licence_url": "https://www.kystverket.no/sjotransport-og-havn/ais/tilgang-pa-ais-data/",
+  "verdict": "GREEN (licence) - not usable from a static browser page (raw TCP); would need a server-side collector",
+  "used": "no",
+  "checked": "2026-11-26"
+ },
+ {
+  "name": "Danish Maritime Authority AIS (web.ais.dk/aisdata)",
+  "coverage": "Danish waters, historical daily CSV",
+  "licence_quote": "not verified - web.ais.dk refused in browser; dma.dk AIS page shows no licence wording",
+  "licence_url": "https://www.dma.dk/safety-at-sea/navigational-information/ais-data",
+  "verdict": "EXCLUDED (could not verify explicit licence)",
+  "checked": "2026-11-26"
+ },
+ {
+  "name": "aisstream.io",
+  "coverage": "global, live WebSocket",
+  "login_or_key": "GitHub sign-in + API key",
+  "licence_quote": "no data licence published (only a privacy policy linked; /terms 404)",
+  "licence_url": "https://aisstream.io/",
+  "verdict": "RED/EXCLUDED (no explicit licence; account required)",
+  "checked": "2026-11-26"
+ },
+ {
+  "name": "AISHub",
+  "coverage": "global, contributor network",
+  "licence_quote": "'Members with a good station: an API key for the combined data' ... 'passing on the raw data to others, for free or for money, is not allowed'",
+  "licence_url": "https://www.aishub.net/join-us",
+  "verdict": "RED (access only in exchange for operating an AIS receiver; custom terms, no open licence)",
+  "checked": "2026-11-26"
+ },
+ {
+  "name": "Global Fishing Watch APIs",
+  "licence_quote": "'Global Fishing Watch APIs are only available for non-commercial purposes.'",
+  "licence_url": "https://globalfishingwatch.org/our-apis/documentation#terms-of-use",
+  "verdict": "RED (non-commercial)",
+  "checked": "2026-11-26"
+ },
+ {
+  "name": "MarineTraffic / VesselFinder / FleetMon",
+  "licence_quote": "proprietary commercial services; paid API, no open licence",
+  "verdict": "RED",
+  "checked": "2026-11-26 (not re-read; proprietary by design)"
+ },
+ {
+  "name": "US Coast Guard NAIS / NAVCEN",
+  "licence_quote": "not checked separately; MarineCadastre states its AIS records are repurposed from the USCG national network",
+  "verdict": "covered via MarineCadastre",
+  "checked": "2026-11-26"
+ },
+ {
+  "name": "NOAA NGDC / NCEI",
+  "licence_quote": "not searched separately (time cap); NOAA's AIS distribution is MarineCadastre (NOAA OCM)",
+  "verdict": "not checked",
+  "checked": "2026-11-26"
+ }
+]
