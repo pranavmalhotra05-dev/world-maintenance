@@ -1,0 +1,224 @@
+{
+ "name": "Scottsdale AZ water holes in airborne LiDAR (independent pool detector)",
+ "generated": "2026-11-27T04:26:07+00:00",
+ "status": "partial (densest residential tiles first)",
+ "area": {
+  "place": "Scottsdale city, AZ",
+  "geoid": "0465000",
+  "boundary": "TIGER 2024 Places (TIGERweb ACS2024 layer 28)"
+ },
+ "tile_grid": "EPSG:32612 1 km, file <tx>_<ty>.json = easting km, northing km",
+ "method": "Every 3DEP laser point (all EPT levels, no thinning) binned on a 0.5 m UTM 12N grid; a hole is a 4-connected patch of cells with no non-noise return (or one stray return in a gap, or class 9), 8-1500 m2, compact, ringed by returns, inside survey coverage, normal point density around it, not on an Overture roof (eroded 1 m), ringed by ground-level returns. Each hole checked on the newest NAIP year (NDWI/colour test of usa/pools.py, photo registered to the holes per tile). Details: usa/research/lidar_water.md",
+ "kinds": {
+  "pool": "8-150 m2",
+  "community": "150-1500 m2 (community / HOA / hotel pools, small ponds)"
+ },
+ "labels": [
+  "water hole confirmed by photo",
+  "water hole, photo shows covered/dark/not water",
+  "water hole, no photo"
+ ],
+ "lidar": {
+  "project": "AZ_MaricopaPinal_1_2020",
+  "collection_year": 2021,
+  "year_source": "USGS WESM collect_end (project named 2020)",
+  "srs": "EPSG:3857 EPT, gridded in EPSG:32612"
+ },
+ "photo": {
+  "source": "USDA NAIP",
+  "years": [
+   2025
+  ]
+ },
+ "totals": {
+  "tiles_done": 5,
+  "holes": 1075,
+  "confirmed_by_photo": 986,
+  "photo_not_water": 89,
+  "no_photo": 0,
+  "pool": 1073,
+  "community": 2,
+  "confirmed_pool": 984,
+  "confirmed_community": 2,
+  "photo_verdicts": {
+   "water": 958,
+   "covered_or_empty": 42,
+   "not_water_vegetation": 27,
+   "dark_or_shadow": 20,
+   "water_green_or_weak": 28
+  },
+  "lidar_units_read": 25,
+  "lidar_points_read": 193204643,
+  "lidar_bytes_read": 1373065618,
+  "candidates_rejected": {
+   "outside_city": 2,
+   "not_compact": 2,
+   "elevated_surface": 1
+  },
+  "tiles_total": 466
+ },
+ "agreement_with_naip_lane": {
+  "tiles_in_common": 0
+ },
+ "tiles": [
+  {
+   "id": "413_3701",
+   "bbox": [
+    -111.936126,
+    33.444882,
+    -111.925271,
+    33.453981
+   ],
+   "status": "done",
+   "tile": [
+    413,
+    3701
+   ],
+   "file": "413_3701.json",
+   "holes": 3,
+   "confirmed": 3,
+   "not_water": 0,
+   "community": 0,
+   "density_ppm2": 12.7,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "outside_city": 2
+   }
+  },
+  {
+   "id": "416_3704",
+   "bbox": [
+    -111.90413,
+    33.472177,
+    -111.893275,
+    33.481273
+   ],
+   "status": "done",
+   "tile": [
+    416,
+    3704
+   ],
+   "file": "416_3704.json",
+   "holes": 339,
+   "confirmed": 316,
+   "not_water": 23,
+   "community": 0,
+   "density_ppm2": 14.6,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "416_3708",
+   "bbox": [
+    -111.904505,
+    33.508251,
+    -111.893646,
+    33.517348
+   ],
+   "status": "done",
+   "tile": [
+    416,
+    3708
+   ],
+   "file": "416_3708.json",
+   "holes": 386,
+   "confirmed": 354,
+   "not_water": 32,
+   "community": 0,
+   "density_ppm2": 14.8,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "elevated_surface": 1,
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "416_3709",
+   "bbox": [
+    -111.904599,
+    33.517269,
+    -111.893739,
+    33.526366
+   ],
+   "status": "done",
+   "tile": [
+    416,
+    3709
+   ],
+   "file": "416_3709.json",
+   "holes": 275,
+   "confirmed": 245,
+   "not_water": 30,
+   "community": 2,
+   "density_ppm2": 14.6,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {}
+  },
+  {
+   "id": "417_3709",
+   "bbox": [
+    -111.893831,
+    33.517348,
+    -111.882972,
+    33.526443
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3709
+   ],
+   "file": "417_3709.json",
+   "holes": 72,
+   "confirmed": 68,
+   "not_water": 4,
+   "community": 0,
+   "density_ppm2": 12.3,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {}
+  }
+ ],
+ "sources": [
+  {
+   "name": "USGS 3D Elevation Program LiDAR, AZ_MaricopaPinal_1_2020 (Entwine Point Tiles on AWS)",
+   "licence": "public domain (US Government work)",
+   "url": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/AZ_MaricopaPinal_1_2020/ept.json"
+  },
+  {
+   "name": "USDA NAIP aerial imagery (Microsoft Planetary Computer 'naip')",
+   "licence": "public domain (USDA FSA)",
+   "url": "https://planetarycomputer.microsoft.com/dataset/naip"
+  },
+  {
+   "name": "Overture Maps buildings, release 2026-11-18.0",
+   "licence": "ODbL 1.0 (OpenStreetMap-derived) / CDLA Permissive 2.0",
+   "url": "https://docs.overturemaps.org/attribution/"
+  },
+  {
+   "name": "US Census TIGER/Line 2024 Places, GEOID 0465000",
+   "licence": "public domain (US Government work)",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_ACS2024/MapServer/28"
+  }
+ ]
+}

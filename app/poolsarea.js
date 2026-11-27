@@ -50,6 +50,7 @@
         for (const t of I.j.tiles || []) {
           const b = t.bbox; if (!b || b[2] < w || b[0] > e || b[3] < s || b[1] > n) continue;
           if (t.status && !/done|ok|final/.test(t.status)) continue;
+          if (!t.id && t.file) t.id = t.file.replace(/\.json$/, "");
           want.push([k, t.id, (b[0] + b[2]) / 2, (b[1] + b[3]) / 2, t.file || t.id + ".json"]);
         }
       }
@@ -100,7 +101,7 @@
         updateTriggers: { getPosition: this._ver, getRadius: (zoom || 0) < 15 } }));
       if (holes.length) L.push(new D.PolygonLayer({ ...mm, id: "pa:holes", data: holes, pickable: true, stroked: true, filled: false, lineWidthUnits: "pixels", getLineWidth: 1.2,
         parameters: { depthTest: false }, getPolygon: (d) => ring3(d.ring, this._z(d) + 0.1),
-        getLineColor: (d) => /confirmed/.test((d.photo && d.photo.verdict) || "") ? [255, 255, 255, 230] : [255, 150, 90, 220], updateTriggers: { getPolygon: this._ver } }));
+        getLineColor: (d) => /confirmed/.test(d.label || "") || (d.photo && d.photo.verdict === "water") ? [255, 255, 255, 230] : [255, 150, 90, 220], updateTriggers: { getPolygon: this._ver } }));
       return L;
     }
     pick(info) {
@@ -112,7 +113,9 @@
       const o = info && info.object, id = info && info.layer && info.layer.id; if (!o || !/^pa:/.test(id)) return null;
       if (o.akind === "holes") {
         const ph = o.photo || {}, li = o.lidar || {};
-        return { html: `<div class="pt-tip"><b>LiDAR water hole</b> · ${esc(o.area_m2)} m²<br>${esc(ph.verdict || "no photo check")}${ph.ndwi != null ? " · NDWI " + esc(ph.ndwi) : ""}` +
+        return { html: `<div class="pt-tip"><b>LiDAR water hole</b> · ${esc(Math.round(o.area_m2))} m²<br>${esc(o.label || ph.verdict || "no photo check")}` +
+          `${ph.verdict ? "<br>photo " + esc(ph.date || ph.year) + ": " + esc(String(ph.verdict).replace(/_/g, " ")) + (ph.state ? " (" + esc(String(ph.state).replace(/_/g, " ")) + ")" : "") : ""}` +
+          `<br>${esc(li.empty_cells ?? "?")} empty 0.5 m cells · ${esc(li.density_ppm2_around ?? "?")} pts/m² around` +
           `<br><span class="s">${esc(li.project || "USGS 3DEP")} ${esc(li.year || "")} · laser returns missing over water · photo ${esc(ph.year || "")}</span></div>` };
       }
       const hist = Object.entries(o.states || {}).sort().map(([k, v]) => `<span style="color:rgb(${col(v)})">■</span>${esc(k.replace(/\D/g, ""))}`).join(" ");
@@ -143,7 +146,7 @@
       const v = this.view, lines = [...this.on].map((k) => { const I = this.idx[k], a = AREAS.find((x) => x.slug === k);
         if (!I || I.state === "loading") return `${a.name}: loading`; if (I.state === "err") return `${a.name}: ${I.err}`;
         const tot = I.j.totals || {}, done = (I.j.tiles || []).filter((t) => !t.status || /done|ok|final/.test(t.status)).length;
-        const n = tot.pools ?? tot.holes ?? tot.all ?? "?"; return `${a.name}: ${n} ${a.kind === "holes" ? "holes" : "pools"} · ${done}/${(I.j.tiles || []).length} tiles built`; });
+        const n = tot.pools ?? tot.holes ?? tot.all ?? "?"; return `${a.name}: ${n} ${a.kind === "holes" ? "holes" : "pools"} · ${done}/${tot.tiles_total || (I.j.tiles || []).length} tiles built`; });
       if (this.on.size && (!v || v.zoom < MINZ)) lines.push(`zoom in to street level (≥ ${MINZ}) to see them`);
       if (this.sel) lines.push(`selected: ${this.sel.parcel ? this.sel.parcel.address : "pool " + this.sel.id}`);
       const st = el.querySelector(".pt-st"); st.textContent = lines.join("\n"); st.style.whiteSpace = "pre-line";
