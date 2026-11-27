@@ -590,7 +590,7 @@ function buildLayers() {
     L.push(new deck.PathLayer({ id: "sel", data: sp, getPath: d => d, getColor: [...sel.slice(0, 3), 255], widthUnits: "pixels", getWidth: 1.8, updateTriggers: { getColor: th }, parameters: { depthTest: !globe }, ...mm }));
   }
   // Earth-observation overlays: flat on the ground, under buildings and LiDAR
-  if (EO && VIEW !== "walk") for (const l of safe(() => EO.layers({ globe, zoom: z, modelMatrix: MMX }), []) || []) if (l) L.push(l);
+  if (EO && VIEW !== "walk") for (const l of safe(() => EO.layers({ globe, zoom: z, modelMatrix: MMX, over: globe ? undefined : false }), []) || []) if (l) L.push(l);
   // metro buildings: one binary layer per loaded tile (stable ids, never rebuilt while panning)
   if (!globe && BLDG_ON) { const mA = smooth(Z_METRO - 0.5, Z_METRO + 0.3, z);
     if (mA > 0.02) for (const t of MT_LOADED.values()) if (t.bin) L.push(new deck.ScatterplotLayer({ id: "mt:" + t.key, data: t.bin, billboard: true, radiusUnits: "meters", getRadius: 1, radiusScale: 5.6,
@@ -600,6 +600,7 @@ function buildLayers() {
   if (!globe && BL) for (const l of safe(() => BL.layers(), []) || []) if (l) L.push(l);
   if (!globe && VS.zoom >= Z_BLOCKS - 1) for (const l of mtLayers()) L.push(l);
   if (PT) for (const l of safe(() => PT.layers({ globe, zoom: z, modelMatrix: MMX }), []) || []) if (l) L.push(l);
+  if (EO && VIEW !== "walk" && !globe) for (const l of safe(() => EO.layers({ globe, zoom: z, modelMatrix: MMX, over: true }), []) || []) if (l) L.push(l);   // gas washes over the LiDAR
   if (PA && !globe) for (const l of safe(() => PA.layers({ globe, zoom: z, modelMatrix: MMX }), []) || []) if (l) L.push(l);
   if (SKY && VIEW !== "walk") for (const l of safe(() => SKY.layers({ globe, modelMatrix: MMX }), []) || []) if (l) L.push(l);
   // block markers below street zoom

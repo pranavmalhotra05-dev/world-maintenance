@@ -15,7 +15,8 @@
     usgs: { c: "USGS (US public domain)", u: "https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits" },
     fws: { c: "USFWS NWI (US public domain)", u: "https://www.fws.gov/program/national-wetlands-inventory" },
     mrlc: { c: "MRLC NLCD / USFS (US public domain)", u: "https://www.mrlc.gov/data" },
-    lf: { c: "LANDFIRE / USGS-USFS (US public domain)", u: "https://landfire.gov/" }
+    lf: { c: "LANDFIRE / USGS-USFS (US public domain)", u: "https://landfire.gov/" },
+    s5p: { c: "Contains modified Copernicus Sentinel-5P data (ESA), via NASA GIBS", u: "https://sentinels.copernicus.eu/documents/247904/690755/Sentinel_Data_Legal_Notice" }
   };
 
   // kind: wmts (GIBS tiles), wms (GetMap), ags (ArcGIS MapServer export), agi (ArcGIS ImageServer exportImage)
@@ -78,9 +79,26 @@
       time: "day", lag: 1, z: [0, 22], tz: 6, lic: "nasa", op: 0.75, legend: { img: GLEG + "GPM_Precipitation_Rate_H.svg" },
       d: "GPM IMERG daily precipitation rate, 10 km." }
   ];
+  // gases: every pixel covers kilometres (many houses / pools); shown for looking, not as a per-pool measurement
+  DEFS.push(
+    { id: "hcho", g: "Gases (city scale)", over: true, name: "Formaldehyde HCHO (TEMPO, hourly)", kind: "wmts", layer: "TEMPO_L3_Formaldehyde_Vertical_Column", tms: "GoogleMapsCompatible_Level7",
+      time: "hour", z: [0, 22], tz: 7, lic: "nasa", op: 0.35,
+      d: "TEMPO formaldehyde column, hourly daytime, ~2 x 5 km pixels. Formed from vegetation and traffic VOCs; one pixel covers thousands of homes." },
+    { id: "no2s5p", g: "Gases (city scale)", over: true, name: "NO₂ (Sentinel-5P TROPOMI, daily)", kind: "wmts", layer: "TROPOMI_L2_Nitrogen_Dioxide_Tropospheric_Column", tms: "GoogleMapsCompatible_Level6",
+      time: "day", lag: 1, z: [0, 22], tz: 6, lic: "s5p", op: 0.35,
+      d: "TROPOMI tropospheric NO₂, one early-afternoon pass a day, 3.5 x 5.5 km pixels (traffic, power plants)." },
+    { id: "so2s5p", g: "Gases (city scale)", over: true, name: "SO₂ (Sentinel-5P TROPOMI, latest)", kind: "wmts", layer: "TROPOMI_L2_Sulfur_Dioxide_Total_Vertical_Column", tms: "GoogleMapsCompatible_Level6",
+      time: null, z: [0, 22], tz: 6, lic: "s5p", op: 0.35,
+      d: "TROPOMI sulfur dioxide column, latest day NASA has published, 3.5 x 5.5 km pixels (volcanoes, smelters, ships, refineries)." },
+    { id: "ch4airs", g: "Gases (city scale)", over: true, name: "Methane CH₄ at ~7 km height (AIRS, daily)", kind: "wmts", layer: "AIRS_L2_Methane_400hPa_Volume_Mixing_Ratio_Day", tms: "GoogleMapsCompatible_Level6",
+      time: "day", lag: 1, z: [0, 22], tz: 6, lic: "nasa", op: 0.35,
+      d: "AIRS methane mixing ratio at 400 hPa (~7 km up), daytime pass, ~45 km footprints: regional background, not ground sources." },
+    { id: "coairs", g: "Gases (city scale)", over: true, name: "Carbon monoxide CO at ~5 km (AIRS, daily)", kind: "wmts", layer: "AIRS_L2_Carbon_Monoxide_500hPa_Volume_Mixing_Ratio_Day", tms: "GoogleMapsCompatible_Level6",
+      time: "day", lag: 1, z: [0, 22], tz: 6, lic: "nasa", op: 0.35,
+      d: "AIRS carbon monoxide at 500 hPa (~5.5 km up), daytime pass, ~45 km footprints (wildfire smoke, pollution transport)." });
   const BY = new Map(DEFS.map(d => [d.id, d]));
   const DRAW = DEFS.filter(d => !d.top).concat(DEFS.filter(d => d.top));   // rasters first, thin vector-style overlays on top
-  const GROUPS = ["Hazards", "Vegetation & land", "Air & heat", "Water"];
+  const GROUPS = ["Hazards", "Vegetation & land", "Air & heat", "Gases (city scale)", "Water"];
 
   // ---------- helpers
   const ymd = d => d.toISOString().slice(0, 10);
@@ -168,11 +186,13 @@
     }
     _kick() { if (this._pend) return; this._pend = requestAnimationFrame(() => { this._pend = 0; this.onUpdate(); }); }
 
-    layers({ globe = false, zoom = 0, modelMatrix } = {}) {
+    // over: undefined = every layer; false = ground overlays only; true = the see-through "over" layers (gases), drawn after LiDAR
+    layers({ globe = false, zoom = 0, modelMatrix, over } = {}) {
       if (!window.deck || !this.on.size) return [];
       const out = [];
       for (const d of DRAW) {
         if (!this.on.has(d.id)) continue;
+        if (over !== undefined && !!d.over !== over) continue;
         if (zoom < d.z[0] - 0.5 || zoom > d.z[1]) continue;
         if (globe && d.cov) continue;                              // only global (GIBS) overlays on the globe
         const time = this.timeFor(d), key = d.id + "|" + (time || "") + "|" + (globe ? "g" : "m");
