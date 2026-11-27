@@ -644,6 +644,7 @@ function metricLine(r, m) {
   return "";
 }
 function onClick(info) {
+  if (SKY && safe(() => SKY.pick(info), false)) return;
   if (MT && info && info.layer && /^(mnt|pool):/.test(info.layer.id) && safe(() => MT.pick(info), false)) return;
   if (BL && safe(() => BL.pick(info), false)) return;
   // a house under the cursor wins even when something else (points, a building dot) is on top
