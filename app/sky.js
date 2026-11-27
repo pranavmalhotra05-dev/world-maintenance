@@ -207,7 +207,7 @@
       const G = this.d.gnss;
       if (this.on.has("gnss") && G && G.state === "ok") {
         L.push(new D.PathLayer({ ...mm, id: "sky:gnss-orbit", data: G.list.filter((d) => this._isSel(d)), pickable: false, widthUnits: "pixels", getWidth: 0.8, parameters: { depthTest: false },
-          getPath: (d) => d.pts.map((p) => [p[0], p[1], p[2]]), wrapLongitude: true, getColor: (d) => [...sysCol(d.system), 200] }));
+          getPath: (d) => d.pts.map((p) => [p[0], p[1], p[2]]), wrapLongitude: !globe, getColor: (d) => [...sysCol(d.system), 200] }));
         const now = G.list.filter((d) => this.orb.has(d.orb)).map((s) => ({ ...s, at: this._satNow(s) })).filter((s) => s.at);
         L.push(new D.ScatterplotLayer({ ...base, id: "sky:gnss", data: now, getPosition: (d) => d.at, getRadius: (d) => this._isSel(d) ? 6 : 3, updateTriggers: { getRadius: this.selSat }, getFillColor: (d) => [...sysCol(d.system), 250] }));
       }
@@ -235,7 +235,7 @@
       const S = this.d.sats;
       if (this.on.has("sats") && S && S.state === "ok") {
         L.push(new D.PathLayer({ ...mm, id: "sky:orbits", data: S.list.filter((d) => this._isSel(d)), pickable: false, widthUnits: "pixels", getWidth: 1, parameters: { depthTest: false },
-          getPath: (d) => d.pts.map((p) => [p[0], p[1], p[2]]), wrapLongitude: true, getColor: [200, 170, 255, 210] }));
+          getPath: (d) => d.pts.map((p) => [p[0], p[1], p[2]]), wrapLongitude: !globe, getColor: [200, 170, 255, 210] }));
         const now = S.list.filter((d) => this.orb.has(d.orb)).map((s) => ({ ...s, at: this._satNow(s) })).filter((s) => s.at);
         L.push(new D.ScatterplotLayer({ ...base, id: "sky:sats", data: now, getPosition: (d) => d.at, getRadius: (d) => this._isSel(d) ? 6 : 3, updateTriggers: { getRadius: this.selSat }, getFillColor: [200, 170, 255, 250] }));
       }
