@@ -37,7 +37,7 @@ let DAY = null, NIGHT = null, EARTH_IMG = null, texBusy = false, texAgain = fals
 let VS = { longitude: -98.35, latitude: 39.5, zoom: 1.5, pitch: 0, bearing: 0 };
 let VIEW = "globe", WALK = null, FLY = null, LIFT_Z = 0, LIFT_T = 0, SWITCH_AT = 0, dragging = false;
 let layersDirty = true, skyDirty = true, recolorDirty = false, layerKey = "";
-let SKY = null, EO = null, PT = null, MT = null, MT_SLUG = null, earthDirty = 0;   // earthDirty: frames left to force a redraw after an overlay tile lands (deck does not repaint on its own here)   // Earth-observation overlays (earthlayers.js) and measured points (points.js)
+let PA = null, SKY = null, EO = null, PT = null, MT = null, MT_SLUG = null, earthDirty = 0;   // earthDirty: frames left to force a redraw after an overlay tile lands (deck does not repaint on its own here)   // Earth-observation overlays (earthlayers.js) and measured points (points.js)
 let EPT = null, BL = null, HOUSE = null, MGR_STUB = { ept: true, block: true };
 let SECTION = "", catalogOpen = false;
 const GLOBE_VIEW = new deck._GlobeView({ id: "globe", resolution: 10 });
@@ -97,6 +97,7 @@ function initEarth() {
   try { if (window.EarthPoints) { PT = new window.EarthPoints({ onUpdate, gnssUrl: "data/gnss.json", icesat2Url: "data/icesat2.json", insarUrl: "data/insar.json", emitUrl: "data/emit.json", gediUrl: "data/gedi.json" }); const st = earthState("pt"); if (st) safe(() => PT.setState(st)); safe(() => PT.bindPanel($("ptPanel"))); } } catch (e) { console.warn("EarthPoints", e); PT = null; }
   if (!EO) $("eoPanel").innerHTML = `<div class="note">Overlays module not loaded.</div>`;
   try { if (window.SkyTraffic) { SKY = new window.SkyTraffic({ onUpdate, aircraftUrl: "data/sky/aircraft.json" }); const st = earthState("sky"); if (st) safe(() => SKY.setState(st)); safe(() => SKY.bindPanel($("skyPanel"))); } } catch (e) { console.warn("SkyTraffic", e); SKY = null; }
+  try { if (window.PoolsArea) { PA = new window.PoolsArea({ onUpdate, groundAt }); const st = earthState("pa"); if (st) safe(() => PA.setState(st)); safe(() => PA.bindPanel($("paPanel"))); } } catch (e) { console.warn("PoolsArea", e); PA = null; }
   if (!PT) $("ptPanel").innerHTML = `<div class="note">Points module not loaded.</div>`;
   if ((earthState("eo") || earthState("pt")) && $("secEarth")) $("secEarth").open = true;
 }
@@ -599,6 +600,7 @@ function buildLayers() {
   if (!globe && BL) for (const l of safe(() => BL.layers(), []) || []) if (l) L.push(l);
   if (!globe && VS.zoom >= Z_BLOCKS - 1) for (const l of mtLayers()) L.push(l);
   if (PT) for (const l of safe(() => PT.layers({ globe, zoom: z, modelMatrix: MMX }), []) || []) if (l) L.push(l);
+  if (PA && !globe) for (const l of safe(() => PA.layers({ globe, zoom: z, modelMatrix: MMX }), []) || []) if (l) L.push(l);
   if (SKY && VIEW !== "walk") for (const l of safe(() => SKY.layers({ globe, modelMatrix: MMX }), []) || []) if (l) L.push(l);
   // block markers below street zoom
   if (BLOCKS.length && PINS_ON && z < 15.5 && VIEW !== "walk") {
@@ -617,6 +619,7 @@ function tooltip(info) {
   const id = info.layer && info.layer.id;
   if (!id) return null;
   if (/^(mnt|pool):/.test(id) && MT && MT.tooltip) { const t = safe(() => MT.tooltip(info), null); if (t) return t; }
+  if (id.startsWith("pa:") && PA) return safe(() => PA.tooltip(info), null);
   if (id.startsWith("sky:") && SKY) return safe(() => SKY.tooltip(info), null);
   if (id.startsWith("pt:") && PT && PT.tooltip) return safe(() => PT.tooltip(info), null);
   if (id.startsWith("eo:") && EO && EO.tooltip) return safe(() => EO.tooltip(info), null);
@@ -645,6 +648,7 @@ function metricLine(r, m) {
 }
 function onClick(info) {
   if (SKY && safe(() => SKY.pick(info), false)) return;
+  if (PA && safe(() => PA.pick(info), false)) return;
   if (MT && info && info.layer && /^(mnt|pool):/.test(info.layer.id) && safe(() => MT.pick(info), false)) return;
   if (BL && safe(() => BL.pick(info), false)) return;
   // a house under the cursor wins even when something else (points, a building dot) is on top
@@ -909,7 +913,7 @@ function updateCredits() {
   if (!globe && z >= Z_EPT) { const ec = EPT && EPT.credits ? safe(() => EPT.credits(), null) : null; c.push(ec ? esc(ec) : "LiDAR: USGS 3DEP (public domain)"); }
   if (!globe && z >= Z_BLOCKS - 1) { const bc = BL && BL.credits ? safe(() => BL.credits(), null) : null; if (bc) c.push(esc(bc)); }
   if (MT && MT_SLUG) { const t = safe(() => MT.credits(), ""); if (t) c.push(esc(t)); }
-  for (const m of [EO, PT, SKY]) if (m && m.credits && earthActive(m)) { const t = safe(() => m.credits(), ""); if (t) c.push(esc(t)); }
+  for (const m of [EO, PT, SKY, PA]) if (m && m.credits && earthActive(m)) { const t = safe(() => m.credits(), ""); if (t) c.push(esc(t)); }
   $("credits").innerHTML = c.join(" · ") + ` · <button id="credCat">all sources &amp; licences</button>`;
   $("credCat").onclick = () => openCatalog(true);
 }
@@ -974,6 +978,7 @@ function settle() {
   LAST_BOUNDS = b;
   if (EPT) safe(() => EPT.update(vp)); if (BL) safe(() => BL.update(vp));
   if (PT) safe(() => PT.update(VS, { globe: VIEW === "globe", zoom: VIEW === "walk" ? 20 : VS.zoom, bounds: b }));
+  if (PA) safe(() => PA.update(VS, { globe: VIEW === "globe", zoom: VIEW === "walk" ? 20 : VS.zoom, bounds: b }));
   tractTick(b); metroTick(b); updatePanel(); scheduleUrl();
 }
 
@@ -989,7 +994,7 @@ function writeUrl() {
   if (selected) p.set("area", "county:" + selected);
   if (VIEW === "walk") p.set("walk", "1");
   if (catalogOpen) p.set("panel", "catalog");
-  for (const [k, m] of [["eo", EO], ["pt", PT], ["sky", SKY]]) if (earthActive(m)) p.set(k, JSON.stringify(m.getState()));
+  for (const [k, m] of [["eo", EO], ["pt", PT], ["sky", SKY], ["pa", PA]]) if (earthActive(m)) p.set(k, JSON.stringify(m.getState()));
   if (QS.get("theme")) p.set("theme", T.current().id);
   if (QS.get("raf")) p.set("raf", QS.get("raf"));
   history.replaceState(null, "", "?" + p.toString().replace(/%3A/g, ":"));
