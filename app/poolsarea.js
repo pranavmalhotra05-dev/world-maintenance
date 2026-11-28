@@ -40,18 +40,23 @@
   };
   const holeState = (o) => { const ph = o.photo || {}; return /water/.test(ph.verdict || "") || /confirmed/.test(o.label || "") ? (ph.state || "clean_blue") : null; };
   const pState = (o) => o.akind === "holes" ? holeState(o) : o.latest_state;
+  // filter groups (latest photo): what a pool-service crew cares about
+  const SHOW = [["clean", "Clear blue / turquoise (clean)", ["clean_blue", "turquoise"]], ["green", "Green (likely needs cleaning)", ["green_algae"]],
+    ["dark", "Dark water (check)", ["dark"]], ["covered", "Covered, drained or filled", ["covered_or_empty", "filled_or_removed", "not_present"]], ["nowater", "LiDAR hole, photo says not water", [null]]];
+  const groupOf = (o) => { const st = pState(o); const g = SHOW.find((x) => x[2].includes(st == null ? null : st)); return g ? g[0] : "covered"; };
   const esc = (s) => String(s == null ? "" : s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 
   class PoolsArea {
     constructor(opts = {}) {
-      this.onUpdate = opts.onUpdate || (() => {}); this.groundAt = opts.groundAt || (() => 0); this.groundExact = opts.groundExact || (() => null); this.onFrame = opts.onFrame || this.onUpdate;
+      this.onUpdate = opts.onUpdate || (() => {}); this.groundAt = opts.groundAt || (() => 0); this.groundExact = opts.groundExact || (() => null); this.onFocus = opts.onFocus || (() => {}); this.focus = "";
+      this.show = new Set(SHOW.map((x) => x[0])); this.onFrame = opts.onFrame || this.onUpdate;
       this.bidx = {}; this.btiles = new Map(); this.bgrid = new Map(); this.selHouse = null; this.selPools = new Set();
       this._zTimer = setInterval(() => this._zRefresh(), 1500);
       this._t = 0; this._shTimer = setInterval(() => { if (this.on.size && this.view && this.view.zoom >= 14.5 && !document.hidden && this.tiles.size) { this._t = performance.now() / 1000; this.onFrame(); } }, 110);
       this.on = new Set(); this.idx = {}; this.tiles = new Map(); this.view = null; this.sel = null; this.panel = null; this._ver = 0; this._cache = null; this.timer = 0;
     }
-    getState() { return { on: [...this.on] }; }
-    setState(o = {}) { if (Array.isArray(o.on)) this.on = new Set(o.on.filter((k) => AREAS.some((a) => a.slug === k))); for (const k of this.on) this._index(k); this._dirty(); this._render(); }
+    getState() { const o = { on: [...this.on] }; if (this.focus) o.focus = this.focus; if (this.show.size < SHOW.length) o.show = [...this.show]; return o; }
+    setState(o = {}) { if (Array.isArray(o.show)) this.show = new Set(o.show); if (o.focus) { this.focus = typeof o.focus === "string" ? o.focus : "focus"; setTimeout(() => this.onFocus(this.focus), 0); } if (Array.isArray(o.on)) this.on = new Set(o.on.filter((k) => AREAS.some((a) => a.slug === k))); for (const k of this.on) this._index(k); this._dirty(); this._render(); }
     credits() {
       if (!this.on.size) return "";
       return "Pools: USDA NAIP (public domain)" + ([...this.on].includes("sacramento") ? ", Sacramento County parcels (CC0)" : "") + ", Overture buildings (ODbL)" +
@@ -167,7 +172,8 @@
       const D = window.deck; if (!D || !this.on.size || globe || (zoom || 0) < MINZ - 0.5) return [];
       const mm = modelMatrix ? { modelMatrix } : {}, all = this._list(), L = [];
       const ring3 = (r, z) => r.map((q) => [q[0], q[1], z]);
-      const pools = all.filter((p) => p.akind === "pools"), holes = all.filter((p) => p.akind === "holes");
+      const vis = (p) => this.show.has(groupOf(p)) || this.selPools.has(p);
+      const pools = all.filter((p) => p.akind === "pools" && vis(p)), holes = all.filter((p) => p.akind === "holes" && vis(p));
       const sel = this.sel, sp = this.selPools, sh = this.selHouse, sv = this._ver, t = this._t;
       const far = (zoom || 0) < 16.5;   // zoomed out: a thicker shimmering rim so every pool stays findable (no markers)
       // shimmer: each pool flickers on its own phase, like sun on moving water; green (algae) pools pulse slower and deeper
@@ -235,7 +241,11 @@
 
     bindPanel(el) {
       this.panel = el; el.classList.add("ptp");
-      el.addEventListener("change", (e) => { const k = e.target && e.target.dataset && e.target.dataset.pa; if (!k) return;
+      el.addEventListener("change", (e) => {
+        const ds = (e.target && e.target.dataset) || {};
+        if (ds.pafocus != null) { this.focus = e.target.value; this.onFocus(this.focus); this._render(); this.onUpdate(); return; }
+        if (ds.pashow) { e.target.checked ? this.show.add(ds.pashow) : this.show.delete(ds.pashow); this._dirty(); this._render(); this.onUpdate(); return; }
+        const k = ds.pa; if (!k) return;
         if (e.target.checked) { this.on.add(k); this._index(k); } else { this.on.delete(k); if (this.sel && this.sel.area === k) this.sel = null; this.selHouse = null; this.selPools = new Set(); }
         this._dirty(); this._render(); this._schedule(0); this.onUpdate(); });
       this._render();
@@ -243,7 +253,17 @@
     _render() {
       const el = this.panel; if (!el) return;
       if (!el.querySelector(".pt-st")) el.innerHTML = `<div class="tg">${AREAS.map((a) => `<label><input type="checkbox" data-pa="${a.slug}" ${this.on.has(a.slug) ? "checked" : ""}> ${esc(a.name)}</label>`).join("")}</div>` +
-        `<div class="leg"></div><div class="note"></div><div class="pt-st"></div>`;
+        `<div class="pa-flt" style="margin:6px 0 0 14px"></div><div class="leg"></div><div class="note"></div><div class="pt-st"></div>`;
+      const fl = el.querySelector(".pa-flt"); fl.hidden = !this.on.size;
+      if (this.on.size) {
+        const cnt = {}; for (const p of this._list()) { const g = groupOf(p); cnt[g] = (cnt[g] || 0) + 1; }
+        const sw = { clean: col("clean_blue"), green: col("green_algae"), dark: col("dark"), covered: col("covered_or_empty"), nowater: [255, 150, 90] };
+        fl.innerHTML = `<label class="ctl"><span class="lbl">Pool contrast</span><select data-pafocus>` + [["", "Normal LiDAR colours"], ["focus", "Dim grey"], ["amber", "Amber (opposite of blue)"], ["violet", "Deep violet"], ["paper", "Light paper"], ["ink", "Night (near black)"]].map(([k, t]) =>
+          `<option value="${k}" ${this.focus === k ? "selected" : ""}>${esc(t)}</option>`).join("") + `</select></label><div class="sub small">recolours the LiDAR only (every point kept); pools keep their water colour</div>` +
+          `<div class="lbl" style="margin-top:4px">Show pools</div><div class="tg">` + SHOW.map(([k, t]) =>
+          `<label><input type="checkbox" data-pashow="${k}" ${this.show.has(k) ? "checked" : ""}> <span style="color:rgb(${sw[k]})">■</span> ${esc(t)} <span class="sub small">${cnt[k] || 0}</span></label>`).join("") +
+          `</div><div class="sub small">counts = pools loaded around the view</div>`;
+      }
       for (const i of el.querySelectorAll("input[data-pa]")) i.checked = this.on.has(i.dataset.pa);
       el.querySelector(".leg").innerHTML = this.on.size ? `<div class="sub small">` + Object.entries(ST).slice(0, 6).map(([k, [c, t]]) => `<span style="color:rgb(${c})">■</span> ${esc(t)}${k === "green_algae" ? " = likely needs cleaning" : ""}`).join(" · ") + " · pools shimmer in their water colour from the latest photo" +
         (this.on.has("scottsdale_lidar") ? ` · <span style="color:#fff">□</span> LiDAR hole, photo confirms water · <span style="color:rgb(255,150,90)">□</span> hole, photo says not water` : "") + `</div>` : "";

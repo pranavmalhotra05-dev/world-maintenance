@@ -78,13 +78,14 @@ async function importClass(file, name) {
   catch (e) { console.warn(`${file}: ${e.message}`); return window[name] || null; }
 }
 async function loadManagers() {
-  const [E, B] = await Promise.all([importClass("./ept.js", "EptManager"), importClass("./block.js", "BlockManager")]);
+  const [E, B] = await Promise.all([importClass("./ept.js?v=20261127e", "EptManager"), importClass("./block.js", "BlockManager")]);
   // zOffset 0: true absolute elevations (NAVD88 m); the camera is lifted to the ground instead (camLift), so blocks, buildings and LiDAR share one frame
   try { if (typeof E === "function") { EPT = new E({ onUpdate: onMgrUpdate, zOffset: 0 }); MGR_STUB.ept = false; } } catch (e) { console.warn("EptManager", e); }
   try { if (typeof B === "function") { BL = new B({ onUpdate: onMgrUpdate, onSelectHouse, groundAt }); MGR_STUB.block = false; } } catch (e) { console.warn("BlockManager", e); }
   EPT = EPT || stubEpt(); BL = BL || stubBlocks();
   initEarth(); initMaint();
   const modes = safe(() => EPT.colorModes, null) || [{ id: "elevation", label: "Elevation" }, { id: "classification", label: "Classification" }, { id: "intensity", label: "Intensity" }, { id: "rgb", label: "RGB (where flown)" }];
+  for (const [id, label] of [["focus", "Dim grey"], ["amber", "Amber"], ["violet", "Deep violet"], ["paper", "Light paper"], ["ink", "Night (near black)"]]) if (!modes.some((m) => (m.id || m) === id)) modes.push({ id, label: label + " (overlays stand out)" });
   $("eptColor").innerHTML = (Array.isArray(modes) ? modes : Object.keys(modes)).map(m => `<option value="${esc(m.id || m)}">${esc(m.label || m)}</option>`).join("");
   $("eptColor").onchange = e => { safe(() => EPT.setColorMode(e.target.value)); layersDirty = true; };
   scheduleSettle();
@@ -97,7 +98,9 @@ function initEarth() {
   try { if (window.EarthPoints) { PT = new window.EarthPoints({ onUpdate, gnssUrl: "data/gnss.json", icesat2Url: "data/icesat2.json", insarUrl: "data/insar.json", emitUrl: "data/emit.json", gediUrl: "data/gedi.json" }); const st = earthState("pt"); if (st) safe(() => PT.setState(st)); safe(() => PT.bindPanel($("ptPanel"))); } } catch (e) { console.warn("EarthPoints", e); PT = null; }
   if (!EO) $("eoPanel").innerHTML = `<div class="note">Overlays module not loaded.</div>`;
   try { if (window.SkyTraffic) { SKY = new window.SkyTraffic({ onUpdate, aircraftUrl: "data/sky/aircraft.json" }); const st = earthState("sky"); if (st) safe(() => SKY.setState(st)); safe(() => SKY.bindPanel($("skyPanel"))); } } catch (e) { console.warn("SkyTraffic", e); SKY = null; }
-  try { if (window.PoolsArea) { PA = new window.PoolsArea({ onUpdate, onFrame: () => { layersDirty = true; }, groundAt, groundExact }); const st = earthState("pa"); if (st) safe(() => PA.setState(st)); safe(() => PA.bindPanel($("paPanel"))); } } catch (e) { console.warn("PoolsArea", e); PA = null; }
+  try { if (window.PoolsArea) { PA = new window.PoolsArea({ onUpdate, onFrame: () => { layersDirty = true; }, groundAt, groundExact,
+    onFocus: (look) => { const sel = $("eptColor"), looks = ["focus", "amber", "violet", "paper", "ink"]; if (look) { if (!looks.includes(sel.value)) PA._prevMode = sel.value; sel.value = look; } else sel.value = PA._prevMode || "elevation";
+      safe(() => EPT.setColorMode(sel.value)); layersDirty = true; } }); const st = earthState("pa"); if (st) safe(() => PA.setState(st)); safe(() => PA.bindPanel($("paPanel"))); } } catch (e) { console.warn("PoolsArea", e); PA = null; }
   if (!PT) $("ptPanel").innerHTML = `<div class="note">Points module not loaded.</div>`;
   if ((earthState("eo") || earthState("pt")) && $("secEarth")) $("secEarth").open = true;
 }

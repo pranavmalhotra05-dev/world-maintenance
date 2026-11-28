@@ -82,6 +82,14 @@ function verticalScale(meta) {
   return 1;
 }
 
+// overlay-contrast looks (pools, permits...): [r, g, b, dr, dg, db] = colour at ground, gain up to the roofs
+const LOOKS = {
+  focus: [40, 42, 48, 130, 130, 128],      // dim grey: any colour on top pops
+  amber: [48, 26, 10, 170, 100, 34],      // dark brown to amber: the opposite of pool blue
+  violet: [36, 20, 62, 120, 60, 130],    // deep violet: blue and green water both stand out
+  paper: [120, 120, 118, 120, 120, 116],   // light grey map: saturated pools read like ink on paper
+  ink: [14, 16, 24, 70, 76, 96],          // near-black night: pools glow
+};
 export class EptManager {
   constructor({ onUpdate = () => {}, boundariesUrl = '../lidar/ept_boundaries.geojson', pointBudget = 4_000_000,
     pointSize = 1.5, minZoom = 11, maxRequests = 4, sseThreshold = 1.25, maxProjects = 6, zOffset = 'auto',
@@ -145,7 +153,7 @@ export class EptManager {
   }
 
   setColorMode(m) {
-    if (!['elevation', 'classification', 'intensity', 'rgb'].includes(m) || m === this.colorMode) return;
+    if (!['elevation', 'classification', 'intensity', 'rgb', 'focus', 'amber', 'violet', 'paper', 'ink'].includes(m) || m === this.colorMode) return;
     this.colorMode = m; this._queueRecolorAll();
   }
   setPointSize(px) { this.pointSize = px; this._changed(); }
@@ -470,8 +478,9 @@ export class EptManager {
   _colorKeyFor(n) {
     const m = this.colorMode === 'rgb' && !(n.data && n.data.rgb) ? 'elevation' : this.colorMode;
     const er = this.elevRange || [0, 1];
-    return m + '|' + (m === 'elevation' ? er[0] + ',' + er[1] : '') + '|' + (m === 'intensity' ? n.p.imax : '') + '|' + (this.clip ? this.clipVer : 0);
+    return m + '|' + (m === 'elevation' || LOOKS[m] ? er[0] + ',' + er[1] : '') + '|' + (m === 'intensity' ? n.p.imax : '') + '|' + (this.clip ? this.clipVer : 0);
   }
+  // base rgb + rgb gain by height: low ground dark, roofs and trees lighter
   _colorize(n) {
     if (!n.data) return;
     const D = n.data, N = n.count, pos = D.pos;
@@ -483,6 +492,10 @@ export class EptManager {
     for (let i = 0, o = 0; i < N; i++, o += 4) {
       if (mode === 'elevation') rampColor((pos[3 * i + 2] - lo) * inv, col, o);
       else if (mode === 'classification') { const c = CLASS_COLORS[D.cls[i]] || CLASS_COLORS[1]; col[o] = c[0]; col[o + 1] = c[1]; col[o + 2] = c[2]; }
+      else if (LOOKS[mode]) {   // by class so the city still reads: ground darkest, trees middle, roofs lightest (+ a little height)
+        const c = D.cls[i], k = c === 2 || c === 9 ? 0 : c === 6 ? 0.85 : c >= 3 && c <= 5 ? 0.5 : c === 17 ? 0.7 : 0.35;
+        const t = Math.min(1, k + 0.15 * Math.min(1, Math.max(0, (pos[3 * i + 2] - lo) * inv))), L = LOOKS[mode];
+        col[o] = L[0] + L[3] * t; col[o + 1] = L[1] + L[4] * t; col[o + 2] = L[2] + L[5] * t; }
       else if (mode === 'intensity') { const v = Math.min(1, D.inten[i] / imax); const g = 30 + 225 * Math.sqrt(v); col[o] = g; col[o + 1] = g; col[o + 2] = g; }
       else { col[o] = D.rgb[3 * i]; col[o + 1] = D.rgb[3 * i + 1]; col[o + 2] = D.rgb[3 * i + 2]; }
       col[o + 3] = 255;
