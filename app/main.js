@@ -97,7 +97,7 @@ function initEarth() {
   try { if (window.EarthPoints) { PT = new window.EarthPoints({ onUpdate, gnssUrl: "data/gnss.json", icesat2Url: "data/icesat2.json", insarUrl: "data/insar.json", emitUrl: "data/emit.json", gediUrl: "data/gedi.json" }); const st = earthState("pt"); if (st) safe(() => PT.setState(st)); safe(() => PT.bindPanel($("ptPanel"))); } } catch (e) { console.warn("EarthPoints", e); PT = null; }
   if (!EO) $("eoPanel").innerHTML = `<div class="note">Overlays module not loaded.</div>`;
   try { if (window.SkyTraffic) { SKY = new window.SkyTraffic({ onUpdate, aircraftUrl: "data/sky/aircraft.json" }); const st = earthState("sky"); if (st) safe(() => SKY.setState(st)); safe(() => SKY.bindPanel($("skyPanel"))); } } catch (e) { console.warn("SkyTraffic", e); SKY = null; }
-  try { if (window.PoolsArea) { PA = new window.PoolsArea({ onUpdate, groundAt }); const st = earthState("pa"); if (st) safe(() => PA.setState(st)); safe(() => PA.bindPanel($("paPanel"))); } } catch (e) { console.warn("PoolsArea", e); PA = null; }
+  try { if (window.PoolsArea) { PA = new window.PoolsArea({ onUpdate, onFrame: () => { layersDirty = true; }, groundAt, groundExact }); const st = earthState("pa"); if (st) safe(() => PA.setState(st)); safe(() => PA.bindPanel($("paPanel"))); } } catch (e) { console.warn("PoolsArea", e); PA = null; }
   if (!PT) $("ptPanel").innerHTML = `<div class="note">Points module not loaded.</div>`;
   if ((earthState("eo") || earthState("pt")) && $("secEarth")) $("secEarth").open = true;
 }
@@ -167,6 +167,11 @@ function groundAt(lon, lat) {   // built block ground (terrain mesh) > streamed 
   let g = BL && BL.groundAt ? safe(() => BL.groundAt(lon, lat), null) : null;
   if (g == null || !isFinite(g)) g = EPT ? safe(() => EPT.groundAt(lon, lat), null) : null;
   return g != null && isFinite(g) ? +g : etopoAt(lon, lat);
+}
+function groundExact(lon, lat) {   // measured ground only (built block, then streamed LiDAR); null until it has loaded
+  let g = BL && BL.groundAt ? safe(() => BL.groundAt(lon, lat), null) : null;
+  if (g == null || !isFinite(g)) g = EPT ? safe(() => EPT.groundAt(lon, lat), null) : null;
+  return g != null && isFinite(g) ? +g : null;
 }
 // county under a point: nearest US dot in a 0.1° grid
 function countyAt(lon, lat) {
@@ -601,7 +606,7 @@ function buildLayers() {
   if (!globe && VS.zoom >= Z_BLOCKS - 1) for (const l of mtLayers()) L.push(l);
   if (PT) for (const l of safe(() => PT.layers({ globe, zoom: z, modelMatrix: MMX }), []) || []) if (l) L.push(l);
   if (EO && VIEW !== "walk" && !globe) for (const l of safe(() => EO.layers({ globe, zoom: z, modelMatrix: MMX, over: true }), []) || []) if (l) L.push(l);   // gas washes over the LiDAR
-  if (PA && !globe) for (const l of safe(() => PA.layers({ globe, zoom: z, modelMatrix: MMX }), []) || []) if (l) L.push(l);
+  if (PA && !globe) for (const l of safe(() => PA.layers({ globe, zoom: z }), []) || []) if (l) L.push(l);   // absolute ground heights, like the LiDAR: no camera-lift matrix
   if (SKY && VIEW !== "walk") for (const l of safe(() => SKY.layers({ globe, modelMatrix: MMX }), []) || []) if (l) L.push(l);
   // block markers below street zoom
   if (BLOCKS.length && PINS_ON && z < 15.5 && VIEW !== "walk") {
