@@ -13,7 +13,7 @@
     { slug: "scottsdale_lidar", name: "Scottsdale, AZ · LiDAR water holes", kind: "holes" },
   ];
   const ST = {
-    clean_blue: [[30, 144, 255], "clear blue"], turquoise: [[0, 235, 215], "turquoise"], green_algae: [[150, 255, 0], "green (algae)"],
+    clean_blue: [[30, 144, 255], "clear blue"], turquoise: [[0, 235, 215], "turquoise"], green_algae: [[18, 130, 50], "dark green (algae)"],
     covered_or_empty: [[235, 200, 130], "covered or empty"], dark: [[170, 140, 255], "dark"], filled_or_removed: [[150, 150, 150], "filled in / removed"],
     not_present: [[110, 110, 110], "not present"],
   };

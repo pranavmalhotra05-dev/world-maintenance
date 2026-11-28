@@ -78,7 +78,7 @@ async function importClass(file, name) {
   catch (e) { console.warn(`${file}: ${e.message}`); return window[name] || null; }
 }
 async function loadManagers() {
-  const [E, B] = await Promise.all([importClass("./ept.js?v=20261127f", "EptManager"), importClass("./block.js", "BlockManager")]);
+  const [E, B] = await Promise.all([importClass("./ept.js?v=20261127g", "EptManager"), importClass("./block.js", "BlockManager")]);
   // zOffset 0: true absolute elevations (NAVD88 m); the camera is lifted to the ground instead (camLift), so blocks, buildings and LiDAR share one frame
   try { if (typeof E === "function") { EPT = new E({ onUpdate: onMgrUpdate, zOffset: 0 }); MGR_STUB.ept = false; } } catch (e) { console.warn("EptManager", e); }
   try { if (typeof B === "function") { BL = new B({ onUpdate: onMgrUpdate, onSelectHouse, groundAt }); MGR_STUB.block = false; } } catch (e) { console.warn("BlockManager", e); }
