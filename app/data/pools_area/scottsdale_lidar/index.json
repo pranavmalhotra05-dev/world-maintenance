@@ -1,6 +1,6 @@
 {
  "name": "Scottsdale AZ water holes in airborne LiDAR (independent pool detector)",
- "generated": "2026-11-27T04:26:07+00:00",
+ "generated": "2026-11-27T06:26:21+00:00",
  "status": "partial (densest residential tiles first)",
  "area": {
   "place": "Scottsdale city, AZ",
@@ -31,36 +31,109 @@
   ]
  },
  "totals": {
-  "tiles_done": 5,
-  "holes": 1075,
-  "confirmed_by_photo": 986,
-  "photo_not_water": 89,
+  "tiles_done": 61,
+  "holes": 12795,
+  "confirmed_by_photo": 11554,
+  "photo_not_water": 1241,
   "no_photo": 0,
-  "pool": 1073,
-  "community": 2,
-  "confirmed_pool": 984,
-  "confirmed_community": 2,
+  "pool": 12756,
+  "community": 39,
+  "confirmed_pool": 11534,
+  "confirmed_community": 20,
   "photo_verdicts": {
-   "water": 958,
-   "covered_or_empty": 42,
-   "not_water_vegetation": 27,
-   "dark_or_shadow": 20,
-   "water_green_or_weak": 28
+   "water": 11291,
+   "covered_or_empty": 497,
+   "dark_or_shadow": 446,
+   "water_green_or_weak": 263,
+   "not_water_vegetation": 297,
+   "not_water": 1
   },
-  "lidar_units_read": 25,
-  "lidar_points_read": 193204643,
-  "lidar_bytes_read": 1373065618,
+  "lidar_units_read": 204,
+  "lidar_points_read": 1712624666,
+  "lidar_bytes_read": 12177670782,
   "candidates_rejected": {
-   "outside_city": 2,
-   "not_compact": 2,
-   "elevated_surface": 1
+   "too_large": 55,
+   "not_compact": 82,
+   "not_surrounded": 12,
+   "elevated_surface": 9,
+   "outside_city": 73,
+   "under_roof": 16,
+   "low_density_area": 1,
+   "edge_of_coverage": 25
   },
   "tiles_total": 466
  },
  "agreement_with_naip_lane": {
-  "tiles_in_common": 0
+  "tiles_in_common": 22,
+  "lidar_holes": 5500,
+  "lidar_confirmed": 5040,
+  "naip_pools": 5082,
+  "lidar_holes_matched_by_naip_within_5m": 0.846,
+  "naip_pools_matched_by_lidar_hole_within_5m": 0.908,
+  "lidar_confirmed_matched_by_naip_within_5m": 0.917,
+  "naip_pools_matched_by_lidar_confirmed_within_5m": 0.902
  },
  "tiles": [
+  {
+   "id": "412_3704",
+   "bbox": [
+    -111.947179,
+    33.471855,
+    -111.93632,
+    33.480956
+   ],
+   "status": "done",
+   "tile": [
+    412,
+    3704
+   ],
+   "file": "412_3704.json",
+   "holes": 171,
+   "confirmed": 150,
+   "not_water": 21,
+   "community": 0,
+   "density_ppm2": 13.9,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 2,
+    "not_compact": 3
+   }
+  },
+  {
+   "id": "412_3705",
+   "bbox": [
+    -111.947277,
+    33.480874,
+    -111.936417,
+    33.489974
+   ],
+   "status": "done",
+   "tile": [
+    412,
+    3705
+   ],
+   "file": "412_3705.json",
+   "holes": 216,
+   "confirmed": 186,
+   "not_water": 30,
+   "community": 4,
+   "density_ppm2": 14.4,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    0.0
+   ],
+   "rejected": {
+    "not_surrounded": 1,
+    "not_compact": 3,
+    "elevated_surface": 3,
+    "too_large": 3
+   }
+  },
   {
    "id": "413_3701",
    "bbox": [
@@ -90,6 +163,551 @@
    }
   },
   {
+   "id": "413_3702",
+   "bbox": [
+    -111.936223,
+    33.4539,
+    -111.925367,
+    33.462999
+   ],
+   "status": "done",
+   "tile": [
+    413,
+    3702
+   ],
+   "file": "413_3702.json",
+   "holes": 142,
+   "confirmed": 120,
+   "not_water": 22,
+   "community": 0,
+   "density_ppm2": 14.2,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "outside_city": 30,
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "413_3703",
+   "bbox": [
+    -111.93632,
+    33.462919,
+    -111.925463,
+    33.472018
+   ],
+   "status": "done",
+   "tile": [
+    413,
+    3703
+   ],
+   "file": "413_3703.json",
+   "holes": 177,
+   "confirmed": 169,
+   "not_water": 8,
+   "community": 0,
+   "density_ppm2": 13.6,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {}
+  },
+  {
+   "id": "413_3704",
+   "bbox": [
+    -111.936417,
+    33.471937,
+    -111.925559,
+    33.481036
+   ],
+   "status": "done",
+   "tile": [
+    413,
+    3704
+   ],
+   "file": "413_3704.json",
+   "holes": 146,
+   "confirmed": 135,
+   "not_water": 11,
+   "community": 0,
+   "density_ppm2": 14.0,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {}
+  },
+  {
+   "id": "413_3705",
+   "bbox": [
+    -111.936514,
+    33.480956,
+    -111.925655,
+    33.490055
+   ],
+   "status": "done",
+   "tile": [
+    413,
+    3705
+   ],
+   "file": "413_3705.json",
+   "holes": 97,
+   "confirmed": 78,
+   "not_water": 19,
+   "community": 2,
+   "density_ppm2": 14.9,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 3,
+    "under_roof": 2,
+    "not_surrounded": 1,
+    "elevated_surface": 1
+   }
+  },
+  {
+   "id": "414_3701",
+   "bbox": [
+    -111.925367,
+    33.444962,
+    -111.914514,
+    33.454061
+   ],
+   "status": "done",
+   "tile": [
+    414,
+    3701
+   ],
+   "file": "414_3701.json",
+   "holes": 42,
+   "confirmed": 41,
+   "not_water": 1,
+   "community": 0,
+   "density_ppm2": 12.3,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 1,
+    "outside_city": 18
+   }
+  },
+  {
+   "id": "414_3702",
+   "bbox": [
+    -111.925463,
+    33.453981,
+    -111.914608,
+    33.463079
+   ],
+   "status": "done",
+   "tile": [
+    414,
+    3702
+   ],
+   "file": "414_3702.json",
+   "holes": 186,
+   "confirmed": 154,
+   "not_water": 32,
+   "community": 0,
+   "density_ppm2": 14.0,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 3,
+    "not_compact": 2,
+    "under_roof": 2
+   }
+  },
+  {
+   "id": "414_3703",
+   "bbox": [
+    -111.925559,
+    33.462999,
+    -111.914703,
+    33.472098
+   ],
+   "status": "done",
+   "tile": [
+    414,
+    3703
+   ],
+   "file": "414_3703.json",
+   "holes": 139,
+   "confirmed": 112,
+   "not_water": 27,
+   "community": 2,
+   "density_ppm2": 13.2,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 3,
+    "not_compact": 6,
+    "not_surrounded": 1
+   }
+  },
+  {
+   "id": "414_3704",
+   "bbox": [
+    -111.925655,
+    33.472018,
+    -111.914798,
+    33.481116
+   ],
+   "status": "done",
+   "tile": [
+    414,
+    3704
+   ],
+   "file": "414_3704.json",
+   "holes": 205,
+   "confirmed": 188,
+   "not_water": 17,
+   "community": 2,
+   "density_ppm2": 13.1,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 2,
+    "too_large": 2
+   }
+  },
+  {
+   "id": "414_3705",
+   "bbox": [
+    -111.925751,
+    33.481036,
+    -111.914892,
+    33.490135
+   ],
+   "status": "done",
+   "tile": [
+    414,
+    3705
+   ],
+   "file": "414_3705.json",
+   "holes": 96,
+   "confirmed": 42,
+   "not_water": 54,
+   "community": 8,
+   "density_ppm2": 14.4,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "elevated_surface": 3,
+    "not_compact": 10,
+    "under_roof": 4
+   }
+  },
+  {
+   "id": "414_3713",
+   "bbox": [
+    -111.92652,
+    33.553184,
+    -111.915652,
+    33.562282
+   ],
+   "status": "done",
+   "tile": [
+    414,
+    3713
+   ],
+   "file": "414_3713.json",
+   "holes": 356,
+   "confirmed": 274,
+   "not_water": 82,
+   "community": 0,
+   "density_ppm2": 17.4,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "under_roof": 2,
+    "outside_city": 2,
+    "too_large": 3
+   }
+  },
+  {
+   "id": "415_3701",
+   "bbox": [
+    -111.914608,
+    33.445042,
+    -111.903756,
+    33.45414
+   ],
+   "status": "done",
+   "tile": [
+    415,
+    3701
+   ],
+   "file": "415_3701.json",
+   "holes": 2,
+   "confirmed": 0,
+   "not_water": 2,
+   "community": 0,
+   "density_ppm2": 11.8,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    -4.0,
+    -4.0
+   ],
+   "rejected": {
+    "too_large": 2,
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "415_3703",
+   "bbox": [
+    -111.914798,
+    33.463079,
+    -111.903943,
+    33.472177
+   ],
+   "status": "done",
+   "tile": [
+    415,
+    3703
+   ],
+   "file": "415_3703.json",
+   "holes": 190,
+   "confirmed": 177,
+   "not_water": 13,
+   "community": 0,
+   "density_ppm2": 13.8,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {}
+  },
+  {
+   "id": "415_3704",
+   "bbox": [
+    -111.914892,
+    33.472098,
+    -111.904037,
+    33.481195
+   ],
+   "status": "done",
+   "tile": [
+    415,
+    3704
+   ],
+   "file": "415_3704.json",
+   "holes": 162,
+   "confirmed": 141,
+   "not_water": 21,
+   "community": 1,
+   "density_ppm2": 13.9,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 3,
+    "not_compact": 5
+   }
+  },
+  {
+   "id": "415_3705",
+   "bbox": [
+    -111.914987,
+    33.481116,
+    -111.90413,
+    33.490214
+   ],
+   "status": "done",
+   "tile": [
+    415,
+    3705
+   ],
+   "file": "415_3705.json",
+   "holes": 218,
+   "confirmed": 173,
+   "not_water": 45,
+   "community": 2,
+   "density_ppm2": 13.2,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 11,
+    "too_large": 1
+   }
+  },
+  {
+   "id": "415_3706",
+   "bbox": [
+    -111.915082,
+    33.490135,
+    -111.904224,
+    33.499232
+   ],
+   "status": "done",
+   "tile": [
+    415,
+    3706
+   ],
+   "file": "415_3706.json",
+   "holes": 98,
+   "confirmed": 87,
+   "not_water": 11,
+   "community": 2,
+   "density_ppm2": 13.7,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 3,
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "415_3709",
+   "bbox": [
+    -111.915367,
+    33.51719,
+    -111.904505,
+    33.526288
+   ],
+   "status": "done",
+   "tile": [
+    415,
+    3709
+   ],
+   "file": "415_3709.json",
+   "holes": 165,
+   "confirmed": 103,
+   "not_water": 62,
+   "community": 0,
+   "density_ppm2": 14.7,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 1,
+    "too_large": 3
+   }
+  },
+  {
+   "id": "415_3710",
+   "bbox": [
+    -111.915462,
+    33.526209,
+    -111.904599,
+    33.535306
+   ],
+   "status": "done",
+   "tile": [
+    415,
+    3710
+   ],
+   "file": "415_3710.json",
+   "holes": 111,
+   "confirmed": 83,
+   "not_water": 28,
+   "community": 0,
+   "density_ppm2": 13.3,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 3,
+    "low_density_area": 1
+   }
+  },
+  {
+   "id": "416_3701",
+   "bbox": [
+    -111.903849,
+    33.445121,
+    -111.892998,
+    33.454218
+   ],
+   "status": "done",
+   "tile": [
+    416,
+    3701
+   ],
+   "file": "416_3701.json",
+   "holes": 1,
+   "confirmed": 1,
+   "not_water": 0,
+   "community": 0,
+   "density_ppm2": 12.7,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "outside_city": 2,
+    "too_large": 1
+   }
+  },
+  {
+   "id": "416_3703",
+   "bbox": [
+    -111.904037,
+    33.463158,
+    -111.893183,
+    33.472255
+   ],
+   "status": "done",
+   "tile": [
+    416,
+    3703
+   ],
+   "file": "416_3703.json",
+   "holes": 235,
+   "confirmed": 217,
+   "not_water": 18,
+   "community": 0,
+   "density_ppm2": 14.1,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {}
+  },
+  {
    "id": "416_3704",
    "bbox": [
     -111.90413,
@@ -114,6 +732,89 @@
     0.0
    ],
    "rejected": {
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "416_3705",
+   "bbox": [
+    -111.904224,
+    33.481195,
+    -111.893368,
+    33.490292
+   ],
+   "status": "done",
+   "tile": [
+    416,
+    3705
+   ],
+   "file": "416_3705.json",
+   "holes": 441,
+   "confirmed": 389,
+   "not_water": 52,
+   "community": 0,
+   "density_ppm2": 14.7,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "under_roof": 1
+   }
+  },
+  {
+   "id": "416_3706",
+   "bbox": [
+    -111.904318,
+    33.490214,
+    -111.89346,
+    33.49931
+   ],
+   "status": "done",
+   "tile": [
+    416,
+    3706
+   ],
+   "file": "416_3706.json",
+   "holes": 353,
+   "confirmed": 322,
+   "not_water": 31,
+   "community": 0,
+   "density_ppm2": 15.4,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {}
+  },
+  {
+   "id": "416_3707",
+   "bbox": [
+    -111.904411,
+    33.499232,
+    -111.893553,
+    33.508329
+   ],
+   "status": "done",
+   "tile": [
+    416,
+    3707
+   ],
+   "file": "416_3707.json",
+   "holes": 389,
+   "confirmed": 355,
+   "not_water": 34,
+   "community": 0,
+   "density_ppm2": 14.7,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "under_roof": 1,
     "not_compact": 1
    }
   },
@@ -173,6 +874,320 @@
    "rejected": {}
   },
   {
+   "id": "416_3710",
+   "bbox": [
+    -111.904693,
+    33.526288,
+    -111.893831,
+    33.535385
+   ],
+   "status": "done",
+   "tile": [
+    416,
+    3710
+   ],
+   "file": "416_3710.json",
+   "holes": 390,
+   "confirmed": 313,
+   "not_water": 77,
+   "community": 0,
+   "density_ppm2": 14.5,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 2,
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "416_3711",
+   "bbox": [
+    -111.904787,
+    33.535306,
+    -111.893924,
+    33.544403
+   ],
+   "status": "done",
+   "tile": [
+    416,
+    3711
+   ],
+   "file": "416_3711.json",
+   "holes": 345,
+   "confirmed": 299,
+   "not_water": 46,
+   "community": 1,
+   "density_ppm2": 15.2,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 1,
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "416_3712",
+   "bbox": [
+    -111.904881,
+    33.544325,
+    -111.894017,
+    33.553422
+   ],
+   "status": "done",
+   "tile": [
+    416,
+    3712
+   ],
+   "file": "416_3712.json",
+   "holes": 269,
+   "confirmed": 247,
+   "not_water": 22,
+   "community": 1,
+   "density_ppm2": 15.5,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 2
+   }
+  },
+  {
+   "id": "416_3715",
+   "bbox": [
+    -111.905163,
+    33.57138,
+    -111.894296,
+    33.580477
+   ],
+   "status": "done",
+   "tile": [
+    416,
+    3715
+   ],
+   "file": "416_3715.json",
+   "holes": 476,
+   "confirmed": 412,
+   "not_water": 64,
+   "community": 0,
+   "density_ppm2": 16.4,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "not_surrounded": 1
+   }
+  },
+  {
+   "id": "417_3702",
+   "bbox": [
+    -111.893183,
+    33.454218,
+    -111.882331,
+    33.463313
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3702
+   ],
+   "file": "417_3702.json",
+   "holes": 22,
+   "confirmed": 21,
+   "not_water": 1,
+   "community": 0,
+   "density_ppm2": 12.2,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "outside_city": 3,
+    "not_surrounded": 1
+   }
+  },
+  {
+   "id": "417_3703",
+   "bbox": [
+    -111.893275,
+    33.463236,
+    -111.882423,
+    33.472332
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3703
+   ],
+   "file": "417_3703.json",
+   "holes": 33,
+   "confirmed": 30,
+   "not_water": 3,
+   "community": 0,
+   "density_ppm2": 12.2,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "417_3704",
+   "bbox": [
+    -111.893368,
+    33.472255,
+    -111.882514,
+    33.48135
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3704
+   ],
+   "file": "417_3704.json",
+   "holes": 47,
+   "confirmed": 41,
+   "not_water": 6,
+   "community": 0,
+   "density_ppm2": 12.5,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "outside_city": 1
+   }
+  },
+  {
+   "id": "417_3705",
+   "bbox": [
+    -111.89346,
+    33.481273,
+    -111.882606,
+    33.490369
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3705
+   ],
+   "file": "417_3705.json",
+   "holes": 78,
+   "confirmed": 68,
+   "not_water": 10,
+   "community": 0,
+   "density_ppm2": 12.6,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "under_roof": 2,
+    "outside_city": 9,
+    "too_large": 1
+   }
+  },
+  {
+   "id": "417_3706",
+   "bbox": [
+    -111.893553,
+    33.490292,
+    -111.882697,
+    33.499388
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3706
+   ],
+   "file": "417_3706.json",
+   "holes": 74,
+   "confirmed": 70,
+   "not_water": 4,
+   "community": 0,
+   "density_ppm2": 12.9,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "not_surrounded": 1
+   }
+  },
+  {
+   "id": "417_3707",
+   "bbox": [
+    -111.893646,
+    33.49931,
+    -111.882789,
+    33.508406
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3707
+   ],
+   "file": "417_3707.json",
+   "holes": 70,
+   "confirmed": 64,
+   "not_water": 6,
+   "community": 0,
+   "density_ppm2": 12.5,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "not_surrounded": 1
+   }
+  },
+  {
+   "id": "417_3708",
+   "bbox": [
+    -111.893739,
+    33.508329,
+    -111.88288,
+    33.517425
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3708
+   ],
+   "file": "417_3708.json",
+   "holes": 95,
+   "confirmed": 86,
+   "not_water": 9,
+   "community": 0,
+   "density_ppm2": 13.0,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "outside_city": 3,
+    "not_compact": 1
+   }
+  },
+  {
    "id": "417_3709",
    "bbox": [
     -111.893831,
@@ -197,6 +1212,601 @@
     0.0
    ],
    "rejected": {}
+  },
+  {
+   "id": "417_3710",
+   "bbox": [
+    -111.893924,
+    33.526366,
+    -111.883063,
+    33.535462
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3710
+   ],
+   "file": "417_3710.json",
+   "holes": 92,
+   "confirmed": 68,
+   "not_water": 24,
+   "community": 0,
+   "density_ppm2": 12.3,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 2,
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "417_3711",
+   "bbox": [
+    -111.894017,
+    33.535385,
+    -111.883155,
+    33.54448
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3711
+   ],
+   "file": "417_3711.json",
+   "holes": 45,
+   "confirmed": 38,
+   "not_water": 7,
+   "community": 0,
+   "density_ppm2": 12.5,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 1,
+    "outside_city": 1
+   }
+  },
+  {
+   "id": "417_3712",
+   "bbox": [
+    -111.89411,
+    33.544403,
+    -111.883247,
+    33.553499
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3712
+   ],
+   "file": "417_3712.json",
+   "holes": 35,
+   "confirmed": 28,
+   "not_water": 7,
+   "community": 2,
+   "density_ppm2": 12.6,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 1,
+    "outside_city": 2,
+    "not_compact": 2
+   }
+  },
+  {
+   "id": "417_3717",
+   "bbox": [
+    -111.894575,
+    33.589495,
+    -111.883706,
+    33.598591
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3717
+   ],
+   "file": "417_3717.json",
+   "holes": 295,
+   "confirmed": 276,
+   "not_water": 19,
+   "community": 0,
+   "density_ppm2": 15.7,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "417_3718",
+   "bbox": [
+    -111.894668,
+    33.598514,
+    -111.883798,
+    33.60761
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3718
+   ],
+   "file": "417_3718.json",
+   "holes": 462,
+   "confirmed": 444,
+   "not_water": 18,
+   "community": 0,
+   "density_ppm2": 16.0,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 3
+   }
+  },
+  {
+   "id": "417_3719",
+   "bbox": [
+    -111.894761,
+    33.607532,
+    -111.88389,
+    33.616628
+   ],
+   "status": "done",
+   "tile": [
+    417,
+    3719
+   ],
+   "file": "417_3719.json",
+   "holes": 342,
+   "confirmed": 327,
+   "not_water": 15,
+   "community": 0,
+   "density_ppm2": 15.1,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    0.0
+   ],
+   "rejected": {}
+  },
+  {
+   "id": "418_3718",
+   "bbox": [
+    -111.88389,
+    33.598591,
+    -111.873021,
+    33.607686
+   ],
+   "status": "done",
+   "tile": [
+    418,
+    3718
+   ],
+   "file": "418_3718.json",
+   "holes": 386,
+   "confirmed": 370,
+   "not_water": 16,
+   "community": 0,
+   "density_ppm2": 16.6,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 2
+   }
+  },
+  {
+   "id": "418_3719",
+   "bbox": [
+    -111.883982,
+    33.60761,
+    -111.873112,
+    33.616705
+   ],
+   "status": "done",
+   "tile": [
+    418,
+    3719
+   ],
+   "file": "418_3719.json",
+   "holes": 187,
+   "confirmed": 183,
+   "not_water": 4,
+   "community": 0,
+   "density_ppm2": 16.8,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    0.0
+   ],
+   "rejected": {}
+  },
+  {
+   "id": "418_3720",
+   "bbox": [
+    -111.884074,
+    33.616628,
+    -111.873203,
+    33.625723
+   ],
+   "status": "done",
+   "tile": [
+    418,
+    3720
+   ],
+   "file": "418_3720.json",
+   "holes": 237,
+   "confirmed": 225,
+   "not_water": 12,
+   "community": 0,
+   "density_ppm2": 16.8,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "418_3723",
+   "bbox": [
+    -111.884351,
+    33.643683,
+    -111.873476,
+    33.652778
+   ],
+   "status": "done",
+   "tile": [
+    418,
+    3723
+   ],
+   "file": "418_3723.json",
+   "holes": 330,
+   "confirmed": 317,
+   "not_water": 13,
+   "community": 0,
+   "density_ppm2": 19.4,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    -0.5
+   ],
+   "rejected": {
+    "under_roof": 1,
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "418_3724",
+   "bbox": [
+    -111.884443,
+    33.652702,
+    -111.873567,
+    33.661797
+   ],
+   "status": "done",
+   "tile": [
+    418,
+    3724
+   ],
+   "file": "418_3724.json",
+   "holes": 406,
+   "confirmed": 396,
+   "not_water": 10,
+   "community": 0,
+   "density_ppm2": 18.8,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    -0.5
+   ],
+   "rejected": {
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "419_3714",
+   "bbox": [
+    -111.872749,
+    33.562594,
+    -111.861885,
+    33.571688
+   ],
+   "status": "done",
+   "tile": [
+    419,
+    3714
+   ],
+   "file": "419_3714.json",
+   "holes": 154,
+   "confirmed": 150,
+   "not_water": 4,
+   "community": 0,
+   "density_ppm2": 17.8,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    0.0
+   ],
+   "rejected": {
+    "edge_of_coverage": 6
+   }
+  },
+  {
+   "id": "419_3715",
+   "bbox": [
+    -111.872839,
+    33.571612,
+    -111.861975,
+    33.580706
+   ],
+   "status": "done",
+   "tile": [
+    419,
+    3715
+   ],
+   "file": "419_3715.json",
+   "holes": 274,
+   "confirmed": 247,
+   "not_water": 27,
+   "community": 5,
+   "density_ppm2": 17.7,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 4,
+    "too_large": 6
+   }
+  },
+  {
+   "id": "419_3718",
+   "bbox": [
+    -111.873112,
+    33.598668,
+    -111.862244,
+    33.607762
+   ],
+   "status": "done",
+   "tile": [
+    419,
+    3718
+   ],
+   "file": "419_3718.json",
+   "holes": 437,
+   "confirmed": 421,
+   "not_water": 16,
+   "community": 0,
+   "density_ppm2": 17.1,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "419_3719",
+   "bbox": [
+    -111.873203,
+    33.607686,
+    -111.862334,
+    33.61678
+   ],
+   "status": "done",
+   "tile": [
+    419,
+    3719
+   ],
+   "file": "419_3719.json",
+   "holes": 412,
+   "confirmed": 402,
+   "not_water": 10,
+   "community": 0,
+   "density_ppm2": 16.0,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    0.0
+   ],
+   "rejected": {
+    "not_surrounded": 1,
+    "too_large": 1,
+    "under_roof": 1
+   }
+  },
+  {
+   "id": "419_3720",
+   "bbox": [
+    -111.873294,
+    33.616705,
+    -111.862424,
+    33.625799
+   ],
+   "status": "done",
+   "tile": [
+    419,
+    3720
+   ],
+   "file": "419_3720.json",
+   "holes": 241,
+   "confirmed": 220,
+   "not_water": 21,
+   "community": 2,
+   "density_ppm2": 15.6,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 2,
+    "not_compact": 2,
+    "elevated_surface": 1,
+    "not_surrounded": 4
+   }
+  },
+  {
+   "id": "420_3714",
+   "bbox": [
+    -111.861975,
+    33.562669,
+    -111.851113,
+    33.571762
+   ],
+   "status": "done",
+   "tile": [
+    420,
+    3714
+   ],
+   "file": "420_3714.json",
+   "holes": 235,
+   "confirmed": 234,
+   "not_water": 1,
+   "community": 0,
+   "density_ppm2": 16.8,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "edge_of_coverage": 19,
+    "not_compact": 1
+   }
+  },
+  {
+   "id": "420_3715",
+   "bbox": [
+    -111.862065,
+    33.571688,
+    -111.851201,
+    33.580781
+   ],
+   "status": "done",
+   "tile": [
+    420,
+    3715
+   ],
+   "file": "420_3715.json",
+   "holes": 96,
+   "confirmed": 90,
+   "not_water": 6,
+   "community": 1,
+   "density_ppm2": 15.6,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 3
+   }
+  },
+  {
+   "id": "420_3720",
+   "bbox": [
+    -111.862514,
+    33.61678,
+    -111.851644,
+    33.625873
+   ],
+   "status": "done",
+   "tile": [
+    420,
+    3720
+   ],
+   "file": "420_3720.json",
+   "holes": 244,
+   "confirmed": 233,
+   "not_water": 11,
+   "community": 0,
+   "density_ppm2": 17.3,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    0.0
+   ],
+   "rejected": {
+    "too_large": 2,
+    "not_compact": 2
+   }
+  },
+  {
+   "id": "420_3721",
+   "bbox": [
+    -111.862603,
+    33.625799,
+    -111.851733,
+    33.634892
+   ],
+   "status": "done",
+   "tile": [
+    420,
+    3721
+   ],
+   "file": "420_3721.json",
+   "holes": 208,
+   "confirmed": 205,
+   "not_water": 3,
+   "community": 2,
+   "density_ppm2": 18.1,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.0,
+    0.0
+   ],
+   "rejected": {}
+  },
+  {
+   "id": "421_3716",
+   "bbox": [
+    -111.851379,
+    33.580781,
+    -111.840515,
+    33.589873
+   ],
+   "status": "done",
+   "tile": [
+    421,
+    3716
+   ],
+   "file": "421_3716.json",
+   "holes": 365,
+   "confirmed": 346,
+   "not_water": 19,
+   "community": 0,
+   "density_ppm2": 15.6,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    0.5,
+    0.0
+   ],
+   "rejected": {
+    "not_compact": 2
+   }
   }
  ],
  "sources": [
