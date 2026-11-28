@@ -169,6 +169,7 @@
       const ring3 = (r, z) => r.map((q) => [q[0], q[1], z]);
       const pools = all.filter((p) => p.akind === "pools"), holes = all.filter((p) => p.akind === "holes");
       const sel = this.sel, sp = this.selPools, sh = this.selHouse, sv = this._ver, t = this._t;
+      const far = (zoom || 0) < 16.5;   // zoomed out: a thicker shimmering rim so every pool stays findable (no markers)
       // shimmer: each pool flickers on its own phase, like sun on moving water; green (algae) pools pulse slower and deeper
       const ph = (d) => { if (d._ph == null) { const c = d.centre || d.ring[0]; d._ph = ((c[0] * 9973 + c[1] * 7919) % 1 + 1) % 1 * 6.283; } return d._ph; };
       const shim = (d) => { const st = pState(d), f = st === "green_algae" ? 1.3 : 2.6, a = Math.sin(t * f + ph(d)), b = Math.sin(t * f * 2.3 + ph(d) * 1.7);
@@ -186,31 +187,20 @@
         L.push(new D.PolygonLayer({ ...mm, id: "pa:house", data: [hr], pickable: false, stroked: true, filled: true, lineWidthUnits: "pixels", getLineWidth: 2,
           parameters: ON_TOP, getPolygon: (d) => ring3(d.ring, this._z(d) + 0.1), getFillColor: [...c, 70], getLineColor: [...c, 240] }));
       }
-      const glow = [...pools, ...holes.filter((h) => holeState(h))];
-      // a soft glow on the ground around every pool, so the water reads where it is
-      if (glow.length) L.push(new D.ScatterplotLayer({ ...mm, id: "pa:halo", data: glow, pickable: true, radiusUnits: "meters", stroked: false, billboard: false,
-        parameters: GLOW, getPosition: (d) => [(d.centre || d.ring[0])[0], (d.centre || d.ring[0])[1], this._z(d)],
-        getRadius: (d) => (Math.sqrt(d.area_m2 || 30) * 0.95 + 2.5) * (0.92 + 0.16 * shim(d)), getFillColor: (d) => [...col(pState(d)), Math.round((sp.has(d) ? 90 : 35) + 70 * shim(d))],
-        updateTriggers: { getPosition: sv, getFillColor: [sv, t], getRadius: t } }));
       if (pools.length) L.push(new D.PolygonLayer({ ...mm, id: "pa:pools", data: pools, pickable: true, stroked: true, filled: true, lineWidthUnits: "pixels",
-        getLineWidth: (d) => sp.has(d) ? 2.5 : 1, parameters: ON_TOP, getPolygon: (d) => ring3(d.ring, this._z(d) + 0.1),
-        getFillColor: (d) => [...lit(col(d.latest_state), shim(d)), sp.has(d) ? 240 : 190], getLineColor: (d) => [...col(d.latest_state), 255],
-        updateTriggers: { getLineWidth: sv, getFillColor: [sv, t], getPolygon: sv } }));
-      // a marker on each pool so it stays visible among the LiDAR colours when zoomed out (outline still drawn)
-      if (pools.length && (zoom || 0) < 18) L.push(new D.ScatterplotLayer({ ...mm, id: "pa:dots", data: pools, pickable: true, billboard: true, radiusUnits: "pixels",
-        getRadius: (zoom || 0) < 15 ? 3.5 : 5, stroked: true, lineWidthUnits: "pixels", getLineWidth: (d) => d.check ? 2 : 1.5, getLineColor: (d) => d.check ? [...col(d.latest_state), 255] : [255, 255, 255, 255], parameters: ON_TOP,
-        getPosition: (d) => [(d.centre || d.ring[0])[0], (d.centre || d.ring[0])[1], this._z(d) + 0.5], getFillColor: (d) => d.check ? [0, 0, 0, 0] : [...col(d.latest_state), 255],   // hollow ring = needs a look
-        updateTriggers: { getPosition: sv, getRadius: (zoom || 0) < 15 } }));
+        getLineWidth: (d) => sp.has(d) ? 2.5 : far ? 2.6 : 1, parameters: ON_TOP, getPolygon: (d) => ring3(d.ring, this._z(d) + 0.1),
+        getFillColor: (d) => [...lit(col(d.latest_state), shim(d)), sp.has(d) ? 245 : 200], getLineColor: (d) => [...lit(col(d.latest_state), 0.6 + 0.6 * shim(d)), 255],
+        updateTriggers: { getLineWidth: [sv, far], getFillColor: [sv, t], getLineColor: t, getPolygon: sv } }));
       // LiDAR holes: filled with the water's photo colour; white rim = photo confirms water, orange = photo says not water
       if (holes.length) L.push(new D.PolygonLayer({ ...mm, id: "pa:holes", data: holes, pickable: true, stroked: true, filled: true, lineWidthUnits: "pixels",
-        getLineWidth: (d) => sp.has(d) ? 2.5 : 1.2, parameters: ON_TOP, getPolygon: (d) => ring3(d.ring, this._z(d) + 0.1),
+        getLineWidth: (d) => sp.has(d) ? 2.5 : far ? 2.6 : 1.2, parameters: ON_TOP, getPolygon: (d) => ring3(d.ring, this._z(d) + 0.1),
         getFillColor: (d) => holeState(d) ? [...lit(col(holeState(d)), shim(d)), sp.has(d) ? 240 : 190] : [255, 150, 90, 40],
-        getLineColor: (d) => holeState(d) ? [...col(holeState(d)).map((v) => Math.min(255, v + 90)), 240] : [255, 150, 90, 220], updateTriggers: { getPolygon: sv, getFillColor: [sv, t], getLineWidth: sv } }));
+        getLineColor: (d) => holeState(d) ? [...lit(col(holeState(d)), 0.6 + 0.6 * shim(d)), 255] : [255, 150, 90, 220], updateTriggers: { getPolygon: sv, getFillColor: [sv, t], getLineColor: t, getLineWidth: [sv, far] } }));
       return L;
     }
     pick(info) {
       const id = info && info.layer && info.layer.id, o = info && info.object;
-      if (/^pa:(pools|dots|holes|halo)$/.test(id) && o) { const h = this._houseOf(o); if (!h && this.selPools.has(o) && this.selPools.size === 1) this._select(null, null); else this._select(h, o); return true; }
+      if (/^pa:(pools|holes)$/.test(id) && o) { const h = this._houseOf(o); if (!h && this.selPools.has(o) && this.selPools.size === 1) this._select(null, null); else this._select(h, o); return true; }
       if (id === "pa:bld" && o) { this._select(o, null); return true; }
       if (this.selHouse || this.sel) this._select(null, null);
       return false;
@@ -255,7 +245,7 @@
       if (!el.querySelector(".pt-st")) el.innerHTML = `<div class="tg">${AREAS.map((a) => `<label><input type="checkbox" data-pa="${a.slug}" ${this.on.has(a.slug) ? "checked" : ""}> ${esc(a.name)}</label>`).join("")}</div>` +
         `<div class="leg"></div><div class="note"></div><div class="pt-st"></div>`;
       for (const i of el.querySelectorAll("input[data-pa]")) i.checked = this.on.has(i.dataset.pa);
-      el.querySelector(".leg").innerHTML = this.on.size ? `<div class="sub small">` + Object.entries(ST).slice(0, 6).map(([k, [c, t]]) => `<span style="color:rgb(${c})">■</span> ${esc(t)}${k === "green_algae" ? " = likely needs cleaning" : ""}`).join(" · ") + " · pools shimmer in their water colour from the latest photo · ○ hollow ring = needs a look" +
+      el.querySelector(".leg").innerHTML = this.on.size ? `<div class="sub small">` + Object.entries(ST).slice(0, 6).map(([k, [c, t]]) => `<span style="color:rgb(${c})">■</span> ${esc(t)}${k === "green_algae" ? " = likely needs cleaning" : ""}`).join(" · ") + " · pools shimmer in their water colour from the latest photo" +
         (this.on.has("scottsdale_lidar") ? ` · <span style="color:#fff">□</span> LiDAR hole, photo confirms water · <span style="color:rgb(255,150,90)">□</span> hole, photo says not water` : "") + `</div>` : "";
       el.querySelector(".note").textContent = this.on.size ? "Zoom in (street level) to load pools. Click any pool or house to light the house and its pools" + ([...this.on].some((k) => BLD[k]) ? " (every building in the city)." : " and official lot.") : "Every pool found across a whole city.";
       const v = this.view, lines = [...this.on].map((k) => { const I = this.idx[k], a = AREAS.find((x) => x.slug === k);
