@@ -13,11 +13,12 @@
     { slug: "scottsdale_lidar", name: "Scottsdale, AZ · LiDAR water holes", kind: "holes" },
   ];
   const ST = {
-    clean_blue: [[60, 165, 255], "clear blue"], turquoise: [[70, 225, 215], "turquoise"], green_algae: [[125, 215, 45], "green (algae)"],
-    covered_or_empty: [[215, 190, 140], "covered or empty"], dark: [[120, 120, 150], "dark"], filled_or_removed: [[150, 150, 150], "filled in / removed"],
+    clean_blue: [[30, 144, 255], "clear blue"], turquoise: [[0, 235, 215], "turquoise"], green_algae: [[150, 255, 0], "green (algae)"],
+    covered_or_empty: [[235, 200, 130], "covered or empty"], dark: [[170, 140, 255], "dark"], filled_or_removed: [[150, 150, 150], "filled in / removed"],
     not_present: [[110, 110, 110], "not present"],
   };
   const col = (s) => (ST[s] || [[200, 200, 200]])[0];
+  const rim = (c, k) => c.map((v) => Math.round(v + (255 - v) * (0.35 + 0.4 * k)));   // shimmering rim, towards white
   const lit = (c, k) => c.map((v) => Math.min(255, Math.round(v * (0.78 + 0.42 * k))));   // brighten / dim a colour for the shimmer
   const CARE = { clean_blue: "looks clean", turquoise: "looks clean (light / shallow water)", green_algae: "likely needs cleaning (algae green)",
     covered_or_empty: "covered or drained", dark: "dark water: check (shade, debris or algae)", filled_or_removed: "filled in", not_present: "not there that year" };
@@ -193,15 +194,19 @@
         L.push(new D.PolygonLayer({ ...mm, id: "pa:house", data: [hr], pickable: false, stroked: true, filled: true, lineWidthUnits: "pixels", getLineWidth: 2,
           parameters: ON_TOP, getPolygon: (d) => ring3(d.ring, this._z(d) + 0.1), getFillColor: [...c, 70], getLineColor: [...c, 240] }));
       }
+      const cased = [...pools, ...holes.filter((h) => holeState(h))];
+      if (cased.length) L.push(new D.PolygonLayer({ ...mm, id: "pa:casing", data: cased, pickable: false, stroked: true, filled: false, lineWidthUnits: "pixels",
+        getLineWidth: (d) => (sp.has(d) ? 2.5 : far ? 2.6 : 1.2) + 3, parameters: ON_TOP, getPolygon: (d) => ring3(d.ring, this._z(d) + 0.08),
+        getLineColor: [0, 0, 0, 210], updateTriggers: { getLineWidth: [sv, far], getPolygon: sv } }));
       if (pools.length) L.push(new D.PolygonLayer({ ...mm, id: "pa:pools", data: pools, pickable: true, stroked: true, filled: true, lineWidthUnits: "pixels",
         getLineWidth: (d) => sp.has(d) ? 2.5 : far ? 2.6 : 1, parameters: ON_TOP, getPolygon: (d) => ring3(d.ring, this._z(d) + 0.1),
-        getFillColor: (d) => [...lit(col(d.latest_state), shim(d)), sp.has(d) ? 245 : 200], getLineColor: (d) => [...lit(col(d.latest_state), 0.6 + 0.6 * shim(d)), 255],
+        getFillColor: (d) => [...lit(col(d.latest_state), shim(d)), sp.has(d) ? 245 : 200], getLineColor: (d) => [...rim(col(d.latest_state), shim(d)), 255],
         updateTriggers: { getLineWidth: [sv, far], getFillColor: [sv, t], getLineColor: t, getPolygon: sv } }));
       // LiDAR holes: filled with the water's photo colour; white rim = photo confirms water, orange = photo says not water
       if (holes.length) L.push(new D.PolygonLayer({ ...mm, id: "pa:holes", data: holes, pickable: true, stroked: true, filled: true, lineWidthUnits: "pixels",
         getLineWidth: (d) => sp.has(d) ? 2.5 : far ? 2.6 : 1.2, parameters: ON_TOP, getPolygon: (d) => ring3(d.ring, this._z(d) + 0.1),
         getFillColor: (d) => holeState(d) ? [...lit(col(holeState(d)), shim(d)), sp.has(d) ? 240 : 190] : [255, 150, 90, 40],
-        getLineColor: (d) => holeState(d) ? [...lit(col(holeState(d)), 0.6 + 0.6 * shim(d)), 255] : [255, 150, 90, 220], updateTriggers: { getPolygon: sv, getFillColor: [sv, t], getLineColor: t, getLineWidth: [sv, far] } }));
+        getLineColor: (d) => holeState(d) ? [...rim(col(holeState(d)), shim(d)), 255] : [255, 150, 90, 220], updateTriggers: { getPolygon: sv, getFillColor: [sv, t], getLineColor: t, getLineWidth: [sv, far] } }));
       return L;
     }
     pick(info) {
