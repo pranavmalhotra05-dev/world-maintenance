@@ -1,0 +1,1 @@
+{"tile":[428,3719],"crs_tile":"EPSG:32612 1 km","naip":null,"stats":{"units":["151_191"],"density_ppm2_median":19.9,"buildings":103,"rejected":{"outside_city":17},"candidates":0,"t":{"assemble":0.2,"holes":0.8,"naip":0.8,"photo":0.8},"holes":0,"confirmed":0},"holes":[]}

@@ -1,0 +1,135 @@
+{
+ "name": "Phoenix metro AZ water holes in airborne LiDAR (independent pool detector)",
+ "generated": "2026-11-28T07:28:38+00:00",
+ "status": "partial (densest residential tiles first)",
+ "area": {
+  "place": "Phoenix--Mesa--Scottsdale, AZ Urban Area",
+  "geoid": "69184",
+  "slug": "phoenix_metro",
+  "boundary": "TIGER 2020 Urban Area (TIGERweb ACS2024 layer 88) clipped to 3DEP AZ_MaricopaPinal_1_2020 coverage",
+  "ua_share_in_lidar": 0.9946,
+  "city_field": "Census place (incorporated place, else CDP) containing the tile centre / hole centre; TIGERweb ACS2024 layers 28 + 30",
+  "reused": "tiles fully inside Scottsdale are copied from scottsdale_lidar (same method, same data)"
+ },
+ "tile_grid": "EPSG:32612 1 km, file <tx>_<ty>.json = easting km, northing km",
+ "method": "Every 3DEP laser point (all EPT levels, no thinning) binned on a 0.5 m UTM 12N grid; a hole is a 4-connected patch of cells with no non-noise return (or one stray return in a gap, or class 9), 8-1500 m2, compact, ringed by returns, inside survey coverage, normal point density around it, not on an Overture roof (eroded 1 m), ringed by ground-level returns. Each hole checked on the newest NAIP year (NDWI/colour test of usa/pools.py, photo registered to the holes per tile). Details: usa/research/lidar_water.md",
+ "kinds": {
+  "pool": "8-150 m2",
+  "community": "150-1500 m2 (community / HOA / hotel pools, small ponds)"
+ },
+ "labels": [
+  "water hole confirmed by photo",
+  "water hole, photo shows covered/dark/not water",
+  "water hole, no photo"
+ ],
+ "lidar": {
+  "project": "AZ_MaricopaPinal_1_2020",
+  "collection_year": 2021,
+  "year_source": "USGS WESM collect_end (project named 2020)",
+  "srs": "EPSG:3857 EPT, gridded in EPSG:32612"
+ },
+ "photo": {
+  "source": "USDA NAIP",
+  "years": [
+   2025
+  ]
+ },
+ "totals": {
+  "tiles_done": 1,
+  "holes": 386,
+  "confirmed_by_photo": 354,
+  "photo_not_water": 32,
+  "no_photo": 0,
+  "pool": 386,
+  "community": 0,
+  "confirmed_pool": 354,
+  "confirmed_community": 0,
+  "photo_verdicts": {
+   "water": 344,
+   "dark_or_shadow": 7,
+   "covered_or_empty": 16,
+   "not_water_vegetation": 9,
+   "water_green_or_weak": 10
+  },
+  "lidar_units_read": 0,
+  "lidar_points_read": 0,
+  "lidar_bytes_read": 0,
+  "candidates_rejected": {
+   "elevated_surface": 1,
+   "not_compact": 1
+  },
+  "per_city": {
+   "Scottsdale": {
+    "holes": 386,
+    "confirmed": 354
+   }
+  },
+  "tiles_total": 3322
+ },
+ "agreement_with_naip_lane": {
+  "tiles_in_common": 1,
+  "lidar_holes": 386,
+  "lidar_confirmed": 354,
+  "naip_pools": 344,
+  "lidar_holes_matched_by_naip_within_5m": 0.808,
+  "naip_pools_matched_by_lidar_hole_within_5m": 0.919,
+  "naip_pools_with_water_2021": 338,
+  "naip_pools_with_water_2021_matched_by_lidar_hole_within_5m": 0.935,
+  "lidar_confirmed_matched_by_naip_within_5m": 0.876,
+  "naip_pools_matched_by_lidar_confirmed_within_5m": 0.907
+ },
+ "tiles": [
+  {
+   "id": "416_3708",
+   "bbox": [
+    -111.904505,
+    33.508251,
+    -111.893646,
+    33.517348
+   ],
+   "status": "done",
+   "city": "Scottsdale",
+   "tile": [
+    416,
+    3708
+   ],
+   "file": "416_3708.json",
+   "holes": 386,
+   "confirmed": 354,
+   "not_water": 32,
+   "community": 0,
+   "density_ppm2": 14.8,
+   "naip_year": 2025,
+   "naip_shift_m": [
+    1.0,
+    0.0
+   ],
+   "rejected": {
+    "elevated_surface": 1,
+    "not_compact": 1
+   }
+  }
+ ],
+ "sources": [
+  {
+   "name": "USGS 3D Elevation Program LiDAR, AZ_MaricopaPinal_1_2020 (Entwine Point Tiles on AWS)",
+   "licence": "public domain (US Government work)",
+   "url": "https://s3-us-west-2.amazonaws.com/usgs-lidar-public/AZ_MaricopaPinal_1_2020/ept.json"
+  },
+  {
+   "name": "USDA NAIP aerial imagery (Microsoft Planetary Computer 'naip')",
+   "licence": "public domain (USDA FSA)",
+   "url": "https://planetarycomputer.microsoft.com/dataset/naip"
+  },
+  {
+   "name": "Overture Maps buildings, release 2026-11-18.0",
+   "licence": "ODbL 1.0 (OpenStreetMap-derived) / CDLA Permissive 2.0",
+   "url": "https://docs.overturemaps.org/attribution/"
+  },
+  {
+   "name": "US Census TIGER 2020 Urban Areas + 2024 Places / CDPs",
+   "licence": "public domain (US Government work)",
+   "url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/tigerWMS_ACS2024/MapServer"
+  }
+ ]
+}
