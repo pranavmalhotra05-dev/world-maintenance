@@ -11,6 +11,7 @@
     { slug: "sacramento", name: "Sacramento, CA", kind: "pools" },
     { slug: "scottsdale", name: "Scottsdale, AZ", kind: "pools" },
     { slug: "scottsdale_lidar", name: "Scottsdale, AZ · LiDAR water holes", kind: "holes" },
+    { slug: "phoenix_metro_lidar", name: "Phoenix metro · LiDAR water holes", kind: "holes" },
   ];
   const ST = {
     clean_blue: [[30, 144, 255], "clear blue"], turquoise: [[0, 235, 215], "turquoise"], green_algae: [[18, 130, 50], "dark green (algae)"],
@@ -27,7 +28,9 @@
   const GLOW = { ...ON_TOP, blendColorSrcFactor: "src-alpha", blendColorDstFactor: "one", blendAlphaSrcFactor: "one", blendAlphaDstFactor: "one-minus-src-alpha" };
   const MINZ = 12.5, MAX_TILES = 40, CONC = 4, HOUSE_Z = 15.5, HOUSE_M = 40;
   // city-wide building footprints (usa/build_city_buildings.py) for the areas that have no block build
-  const BLD = { scottsdale: "scottsdale_buildings", scottsdale_lidar: "scottsdale_buildings" };
+  // every building in these areas is clickable, pools or not (usa/build_metro_buildings.py)
+  const HOUSE_AREAS = [{ slug: "phoenix_metro_buildings", bbox: [-112.8, 32.95, -111.4, 34.0] }];
+  const BLD = { scottsdale: 1, scottsdale_lidar: 1, phoenix_metro_lidar: 1 };
   const M_LAT = 110540, mLon = (lat) => 111320 * Math.cos(lat * Math.PI / 180);
   const inRing = (x, y, r) => { let c = false; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const a = r[i], b = r[j]; if ((a[1] > y) !== (b[1] > y) && x < (b[0] - a[0]) * (y - a[1]) / (b[1] - a[1]) + a[0]) c = !c; } return c; };
   // metres from a point to a footprint (0 inside)
@@ -73,7 +76,7 @@
     update(viewState, { zoom, bounds, globe } = {}) { this.view = { zoom, bounds, globe }; this._schedule(300); }
     _schedule(ms) { clearTimeout(this.timer); this.timer = setTimeout(() => this._load(), ms); }
     _load() {
-      const v = this.view; if (!v || !v.bounds || v.zoom < MINZ || v.globe) { this._render(); return; }
+      const v = this.view; if (!v || !v.bounds || v.zoom < Math.min(MINZ, HOUSE_Z - 0.5) || v.globe) { this._render(); return; }
       let [w, s, e, n] = v.bounds; const want = [];
       for (const k of this.on) {
         const I = this.idx[k]; if (!I || I.state !== "ok") continue;
@@ -84,7 +87,7 @@
           want.push([k, t.id, (b[0] + b[2]) / 2, (b[1] + b[3]) / 2, t.file || t.id + ".json"]);
         }
       }
-      if (v.zoom >= HOUSE_Z - 0.5) for (const k of new Set([...this.on].map((a) => BLD[a]).filter(Boolean))) {
+      if (v.zoom >= HOUSE_Z - 0.5) for (const k of HOUSE_AREAS.filter((a) => !(a.bbox[2] < w || a.bbox[0] > e || a.bbox[3] < s || a.bbox[1] > n)).map((a) => a.slug)) {
         const I = this.bidx[k]; if (!I) { this._bindex(k); continue; } if (I.state !== "ok") continue;
         for (const t of I.j.tiles || []) { const b = t.bbox; if (b[2] < w || b[0] > e || b[3] < s || b[1] > n) continue; want.push([k, t.id, (b[0] + b[2]) / 2, (b[1] + b[3]) / 2, t.file, true]); }
       }
@@ -116,7 +119,8 @@
       try {
         const r = await fetch(`data/pools_area/${k}/${file}`); if (!r.ok) throw new Error("HTTP " + r.status);
         const j = await r.json(), [ox, oy] = j.o, q = j.q || 1e-6;
-        t.list = j.b.map((v, i) => { const ring = []; let sx = 0, sy = 0; for (let m = 1; m + 1 < v.length; m += 2) { const x = ox + v[m] * q, y = oy + v[m + 1] * q; ring.push([x, y]); sx += x; sy += y; }
+        t.list = j.b.map((v, i) => { const ring = []; let sx = 0, sy = 0, ix = 0, iy = 0;
+          for (let m = 1; m + 1 < v.length; m += 2) { if (j.d && m > 1) { ix += v[m]; iy += v[m + 1]; } else { ix = v[m]; iy = v[m + 1]; } const x = ox + ix * q, y = oy + iy * q; ring.push([x, y]); sx += x; sy += y; }
           return { id: id + ":" + i, ring, area_m2: v[0], centre: [sx / ring.length, sy / ring.length], akind: "house" }; });
         for (const h of t.list) for (const c of this._cells(h.ring)) { let a = this.bgrid.get(c); if (!a) this.bgrid.set(c, a = []); a.push(h); }
         t.state = "ok";
@@ -146,7 +150,7 @@
     }
     // LiDAR ground arrives after the pools: keep trying until every drawn pool and house sits on measured ground
     _zRefresh() {
-      if (!this.on.size || !this.view || !this.view.bounds || this.view.zoom < MINZ) return;
+      if (!this.view || !this.view.bounds || this.view.zoom < MINZ || (!this.on.size && !this.btiles.size)) return;
       const [w, s, e, n] = this.view.bounds; let tries = 0, hit = 0;
       for (const p of [...this._list(), ...this._houses()]) {
         if (p._zok) continue; const c = p.centre || p.ring[0]; if (c[0] < w || c[0] > e || c[1] < s || c[1] > n) continue;
@@ -170,7 +174,7 @@
     }
 
     layers({ globe, zoom, modelMatrix } = {}) {
-      const D = window.deck; if (!D || !this.on.size || globe || (zoom || 0) < MINZ - 0.5) return [];
+      const D = window.deck; if (!D || globe || (zoom || 0) < MINZ - 0.5 || (!this.on.size && !this.btiles.size)) return [];
       const mm = modelMatrix ? { modelMatrix } : {}, all = this._list(), L = [];
       const ring3 = (r, z) => r.map((q) => [q[0], q[1], z]);
       const vis = (p) => this.show.has(groupOf(p)) || this.selPools.has(p);
@@ -272,7 +276,7 @@
       for (const i of el.querySelectorAll("input[data-pa]")) i.checked = this.on.has(i.dataset.pa);
       el.querySelector(".leg").innerHTML = this.on.size ? `<div class="sub small">` + Object.entries(ST).slice(0, 6).map(([k, [c, t]]) => `<span style="color:rgb(${c})">■</span> ${esc(t)}${k === "green_algae" ? " = likely needs cleaning" : ""}`).join(" · ") + " · pools shimmer in their water colour from the latest photo" +
         (this.on.has("scottsdale_lidar") ? ` · <span style="color:#fff">□</span> LiDAR hole, photo confirms water · <span style="color:rgb(255,150,90)">□</span> hole, photo says not water` : "") + `</div>` : "";
-      el.querySelector(".note").textContent = this.on.size ? "Zoom in (street level) to load pools. Click any pool or house to light the house and its pools" + ([...this.on].some((k) => BLD[k]) ? " (every building in the city)." : " and official lot.") : "Every pool found across a whole city.";
+      el.querySelector(".note").textContent = this.on.size ? "Zoom in (street level) to load pools. Click any pool or house to light the house and its pools" + ([...this.on].some((k) => BLD[k]) ? " (every building in the Phoenix metro)." : " and official lot.") : "Every pool found across a whole city. Any Phoenix-metro building is clickable at street zoom.";
       const v = this.view, lines = [...this.on].map((k) => { const I = this.idx[k], a = AREAS.find((x) => x.slug === k);
         if (!I || I.state === "loading") return `${a.name}: loading`; if (I.state === "err") return `${a.name}: ${I.err}`;
         const tot = I.j.totals || {}, done = (I.j.tiles || []).filter((t) => !t.status || /done|ok|final/.test(t.status)).length;
